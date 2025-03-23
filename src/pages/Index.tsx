@@ -62,10 +62,7 @@ const HomePage = () => {
     setUserType(type);
     setShowSelector(false);
     
-    // Scroll smoothly down after selection
-    setTimeout(() => {
-      window.scrollTo({ top: window.innerHeight * 0.8, behavior: 'smooth' });
-    }, 500);
+    // Removed the automatic scrolling code that was here
   };
 
   // Custom welcome message based on user type
