@@ -113,27 +113,23 @@ const Header = () => {
           />
         </div>
         
-        {/* Desktop Navigation Menu - come prima */}
+        {/* Desktop Navigation Menu - senza sfondo, solo testo */}
         <div className="hidden lg:flex items-center space-x-1">
-          <NavigationMenu>
-            <NavigationMenuList>
-              {navigationItems.map((item, index) => (
-                <NavigationMenuItem key={index}>
-                  <LinkComponent 
-                    href={item.href}
-                    className={cn(
-                      navigationMenuTriggerStyle(),
-                      "flex items-center",
-                      isScrolled ? "text-black hover:text-ath-clay" : "text-white hover:text-gray-200"
-                    )}
-                  >
-                    {item.icon}
-                    {item.text}
-                  </LinkComponent>
-                </NavigationMenuItem>
-              ))}
-            </NavigationMenuList>
-          </NavigationMenu>
+          <nav className="flex items-center space-x-6">
+            {navigationItems.map((item, index) => (
+              <LinkComponent 
+                key={index}
+                href={item.href}
+                className={cn(
+                  "flex items-center text-sm font-medium transition-colors hover:text-ath-clay",
+                  isScrolled ? "text-black" : "text-white"
+                )}
+              >
+                {item.icon}
+                {item.text}
+              </LinkComponent>
+            ))}
+          </nav>
         </div>
         
         {/* Right side elements (language switcher and mobile menu) */}
