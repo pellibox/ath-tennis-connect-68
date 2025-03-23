@@ -1,5 +1,5 @@
 
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import Hero from '@/components/Hero';
@@ -8,10 +8,16 @@ import JoinRevolutionSection from '@/components/JoinRevolutionSection';
 import StatsAndNavSection from '@/components/StatsAndNavSection';
 import { UserGender, UserType, loadUserPreferences } from '@/components/UserTypeSelector';
 import { useLanguage } from '@/contexts/LanguageContext';
+import UserTypeSelector from '@/components/UserTypeSelector';
+import { Button } from '@/components/ui/button';
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from '@/components/ui/dialog';
 
 const HomePage = () => {
   // Get translation function
   const { t } = useLanguage();
+  
+  // Dialog state for profile selection
+  const [profileDialogOpen, setProfileDialogOpen] = useState(false);
   
   // Smooth scroll functionality
   useEffect(() => {
@@ -22,6 +28,14 @@ const HomePage = () => {
   const { gender, type } = loadUserPreferences();
   const userGender = gender as UserGender | null;
   const userType = type as UserType | null;
+
+  // Handle profile selection
+  const handleProfileComplete = (gender: UserGender, type: UserType) => {
+    // The user preferences are saved inside the UserTypeSelector component
+    setProfileDialogOpen(false);
+    // Reload the page to apply the new profile settings
+    window.location.reload();
+  };
 
   // Determine which Vimeo video to show based on user selection
   const getVimeoEmbed = () => {
@@ -122,7 +136,14 @@ const HomePage = () => {
             imageSrc="/lovable-uploads/6ea13aa7-2578-488b-8ed4-4b17fc2ddc4e.png"
             buttons={[
               { text: "Programmi", href: '/programs' },
-              { text: "Contattaci", href: '/contact', variant: 'outline' }
+              { text: "Contattaci", href: '/contact', variant: 'outline' },
+              // Add "Dimmi di te" button if user doesn't have a profile
+              ...((!userGender || !userType) ? [{ 
+                text: "Dimmi di te", 
+                href: '#', 
+                onClick: () => setProfileDialogOpen(true),
+                variant: 'default'
+              }] : [])
             ]}
             overlayOpacity="medium"
             contentVerticalPosition="bottom"
@@ -145,6 +166,23 @@ const HomePage = () => {
       </main>
       
       <Footer />
+
+      {/* Dialog for profile selection */}
+      <Dialog open={profileDialogOpen} onOpenChange={setProfileDialogOpen}>
+        <DialogContent className="sm:max-w-md">
+          <DialogHeader>
+            <DialogTitle>Seleziona Profilo</DialogTitle>
+            <DialogDescription>
+              Personalizza la tua esperienza su ATH
+            </DialogDescription>
+          </DialogHeader>
+          <UserTypeSelector 
+            onSelectionComplete={handleProfileComplete}
+            initialGender={userGender || undefined}
+            initialType={userType || undefined}
+          />
+        </DialogContent>
+      </Dialog>
     </div>
   );
 };
