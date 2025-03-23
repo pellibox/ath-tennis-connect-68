@@ -1,4 +1,3 @@
-
 import { useEffect } from 'react';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
@@ -228,76 +227,24 @@ const Programs = () => {
         <section className="py-20 px-6 lg:px-10">
           <div className="max-w-7xl mx-auto">
             <RevealAnimation>
-              <h2 className="text-3xl md:text-4xl font-display mb-4">Metodologia ATH</h2>
+              <h2 className="text-3xl md:text-4xl font-display mb-4">Programmi basati sul Metodo ATH</h2>
             </RevealAnimation>
             
             <RevealAnimation delay={100}>
               <div className="text-lg text-gray-600 max-w-3xl mb-12 space-y-4">
                 <p>
-                  In ATH integriamo tecnologia avanzata con coaching esperto. Il rivoluzionario sistema VICKI™ monitora oltre 70 parametri della performance tennistica per fornire analisi dettagliate e programmi di allenamento personalizzati.
+                  Tutti i nostri programmi si basano sul metodo ATH, un sistema innovativo che integra tecnologia avanzata con coaching esperto. 
+                  Il nostro approccio garantisce che ogni atleta, indipendentemente dal livello o dall'età, riceva un allenamento personalizzato 
+                  basato su dati oggettivi e supportato da professionisti altamente qualificati.
                 </p>
-                
-                <div className="mt-8">
-                  <h3 className="text-xl font-medium mb-3">Come funziona VICKI™</h3>
-                  <p className="mb-4">
-                    VICKI™ è un sistema avanzato di analisi per il tennis che combina visione artificiale, intelligenza artificiale e conoscenze tecniche. Monitora oltre 70 parametri in tempo reale e li trasforma in analisi utili per allenatori e atleti.
-                  </p>
-                  
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6">
-                    <div className="bg-white p-6 shadow-sm rounded-sm">
-                      <h4 className="font-medium text-lg mb-2">1. Visual – Visione Artificiale</h4>
-                      <p className="mb-3 text-sm">Usa una tecnologia di tracking ad alta frequenza per registrare ogni dettaglio del gioco.</p>
-                      <ul className="text-sm list-disc pl-5 space-y-1">
-                        <li>Traiettoria 3D della palla (x, y, z), velocità, spin, punti di rimbalzo</li>
-                        <li>Posizione 2D del corpo del giocatore per ogni frame</li>
-                        <li>Postura, orientamento, bilanciamento, movimento di arti e articolazioni</li>
-                        <li>Angoli articolari (spalla, gomito, polso, anca, ginocchio, caviglia)</li>
-                        <li>Swing e impatto della racchetta: velocità, angolo faccia, punto d'impatto</li>
-                        <li>Tipo di colpo con riconoscimento automatico</li>
-                        <li>Precisione al millisecondo del momento impatto palla-racchetta</li>
-                      </ul>
-                    </div>
-                    
-                    <div className="bg-white p-6 shadow-sm rounded-sm">
-                      <h4 className="font-medium text-lg mb-2">2. Intelligent – Algoritmi Predittivi</h4>
-                      <p className="mb-3 text-sm">Analizza i dati raccolti con modelli di machine learning per prevedere e migliorare le prestazioni.</p>
-                      <ul className="text-sm list-disc pl-5 space-y-1">
-                        <li>Previsioni su sviluppo tecnico e fisico</li>
-                        <li>Identificazione automatica di criticità</li>
-                        <li>Personalizzazione continua delle analisi</li>
-                        <li>Adattamento a ogni singolo atleta</li>
-                        <li>Confronti storici e con benchmark professionali</li>
-                        <li>Evoluzione della performance nel tempo</li>
-                      </ul>
-                    </div>
-                    
-                    <div className="bg-white p-6 shadow-sm rounded-sm">
-                      <h4 className="font-medium text-lg mb-2">3. Coaching Knowledge – Expertise Aumentata</h4>
-                      <p className="mb-3 text-sm">Integra l'esperienza dei coach in una libreria digitale che alimenta suggerimenti personalizzati.</p>
-                      <ul className="text-sm list-disc pl-5 space-y-1">
-                        <li>Monitoraggio della qualità tecnica sotto pressione</li>
-                        <li>Analisi della tattica e delle risposte dell'avversario</li>
-                        <li>Confronti biomeccanici per valutare l'efficienza dei colpi</li>
-                        <li>Studio della catena cinetica e dei rischi di infortunio</li>
-                      </ul>
-                    </div>
-                    
-                    <div className="bg-white p-6 shadow-sm rounded-sm">
-                      <h4 className="font-medium text-lg mb-2">4. Insight – Personalizzazione</h4>
-                      <p className="mb-3 text-sm">Converte i dati in strategie di allenamento su misura.</p>
-                      <ul className="text-sm list-disc pl-5 space-y-1">
-                        <li>Programmi di allenamento personalizzati</li>
-                        <li>Prevenzione infortuni con analisi biomeccaniche</li>
-                        <li>Dashboard interattive e grafici per analizzare parametri</li>
-                        <li>Heat map dei colpi, AR per feedback immediati</li>
-                        <li>Strumenti per accelerare l'apprendimento</li>
-                      </ul>
-                    </div>
-                  </div>
-                  
-                  <p className="mt-6 font-medium text-gray-700">
-                    In sintesi: VICKI™ è uno strumento di supporto per allenatori, che trasforma dati complessi in azioni pratiche e mirate, adattate al profilo dell'atleta. L'allenatore controlla quali dati condividere con gli altri soggetti coinvolti.
-                  </p>
+                <p>
+                  Grazie al sistema VICKI™, monitoriamo in tempo reale oltre 70 parametri della performance, permettendo ai coach di fornire 
+                  feedback immediati e di sviluppare programmi di allenamento su misura per ogni giocatore.
+                </p>
+                <div className="mt-6">
+                  <Link to="/method" className="inline-flex items-center text-ath-clay font-medium hover:underline">
+                    Scopri di più sul Metodo ATH e il sistema VICKI™ →
+                  </Link>
                 </div>
               </div>
             </RevealAnimation>
