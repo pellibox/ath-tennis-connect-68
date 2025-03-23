@@ -33,6 +33,7 @@ const Hero = ({
   fullHeight = true,
 }: HeroProps) => {
   const titleRef = useRef<HTMLHeadingElement>(null);
+  const videoRef = useRef<HTMLVideoElement>(null);
   
   // Run title animation effect when title changes
   useEffect(() => {
@@ -52,6 +53,21 @@ const Hero = ({
       }, 100);
     }
   }, [title]); // Re-run when title changes (language changes)
+  
+  // Handle video element errors
+  useEffect(() => {
+    const video = videoRef.current;
+    if (video) {
+      const handleError = () => {
+        console.error('Video failed to load:', videoSrc);
+      };
+      
+      video.addEventListener('error', handleError);
+      return () => {
+        video.removeEventListener('error', handleError);
+      };
+    }
+  }, [videoSrc]);
   
   const positionClasses = {
     center: 'items-center text-center',
@@ -76,6 +92,7 @@ const Hero = ({
       <div className="absolute inset-0 w-full h-full">
         {videoSrc ? (
           <video
+            ref={videoRef}
             autoPlay
             muted
             loop
