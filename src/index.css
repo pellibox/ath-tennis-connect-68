@@ -45,6 +45,8 @@
     --sidebar-accent-foreground: 222.2 47.4% 11.2%;
     --sidebar-border: 214.3 31.8% 91.4%;
     --sidebar-ring: 222.2 84% 4.9%;
+    
+    --ath-gray: 210 20% 98%;
   }
 
   .dark {
@@ -92,6 +94,10 @@
   .font-display {
     font-family: 'Playfair Display', serif;
   }
+}
+
+.bg-ath-gray {
+  background-color: hsl(var(--ath-gray));
 }
 
 /* Animation utilities */

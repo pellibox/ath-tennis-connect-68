@@ -9,9 +9,9 @@ import { lazy, Suspense } from "react";
 // Import pages
 import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
+import Programs from "./pages/Programs";
 
 // Create placeholder pages to be added in the future
-const Programs = lazy(() => import("./pages/Index"));
 const Facilities = lazy(() => import("./pages/Index"));
 const Coaches = lazy(() => import("./pages/Index"));
 const About = lazy(() => import("./pages/Index"));
