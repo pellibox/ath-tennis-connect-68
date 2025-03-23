@@ -1,4 +1,3 @@
-
 import { useEffect, useState } from 'react';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
@@ -69,11 +68,12 @@ const Programs = () => {
     {
       id: '4',
       title: 'Coach / Allenatori / Club',
-      description: 'Formazione avanzata e strumenti per allenatori che vogliono integrare la metodologia ATH.',
+      description: 'Formazione avanzata e strumenti per allenatori che vogliono integrare la metodologia ATH e VICKI.',
       image: 'https://images.unsplash.com/photo-1526232761682-d26e03ac148e?q=80&w=2069&auto=format&fit=crop',
       link: '/programs/coach',
       features: [
         'Accesso alla piattaforma di tracking e analisi video',
+        'Integrazione completa con il sistema VICKI per analisi avanzata',
         'Creazione di un metodo personalizzato (codificabile nel sistema)',
         'Formazione continua e aggiornamento metodologico',
         'Monitoraggio degli atleti su base oggettiva e condivisa',

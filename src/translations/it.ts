@@ -1,3 +1,4 @@
+
 const translations = {
   // Header & Navigation
   "nav.home": "Home",
@@ -31,7 +32,7 @@ const translations = {
   "programs.elite": "Professionisti",
   "programs.elite.desc": "Supporto completo per atleti professionisti con analisi avanzata e ottimizzazione della performance.",
   "programs.coach": "Coach / Allenatori / Club",
-  "programs.coach.desc": "Formazione avanzata e strumenti per allenatori che vogliono integrare la metodologia ATH.",
+  "programs.coach.desc": "Formazione avanzata e strumenti per allenatori che vogliono integrare la metodologia ATH e VICKI.",
   "programs.parent.young": "Genitore/Tutor (6-12 anni)",
   "programs.parent.young.desc": "Supporto informativo e coinvolgimento nel percorso di sviluppo del giovane atleta.",
   "programs.parent.junior": "Genitore/Tutor (13-18 anni)",
