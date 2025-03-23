@@ -212,11 +212,12 @@ const HomePage = () => {
         <Hero 
           title="Advanced Tennis Hub"
           subtitle="Centro di allenamento ad alta specializzazione con monitoraggio parametrico completo e metodologia integrata"
-          imageSrc="/lovable-uploads/fc6643c2-4357-4c86-9e52-6f33d698668f.png"
+          imageSrc="/lovable-uploads/da809888-483b-4b2c-8e57-6d1ec6aaa51c.png"
           buttons={[
             { text: "Programmi", href: '/programs' },
             { text: "Contattaci", href: '/contact', variant: 'outline' }
           ]}
+          overlayOpacity="medium"
         />
         
         <AboutSection 

@@ -57,8 +57,8 @@ const Hero = ({
   
   const overlayClasses = {
     light: 'bg-black/20',
-    medium: 'bg-black/40',
-    dark: 'bg-black/60',
+    medium: 'bg-black/50',
+    dark: 'bg-black/70',
   };
   
   return (
@@ -84,20 +84,20 @@ const Hero = ({
       )}>
         <h1 
           ref={titleRef}
-          className="text-animate text-4xl md:text-5xl lg:text-6xl font-display font-bold text-white leading-tight mb-6"
+          className="text-animate text-5xl md:text-6xl lg:text-7xl font-display font-bold text-white leading-tight mb-8 drop-shadow-lg"
         >
           {title}
         </h1>
         
         {subtitle && (
-          <p className="text-white text-lg md:text-xl opacity-90 mb-8 animate-fade-in" style={{ animationDelay: '0.4s' }}>
+          <p className="text-white text-xl md:text-2xl opacity-90 mb-10 animate-fade-in drop-shadow-md" style={{ animationDelay: '0.4s' }}>
             {subtitle}
           </p>
         )}
         
         {buttons.length > 0 && (
           <div className={cn(
-            'flex flex-wrap gap-4',
+            'flex flex-wrap gap-5',
             contentPosition === 'center' ? 'justify-center' : contentPosition === 'right' ? 'justify-end' : 'justify-start'
           )}>
             {buttons.map((button, index) => (
@@ -105,7 +105,10 @@ const Hero = ({
                 key={`${button.text}-${index}`} // Use text as part of key to force re-render on text change
                 href={button.href}
                 variant={button.variant || (index === 0 ? 'primary' : 'outline')}
-                className={index === 0 ? 'animate-fade-in' : 'animate-fade-in'}
+                className={cn(
+                  'text-lg px-8 py-3', 
+                  index === 0 ? 'animate-fade-in' : 'animate-fade-in'
+                )}
                 style={{ animationDelay: `${0.6 + index * 0.1}s` }}
               >
                 {button.text}
