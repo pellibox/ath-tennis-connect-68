@@ -38,7 +38,7 @@ const Hero = ({
   const [videoLoaded, setVideoLoaded] = useState(false);
   
   // Default fallback image if the main image fails to load
-  const fallbackImage = "https://source.unsplash.com/featured/1920x1080/?tennis,court";
+  const fallbackImage = "https://images.unsplash.com/photo-1518005068251-37900150dfca?q=80&w=1920";
   
   // Run title animation effect when title changes
   useEffect(() => {
@@ -78,15 +78,8 @@ const Hero = ({
       const formattedVideoSrc = getVideoUrl(videoSrc);
       console.log('Attempting to load video from:', formattedVideoSrc);
       
-      // Set source programmatically
-      if (video.querySelector('source')) {
-        (video.querySelector('source') as HTMLSourceElement).src = formattedVideoSrc;
-      } else {
-        const source = document.createElement('source');
-        source.src = formattedVideoSrc;
-        source.type = 'video/mp4';
-        video.appendChild(source);
-      }
+      video.src = formattedVideoSrc;
+      video.load();
       
       const handleError = (e: Event) => {
         console.error('Video failed to load:', formattedVideoSrc, e);
@@ -115,9 +108,6 @@ const Hero = ({
       video.addEventListener('error', handleError);
       video.addEventListener('loadeddata', handleLoadedData);
       
-      // Force reload the video element
-      video.load();
-      
       return () => {
         video.removeEventListener('error', handleError);
         video.removeEventListener('loadeddata', handleLoadedData);
@@ -142,9 +132,6 @@ const Hero = ({
     setImageError(true);
   };
   
-  // Get the formatted video source URL
-  const formattedVideoSrc = videoSrc ? getVideoUrl(videoSrc) : undefined;
-  
   return (
     <div 
       className={cn(
@@ -167,20 +154,20 @@ const Hero = ({
               videoLoaded ? 'opacity-100' : 'opacity-0',
               'transition-opacity duration-500'
             )}
-          >
-            {/* Source is set programmatically in useEffect for better control */}
-          </video>
-        )}
-        
-        {/* Show image if no video or video error */}
-        {(!videoSrc || videoError || !videoLoaded) && (
-          <img 
-            src={imageError ? fallbackImage : imageSrc} 
-            alt="Background" 
-            className="object-cover w-full h-full"
-            onError={handleImageError}
           />
         )}
+        
+        {/* Always show image initially and if video fails */}
+        <img 
+          src={imageError ? fallbackImage : (imageSrc || fallbackImage)} 
+          alt="Background" 
+          className={cn(
+            "object-cover w-full h-full",
+            videoSrc && !videoError && videoLoaded ? 'opacity-0' : 'opacity-100',
+            'transition-opacity duration-500'
+          )}
+          onError={handleImageError}
+        />
         
         <div className={cn('absolute inset-0', overlayClasses[overlayOpacity])}></div>
       </div>
