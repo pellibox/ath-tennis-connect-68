@@ -59,14 +59,37 @@ const Hero = ({
     }
   }, [title]); // Re-run when title changes (language changes)
   
+  // Format video URL if it's from Google Drive
+  const getVideoUrl = (url: string): string => {
+    if (url && url.includes('drive.google.com/file/d/')) {
+      // Extract the file ID from the Google Drive URL
+      const match = url.match(/\/d\/([^\/]+)/);
+      if (match && match[1]) {
+        return `https://drive.google.com/uc?export=download&id=${match[1]}`;
+      }
+    }
+    return url;
+  };
+
   // Handle video element loading and playing
   useEffect(() => {
     const video = videoRef.current;
     if (video && videoSrc) {
-      console.log('Attempting to load video from:', videoSrc);
+      const formattedVideoSrc = getVideoUrl(videoSrc);
+      console.log('Attempting to load video from:', formattedVideoSrc);
+      
+      // Set source programmatically
+      if (video.querySelector('source')) {
+        (video.querySelector('source') as HTMLSourceElement).src = formattedVideoSrc;
+      } else {
+        const source = document.createElement('source');
+        source.src = formattedVideoSrc;
+        source.type = 'video/mp4';
+        video.appendChild(source);
+      }
       
       const handleError = (e: Event) => {
-        console.error('Video failed to load:', videoSrc, e);
+        console.error('Video failed to load:', formattedVideoSrc, e);
         setVideoError(true);
       };
       
@@ -119,18 +142,7 @@ const Hero = ({
     setImageError(true);
   };
   
-  // Format video URL if it's from Google Drive
-  const getVideoUrl = (url: string) => {
-    if (url && url.includes('drive.google.com/file/d/')) {
-      // Extract the file ID from the Google Drive URL
-      const match = url.match(/\/d\/([^\/]+)/);
-      if (match && match[1]) {
-        return `https://drive.google.com/uc?export=download&id=${match[1]}`;
-      }
-    }
-    return url;
-  };
-  
+  // Get the formatted video source URL
   const formattedVideoSrc = videoSrc ? getVideoUrl(videoSrc) : undefined;
   
   return (
@@ -142,7 +154,7 @@ const Hero = ({
       )}
     >
       <div className="absolute inset-0 w-full h-full">
-        {formattedVideoSrc && !videoError ? (
+        {videoSrc && !videoError && (
           <video
             ref={videoRef}
             autoPlay
@@ -155,14 +167,13 @@ const Hero = ({
               videoLoaded ? 'opacity-100' : 'opacity-0',
               'transition-opacity duration-500'
             )}
-            onError={() => setVideoError(true)}
           >
-            <source src={formattedVideoSrc} type="video/mp4" />
-            {/* Fallback to image if video can't play */}
-            {imageSrc && <img src={imageSrc} alt="Background" className="object-cover w-full h-full" onError={handleImageError} />}
+            {/* Source is set programmatically in useEffect for better control */}
           </video>
-        ) : (
-          // Show image if no video or video error
+        )}
+        
+        {/* Show image if no video or video error */}
+        {(!videoSrc || videoError || !videoLoaded) && (
           <img 
             src={imageError ? fallbackImage : imageSrc} 
             alt="Background" 
@@ -170,6 +181,7 @@ const Hero = ({
             onError={handleImageError}
           />
         )}
+        
         <div className={cn('absolute inset-0', overlayClasses[overlayOpacity])}></div>
       </div>
       
