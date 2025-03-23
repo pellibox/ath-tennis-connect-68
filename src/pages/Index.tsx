@@ -170,7 +170,7 @@ const HomePage = () => {
     },
   ];
 
-  // Updated facilities with the new image for Campo Centrale ATP
+  // Updated facilities with Players Lounge
   const facilities = [
     {
       id: '1',
@@ -201,6 +201,18 @@ const HomePage = () => {
       title: 'Strutture per Giocatori',
       description: 'Spazi dedicati con connessione diretta al sistema Vicki™ per revisione dati, analisi video e pianificazione sessioni.',
       image: 'https://images.unsplash.com/photo-1603988363607-e1e4a66962c6?q=80&w=1200'
+    },
+    {
+      id: '6',
+      title: 'Players Lounge',
+      description: 'Area esclusiva di relax per atleti con monitor per analisi dati, connessione al sistema Vicki™ e ambiente premium.',
+      image: '/lovable-uploads/a39367a8-2cd2-4dca-88ac-68898efc50da.png',
+      features: [
+        'Postazioni multimediali integrate',
+        'Area relax ergonomica',
+        'Connessione diretta al sistema di analisi',
+        'Design moderno e funzionale'
+      ]
     },
   ];
 

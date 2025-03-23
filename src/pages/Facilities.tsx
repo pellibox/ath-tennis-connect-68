@@ -7,7 +7,7 @@ import AboutSection from '@/components/AboutSection';
 import { useLocation } from 'react-router-dom';
 import Hero from '@/components/Hero';
 
-// Updated mock data for facilities with the new image for Campo Centrale ATP
+// Updated mock data for facilities with Players Lounge
 const facilities = [
   {
     id: "facility-1",
@@ -51,6 +51,19 @@ const facilities = [
       "Schermi ad alta risoluzione",
       "Software di analisi avanzata",
       "Spazio per sessioni di coaching individuali"
+    ]
+  },
+  {
+    id: "facility-5",
+    title: "Players Lounge",
+    description: "Area esclusiva di relax per atleti con monitor per analisi dati, connessione al sistema Vicki™ e ambiente premium.",
+    image: "/lovable-uploads/a39367a8-2cd2-4dca-88ac-68898efc50da.png",
+    features: [
+      "Postazioni multimediali integrate",
+      "Area relax ergonomica",
+      "Connessione diretta al sistema di analisi",
+      "Reception e assistenza dedicata",
+      "Design moderno e funzionale"
     ]
   }
 ];
