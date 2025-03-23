@@ -1,6 +1,7 @@
 
 import RevealAnimation from './RevealAnimation';
 import { cn } from '@/lib/utils';
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 
 interface Facility {
   id: string;
@@ -52,12 +53,27 @@ const FacilitiesSection = ({
                 </div>
                 
                 <div className={index % 2 === 0 ? 'md:order-1' : ''}>
-                  <div className="overflow-hidden rounded-lg shadow-lg">
+                  <div className="overflow-hidden rounded-lg shadow-lg relative">
+                    {/* Utilizzo sia l'img diretto che un fallback con Avatar in caso di problemi */}
                     <img 
                       src={facility.image} 
                       alt={facility.title}
                       className="w-full h-[300px] md:h-[400px] object-cover transform hover:scale-105 transition-transform duration-500"
+                      onError={(e) => {
+                        console.error(`Errore caricamento immagine: ${facility.image}`);
+                        e.currentTarget.style.display = "none";
+                      }}
                     />
+                    
+                    {/* Avatar come fallback */}
+                    <div className="absolute inset-0 flex items-center justify-center">
+                      <Avatar className="w-full h-full rounded-none">
+                        <AvatarImage src={facility.image} alt={facility.title} className="object-cover" />
+                        <AvatarFallback className="w-full h-full text-xl bg-gray-200 text-gray-800">
+                          {facility.title.substring(0, 2).toUpperCase()}
+                        </AvatarFallback>
+                      </Avatar>
+                    </div>
                   </div>
                 </div>
               </div>
