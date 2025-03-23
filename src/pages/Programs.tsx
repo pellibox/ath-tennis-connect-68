@@ -43,7 +43,7 @@ const Programs = () => {
       title: 'Giovani Agonisti (6-12 anni)',
       description: 'Programma formativo per giovani atleti in fase di sviluppo tecnico e fisico.',
       image: '/lovable-uploads/ef64c04d-055d-4d70-87f4-e67928a3b8e6.png',
-      videoSrc: '/videos/young-athlete-sample.mp4',
+      vimeoEmbed: '<div style="padding:56.25% 0 0 0;position:relative;"><iframe src="https://player.vimeo.com/video/1068596935?h=222acb69b2&autoplay=1&title=0&byline=0&portrait=0&controls=0" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen style="position:absolute;top:0;left:0;width:100%;height:100%;"></iframe></div>',
       link: '/programs/young-athletes',
       features: [
         'Valutazioni tecniche, fisiche, mentali e tattiche costanti',
