@@ -1,34 +1,27 @@
 
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import Hero from '@/components/Hero';
 import ContactSection from '@/components/ContactSection';
 import JoinRevolutionSection from '@/components/JoinRevolutionSection';
 import StatsAndNavSection from '@/components/StatsAndNavSection';
-import UserTypeSelector, { UserGender, UserType, loadUserPreferences } from '@/components/UserTypeSelector';
+import { UserGender, UserType, loadUserPreferences } from '@/components/UserTypeSelector';
 import { useLanguage } from '@/contexts/LanguageContext';
 
 const HomePage = () => {
   // Get translation function
   const { t } = useLanguage();
   
-  // User selection state
-  const [userGender, setUserGender] = useState<UserGender | null>(null);
-  const [userType, setUserType] = useState<UserType | null>(null);
-  const [showSelector, setShowSelector] = useState(false);
-  
-  // Load user preferences on mount
-  useEffect(() => {
-    const { gender, type } = loadUserPreferences();
-    if (gender) setUserGender(gender);
-    if (type) setUserType(type);
-  }, []);
-  
   // Smooth scroll functionality
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }, []);
+
+  // Load user preferences for video selection
+  const { gender, type } = loadUserPreferences();
+  const userGender = gender as UserGender | null;
+  const userType = type as UserType | null;
 
   // Determine which Vimeo video to show based on user selection
   const getVimeoEmbed = () => {
@@ -66,15 +59,6 @@ const HomePage = () => {
     }
     
     return videoEmbed;
-  };
-
-  // Handle user type selection
-  const handleUserSelection = (gender: UserGender, type: UserType) => {
-    setUserGender(gender);
-    setUserType(type);
-    setShowSelector(false);
-    
-    // Removed the automatic scrolling code that was here
   };
 
   // Custom welcome message based on user type
@@ -138,22 +122,6 @@ const HomePage = () => {
             contentPosition="center"
             subtitlePosition="bottom"
           />
-          
-          {/* User Selection Overlay - Positioned at 2/3 from the top instead of 3/4 to show continue button */}
-          {!userType && (
-            <div className="absolute top-2/3 left-0 right-0 flex justify-center px-4 z-20">
-              {showSelector ? (
-                <UserTypeSelector onSelectionComplete={handleUserSelection} />
-              ) : (
-                <button 
-                  onClick={() => setShowSelector(true)}
-                  className="bg-white hover:bg-white/90 text-ath-clay px-8 py-4 rounded-xl text-lg font-medium shadow-lg transition-all hover:shadow-xl"
-                >
-                  Dimmi che tennista sei
-                </button>
-              )}
-            </div>
-          )}
         </div>
         
         <StatsAndNavSection stats={stats} />
