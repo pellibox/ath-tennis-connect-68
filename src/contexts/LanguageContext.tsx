@@ -1,5 +1,9 @@
 
 import React, { createContext, useContext, useState, useEffect } from 'react';
+import enTranslations from '../translations/en';
+import itTranslations from '../translations/it';
+import frTranslations from '../translations/fr';
+import deTranslations from '../translations/de';
 
 type Language = 'en' | 'it' | 'fr' | 'de';
 
@@ -9,38 +13,28 @@ interface LanguageContextType {
   t: (key: string) => string;
 }
 
+const translationsMap = {
+  en: enTranslations,
+  it: itTranslations,
+  fr: frTranslations,
+  de: deTranslations
+};
+
 const LanguageContext = createContext<LanguageContextType | undefined>(undefined);
 
 export const LanguageProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   // Get language from localStorage or default to English
   const [language, setLanguage] = useState<Language>(() => {
     const savedLanguage = localStorage.getItem('language') as Language;
-    return savedLanguage ? savedLanguage : 'en';
+    return savedLanguage && ['en', 'it', 'fr', 'de'].includes(savedLanguage) ? savedLanguage : 'en';
   });
   
-  const [translations, setTranslations] = useState<Record<string, string>>({});
+  const [translations, setTranslations] = useState(translationsMap.en);
 
-  // Load translations
+  // Load translations when language changes
   useEffect(() => {
-    const loadTranslations = async () => {
-      try {
-        const translationModule = await import(`../translations/${language}.ts`);
-        setTranslations(translationModule.default);
-      } catch (error) {
-        console.error('Failed to load translations:', error);
-        // Fallback to English if translation file can't be loaded
-        if (language !== 'en') {
-          const englishModule = await import('../translations/en.ts');
-          setTranslations(englishModule.default);
-        }
-      }
-    };
-    
-    loadTranslations();
-  }, [language]);
-
-  // Save language preference to localStorage
-  useEffect(() => {
+    setTranslations(translationsMap[language] || translationsMap.en);
+    // Save language preference to localStorage
     localStorage.setItem('language', language);
   }, [language]);
 

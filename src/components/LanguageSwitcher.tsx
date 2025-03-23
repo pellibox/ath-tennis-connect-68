@@ -31,6 +31,12 @@ const LanguageSwitcher = () => {
     de: t('language.de')
   };
 
+  const handleLanguageChange = (newLanguage: 'en' | 'it' | 'fr' | 'de') => {
+    console.log('Changing language to:', newLanguage);
+    setLanguage(newLanguage);
+    setIsOpen(false);
+  };
+
   return (
     <div className="relative" ref={dropdownRef}>
       <button 
@@ -51,10 +57,7 @@ const LanguageSwitcher = () => {
           {(['en', 'it', 'fr', 'de'] as const).map((lang) => (
             <button
               key={lang}
-              onClick={() => {
-                setLanguage(lang);
-                setIsOpen(false);
-              }}
+              onClick={() => handleLanguageChange(lang)}
               className={cn(
                 "block w-full text-left px-4 py-2 text-sm hover:bg-gray-50 transition-colors",
                 language === lang ? "font-medium text-purple-600 bg-purple-50" : "text-gray-700"
