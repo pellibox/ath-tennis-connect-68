@@ -66,7 +66,7 @@ const Header = () => {
     >
       <div className="container mx-auto px-4 flex items-center justify-between">
         <Link to="/" className="z-50">
-          <Logo variant={isScrolled || isMenuOpen ? 'dark' : 'light'} />
+          <Logo variant={isScrolled || isMenuOpen ? "default" : "footer"} />
         </Link>
 
         {/* Desktop Navigation */}
