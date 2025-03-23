@@ -2,7 +2,7 @@
 import React from 'react';
 import { UserGender, UserType, saveUserPreferences } from './UserTypeSelector';
 import { Button } from "@/components/ui/button";
-import { GraduationCap, Target, Briefcase, UserCog, Users, Edit, User } from 'lucide-react';
+import { Male, Female, GraduationCap, Target, Briefcase, UserCog, Users, Edit } from 'lucide-react';
 import { toast } from 'sonner';
 import { useNavigate } from 'react-router-dom';
 
@@ -69,10 +69,7 @@ const ProfileIndicator: React.FC<ProfileIndicatorProps> = ({ gender, type, onEdi
   return (
     <div className="fixed top-24 lg:top-20 right-4 z-40 bg-white/95 backdrop-blur-sm shadow-md rounded-lg p-3 text-sm flex flex-col items-start">
       <div className="flex items-center mb-2 font-medium">
-        <User 
-          size={18} 
-          className={`mr-2 ${gender === 'male' ? 'text-blue-500' : 'text-pink-500'}`} 
-        />
+        {gender === 'male' ? <Male size={18} className="mr-2 text-blue-500" /> : <Female size={18} className="mr-2 text-pink-500" />}
         <span>{gender === 'male' ? 'Uomo' : 'Donna'}</span>
       </div>
       
