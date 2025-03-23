@@ -34,6 +34,10 @@ const Hero = ({
 }: HeroProps) => {
   const titleRef = useRef<HTMLHeadingElement>(null);
   const videoRef = useRef<HTMLVideoElement>(null);
+  const [imageError, setImageError] = useState(false);
+  
+  // Default fallback image if the main image fails to load
+  const fallbackImage = "https://source.unsplash.com/featured/1920x1080/?tennis,court";
   
   // Run title animation effect when title changes
   useEffect(() => {
@@ -81,6 +85,11 @@ const Hero = ({
     dark: 'bg-black/70',
   };
   
+  const handleImageError = () => {
+    console.error('Failed to load hero image:', imageSrc);
+    setImageError(true);
+  };
+  
   return (
     <div 
       className={cn(
@@ -102,15 +111,22 @@ const Hero = ({
           >
             <source src={videoSrc} type="video/mp4" />
             {/* Fallback to image if video can't play */}
-            {imageSrc && <img src={imageSrc} alt="Background" className="object-cover w-full h-full" />}
+            {imageSrc && <img src={imageSrc} alt="Background" className="object-cover w-full h-full" onError={handleImageError} />}
           </video>
         ) : imageSrc ? (
           <img 
-            src={imageSrc} 
+            src={imageError ? fallbackImage : imageSrc} 
             alt="Background" 
             className="object-cover w-full h-full"
+            onError={handleImageError}
           />
-        ) : null}
+        ) : (
+          <img 
+            src={fallbackImage} 
+            alt="Tennis background" 
+            className="object-cover w-full h-full"
+          />
+        )}
         <div className={cn('absolute inset-0', overlayClasses[overlayOpacity])}></div>
       </div>
       

@@ -33,18 +33,11 @@ const ProgramsSection = ({
 }: ProgramsSectionProps) => {
   // State to track failed images
   const [failedImages, setFailedImages] = useState<Record<string, boolean>>({});
-  // State to store fallback images for each program
-  const [fallbackImages, setFallbackImages] = useState<Record<string, string>>({});
-
-  // Generate random fallback images when component mounts
-  useEffect(() => {
-    const fallbacks: Record<string, string> = {};
-    programs.forEach((program, index) => {
-      // Generate a unique random image for each program
-      fallbacks[program.id] = `https://source.unsplash.com/random/800x600/?tennis,training,${index}`;
-    });
-    setFallbackImages(fallbacks);
-  }, [programs]);
+  
+  // Generate fallback image URL based on program title
+  const getFallbackImage = (program: Program) => {
+    return `https://source.unsplash.com/featured/800x600/?tennis,${encodeURIComponent(program.title.toLowerCase())}`;
+  };
 
   const handleImageError = (id: string) => {
     console.log(`Failed to load program image for ID: ${id}`);
@@ -76,26 +69,15 @@ const ProgramsSection = ({
             <RevealAnimation key={program.id} delay={index * 50} className="h-full">
               <div className="group h-full flex flex-col border border-gray-200 bg-white transition-all hover:shadow-sm">
                 <div className="relative overflow-hidden">
-                  {!failedImages[program.id] ? (
-                    <img 
-                      src={program.image} 
-                      alt={program.title} 
-                      className={cn(
-                        "w-full object-cover transition-transform duration-700 group-hover:scale-105",
-                        compact || gridLayout === 'dense' ? "h-44" : "h-60"
-                      )}
-                      onError={() => handleImageError(program.id)}
-                    />
-                  ) : (
-                    <img 
-                      src={fallbackImages[program.id]} 
-                      alt={program.title} 
-                      className={cn(
-                        "w-full object-cover transition-transform duration-700 group-hover:scale-105",
-                        compact || gridLayout === 'dense' ? "h-44" : "h-60"
-                      )}
-                    />
-                  )}
+                  <img 
+                    src={failedImages[program.id] ? getFallbackImage(program) : program.image} 
+                    alt={program.title} 
+                    className={cn(
+                      "w-full object-cover transition-transform duration-700 group-hover:scale-105",
+                      compact || gridLayout === 'dense' ? "h-44" : "h-60"
+                    )}
+                    onError={() => handleImageError(program.id)}
+                  />
                 </div>
                 <div className="flex flex-col flex-grow p-5">
                   <h3 className="text-lg font-medium mb-2 text-ath-clay">{program.title}</h3>

@@ -1,4 +1,5 @@
-import { useEffect } from 'react';
+
+import { useEffect, useState } from 'react';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import Hero from '@/components/Hero';
@@ -20,7 +21,7 @@ const Programs = () => {
       id: '1',
       title: 'Agonista Junior (13-18 anni)',
       description: 'Programma completo per giovani atleti che vogliono competere a livello agonistico.',
-      image: 'https://images.unsplash.com/photo-1551773148-efc73c5fdc70',
+      image: 'https://images.unsplash.com/photo-1612458225454-41c3991c0c49?q=80&w=1973&auto=format&fit=crop',
       link: '/programs/junior-competitive',
       features: [
         'Analisi in tempo reale di tecnica, tattica, parametri mentali e fisici',
@@ -37,7 +38,7 @@ const Programs = () => {
       id: '2',
       title: 'Giovani Agonisti (6-12 anni)',
       description: 'Programma formativo per giovani atleti in fase di sviluppo tecnico e fisico.',
-      image: 'https://images.unsplash.com/photo-1596464716127-f2a82984de30',
+      image: 'https://images.unsplash.com/photo-1511886929837-354d5774223a?q=80&w=2060&auto=format&fit=crop',
       link: '/programs/young-athletes',
       features: [
         'Valutazioni tecniche, fisiche, mentali e tattiche costanti',
@@ -53,7 +54,7 @@ const Programs = () => {
       id: '3',
       title: 'Professionisti',
       description: 'Supporto completo per atleti professionisti con analisi avanzata e ottimizzazione della performance.',
-      image: 'https://images.unsplash.com/photo-1542144582-1ba00456b5e3',
+      image: 'https://images.unsplash.com/photo-1531315630201-bb15abeb1653?q=80&w=2070&auto=format&fit=crop',
       link: '/programs/professional',
       features: [
         'Allenamento completamente personalizzato su tutti i fronti',
@@ -69,7 +70,7 @@ const Programs = () => {
       id: '4',
       title: 'Coach / Allenatori / Club',
       description: 'Formazione avanzata e strumenti per allenatori che vogliono integrare la metodologia ATH.',
-      image: 'https://images.unsplash.com/photo-1622279888158-c6a5e6c4587c',
+      image: 'https://images.unsplash.com/photo-1526232761682-d26e03ac148e?q=80&w=2069&auto=format&fit=crop',
       link: '/programs/coach',
       features: [
         'Accesso alla piattaforma di tracking e analisi video',
@@ -85,7 +86,7 @@ const Programs = () => {
       id: '5',
       title: 'Genitore/Tutor (6-12 anni)',
       description: 'Supporto informativo e coinvolgimento nel percorso di sviluppo del giovane atleta.',
-      image: 'https://images.unsplash.com/photo-1606131731446-5568d87113aa',
+      image: 'https://images.unsplash.com/photo-1515377905703-c4788e51af15?q=80&w=2070&auto=format&fit=crop',
       link: '/programs/parent-young',
       features: [
         'Accesso a report semplici e visualizzabili online',
@@ -99,7 +100,7 @@ const Programs = () => {
       id: '6',
       title: 'Genitore/Tutor (13-18 anni)',
       description: 'Coinvolgimento attivo nel percorso agonistico dell\'atleta junior.',
-      image: 'https://images.unsplash.com/photo-1615809269099-33bd04a5a8eb',
+      image: 'https://images.unsplash.com/photo-1533107862482-0e6974b06ec4?q=80&w=2071&auto=format&fit=crop',
       link: '/programs/parent-junior',
       features: [
         'Accesso completo ai dati delle sessioni',
@@ -113,7 +114,7 @@ const Programs = () => {
       id: '7',
       title: 'Amatori',
       description: 'Percorsi flessibili per giocatori amatoriali che vogliono migliorare le proprie capacità.',
-      image: 'https://images.unsplash.com/photo-1599586120429-48281b6f0ece',
+      image: 'https://images.unsplash.com/photo-1535131749006-b7f58c99034b?q=80&w=2070&auto=format&fit=crop',
       link: '/programs/amateur',
       features: [
         'Allenamento personalizzato anche su base occasionale',
@@ -132,7 +133,7 @@ const Programs = () => {
       id: '8',
       title: 'Summer Camps',
       description: 'Programmi intensivi di 1-4 settimane per giocatori di tutte le età e livelli.',
-      image: 'https://images.unsplash.com/photo-1587280501635-68a0e82cd5ff',
+      image: 'https://images.unsplash.com/photo-1544298621-35a989e4e54a?q=80&w=2070&auto=format&fit=crop',
       link: '/programs/camps',
       features: [
         'Programmi per diverse fasce d\'età',
@@ -145,7 +146,7 @@ const Programs = () => {
       id: '9',
       title: 'Performance Analysis',
       description: 'Analisi completa del gioco con tecnologia avanzata e feedback personalizzato.',
-      image: 'https://images.unsplash.com/photo-1504439468489-c8920d796a29',
+      image: 'https://images.unsplash.com/photo-1549060279-7e168fcee0c2?q=80&w=2070&auto=format&fit=crop',
       link: '/programs/analysis',
       features: [
         'Analisi biomeccanica completa',
@@ -164,7 +165,7 @@ const Programs = () => {
         <Hero 
           title="Programmi ATH" 
           subtitle="Approccio metodologico personalizzato per ogni profilo di utente"
-          imageSrc="https://images.unsplash.com/photo-1464278533981-50e57c2b7d1b"
+          imageSrc="https://images.unsplash.com/photo-1595435934819-5704d86e29a1?q=80&w=2070&auto=format&fit=crop"
           buttons={[
             { text: 'PRENOTA UNA PROVA', href: '/contact' },
             { text: 'CONTATTACI', href: '/contact', variant: 'outline' }
