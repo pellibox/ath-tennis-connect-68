@@ -175,19 +175,19 @@ const HomePage = () => {
     {
       id: '1',
       title: 'Campo Centrale ATP',
-      description: 'Campo principale con sistema VICKI integrato, tribuna spettatori e standard ATP per tornei internazionali.',
+      description: 'Campo principale con sistema Vicki™ integrato, tribuna spettatori e standard ATP per tornei internazionali.',
       image: 'https://images.unsplash.com/photo-1625601429244-5eec3a14b8b2?q=80&w=1200'
     },
     {
       id: '2',
       title: 'Campi in Superficie Veloce',
-      description: 'Due campi in superficie sintetica con coefficiente di attrito standardizzato e sistema di tracciamento integrato.',
+      description: 'Due campi in superficie sintetica con coefficiente di attrito standardizzato e sistema di tracciamento Vicki™ integrato.',
       image: 'https://images.unsplash.com/photo-1544991936-9e0ee081bd27?q=80&w=1200'
     },
     {
       id: '3',
       title: 'Campi in Terra Rossa',
-      description: 'Quattro campi in terra rossa calibrata, con manutenzione quotidiana e rilevamento parametrico completo.',
+      description: 'Quattro campi in terra rossa calibrata, con manutenzione quotidiana e rilevamento parametrico Vicki™ completo.',
       image: 'https://images.unsplash.com/photo-1622279488220-3c7dd46f7c18?q=80&w=1200'
     },
     {
@@ -199,7 +199,7 @@ const HomePage = () => {
     {
       id: '5',
       title: 'Strutture per Giocatori',
-      description: 'Spazi dedicati con connessione diretta al sistema VICKI per revisione dati, analisi video e pianificazione sessioni.',
+      description: 'Spazi dedicati con connessione diretta al sistema Vicki™ per revisione dati, analisi video e pianificazione sessioni.',
       image: 'https://images.unsplash.com/photo-1603988363607-e1e4a66962c6?q=80&w=1200'
     },
   ];
@@ -257,13 +257,13 @@ const HomePage = () => {
         
         <FacilitiesSection 
           title="Strutture"
-          subtitle="Campi e spazi dotati di tecnologia VICKI per allenamento, analisi e ottimizzazione"
+          subtitle="Campi e spazi dotati di tecnologia Vicki™ per allenamento, analisi e ottimizzazione"
           facilities={facilities}
         />
         
         <CoachesSection 
           title="Coach e Staff"
-          subtitle="Team tecnico specializzato nell'integrazione tra metodologia tradizionale e sistema VICKI"
+          subtitle="Team tecnico specializzato nell'integrazione tra metodologia tradizionale e sistema Vicki™"
           coaches={coaches}
         />
         

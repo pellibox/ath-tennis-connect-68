@@ -12,10 +12,10 @@ const facilities = [
   {
     id: "facility-1",
     title: "Campi Indoor",
-    description: "4 campi in resina sintetica con sistema VICKI integrato per analisi in tempo reale",
+    description: "4 campi in resina sintetica con sistema Vicki™ integrato per analisi in tempo reale",
     image: "https://images.unsplash.com/photo-1522778119026-d647f0596c20?q=80&w=2070",
     features: [
-      "Sistema VICKI per tracking 3D",
+      "Sistema Vicki™ per tracking 3D",
       "Illuminazione LED ad alta efficienza",
       "Condizionamento e ventilazione ottimizzati"
     ]
@@ -23,12 +23,12 @@ const facilities = [
   {
     id: "facility-2",
     title: "Campi Outdoor",
-    description: "2 campi in terra battuta e 2 in cemento, tutti equipaggiati con tecnologia avanzata",
+    description: "2 campi in terra battuta e 2 in cemento, tutti equipaggiati con tecnologia Vicki™",
     image: "https://images.unsplash.com/photo-1560012057-4372e14c5085?q=80&w=2074",
     features: [
       "Sistema di irrigazione automatizzato",
       "Illuminazione per sessioni serali",
-      "Tecnologia VICKI portatile"
+      "Tecnologia Vicki™ portatile"
     ]
   },
   {
@@ -45,7 +45,7 @@ const facilities = [
   {
     id: "facility-4",
     title: "Sala Analisi",
-    description: "Ambiente dedicato all'analisi dei dati e alla visualizzazione delle performance",
+    description: "Ambiente dedicato all'analisi dei dati Vicki™ e alla visualizzazione delle performance",
     image: "https://images.unsplash.com/photo-1552664730-d307ca884978?q=80&w=2070",
     features: [
       "Schermi ad alta risoluzione",
@@ -81,7 +81,7 @@ const FacilitiesPage = () => {
       <main className="flex-grow pt-20">
         <Hero
           title="Le Nostre Strutture"
-          subtitle="Impianti all'avanguardia dotati di tecnologia VICKI"
+          subtitle="Impianti all'avanguardia dotati di tecnologia Vicki™"
           imageSrc="https://images.unsplash.com/photo-1481891683383-6fe563e2e81e?q=80&w=2070"
           fullHeight={false}
           overlayOpacity="medium"
@@ -93,7 +93,7 @@ const FacilitiesPage = () => {
             
             <div className="prose prose-lg max-w-4xl mx-auto mb-16">
               <p className="lead text-xl mb-6">
-                L'Advanced Tennis Hub di Rodano è un centro di eccellenza progettato specificamente per ottimizzare l'utilizzo del metodo ATH e della tecnologia VICKI.
+                L'Advanced Tennis Hub di Rodano è un centro di eccellenza progettato specificamente per ottimizzare l'utilizzo del metodo ATH e della tecnologia Vicki™.
               </p>
               
               <p>
@@ -105,7 +105,7 @@ const FacilitiesPage = () => {
         
         <FacilitiesSection 
           title="Impianti"
-          subtitle="Strutture progettate per massimizzare l'efficacia del metodo ATH"
+          subtitle="Strutture progettate per massimizzare l'efficacia del metodo ATH e della tecnologia Vicki™"
           facilities={facilities}
         />
         
@@ -116,7 +116,7 @@ const FacilitiesPage = () => {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
               <div className="bg-white p-6 rounded-lg shadow-sm">
                 <h3 className="text-xl font-semibold mb-3">Affitti Premium</h3>
-                <p className="text-gray-700">Prenota un campo con sistema VICKI integrato per sessioni di allenamento con analisi dati in tempo reale. Ideale per giocatori che vogliono approfondire specifici aspetti tecnici.</p>
+                <p className="text-gray-700">Prenota un campo con sistema Vicki™ integrato per sessioni di allenamento con analisi dati in tempo reale. Ideale per giocatori che vogliono approfondire specifici aspetti tecnici.</p>
               </div>
               
               <div className="bg-white p-6 rounded-lg shadow-sm">
