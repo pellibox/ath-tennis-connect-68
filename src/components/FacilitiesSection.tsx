@@ -2,6 +2,7 @@
 import RevealAnimation from './RevealAnimation';
 import { cn } from '@/lib/utils';
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { useState } from 'react';
 
 interface Facility {
   id: string;
@@ -23,6 +24,14 @@ const FacilitiesSection = ({
   facilities,
   className 
 }: FacilitiesSectionProps) => {
+  // Stato per tenere traccia delle immagini che non sono riuscite a caricare
+  const [failedImages, setFailedImages] = useState<Record<string, boolean>>({});
+
+  const handleImageError = (id: string, imagePath: string) => {
+    console.log(`Tentativo fallito di caricamento immagine: ${imagePath}`);
+    setFailedImages(prev => ({ ...prev, [id]: true }));
+  };
+
   return (
     <section className={cn('py-20 px-6 lg:px-10 bg-white', className)}>
       <div className="max-w-7xl mx-auto">
@@ -53,27 +62,32 @@ const FacilitiesSection = ({
                 </div>
                 
                 <div className={index % 2 === 0 ? 'md:order-1' : ''}>
-                  <div className="overflow-hidden rounded-lg shadow-lg relative">
-                    {/* Utilizzo sia l'img diretto che un fallback con Avatar in caso di problemi */}
-                    <img 
-                      src={facility.image} 
-                      alt={facility.title}
-                      className="w-full h-[300px] md:h-[400px] object-cover transform hover:scale-105 transition-transform duration-500"
-                      onError={(e) => {
-                        console.error(`Errore caricamento immagine: ${facility.image}`);
-                        e.currentTarget.style.display = "none";
-                      }}
-                    />
+                  <div className="overflow-hidden rounded-lg shadow-lg relative aspect-video">
+                    {/* Se l'immagine non è fallita, mostra l'immagine standard */}
+                    {!failedImages[facility.id] && (
+                      <img 
+                        src={facility.image} 
+                        alt={facility.title}
+                        className="w-full h-full object-cover transform hover:scale-105 transition-transform duration-500"
+                        onError={() => handleImageError(facility.id, facility.image)}
+                      />
+                    )}
                     
-                    {/* Avatar come fallback */}
-                    <div className="absolute inset-0 flex items-center justify-center">
-                      <Avatar className="w-full h-full rounded-none">
-                        <AvatarImage src={facility.image} alt={facility.title} className="object-cover" />
-                        <AvatarFallback className="w-full h-full text-xl bg-gray-200 text-gray-800">
-                          {facility.title.substring(0, 2).toUpperCase()}
-                        </AvatarFallback>
-                      </Avatar>
-                    </div>
+                    {/* Se l'immagine è fallita, usa il componente Avatar come fallback */}
+                    {failedImages[facility.id] && (
+                      <div className="w-full h-full">
+                        <Avatar className="w-full h-full rounded-lg">
+                          <AvatarImage 
+                            src={facility.image.replace('/lovable-uploads/', 'https://source.unsplash.com/random/?tennis,court,')} 
+                            alt={facility.title} 
+                            className="object-cover"
+                          />
+                          <AvatarFallback className="w-full h-full text-4xl bg-gray-200 text-gray-800 flex items-center justify-center">
+                            {facility.title.substring(0, 2).toUpperCase()}
+                          </AvatarFallback>
+                        </Avatar>
+                      </div>
+                    )}
                   </div>
                 </div>
               </div>

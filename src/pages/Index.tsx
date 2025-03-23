@@ -120,37 +120,37 @@ const HomePage = () => {
     },
   ];
 
-  // Updated facilities data with the new images
+  // Aggiornati i percorsi delle immagini per le strutture con immagini disponibili su Unsplash
   const facilities = [
     {
       id: '1',
       title: 'Campo Centrale ATP',
       description: 'Il nostro campo centrale rispetta tutti gli standard ATP, con tribune per gli spettatori e tecnologia all\'avanguardia per ospitare tornei di livello internazionale.',
-      image: '/lovable-uploads/fa879f83-43f4-4c30-b5ab-cbe93f76b2f5.png'
+      image: 'https://images.unsplash.com/photo-1625601429244-5eec3a14b8b2?q=80&w=1200'
     },
     {
       id: '2',
       title: 'Campi in Superficie Veloce',
       description: 'Due campi in superficie veloce di standard internazionale, progettati per un gioco veloce e adatti a sviluppare il gioco aggressivo e i colpi potenti.',
-      image: '/lovable-uploads/3a88c700-c72b-464e-865c-42a7c64a30ae.png'
+      image: 'https://images.unsplash.com/photo-1544991936-9e0ee081bd27?q=80&w=1200'
     },
     {
       id: '3',
       title: 'Campi in Terra Rossa',
       description: 'Quattro campi in terra rossa di alta qualità, mantenuti quotidianamente per garantire condizioni di gioco ottimali, ideali per il gioco tattico e per ridurre lo stress sulle articolazioni.',
-      image: '/lovable-uploads/88fc9beb-6efb-4169-89fd-bea24cafeaec.png'
+      image: 'https://images.unsplash.com/photo-1622279488220-3c7dd46f7c18?q=80&w=1200'
     },
     {
       id: '4',
       title: 'Centro Performance',
       description: 'Il nostro centro di performance high-tech include una palestra completamente attrezzata, aree di recupero, sale di analisi video e strutture di scienze sportive per uno sviluppo completo dell\'atleta.',
-      image: '/lovable-uploads/f996ed77-4b4a-48f2-9b68-2e7e00ab6f2d.png'
+      image: 'https://images.unsplash.com/photo-1593079831268-3381b0db4a77?q=80&w=1200'
     },
     {
       id: '5',
       title: 'Strutture per Giocatori',
       description: 'Spazi confortevoli per i giocatori per rilassarsi, studiare e socializzare. Per i giocatori in visita, offriamo alloggi in loco con tutti i comfort necessari per un soggiorno confortevole.',
-      image: '/lovable-uploads/0cb3ebc2-b1e8-4d5d-a8de-6035d4b53a16.png'
+      image: 'https://images.unsplash.com/photo-1603988363607-e1e4a66962c6?q=80&w=1200'
     },
   ];
 
