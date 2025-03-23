@@ -108,6 +108,7 @@ const JuniorProgram = () => {
             <div className="mt-16">
               <h3 className="text-2xl font-display mb-8">I nostri programmi Junior</h3>
               <ProgramsSection 
+                title="Programmi Junior"
                 programs={juniorPrograms}
                 gridLayout="dense"
               />
