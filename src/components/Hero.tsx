@@ -6,7 +6,9 @@ import { cn } from '@/lib/utils';
 interface HeroProps {
   title: string;
   subtitle?: string;
-  imageSrc: string;
+  imageSrc?: string;
+  videoSrc?: string;
+  videoPoster?: string;
   buttons?: Array<{
     text: string;
     href: string;
@@ -22,6 +24,8 @@ const Hero = ({
   title,
   subtitle,
   imageSrc,
+  videoSrc,
+  videoPoster,
   buttons = [],
   className,
   contentPosition = 'center',
@@ -70,11 +74,26 @@ const Hero = ({
       )}
     >
       <div className="absolute inset-0 w-full h-full">
-        <img 
-          src={imageSrc} 
-          alt="Background" 
-          className="object-cover w-full h-full"
-        />
+        {videoSrc ? (
+          <video
+            autoPlay
+            muted
+            loop
+            playsInline
+            poster={videoPoster || imageSrc}
+            className="object-cover w-full h-full"
+          >
+            <source src={videoSrc} type="video/mp4" />
+            {/* Fallback to image if video can't play */}
+            {imageSrc && <img src={imageSrc} alt="Background" className="object-cover w-full h-full" />}
+          </video>
+        ) : imageSrc ? (
+          <img 
+            src={imageSrc} 
+            alt="Background" 
+            className="object-cover w-full h-full"
+          />
+        ) : null}
         <div className={cn('absolute inset-0', overlayClasses[overlayOpacity])}></div>
       </div>
       
