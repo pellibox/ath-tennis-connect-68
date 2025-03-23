@@ -1,11 +1,20 @@
 
 import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Menu, X } from 'lucide-react';
+import { Menu, X, Activity, Zap, BookOpen, Server, Home } from 'lucide-react';
 import Logo from './Logo';
 import { cn } from '@/lib/utils';
 import LanguageSwitcher from './LanguageSwitcher';
 import { useLanguage } from '@/contexts/LanguageContext';
+import {
+  NavigationMenu,
+  NavigationMenuContent,
+  NavigationMenuItem,
+  NavigationMenuLink,
+  NavigationMenuList,
+  NavigationMenuTrigger,
+  navigationMenuTriggerStyle,
+} from "@/components/ui/navigation-menu";
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -49,14 +58,57 @@ const Header = () => {
     };
   }, [isMenuOpen]);
 
+  // New navigation structure based on provided menu items
   const navigationItems = [
-    { text: t('nav.home'), href: '/' },
-    { text: t('nav.programs'), href: '/programs' },
-    { text: t('nav.facilities'), href: '/facilities' },
-    { text: t('nav.coaches'), href: '/coaches' },
-    { text: t('nav.about'), href: '/about' },
-    { text: t('nav.contact'), href: '/contact' },
+    { 
+      text: 'Cose ATH', 
+      href: '/about',
+      icon: <Home size={18} className="mr-2" />
+    },
+    { 
+      text: 'Il Metodo', 
+      href: '/about#method',
+      icon: <BookOpen size={18} className="mr-2" />
+    },
+    { 
+      text: 'Programmi', 
+      href: '/programs',
+      icon: <Activity size={18} className="mr-2" />
+    },
+    { 
+      text: 'Tecnologia:VICKI', 
+      href: '/#technology',
+      icon: <Zap size={18} className="mr-2" />
+    },
+    { 
+      text: 'Strutture', 
+      href: '/#facilities',
+      icon: <Server size={18} className="mr-2" />
+    },
   ];
+
+  // LinkComponent to handle scrolling to section IDs
+  const LinkComponent = ({ href, children, className }: { href: string; children: React.ReactNode, className?: string }) => {
+    const handleClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
+      if (href.includes('#')) {
+        e.preventDefault();
+        const sectionId = href.split('#')[1];
+        const element = document.getElementById(sectionId);
+        if (element) {
+          element.scrollIntoView({ behavior: 'smooth' });
+        } else if (href.startsWith('/#')) {
+          // If not on home page and link points to home page section
+          window.location.href = href;
+        }
+      }
+    };
+
+    return (
+      <Link to={href} onClick={handleClick} className={className}>
+        {children}
+      </Link>
+    );
+  };
 
   return (
     <header 
@@ -70,20 +122,27 @@ const Header = () => {
           <Logo variant={isScrolled || isMenuOpen ? "default" : "footer"} />
         </Link>
 
-        {/* Desktop Navigation */}
-        <nav className="hidden lg:flex items-center space-x-8">
-          {navigationItems.map((item, index) => (
-            <Link
-              key={index}
-              to={item.href}
-              className={cn(
-                'text-sm font-medium hover:text-gray-600 transition-colors',
-                isScrolled ? 'text-black' : 'text-white'
-              )}
-            >
-              {item.text}
-            </Link>
-          ))}
+        {/* Desktop Navigation with Navigation Menu */}
+        <nav className="hidden lg:flex items-center space-x-4">
+          <NavigationMenu className="max-w-none">
+            <NavigationMenuList>
+              {navigationItems.map((item, index) => (
+                <NavigationMenuItem key={index}>
+                  <LinkComponent 
+                    href={item.href}
+                    className={cn(
+                      navigationMenuTriggerStyle(),
+                      "flex items-center bg-transparent",
+                      isScrolled ? 'text-black hover:text-ath-clay' : 'text-white hover:text-white hover:bg-white/20'
+                    )}
+                  >
+                    {item.icon}
+                    {item.text}
+                  </LinkComponent>
+                </NavigationMenuItem>
+              ))}
+            </NavigationMenuList>
+          </NavigationMenu>
           
           <div className={isScrolled ? 'text-black' : 'text-white'}>
             <LanguageSwitcher />
@@ -112,13 +171,14 @@ const Header = () => {
         >
           <nav className="flex flex-col space-y-6">
             {navigationItems.map((item, index) => (
-              <Link
+              <LinkComponent
                 key={index}
-                to={item.href}
-                className="text-xl font-medium text-black hover:text-gray-600 transition-colors"
+                href={item.href}
+                className="text-xl font-medium text-black hover:text-ath-clay transition-colors flex items-center"
               >
+                {item.icon}
                 {item.text}
-              </Link>
+              </LinkComponent>
             ))}
             
             <div className="pt-4 border-t border-gray-100">

@@ -64,12 +64,12 @@ const TechnologySection = ({
   ];
 
   return (
-    <section className={cn('py-20 px-6 lg:px-10 bg-gray-50', className)}>
+    <section id="technology" className={cn('py-20 px-6 lg:px-10 bg-gray-50', className)}>
       <div className="max-w-7xl mx-auto">
         <RevealAnimation>
           <div className="text-center mb-8">
             <span className="inline-block px-4 py-1 rounded-full bg-ath-clay bg-opacity-10 text-ath-clay text-sm font-medium mb-4">{t('tech.exclusive')}</span>
-            <h2 className="text-3xl md:text-4xl font-display text-center mb-2">{title}</h2>
+            <h2 className="text-3xl md:text-4xl font-display text-center mb-2 text-gray-900">{title}</h2>
             <h3 className="text-2xl md:text-3xl font-display text-center text-ath-clay mb-4">{t('tech.vicki')}</h3>
           </div>
         </RevealAnimation>

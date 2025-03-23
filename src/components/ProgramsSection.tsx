@@ -21,7 +21,7 @@ interface ProgramsSectionProps {
 
 const ProgramsSection = ({ title, subtitle, programs, className }: ProgramsSectionProps) => {
   return (
-    <section className={cn('py-20 px-6 lg:px-10', className)}>
+    <section id="programs" className={cn('py-20 px-6 lg:px-10', className)}>
       <div className="max-w-7xl mx-auto">
         <RevealAnimation>
           <h2 className="text-3xl md:text-4xl font-display mb-4">{title}</h2>
@@ -42,14 +42,19 @@ const ProgramsSection = ({ title, subtitle, programs, className }: ProgramsSecti
                     src={program.image} 
                     alt={program.title} 
                     className="w-full h-64 object-cover transition-transform duration-700 group-hover:scale-105"
+                    onError={(e) => {
+                      const target = e.target as HTMLImageElement;
+                      target.onerror = null;
+                      target.src = `https://source.unsplash.com/random/800x600/?tennis,training,${index}`;
+                    }}
                   />
                 </div>
                 <div className="flex flex-col flex-grow p-6">
-                  <h3 className="text-xl font-medium mb-3">{program.title}</h3>
+                  <h3 className="text-xl font-medium mb-3 text-ath-clay">{program.title}</h3>
                   <p className="text-gray-600 mb-6 flex-grow">{program.description}</p>
                   <Link 
                     to={program.link} 
-                    className="inline-flex items-center text-sm font-medium animated-line pb-1 w-fit"
+                    className="inline-flex items-center text-sm font-medium animated-line pb-1 w-fit text-ath-clay"
                   >
                     Learn More <ArrowRight size={16} className="ml-2" />
                   </Link>

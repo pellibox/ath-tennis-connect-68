@@ -15,7 +15,7 @@ import Programs from "./pages/Programs";
 // Create placeholder pages to be added in the future
 const Facilities = lazy(() => import("./pages/Index"));
 const Coaches = lazy(() => import("./pages/Index"));
-const About = lazy(() => import("./pages/Index"));
+const About = lazy(() => import("./pages/About"));
 const Contact = lazy(() => import("./pages/Index"));
 
 const queryClient = new QueryClient();
