@@ -176,7 +176,7 @@ const HomePage = () => {
       id: '1',
       title: 'Campo Centrale ATP',
       description: 'Campo principale con sistema Vicki™ integrato, tribuna spettatori e standard ATP per tornei internazionali.',
-      image: '/lovable-uploads/7ff66f98-73e6-4253-aacb-8619ac14b81b.png',
+      image: '/lovable-uploads/d4ba3935-f901-4a99-972b-6a86e47787db.png',
       features: [
         'Dimensioni ATP standard',
         'Illuminazione LED ad alta efficienza',
