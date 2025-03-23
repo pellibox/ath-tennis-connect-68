@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import Hero from '@/components/Hero';
@@ -25,7 +25,7 @@ const Programs = () => {
       title: 'Agonista Junior (13-18 anni)',
       description: 'Programma completo per giovani atleti che vogliono competere a livello agonistico.',
       image: 'https://images.unsplash.com/photo-1612458225454-41c3991c0c49?q=80&w=1973&auto=format&fit=crop',
-      vimeoEmbed: '<div style="padding:56.25% 0 0 0;position:relative;"><iframe src="https://vimeo.com/event/5012268/embed/interaction" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen style="position:absolute;top:0;left:0;width:100%;height:100%;"></iframe></div>',
+      vimeoEmbed: '<div style="padding:56.25% 0 0 0;position:relative;"><iframe src="https://vimeo.com/event/5012268/embed/interaction?autoplay=1" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen style="position:absolute;top:0;left:0;width:100%;height:100%;"></iframe></div>',
       link: '/programs/junior-competitive',
       features: [
         'Analisi in tempo reale di tecnica, tattica, parametri mentali e fisici',
@@ -351,3 +351,4 @@ const Programs = () => {
 };
 
 export default Programs;
+
