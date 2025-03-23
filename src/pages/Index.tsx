@@ -1,4 +1,3 @@
-
 import { useEffect } from 'react';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
@@ -22,28 +21,49 @@ const HomePage = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }, []);
 
-  // Sample data for programs
+  // Programmi aggiornati in base alle specifiche
   const programs = [
     {
       id: '1',
-      title: t('programs.junior'),
-      description: t('programs.junior.desc'),
+      title: 'Agonisti 6-12 anni',
+      description: 'Programma di allenamento specializzato per giovani agonisti, con focus su sviluppo tecnico fondamentale, coordinazione e approccio mentale adeguato all\'età.',
       image: 'https://images.unsplash.com/photo-1551773148-efc73c5fdc70',
-      link: '/programs/junior'
+      link: '/programs/agonisti'
     },
     {
       id: '2',
-      title: t('programs.elite'),
-      description: t('programs.elite.desc'),
+      title: 'Junior 13-18 anni',
+      description: 'Percorso di perfezionamento tecnico-tattico per adolescenti, con integrazione di preparazione fisica specifica e sviluppo di autonomia decisionale in campo.',
       image: 'https://images.unsplash.com/photo-1542144582-1ba00456b5e3',
-      link: '/programs/elite'
+      link: '/programs/junior'
     },
     {
       id: '3',
-      title: t('programs.adult'),
-      description: t('programs.adult.desc'),
+      title: 'Professionisti',
+      description: 'Programma elite per atleti professionisti con analisi completa, ottimizzazione della performance e pianificazione dettagliata della stagione agonistica.',
       image: 'https://images.unsplash.com/photo-1622279888158-c6a5e6c4587c',
+      link: '/programs/pro'
+    },
+    {
+      id: '4',
+      title: 'Adulti',
+      description: 'Lezioni individuali, corsi di gruppo, affitto campi e clinics tematiche per giocatori amatoriali di ogni livello, con supporto tecnologico personalizzato.',
+      image: 'https://images.unsplash.com/photo-1587280501635-68a0e82cd5ff',
       link: '/programs/adult'
+    },
+    {
+      id: '5',
+      title: 'Coaching a Distanza',
+      description: 'Supporto remoto continuo con analisi video, feedback tecnici e programmi di allenamento personalizzati per atleti non residenti.',
+      image: 'https://images.unsplash.com/photo-1606131731446-5568d87113aa',
+      link: '/programs/remote'
+    },
+    {
+      id: '6',
+      title: 'Percorsi Specifici',
+      description: 'Preparazione intensiva per tornei, recupero tecnico/fisico dopo infortuni e valutazioni approfondite con protocolli personalizzati.',
+      image: 'https://images.unsplash.com/photo-1599586120429-48281b6f0ece',
+      link: '/programs/specific'
     },
   ];
 
@@ -120,7 +140,7 @@ const HomePage = () => {
     },
   ];
 
-  // Aggiornati i percorsi delle immagini per le strutture con immagini disponibili su Unsplash
+  // Facilities data
   const facilities = [
     {
       id: '1',
@@ -160,35 +180,36 @@ const HomePage = () => {
       
       <main className="flex-grow">
         <Hero 
-          title={t('hero.title')}
-          subtitle={t('hero.subtitle')}
+          title="Advanced Tennis Hub"
+          subtitle="Centro di allenamento ad alta specializzazione con integrazione tra tecnologia avanzata e competenze professionali"
           imageSrc="/lovable-uploads/fc6643c2-4357-4c86-9e52-6f33d698668f.png"
           buttons={[
-            { text: t('hero.programs'), href: '/programs' },
-            { text: t('hero.book'), href: '/contact', variant: 'outline' }
+            { text: "Programmi", href: '/programs' },
+            { text: "Contattaci", href: '/contact', variant: 'outline' }
           ]}
         />
         
         <AboutSection 
-          title={t('about.title')}
-          subtitle={t('about.subtitle')}
+          title="Chi Siamo"
+          subtitle="ATH - Advanced Tennis Hub"
           description={
             <div className="space-y-4">
-              <p>{t('about.p1')}</p>
-              <p>{t('about.p2')}</p>
-              <p>{t('about.p3')}</p>
+              <p>ATH è un centro di allenamento ad alta specializzazione che offre a ogni atleta un percorso evolutivo personalizzato, basato su dati oggettivi e supportato da tecnologia avanzata.</p>
+              <p>Il nostro approccio integra competenze professionali con sistemi di analisi all'avanguardia, garantendo continuità metodologica e supporto tecnico costante.</p>
+              <p>ATH costituisce una rete aperta a coach, atleti e specialisti, uniti dall'obiettivo di ottimizzare il processo di sviluppo tennistico attraverso un metodo oggettivo e misurabile.</p>
             </div>
           }
           image="https://images.unsplash.com/photo-1617711773026-ea7252c02cd3"
           buttons={[
-            { text: t('about.learn'), href: '/about' }
+            { text: "Scopri di più", href: '/about' }
           ]}
         />
         
         <ProgramsSection 
-          title={t('programs.title')}
-          subtitle={t('programs.subtitle')}
+          title="Programmi"
+          subtitle="Offriamo percorsi personalizzati per ogni fase di sviluppo del giocatore"
           programs={programs}
+          className="bg-ath-gray"
         />
         
         <StatsSection 
@@ -198,18 +219,18 @@ const HomePage = () => {
         
         <TechnologySection 
           title={t('tech.title')}
-          subtitle={t('tech.subtitle')}
+          subtitle="Sistema di analisi con visione artificiale, AI e tracciamento 3D che analizza oltre 70 parametri in tempo reale"
         />
         
         <FacilitiesSection 
-          title={t('facilities.title')}
-          subtitle={t('facilities.subtitle')}
+          title="Strutture"
+          subtitle="I nostri campi e spazi sono progettati per offrire un'esperienza di allenamento ottimale"
           facilities={facilities}
         />
         
         <CoachesSection 
-          title={t('coaches.title')}
-          subtitle={t('coaches.subtitle')}
+          title="Coach e Staff"
+          subtitle="Il nostro team tecnico utilizza VICKI come supporto all'approccio individuale"
           coaches={coaches}
         />
         
@@ -220,18 +241,24 @@ const HomePage = () => {
         />
         
         <AboutSection 
-          title={t('join.title')}
-          description={t('join.desc')}
+          title="Il Metodo ATH"
+          description={
+            <div className="space-y-4">
+              <p>Il nostro metodo si basa su un allenamento personalizzato costruito su base oggettiva, utilizzando dati e intelligenza artificiale per guidare il percorso evolutivo di ogni atleta.</p>
+              <p>Adottiamo un approccio integrato che combina tecnica, fisico, tattica, mentale e salute, garantendo continuità metodologica indipendentemente dal coach presente in campo.</p>
+              <p>Ogni atleta riceve un supporto evolutivo costante, con analisi dettagliate, feedback immediati e programmi personalizzati per massimizzare il potenziale individuale.</p>
+            </div>
+          }
           image="https://images.unsplash.com/photo-1518005068251-37900150dfca"
           buttons={[
-            { text: t('join.cta'), href: '/contact' }
+            { text: "Contattaci", href: '/contact' }
           ]}
           reversed={true}
         />
         
         <ContactSection 
-          title={t('contact.title')}
-          subtitle={t('contact.subtitle')}
+          title="Contatti"
+          subtitle="Richiedi informazioni o prenota una sessione"
           address="123 Tennis Court Avenue, Tennis City, 10001"
           phone="+1 (234) 567-890"
           email="info@ath-tennis.com"

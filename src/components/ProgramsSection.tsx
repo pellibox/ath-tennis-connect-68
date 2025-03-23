@@ -18,9 +18,10 @@ interface ProgramsSectionProps {
   subtitle?: string;
   programs: Program[];
   className?: string;
+  compact?: boolean;
 }
 
-const ProgramsSection = ({ title, subtitle, programs, className }: ProgramsSectionProps) => {
+const ProgramsSection = ({ title, subtitle, programs, className, compact = false }: ProgramsSectionProps) => {
   // State to track failed images
   const [failedImages, setFailedImages] = useState<Record<string, boolean>>({});
   // State to store fallback images for each program
@@ -54,7 +55,12 @@ const ProgramsSection = ({ title, subtitle, programs, className }: ProgramsSecti
           </RevealAnimation>
         )}
         
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className={cn(
+          "grid gap-8",
+          compact 
+            ? "grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4" 
+            : "grid-cols-1 md:grid-cols-2 lg:grid-cols-3"
+        )}>
           {programs.map((program, index) => (
             <RevealAnimation key={program.id} delay={index * 100} className="h-full">
               <div className="group h-full flex flex-col border border-gray-200 transition-all hover:shadow-md">
@@ -63,25 +69,34 @@ const ProgramsSection = ({ title, subtitle, programs, className }: ProgramsSecti
                     <img 
                       src={program.image} 
                       alt={program.title} 
-                      className="w-full h-64 object-cover transition-transform duration-700 group-hover:scale-105"
+                      className={cn(
+                        "w-full object-cover transition-transform duration-700 group-hover:scale-105",
+                        compact ? "h-48" : "h-64"
+                      )}
                       onError={() => handleImageError(program.id)}
                     />
                   ) : (
                     <img 
                       src={fallbackImages[program.id]} 
                       alt={program.title} 
-                      className="w-full h-64 object-cover transition-transform duration-700 group-hover:scale-105"
+                      className={cn(
+                        "w-full object-cover transition-transform duration-700 group-hover:scale-105",
+                        compact ? "h-48" : "h-64"
+                      )}
                     />
                   )}
                 </div>
                 <div className="flex flex-col flex-grow p-6">
                   <h3 className="text-xl font-medium mb-3 text-ath-clay">{program.title}</h3>
-                  <p className="text-gray-600 mb-6 flex-grow">{program.description}</p>
+                  <p className={cn(
+                    "text-gray-600 mb-6 flex-grow",
+                    compact ? "text-sm" : ""
+                  )}>{program.description}</p>
                   <Link 
                     to={program.link} 
                     className="inline-flex items-center text-sm font-medium animated-line pb-1 w-fit text-ath-clay"
                   >
-                    Learn More <ArrowRight size={16} className="ml-2" />
+                    Dettagli <ArrowRight size={16} className="ml-2" />
                   </Link>
                 </div>
               </div>
