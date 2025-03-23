@@ -1,3 +1,4 @@
+
 import { useEffect, useRef, useState } from 'react';
 import ButtonLink from './ButtonLink';
 import { cn } from '@/lib/utils';
@@ -40,8 +41,10 @@ const Hero = ({
 }: HeroProps) => {
   const titleRef = useRef<HTMLHeadingElement>(null);
   const videoRef = useRef<HTMLVideoElement>(null);
+  const vimeoRef = useRef<HTMLDivElement>(null);
   const [imageError, setImageError] = useState(false);
   const [videoError, setVideoError] = useState(false);
+  const [vimeoError, setVimeoError] = useState(false);
   const [videoLoaded, setVideoLoaded] = useState(false);
   const [videoPlaying, setVideoPlaying] = useState(false);
   const [blackOverlay, setBlackOverlay] = useState(false);
@@ -74,6 +77,48 @@ const Hero = ({
     }
     return url;
   };
+
+  // Handle Vimeo embed
+  useEffect(() => {
+    if (vimeoEmbed && vimeoRef.current) {
+      const checkVimeoStatus = () => {
+        try {
+          // Add a custom error handler
+          if (vimeoRef.current) {
+            const iframe = vimeoRef.current.querySelector('iframe');
+            if (iframe) {
+              // Check if iframe is loaded properly
+              const iframeDoc = iframe.contentDocument || iframe.contentWindow?.document;
+              
+              // If we can't access the iframe content, it might be cross-origin restricted
+              // In that case, we'll monitor for errors through error events
+              window.addEventListener('error', (e) => {
+                if (e.target === iframe) {
+                  console.error('Vimeo iframe error:', e);
+                  setVimeoError(true);
+                  setImageError(false); // Ensure fallback image shows
+                }
+              }, { once: true });
+              
+              // Set a timeout to check if the video appears to be working
+              setTimeout(() => {
+                if (vimeoRef.current && !vimeoRef.current.querySelector('.vp-video-wrapper')) {
+                  console.warn('Vimeo video wrapper not found after timeout');
+                  setVimeoError(true);
+                }
+              }, 5000);
+            }
+          }
+        } catch (err) {
+          console.error('Error checking Vimeo status:', err);
+          setVimeoError(true);
+        }
+      };
+      
+      // Run the check after a short delay to allow the iframe to load
+      setTimeout(checkVimeoStatus, 1500);
+    }
+  }, [vimeoEmbed]);
 
   useEffect(() => {
     if (vimeoEmbed) {
@@ -193,7 +238,7 @@ const Hero = ({
       )}
     >
       <div className="absolute inset-0 w-full h-full">
-        {!vimeoEmbed && (
+        {(!vimeoEmbed || vimeoError) && (
           <>
             <img 
               src={imageError ? fallbackImage : (imageSrc || fallbackImage)} 
@@ -231,9 +276,10 @@ const Hero = ({
           </>
         )}
         
-        {vimeoEmbed && (
+        {vimeoEmbed && !vimeoError && (
           <div className="absolute inset-0 w-full h-full bg-black">
             <div 
+              ref={vimeoRef}
               className="w-full h-full" 
               dangerouslySetInnerHTML={{ 
                 __html: vimeoEmbed

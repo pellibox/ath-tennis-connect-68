@@ -32,17 +32,16 @@ const HomePage = () => {
   // Determine which Vimeo video to show based on user selection
   const getVimeoEmbed = () => {
     // Default video (male junior/amateur)
-    let videoEmbed = `<div style="padding:75% 0 0 0;position:relative;"><iframe src="https://player.vimeo.com/video/1068596952?h=b7fa539b1c&autoplay=1&loop=1&background=1&autopause=0&player_id=0&app_id=58479" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media" style="position:absolute;top:0;left:0;width:100%;height:100%;" title="Junior male 2"></iframe></div><script src="https://player.vimeo.com/api/player.js"></script>`;
+    let videoEmbed = `<div style="padding:75% 0 0 0;position:relative;"><iframe src="https://player.vimeo.com/video/867339873?h=45e175997a&autoplay=1&loop=1&background=1&autopause=0&player_id=0&app_id=58479" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media" style="position:absolute;top:0;left:0;width:100%;height:100%;" title="Junior male"></iframe></div><script src="https://player.vimeo.com/api/player.js"></script>`;
     
-    // First check specific combinations of gender and user type
+    // All female users get the female video
     if (userGender === 'female') {
-      // For all female users, including performance users
-      videoEmbed = `<div style="padding:75% 0 0 0;position:relative;"><iframe src="https://player.vimeo.com/video/1068596920/7f23339d4b?h=b7fa539b1c&autoplay=1&loop=1&background=1&autopause=0&player_id=0&app_id=58479" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media" style="position:absolute;top:0;left:0;width:100%;height:100%;" title="Female"></iframe></div><script src="https://player.vimeo.com/api/player.js"></script>`;
+      videoEmbed = `<div style="padding:75% 0 0 0;position:relative;"><iframe src="https://player.vimeo.com/video/867339842?h=5ecc384219&autoplay=1&loop=1&background=1&autopause=0&player_id=0&app_id=58479" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media" style="position:absolute;top:0;left:0;width:100%;height:100%;" title="Female"></iframe></div><script src="https://player.vimeo.com/api/player.js"></script>`;
     }
     
-    // Check for professional male (will override female default if user is professional)
+    // Male professional users get the professional video
     if (userType === 'professional' && userGender === 'male') {
-      videoEmbed = `<div style="padding:75% 0 0 0;position:relative;"><iframe src="https://player.vimeo.com/video/1068596901/2ac5605207a?h=b7fa539b1c&autoplay=1&loop=1&background=1&autopause=0&player_id=0&app_id=58479" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media" style="position:absolute;top:0;left:0;width:100%;height:100%;" title="Professional"></iframe></div><script src="https://player.vimeo.com/api/player.js"></script>`;
+      videoEmbed = `<div style="padding:75% 0 0 0;position:relative;"><iframe src="https://player.vimeo.com/video/867339831?h=7f8992b4a2&autoplay=1&loop=1&background=1&autopause=0&player_id=0&app_id=58479" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media" style="position:absolute;top:0;left:0;width:100%;height:100%;" title="Professional"></iframe></div><script src="https://player.vimeo.com/api/player.js"></script>`;
     }
     
     return videoEmbed;
@@ -61,7 +60,7 @@ const HomePage = () => {
   };
 
   // Coach video embed
-  const coachVimeoEmbed = `<div style="padding:133.33% 0 0 0;position:relative;"><iframe src="https://player.vimeo.com/video/1068604216?h=db6df002bf&autoplay=0&loop=1&background=1&autopause=0&player_id=0&app_id=58479" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media" style="position:absolute;top:0;left:0;width:100%;height:100%;" title="Coaches"></iframe></div><script src="https://player.vimeo.com/api/player.js"></script>`;
+  const coachVimeoEmbed = `<div style="padding:133.33% 0 0 0;position:relative;"><iframe src="https://player.vimeo.com/video/867339929?h=2773bab6a2&autoplay=0&loop=1&background=1&autopause=0&player_id=0&app_id=58479" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media" style="position:absolute;top:0;left:0;width:100%;height:100%;" title="Coaches"></iframe></div><script src="https://player.vimeo.com/api/player.js"></script>`;
 
   // Filter programs based on user type
   const filterContentForUserType = (type: UserType | null) => {
