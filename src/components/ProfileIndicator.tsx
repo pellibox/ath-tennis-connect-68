@@ -2,9 +2,10 @@
 import React from 'react';
 import { UserGender, UserType, saveUserPreferences } from './UserTypeSelector';
 import { Button } from "@/components/ui/button";
-import { Male, Female, GraduationCap, Target, Briefcase, UserCog, Users, Edit } from 'lucide-react';
+import { User, GraduationCap, Target, Briefcase, UserCog, Users, Edit } from 'lucide-react';
 import { toast } from 'sonner';
 import { useNavigate } from 'react-router-dom';
+import { Card } from '@/components/ui/card';
 
 interface ProfileIndicatorProps {
   gender: UserGender;
@@ -19,75 +20,41 @@ const ProfileIndicator: React.FC<ProfileIndicatorProps> = ({ gender, type, onEdi
   const getTypeIcon = () => {
     switch (type) {
       case 'junior':
-        return <GraduationCap size={18} className="mr-2" />;
+        return <GraduationCap size={16} />;
       case 'performance':
-        return <Target size={18} className="mr-2" />;
+        return <Target size={16} />;
       case 'professional':
-        return <Briefcase size={18} className="mr-2" />;
+        return <Briefcase size={16} />;
       case 'coach':
-        return <UserCog size={18} className="mr-2" />;
+        return <UserCog size={16} />;
       case 'parent':
-        return <Users size={18} className="mr-2" />;
+        return <Users size={16} />;
       default:
         return null;
     }
   };
   
-  // Get label based on user type
-  const getTypeLabel = () => {
-    switch (type) {
-      case 'junior':
-        return 'Junior';
-      case 'performance':
-        return 'Agonista';
-      case 'professional':
-        return 'Professionista';
-      case 'coach':
-        return 'Coach';
-      case 'parent':
-        return 'Genitore/Tutor';
-      default:
-        return '';
-    }
-  };
-  
-  // Reset profile and navigate to home
-  const handleReset = () => {
-    // Clear user preferences
-    localStorage.removeItem('ath_user_gender');
-    localStorage.removeItem('ath_user_type');
-    
-    // Show success message
-    toast.success("Profilo resettato", {
-      position: "bottom-center"
-    });
-    
-    // Navigate to home page
-    navigate('/');
-  };
-  
   return (
-    <div className="fixed top-24 lg:top-20 right-4 z-40 bg-white/95 backdrop-blur-sm shadow-md rounded-lg p-3 text-sm flex flex-col items-start">
-      <div className="flex items-center mb-2 font-medium">
-        {gender === 'male' ? <Male size={18} className="mr-2 text-blue-500" /> : <Female size={18} className="mr-2 text-pink-500" />}
-        <span>{gender === 'male' ? 'Uomo' : 'Donna'}</span>
-      </div>
-      
-      <div className="flex items-center font-medium text-ath-clay">
-        {getTypeIcon()}
-        <span>{getTypeLabel()}</span>
+    <Card className="fixed top-16 lg:top-20 right-4 z-40 bg-white/95 backdrop-blur-sm shadow-md p-2 flex flex-col items-center gap-1 w-auto">
+      <div className="flex flex-row items-center gap-2 w-full">
+        <div className={`p-1 rounded-full ${gender === 'male' ? 'bg-blue-100' : 'bg-pink-100'}`}>
+          <User size={16} className={gender === 'male' ? 'text-blue-500' : 'text-pink-500'} />
+        </div>
+        <div className="p-1 rounded-full bg-ath-clay/10">
+          {getTypeIcon()}
+        </div>
       </div>
       
       <Button 
         variant="ghost" 
         size="sm" 
-        className="mt-2 text-xs w-full flex items-center justify-center"
+        className="w-full flex items-center justify-center p-1 h-auto text-xs"
         onClick={onEditClick}
       >
-        <Edit size={14} className="mr-1" />
-        Modifica profilo
+        <Edit size={12} className="mr-1" />
+        <span className="text-xs">Modifica</span>
       </Button>
-    </div>
+    </Card>
   );
 };
 
