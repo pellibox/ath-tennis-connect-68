@@ -60,7 +60,7 @@ const Header = () => {
     };
   }, [isMenuOpen]);
 
-  // Updated navigation structure with corrected menu items and proper routes
+  // Navigation structure with corrected menu items and proper routes
   const navigationItems = [
     { 
       text: "Chi Siamo", 
@@ -113,6 +113,29 @@ const Header = () => {
           />
         </div>
         
+        {/* Desktop Navigation Menu - come prima */}
+        <div className="hidden lg:flex items-center space-x-1">
+          <NavigationMenu>
+            <NavigationMenuList>
+              {navigationItems.map((item, index) => (
+                <NavigationMenuItem key={index}>
+                  <LinkComponent 
+                    href={item.href}
+                    className={cn(
+                      navigationMenuTriggerStyle(),
+                      "flex items-center",
+                      isScrolled ? "text-black hover:text-ath-clay" : "text-white hover:text-gray-200"
+                    )}
+                  >
+                    {item.icon}
+                    {item.text}
+                  </LinkComponent>
+                </NavigationMenuItem>
+              ))}
+            </NavigationMenuList>
+          </NavigationMenu>
+        </div>
+        
         {/* Right side elements (language switcher and mobile menu) */}
         <div className="flex items-center z-50">
           {/* Language switcher on desktop */}
@@ -133,35 +156,6 @@ const Header = () => {
             {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
           </button>
         </div>
-
-        {/* Desktop Navigation - moved below header content to prevent overlap */}
-        {!isMobile && (
-          <nav className="absolute bottom-0 left-0 w-full flex justify-center transform translate-y-full">
-            <div className={cn(
-              "bg-white/90 backdrop-blur-sm rounded-b-lg shadow-md px-6 py-2",
-              isScrolled ? "mt-0" : "mt-0"
-            )}>
-              <NavigationMenu>
-                <NavigationMenuList>
-                  {navigationItems.map((item, index) => (
-                    <NavigationMenuItem key={index}>
-                      <LinkComponent 
-                        href={item.href}
-                        className={cn(
-                          navigationMenuTriggerStyle(),
-                          "flex items-center bg-transparent text-black hover:text-ath-clay"
-                        )}
-                      >
-                        {item.icon}
-                        {item.text}
-                      </LinkComponent>
-                    </NavigationMenuItem>
-                  ))}
-                </NavigationMenuList>
-              </NavigationMenu>
-            </div>
-          </nav>
-        )}
 
         {/* Mobile Navigation */}
         <div

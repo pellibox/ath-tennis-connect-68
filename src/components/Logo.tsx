@@ -15,8 +15,8 @@ const Logo = ({ variant = 'default', className = '', onDarkBackground = false }:
     ? "/lovable-uploads/ebada5d3-6c5e-43a0-ab7d-a5850900d950.png" // Logo bianco per sfondi scuri (ATH_W)
     : "/lovable-uploads/fa0d6412-fbae-4d76-98c8-1d7a6cb96b19.png"; // Logo nero per sfondi chiari (ATH_B)
   
-  // Dimensioni coerenti per entrambi i loghi
-  const sizeClasses = isFooter ? 'h-28' : 'h-32';
+  // Dimensioni ridotte per evitare sovrapposizioni
+  const sizeClasses = isFooter ? 'h-28' : 'h-16';
   
   return (
     <div className={`${className}`}>
