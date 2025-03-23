@@ -1,250 +1,315 @@
-import React, { useCallback, useEffect, useRef, useState } from 'react';
-import { ArrowRight } from 'lucide-react';
-import { Button } from '@/components/ui/button';
-import { cn } from '@/lib/utils';
-import RevealAnimation from './RevealAnimation';
+import { useEffect, useRef, useState } from 'react';
 import ButtonLink from './ButtonLink';
-
-interface ButtonConfig {
-  text: string;
-  href: string;
-  variant?: 'default' | 'outline' | 'secondary';
-  icon?: React.ReactNode;
-  onClick?: () => void;
-}
+import { cn } from '@/lib/utils';
+import { toast } from 'sonner';
 
 interface HeroProps {
   title: string;
   subtitle?: string;
-  description?: string | React.ReactNode;
-  buttons?: ButtonConfig[];
-  vimeoEmbed?: string;
-  youtubeId?: string;
-  videoSrc?: string;
   imageSrc?: string;
-  overlayOpacity?: 'none' | 'light' | 'medium' | 'dark';
-  contentPosition?: 'left' | 'center' | 'right';
-  contentVerticalPosition?: 'top' | 'center' | 'bottom';
-  subtitlePosition?: 'below-title' | 'bottom';
+  videoSrc?: string;
+  videoPoster?: string;
+  vimeoEmbed?: string;
+  buttons?: Array<{
+    text: string;
+    href: string;
+    variant?: 'primary' | 'secondary' | 'outline';
+  }>;
   className?: string;
-  height?: 'full' | 'large' | 'medium' | 'small';
+  contentPosition?: 'center' | 'left' | 'right';
+  overlayOpacity?: 'light' | 'medium' | 'dark';
+  fullHeight?: boolean;
+  contentVerticalPosition?: 'top' | 'center' | 'bottom';
+  subtitlePosition?: 'withTitle' | 'bottom';
 }
 
-const Hero: React.FC<HeroProps> = ({
+const Hero = ({
   title,
   subtitle,
-  description,
-  buttons,
-  vimeoEmbed,
-  youtubeId,
-  videoSrc,
   imageSrc,
-  overlayOpacity = 'medium',
-  contentPosition = 'left',
-  contentVerticalPosition = 'center',
-  subtitlePosition = 'below-title',
+  videoSrc,
+  videoPoster,
+  vimeoEmbed,
+  buttons = [],
   className,
-  height = 'large',
-}) => {
+  contentPosition = 'center',
+  overlayOpacity = 'medium',
+  fullHeight = true,
+  contentVerticalPosition = 'center',
+  subtitlePosition = 'withTitle',
+}: HeroProps) => {
+  const titleRef = useRef<HTMLHeadingElement>(null);
   const videoRef = useRef<HTMLVideoElement>(null);
-  const [isIntersecting, setIsIntersecting] = useState(true);
-
-  const observer = useRef<IntersectionObserver | null>(null);
-
-  const handleIntersection = useCallback(
-    (entries: IntersectionObserverEntry[]) => {
-      entries.forEach((entry) => {
-        setIsIntersecting(entry.isIntersecting);
-      });
-    },
-    []
-  );
-
+  const vimeoRef = useRef<HTMLDivElement>(null);
+  const [imageError, setImageError] = useState(false);
+  const [videoError, setVideoError] = useState(false);
+  const [vimeoError, setVimeoError] = useState(false);
+  const [videoLoaded, setVideoLoaded] = useState(false);
+  const [videoPlaying, setVideoPlaying] = useState(false);
+  const [blackOverlay, setBlackOverlay] = useState(false);
+  
+  const fallbackImage = "/lovable-uploads/6ea13aa7-2578-488b-8ed4-4b17fc2ddc4e.png";
+  
   useEffect(() => {
-    observer.current = new IntersectionObserver(handleIntersection, {
-      rootMargin: '0px',
-      threshold: 0.5,
-    });
-
-    if (videoRef.current) {
-      observer.current.observe(videoRef.current);
+    if (titleRef.current) {
+      const text = title || '';
+      const wrappedText = text.split('').map((char, index) => 
+        `<span style="--index:${index}" ${char === ' ' ? 'class="inline-block"' : ''}>${char}</span>`
+      ).join('');
+      
+      titleRef.current.innerHTML = wrappedText;
+      
+      titleRef.current.classList.remove('visible');
+      
+      setTimeout(() => {
+        titleRef.current?.classList.add('visible');
+      }, 100);
     }
-
-    return () => {
-      observer.current?.disconnect();
-    };
-  }, [handleIntersection]);
-
-  useEffect(() => {
-    if (videoRef.current) {
-      if (isIntersecting) {
-        videoRef.current.play();
-      } else {
-        videoRef.current.pause();
+  }, [title]);
+  
+  const getVideoUrl = (url: string): string => {
+    if (url && url.includes('drive.google.com/file/d/')) {
+      const match = url.match(/\/d\/([^\/]+)/);
+      if (match && match[1]) {
+        return `https://drive.google.com/uc?export=download&id=${match[1]}`;
       }
     }
-  }, [isIntersecting]);
-
-  const getOverlayClass = () => {
-    switch (overlayOpacity) {
-      case 'none': return 'bg-opacity-0';
-      case 'light': return 'bg-opacity-30';
-      case 'medium': return 'bg-opacity-50';
-      case 'dark': return 'bg-opacity-70';
-      default: return 'bg-opacity-50';
-    }
+    return url;
   };
 
-  const getPositionClass = () => {
-    let positionClass = '';
-    
-    // Horizontal positioning
-    switch (contentPosition) {
-      case 'left': positionClass += ' items-start text-left'; break;
-      case 'center': positionClass += ' items-center text-center'; break;
-      case 'right': positionClass += ' items-end text-right'; break;
-      default: positionClass += ' items-start text-left';
+  useEffect(() => {
+    if (vimeoEmbed && vimeoRef.current) {
+      try {
+        vimeoRef.current.innerHTML = vimeoEmbed;
+        
+        const vimeoLoadTimeout = setTimeout(() => {
+          if (vimeoRef.current) {
+            const iframe = vimeoRef.current.querySelector('iframe');
+            if (!iframe || iframe.clientWidth === 0) {
+              console.error('Vimeo iframe failed to load properly');
+              setVimeoError(true);
+            }
+          }
+        }, 3000);
+        
+        return () => {
+          clearTimeout(vimeoLoadTimeout);
+        };
+      } catch (err) {
+        console.error('Error setting up Vimeo embed:', err);
+        setVimeoError(true);
+      }
     }
-    
-    // Vertical positioning
-    switch (contentVerticalPosition) {
-      case 'top': positionClass += ' justify-start pt-32'; break;
-      case 'center': positionClass += ' justify-center'; break;
-      case 'bottom': positionClass += ' justify-end pb-24'; break;
-      default: positionClass += ' justify-center';
+  }, [vimeoEmbed]);
+
+  useEffect(() => {
+    const video = videoRef.current;
+    if (video && videoSrc && !vimeoEmbed) {
+      try {
+        const formattedVideoSrc = getVideoUrl(videoSrc);
+        console.log('Attempting to load video from:', formattedVideoSrc);
+        
+        video.src = formattedVideoSrc;
+        video.loop = true;
+        video.load();
+        
+        const handleError = (e: Event) => {
+          console.error('Video failed to load:', formattedVideoSrc, e);
+          setVideoError(true);
+          toast.error('Video non disponibile, usiamo un\'immagine al posto', {
+            duration: 3000,
+            position: 'bottom-center'
+          });
+        };
+        
+        const handleLoadedData = () => {
+          console.log('Video loaded successfully');
+          setVideoLoaded(true);
+          
+          setBlackOverlay(true);
+          
+          setTimeout(() => {
+            try {
+              video.play()
+                .then(() => {
+                  console.log('Video playback started successfully');
+                  setTimeout(() => {
+                    setVideoPlaying(true);
+                  }, 300);
+                })
+                .catch(err => {
+                  console.warn('Auto-play failed:', err);
+                  setBlackOverlay(false);
+                  document.addEventListener('click', () => {
+                    setBlackOverlay(true);
+                    setTimeout(() => {
+                      video.play()
+                        .then(() => {
+                          setTimeout(() => setVideoPlaying(true), 300);
+                        })
+                        .catch(e => {
+                          console.warn('Play on click failed:', e);
+                          setBlackOverlay(false);
+                        });
+                    }, 200);
+                  }, { once: true });
+                });
+            } catch (err) {
+              console.warn('Failed to start video:', err);
+              setBlackOverlay(false);
+            }
+          }, 400);
+          
+          toast.success('Video caricato con successo', {
+            duration: 2000,
+            position: 'bottom-center'
+          });
+        };
+        
+        video.addEventListener('error', handleError);
+        video.addEventListener('loadeddata', handleLoadedData);
+        
+        return () => {
+          video.removeEventListener('error', handleError);
+          video.removeEventListener('loadeddata', handleLoadedData);
+        };
+      } catch (error) {
+        console.error('Error setting up video:', error);
+        setVideoError(true);
+      }
     }
-    
-    return positionClass;
+  }, [videoSrc, vimeoEmbed]);
+  
+  const positionClasses = {
+    center: 'items-center text-center',
+    left: 'items-start text-left',
+    right: 'items-end text-right',
   };
-
-  const heightClass = {
-    'full': 'min-h-screen',
-    'large': 'min-h-[800px]',
-    'medium': 'min-h-[600px]',
-    'small': 'min-h-[400px]'
-  }[height];
-
+  
+  const verticalPositionClasses = {
+    top: 'justify-start pt-32',
+    center: 'justify-center',
+    bottom: 'justify-end pb-32',
+  };
+  
+  const overlayClasses = {
+    light: 'bg-black/20',
+    medium: 'bg-black/50',
+    dark: 'bg-black/70',
+  };
+  
+  const handleImageError = () => {
+    console.error('Failed to load hero image:', imageSrc);
+    setImageError(true);
+  };
+  
   return (
-    <div className={cn("relative w-full overflow-hidden", heightClass, className)}>
-      {/* Background media */}
-      <div className="absolute inset-0 w-full h-full bg-cover bg-center">
-        {/* Video embed (Vimeo or YouTube) */}
-        {vimeoEmbed && (
-          <div className="absolute inset-0 overflow-hidden" dangerouslySetInnerHTML={{ __html: vimeoEmbed }} />
+    <div 
+      className={cn(
+        'relative w-full flex items-center justify-center overflow-hidden',
+        fullHeight ? 'min-h-screen' : 'min-h-[50vh]',
+        className
+      )}
+    >
+      <div className="absolute inset-0 w-full h-full">
+        {(!vimeoEmbed || vimeoError) && (
+          <>
+            <img 
+              src={imageError ? fallbackImage : (imageSrc || fallbackImage)} 
+              alt="Background" 
+              className={cn(
+                "object-cover w-full h-full transition-opacity duration-500",
+                blackOverlay ? 'opacity-0' : 'opacity-100'
+              )}
+              onError={handleImageError}
+            />
+            
+            <div 
+              className="absolute inset-0 bg-black transition-opacity duration-500"
+              style={{
+                opacity: blackOverlay && !videoPlaying ? 1 : 0
+              }}
+            />
+            
+            {videoSrc && !videoError && (
+              <video
+                ref={videoRef}
+                autoPlay
+                muted
+                loop
+                playsInline
+                poster={videoPoster || imageSrc}
+                className={cn(
+                  "absolute inset-0 object-cover w-full h-full transition-opacity duration-800",
+                  videoPlaying ? 'opacity-100' : 'opacity-0'
+                )}
+              />
+            )}
+            
+            <div className={cn('absolute inset-0', overlayClasses[overlayOpacity])}></div>
+          </>
         )}
         
-        {youtubeId && (
-          <div className="absolute inset-0 overflow-hidden">
-            <iframe 
-              src={`https://www.youtube.com/embed/${youtubeId}?autoplay=1&mute=1&loop=1&playlist=${youtubeId}&controls=0&showinfo=0&rel=0&modestbranding=1&iv_load_policy=3&disablekb=1`}
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-              className="absolute w-[300%] h-[300%] top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 pointer-events-none"
-              title="YouTube video player"
-              frameBorder="0"
+        {vimeoEmbed && !vimeoError && (
+          <div className="absolute inset-0 w-full h-full bg-black">
+            <div 
+              ref={vimeoRef}
+              className="w-full h-full vimeo-container" 
             />
+            <div className="absolute inset-0 bg-black/30"></div>
           </div>
         )}
-        
-        {/* Self-hosted video */}
-        {videoSrc && (
-          <video
-            ref={videoRef}
-            className="absolute inset-0 object-cover w-full h-full"
-            autoPlay
-            muted
-            loop
-            playsInline
-          >
-            <source src={videoSrc} type="video/mp4" />
-          </video>
-        )}
-        
-        {/* Image fallback */}
-        {imageSrc && (
-          <img
-            src={imageSrc}
-            alt={title}
-            className="absolute inset-0 object-cover w-full h-full"
-          />
-        )}
-        
-        {/* Overlay */}
-        <div className={`absolute inset-0 bg-black ${getOverlayClass()}`}></div>
       </div>
       
-      {/* Content */}
-      <div className={`relative container mx-auto px-6 h-full flex flex-col ${getPositionClass()}`}>
-        <div className="max-w-5xl">
-          <RevealAnimation delay={0.1}>
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white font-display tracking-tight">
-              {title}
-            </h1>
-          </RevealAnimation>
-          
-          {subtitle && subtitlePosition === 'below-title' && (
-            <RevealAnimation delay={0.2}>
-              <p className="mt-4 text-lg md:text-xl text-white/90 max-w-2xl">
-                {subtitle}
-              </p>
-            </RevealAnimation>
-          )}
-          
-          {description && (
-            <RevealAnimation delay={0.3}>
-              <div className="mt-6 text-base md:text-lg text-white/80 max-w-2xl">
-                {description}
-              </div>
-            </RevealAnimation>
-          )}
-          
-          {buttons && buttons.length > 0 && (
-            <RevealAnimation delay={0.4}>
-              <div className="mt-8 flex flex-wrap gap-4">
-                {buttons.map((button, index) => 
-                  button.onClick ? (
-                    <Button 
-                      key={index}
-                      variant={button.variant || 'default'} 
-                      className={button.variant === 'outline' 
-                        ? 'bg-transparent text-white border-white hover:bg-white hover:text-black'
-                        : 'bg-ath-clay hover:bg-ath-clay/90 text-white'
-                      }
-                      onClick={button.onClick}
-                    >
-                      {button.text}
-                      {button.icon || (index === 0 && <ArrowRight className="ml-2 h-4 w-4" />)}
-                    </Button>
-                  ) : (
-                    <ButtonLink 
-                      key={index}
-                      href={button.href} 
-                      variant={button.variant === 'default' ? 'primary' : button.variant} 
-                      className={button.variant === 'outline' 
-                        ? 'bg-transparent text-white border-white hover:bg-white hover:text-black'
-                        : 'bg-ath-clay hover:bg-ath-clay/90 text-white'
-                      }
-                    >
-                      {button.text}
-                      {button.icon || (index === 0 && <ArrowRight className="ml-2 h-4 w-4" />)}
-                    </ButtonLink>
-                  )
-                )}
-              </div>
-            </RevealAnimation>
-          )}
-        </div>
+      <div className={cn(
+        'relative z-10 max-w-3xl px-6 py-24 flex flex-col w-full h-full',
+        positionClasses[contentPosition],
+        verticalPositionClasses[contentVerticalPosition]
+      )}>
+        <h1 
+          ref={titleRef}
+          className="text-animate text-5xl md:text-6xl lg:text-7xl font-display font-bold text-white leading-tight mb-8 drop-shadow-lg"
+        >
+          {title}
+        </h1>
         
-        {/* Subtitle at bottom position */}
-        {subtitle && subtitlePosition === 'bottom' && (
-          <div className="mt-auto">
-            <RevealAnimation delay={0.2}>
-              <p className="text-lg md:text-xl text-white/90 max-w-2xl mb-8">
-                {subtitle}
-              </p>
-            </RevealAnimation>
-          </div>
+        {subtitle && subtitlePosition === 'withTitle' && (
+          <p className="text-white text-xl md:text-2xl opacity-90 mb-10 animate-fade-in drop-shadow-md" style={{ animationDelay: '0.4s' }}>
+            {subtitle}
+          </p>
         )}
       </div>
+      
+      {subtitle && subtitlePosition === 'bottom' && (
+        <div className="absolute bottom-0 left-0 right-0 z-10 p-4 bg-gradient-to-t from-black/80 to-transparent">
+          <p className="text-white text-base md:text-lg opacity-90 max-w-3xl mx-auto text-center animate-fade-in drop-shadow-md whitespace-nowrap overflow-hidden text-ellipsis" 
+            style={{ animationDelay: '0.4s' }}>
+            {subtitle}
+          </p>
+          
+          {buttons.length > 0 && (
+            <div className={cn(
+              'flex flex-wrap gap-3 justify-center mt-3',
+            )}>
+              {buttons.map((button, index) => (
+                <ButtonLink
+                  key={`${button.text}-${index}`}
+                  href={button.href}
+                  variant={button.variant || (index === 0 ? 'primary' : 'outline')}
+                  className={cn(
+                    'text-sm px-4 py-2', 
+                    index === 0 ? 'animate-fade-in' : 'animate-fade-in'
+                  )}
+                  size="sm"
+                  style={{ animationDelay: `${0.6 + index * 0.1}s` }}
+                >
+                  {button.text}
+                </ButtonLink>
+              ))}
+            </div>
+          )}
+        </div>
+      )}
     </div>
   );
 };

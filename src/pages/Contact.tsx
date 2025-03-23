@@ -34,7 +34,7 @@ const ContactPage = () => {
           title="Contattaci"
           subtitle="Per informazioni, prenotazioni o collaborazioni"
           imageSrc="/lovable-uploads/b06f970d-6ca3-4c8a-b55a-92ec5bc78f6a.png"
-          height="medium"
+          fullHeight={false}
           overlayOpacity="dark"
           contentPosition="center"
           contentVerticalPosition="bottom"
