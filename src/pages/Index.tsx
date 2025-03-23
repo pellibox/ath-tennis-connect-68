@@ -1,4 +1,3 @@
-
 import { useEffect } from 'react';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
@@ -177,7 +176,12 @@ const HomePage = () => {
       id: '1',
       title: 'Campo Centrale ATP',
       description: 'Campo principale con sistema Vicki™ integrato, tribuna spettatori e standard ATP per tornei internazionali.',
-      image: '/lovable-uploads/7ff66f98-73e6-4253-aacb-8619ac14b81b.png'
+      image: '/lovable-uploads/7ff66f98-73e6-4253-aacb-8619ac14b81b.png',
+      features: [
+        'Dimensioni ATP standard',
+        'Illuminazione LED ad alta efficienza',
+        'Condizionamento e ventilazione ottimizzati'
+      ]
     },
     {
       id: '2',
