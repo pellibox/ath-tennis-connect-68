@@ -10,16 +10,16 @@ interface LogoProps {
 const Logo = ({ variant = 'default', className = '', onDarkBackground = false }: LogoProps) => {
   const isFooter = variant === 'footer';
   
-  // Use white logo on dark backgrounds, and default logo on light backgrounds
+  // Utilizzo dei nuovi loghi
   const logoSrc = onDarkBackground 
-    ? "/lovable-uploads/d36e74c4-9cb8-41a2-bdfe-e21ccb569d26.png"
-    : "/lovable-uploads/cabb225e-0db8-4830-8967-24942c8f7d52.png";
+    ? "/lovable-uploads/ebada5d3-6c5e-43a0-ab7d-a5850900d950.png" // Logo bianco per sfondi scuri (ATH_W)
+    : "/lovable-uploads/fa0d6412-fbae-4d76-98c8-1d7a6cb96b19.png"; // Logo nero per sfondi chiari (ATH_B)
   
-  // Use consistent sizing for both logos
+  // Dimensioni coerenti per entrambi i loghi
   const sizeClasses = isFooter ? 'h-28' : 'h-32';
   
   return (
-    <div className={`flex items-center ${className} mt-2 ml-2`}>
+    <div className={`${className}`}>
       <Link to="/">
         <img 
           src={logoSrc} 

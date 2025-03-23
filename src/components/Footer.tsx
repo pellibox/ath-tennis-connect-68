@@ -11,7 +11,7 @@ const Footer = () => {
     <footer className="bg-black text-white py-16 px-6 lg:px-10">
       <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
         <div>
-          <div className="mb-6">
+          <div className="mb-6 flex justify-center md:justify-start">
             <Logo variant="footer" onDarkBackground={true} />
           </div>
           <p className="text-gray-400 text-sm mb-6">

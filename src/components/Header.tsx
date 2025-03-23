@@ -91,32 +91,6 @@ const Header = () => {
     },
   ];
 
-  // LinkComponent to handle scrolling to section IDs
-  const LinkComponent = ({ href, children, className }: { href: string; children: React.ReactNode, className?: string }) => {
-    const handleClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
-      if (href.includes('#')) {
-        const parts = href.split('#');
-        const pagePath = parts[0];
-        const sectionId = parts[1];
-        
-        // If we're already on the correct page, just scroll to the section
-        if (location.pathname === pagePath || (pagePath === '' && location.pathname === '/')) {
-          e.preventDefault();
-          const element = document.getElementById(sectionId);
-          if (element) {
-            element.scrollIntoView({ behavior: 'smooth' });
-          }
-        }
-      }
-    };
-
-    return (
-      <Link to={href} onClick={handleClick} className={className}>
-        {children}
-      </Link>
-    );
-  };
-
   // Determine if we should use the white logo based on scroll position
   const useDarkBackgroundLogo = !isScrolled && !isMenuOpen;
 
@@ -128,15 +102,35 @@ const Header = () => {
       )}
     >
       <div className="container mx-auto px-6 flex items-center justify-between">
-        <Link to="/" className="z-50">
+        <div className="flex-1">
+          {/* Empty div to create space */}
+        </div>
+        
+        {/* Logo centrato */}
+        <div className="flex items-center justify-center z-50">
           <Logo 
             variant={isScrolled || isMenuOpen ? "default" : "footer"} 
             onDarkBackground={useDarkBackgroundLogo}
           />
-        </Link>
+        </div>
+        
+        <div className="flex-1 flex justify-end">
+          {/* Mobile Menu Button */}
+          <button
+            className={cn(
+              "lg:hidden z-50 flex items-center",
+              isScrolled || isMenuOpen ? "text-black" : "text-white"
+            )}
+            onClick={toggleMenu}
+            aria-expanded={isMenuOpen}
+            aria-label="Toggle menu"
+          >
+            {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
+          </button>
+        </div>
 
         {/* Desktop Navigation with Navigation Menu */}
-        <nav className="hidden lg:flex items-center space-x-4">
+        <nav className="hidden lg:flex items-center space-x-4 absolute bottom-0 left-0 w-full justify-center pb-4">
           <NavigationMenu className="max-w-none">
             <NavigationMenuList>
               {navigationItems.map((item, index) => (
@@ -161,19 +155,6 @@ const Header = () => {
             <LanguageSwitcher />
           </div>
         </nav>
-
-        {/* Mobile Menu Button */}
-        <button
-          className={cn(
-            "lg:hidden z-50 flex items-center",
-            isScrolled || isMenuOpen ? "text-black" : "text-white"
-          )}
-          onClick={toggleMenu}
-          aria-expanded={isMenuOpen}
-          aria-label="Toggle menu"
-        >
-          {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
-        </button>
 
         {/* Mobile Navigation */}
         <div
@@ -201,6 +182,34 @@ const Header = () => {
         </div>
       </div>
     </header>
+  );
+};
+
+// LinkComponent to handle scrolling to section IDs
+const LinkComponent = ({ href, children, className }: { href: string; children: React.ReactNode, className?: string }) => {
+  const location = useLocation();
+  
+  const handleClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    if (href.includes('#')) {
+      const parts = href.split('#');
+      const pagePath = parts[0];
+      const sectionId = parts[1];
+      
+      // If we're already on the correct page, just scroll to the section
+      if (location.pathname === pagePath || (pagePath === '' && location.pathname === '/')) {
+        e.preventDefault();
+        const element = document.getElementById(sectionId);
+        if (element) {
+          element.scrollIntoView({ behavior: 'smooth' });
+        }
+      }
+    }
+  };
+
+  return (
+    <Link to={href} onClick={handleClick} className={className}>
+      {children}
+    </Link>
   );
 };
 
