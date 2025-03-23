@@ -15,12 +15,14 @@ import {
   NavigationMenuTrigger,
   navigationMenuTriggerStyle,
 } from "@/components/ui/navigation-menu";
+import { useIsMobile } from '@/hooks/use-mobile';
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const location = useLocation();
   const { t } = useLanguage();
+  const isMobile = useIsMobile();
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
@@ -102,8 +104,8 @@ const Header = () => {
         isScrolled ? 'bg-white shadow-md py-3' : 'bg-transparent py-5'
       )}
     >
-      <div className="container mx-auto px-6 flex items-center justify-between">
-        {/* Logo moved to the left */}
+      <div className="container mx-auto px-6 flex items-center justify-between relative">
+        {/* Logo positioned on the left */}
         <div className="flex items-center z-50">
           <Logo 
             variant={isScrolled || isMenuOpen ? "default" : "footer"} 
@@ -111,16 +113,17 @@ const Header = () => {
           />
         </div>
         
-        {/* Center space for navigation */}
-        <div className="flex-1">
-          {/* Empty div to create space */}
-        </div>
-        
-        <div className="flex justify-end">
+        {/* Right side elements (language switcher and mobile menu) */}
+        <div className="flex items-center z-50">
+          {/* Language switcher on desktop */}
+          <div className={cn("hidden lg:block mr-4", isScrolled ? 'text-black' : 'text-white')}>
+            <LanguageSwitcher />
+          </div>
+          
           {/* Mobile Menu Button */}
           <button
             className={cn(
-              "lg:hidden z-50 flex items-center",
+              "lg:hidden flex items-center",
               isScrolled || isMenuOpen ? "text-black" : "text-white"
             )}
             onClick={toggleMenu}
@@ -131,32 +134,34 @@ const Header = () => {
           </button>
         </div>
 
-        {/* Desktop Navigation with Navigation Menu */}
-        <nav className="hidden lg:flex items-center space-x-4 absolute bottom-0 left-0 w-full justify-center pb-4">
-          <NavigationMenu className="max-w-none">
-            <NavigationMenuList>
-              {navigationItems.map((item, index) => (
-                <NavigationMenuItem key={index}>
-                  <LinkComponent 
-                    href={item.href}
-                    className={cn(
-                      navigationMenuTriggerStyle(),
-                      "flex items-center bg-transparent",
-                      isScrolled ? 'text-black hover:text-ath-clay' : 'text-white hover:text-white hover:bg-white/20'
-                    )}
-                  >
-                    {item.icon}
-                    {item.text}
-                  </LinkComponent>
-                </NavigationMenuItem>
-              ))}
-            </NavigationMenuList>
-          </NavigationMenu>
-          
-          <div className={isScrolled ? 'text-black' : 'text-white'}>
-            <LanguageSwitcher />
-          </div>
-        </nav>
+        {/* Desktop Navigation - moved below header content to prevent overlap */}
+        {!isMobile && (
+          <nav className="absolute bottom-0 left-0 w-full flex justify-center transform translate-y-full">
+            <div className={cn(
+              "bg-white/90 backdrop-blur-sm rounded-b-lg shadow-md px-6 py-2",
+              isScrolled ? "mt-0" : "mt-0"
+            )}>
+              <NavigationMenu>
+                <NavigationMenuList>
+                  {navigationItems.map((item, index) => (
+                    <NavigationMenuItem key={index}>
+                      <LinkComponent 
+                        href={item.href}
+                        className={cn(
+                          navigationMenuTriggerStyle(),
+                          "flex items-center bg-transparent text-black hover:text-ath-clay"
+                        )}
+                      >
+                        {item.icon}
+                        {item.text}
+                      </LinkComponent>
+                    </NavigationMenuItem>
+                  ))}
+                </NavigationMenuList>
+              </NavigationMenu>
+            </div>
+          </nav>
+        )}
 
         {/* Mobile Navigation */}
         <div
