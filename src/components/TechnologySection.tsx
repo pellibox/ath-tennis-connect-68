@@ -8,12 +8,14 @@ interface TechnologySectionProps {
   title: string;
   subtitle?: string;
   className?: string;
+  id?: string; // Add the id prop to the interface
 }
 
 const TechnologySection = ({ 
   title, 
   subtitle,
-  className 
+  className,
+  id 
 }: TechnologySectionProps) => {
   const { t } = useLanguage();
   
@@ -129,7 +131,7 @@ const TechnologySection = ({
   ];
 
   return (
-    <section id="vicki" className={cn('py-20 px-6 lg:px-10', className)}>
+    <section id={id} className={cn('py-20 px-6 lg:px-10', className)}>
       <div className="max-w-7xl mx-auto">
         <RevealAnimation>
           <div className="text-center mb-16 relative">
