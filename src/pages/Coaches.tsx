@@ -83,7 +83,7 @@ const CoachesPage = () => {
           title="Team Tecnico ATH"
           subtitle="Professionisti specializzati nell'integrazione tra expertise tecnica e analisi avanzata dei dati"
           imageSrc="https://images.unsplash.com/photo-1551927336-09d50efd69cd?q=80&w=2069"
-          fullHeight={false}
+          height="medium"
           overlayOpacity="medium"
           buttons={[
             { text: "Contattaci", href: '/contact' }

@@ -1,3 +1,4 @@
+
 import { useEffect } from 'react';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
@@ -109,7 +110,7 @@ const FacilitiesPage = () => {
           title="Le Nostre Strutture"
           subtitle="Impianti all'avanguardia dotati di tecnologia Vicki™"
           imageSrc="/lovable-uploads/9e980860-a20e-4ae3-839c-6d91f306bd07.png"
-          fullHeight={false}
+          height="medium"
           overlayOpacity="medium"
         />
         
