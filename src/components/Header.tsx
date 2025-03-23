@@ -1,3 +1,4 @@
+
 import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Menu, X, Activity, Zap, BookOpen, Server, Home, Users } from 'lucide-react';
@@ -75,7 +76,7 @@ const Header = () => {
     },
     { 
       text: 'Tecnologia:VICKI', 
-      href: '/method#vicki',
+      href: '/technology',
       icon: <Zap size={18} className="mr-2" />
     },
     { 
