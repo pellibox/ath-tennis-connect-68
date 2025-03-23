@@ -6,6 +6,53 @@ import CoachesSection from '@/components/CoachesSection';
 import AboutSection from '@/components/AboutSection';
 import { useLocation } from 'react-router-dom';
 import { useLanguage } from '@/contexts/LanguageContext';
+import Hero from '@/components/Hero';
+
+// Mock data for coaches
+const coaches = [
+  {
+    id: "coach-1",
+    name: "Marco Rossi",
+    title: "Head Coach | Specialista Tecnica",
+    image: "https://images.unsplash.com/photo-1599586120429-48281b6f0ece?q=80&w=2070",
+    bio: "Esperto nell'integrazione tra metodologia tradizionale e analisi dati avanzata"
+  },
+  {
+    id: "coach-2",
+    name: "Giulia Bianchi",
+    title: "Coach | Specialista Tattica",
+    image: "https://images.unsplash.com/photo-1594381898411-846e7d193883?q=80&w=1974",
+    bio: "Focalizzata sull'ottimizzazione delle strategie di gioco attraverso l'analisi dei pattern"
+  },
+  {
+    id: "coach-3",
+    name: "Alessandro Verdi",
+    title: "Preparatore Atletico",
+    image: "https://images.unsplash.com/photo-1517838277536-f5f99be501cd?q=80&w=2070",
+    bio: "Integra biomeccanica avanzata e monitoraggio delle performance fisiche"
+  },
+  {
+    id: "coach-4",
+    name: "Francesca Neri",
+    title: "Mental Coach",
+    image: "https://images.unsplash.com/photo-1580894732444-8ecded7900cd?q=80&w=2070",
+    bio: "Specializzata nell'analisi dei pattern cognitivi e nella gestione della pressione agonistica"
+  },
+  {
+    id: "coach-5",
+    name: "Luca Marino",
+    title: "Analista Dati",
+    image: "https://images.unsplash.com/photo-1560250097-0b93528c311a?q=80&w=2074",
+    bio: "Sviluppa modelli predittivi per l'ottimizzazione delle performance individuali"
+  },
+  {
+    id: "coach-6",
+    name: "Claudia Romano",
+    title: "Fisioterapista",
+    image: "https://images.unsplash.com/photo-1607990281513-2c110a25bd8c?q=80&w=2034",
+    bio: "Integra i dati biomeccanici nella prevenzione e recupero degli infortuni"
+  }
+];
 
 const CoachesPage = () => {
   const { t } = useLanguage();
@@ -32,6 +79,17 @@ const CoachesPage = () => {
       <Header />
       
       <main className="flex-grow pt-20">
+        <Hero
+          title="Team Tecnico ATH"
+          subtitle="Professionisti specializzati nell'integrazione tra expertise tecnica e analisi avanzata dei dati"
+          imageSrc="https://images.unsplash.com/photo-1551927336-09d50efd69cd?q=80&w=2069"
+          fullHeight={false}
+          overlayOpacity="medium"
+          buttons={[
+            { text: "Contattaci", href: '/contact' }
+          ]}
+        />
+      
         <section className="py-16 px-6 lg:px-10 bg-white">
           <div className="max-w-7xl mx-auto">
             <h1 className="text-4xl md:text-5xl font-display text-center mb-12">I Nostri Coach</h1>
@@ -51,6 +109,7 @@ const CoachesPage = () => {
         <CoachesSection 
           title="Staff Tecnico"
           subtitle="Professionisti specializzati nell'integrazione tra expertise tecnica e analisi dei dati"
+          coaches={coaches}
         />
         
         <section id="coaching-approach" className="py-16 px-6 lg:px-10 bg-gray-50">
