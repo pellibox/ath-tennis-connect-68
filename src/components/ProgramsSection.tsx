@@ -76,14 +76,35 @@ const ProgramsSection = ({
     setFailedImages(prev => ({ ...prev, [id]: true }));
   };
 
+  // Debug vimeo embeds on mount
+  useEffect(() => {
+    if (programs) {
+      programs.forEach(program => {
+        if (program.vimeoEmbed) {
+          console.log(`Program ${program.id} has Vimeo embed: ${program.vimeoEmbed.substring(0, 100)}...`);
+        }
+      });
+    }
+    if (categories) {
+      categories.forEach(category => {
+        category.programs.forEach(program => {
+          if (program.vimeoEmbed) {
+            console.log(`Program ${program.id} in category ${category.id} has Vimeo embed: ${program.vimeoEmbed.substring(0, 100)}...`);
+          }
+        });
+      });
+    }
+  }, [programs, categories]);
+
   // Handle mouse enter for video cards
   const handleMouseEnter = (id: string) => {
+    console.log(`Mouse enter for program ID: ${id}`);
     setHoveredCard(id);
     
     // Show black overlay immediately
     setBlackOverlay(prev => ({ ...prev, [id]: true }));
     
-    // Load the video and get it ready to play
+    // If it's a standard video element
     if (videoRefs.current[id]) {
       // Set currentTime to 0 to ensure we start from the beginning
       videoRefs.current[id]!.currentTime = 0;
@@ -115,6 +136,7 @@ const ProgramsSection = ({
 
   // Handle mouse leave for video cards
   const handleMouseLeave = (id: string) => {
+    console.log(`Mouse leave for program ID: ${id}`);
     setHoveredCard(null);
     
     // Hide the video first
@@ -161,24 +183,80 @@ const ProgramsSection = ({
     }
   }, [categories]);
 
+  // Function to clean Vimeo embed code
+  const getProcessedVimeoEmbed = (embed: string, isHovered: boolean) => {
+    // Ensure single quotes are converted to double quotes for proper parsing
+    let processedEmbed = embed.replace(/'/g, '"');
+    
+    // Extract the iframe src URL
+    const srcMatch = processedEmbed.match(/src="([^"]+)"/);
+    if (srcMatch && srcMatch[1]) {
+      const originalSrc = srcMatch[1];
+      let newSrc = originalSrc;
+      
+      // Add or modify parameters
+      if (isHovered) {
+        // When hovered, ensure autoplay is on
+        if (newSrc.includes('autoplay=0')) {
+          newSrc = newSrc.replace('autoplay=0', 'autoplay=1');
+        } else if (!newSrc.includes('autoplay=')) {
+          newSrc += (newSrc.includes('?') ? '&' : '?') + 'autoplay=1';
+        }
+      } else {
+        // When not hovered, ensure autoplay is off
+        if (newSrc.includes('autoplay=1')) {
+          newSrc = newSrc.replace('autoplay=1', 'autoplay=0');
+        }
+      }
+      
+      // Always ensure these parameters
+      if (!newSrc.includes('loop=')) {
+        newSrc += (newSrc.includes('?') ? '&' : '?') + 'loop=1';
+      }
+      
+      if (!newSrc.includes('background=')) {
+        newSrc += (newSrc.includes('?') ? '&' : '?') + 'background=1';
+      }
+      
+      if (!newSrc.includes('controls=')) {
+        newSrc += (newSrc.includes('?') ? '&' : '?') + 'controls=0';
+      }
+      
+      // Replace the original src with the new one
+      processedEmbed = processedEmbed.replace(originalSrc, newSrc);
+      console.log(`Processed Vimeo embed for hover=${isHovered}: ${newSrc.substring(0, 100)}...`);
+    }
+    
+    return processedEmbed;
+  };
+
   // Render a single program card
   const renderProgramCard = (program: Program, index: number) => (
     <RevealAnimation key={program.id} delay={index * 50} className="h-full">
       <div 
         className="group h-full flex flex-col border border-gray-200 bg-white transition-all hover:shadow-sm overflow-hidden"
-        onMouseEnter={() => program.videoSrc && handleMouseEnter(program.id)}
-        onMouseLeave={() => program.videoSrc && handleMouseLeave(program.id)}
+        onMouseEnter={() => {
+          console.log(`Hovering on program: ${program.id} - ${program.title}`);
+          if (program.videoSrc) {
+            handleMouseEnter(program.id);
+          } else if (program.vimeoEmbed) {
+            setHoveredCard(program.id);
+          }
+        }}
+        onMouseLeave={() => {
+          if (program.videoSrc) {
+            handleMouseLeave(program.id);
+          } else if (program.vimeoEmbed) {
+            setHoveredCard(null);
+          }
+        }}
       >
         <div className="relative overflow-hidden aspect-video">
           {program.vimeoEmbed ? (
             <div 
               className="w-full h-full vimeo-container" 
               dangerouslySetInnerHTML={{ 
-                __html: program.vimeoEmbed
-                  .replace(/autoplay=0/g, hoveredCard === program.id ? 'autoplay=1' : 'autoplay=0')
-                  // Add controls=0 and background=1 for better visual appearance
-                  .replace(/controls=1/g, 'controls=0')
-                  .replace(/background=0/g, 'background=1')
+                __html: getProcessedVimeoEmbed(program.vimeoEmbed, hoveredCard === program.id)
               }}
             />
           ) : program.videoSrc ? (
