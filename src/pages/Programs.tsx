@@ -1,4 +1,3 @@
-
 import { useEffect } from 'react';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
@@ -15,53 +14,113 @@ const Programs = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }, []);
 
-  // Programs data
-  const featuredPrograms = [
+  // Programs data with detailed features for each user profile
+  const methodologyPrograms = [
     {
       id: '1',
-      title: 'Junior Academy',
-      description: 'Comprehensive training program for players aged 8-18 who want to develop their skills and compete at a high level.',
+      title: 'Agonista Junior',
+      description: 'Programma completo per giovani atleti che vogliono competere a livello agonistico.',
       image: 'https://images.unsplash.com/photo-1551773148-efc73c5fdc70',
-      link: '/programs/junior'
+      link: '/programs/junior-competitive',
+      features: [
+        'Percorso tecnico-tattico personalizzato',
+        'Valutazioni biomeccaniche periodiche',
+        'Programma di prevenzione infortuni',
+        'Analisi mentale e resilienza in partita',
+        'Allenamento coordinazione e crescita fisica',
+        'Gestione calendario agonistico',
+        'Report evolutivi e storico prestazioni',
+        'Programmi adattivi per fasi di sviluppo'
+      ]
     },
     {
       id: '2',
-      title: 'Elite Program',
-      description: 'Intensive training for advanced players with professional aspirations, focusing on technical, tactical, physical, and mental aspects.',
+      title: 'Professionista',
+      description: 'Supporto completo per atleti professionisti con analisi avanzata e ottimizzazione della performance.',
       image: 'https://images.unsplash.com/photo-1542144582-1ba00456b5e3',
-      link: '/programs/elite'
+      link: '/programs/professional',
+      features: [
+        'Programmazione cicli tecnico-fisico-mentale',
+        'Analisi predittiva e comparazione con storico',
+        'Ottimizzazione biomeccanica (servizio, swing, postura)',
+        'Integrazione con team tecnico, medico, atletico',
+        'Report video con sovrapposizione dati',
+        'Sessioni mirate su recupero e gestione carico'
+      ]
     },
     {
       id: '3',
-      title: 'Adult Training',
-      description: 'Programs for players of all levels who want to improve their skills, stay fit, and enjoy the game of tennis.',
+      title: 'Coach',
+      description: 'Formazione avanzata e strumenti per allenatori che vogliono integrare la metodologia ATH.',
       image: 'https://images.unsplash.com/photo-1622279888158-c6a5e6c4587c',
-      link: '/programs/adult'
+      link: '/programs/coach',
+      features: [
+        'Training personalizzato per costruzione metodo',
+        'Percorso di codifica del proprio approccio',
+        'Accesso a strumenti VICKI in sede e da remoto',
+        'Reportistica automatizzata per atleti seguiti',
+        'Formazione continua in piattaforma',
+        'Programma di monetizzazione metodo'
+      ]
     },
-  ];
-
-  // Additional programs data
-  const additionalPrograms = [
     {
       id: '4',
-      title: 'Summer Camps',
-      description: 'Intensive 1-4 week programs for players of all ages and levels, combining tennis training with fun activities.',
+      title: 'Genitore / Tutor',
+      description: 'Supporto informativo e coinvolgimento nel percorso di sviluppo dell\'atleta.',
       image: 'https://images.unsplash.com/photo-1606131731446-5568d87113aa',
-      link: '/programs/camps'
+      link: '/programs/parent',
+      features: [
+        'Percorso informativo sullo sviluppo dell\'atleta',
+        'Accesso a report filtrati dal coach',
+        'Visualizzazione video-allenamenti con spiegazione',
+        'Supporto alla scelta dei programmi in base all\'evoluzione',
+        'Comunicazione tecnico-pedagogica con il team'
+      ]
     },
     {
       id: '5',
-      title: 'Private Coaching',
-      description: 'One-on-one sessions with our expert coaches, tailored to your specific needs and goals.',
+      title: 'Amatore',
+      description: 'Percorsi flessibili per giocatori amatoriali che vogliono migliorare le proprie capacità.',
       image: 'https://images.unsplash.com/photo-1599586120429-48281b6f0ece',
-      link: '/programs/private'
-    },
+      link: '/programs/amateur',
+      features: [
+        'Percorso personalizzato per obiettivi specifici',
+        'Lezioni singole o cicli brevi',
+        'Clinics tematici (servizio, spostamenti, colpi)',
+        'Analisi base con heatmap e feedback tecnico',
+        'Possibilità di affitto campo con tecnologia attiva',
+        'Programma miglioramento progressivo senza pressione'
+      ]
+    }
+  ];
+
+  // Other programs data (keeping some original programs)
+  const additionalPrograms = [
     {
       id: '6',
+      title: 'Summer Camps',
+      description: 'Programmi intensivi di 1-4 settimane per giocatori di tutte le età e livelli.',
+      image: 'https://images.unsplash.com/photo-1587280501635-68a0e82cd5ff',
+      link: '/programs/camps',
+      features: [
+        'Programmi per diverse fasce d\'età',
+        'Allenamento intensivo giornaliero',
+        'Attività complementari e team building',
+        'Analisi tecnica con sistema VICKI'
+      ]
+    },
+    {
+      id: '7',
       title: 'Performance Analysis',
-      description: 'Using our advanced technology, we provide comprehensive analysis of your game to identify strengths and areas for improvement.',
+      description: 'Analisi completa del gioco con tecnologia avanzata e feedback personalizzato.',
       image: 'https://images.unsplash.com/photo-1504439468489-c8920d796a29',
-      link: '/programs/analysis'
+      link: '/programs/analysis',
+      features: [
+        'Analisi biomeccanica completa',
+        'Heatmap e pattern di spostamento',
+        'Statistiche avanzate di gioco',
+        'Report dettagliato con raccomandazioni'
+      ]
     },
   ];
 
@@ -71,12 +130,12 @@ const Programs = () => {
       
       <main className="flex-grow">
         <Hero 
-          title="Our Tennis Programs" 
-          subtitle="Comprehensive training solutions tailored to your goals"
+          title="Programmi ATH" 
+          subtitle="Approccio metodologico personalizzato per ogni profilo di utente"
           imageSrc="https://images.unsplash.com/photo-1464278533981-50e57c2b7d1b"
           buttons={[
-            { text: 'BOOK A TRIAL', href: '/contact' },
-            { text: 'CONTACT US', href: '/contact', variant: 'outline' }
+            { text: 'PRENOTA UNA PROVA', href: '/contact' },
+            { text: 'CONTATTACI', href: '/contact', variant: 'outline' }
           ]}
           contentPosition="left"
           overlayOpacity="medium"
@@ -85,65 +144,65 @@ const Programs = () => {
         <section className="py-20 px-6 lg:px-10">
           <div className="max-w-7xl mx-auto">
             <RevealAnimation>
-              <h2 className="text-3xl md:text-4xl font-display mb-4">ATH Methodology</h2>
+              <h2 className="text-3xl md:text-4xl font-display mb-4">Metodologia ATH</h2>
             </RevealAnimation>
             
             <RevealAnimation delay={100}>
               <p className="text-lg text-gray-600 max-w-3xl mb-12">
-                At ATH, we integrate advanced technology with expert human coaching. Our proprietary system monitors over 70 parameters of tennis performance to provide detailed analysis and customized training programs.
+                In ATH integriamo tecnologia avanzata con coaching esperto. Il nostro sistema proprietario monitora oltre 70 parametri della performance tennistica per fornire analisi dettagliate e programmi di allenamento personalizzati.
               </p>
             </RevealAnimation>
             
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
               <RevealAnimation delay={150} className="bg-white p-8 shadow-sm">
-                <h3 className="text-xl font-medium mb-4">Technical Development</h3>
-                <p className="text-gray-600">Our coaches use advanced video analysis and real-time feedback to refine your technique across all strokes.</p>
+                <h3 className="text-xl font-medium mb-4">Sviluppo Tecnico</h3>
+                <p className="text-gray-600">I nostri coach utilizzano analisi video avanzate e feedback in tempo reale per perfezionare la tua tecnica su tutti i colpi.</p>
               </RevealAnimation>
               
               <RevealAnimation delay={200} className="bg-white p-8 shadow-sm">
-                <h3 className="text-xl font-medium mb-4">Physical Conditioning</h3>
-                <p className="text-gray-600">Customized fitness programs designed specifically for tennis, focusing on speed, agility, strength, and endurance.</p>
+                <h3 className="text-xl font-medium mb-4">Preparazione Fisica</h3>
+                <p className="text-gray-600">Programmi di fitness personalizzati specifici per il tennis, focalizzati su velocità, agilità, forza e resistenza.</p>
               </RevealAnimation>
               
               <RevealAnimation delay={250} className="bg-white p-8 shadow-sm">
-                <h3 className="text-xl font-medium mb-4">Mental Training</h3>
-                <p className="text-gray-600">Develop mental toughness, focus, and strategic thinking with our specialized psychological training methods.</p>
+                <h3 className="text-xl font-medium mb-4">Allenamento Mentale</h3>
+                <p className="text-gray-600">Sviluppa resistenza mentale, concentrazione e pensiero strategico con i nostri metodi di allenamento psicologico specializzati.</p>
               </RevealAnimation>
             </div>
           </div>
         </section>
         
         <ProgramsSection 
-          title="Featured Programs"
-          subtitle="Discover our core training offerings"
-          programs={featuredPrograms}
+          title="Approccio Metodologico per Profilo Utente"
+          subtitle="Scopri i nostri percorsi personalizzati in base alle tue esigenze"
+          programs={methodologyPrograms}
           className="bg-ath-gray"
         />
         
         <ProgramsSection 
-          title="Specialized Programs"
-          subtitle="Additional training options to complement your development"
+          title="Programmi Specializzati"
+          subtitle="Opzioni di allenamento aggiuntive per completare il tuo sviluppo"
           programs={additionalPrograms}
         />
         
         <AboutSection 
-          title="The ATH Difference"
+          title="Il Vantaggio ATH"
           description={
             <div className="space-y-4">
               <p>
-                What sets ATH apart is our integration of cutting-edge technology with world-class coaching expertise. Our sophisticated system captures and analyzes over 70 parameters of your tennis performance, allowing our coaches to provide highly personalized training.
+                Ciò che distingue ATH è la nostra integrazione di tecnologia all'avanguardia con competenze di coaching di livello mondiale. Il nostro sofisticato sistema cattura e analizza oltre 70 parametri delle tue prestazioni tennistiche, consentendo ai nostri coach di fornire un allenamento altamente personalizzato.
               </p>
               <p>
-                This data-driven approach eliminates guesswork and ensures that every minute of your training is optimized for maximum improvement. Whether you're a beginner or an elite player, our methodology adapts to your unique needs and goals.
+                Questo approccio basato sui dati elimina le congetture e garantisce che ogni minuto del tuo allenamento sia ottimizzato per il massimo miglioramento. Che tu sia un principiante o un giocatore d'élite, la nostra metodologia si adatta alle tue esigenze e obiettivi unici.
               </p>
               <p>
-                Join the revolution in tennis training and experience the results that have made ATH the choice of recreational players and champions alike.
+                Unisciti alla rivoluzione nell'allenamento tennistico e sperimenta i risultati che hanno reso ATH la scelta di giocatori ricreativi e campioni.
               </p>
             </div>
           }
           image="https://images.unsplash.com/photo-1531315396756-905d68d21b56"
           buttons={[
-            { text: 'BOOK A TRIAL', href: '/contact' }
+            { text: 'PRENOTA UNA PROVA', href: '/contact' }
           ]}
           reversed={true}
         />
@@ -151,97 +210,97 @@ const Programs = () => {
         <section className="py-20 px-6 lg:px-10 bg-ath-gray">
           <div className="max-w-7xl mx-auto">
             <RevealAnimation>
-              <h2 className="text-3xl md:text-4xl font-display text-center mb-4">Program Pricing</h2>
+              <h2 className="text-3xl md:text-4xl font-display text-center mb-4">Prezzi Programmi</h2>
             </RevealAnimation>
             
             <RevealAnimation delay={100}>
               <p className="text-lg text-gray-600 max-w-3xl mx-auto text-center mb-12">
-                We offer flexible pricing options to suit different needs and commitments.
+                Offriamo opzioni di prezzo flessibili per adattarsi a diverse esigenze e impegni.
               </p>
             </RevealAnimation>
             
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
               <RevealAnimation delay={150} className="bg-white p-8 flex flex-col shadow-sm">
-                <h3 className="text-xl font-medium mb-4">Monthly Membership</h3>
-                <div className="text-3xl font-bold mb-2">€250<span className="text-sm font-normal">/month</span></div>
-                <p className="text-gray-600 mb-6">Access to group training sessions and facilities.</p>
+                <h3 className="text-xl font-medium mb-4">Abbonamento Mensile</h3>
+                <div className="text-3xl font-bold mb-2">€250<span className="text-sm font-normal">/mese</span></div>
+                <p className="text-gray-600 mb-6">Accesso alle sessioni di allenamento di gruppo e alle strutture.</p>
                 <ul className="space-y-2 mb-8 flex-grow">
                   <li className="flex items-start">
                     <span className="text-black mr-2">✓</span>
-                    <span>3 group sessions per week</span>
+                    <span>3 sessioni di gruppo a settimana</span>
                   </li>
                   <li className="flex items-start">
                     <span className="text-black mr-2">✓</span>
-                    <span>Basic performance analysis</span>
+                    <span>Analisi delle prestazioni di base</span>
                   </li>
                   <li className="flex items-start">
                     <span className="text-black mr-2">✓</span>
-                    <span>Access to fitness center</span>
+                    <span>Accesso al centro fitness</span>
                   </li>
                 </ul>
                 <Link to="/contact" className="mt-auto px-6 py-3 bg-black text-white text-center hover:bg-opacity-90 transition-all">
-                  JOIN NOW
+                  ISCRIVITI ORA
                 </Link>
               </RevealAnimation>
               
               <RevealAnimation delay={200} className="bg-white p-8 flex flex-col shadow-md relative">
                 <div className="absolute top-0 right-0 bg-black text-white px-4 py-1 text-sm">
-                  POPULAR
+                  POPOLARE
                 </div>
-                <h3 className="text-xl font-medium mb-4">Premium Membership</h3>
-                <div className="text-3xl font-bold mb-2">€450<span className="text-sm font-normal">/month</span></div>
-                <p className="text-gray-600 mb-6">Enhanced training with personalized attention.</p>
+                <h3 className="text-xl font-medium mb-4">Abbonamento Premium</h3>
+                <div className="text-3xl font-bold mb-2">€450<span className="text-sm font-normal">/mese</span></div>
+                <p className="text-gray-600 mb-6">Allenamento avanzato con attenzione personalizzata.</p>
                 <ul className="space-y-2 mb-8 flex-grow">
                   <li className="flex items-start">
                     <span className="text-black mr-2">✓</span>
-                    <span>5 group sessions per week</span>
+                    <span>5 sessioni di gruppo a settimana</span>
                   </li>
                   <li className="flex items-start">
                     <span className="text-black mr-2">✓</span>
-                    <span>2 private coaching sessions monthly</span>
+                    <span>2 sessioni di coaching privato mensili</span>
                   </li>
                   <li className="flex items-start">
                     <span className="text-black mr-2">✓</span>
-                    <span>Advanced performance analysis</span>
+                    <span>Analisi avanzata delle prestazioni</span>
                   </li>
                   <li className="flex items-start">
                     <span className="text-black mr-2">✓</span>
-                    <span>Full access to all facilities</span>
+                    <span>Accesso completo a tutte le strutture</span>
                   </li>
                 </ul>
                 <Link to="/contact" className="mt-auto px-6 py-3 bg-black text-white text-center hover:bg-opacity-90 transition-all">
-                  JOIN NOW
+                  ISCRIVITI ORA
                 </Link>
               </RevealAnimation>
               
               <RevealAnimation delay={250} className="bg-white p-8 flex flex-col shadow-sm">
-                <h3 className="text-xl font-medium mb-4">Elite Membership</h3>
-                <div className="text-3xl font-bold mb-2">€950<span className="text-sm font-normal">/month</span></div>
-                <p className="text-gray-600 mb-6">Comprehensive program for serious players.</p>
+                <h3 className="text-xl font-medium mb-4">Abbonamento Elite</h3>
+                <div className="text-3xl font-bold mb-2">€950<span className="text-sm font-normal">/mese</span></div>
+                <p className="text-gray-600 mb-6">Programma completo per giocatori seri.</p>
                 <ul className="space-y-2 mb-8 flex-grow">
                   <li className="flex items-start">
                     <span className="text-black mr-2">✓</span>
-                    <span>Unlimited group sessions</span>
+                    <span>Sessioni di gruppo illimitate</span>
                   </li>
                   <li className="flex items-start">
                     <span className="text-black mr-2">✓</span>
-                    <span>Weekly private coaching</span>
+                    <span>Coaching privato settimanale</span>
                   </li>
                   <li className="flex items-start">
                     <span className="text-black mr-2">✓</span>
-                    <span>Personalized development plan</span>
+                    <span>Piano di sviluppo personalizzato</span>
                   </li>
                   <li className="flex items-start">
                     <span className="text-black mr-2">✓</span>
-                    <span>Mental coaching sessions</span>
+                    <span>Sessioni di coaching mentale</span>
                   </li>
                   <li className="flex items-start">
                     <span className="text-black mr-2">✓</span>
-                    <span>Tournament support</span>
+                    <span>Supporto per i tornei</span>
                   </li>
                 </ul>
                 <Link to="/contact" className="mt-auto px-6 py-3 bg-black text-white text-center hover:bg-opacity-90 transition-all">
-                  JOIN NOW
+                  ISCRIVITI ORA
                 </Link>
               </RevealAnimation>
             </div>
@@ -249,11 +308,11 @@ const Programs = () => {
         </section>
         
         <ContactSection 
-          title="Ready to Start?"
-          subtitle="Contact us to learn more about our programs or to schedule an assessment."
-          address="123 Tennis Court Avenue, Tennis City, 10001"
-          phone="+1 (234) 567-890"
-          email="info@ath-tennis.com"
+          title="Pronto a Iniziare?"
+          subtitle="Contattaci per saperne di più sui nostri programmi o per pianificare una valutazione."
+          address="Via del Tennis 123, 20873 Rodano (MI)"
+          phone="+39 02 1234567"
+          email="info@ath-tennis.it"
         />
       </main>
       
