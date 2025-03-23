@@ -76,21 +76,21 @@ const HomePage = () => {
   const testimonials = [
     {
       id: '1',
-      quote: "ATH has transformed my game. The coaches provide personalized attention, and the facilities are world-class. I've improved more in one year here than in five years elsewhere.",
+      quote: "ATH ha trasformato il mio gioco. Gli allenatori forniscono un'attenzione personalizzata e le strutture sono di livello mondiale. Sono migliorato più in un anno qui che in cinque anni altrove.",
       author: 'Emma Martins',
-      role: 'Junior Player, 16'
+      role: 'Giocatore Junior, 16'
     },
     {
       id: '2',
-      quote: "The professional approach at ATH is unmatched. They've helped me not just technically, but mentally and physically as well. It's a complete tennis development ecosystem.",
+      quote: "L'approccio professionale di ATH è impareggiabile. Mi hanno aiutato non solo tecnicamente, ma anche mentalmente e fisicamente. È un ecosistema completo per lo sviluppo del tennis.",
       author: 'Michael Johnson',
-      role: 'Professional Player'
+      role: 'Giocatore Professionista'
     },
     {
       id: '3',
-      quote: 'As a recreational player, I never thought I could improve so much at my age. The adult program is fantastic - challenging but also enjoyable and social.',
+      quote: 'Come giocatore amatoriale, non pensavo di poter migliorare così tanto alla mia età. Il programma per adulti è fantastico - stimolante ma anche divertente e sociale.',
       author: 'Robert Chen',
-      role: 'Adult Program Member'
+      role: 'Membro del Programma per Adulti'
     },
   ];
 
@@ -98,58 +98,58 @@ const HomePage = () => {
   const stats = [
     {
       id: '1',
-      value: 35,
-      label: 'Courts'
+      value: 7,
+      label: 'Campi'
     },
     {
       id: '2',
       value: 25,
-      label: 'Professional Coaches'
+      label: 'Allenatori Professionisti'
     },
     {
       id: '3',
       value: 500,
       suffix: '+',
-      label: 'Active Members'
+      label: 'Membri Attivi'
     },
     {
       id: '4',
       value: 15,
-      label: 'Champions Produced'
+      label: 'Campioni Prodotti'
     },
   ];
 
-  // Updated facilities data for 5 international standard tennis courts
+  // Updated facilities data using the uploaded image
   const facilities = [
     {
       id: '1',
       title: 'Campo Centrale ATP',
       description: 'Il nostro campo centrale rispetta tutti gli standard ATP, con tribune per gli spettatori e tecnologia all\'avanguardia per ospitare tornei di livello internazionale.',
-      image: 'https://images.unsplash.com/photo-1595435934249-5df7ed86e1c0'
+      image: '/lovable-uploads/8c6b8008-177a-40e1-be5f-ce6f631bceff.png'
     },
     {
       id: '2',
       title: 'Campi in Superficie Veloce',
       description: 'Due campi in superficie veloce di standard internazionale, progettati per un gioco veloce e adatti a sviluppare il gioco aggressivo e i colpi potenti.',
-      image: 'https://images.unsplash.com/photo-1576610616656-d3aa5d1f4534'
+      image: '/lovable-uploads/8c6b8008-177a-40e1-be5f-ce6f631bceff.png'
     },
     {
       id: '3',
       title: 'Campi in Terra Rossa',
       description: 'Quattro campi in terra rossa di alta qualità, mantenuti quotidianamente per garantire condizioni di gioco ottimali, ideali per il gioco tattico e per ridurre lo stress sulle articolazioni.',
-      image: 'https://images.unsplash.com/photo-1461896836934-ffe607ba8211'
+      image: '/lovable-uploads/8c6b8008-177a-40e1-be5f-ce6f631bceff.png'
     },
     {
       id: '4',
       title: 'Centro Performance',
       description: 'Il nostro centro di performance high-tech include una palestra completamente attrezzata, aree di recupero, sale di analisi video e strutture di scienze sportive per uno sviluppo completo dell\'atleta.',
-      image: 'https://images.unsplash.com/photo-1571902943202-507ec2618e8f'
+      image: '/lovable-uploads/8c6b8008-177a-40e1-be5f-ce6f631bceff.png'
     },
     {
       id: '5',
       title: 'Strutture per Giocatori',
       description: 'Spazi confortevoli per i giocatori per rilassarsi, studiare e socializzare. Per i giocatori in visita, offriamo alloggi in loco con tutti i comfort necessari per un soggiorno confortevole.',
-      image: 'https://images.unsplash.com/photo-1596701062351-8c2c14d1fdd0'
+      image: '/lovable-uploads/8c6b8008-177a-40e1-be5f-ce6f631bceff.png'
     },
   ];
 

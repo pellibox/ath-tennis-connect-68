@@ -35,7 +35,7 @@ const FacilitiesSection = ({
           </RevealAnimation>
         )}
         
-        <div className="grid grid-cols-1 gap-12">
+        <div className="grid grid-cols-1 gap-16">
           {facilities.map((facility, index) => (
             <RevealAnimation 
               key={facility.id} 
