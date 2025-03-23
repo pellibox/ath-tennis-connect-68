@@ -36,17 +36,16 @@ const Header = () => {
   const isMobile = useIsMobile();
   
   // Load user preferences
-  const { gender, type } = loadUserPreferences();
-  const [showSelector, setShowSelector] = useState(false);
-
+  const [userProfile, setUserProfile] = useState(loadUserPreferences());
+  const [dialogOpen, setDialogOpen] = useState(false);
+  
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
   };
   
   const handleProfileComplete = (gender: UserGender, type: UserType) => {
-    setShowSelector(false);
-    // Force a reload to update the profile indicator
-    window.location.reload();
+    setUserProfile({ gender, type });
+    setDialogOpen(false);
   };
 
   useEffect(() => {
@@ -154,45 +153,36 @@ const Header = () => {
         </div>
         
         <div className="flex items-center z-50">
-          {gender && type ? (
-            <Dialog>
-              <DialogTrigger asChild>
-                <div className="mr-4">
+          <Dialog open={dialogOpen} onOpenChange={setDialogOpen}>
+            <DialogTrigger asChild>
+              {userProfile.gender && userProfile.type ? (
+                <div className="mr-4 cursor-pointer">
                   <ProfileIndicator 
-                    gender={gender as UserGender} 
-                    type={type as UserType} 
+                    gender={userProfile.gender as UserGender} 
+                    type={userProfile.type as UserType} 
                     onEditClick={() => {}}
                   />
                 </div>
-              </DialogTrigger>
-              <DialogContent className="sm:max-w-md">
-                <DialogHeader>
-                  <DialogTitle>Seleziona Profilo</DialogTitle>
-                  <DialogDescription>
-                    Personalizza la tua esperienza su ATH
-                  </DialogDescription>
-                </DialogHeader>
-                <UserTypeSelector onSelectionComplete={handleProfileComplete} />
-              </DialogContent>
-            </Dialog>
-          ) : (
-            <Dialog>
-              <DialogTrigger asChild>
+              ) : (
                 <button className="mr-4 text-sm px-3 py-1 rounded-md bg-ath-clay text-white">
                   Profilo
                 </button>
-              </DialogTrigger>
-              <DialogContent className="sm:max-w-md">
-                <DialogHeader>
-                  <DialogTitle>Seleziona Profilo</DialogTitle>
-                  <DialogDescription>
-                    Personalizza la tua esperienza su ATH
-                  </DialogDescription>
-                </DialogHeader>
-                <UserTypeSelector onSelectionComplete={handleProfileComplete} />
-              </DialogContent>
-            </Dialog>
-          )}
+              )}
+            </DialogTrigger>
+            <DialogContent className="sm:max-w-md">
+              <DialogHeader>
+                <DialogTitle>Seleziona Profilo</DialogTitle>
+                <DialogDescription>
+                  Personalizza la tua esperienza su ATH
+                </DialogDescription>
+              </DialogHeader>
+              <UserTypeSelector 
+                onSelectionComplete={handleProfileComplete}
+                initialGender={userProfile.gender as UserGender || undefined}
+                initialType={userProfile.type as UserType || undefined}
+              />
+            </DialogContent>
+          </Dialog>
           
           <div className={cn("hidden lg:block", textColorClass)}>
             <LanguageSwitcher />

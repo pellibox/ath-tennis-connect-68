@@ -26,25 +26,21 @@ const Logo = ({
   
   return (
     <div className={`${className}`}>
-      {preserveUserProfile ? (
-        // Use simple Link that preserves localStorage data
-        <Link to="/">
-          <img 
-            src={logoSrc} 
-            alt="ATH - Advanced Tennis Hub" 
-            className={`w-auto ${sizeClasses} object-contain`}
-          />
-        </Link>
-      ) : (
-        // Regular link without special handling
-        <Link to="/">
-          <img 
-            src={logoSrc} 
-            alt="ATH - Advanced Tennis Hub" 
-            className={`w-auto ${sizeClasses} object-contain`}
-          />
-        </Link>
-      )}
+      <Link to="/" onClick={(e) => {
+        // If we want to preserve user profile, prevent the default Link behavior 
+        // that would cause React Router to fully reload the page
+        if (preserveUserProfile) {
+          e.preventDefault();
+          window.history.pushState({}, '', '/');
+          window.dispatchEvent(new Event('popstate'));
+        }
+      }}>
+        <img 
+          src={logoSrc} 
+          alt="ATH - Advanced Tennis Hub" 
+          className={`w-auto ${sizeClasses} object-contain`}
+        />
+      </Link>
     </div>
   );
 };

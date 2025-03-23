@@ -199,6 +199,15 @@
   z-index: 1;
 }
 
+.radix-dialog-content {
+  z-index: 9999;
+  position: relative;
+}
+
+[data-radix-popper-content-wrapper] {
+  z-index: 9999 !important;
+}
+
 ::-webkit-scrollbar {
   width: 6px;
 }
