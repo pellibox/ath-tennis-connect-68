@@ -1,3 +1,4 @@
+
 const translations = {
   // Header & Navigation
   "nav.home": "Home",
@@ -6,6 +7,8 @@ const translations = {
   "nav.coaches": "Coaches",
   "nav.about": "About",
   "nav.contact": "Contact",
+  "nav.method": "Our Method",
+  "nav.technology": "VICKI Technology",
   
   // Hero Section
   "hero.title": "Excel at Every Level",
@@ -14,12 +17,30 @@ const translations = {
   "hero.book": "BOOK A TRIAL",
   
   // About Section
-  "about.title": "About ATH Tennis Hub",
-  "about.subtitle": "OUR STORY",
-  "about.p1": "ATH Advanced Tennis Hub was founded with a simple mission: to create the perfect environment for tennis players to reach their full potential, regardless of their starting point or ultimate goals.",
-  "about.p2": "What sets us apart is our individualized approach. We recognize that every player is unique, with different strengths, weaknesses, and aspirations. Our methodology adapts to each player's profile, ensuring optimal development and progress.",
-  "about.p3": "With world-class facilities and an elite coaching team, we deliver a comprehensive program that addresses all aspects of the modern game: technical, tactical, physical, and mental.",
-  "about.learn": "LEARN MORE",
+  "about.title": "About Us",
+  "about.subtitle": "ATH - Advanced Tennis Hub",
+  "about.contact": "Contact Us",
+  "about.center.title": "The ATH Center",
+  "about.center.p1": "ATH is a specialized training center that integrates advanced technology and structured methodology to offer personalized evolutionary paths based on objective data.",
+  "about.center.p2": "The parametric monitoring system ensures methodological continuity and constant technical support, regardless of the coach present on the court.",
+  "about.center.p3": "The facility constitutes an open professional network for coaches, athletes, and specialists to optimize the tennis evolutionary process through an objective and measurable method.",
+  
+  "about.mission.title": "Our Mission",
+  "about.mission.p1": "Our mission is to provide a cutting-edge training environment that combines advanced technology, expert coaching, and a personalized approach to help every tennis player reach their full potential.",
+  "about.mission.p2": "We are committed to creating an inclusive and collaborative community where players can grow, learn, and succeed, both on and off the court.",
+  "about.mission.p3": "Through continuous innovation and dedication to excellence, we aim to redefine the standards of tennis training and inspire the next generation of champions.",
+  
+  "about.stats.courts": "Courts",
+  "about.stats.parameters": "Monitored Parameters",
+  "about.stats.members": "Active Members",
+  "about.stats.center": "Unique Center with VICKI",
+  
+  "about.testimonial1": "ATH's objective analysis has significantly improved my technical parameters. The data collected has allowed precise optimization of my game.",
+  "about.testimonial1.role": "Junior Player, 16",
+  "about.testimonial2": "The integration between traditional coaching and the VICKI system has improved my consistency by 23% in three months, with objective performance measurements.",
+  "about.testimonial2.role": "Professional Player",
+  "about.testimonial3": "Parametric monitoring highlighted technical inefficiencies in my serve that no coach had identified before, allowing for targeted corrections.",
+  "about.testimonial3.role": "Adult Program Member",
   
   // Programs Section
   "programs.title": "Our Programs",
@@ -112,7 +133,12 @@ const translations = {
   "language.en": "English",
   "language.it": "Italian",
   "language.fr": "French",
-  "language.de": "German"
+  "language.de": "German",
+  
+  // Contact Section
+  "contact.ath.address": "Via del Tennis 123, 20873 Rodano (MI)",
+  "contact.ath.phone": "+39 02 1234567",
+  "contact.ath.email": "info@ath-tennis.it"
 };
 
 export default translations;

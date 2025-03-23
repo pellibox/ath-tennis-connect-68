@@ -34,11 +34,13 @@ const LanguageSwitcher = () => {
 
   const handleLanguageChange = (newLanguage: 'en' | 'it' | 'fr' | 'de') => {
     console.log('Changing language to:', newLanguage);
-    setLanguage(newLanguage);
-    toast({
-      title: `Language changed to ${languageNames[newLanguage]}`,
-      description: "The page language has been updated.",
-    });
+    if (newLanguage !== language) {
+      setLanguage(newLanguage);
+      toast({
+        title: `Language changed to ${languageNames[newLanguage]}`,
+        description: "The page language has been updated.",
+      });
+    }
     setIsOpen(false);
   };
 

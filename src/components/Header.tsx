@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Menu, X, Activity, Zap, BookOpen, Server, Home, Users } from 'lucide-react';
@@ -60,35 +59,35 @@ const Header = () => {
     };
   }, [isMenuOpen]);
 
-  // Navigation structure with corrected menu items and proper routes
+  // Navigation structure with translated menu items
   const navigationItems = [
     { 
-      text: "Chi Siamo", 
+      text: t("nav.about"), 
       href: '/about',
       icon: <Home size={18} className="mr-2" />
     },
     { 
-      text: 'Il Metodo', 
+      text: t('nav.method'), 
       href: '/about#method',
       icon: <BookOpen size={18} className="mr-2" />
     },
     { 
-      text: 'Programmi', 
+      text: t('nav.programs'), 
       href: '/programs',
       icon: <Activity size={18} className="mr-2" />
     },
     { 
-      text: 'Tecnologia:VICKI', 
+      text: t('nav.technology'), 
       href: '/about#technology',
       icon: <Zap size={18} className="mr-2" />
     },
     { 
-      text: 'Strutture', 
+      text: t('nav.facilities'), 
       href: '/facilities',
       icon: <Server size={18} className="mr-2" />
     },
     { 
-      text: 'Coach', 
+      text: t('nav.coaches'), 
       href: '/coaches',
       icon: <Users size={18} className="mr-2" />
     },
@@ -105,7 +104,6 @@ const Header = () => {
       )}
     >
       <div className="container mx-auto px-6 flex items-center justify-between relative">
-        {/* Logo positioned on the left */}
         <div className="flex items-center z-50">
           <Logo 
             variant={isScrolled || isMenuOpen ? "default" : "footer"} 
@@ -113,7 +111,6 @@ const Header = () => {
           />
         </div>
         
-        {/* Desktop Navigation Menu - senza sfondo, solo testo */}
         <div className="hidden lg:flex items-center space-x-1">
           <nav className="flex items-center space-x-6">
             {navigationItems.map((item, index) => (
@@ -132,14 +129,11 @@ const Header = () => {
           </nav>
         </div>
         
-        {/* Right side elements (language switcher and mobile menu) */}
         <div className="flex items-center z-50">
-          {/* Language switcher on desktop */}
           <div className={cn("hidden lg:block mr-4", isScrolled ? 'text-black' : 'text-white')}>
             <LanguageSwitcher />
           </div>
           
-          {/* Mobile Menu Button */}
           <button
             className={cn(
               "lg:hidden flex items-center",
@@ -153,7 +147,6 @@ const Header = () => {
           </button>
         </div>
 
-        {/* Mobile Navigation */}
         <div
           className={cn(
             'fixed inset-0 bg-white pt-24 px-8 flex-col lg:hidden transition-transform duration-300 ease-in-out',
@@ -182,7 +175,6 @@ const Header = () => {
   );
 };
 
-// LinkComponent to handle scrolling to section IDs
 const LinkComponent = ({ href, children, className }: { href: string; children: React.ReactNode, className?: string }) => {
   const location = useLocation();
   
@@ -192,7 +184,6 @@ const LinkComponent = ({ href, children, className }: { href: string; children: 
       const pagePath = parts[0];
       const sectionId = parts[1];
       
-      // If we're already on the correct page, just scroll to the section
       if (location.pathname === pagePath || (pagePath === '' && location.pathname === '/')) {
         e.preventDefault();
         const element = document.getElementById(sectionId);
