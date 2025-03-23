@@ -1,4 +1,3 @@
-
 import { useEffect } from 'react';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
@@ -13,6 +12,8 @@ const ProgramsPage = () => {
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }, []);
+
+  const programsVimeoEmbed = `<div style="padding:133.33% 0 0 0;position:relative;"><iframe src="https://player.vimeo.com/video/1068604216?h=db6df002bf&autoplay=1&loop=1&background=1&autopause=0&player_id=0&app_id=58479" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media" style="position:absolute;top:0;left:0;width:100%;height:100%;" title="Coaches"></iframe></div><script src="https://player.vimeo.com/api/player.js"></script>`;
 
   const programs = [
     {
@@ -97,7 +98,7 @@ const ProgramsPage = () => {
         <Hero 
           title={t('programs.title')}
           subtitle={t('programs.subtitle')}
-          imageSrc="/lovable-uploads/fc6643c2-4357-4c86-9e52-6f33d698668f.png"
+          vimeoEmbed={programsVimeoEmbed}
           buttons={[
             { text: t('programs.contact'), href: '/contact' }
           ]}
