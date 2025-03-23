@@ -10,6 +10,7 @@ import StatsSection from '@/components/StatsSection';
 import FacilitiesSection from '@/components/FacilitiesSection';
 import ContactSection from '@/components/ContactSection';
 import TechnologySection from '@/components/TechnologySection';
+import JoinRevolutionSection from '@/components/JoinRevolutionSection';
 import { useLanguage } from '@/contexts/LanguageContext';
 
 const HomePage = () => {
@@ -27,7 +28,8 @@ const HomePage = () => {
       id: '1',
       title: 'Agonisti 6-12 anni',
       description: 'Programma specializzato per giovani agonisti con monitoraggio completo dello sviluppo tecnico.',
-      image: 'https://images.unsplash.com/photo-1551773148-efc73c5fdc70',
+      image: '/lovable-uploads/ef64c04d-055d-4d70-87f4-e67928a3b8e6.png',
+      videoSrc: '/videos/young-athlete-sample.mp4', // Placeholder for future video
       link: '/programs/agonisti',
       features: [
         'Sviluppo tecnico fondamentale',
@@ -335,6 +337,8 @@ const HomePage = () => {
           ]}
           reversed={true}
         />
+        
+        <JoinRevolutionSection />
         
         <ContactSection 
           title="Contatti"

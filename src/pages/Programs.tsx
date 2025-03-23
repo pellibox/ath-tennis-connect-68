@@ -6,6 +6,7 @@ import ProgramsSection from '@/components/ProgramsSection';
 import AboutSection from '@/components/AboutSection';
 import RevealAnimation from '@/components/RevealAnimation';
 import ContactSection from '@/components/ContactSection';
+import JoinRevolutionSection from '@/components/JoinRevolutionSection';
 import { Link } from 'react-router-dom';
 import { useLanguage } from '@/contexts/LanguageContext';
 
@@ -40,7 +41,8 @@ const Programs = () => {
       id: '2',
       title: 'Giovani Agonisti (6-12 anni)',
       description: 'Programma formativo per giovani atleti in fase di sviluppo tecnico e fisico.',
-      image: 'https://images.unsplash.com/photo-1511886929837-354d5774223a?q=80&w=2060&auto=format&fit=crop',
+      image: '/lovable-uploads/ef64c04d-055d-4d70-87f4-e67928a3b8e6.png',
+      videoSrc: '/videos/young-athlete-sample.mp4',
       link: '/programs/young-athletes',
       features: [
         'Valutazioni tecniche, fisiche, mentali e tattiche costanti',
@@ -338,6 +340,8 @@ const Programs = () => {
           phone="+39 02 1234567"
           email="info@ath-tennis.it"
         />
+        
+        <JoinRevolutionSection />
       </main>
       
       <Footer />
