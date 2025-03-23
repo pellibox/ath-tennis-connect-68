@@ -15,13 +15,16 @@ const Logo = ({ variant = 'default', className = '', onDarkBackground = false }:
     ? "/lovable-uploads/d36e74c4-9cb8-41a2-bdfe-e21ccb569d26.png"
     : "/lovable-uploads/cabb225e-0db8-4830-8967-24942c8f7d52.png";
   
+  // Use consistent sizing for both logos
+  const sizeClasses = isFooter ? 'h-28' : 'h-32';
+  
   return (
     <div className={`flex items-center ${className} mt-2 ml-2`}>
       <Link to="/">
         <img 
           src={logoSrc} 
           alt="ATH - Advanced Tennis Hub" 
-          className={`w-auto ${isFooter ? 'h-28' : 'h-32'}`}
+          className={`w-auto ${sizeClasses} object-contain`}
         />
       </Link>
     </div>
