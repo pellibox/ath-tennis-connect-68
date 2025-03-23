@@ -1,4 +1,3 @@
-
 import { useEffect } from 'react';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
@@ -24,17 +23,17 @@ const Programs = () => {
     {
       id: '11',
       title: 'Scuola Individuazione Talenti (4-10 anni)',
-      description: 'Programma specializzato per l\'identificazione precoce dei talenti tennistici e lo sviluppo delle abilità fondamentali.',
+      description: 'Programma specializzato per l\'identificazione precoce dei talenti tennistici tramite il sistema Vicki™ che monitora patterns e caratteristiche del piccolo talento.',
       image: 'https://images.unsplash.com/photo-1596463059283-da257325bab8?q=80&w=2070&auto=format&fit=crop',
       link: '/programs/talent-identification',
       features: [
-        'Valutazione delle capacità motorie e coordinative di base',
+        'Valutazione iniziale con sistema Vicki™ che monitora pattern motori e attitudinali',
         'Approccio ludico e divertente all\'apprendimento tecnico',
-        'Monitoraggio dello sviluppo fisico e delle attitudini',
+        'Monitoraggio dello sviluppo fisico e delle attitudini con parametri oggettivi',
         'Insegnamento dei fondamentali tecnici adattati all\'età',
         'Sviluppo della passione per il tennis e lo sport',
-        'Percorsi personalizzati basati sulle caratteristiche individuali',
-        'Supporto per genitori con report e indicazioni sul potenziale'
+        'Percorsi personalizzati basati sulle caratteristiche individuali rilevate da Vicki™',
+        'Supporto per genitori con report dettagliati e indicazioni sul potenziale'
       ]
     },
     {
