@@ -262,7 +262,7 @@ const HomePage = () => {
         <Hero 
           title="Advanced Tennis Hub"
           subtitle="Centro di allenamento ad alta specializzazione con monitoraggio parametrico completo e metodologia integrata"
-          videoSrc="https://drive.google.com/uc?export=download&id=1YZTWBDrPLTUF8s5OAQgVSs8Lwi343J7s" 
+          videoSrc="https://drive.google.com/file/d/1YZTWBDrPLTUF8s5OAQgVSs8Lwi343J7s/view?usp=sharing" 
           imageSrc="/lovable-uploads/da809888-483b-4b2c-8e57-6d1ec6aaa51c.png" // Used as fallback and poster
           buttons={[
             { text: "Programmi", href: '/programs' },

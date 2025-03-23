@@ -35,6 +35,7 @@ const Hero = ({
   const videoRef = useRef<HTMLVideoElement>(null);
   const [imageError, setImageError] = useState(false);
   const [videoError, setVideoError] = useState(false);
+  const [videoLoaded, setVideoLoaded] = useState(false);
   
   // Default fallback image if the main image fails to load
   const fallbackImage = "https://source.unsplash.com/featured/1920x1080/?tennis,court";
@@ -58,22 +59,31 @@ const Hero = ({
     }
   }, [title]); // Re-run when title changes (language changes)
   
-  // Handle video element errors and start playing
+  // Handle video element loading and playing
   useEffect(() => {
     const video = videoRef.current;
-    if (video) {
-      const handleError = () => {
-        console.error('Video failed to load:', videoSrc);
+    if (video && videoSrc) {
+      console.log('Attempting to load video from:', videoSrc);
+      
+      const handleError = (e: Event) => {
+        console.error('Video failed to load:', videoSrc, e);
         setVideoError(true);
       };
       
       const handleLoadedData = () => {
+        console.log('Video loaded successfully');
+        setVideoLoaded(true);
+        
         try {
-          video.play().catch(err => {
-            console.warn('Auto-play failed:', err);
-            // Keep attempting to play on user interaction
-            document.addEventListener('click', () => video.play(), { once: true });
-          });
+          video.play()
+            .then(() => console.log('Video playback started successfully'))
+            .catch(err => {
+              console.warn('Auto-play failed:', err);
+              // Keep attempting to play on user interaction
+              document.addEventListener('click', () => {
+                video.play().catch(e => console.warn('Play on click failed:', e));
+              }, { once: true });
+            });
         } catch (err) {
           console.warn('Failed to start video:', err);
         }
@@ -81,6 +91,9 @@ const Hero = ({
       
       video.addEventListener('error', handleError);
       video.addEventListener('loadeddata', handleLoadedData);
+      
+      // Force reload the video element
+      video.load();
       
       return () => {
         video.removeEventListener('error', handleError);
@@ -106,6 +119,20 @@ const Hero = ({
     setImageError(true);
   };
   
+  // Format video URL if it's from Google Drive
+  const getVideoUrl = (url: string) => {
+    if (url && url.includes('drive.google.com/file/d/')) {
+      // Extract the file ID from the Google Drive URL
+      const match = url.match(/\/d\/([^\/]+)/);
+      if (match && match[1]) {
+        return `https://drive.google.com/uc?export=download&id=${match[1]}`;
+      }
+    }
+    return url;
+  };
+  
+  const formattedVideoSrc = videoSrc ? getVideoUrl(videoSrc) : undefined;
+  
   return (
     <div 
       className={cn(
@@ -115,7 +142,7 @@ const Hero = ({
       )}
     >
       <div className="absolute inset-0 w-full h-full">
-        {videoSrc && !videoError ? (
+        {formattedVideoSrc && !videoError ? (
           <video
             ref={videoRef}
             autoPlay
@@ -123,25 +150,24 @@ const Hero = ({
             loop
             playsInline
             poster={videoPoster || imageSrc}
-            className="object-cover w-full h-full"
+            className={cn(
+              "object-cover w-full h-full",
+              videoLoaded ? 'opacity-100' : 'opacity-0',
+              'transition-opacity duration-500'
+            )}
             onError={() => setVideoError(true)}
           >
-            <source src={videoSrc} type="video/mp4" />
+            <source src={formattedVideoSrc} type="video/mp4" />
             {/* Fallback to image if video can't play */}
             {imageSrc && <img src={imageSrc} alt="Background" className="object-cover w-full h-full" onError={handleImageError} />}
           </video>
-        ) : imageSrc ? (
+        ) : (
+          // Show image if no video or video error
           <img 
             src={imageError ? fallbackImage : imageSrc} 
             alt="Background" 
             className="object-cover w-full h-full"
             onError={handleImageError}
-          />
-        ) : (
-          <img 
-            src={fallbackImage} 
-            alt="Tennis background" 
-            className="object-cover w-full h-full"
           />
         )}
         <div className={cn('absolute inset-0', overlayClasses[overlayOpacity])}></div>
