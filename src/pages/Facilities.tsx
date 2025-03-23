@@ -1,4 +1,3 @@
-
 import { useEffect } from 'react';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
@@ -26,9 +25,9 @@ const facilities = [
     description: "Due campi in superficie sintetica con coefficiente di attrito standardizzato e sistema di tracciamento Vicki™ integrato.",
     image: "https://images.unsplash.com/photo-1560012057-4372e14c5085?q=80&w=2074",
     features: [
-      "Sistema di irrigazione automatizzato",
-      "Illuminazione per sessioni serali",
-      "Tecnologia Vicki™ portatile"
+      "N1 campo coperto tutto l'anno N1 campo con copetura rimuovibile",
+      "Illuminazione led per sessioni serali",
+      "Tecnologia Vicki™"
     ]
   },
   {

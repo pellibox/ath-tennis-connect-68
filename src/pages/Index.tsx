@@ -187,7 +187,12 @@ const HomePage = () => {
       id: '2',
       title: 'Campi in Superficie Veloce',
       description: 'Due campi in superficie sintetica con coefficiente di attrito standardizzato e sistema di tracciamento Vicki™ integrato.',
-      image: 'https://images.unsplash.com/photo-1544991936-9e0ee081bd27?q=80&w=1200'
+      image: 'https://images.unsplash.com/photo-1544991936-9e0ee081bd27?q=80&w=1200',
+      features: [
+        'N1 campo coperto tutto l\'anno N1 campo con copetura rimuovibile',
+        'Illuminazione led per sessioni serali',
+        'Tecnologia Vicki™'
+      ]
     },
     {
       id: '3',
