@@ -22,6 +22,9 @@ import { UserGender, UserType, loadUserPreferences } from './UserTypeSelector';
 import {
   Dialog,
   DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogDescription,
   DialogTrigger,
 } from "@/components/ui/dialog";
 
@@ -120,14 +123,15 @@ const Header = () => {
       className={cn(
         'fixed top-0 left-0 w-full z-50 transition-all duration-300',
         headerBgClass,
-        isScrolled ? 'py-3' : 'py-5'
+        'py-3' // Fixed consistent padding
       )}
     >
       <div className="container mx-auto px-6 flex items-center justify-between relative">
         <div className="flex items-center z-50">
           <Logo 
-            variant={isScrolled || isMenuOpen ? "default" : "default"} 
+            variant="default" 
             onDarkBackground={false}
+            preserveUserProfile={true}
           />
         </div>
         
@@ -162,6 +166,12 @@ const Header = () => {
                 </div>
               </DialogTrigger>
               <DialogContent className="sm:max-w-md">
+                <DialogHeader>
+                  <DialogTitle>Seleziona Profilo</DialogTitle>
+                  <DialogDescription>
+                    Personalizza la tua esperienza su ATH
+                  </DialogDescription>
+                </DialogHeader>
                 <UserTypeSelector onSelectionComplete={handleProfileComplete} />
               </DialogContent>
             </Dialog>
@@ -173,6 +183,12 @@ const Header = () => {
                 </button>
               </DialogTrigger>
               <DialogContent className="sm:max-w-md">
+                <DialogHeader>
+                  <DialogTitle>Seleziona Profilo</DialogTitle>
+                  <DialogDescription>
+                    Personalizza la tua esperienza su ATH
+                  </DialogDescription>
+                </DialogHeader>
                 <UserTypeSelector onSelectionComplete={handleProfileComplete} />
               </DialogContent>
             </Dialog>
