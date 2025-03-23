@@ -218,7 +218,7 @@ const Hero: React.FC<HeroProps> = ({
                     <ButtonLink 
                       key={index}
                       href={button.href} 
-                      variant={button.variant || 'default'} 
+                      variant={button.variant === 'default' ? 'primary' : button.variant} 
                       className={button.variant === 'outline' 
                         ? 'bg-transparent text-white border-white hover:bg-white hover:text-black'
                         : 'bg-ath-clay hover:bg-ath-clay/90 text-white'
