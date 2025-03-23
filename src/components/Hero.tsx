@@ -88,6 +88,7 @@ const Hero = ({
         
         // Set source directly
         video.src = formattedVideoSrc;
+        video.loop = true; // Ensure video loops
         video.load();
         
         const handleError = (e: Event) => {
