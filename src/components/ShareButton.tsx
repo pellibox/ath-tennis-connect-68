@@ -14,13 +14,15 @@ interface ShareButtonProps {
   title?: string;
   variant?: "default" | "outline" | "secondary" | "ghost" | "link";
   size?: "default" | "sm" | "lg" | "icon";
+  className?: string;
 }
 
 const ShareButton = ({ 
   url = window.location.href, 
   title = "ATH - Advanced Tennis Hub", 
   variant = "outline",
-  size = "default"
+  size = "default",
+  className = ""
 }: ShareButtonProps) => {
   const [isOpen, setIsOpen] = useState(false);
 
@@ -84,7 +86,7 @@ const ShareButton = ({
   return (
     <Popover open={isOpen} onOpenChange={setIsOpen}>
       <PopoverTrigger asChild>
-        <Button variant={variant} size={size} className="gap-2">
+        <Button variant={variant} size={size} className={`gap-2 ${className}`}>
           <Share2 size={18} />
           Condividi
         </Button>

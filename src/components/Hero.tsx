@@ -47,9 +47,10 @@ const Hero = ({
   const [videoLoaded, setVideoLoaded] = useState(false);
   const [videoPlaying, setVideoPlaying] = useState(false);
   const [blackOverlay, setBlackOverlay] = useState(false);
-  
+  const [vimeoKey, setVimeoKey] = useState<number>(0);
+
   const fallbackImage = "/lovable-uploads/6ea13aa7-2578-488b-8ed4-4b17fc2ddc4e.png";
-  
+
   useEffect(() => {
     if (titleRef.current) {
       const text = title || '';
@@ -66,7 +67,7 @@ const Hero = ({
       }, 100);
     }
   }, [title]);
-  
+
   const getVideoUrl = (url: string): string => {
     if (url && url.includes('drive.google.com/file/d/')) {
       const match = url.match(/\/d\/([^\/]+)/);
@@ -78,8 +79,21 @@ const Hero = ({
   };
 
   useEffect(() => {
+    if (vimeoEmbed) {
+      if (vimeoRef.current) {
+        vimeoRef.current.innerHTML = '';
+      }
+      
+      setVimeoKey(prevKey => prevKey + 1);
+      
+      setVimeoError(false);
+    }
+  }, [vimeoEmbed]);
+
+  useEffect(() => {
     if (vimeoEmbed && vimeoRef.current) {
       try {
+        console.log('Setting up Vimeo embed with key:', vimeoKey);
         vimeoRef.current.innerHTML = vimeoEmbed;
         
         const vimeoLoadTimeout = setTimeout(() => {
@@ -100,109 +114,31 @@ const Hero = ({
         setVimeoError(true);
       }
     }
-  }, [vimeoEmbed]);
+  }, [vimeoEmbed, vimeoKey]);
 
-  useEffect(() => {
-    const video = videoRef.current;
-    if (video && videoSrc && !vimeoEmbed) {
-      try {
-        const formattedVideoSrc = getVideoUrl(videoSrc);
-        console.log('Attempting to load video from:', formattedVideoSrc);
-        
-        video.src = formattedVideoSrc;
-        video.loop = true;
-        video.load();
-        
-        const handleError = (e: Event) => {
-          console.error('Video failed to load:', formattedVideoSrc, e);
-          setVideoError(true);
-          toast.error('Video non disponibile, usiamo un\'immagine al posto', {
-            duration: 3000,
-            position: 'bottom-center'
-          });
-        };
-        
-        const handleLoadedData = () => {
-          console.log('Video loaded successfully');
-          setVideoLoaded(true);
-          
-          setBlackOverlay(true);
-          
-          setTimeout(() => {
-            try {
-              video.play()
-                .then(() => {
-                  console.log('Video playback started successfully');
-                  setTimeout(() => {
-                    setVideoPlaying(true);
-                  }, 300);
-                })
-                .catch(err => {
-                  console.warn('Auto-play failed:', err);
-                  setBlackOverlay(false);
-                  document.addEventListener('click', () => {
-                    setBlackOverlay(true);
-                    setTimeout(() => {
-                      video.play()
-                        .then(() => {
-                          setTimeout(() => setVideoPlaying(true), 300);
-                        })
-                        .catch(e => {
-                          console.warn('Play on click failed:', e);
-                          setBlackOverlay(false);
-                        });
-                    }, 200);
-                  }, { once: true });
-                });
-            } catch (err) {
-              console.warn('Failed to start video:', err);
-              setBlackOverlay(false);
-            }
-          }, 400);
-          
-          toast.success('Video caricato con successo', {
-            duration: 2000,
-            position: 'bottom-center'
-          });
-        };
-        
-        video.addEventListener('error', handleError);
-        video.addEventListener('loadeddata', handleLoadedData);
-        
-        return () => {
-          video.removeEventListener('error', handleError);
-          video.removeEventListener('loadeddata', handleLoadedData);
-        };
-      } catch (error) {
-        console.error('Error setting up video:', error);
-        setVideoError(true);
-      }
-    }
-  }, [videoSrc, vimeoEmbed]);
-  
   const positionClasses = {
     center: 'items-center text-center',
     left: 'items-start text-left',
     right: 'items-end text-right',
   };
-  
+
   const verticalPositionClasses = {
     top: 'justify-start pt-32',
     center: 'justify-center',
     bottom: 'justify-end pb-32',
   };
-  
+
   const overlayClasses = {
     light: 'bg-black/20',
     medium: 'bg-black/50',
     dark: 'bg-black/70',
   };
-  
+
   const handleImageError = () => {
     console.error('Failed to load hero image:', imageSrc);
     setImageError(true);
   };
-  
+
   return (
     <div 
       className={cn(
@@ -255,6 +191,7 @@ const Hero = ({
             <div 
               ref={vimeoRef}
               className="w-full h-full vimeo-container" 
+              key={`vimeo-container-${vimeoKey}`}
             />
             <div className="absolute inset-0 bg-black/30"></div>
           </div>

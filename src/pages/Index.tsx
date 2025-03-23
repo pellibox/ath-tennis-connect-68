@@ -1,5 +1,5 @@
 
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import Hero from '@/components/Hero';
@@ -13,23 +13,39 @@ const HomePage = () => {
   // Get translation function
   const { t } = useLanguage();
   
+  // State to track user preferences
+  const [userGender, setUserGender] = useState<UserGender | null>(null);
+  const [userType, setUserType] = useState<UserType | null>(null);
+  // State for the Vimeo embed HTML
+  const [vimeoEmbed, setVimeoEmbed] = useState<string>('');
+  
   // Smooth scroll functionality
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }, []);
 
-  // Load user preferences for video selection
-  const { gender, type } = loadUserPreferences();
-  const userGender = gender as UserGender | null;
-  const userType = type as UserType | null;
+  // Load user preferences on mount and when they change
+  useEffect(() => {
+    const { gender, type } = loadUserPreferences();
+    setUserGender(gender);
+    setUserType(type);
+  }, []);
+  
+  // Update vimeoEmbed whenever user preferences change
+  useEffect(() => {
+    setVimeoEmbed(getVimeoEmbed());
+    console.log('Video updated for profile:', { gender: userGender, type: userType });
+  }, [userGender, userType]);
 
   // Determine which Vimeo video to show based on user selection
   const getVimeoEmbed = () => {
-    // Default video - using the corrected Vimeo ID from the user
+    // Default video - using the corrected Vimeo ID
     let videoEmbed = `<div style="padding:75% 0 0 0;position:relative;"><iframe src="https://player.vimeo.com/video/1068596952?h=b7fa539b1c&autoplay=1&loop=1&background=1&autopause=0&player_id=0&app_id=58479" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media" style="position:absolute;top:0;left:0;width:100%;height:100%;" title="ATH Main Video"></iframe></div><script src="https://player.vimeo.com/api/player.js"></script>`;
     
     // Only change video if user has explicitly selected a profile
     if (userGender && userType) {
+      console.log(`Selecting video for gender: ${userGender}, type: ${userType}`);
+      
       // Female user videos based on type
       if (userGender === 'female') {
         // Default female video (for junior, parent, coach)
@@ -114,7 +130,7 @@ const HomePage = () => {
           <Hero 
             title="Advanced Tennis Hub"
             subtitle={getWelcomeMessage()}
-            vimeoEmbed={getVimeoEmbed()}
+            vimeoEmbed={vimeoEmbed}
             imageSrc="/lovable-uploads/6ea13aa7-2578-488b-8ed4-4b17fc2ddc4e.png"
             buttons={[
               { text: "Programmi", href: '/programs' },
