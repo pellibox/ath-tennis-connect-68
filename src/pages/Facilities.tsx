@@ -110,7 +110,7 @@ const FacilitiesPage = () => {
         <Hero
           title="Le Nostre Strutture"
           subtitle="Impianti all'avanguardia dotati di tecnologia Vicki™"
-          imageSrc="/lovable-uploads/7ff66f98-73e6-4253-aacb-8619ac14b81b.png"
+          imageSrc="/lovable-uploads/c4c120e8-c90d-48a3-933c-d4cce08b5129.png"
           fullHeight={false}
           overlayOpacity="medium"
         />
