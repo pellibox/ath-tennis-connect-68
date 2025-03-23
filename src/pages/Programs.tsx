@@ -18,78 +18,110 @@ const Programs = () => {
   const methodologyPrograms = [
     {
       id: '1',
-      title: 'Agonista Junior',
+      title: 'Agonista Junior (13-18 anni)',
       description: 'Programma completo per giovani atleti che vogliono competere a livello agonistico.',
       image: 'https://images.unsplash.com/photo-1551773148-efc73c5fdc70',
       link: '/programs/junior-competitive',
       features: [
-        'Percorso tecnico-tattico personalizzato',
-        'Valutazioni biomeccaniche periodiche',
-        'Programma di prevenzione infortuni',
-        'Analisi mentale e resilienza in partita',
-        'Allenamento coordinazione e crescita fisica',
-        'Gestione calendario agonistico',
-        'Report evolutivi e storico prestazioni',
-        'Programmi adattivi per fasi di sviluppo'
+        'Analisi in tempo reale di tecnica, tattica, parametri mentali e fisici',
+        'Feedback continuo (durante e dopo la sessione)',
+        'Database personale per pianificare il calendario tornei',
+        'Monitoraggio carico di lavoro e progressi',
+        'Prevenzione infortuni grazie all\'identificazione automatica delle aree critiche',
+        'Percorsi personalizzati in base allo sviluppo fisico, biotipo e stile di gioco',
+        'Integrazione tra valutazioni tecniche, fisiche, mediche e mentali',
+        'Coordinamento tra coach, preparatore, mental coach, medico'
       ]
     },
     {
       id: '2',
-      title: 'Professionista',
-      description: 'Supporto completo per atleti professionisti con analisi avanzata e ottimizzazione della performance.',
-      image: 'https://images.unsplash.com/photo-1542144582-1ba00456b5e3',
-      link: '/programs/professional',
+      title: 'Giovani Agonisti (6-12 anni)',
+      description: 'Programma formativo per giovani atleti in fase di sviluppo tecnico e fisico.',
+      image: 'https://images.unsplash.com/photo-1596464716127-f2a82984de30',
+      link: '/programs/young-athletes',
       features: [
-        'Programmazione cicli tecnico-fisico-mentale',
-        'Analisi predittiva e comparazione con storico',
-        'Ottimizzazione biomeccanica (servizio, swing, postura)',
-        'Integrazione con team tecnico, medico, atletico',
-        'Report video con sovrapposizione dati',
-        'Sessioni mirate su recupero e gestione carico'
+        'Valutazioni tecniche, fisiche, mentali e tattiche costanti',
+        'Analisi biomeccanica in campo',
+        'Monitoraggio crescita per evitare sovraccarichi (medico e biochimico)',
+        'Programmi adattati all\'età e all\'evoluzione motoria',
+        'AI dedicata per tracciare la coordinazione',
+        'Equilibrio tra miglioramento tecnico e componente ludica',
+        'Coinvolgimento attivo dei genitori attraverso report visivi e aggiornamenti chiari'
       ]
     },
     {
       id: '3',
-      title: 'Coach',
-      description: 'Formazione avanzata e strumenti per allenatori che vogliono integrare la metodologia ATH.',
-      image: 'https://images.unsplash.com/photo-1622279888158-c6a5e6c4587c',
-      link: '/programs/coach',
+      title: 'Professionisti',
+      description: 'Supporto completo per atleti professionisti con analisi avanzata e ottimizzazione della performance.',
+      image: 'https://images.unsplash.com/photo-1542144582-1ba00456b5e3',
+      link: '/programs/professional',
       features: [
-        'Training personalizzato per costruzione metodo',
-        'Percorso di codifica del proprio approccio',
-        'Accesso a strumenti VICKI in sede e da remoto',
-        'Reportistica automatizzata per atleti seguiti',
-        'Formazione continua in piattaforma',
-        'Programma di monetizzazione metodo'
+        'Allenamento completamente personalizzato su tutti i fronti',
+        'Collaborazione tra coach, preparatore, mental coach e medico',
+        'Analisi biomeccanica e mentale avanzata in tempo reale',
+        'Analisi predittiva e adattamento continuo via AI',
+        'Supporto tecnico sia in sede che da remoto',
+        'Gestione ottimale dei cicli di carico, recupero e picco forma',
+        'Integrazione di parametri medici e biochimici per massimizzare la performance'
       ]
     },
     {
       id: '4',
-      title: 'Genitore / Tutor',
-      description: 'Supporto informativo e coinvolgimento nel percorso di sviluppo dell\'atleta.',
-      image: 'https://images.unsplash.com/photo-1606131731446-5568d87113aa',
-      link: '/programs/parent',
+      title: 'Coach / Allenatori / Club',
+      description: 'Formazione avanzata e strumenti per allenatori che vogliono integrare la metodologia ATH.',
+      image: 'https://images.unsplash.com/photo-1622279888158-c6a5e6c4587c',
+      link: '/programs/coach',
       features: [
-        'Percorso informativo sullo sviluppo dell\'atleta',
-        'Accesso a report filtrati dal coach',
-        'Visualizzazione video-allenamenti con spiegazione',
-        'Supporto alla scelta dei programmi in base all\'evoluzione',
-        'Comunicazione tecnico-pedagogica con il team'
+        'Accesso alla piattaforma di tracking e analisi video',
+        'Creazione di un metodo personalizzato (codificabile nel sistema)',
+        'Formazione continua e aggiornamento metodologico',
+        'Monitoraggio degli atleti su base oggettiva e condivisa',
+        'Condivisione dati e report con staff multidisciplinare',
+        'Possibilità di integrare ATH nel proprio centro/accademia',
+        'Uso di AI e dashboard per ottimizzare sessioni e calendari'
       ]
     },
     {
       id: '5',
-      title: 'Amatore',
+      title: 'Genitore/Tutor (6-12 anni)',
+      description: 'Supporto informativo e coinvolgimento nel percorso di sviluppo del giovane atleta.',
+      image: 'https://images.unsplash.com/photo-1606131731446-5568d87113aa',
+      link: '/programs/parent-young',
+      features: [
+        'Accesso a report semplici e visualizzabili online',
+        'Streaming di allenamenti per seguire i progressi',
+        'Aggiornamenti sintetici su tecnica, crescita e stato psico-fisico',
+        'Consigli pratici per sostenere il percorso sportivo senza interferenze',
+        'Canali diretti con il coach per feedback e obiettivi'
+      ]
+    },
+    {
+      id: '6',
+      title: 'Genitore/Tutor (13-18 anni)',
+      description: 'Coinvolgimento attivo nel percorso agonistico dell\'atleta junior.',
+      image: 'https://images.unsplash.com/photo-1615809269099-33bd04a5a8eb',
+      link: '/programs/parent-junior',
+      features: [
+        'Accesso completo ai dati delle sessioni',
+        'Analisi delle statistiche con visione d\'insieme',
+        'Possibilità di seguire in streaming le partite',
+        'Confronto continuo con i coach su obiettivi e strategia',
+        'Supporto alla comprensione dei dati senza interpretazioni errate'
+      ]
+    },
+    {
+      id: '7',
+      title: 'Amatori',
       description: 'Percorsi flessibili per giocatori amatoriali che vogliono migliorare le proprie capacità.',
       image: 'https://images.unsplash.com/photo-1599586120429-48281b6f0ece',
       link: '/programs/amateur',
       features: [
-        'Percorso personalizzato per obiettivi specifici',
-        'Lezioni singole o cicli brevi',
-        'Clinics tematici (servizio, spostamenti, colpi)',
-        'Analisi base con heatmap e feedback tecnico',
-        'Possibilità di affitto campo con tecnologia attiva',
-        'Programma miglioramento progressivo senza pressione'
+        'Allenamento personalizzato anche su base occasionale',
+        'Lezioni singole o pacchetti con analisi tecnica semplificata',
+        'Clinics su specifici aspetti (servizio, spostamenti, colpi)',
+        'Affitto campi con tecnologia attiva (per analisi post-sessione)',
+        'Percorsi di miglioramento progressivo senza sovraccarico',
+        'Report leggibili con focus su controllo, postura e miglioramenti visibili'
       ]
     }
   ];
@@ -97,7 +129,7 @@ const Programs = () => {
   // Other programs data (keeping some original programs)
   const additionalPrograms = [
     {
-      id: '6',
+      id: '8',
       title: 'Summer Camps',
       description: 'Programmi intensivi di 1-4 settimane per giocatori di tutte le età e livelli.',
       image: 'https://images.unsplash.com/photo-1587280501635-68a0e82cd5ff',
@@ -110,7 +142,7 @@ const Programs = () => {
       ]
     },
     {
-      id: '7',
+      id: '9',
       title: 'Performance Analysis',
       description: 'Analisi completa del gioco con tecnologia avanzata e feedback personalizzato.',
       image: 'https://images.unsplash.com/photo-1504439468489-c8920d796a29',
@@ -149,7 +181,7 @@ const Programs = () => {
             
             <RevealAnimation delay={100}>
               <p className="text-lg text-gray-600 max-w-3xl mb-12">
-                In ATH integriamo tecnologia avanzata con coaching esperto. Il nostro sistema proprietario monitora oltre 70 parametri della performance tennistica per fornire analisi dettagliate e programmi di allenamento personalizzati.
+                In ATH integriamo tecnologia avanzata con coaching esperto. Il nostro sistema proprietario VICKI monitora oltre 70 parametri della performance tennistica per fornire analisi dettagliate e programmi di allenamento personalizzati.
               </p>
             </RevealAnimation>
             
@@ -173,8 +205,8 @@ const Programs = () => {
         </section>
         
         <ProgramsSection 
-          title="Approccio Metodologico per Profilo Utente"
-          subtitle="Scopri i nostri percorsi personalizzati in base alle tue esigenze"
+          title="Programmi per Profilo Utente"
+          subtitle="Percorsi metodologici personalizzati in base alle tue esigenze specifiche"
           programs={methodologyPrograms}
           className="bg-ath-gray"
         />
@@ -190,7 +222,7 @@ const Programs = () => {
           description={
             <div className="space-y-4">
               <p>
-                Ciò che distingue ATH è la nostra integrazione di tecnologia all'avanguardia con competenze di coaching di livello mondiale. Il nostro sofisticato sistema cattura e analizza oltre 70 parametri delle tue prestazioni tennistiche, consentendo ai nostri coach di fornire un allenamento altamente personalizzato.
+                Ciò che distingue ATH è la nostra integrazione di tecnologia all'avanguardia con competenze di coaching di livello mondiale. Il nostro sistema VICKI cattura e analizza oltre 70 parametri delle tue prestazioni tennistiche, consentendo ai nostri coach di fornire un allenamento altamente personalizzato.
               </p>
               <p>
                 Questo approccio basato sui dati elimina le congetture e garantisce che ogni minuto del tuo allenamento sia ottimizzato per il massimo miglioramento. Che tu sia un principiante o un giocatore d'élite, la nostra metodologia si adatta alle tue esigenze e obiettivi unici.
