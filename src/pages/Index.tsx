@@ -223,7 +223,7 @@ const HomePage = () => {
       id: '5',
       title: 'Strutture per Giocatori',
       description: 'Spazi dedicati con connessione diretta al sistema Vicki™ per revisione dati, analisi video e pianificazione sessioni.',
-      image: 'https://images.unsplash.com/photo-1603988363607-e1e4a66962c6?q=80&w=1200'
+      image: 'https://images.unsplash.com/photo-1603988363607-e1e4a66962c6?q=80&w=1920'
     },
     {
       id: '6',
@@ -262,7 +262,7 @@ const HomePage = () => {
           title="Advanced Tennis Hub"
           subtitle="Centro di allenamento ad alta specializzazione con monitoraggio parametrico completo e metodologia integrata"
           videoSrc="https://drive.google.com/file/d/1YZTWBDrPLTUF8s5OAQgVSs8Lwi343J7s/view?usp=sharing" 
-          imageSrc="https://images.unsplash.com/photo-1519609331266-7ae2f31dddab?q=80&w=1920"
+          imageSrc="/lovable-uploads/6ea13aa7-2578-488b-8ed4-4b17fc2ddc4e.png"
           buttons={[
             { text: "Programmi", href: '/programs' },
             { text: "Contattaci", href: '/contact', variant: 'outline' }

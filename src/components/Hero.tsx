@@ -1,6 +1,8 @@
+
 import { useEffect, useRef, useState } from 'react';
 import ButtonLink from './ButtonLink';
 import { cn } from '@/lib/utils';
+import { toast } from 'sonner';
 
 interface HeroProps {
   title: string;
@@ -65,6 +67,7 @@ const Hero = ({
       // Extract the file ID from the Google Drive URL
       const match = url.match(/\/d\/([^\/]+)/);
       if (match && match[1]) {
+        // Use direct download link with file ID
         return `https://drive.google.com/uc?export=download&id=${match[1]}`;
       }
     }
@@ -75,43 +78,58 @@ const Hero = ({
   useEffect(() => {
     const video = videoRef.current;
     if (video && videoSrc) {
-      const formattedVideoSrc = getVideoUrl(videoSrc);
-      console.log('Attempting to load video from:', formattedVideoSrc);
-      
-      video.src = formattedVideoSrc;
-      video.load();
-      
-      const handleError = (e: Event) => {
-        console.error('Video failed to load:', formattedVideoSrc, e);
-        setVideoError(true);
-      };
-      
-      const handleLoadedData = () => {
-        console.log('Video loaded successfully');
-        setVideoLoaded(true);
+      try {
+        const formattedVideoSrc = getVideoUrl(videoSrc);
+        console.log('Attempting to load video from:', formattedVideoSrc);
         
-        try {
-          video.play()
-            .then(() => console.log('Video playback started successfully'))
-            .catch(err => {
-              console.warn('Auto-play failed:', err);
-              // Keep attempting to play on user interaction
-              document.addEventListener('click', () => {
-                video.play().catch(e => console.warn('Play on click failed:', e));
-              }, { once: true });
-            });
-        } catch (err) {
-          console.warn('Failed to start video:', err);
-        }
-      };
-      
-      video.addEventListener('error', handleError);
-      video.addEventListener('loadeddata', handleLoadedData);
-      
-      return () => {
-        video.removeEventListener('error', handleError);
-        video.removeEventListener('loadeddata', handleLoadedData);
-      };
+        // Set source directly
+        video.src = formattedVideoSrc;
+        video.load();
+        
+        const handleError = (e: Event) => {
+          console.error('Video failed to load:', formattedVideoSrc, e);
+          setVideoError(true);
+          toast.error('Video non disponibile, usiamo un\'immagine al posto', {
+            duration: 3000,
+            position: 'bottom-center'
+          });
+        };
+        
+        const handleLoadedData = () => {
+          console.log('Video loaded successfully');
+          setVideoLoaded(true);
+          toast.success('Video caricato con successo', {
+            duration: 2000,
+            position: 'bottom-center'
+          });
+          
+          try {
+            // Try to play the video
+            video.play()
+              .then(() => console.log('Video playback started successfully'))
+              .catch(err => {
+                console.warn('Auto-play failed:', err);
+                // On user interaction attempt to play again
+                document.addEventListener('click', () => {
+                  video.play().catch(e => console.warn('Play on click failed:', e));
+                }, { once: true });
+              });
+          } catch (err) {
+            console.warn('Failed to start video:', err);
+          }
+        };
+        
+        video.addEventListener('error', handleError);
+        video.addEventListener('loadeddata', handleLoadedData);
+        
+        return () => {
+          video.removeEventListener('error', handleError);
+          video.removeEventListener('loadeddata', handleLoadedData);
+        };
+      } catch (error) {
+        console.error('Error setting up video:', error);
+        setVideoError(true);
+      }
     }
   }, [videoSrc]);
   
@@ -141,23 +159,7 @@ const Hero = ({
       )}
     >
       <div className="absolute inset-0 w-full h-full">
-        {videoSrc && !videoError && (
-          <video
-            ref={videoRef}
-            autoPlay
-            muted
-            loop
-            playsInline
-            poster={videoPoster || imageSrc}
-            className={cn(
-              "object-cover w-full h-full",
-              videoLoaded ? 'opacity-100' : 'opacity-0',
-              'transition-opacity duration-500'
-            )}
-          />
-        )}
-        
-        {/* Always show image initially and if video fails */}
+        {/* Always show the background image first for immediate visual */}
         <img 
           src={imageError ? fallbackImage : (imageSrc || fallbackImage)} 
           alt="Background" 
@@ -168,6 +170,23 @@ const Hero = ({
           )}
           onError={handleImageError}
         />
+        
+        {/* Only show video if we have a source and no errors */}
+        {videoSrc && !videoError && (
+          <video
+            ref={videoRef}
+            autoPlay
+            muted
+            loop
+            playsInline
+            poster={videoPoster || imageSrc}
+            className={cn(
+              "absolute inset-0 object-cover w-full h-full",
+              videoLoaded ? 'opacity-100' : 'opacity-0',
+              'transition-opacity duration-500'
+            )}
+          />
+        )}
         
         <div className={cn('absolute inset-0', overlayClasses[overlayOpacity])}></div>
       </div>
