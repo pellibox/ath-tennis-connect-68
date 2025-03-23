@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import RevealAnimation from './RevealAnimation';
 import { cn } from '@/lib/utils';
 import { useState, useEffect, useRef } from 'react';
+import { HoverCard, HoverCardTrigger, HoverCardContent } from '@/components/ui/hover-card';
 
 interface Program {
   id: string;
@@ -36,6 +37,9 @@ const ProgramsSection = ({
   // State to track failed images
   const [failedImages, setFailedImages] = useState<Record<string, boolean>>({});
   
+  // State to track hover for video cards
+  const [hoveredCard, setHoveredCard] = useState<string | null>(null);
+  
   // Refs for video elements
   const videoRefs = useRef<Record<string, HTMLVideoElement | null>>({});
   
@@ -49,17 +53,23 @@ const ProgramsSection = ({
     setFailedImages(prev => ({ ...prev, [id]: true }));
   };
 
-  // Play all videos automatically when component mounts
-  useEffect(() => {
-    // For HTML5 videos
-    Object.keys(videoRefs.current).forEach(id => {
-      if (videoRefs.current[id]) {
-        videoRefs.current[id]?.play().catch(err => {
-          console.log(`Failed to play video for ID: ${id}`, err);
-        });
-      }
-    });
-  }, []);
+  // Handle mouse enter for video cards
+  const handleMouseEnter = (id: string) => {
+    setHoveredCard(id);
+    if (videoRefs.current[id]) {
+      videoRefs.current[id]?.play().catch(err => {
+        console.log(`Failed to play video for ID: ${id}`, err);
+      });
+    }
+  };
+
+  // Handle mouse leave for video cards
+  const handleMouseLeave = (id: string) => {
+    setHoveredCard(null);
+    if (videoRefs.current[id]) {
+      videoRefs.current[id]?.pause();
+    }
+  };
 
   return (
     <section id="programs" className={cn('py-16 px-6 lg:px-10', className)}>
@@ -84,10 +94,21 @@ const ProgramsSection = ({
         )}>
           {programs.map((program, index) => (
             <RevealAnimation key={program.id} delay={index * 50} className="h-full">
-              <div className="group h-full flex flex-col border border-gray-200 bg-white transition-all hover:shadow-sm">
+              <div 
+                className="group h-full flex flex-col border border-gray-200 bg-white transition-all hover:shadow-sm"
+                onMouseEnter={() => program.videoSrc && handleMouseEnter(program.id)}
+                onMouseLeave={() => program.videoSrc && handleMouseLeave(program.id)}
+              >
                 <div className="relative overflow-hidden aspect-video"> {/* aspect-video ensures 16:9 ratio */}
                   {program.vimeoEmbed ? (
-                    <div className="w-full h-full" dangerouslySetInnerHTML={{ __html: program.vimeoEmbed }} />
+                    <div 
+                      className="w-full h-full vimeo-container" 
+                      dangerouslySetInnerHTML={{ 
+                        __html: program.vimeoEmbed.replace('autoplay=1', `autoplay=${hoveredCard === program.id ? '1' : '0'}`) 
+                      }} 
+                      onMouseEnter={() => handleMouseEnter(program.id)}
+                      onMouseLeave={() => handleMouseLeave(program.id)}
+                    />
                   ) : program.videoSrc ? (
                     <>
                       <video 
@@ -96,11 +117,18 @@ const ProgramsSection = ({
                         poster={failedImages[program.id] ? getFallbackImage(program) : program.image}
                         muted
                         loop
-                        autoPlay
                         playsInline
-                        className="w-full h-full object-cover"
+                        className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                         onError={() => handleImageError(program.id)}
                       />
+                      <div className={cn(
+                        "absolute inset-0 flex items-center justify-center bg-black bg-opacity-30 transition-opacity",
+                        hoveredCard === program.id ? "opacity-0" : "opacity-100"
+                      )}>
+                        <div className="w-12 h-12 rounded-full bg-white/80 flex items-center justify-center">
+                          <Play className="w-6 h-6 text-ath-clay ml-1" />
+                        </div>
+                      </div>
                     </>
                   ) : (
                     <img 
