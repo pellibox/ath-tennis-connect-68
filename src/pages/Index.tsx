@@ -119,37 +119,37 @@ const HomePage = () => {
     },
   ];
 
-  // Updated facilities data using the uploaded image
+  // Updated facilities data with the new images
   const facilities = [
     {
       id: '1',
       title: 'Campo Centrale ATP',
       description: 'Il nostro campo centrale rispetta tutti gli standard ATP, con tribune per gli spettatori e tecnologia all\'avanguardia per ospitare tornei di livello internazionale.',
-      image: '/lovable-uploads/8c6b8008-177a-40e1-be5f-ce6f631bceff.png'
+      image: '/lovable-uploads/fa879f83-43f4-4c30-b5ab-cbe93f76b2f5.png'
     },
     {
       id: '2',
       title: 'Campi in Superficie Veloce',
       description: 'Due campi in superficie veloce di standard internazionale, progettati per un gioco veloce e adatti a sviluppare il gioco aggressivo e i colpi potenti.',
-      image: '/lovable-uploads/8c6b8008-177a-40e1-be5f-ce6f631bceff.png'
+      image: '/lovable-uploads/3a88c700-c72b-464e-865c-42a7c64a30ae.png'
     },
     {
       id: '3',
       title: 'Campi in Terra Rossa',
       description: 'Quattro campi in terra rossa di alta qualità, mantenuti quotidianamente per garantire condizioni di gioco ottimali, ideali per il gioco tattico e per ridurre lo stress sulle articolazioni.',
-      image: '/lovable-uploads/8c6b8008-177a-40e1-be5f-ce6f631bceff.png'
+      image: '/lovable-uploads/88fc9beb-6efb-4169-89fd-bea24cafeaec.png'
     },
     {
       id: '4',
       title: 'Centro Performance',
       description: 'Il nostro centro di performance high-tech include una palestra completamente attrezzata, aree di recupero, sale di analisi video e strutture di scienze sportive per uno sviluppo completo dell\'atleta.',
-      image: '/lovable-uploads/8c6b8008-177a-40e1-be5f-ce6f631bceff.png'
+      image: '/lovable-uploads/f996ed77-4b4a-48f2-9b68-2e7e00ab6f2d.png'
     },
     {
       id: '5',
       title: 'Strutture per Giocatori',
       description: 'Spazi confortevoli per i giocatori per rilassarsi, studiare e socializzare. Per i giocatori in visita, offriamo alloggi in loco con tutti i comfort necessari per un soggiorno confortevole.',
-      image: '/lovable-uploads/8c6b8008-177a-40e1-be5f-ce6f631bceff.png'
+      image: '/lovable-uploads/0cb3ebc2-b1e8-4d5d-a8de-6035d4b53a16.png'
     },
   ];
 
@@ -161,7 +161,7 @@ const HomePage = () => {
         <Hero 
           title={t('hero.title')}
           subtitle={t('hero.subtitle')}
-          imageSrc="https://images.unsplash.com/photo-1622279488666-c3fcf91fd206"
+          imageSrc="/lovable-uploads/fc6643c2-4357-4c86-9e52-6f33d698668f.png"
           buttons={[
             { text: t('hero.programs'), href: '/programs' },
             { text: t('hero.book'), href: '/contact', variant: 'outline' }

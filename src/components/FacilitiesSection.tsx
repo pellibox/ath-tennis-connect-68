@@ -23,7 +23,7 @@ const FacilitiesSection = ({
   className 
 }: FacilitiesSectionProps) => {
   return (
-    <section className={cn('py-20 px-6 lg:px-10', className)}>
+    <section className={cn('py-20 px-6 lg:px-10 bg-white', className)}>
       <div className="max-w-7xl mx-auto">
         <RevealAnimation>
           <h2 className="text-3xl md:text-4xl font-display text-center mb-4">{title}</h2>
@@ -56,7 +56,7 @@ const FacilitiesSection = ({
                     <img 
                       src={facility.image} 
                       alt={facility.title}
-                      className="w-full h-auto object-cover transform hover:scale-105 transition-transform duration-500"
+                      className="w-full h-[300px] md:h-[400px] object-cover transform hover:scale-105 transition-transform duration-500"
                     />
                   </div>
                 </div>
