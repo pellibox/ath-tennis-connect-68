@@ -47,8 +47,8 @@ const Footer = () => {
             <li><Link to="/about" className="text-gray-400 hover:text-white text-sm transition-colors">{t('footer.about')}</Link></li>
             <li><Link to="/facilities" className="text-gray-400 hover:text-white text-sm transition-colors">{t('footer.facilities')}</Link></li>
             <li><Link to="/coaches" className="text-gray-400 hover:text-white text-sm transition-colors">{t('footer.coaches')}</Link></li>
-            <li><Link to="/testimonials" className="text-gray-400 hover:text-white text-sm transition-colors">{t('footer.testimonials')}</Link></li>
-            <li><Link to="/news" className="text-gray-400 hover:text-white text-sm transition-colors">{t('footer.news')}</Link></li>
+            <li><Link to="/method" className="text-gray-400 hover:text-white text-sm transition-colors">{t('footer.method')}</Link></li>
+            <li><Link to="/technology" className="text-gray-400 hover:text-white text-sm transition-colors">{t('footer.technology')}</Link></li>
           </ul>
         </div>
 
@@ -77,7 +77,7 @@ const Footer = () => {
           <div className="flex space-x-6 mt-4 md:mt-0">
             <Link to="/privacy" className="text-gray-500 hover:text-white text-sm transition-colors">{t('footer.privacy')}</Link>
             <Link to="/terms" className="text-gray-500 hover:text-white text-sm transition-colors">{t('footer.terms')}</Link>
-            <Link to="/sitemap" className="text-gray-500 hover:text-white text-sm transition-colors">{t('footer.sitemap')}</Link>
+            <Link to="/contact" className="text-gray-500 hover:text-white text-sm transition-colors">{t('footer.contact')}</Link>
           </div>
         </div>
       </div>
