@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react';
 import { Menu, X } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { cn } from '@/lib/utils';
+import Logo from './Logo';
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -34,16 +35,7 @@ const Header = () => {
       )}
     >
       <div className="max-w-7xl mx-auto flex items-center justify-between">
-        <Link to="/" className="z-50">
-          <div className="flex flex-col items-center">
-            <div className="flex items-baseline space-x-6">
-              <span className="text-5xl font-bold">A</span>
-              <span className="text-5xl font-bold">T</span>
-              <span className="text-5xl font-bold">H</span>
-            </div>
-            <span className="text-xs tracking-[0.3em] mt-1">ADVANCED TENNIS HUB</span>
-          </div>
-        </Link>
+        <Logo />
 
         {/* Desktop Navigation */}
         <nav className="hidden md:flex items-center space-x-8">

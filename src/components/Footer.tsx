@@ -1,6 +1,6 @@
-
 import { Link } from 'react-router-dom';
 import { Instagram, Facebook, Twitter, Mail, Phone, MapPin } from 'lucide-react';
+import Logo from './Logo';
 
 const Footer = () => {
   return (
@@ -8,14 +8,7 @@ const Footer = () => {
       <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
         <div>
           <div className="mb-6">
-            <div className="flex flex-col items-start">
-              <div className="flex items-baseline space-x-4">
-                <span className="text-3xl font-bold">A</span>
-                <span className="text-3xl font-bold">T</span>
-                <span className="text-3xl font-bold">H</span>
-              </div>
-              <span className="text-xs tracking-[0.3em] mt-1">ADVANCED TENNIS HUB</span>
-            </div>
+            <Logo variant="footer" />
           </div>
           <p className="text-gray-400 text-sm mb-6">
             Elevating tennis excellence through innovative training programs, 
