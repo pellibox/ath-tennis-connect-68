@@ -1,0 +1,94 @@
+
+import { useEffect } from 'react';
+import Header from '@/components/Header';
+import Footer from '@/components/Footer';
+import CoachesSection from '@/components/CoachesSection';
+import AboutSection from '@/components/AboutSection';
+import { useLocation } from 'react-router-dom';
+import { useLanguage } from '@/contexts/LanguageContext';
+
+const CoachesPage = () => {
+  const { t } = useLanguage();
+  const location = useLocation();
+  
+  useEffect(() => {
+    // Scroll to top when component mounts
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+    
+    // Check if there's a hash in the URL and scroll to that section
+    if (location.hash) {
+      const id = location.hash.replace('#', '');
+      const element = document.getElementById(id);
+      if (element) {
+        setTimeout(() => {
+          element.scrollIntoView({ behavior: 'smooth' });
+        }, 100);
+      }
+    }
+  }, [location]);
+
+  return (
+    <div className="flex flex-col min-h-screen">
+      <Header />
+      
+      <main className="flex-grow pt-20">
+        <section className="py-16 px-6 lg:px-10 bg-white">
+          <div className="max-w-7xl mx-auto">
+            <h1 className="text-4xl md:text-5xl font-display text-center mb-12">I Nostri Coach</h1>
+            
+            <div className="prose prose-lg max-w-4xl mx-auto mb-16">
+              <p className="lead text-xl mb-6">
+                Il team tecnico di ATH è composto da professionisti altamente qualificati, formati specificamente nell'utilizzo della tecnologia VICKI per massimizzare il potenziale di ogni atleta.
+              </p>
+              
+              <p>
+                Ogni coach ATH integra la propria metodologia personale con l'analisi oggettiva dei dati, creando percorsi personalizzati che garantiscono continuità ed efficacia nel processo evolutivo dell'atleta.
+              </p>
+            </div>
+          </div>
+        </section>
+        
+        <CoachesSection 
+          title="Staff Tecnico"
+          subtitle="Professionisti specializzati nell'integrazione tra expertise tecnica e analisi dei dati"
+        />
+        
+        <section id="coaching-approach" className="py-16 px-6 lg:px-10 bg-gray-50">
+          <div className="max-w-7xl mx-auto">
+            <h2 className="text-3xl md:text-4xl font-display text-center mb-12">Approccio Tecnico</h2>
+            
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+              <div className="bg-white p-6 rounded-lg shadow-sm">
+                <h3 className="text-xl font-semibold mb-3">Integrazione Tecnologica</h3>
+                <p className="text-gray-700">Ogni coach utilizza VICKI come supporto all'approccio individuale, permettendo analisi oggettive e feedback immediati durante le sessioni.</p>
+              </div>
+              
+              <div className="bg-white p-6 rounded-lg shadow-sm">
+                <h3 className="text-xl font-semibold mb-3">Metodo Personalizzato</h3>
+                <p className="text-gray-700">Il sistema permette ad ogni tecnico di codificare e applicare il proprio metodo, garantendo allo stesso tempo continuità metodologica nel percorso dell'atleta.</p>
+              </div>
+              
+              <div className="bg-white p-6 rounded-lg shadow-sm">
+                <h3 className="text-xl font-semibold mb-3">Formazione Continua</h3>
+                <p className="text-gray-700">I nostri coach seguono un programma di aggiornamento costante sulle metodologie di allenamento e sull'utilizzo ottimale della tecnologia VICKI.</p>
+              </div>
+            </div>
+          </div>
+        </section>
+        
+        <AboutSection 
+          title="Collabora con Noi"
+          description="ATH è una rete aperta a coach e specialisti interessati a integrare tecnologia avanzata e metodologie d'allenamento. Contattaci per scoprire le possibilità di collaborazione."
+          image="https://images.unsplash.com/photo-1529339944280-1a37d3d6fa8c?q=80&w=1000"
+          buttons={[
+            { text: "Contattaci", href: '/contact' }
+          ]}
+        />
+      </main>
+      
+      <Footer />
+    </div>
+  );
+};
+
+export default CoachesPage;

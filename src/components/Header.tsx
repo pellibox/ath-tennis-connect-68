@@ -1,7 +1,7 @@
 
 import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Menu, X, Activity, Zap, BookOpen, Server, Home } from 'lucide-react';
+import { Menu, X, Activity, Zap, BookOpen, Server, Home, Users } from 'lucide-react';
 import Logo from './Logo';
 import { cn } from '@/lib/utils';
 import LanguageSwitcher from './LanguageSwitcher';
@@ -58,10 +58,10 @@ const Header = () => {
     };
   }, [isMenuOpen]);
 
-  // Updated navigation structure with corrected menu items
+  // Updated navigation structure with corrected menu items and proper routes
   const navigationItems = [
     { 
-      text: "Cos'è ATH", 
+      text: "Chi Siamo", 
       href: '/about',
       icon: <Home size={18} className="mr-2" />
     },
@@ -77,13 +77,18 @@ const Header = () => {
     },
     { 
       text: 'Tecnologia:VICKI', 
-      href: '/#technology',
+      href: '/about#technology',
       icon: <Zap size={18} className="mr-2" />
     },
     { 
       text: 'Strutture', 
-      href: '/#facilities',
+      href: '/facilities',
       icon: <Server size={18} className="mr-2" />
+    },
+    { 
+      text: 'Coach', 
+      href: '/coaches',
+      icon: <Users size={18} className="mr-2" />
     },
   ];
 
@@ -91,14 +96,17 @@ const Header = () => {
   const LinkComponent = ({ href, children, className }: { href: string; children: React.ReactNode, className?: string }) => {
     const handleClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
       if (href.includes('#')) {
-        e.preventDefault();
-        const sectionId = href.split('#')[1];
-        const element = document.getElementById(sectionId);
-        if (element) {
-          element.scrollIntoView({ behavior: 'smooth' });
-        } else if (href.startsWith('/#')) {
-          // If not on home page and link points to home page section
-          window.location.href = href;
+        const parts = href.split('#');
+        const pagePath = parts[0];
+        const sectionId = parts[1];
+        
+        // If we're already on the correct page, just scroll to the section
+        if (location.pathname === pagePath || (pagePath === '' && location.pathname === '/')) {
+          e.preventDefault();
+          const element = document.getElementById(sectionId);
+          if (element) {
+            element.scrollIntoView({ behavior: 'smooth' });
+          }
         }
       }
     };

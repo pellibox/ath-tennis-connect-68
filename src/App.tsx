@@ -11,12 +11,10 @@ import { LanguageProvider } from "./contexts/LanguageContext";
 import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
 import Programs from "./pages/Programs";
-
-// Create placeholder pages to be added in the future
-const Facilities = lazy(() => import("./pages/Index"));
-const Coaches = lazy(() => import("./pages/Index"));
-const About = lazy(() => import("./pages/About"));
-const Contact = lazy(() => import("./pages/Index"));
+import About from "./pages/About";
+import Facilities from "./pages/Facilities";
+import Coaches from "./pages/Coaches";
+import Contact from "./pages/Contact";
 
 const queryClient = new QueryClient();
 
