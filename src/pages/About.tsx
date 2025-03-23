@@ -81,8 +81,8 @@ const AboutPage = () => {
         </section>
         
         <TechnologySection 
-          title={t('tech.title')}
-          subtitle={t('tech.subtitle')}
+          title=""
+          subtitle="Il nostro innovativo sistema tecnologico integra analisi avanzate e AI per rivoluzionare l'allenamento del tennis"
         />
         
         <AboutSection 
