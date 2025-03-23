@@ -1,3 +1,4 @@
+
 import { useEffect } from 'react';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
@@ -194,7 +195,13 @@ const HomePage = () => {
       id: '4',
       title: 'Centro Performance',
       description: 'Area dedicata all\'analisi dati e preparazione fisica, con strumentazione per valutazioni biomeccaniche e recupero.',
-      image: 'https://images.unsplash.com/photo-1593079831268-3381b0db4a77?q=80&w=1200'
+      image: '/lovable-uploads/b0cf5344-de4c-404e-9c7b-916d765a8df0.png',
+      features: [
+        'Attrezzature biomeccaniche avanzate',
+        'Zona training funzionale',
+        'Analisi e monitoraggio in tempo reale',
+        'Design minimalista ed efficiente'
+      ]
     },
     {
       id: '5',

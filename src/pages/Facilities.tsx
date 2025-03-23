@@ -46,11 +46,13 @@ const facilities = [
     id: "facility-4",
     title: "Centro Performance",
     description: "Area dedicata all'analisi dati e preparazione fisica, con strumentazione per valutazioni biomeccaniche e recupero.",
-    image: "https://images.unsplash.com/photo-1552664730-d307ca884978?q=80&w=2070",
+    image: "/lovable-uploads/b0cf5344-de4c-404e-9c7b-916d765a8df0.png",
     features: [
-      "Schermi ad alta risoluzione",
-      "Software di analisi avanzata",
-      "Spazio per sessioni di coaching individuali"
+      "Attrezzature biomeccaniche avanzate",
+      "Zona training funzionale",
+      "Analisi e monitoraggio in tempo reale",
+      "Spazio per sessioni di coaching individuali",
+      "Design minimalista ed efficiente"
     ]
   },
   {
