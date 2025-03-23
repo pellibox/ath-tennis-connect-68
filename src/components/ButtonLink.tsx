@@ -25,9 +25,9 @@ const ButtonLink = ({
   const baseClasses = "inline-block text-center transition-all duration-300 rounded-md font-medium";
   
   const variantClasses = {
-    primary: "bg-black text-white hover:bg-gray-800 shadow-md",
-    secondary: "bg-ath-clay text-white hover:bg-opacity-90 shadow-md",
-    outline: "bg-transparent text-black border-2 border-black hover:bg-black hover:text-white",
+    primary: "bg-ath-clay text-white hover:bg-opacity-90 shadow-md",
+    secondary: "bg-black text-white hover:bg-gray-800 shadow-md",
+    outline: "bg-transparent text-ath-clay border-2 border-ath-clay hover:bg-ath-clay hover:text-white",
   };
   
   const sizeClasses = {
