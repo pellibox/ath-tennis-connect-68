@@ -1,3 +1,4 @@
+
 import { useEffect } from 'react';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
@@ -118,24 +119,36 @@ const HomePage = () => {
     },
   ];
 
-  // Sample data for facilities
+  // Updated facilities data for 5 international standard tennis courts
   const facilities = [
     {
       id: '1',
-      title: 'State-of-the-Art Courts',
-      description: 'Our academy features 35 courts with different surfaces including hard courts, clay courts, and indoor courts. All are maintained to professional tournament standards daily.',
-      image: 'https://images.unsplash.com/photo-1572184076489-15d7a6e17c16'
+      title: 'Campo Centrale ATP',
+      description: 'Il nostro campo centrale rispetta tutti gli standard ATP, con tribune per gli spettatori e tecnologia all\'avanguardia per ospitare tornei di livello internazionale.',
+      image: 'https://images.unsplash.com/photo-1595435934249-5df7ed86e1c0'
     },
     {
       id: '2',
-      title: 'Performance Center',
-      description: 'Our high-tech performance center includes a fully equipped gym, recovery areas, video analysis rooms, and sports science facilities for comprehensive athlete development.',
-      image: 'https://images.unsplash.com/photo-1571902943202-507ec2618e8f'
+      title: 'Campi in Superficie Veloce',
+      description: 'Due campi in superficie veloce di standard internazionale, progettati per un gioco veloce e adatti a sviluppare il gioco aggressivo e i colpi potenti.',
+      image: 'https://images.unsplash.com/photo-1576610616656-d3aa5d1f4534'
     },
     {
       id: '3',
-      title: 'Player Lounge & Accommodation',
-      description: 'Comfortable spaces for players to relax, study, and socialize. For visiting players, we offer on-site accommodation with all the amenities needed for a comfortable stay.',
+      title: 'Campi in Terra Rossa',
+      description: 'Quattro campi in terra rossa di alta qualità, mantenuti quotidianamente per garantire condizioni di gioco ottimali, ideali per il gioco tattico e per ridurre lo stress sulle articolazioni.',
+      image: 'https://images.unsplash.com/photo-1461896836934-ffe607ba8211'
+    },
+    {
+      id: '4',
+      title: 'Centro Performance',
+      description: 'Il nostro centro di performance high-tech include una palestra completamente attrezzata, aree di recupero, sale di analisi video e strutture di scienze sportive per uno sviluppo completo dell\'atleta.',
+      image: 'https://images.unsplash.com/photo-1571902943202-507ec2618e8f'
+    },
+    {
+      id: '5',
+      title: 'Strutture per Giocatori',
+      description: 'Spazi confortevoli per i giocatori per rilassarsi, studiare e socializzare. Per i giocatori in visita, offriamo alloggi in loco con tutti i comfort necessari per un soggiorno confortevole.',
       image: 'https://images.unsplash.com/photo-1596701062351-8c2c14d1fdd0'
     },
   ];

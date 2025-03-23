@@ -52,11 +52,11 @@ const FacilitiesSection = ({
                 </div>
                 
                 <div className={index % 2 === 0 ? 'md:order-1' : ''}>
-                  <div className="overflow-hidden">
+                  <div className="overflow-hidden rounded-lg shadow-lg">
                     <img 
                       src={facility.image} 
-                      alt={facility.title} 
-                      className="w-full h-auto object-cover"
+                      alt={facility.title}
+                      className="w-full h-auto object-cover transform hover:scale-105 transition-transform duration-500"
                     />
                   </div>
                 </div>
