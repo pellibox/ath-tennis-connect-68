@@ -170,13 +170,13 @@ const HomePage = () => {
     },
   ];
 
-  // Strutture con descrizioni più tecniche
+  // Updated facilities with the new image for Campo Centrale ATP
   const facilities = [
     {
       id: '1',
       title: 'Campo Centrale ATP',
       description: 'Campo principale con sistema Vicki™ integrato, tribuna spettatori e standard ATP per tornei internazionali.',
-      image: 'https://images.unsplash.com/photo-1625601429244-5eec3a14b8b2?q=80&w=1200'
+      image: '/lovable-uploads/7ff66f98-73e6-4253-aacb-8619ac14b81b.png'
     },
     {
       id: '2',

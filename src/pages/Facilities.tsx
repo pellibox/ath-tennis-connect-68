@@ -7,13 +7,13 @@ import AboutSection from '@/components/AboutSection';
 import { useLocation } from 'react-router-dom';
 import Hero from '@/components/Hero';
 
-// Mock data for facilities
+// Updated mock data for facilities with the new image for Campo Centrale ATP
 const facilities = [
   {
     id: "facility-1",
-    title: "Campi Indoor",
-    description: "4 campi in resina sintetica con sistema Vicki™ integrato per analisi in tempo reale",
-    image: "https://images.unsplash.com/photo-1522778119026-d647f0596c20?q=80&w=2070",
+    title: "Campo Centrale ATP",
+    description: "Campo principale con sistema Vicki™ integrato, tribuna spettatori e standard ATP per tornei internazionali.",
+    image: "/lovable-uploads/7ff66f98-73e6-4253-aacb-8619ac14b81b.png",
     features: [
       "Sistema Vicki™ per tracking 3D",
       "Illuminazione LED ad alta efficienza",
@@ -22,8 +22,8 @@ const facilities = [
   },
   {
     id: "facility-2",
-    title: "Campi Outdoor",
-    description: "2 campi in terra battuta e 2 in cemento, tutti equipaggiati con tecnologia Vicki™",
+    title: "Campi in Superficie Veloce",
+    description: "Due campi in superficie sintetica con coefficiente di attrito standardizzato e sistema di tracciamento Vicki™ integrato.",
     image: "https://images.unsplash.com/photo-1560012057-4372e14c5085?q=80&w=2074",
     features: [
       "Sistema di irrigazione automatizzato",
@@ -33,19 +33,19 @@ const facilities = [
   },
   {
     id: "facility-3",
-    title: "Area Fitness",
-    description: "Spazio dedicato alla preparazione atletica con attrezzature specializzate",
+    title: "Campi in Terra Rossa",
+    description: "Quattro campi in terra rossa calibrata, con manutenzione quotidiana e rilevamento parametrico Vicki™ completo.",
     image: "https://images.unsplash.com/photo-1571902943202-507ec2618e8f?q=80&w=2075",
     features: [
-      "Attrezzature biomeccaniche avanzate",
-      "Area per allenamento funzionale",
-      "Sistemi di monitoraggio delle performance"
+      "Manutenzione quotidiana professionale",
+      "Calibrazione personalizzata della superficie",
+      "Sistema Vicki™ completo"
     ]
   },
   {
     id: "facility-4",
-    title: "Sala Analisi",
-    description: "Ambiente dedicato all'analisi dei dati Vicki™ e alla visualizzazione delle performance",
+    title: "Centro Performance",
+    description: "Area dedicata all'analisi dati e preparazione fisica, con strumentazione per valutazioni biomeccaniche e recupero.",
     image: "https://images.unsplash.com/photo-1552664730-d307ca884978?q=80&w=2070",
     features: [
       "Schermi ad alta risoluzione",
@@ -82,7 +82,7 @@ const FacilitiesPage = () => {
         <Hero
           title="Le Nostre Strutture"
           subtitle="Impianti all'avanguardia dotati di tecnologia Vicki™"
-          imageSrc="https://images.unsplash.com/photo-1481891683383-6fe563e2e81e?q=80&w=2070"
+          imageSrc="/lovable-uploads/7ff66f98-73e6-4253-aacb-8619ac14b81b.png"
           fullHeight={false}
           overlayOpacity="medium"
         />

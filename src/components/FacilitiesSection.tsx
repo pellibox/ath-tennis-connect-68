@@ -8,6 +8,7 @@ interface Facility {
   title: string;
   description: string;
   image: string;
+  features?: string[];
 }
 
 interface FacilitiesSectionProps {
@@ -69,7 +70,21 @@ const FacilitiesSection = ({
               )}>
                 <div className={index % 2 === 0 ? 'md:order-2' : ''}>
                   <h3 className="text-2xl font-medium mb-4 text-ath-clay">{facility.title}</h3>
-                  <p className="text-gray-600 leading-relaxed">{facility.description}</p>
+                  <p className="text-gray-600 leading-relaxed mb-4">{facility.description}</p>
+                  
+                  {facility.features && facility.features.length > 0 && (
+                    <div className="mt-4">
+                      <h4 className="text-lg font-medium mb-2 text-ath-secondary">Caratteristiche</h4>
+                      <ul className="space-y-2">
+                        {facility.features.map((feature, idx) => (
+                          <li key={idx} className="flex items-start">
+                            <span className="text-ath-clay mr-2">•</span>
+                            <span className="text-gray-700">{feature}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  )}
                 </div>
                 
                 <div className={index % 2 === 0 ? 'md:order-1' : ''}>
