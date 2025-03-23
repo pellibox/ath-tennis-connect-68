@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Menu, X, Activity, Zap, BookOpen, Server, Home, Users } from 'lucide-react';
@@ -118,6 +117,9 @@ const Header = () => {
     );
   };
 
+  // Determine if we should use the white logo based on scroll position
+  const useDarkBackgroundLogo = !isScrolled && !isMenuOpen;
+
   return (
     <header 
       className={cn(
@@ -127,7 +129,10 @@ const Header = () => {
     >
       <div className="container mx-auto px-6 flex items-center justify-between">
         <Link to="/" className="z-50">
-          <Logo variant={isScrolled || isMenuOpen ? "default" : "footer"} />
+          <Logo 
+            variant={isScrolled || isMenuOpen ? "default" : "footer"} 
+            onDarkBackground={useDarkBackgroundLogo}
+          />
         </Link>
 
         {/* Desktop Navigation with Navigation Menu */}

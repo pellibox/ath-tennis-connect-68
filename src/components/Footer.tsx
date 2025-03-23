@@ -12,7 +12,7 @@ const Footer = () => {
       <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
         <div>
           <div className="mb-6">
-            <Logo variant="footer" />
+            <Logo variant="footer" onDarkBackground={true} />
           </div>
           <p className="text-gray-400 text-sm mb-6">
             {t('footer.description')}
