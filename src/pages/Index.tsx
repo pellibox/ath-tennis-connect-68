@@ -10,8 +10,12 @@ import StatsSection from '@/components/StatsSection';
 import FacilitiesSection from '@/components/FacilitiesSection';
 import ContactSection from '@/components/ContactSection';
 import TechnologySection from '@/components/TechnologySection';
+import { useLanguage } from '@/contexts/LanguageContext';
 
 const HomePage = () => {
+  // Get translation function
+  const { t } = useLanguage();
+  
   // Smooth scroll functionality
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -21,22 +25,22 @@ const HomePage = () => {
   const programs = [
     {
       id: '1',
-      title: 'Junior Academy',
-      description: 'Comprehensive training program for players aged 8-18 who want to develop their skills and compete at a high level.',
+      title: t('programs.junior'),
+      description: t('programs.junior.desc'),
       image: 'https://images.unsplash.com/photo-1551773148-efc73c5fdc70',
       link: '/programs/junior'
     },
     {
       id: '2',
-      title: 'Elite Program',
-      description: 'Intensive training for advanced players with professional aspirations, focusing on technical, tactical, physical, and mental aspects.',
+      title: t('programs.elite'),
+      description: t('programs.elite.desc'),
       image: 'https://images.unsplash.com/photo-1542144582-1ba00456b5e3',
       link: '/programs/elite'
     },
     {
       id: '3',
-      title: 'Adult Training',
-      description: 'Programs for players of all levels who want to improve their skills, stay fit, and enjoy the game of tennis.',
+      title: t('programs.adult'),
+      description: t('programs.adult.desc'),
       image: 'https://images.unsplash.com/photo-1622279888158-c6a5e6c4587c',
       link: '/programs/adult'
     },
@@ -142,40 +146,34 @@ const HomePage = () => {
       
       <main className="flex-grow">
         <Hero 
-          title="Excel at Every Level" 
-          subtitle="World-class tennis training for players of all ages and abilities"
+          title={t('hero.title')}
+          subtitle={t('hero.subtitle')}
           imageSrc="https://images.unsplash.com/photo-1622279488666-c3fcf91fd206"
           buttons={[
-            { text: 'OUR PROGRAMS', href: '/programs' },
-            { text: 'BOOK A TRIAL', href: '/contact', variant: 'outline' }
+            { text: t('hero.programs'), href: '/programs' },
+            { text: t('hero.book'), href: '/contact', variant: 'outline' }
           ]}
         />
         
         <AboutSection 
-          title="About ATH Tennis Hub"
-          subtitle="OUR STORY"
+          title={t('about.title')}
+          subtitle={t('about.subtitle')}
           description={
             <div className="space-y-4">
-              <p>
-                ATH Advanced Tennis Hub was founded with a simple mission: to create the perfect environment for tennis players to reach their full potential, regardless of their starting point or ultimate goals.
-              </p>
-              <p>
-                What sets us apart is our individualized approach. We recognize that every player is unique, with different strengths, weaknesses, and aspirations. Our methodology adapts to each player's profile, ensuring optimal development and progress.
-              </p>
-              <p>
-                With world-class facilities and an elite coaching team, we deliver a comprehensive program that addresses all aspects of the modern game: technical, tactical, physical, and mental.
-              </p>
+              <p>{t('about.p1')}</p>
+              <p>{t('about.p2')}</p>
+              <p>{t('about.p3')}</p>
             </div>
           }
           image="https://images.unsplash.com/photo-1617711773026-ea7252c02cd3"
           buttons={[
-            { text: 'LEARN MORE', href: '/about' }
+            { text: t('about.learn'), href: '/about' }
           ]}
         />
         
         <ProgramsSection 
-          title="Our Programs"
-          subtitle="Tailored tennis training for every age and skill level"
+          title={t('programs.title')}
+          subtitle={t('programs.subtitle')}
           programs={programs}
         />
         
@@ -185,41 +183,41 @@ const HomePage = () => {
         />
         
         <TechnologySection 
-          title="The ATH Technology Advantage"
-          subtitle="Our innovative technology system integrates advanced analytics and AI to revolutionize tennis training"
+          title={t('tech.title')}
+          subtitle={t('tech.subtitle')}
         />
         
         <FacilitiesSection 
-          title="World-Class Facilities"
-          subtitle="Experience the perfect environment for tennis excellence"
+          title={t('facilities.title')}
+          subtitle={t('facilities.subtitle')}
           facilities={facilities}
         />
         
         <CoachesSection 
-          title="Expert Coaching Team"
-          subtitle="Learn from the best minds in tennis"
+          title={t('coaches.title')}
+          subtitle={t('coaches.subtitle')}
           coaches={coaches}
         />
         
         <TestimonialsSection 
-          title="Success Stories"
-          subtitle="Hear from our players and parents"
+          title={t('testimonials.title')}
+          subtitle={t('testimonials.subtitle')}
           testimonials={testimonials}
         />
         
         <AboutSection 
-          title="Join Our Elite Tennis Community"
-          description="Take the first step towards tennis excellence. Join ATH Advanced Tennis Hub and experience the difference our world-class facilities, expert coaching, and personalized approach can make to your game."
+          title={t('join.title')}
+          description={t('join.desc')}
           image="https://images.unsplash.com/photo-1518005068251-37900150dfca"
           buttons={[
-            { text: 'START YOUR JOURNEY', href: '/contact' }
+            { text: t('join.cta'), href: '/contact' }
           ]}
           reversed={true}
         />
         
         <ContactSection 
-          title="Get in Touch"
-          subtitle="We'd love to hear from you. Contact us with any questions or to schedule a visit."
+          title={t('contact.title')}
+          subtitle={t('contact.subtitle')}
           address="123 Tennis Court Avenue, Tennis City, 10001"
           phone="+1 (234) 567-890"
           email="info@ath-tennis.com"

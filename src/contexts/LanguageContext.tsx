@@ -29,15 +29,22 @@ export const LanguageProvider: React.FC<{ children: React.ReactNode }> = ({ chil
     return savedLanguage && ['en', 'it', 'fr', 'de'].includes(savedLanguage) ? savedLanguage : 'en';
   });
   
-  const [translations, setTranslations] = useState<Record<string, string>>(translationsMap.en);
+  const [translations, setTranslations] = useState<Record<string, string>>(translationsMap[language] || translationsMap.en);
 
   // Load translations when language changes
   useEffect(() => {
     console.log('Language changed to:', language);
     console.log('Loading translations for:', language);
-    setTranslations(translationsMap[language] || translationsMap.en);
+    
+    // Force immediate update of translations
+    setTranslations({...translationsMap[language]});
+    
     // Save language preference to localStorage
     localStorage.setItem('language', language);
+    
+    // Force a re-render of components using translations
+    document.documentElement.setAttribute('lang', language);
+    
   }, [language]);
 
   // Translation function
@@ -45,8 +52,14 @@ export const LanguageProvider: React.FC<{ children: React.ReactNode }> = ({ chil
     return translations[key] || key;
   };
 
+  const contextValue = {
+    language,
+    setLanguage,
+    t
+  };
+
   return (
-    <LanguageContext.Provider value={{ language, setLanguage, t }}>
+    <LanguageContext.Provider value={contextValue}>
       {children}
     </LanguageContext.Provider>
   );

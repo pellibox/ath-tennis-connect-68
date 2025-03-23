@@ -30,20 +30,24 @@ const Hero = ({
 }: HeroProps) => {
   const titleRef = useRef<HTMLHeadingElement>(null);
   
+  // Run title animation effect when title changes
   useEffect(() => {
     if (titleRef.current) {
-      const text = titleRef.current.textContent || '';
+      const text = title || '';
       const wrappedText = text.split('').map((char, index) => 
         `<span style="--index:${index}" ${char === ' ' ? 'class="inline-block"' : ''}>${char}</span>`
       ).join('');
       
       titleRef.current.innerHTML = wrappedText;
       
+      // Reset animation
+      titleRef.current.classList.remove('visible');
+      
       setTimeout(() => {
         titleRef.current?.classList.add('visible');
       }, 100);
     }
-  }, []);
+  }, [title]); // Re-run when title changes (language changes)
   
   const positionClasses = {
     center: 'items-center text-center',
@@ -98,7 +102,7 @@ const Hero = ({
           )}>
             {buttons.map((button, index) => (
               <ButtonLink
-                key={index}
+                key={`${button.text}-${index}`} // Use text as part of key to force re-render on text change
                 href={button.href}
                 variant={button.variant || (index === 0 ? 'primary' : 'outline')}
                 className={index === 0 ? 'animate-fade-in' : 'animate-fade-in'}
