@@ -79,7 +79,7 @@ const Header = () => {
     },
     { 
       text: 'Tecnologia:VICKI', 
-      href: '/method#technology',
+      href: '/method#vicki',
       icon: <Zap size={18} className="mr-2" />
     },
     { 
