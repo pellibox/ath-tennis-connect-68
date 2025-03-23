@@ -271,6 +271,7 @@ const HomePage = () => {
             { text: "Contattaci", href: '/contact', variant: 'outline' }
           ]}
           overlayOpacity="medium"
+          contentVerticalPosition="top"
         />
         
         <AboutSection 

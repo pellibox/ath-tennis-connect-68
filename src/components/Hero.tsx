@@ -20,6 +20,7 @@ interface HeroProps {
   contentPosition?: 'center' | 'left' | 'right';
   overlayOpacity?: 'light' | 'medium' | 'dark';
   fullHeight?: boolean;
+  contentVerticalPosition?: 'top' | 'center' | 'bottom';
 }
 
 const Hero = ({
@@ -34,6 +35,7 @@ const Hero = ({
   contentPosition = 'center',
   overlayOpacity = 'medium',
   fullHeight = true,
+  contentVerticalPosition = 'center',
 }: HeroProps) => {
   const titleRef = useRef<HTMLHeadingElement>(null);
   const videoRef = useRef<HTMLVideoElement>(null);
@@ -141,6 +143,12 @@ const Hero = ({
     right: 'items-end text-right',
   };
   
+  const verticalPositionClasses = {
+    top: 'justify-start pt-32',
+    center: 'justify-center',
+    bottom: 'justify-end pb-32',
+  };
+  
   const overlayClasses = {
     light: 'bg-black/20',
     medium: 'bg-black/50',
@@ -209,8 +217,9 @@ const Hero = ({
       </div>
       
       <div className={cn(
-        'relative z-10 max-w-3xl px-6 py-24 flex flex-col',
-        positionClasses[contentPosition]
+        'relative z-10 max-w-3xl px-6 py-24 flex flex-col w-full h-full',
+        positionClasses[contentPosition],
+        verticalPositionClasses[contentVerticalPosition]
       )}>
         <h1 
           ref={titleRef}
