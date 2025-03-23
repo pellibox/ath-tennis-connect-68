@@ -7,7 +7,7 @@ import AboutSection from '@/components/AboutSection';
 import RevealAnimation from '@/components/RevealAnimation';
 import ContactSection from '@/components/ContactSection';
 import JoinRevolutionSection from '@/components/JoinRevolutionSection';
-import { Link } from 'react-router-dom';
+import TechnologySection from '@/components/TechnologySection';
 import { useLanguage } from '@/contexts/LanguageContext';
 
 const Method = () => {
@@ -110,6 +110,12 @@ const Method = () => {
             </RevealAnimation>
           </div>
         </section>
+        
+        {/* VICKI Technology Section with ID for anchor link */}
+        <TechnologySection 
+          title="La Tecnologia VICKI™"
+          subtitle="Una rivoluzione nel coaching tennistico che combina visione artificiale, intelligenza artificiale e conoscenze tecniche per massimizzare il potenziale di ogni atleta."
+        />
         
         <AboutSection 
           title="I Vantaggi del Metodo ATH"

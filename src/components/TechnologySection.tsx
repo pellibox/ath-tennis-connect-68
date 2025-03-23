@@ -1,5 +1,5 @@
 
-import { Server, Zap, BarChart3, Activity, Users, LineChart, Rocket, Share2 } from 'lucide-react';
+import { Server, Zap, BarChart3, Activity, Users, LineChart, Rocket, Share2, Brain, Shield, Target, Sparkles, AreaChart, Eye, Cpu, Settings } from 'lucide-react';
 import RevealAnimation from './RevealAnimation';
 import { cn } from '@/lib/utils';
 import { useLanguage } from '@/contexts/LanguageContext';
@@ -17,6 +17,36 @@ const TechnologySection = ({
 }: TechnologySectionProps) => {
   const { t } = useLanguage();
   
+  // Core Vicki features - Visual, Intelligent, Coaching, Knowledge, Insights
+  const coreFeatures = [
+    {
+      icon: <Eye className="w-12 h-12 mb-4 text-ath-clay" />,
+      title: "Visual",
+      description: "Tecnologia di tracking ad alta frequenza per registrare ogni dettaglio del gioco con oltre 70 parametri monitorati."
+    },
+    {
+      icon: <Cpu className="w-12 h-12 mb-4 text-ath-clay" />,
+      title: "Intelligent",
+      description: "Algoritmi predittivi di machine learning per analizzare i dati raccolti e prevedere tendenze di miglioramento."
+    },
+    {
+      icon: <Users className="w-12 h-12 mb-4 text-ath-clay" />,
+      title: "Coaching",
+      description: "Expertise dei coach integrata in una libreria digitale che alimenta suggerimenti personalizzati."
+    },
+    {
+      icon: <Brain className="w-12 h-12 mb-4 text-ath-clay" />,
+      title: "Knowledge",
+      description: "Conoscenze tecniche trasformate in metodologie digitali per suggerimenti personalizzati."
+    },
+    {
+      icon: <Target className="w-12 h-12 mb-4 text-ath-clay" />,
+      title: "Insights",
+      description: "Conversione dei dati in strategie di allenamento su misura per ogni atleta."
+    }
+  ];
+
+  // Technical benefits
   const technologies = [
     {
       icon: <Server className="w-10 h-10 mb-4 text-ath-clay" />,
@@ -40,31 +70,66 @@ const TechnologySection = ({
     }
   ];
 
-  const additionalFeatures = [
+  // Evaluation areas
+  const evaluationAreas = [
+    {
+      icon: <Settings className="w-8 h-8 mb-3 text-ath-clay" />,
+      title: "Tecnica",
+      description: "Analisi biomeccanica completa di tutti i colpi, tracking 3D della racchetta e valutazione del movimento."
+    },
+    {
+      icon: <Target className="w-8 h-8 mb-3 text-ath-clay" />,
+      title: "Tattica",
+      description: "Mappatura degli schemi di gioco, gestione dello scambio e analisi delle situazioni chiave."
+    },
+    {
+      icon: <Activity className="w-8 h-8 mb-3 text-ath-clay" />,
+      title: "Atletica",
+      description: "Monitoraggio del movimento, parametri fisici e valutazione delle capacità fisiche con prevenzione infortuni."
+    },
+    {
+      icon: <Brain className="w-8 h-8 mb-3 text-ath-clay" />,
+      title: "Mentale",
+      description: "Analisi comportamentale, gestione della pressione e valutazione della resilienza durante il gioco."
+    },
+    {
+      icon: <Shield className="w-8 h-8 mb-3 text-ath-clay" />,
+      title: "Medica",
+      description: "Analisi posturale, gestione della salute e monitoraggio per la prevenzione di infortuni."
+    },
+    {
+      icon: <Sparkles className="w-8 h-8 mb-3 text-ath-clay" />,
+      title: "Biochimica",
+      description: "Monitoraggio metabolico, stato nutrizionale e analisi del recupero dopo allenamenti intensivi."
+    }
+  ];
+
+  // Target groups
+  const targetGroups = [
     {
       icon: <Rocket className="w-8 h-8 mb-3 text-ath-clay" />,
-      title: t('tech.excellence.title'),
-      description: t('tech.excellence.desc')
+      title: "Giovani Agonisti (6-12)",
+      description: "Analisi biomeccanica costante con valutazioni tecniche, fisiche e mentali adattate alla crescita."
     },
     {
       icon: <LineChart className="w-8 h-8 mb-3 text-ath-clay" />,
-      title: t('tech.continuous.title'),
-      description: t('tech.continuous.desc')
+      title: "Junior Agonisti (13-18)",
+      description: "Analisi in tempo reale di ogni colpo con feedback continuo e prevenzione infortuni."
     },
     {
-      icon: <Users className="w-8 h-8 mb-3 text-ath-clay" />,
-      title: t('tech.global.title'),
-      description: t('tech.global.desc')
+      icon: <AreaChart className="w-8 h-8 mb-3 text-ath-clay" />,
+      title: "Professionisti",
+      description: "Dati integrati con il team tecnico e analisi predittive per ottimizzare ogni dettaglio."
     },
     {
       icon: <Share2 className="w-8 h-8 mb-3 text-ath-clay" />,
-      title: t('tech.comm.title'),
-      description: t('tech.comm.desc')
+      title: "Coach e Club",
+      description: "Strumenti di tracking, analisi e possibilità di creare e monetizzare metodi proprietari."
     }
   ];
 
   return (
-    <section id="technology" className={cn('py-20 px-6 lg:px-10', className)}>
+    <section id="vicki" className={cn('py-20 px-6 lg:px-10', className)}>
       <div className="max-w-7xl mx-auto">
         <RevealAnimation>
           <div className="text-center mb-16 relative">
@@ -100,67 +165,126 @@ const TechnologySection = ({
         
         {subtitle && (
           <RevealAnimation delay={100}>
-            <p className="text-lg text-ath-clay max-w-3xl mx-auto text-center mb-8">{subtitle}</p>
-            <div className="max-w-4xl mx-auto bg-white p-6 rounded-sm shadow-sm mb-12">
-              <p className="text-gray-700 mb-4">
-                VICKI™ è un sistema avanzato di analisi per il tennis che combina visione artificiale, intelligenza artificiale e conoscenze tecniche. Monitora oltre 70 parametri in tempo reale e li trasforma in analisi utili per allenatori e atleti.
-              </p>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
-                <div>
-                  <h4 className="font-medium mb-2">1. Visual – Visione Artificiale</h4>
-                  <p className="text-gray-600 mb-1">Tracking ad alta frequenza di ogni dettaglio del gioco</p>
-                </div>
-                <div>
-                  <h4 className="font-medium mb-2">2. Intelligent – Algoritmi Predittivi</h4>
-                  <p className="text-gray-600 mb-1">Machine learning per prevedere e migliorare le prestazioni</p>
-                </div>
-                <div>
-                  <h4 className="font-medium mb-2">3. Coaching Knowledge</h4>
-                  <p className="text-gray-600 mb-1">Expertise digitale per suggerimenti personalizzati</p>
-                </div>
-                <div>
-                  <h4 className="font-medium mb-2">4. Insight – Personalizzazione</h4>
-                  <p className="text-gray-600 mb-1">Dati convertiti in strategie di allenamento su misura</p>
-                </div>
-              </div>
-            </div>
+            <p className="text-lg text-ath-clay max-w-3xl mx-auto text-center mb-12">{subtitle}</p>
           </RevealAnimation>
         )}
         
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mt-12">
-          {technologies.map((tech, index) => (
-            <RevealAnimation key={index} delay={index * 100}>
-              <div className="text-center p-6 bg-white shadow-sm border border-gray-100 rounded-lg h-full flex flex-col items-center hover:shadow-md transition-shadow">
-                {tech.icon}
-                <h3 className="text-xl font-medium mb-3 text-ath-clay">{tech.title}</h3>
-                <p className="text-gray-600">{tech.description.replace(/VICKI/g, 'Vicki™')}</p>
-              </div>
-            </RevealAnimation>
-          ))}
-        </div>
-        
-        <RevealAnimation delay={400}>
-          <div className="mt-16 text-center">
-            <h4 className="text-xl font-medium mb-8 text-ath-clay">{t('tech.title')}</h4>
-            
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mt-8">
-              {additionalFeatures.map((feature, index) => (
-                <div key={index} className="bg-white p-5 rounded-lg border border-ath-clay border-opacity-20 shadow-sm hover:shadow-md transition-shadow">
-                  <div className="flex items-center mb-3">
+        {/* What is VICKI - core components explained */}
+        <RevealAnimation delay={150}>
+          <div className="mb-16">
+            <h3 className="text-2xl font-medium mb-8 text-center text-ath-clay">Il Significato di VICKI™</h3>
+            <div className="grid grid-cols-1 md:grid-cols-5 gap-6">
+              {coreFeatures.map((feature, index) => (
+                <RevealAnimation key={index} delay={index * 50}>
+                  <div className="bg-white p-6 shadow-sm rounded-md border border-gray-100 text-center h-full flex flex-col items-center hover:shadow-md transition-shadow">
                     {feature.icon}
-                    <h5 className="text-lg font-medium ml-2 text-ath-clay">{feature.title}</h5>
+                    <h4 className="text-xl font-medium mb-3 text-ath-clay">{feature.title}</h4>
+                    <p className="text-gray-600 text-sm">{feature.description}</p>
                   </div>
-                  <p className="text-gray-600 text-sm">{feature.description.replace(/VICKI/g, 'Vicki™')}</p>
-                </div>
+                </RevealAnimation>
               ))}
             </div>
+          </div>
+        </RevealAnimation>
+        
+        {/* VICKI Technology Benefits */}
+        <RevealAnimation delay={200}>
+          <div className="mb-16">
+            <h3 className="text-2xl font-medium mb-8 text-center text-ath-clay">La Tecnologia VICKI™</h3>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+              {technologies.map((tech, index) => (
+                <RevealAnimation key={index} delay={index * 100}>
+                  <div className="text-center p-6 bg-white shadow-sm border border-gray-100 rounded-lg h-full flex flex-col items-center hover:shadow-md transition-shadow">
+                    {tech.icon}
+                    <h3 className="text-xl font-medium mb-3 text-ath-clay">{tech.title}</h3>
+                    <p className="text-gray-600">{tech.description.replace(/VICKI/g, 'Vicki™')}</p>
+                  </div>
+                </RevealAnimation>
+              ))}
+            </div>
+          </div>
+        </RevealAnimation>
+        
+        {/* VICKI Evaluation Areas */}
+        <RevealAnimation delay={300}>
+          <div className="mb-16">
+            <h3 className="text-2xl font-medium mb-8 text-center text-ath-clay">Sistema di Valutazione Integrato</h3>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {evaluationAreas.map((area, index) => (
+                <RevealAnimation key={index} delay={index * 50}>
+                  <div className="bg-white p-5 rounded-lg border border-ath-clay border-opacity-20 shadow-sm hover:shadow-md transition-shadow h-full">
+                    <div className="flex items-center mb-3">
+                      {area.icon}
+                      <h5 className="text-lg font-medium ml-2 text-ath-clay">{area.title}</h5>
+                    </div>
+                    <p className="text-gray-600 text-sm">{area.description}</p>
+                  </div>
+                </RevealAnimation>
+              ))}
+            </div>
+          </div>
+        </RevealAnimation>
+        
+        {/* Target Groups */}
+        <RevealAnimation delay={400}>
+          <div className="mb-16">
+            <h3 className="text-2xl font-medium mb-8 text-center text-ath-clay">Target Groups</h3>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+              {targetGroups.map((group, index) => (
+                <RevealAnimation key={index} delay={index * 50}>
+                  <div className="bg-white p-5 rounded-lg border border-ath-clay border-opacity-20 shadow-sm hover:shadow-md transition-shadow h-full">
+                    <div className="flex items-center mb-3">
+                      {group.icon}
+                      <h5 className="text-lg font-medium ml-2 text-ath-clay">{group.title}</h5>
+                    </div>
+                    <p className="text-gray-600 text-sm">{group.description}</p>
+                  </div>
+                </RevealAnimation>
+              ))}
+            </div>
+          </div>
+        </RevealAnimation>
+        
+        {/* Visual representation of data flow */}
+        <RevealAnimation delay={500}>
+          <div className="relative py-12 px-8 bg-gradient-to-r from-gray-50 to-white rounded-lg border border-gray-100 shadow-sm mb-16">
+            <h3 className="text-2xl font-medium mb-6 text-center text-ath-clay">Il Potere di VICKI™</h3>
             
-            <div className="mt-16 bg-ath-clay bg-opacity-5 p-6 rounded-lg border border-ath-clay border-opacity-20 max-w-4xl mx-auto">
-              <p className="text-ath-clay italic font-medium">
-                {t('tech.quote').replace(/VICKI/g, 'Vicki™')}
-              </p>
-              <p className="text-ath-clay mt-4 font-bold">
-                {t('tech.only').replace(/VICKI/g, 'Vicki™')}
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+              <div className="bg-white p-6 rounded-md shadow-sm border border-ath-clay border-opacity-10 text-center">
+                <Zap className="w-12 h-12 mx-auto mb-4 text-ath-clay" />
+                <h4 className="text-lg font-medium mb-2 text-ath-clay">Potenza Analitica</h4>
+                <p className="text-gray-600 text-sm">Integrazione di visione artificiale e machine learning per analizzare decine di parametri in tempo reale.</p>
+              </div>
+              
+              <div className="bg-white p-6 rounded-md shadow-sm border border-ath-clay border-opacity-10 text-center">
+                <Brain className="w-12 h-12 mx-auto mb-4 text-ath-clay" />
+                <h4 className="text-lg font-medium mb-2 text-ath-clay">Potenza Cognitiva</h4>
+                <p className="text-gray-600 text-sm">Trasformazione di informazioni complesse in conoscenza pratica, apprendendo dall'esperienza dei professionisti.</p>
+              </div>
+              
+              <div className="bg-white p-6 rounded-md shadow-sm border border-ath-clay border-opacity-10 text-center">
+                <Rocket className="w-12 h-12 mx-auto mb-4 text-ath-clay" />
+                <h4 className="text-lg font-medium mb-2 text-ath-clay">Potenza Trasformativa</h4>
+                <p className="text-gray-600 text-sm">Amplificazione dell'expertise umana, personalizzazione degli interventi e accelerazione dello sviluppo in ogni dimensione.</p>
+              </div>
+            </div>
+          </div>
+        </RevealAnimation>
+        
+        {/* Summary quote */}
+        <RevealAnimation delay={600}>
+          <div className="mt-12 bg-ath-clay bg-opacity-5 p-6 rounded-lg border border-ath-clay border-opacity-20 max-w-4xl mx-auto">
+            <p className="text-ath-clay italic font-medium">
+              {t('tech.quote').replace(/VICKI/g, 'Vicki™')}
+            </p>
+            <p className="text-ath-clay mt-4 font-bold">
+              {t('tech.only').replace(/VICKI/g, 'Vicki™')}
+            </p>
+            
+            <div className="mt-6 text-center">
+              <p className="text-ath-clay text-sm">
+                VICKI™ opera come una lente d'ingrandimento nelle mani esperte del coach, trasformando la complessità dei dati in conoscenza pratica immediatamente applicabile.
               </p>
             </div>
           </div>
