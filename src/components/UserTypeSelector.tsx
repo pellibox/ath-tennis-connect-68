@@ -20,6 +20,8 @@ interface UserTypeForm {
 
 interface UserTypeSelectorProps {
   onSelectionComplete: (gender: UserGender, type: UserType) => void;
+  initialGender?: UserGender;
+  initialType?: UserType;
 }
 
 // Save user preferences to localStorage
@@ -35,13 +37,17 @@ export const loadUserPreferences = (): { gender: UserGender | null, type: UserTy
   return { gender, type };
 };
 
-const UserTypeSelector: React.FC<UserTypeSelectorProps> = ({ onSelectionComplete }) => {
-  const [step, setStep] = useState<1 | 2>(1);
+const UserTypeSelector: React.FC<UserTypeSelectorProps> = ({ 
+  onSelectionComplete, 
+  initialGender, 
+  initialType 
+}) => {
+  const [step, setStep] = useState<1 | 2>(initialType ? 2 : 1);
   
   const form = useForm<UserTypeForm>({
     defaultValues: {
-      gender: 'male',
-      type: 'junior'
+      gender: initialGender || 'male',
+      type: initialType || 'junior'
     }
   });
   
