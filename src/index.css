@@ -88,8 +88,9 @@
     overscroll-behavior: none;
   }
 
+  /* Remove the circular dependency by not using @apply */
   .font-display {
-    @apply font-display;
+    font-family: 'Playfair Display', serif;
   }
 }
 

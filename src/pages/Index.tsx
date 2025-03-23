@@ -1,4 +1,3 @@
-
 import { useEffect } from 'react';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
@@ -71,13 +70,13 @@ const HomePage = () => {
   const testimonials = [
     {
       id: '1',
-      quote: 'ATH has transformed my game. The coaches provide personalized attention, and the facilities are world-class. I've improved more in one year here than in five years elsewhere.',
+      quote: "ATH has transformed my game. The coaches provide personalized attention, and the facilities are world-class. I've improved more in one year here than in five years elsewhere.",
       author: 'Emma Martins',
       role: 'Junior Player, 16'
     },
     {
       id: '2',
-      quote: 'The professional approach at ATH is unmatched. They've helped me not just technically, but mentally and physically as well. It's a complete tennis development ecosystem.',
+      quote: "The professional approach at ATH is unmatched. They've helped me not just technically, but mentally and physically as well. It's a complete tennis development ecosystem.",
       author: 'Michael Johnson',
       role: 'Professional Player'
     },
