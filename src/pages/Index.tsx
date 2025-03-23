@@ -198,7 +198,12 @@ const HomePage = () => {
       id: '3',
       title: 'Campi in Terra Rossa',
       description: 'Quattro campi in terra rossa calibrata, con manutenzione quotidiana e rilevamento parametrico Vicki™ completo.',
-      image: 'https://images.unsplash.com/photo-1622279488220-3c7dd46f7c18?q=80&w=1200'
+      image: '/lovable-uploads/67883085-3eed-4f22-8828-cbbde8355e70.png',
+      features: [
+        'Manutenzione quotidiana professionale',
+        'Calibrazione personalizzata della superficie',
+        'Sistema Vicki™ completo'
+      ]
     },
     {
       id: '4',
