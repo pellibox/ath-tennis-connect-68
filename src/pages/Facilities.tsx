@@ -1,4 +1,3 @@
-
 import { useEffect } from 'react';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
@@ -6,8 +5,8 @@ import FacilitiesSection from '@/components/FacilitiesSection';
 import AboutSection from '@/components/AboutSection';
 import { useLocation } from 'react-router-dom';
 import Hero from '@/components/Hero';
+import JoinRevolutionSection from '@/components/JoinRevolutionSection';
 
-// Updated mock data for facilities with Players Lounge and Headquarters
 const facilities = [
   {
     id: "facility-1",
@@ -88,10 +87,8 @@ const FacilitiesPage = () => {
   const location = useLocation();
   
   useEffect(() => {
-    // Scroll to top when component mounts
     window.scrollTo({ top: 0, behavior: 'smooth' });
     
-    // Check if there's a hash in the URL and scroll to that section
     if (location.hash) {
       const id = location.hash.replace('#', '');
       const element = document.getElementById(id);
@@ -165,6 +162,8 @@ const FacilitiesPage = () => {
             </div>
           </div>
         </section>
+        
+        <JoinRevolutionSection />
         
         <AboutSection 
           title="Tecnologia e Ambiente"
