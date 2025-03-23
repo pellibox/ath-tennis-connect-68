@@ -10,7 +10,7 @@ interface ButtonLinkProps {
   size?: 'sm' | 'md' | 'lg';
   className?: string;
   external?: boolean;
-  style?: React.CSSProperties; // Added style prop
+  style?: React.CSSProperties;
 }
 
 const ButtonLink = ({
@@ -20,13 +20,13 @@ const ButtonLink = ({
   size = 'md',
   className,
   external = false,
-  style, // Added style prop
+  style,
 }: ButtonLinkProps) => {
   const baseClasses = "inline-block text-center transition-all duration-300";
   
   const variantClasses = {
     primary: "bg-black text-white hover:bg-opacity-90",
-    secondary: "bg-white text-black hover:bg-gray-100 border border-black",
+    secondary: "bg-ath-clay text-white hover:bg-opacity-90 border border-ath-clay",
     outline: "bg-transparent text-black border border-black hover:bg-black hover:text-white",
   };
   
