@@ -14,7 +14,7 @@ const Logo = ({ variant = 'default', className = '' }: LogoProps) => {
       <img 
         src="/lovable-uploads/cabb225e-0db8-4830-8967-24942c8f7d52.png" 
         alt="ATH - Advanced Tennis Hub" 
-        className={`w-auto ${isFooter ? 'h-14' : 'h-16'}`}
+        className={`w-auto ${isFooter ? 'h-20' : 'h-24'}`}
       />
     </Link>
   );
