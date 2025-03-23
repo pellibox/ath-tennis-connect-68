@@ -9,6 +9,7 @@ import TestimonialsSection from '@/components/TestimonialsSection';
 import StatsSection from '@/components/StatsSection';
 import FacilitiesSection from '@/components/FacilitiesSection';
 import ContactSection from '@/components/ContactSection';
+import TechnologySection from '@/components/TechnologySection';
 
 const HomePage = () => {
   // Smooth scroll functionality
@@ -181,6 +182,11 @@ const HomePage = () => {
         <StatsSection 
           stats={stats}
           darkBg={true}
+        />
+        
+        <TechnologySection 
+          title="The ATH Technology Advantage"
+          subtitle="Our innovative technology system integrates advanced analytics and AI to revolutionize tennis training"
         />
         
         <FacilitiesSection 
