@@ -40,6 +40,9 @@ const ProgramsSection = ({
   // State to track hover for video cards
   const [hoveredCard, setHoveredCard] = useState<string | null>(null);
   
+  // State to track if videos are ready to play
+  const [videosReady, setVideosReady] = useState<Record<string, boolean>>({});
+  
   // Refs for video elements
   const videoRefs = useRef<Record<string, HTMLVideoElement | null>>({});
   
@@ -68,7 +71,14 @@ const ProgramsSection = ({
     setHoveredCard(null);
     if (videoRefs.current[id]) {
       videoRefs.current[id]?.pause();
+      // Reset video to beginning to ensure poster shows on next hover
+      videoRefs.current[id]!.currentTime = 0;
     }
+  };
+
+  // Handle video loaded metadata
+  const handleVideoLoaded = (id: string) => {
+    setVideosReady(prev => ({ ...prev, [id]: true }));
   };
 
   return (
@@ -111,6 +121,16 @@ const ProgramsSection = ({
                     />
                   ) : program.videoSrc ? (
                     <>
+                      {/* Display poster image as background to prevent white flash */}
+                      <div 
+                        className="absolute inset-0 z-0"
+                        style={{
+                          backgroundImage: `url(${failedImages[program.id] ? getFallbackImage(program) : program.image})`,
+                          backgroundSize: 'cover',
+                          backgroundPosition: 'center'
+                        }}
+                      ></div>
+                      
                       <video 
                         ref={el => videoRefs.current[program.id] = el}
                         src={program.videoSrc}
@@ -118,13 +138,19 @@ const ProgramsSection = ({
                         muted
                         loop
                         playsInline
-                        className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                        className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 relative z-10"
                         onError={() => handleImageError(program.id)}
-                        style={{ display: 'block' }} // Always keep the video element visible
+                        onLoadedMetadata={() => handleVideoLoaded(program.id)}
+                        style={{ 
+                          display: 'block', // Always keep the video element visible
+                          opacity: hoveredCard === program.id ? 1 : 0, // Only show video when hovered
+                          transition: 'opacity 0.3s ease-in-out'
+                        }}
                       />
+                      
                       {/* Overlay with play button that fades on hover */}
                       <div className={cn(
-                        "absolute inset-0 flex items-center justify-center bg-black bg-opacity-30 transition-opacity duration-300",
+                        "absolute inset-0 z-20 flex items-center justify-center bg-black bg-opacity-30 transition-opacity duration-300",
                         hoveredCard === program.id ? "opacity-0" : "opacity-100"
                       )}>
                         <div className="w-12 h-12 rounded-full bg-white/80 flex items-center justify-center">
