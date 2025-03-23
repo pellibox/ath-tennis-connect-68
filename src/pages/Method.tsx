@@ -1,4 +1,3 @@
-
 import { useEffect } from 'react';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
@@ -115,6 +114,7 @@ const Method = () => {
         <TechnologySection 
           title="La Tecnologia VICKI™"
           subtitle="Una rivoluzione nel coaching tennistico che combina visione artificiale, intelligenza artificiale e conoscenze tecniche per massimizzare il potenziale di ogni atleta."
+          id="vicki"
         />
         
         <AboutSection 

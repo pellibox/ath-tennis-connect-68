@@ -194,17 +194,22 @@ const Programs = () => {
     }
   ];
 
-  // Group programs into categories
+  // Reorder program categories as requested: Elite, Junior, Coach, Adults, Summer Camps
   const programCategories = [
+    {
+      id: 'elite-program',
+      title: 'Elite Program',
+      programs: elitePrograms
+    },
     {
       id: 'junior-program',
       title: 'Junior Program',
       programs: juniorPrograms
     },
     {
-      id: 'elite-program',
-      title: 'Elite Program',
-      programs: elitePrograms
+      id: 'coach-private',
+      title: 'Coach & Private Lessons',
+      programs: coachPrograms
     },
     {
       id: 'adult-training',
@@ -215,11 +220,6 @@ const Programs = () => {
       id: 'summer-camps',
       title: 'Summer Camps',
       programs: summerCamps
-    },
-    {
-      id: 'coach-private',
-      title: 'Coach & Private Lessons',
-      programs: coachPrograms
     }
   ];
 
