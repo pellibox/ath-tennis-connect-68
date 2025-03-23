@@ -1,6 +1,6 @@
 
 import React from 'react';
-import { Activity, Users, Calendar, Award, FileText, MapPin, School, Target, LayoutGrid } from 'lucide-react';
+import { Activity, Users, Calendar, Award, FileText, MapPin, School, Target, LayoutGrid, Zap, BookOpen, Server } from 'lucide-react';
 import ButtonLink from './ButtonLink';
 import RevealAnimation from './RevealAnimation';
 import { cn } from '@/lib/utils';
@@ -18,8 +18,22 @@ interface StatsAndNavSectionProps {
 }
 
 const StatsAndNavSection = ({ stats, className }: StatsAndNavSectionProps) => {
-  // Navigation sections
+  // Navigation sections - Enhanced with more descriptive text and refined imagery
   const navSections = [
+    {
+      title: 'Chi Siamo',
+      icon: <School className="w-10 h-10 text-ath-clay mb-4" />,
+      description: 'Scopri la nostra visione e missione',
+      href: '/about',
+      image: '/lovable-uploads/9e980860-a20e-4ae3-839c-6d91f306bd07.png'
+    },
+    {
+      title: 'Il Metodo',
+      icon: <BookOpen className="w-10 h-10 text-ath-clay mb-4" />,
+      description: 'Comprendi la metodologia ATH',
+      href: '/method',
+      image: '/lovable-uploads/fc6643c2-4357-4c86-9e52-6f33d698668f.png'
+    },
     {
       title: 'Programmi',
       icon: <Target className="w-10 h-10 text-ath-clay mb-4" />,
@@ -29,24 +43,17 @@ const StatsAndNavSection = ({ stats, className }: StatsAndNavSectionProps) => {
     },
     {
       title: 'Tecnologia',
-      icon: <FileText className="w-10 h-10 text-ath-clay mb-4" />,
+      icon: <Zap className="w-10 h-10 text-ath-clay mb-4" />,
       description: 'Esplora il sistema Vicki™ e i suoi benefici',
       href: '/technology',
-      image: '/lovable-uploads/cabb225e-0db8-4830-8967-24942c8f7d52.png'
+      image: '/lovable-uploads/8f2b30a1-cb65-453e-ba82-d9721a192426.png'
     },
     {
       title: 'Strutture',
-      icon: <LayoutGrid className="w-10 h-10 text-ath-clay mb-4" />,
+      icon: <Server className="w-10 h-10 text-ath-clay mb-4" />,
       description: 'Visita i nostri campi e spazi di allenamento',
       href: '/facilities',
       image: '/lovable-uploads/a16b623a-92f5-4f89-9c3d-d01262778f95.png'
-    },
-    {
-      title: 'Il Metodo',
-      icon: <School className="w-10 h-10 text-ath-clay mb-4" />,
-      description: 'Comprendi la metodologia ATH',
-      href: '/method',
-      image: '/lovable-uploads/b0cf5344-de4c-404e-9c7b-916d765a8df0.png'
     },
     {
       title: 'Coach',
@@ -96,7 +103,7 @@ const StatsAndNavSection = ({ stats, className }: StatsAndNavSectionProps) => {
           </div>
         </div>
 
-        {/* Navigation Cards */}
+        {/* Navigation Cards - Updated with more emphasis as main navigation */}
         <RevealAnimation delay={200}>
           <h3 className="text-2xl md:text-3xl font-display text-center mb-12">
             Esplora ATH
@@ -106,7 +113,7 @@ const StatsAndNavSection = ({ stats, className }: StatsAndNavSectionProps) => {
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
           {navSections.map((section, index) => (
             <RevealAnimation key={section.title} delay={index * 100}>
-              <div className="group relative overflow-hidden rounded-xl shadow-lg h-80">
+              <div className="group relative overflow-hidden rounded-xl shadow-lg h-80 hover:shadow-xl transition-all">
                 <img 
                   src={section.image} 
                   alt={section.title} 
