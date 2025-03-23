@@ -174,7 +174,11 @@ const ProgramsSection = ({
             <div 
               className="w-full h-full vimeo-container" 
               dangerouslySetInnerHTML={{ 
-                __html: program.vimeoEmbed.replace('autoplay=1', `autoplay=${hoveredCard === program.id ? '1' : '0'}`) 
+                __html: program.vimeoEmbed
+                  .replace(/autoplay=0/g, hoveredCard === program.id ? 'autoplay=1' : 'autoplay=0')
+                  // Add controls=0 and background=1 for better visual appearance
+                  .replace(/controls=1/g, 'controls=0')
+                  .replace(/background=0/g, 'background=1')
               }}
             />
           ) : program.videoSrc ? (

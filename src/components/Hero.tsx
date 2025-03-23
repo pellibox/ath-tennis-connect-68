@@ -1,3 +1,4 @@
+
 import { useEffect, useRef, useState } from 'react';
 import ButtonLink from './ButtonLink';
 import { cn } from '@/lib/utils';
@@ -78,6 +79,16 @@ const Hero = ({
     }
     return url;
   };
+
+  // Handle Vimeo embed autoplay
+  useEffect(() => {
+    if (vimeoEmbed) {
+      // Make sure autoplay=1 is in the Vimeo embed code
+      if (!vimeoEmbed.includes('autoplay=1')) {
+        console.log('Vimeo embed does not include autoplay=1, videos will not autoplay');
+      }
+    }
+  }, [vimeoEmbed]);
 
   // Handle video element loading and playing
   useEffect(() => {
@@ -239,10 +250,19 @@ const Hero = ({
           </>
         )}
         
-        {/* Vimeo embed when provided */}
+        {/* Vimeo embed when provided - fixed autoplay and background parameters */}
         {vimeoEmbed && (
           <div className="absolute inset-0 w-full h-full bg-black">
-            <div className="w-full h-full" dangerouslySetInnerHTML={{ __html: vimeoEmbed }} />
+            {/* Force autoplay, loop, and background mode in the iframe URL if not already present */}
+            <div 
+              className="w-full h-full" 
+              dangerouslySetInnerHTML={{ 
+                __html: vimeoEmbed
+                  .replace('autoplay=0', 'autoplay=1')
+                  .replace('background=0', 'background=1')
+                  .replace('loop=0', 'loop=1')
+              }} 
+            />
             {/* Thinner overlay to ensure text readability without darkening video too much */}
             <div className="absolute inset-0 bg-black/30"></div>
           </div>
