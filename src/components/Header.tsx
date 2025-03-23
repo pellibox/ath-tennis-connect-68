@@ -1,3 +1,4 @@
+
 import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Menu, X, Activity, Zap, BookOpen, Server, Home, Users } from 'lucide-react';
@@ -56,6 +57,12 @@ const Header = () => {
   // Handle profile reset
   const handleProfileReset = () => {
     // Clear user profile state
+    setUserProfile({ gender: null, type: null });
+  };
+  
+  // Handle profile deletion
+  const handleProfileDelete = () => {
+    // Update local state
     setUserProfile({ gender: null, type: null });
   };
 
@@ -172,7 +179,8 @@ const Header = () => {
                   <ProfileIndicator 
                     gender={userProfile.gender as UserGender} 
                     type={userProfile.type as UserType} 
-                    onEditClick={() => {}}
+                    onEditClick={() => setDialogOpen(true)}
+                    onDeleteProfile={handleProfileDelete}
                   />
                 </div>
               ) : (

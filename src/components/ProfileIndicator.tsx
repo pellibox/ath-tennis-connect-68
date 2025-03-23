@@ -2,20 +2,37 @@
 import React from 'react';
 import { UserGender, UserType } from './UserTypeSelector';
 import { Button } from "@/components/ui/button";
-import { User, GraduationCap, Target, Briefcase, UserCog, Users, Edit } from 'lucide-react';
+import { User, GraduationCap, Target, Briefcase, UserCog, Users, Edit, X } from 'lucide-react';
 import {
   HoverCard,
   HoverCardContent,
   HoverCardTrigger,
 } from "@/components/ui/hover-card";
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+  AlertDialogTrigger,
+} from "@/components/ui/alert-dialog";
 
 interface ProfileIndicatorProps {
   gender: UserGender;
   type: UserType;
   onEditClick: () => void;
+  onDeleteProfile?: () => void;
 }
 
-const ProfileIndicator: React.FC<ProfileIndicatorProps> = ({ gender, type, onEditClick }) => {
+const ProfileIndicator: React.FC<ProfileIndicatorProps> = ({ 
+  gender, 
+  type, 
+  onEditClick,
+  onDeleteProfile 
+}) => {
   // Get icon based on user type
   const getTypeIcon = () => {
     switch (type) {
@@ -57,6 +74,21 @@ const ProfileIndicator: React.FC<ProfileIndicatorProps> = ({ gender, type, onEdi
     return gender === 'male' ? 'Uomo' : 'Donna';
   };
   
+  // Handle profile deletion
+  const handleDeleteProfile = () => {
+    // Clear user profile from localStorage
+    localStorage.removeItem('ath_user_gender');
+    localStorage.removeItem('ath_user_type');
+    
+    // If callback provided, call it
+    if (onDeleteProfile) {
+      onDeleteProfile();
+    }
+    
+    // Reload page to reset the UI
+    window.location.reload();
+  };
+  
   return (
     <HoverCard>
       <HoverCardTrigger asChild>
@@ -90,6 +122,32 @@ const ProfileIndicator: React.FC<ProfileIndicatorProps> = ({ gender, type, onEdi
           <p className="text-xs text-gray-500 mt-2">
             Contenuti personalizzati in base al tuo profilo
           </p>
+          
+          <AlertDialog>
+            <AlertDialogTrigger asChild>
+              <Button variant="outline" size="sm" className="w-full mt-4 text-red-500 border-red-200 hover:bg-red-50 flex items-center justify-center gap-2">
+                <X size={14} />
+                <span>Elimina profilo</span>
+              </Button>
+            </AlertDialogTrigger>
+            <AlertDialogContent>
+              <AlertDialogHeader>
+                <AlertDialogTitle>Eliminare il profilo?</AlertDialogTitle>
+                <AlertDialogDescription>
+                  Vuoi davvero eliminare le tue preferenze di profilo? Tornerai alla navigazione standard senza contenuti personalizzati.
+                </AlertDialogDescription>
+              </AlertDialogHeader>
+              <AlertDialogFooter>
+                <AlertDialogCancel>Annulla</AlertDialogCancel>
+                <AlertDialogAction 
+                  onClick={handleDeleteProfile}
+                  className="bg-red-500 hover:bg-red-600"
+                >
+                  Elimina
+                </AlertDialogAction>
+              </AlertDialogFooter>
+            </AlertDialogContent>
+          </AlertDialog>
         </div>
       </HoverCardContent>
     </HoverCard>
