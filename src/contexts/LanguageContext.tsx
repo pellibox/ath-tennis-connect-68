@@ -13,7 +13,7 @@ interface LanguageContextType {
   t: (key: string) => string;
 }
 
-const translationsMap = {
+const translationsMap: Record<Language, Record<string, string>> = {
   en: enTranslations,
   it: itTranslations,
   fr: frTranslations,
@@ -29,10 +29,12 @@ export const LanguageProvider: React.FC<{ children: React.ReactNode }> = ({ chil
     return savedLanguage && ['en', 'it', 'fr', 'de'].includes(savedLanguage) ? savedLanguage : 'en';
   });
   
-  const [translations, setTranslations] = useState(translationsMap.en);
+  const [translations, setTranslations] = useState<Record<string, string>>(translationsMap.en);
 
   // Load translations when language changes
   useEffect(() => {
+    console.log('Language changed to:', language);
+    console.log('Loading translations for:', language);
     setTranslations(translationsMap[language] || translationsMap.en);
     // Save language preference to localStorage
     localStorage.setItem('language', language);

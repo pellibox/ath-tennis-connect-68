@@ -24,6 +24,7 @@ const Header = () => {
     };
 
     window.addEventListener('scroll', handleScroll);
+    handleScroll(); // Initial check
 
     return () => {
       window.removeEventListener('scroll', handleScroll);
@@ -91,7 +92,10 @@ const Header = () => {
 
         {/* Mobile Menu Button */}
         <button
-          className="lg:hidden z-50 text-black flex items-center"
+          className={cn(
+            "lg:hidden z-50 flex items-center",
+            isScrolled || isMenuOpen ? "text-black" : "text-white"
+          )}
           onClick={toggleMenu}
           aria-expanded={isMenuOpen}
           aria-label="Toggle menu"
