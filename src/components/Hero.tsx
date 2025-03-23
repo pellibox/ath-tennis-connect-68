@@ -1,4 +1,3 @@
-
 import { useEffect, useRef, useState } from 'react';
 import ButtonLink from './ButtonLink';
 import { cn } from '@/lib/utils';
@@ -43,7 +42,7 @@ const Hero = ({
   const [videoError, setVideoError] = useState(false);
   const [videoLoaded, setVideoLoaded] = useState(false);
   const [videoPlaying, setVideoPlaying] = useState(false);
-  const [fadeToBlack, setFadeToBlack] = useState(false);
+  const [blackOverlay, setBlackOverlay] = useState(false);
   
   // Default fallback image if the main image fails to load
   const fallbackImage = "https://images.unsplash.com/photo-1518005068251-37900150dfca?q=80&w=1920";
@@ -106,31 +105,44 @@ const Hero = ({
           console.log('Video loaded successfully');
           setVideoLoaded(true);
           
-          // First fade to black
-          setFadeToBlack(true);
+          // First show black overlay
+          setBlackOverlay(true);
           
-          // Then after a short delay, start playing and fade in the video
+          // Then after a delay, start playing and fade in the video
           setTimeout(() => {
             try {
               // Try to play the video
               video.play()
                 .then(() => {
                   console.log('Video playback started successfully');
-                  setVideoPlaying(true);
+                  // Add a slight delay before showing the video (fading from black)
+                  setTimeout(() => {
+                    setVideoPlaying(true);
+                  }, 300);
                 })
                 .catch(err => {
                   console.warn('Auto-play failed:', err);
+                  setBlackOverlay(false); // Hide black overlay if playback fails
                   // On user interaction attempt to play again
                   document.addEventListener('click', () => {
-                    video.play()
-                      .then(() => setVideoPlaying(true))
-                      .catch(e => console.warn('Play on click failed:', e));
+                    setBlackOverlay(true); // Show black overlay again
+                    setTimeout(() => {
+                      video.play()
+                        .then(() => {
+                          setTimeout(() => setVideoPlaying(true), 300);
+                        })
+                        .catch(e => {
+                          console.warn('Play on click failed:', e);
+                          setBlackOverlay(false); // Hide black overlay if playback fails
+                        });
+                    }, 200);
                   }, { once: true });
                 });
             } catch (err) {
               console.warn('Failed to start video:', err);
+              setBlackOverlay(false); // Hide black overlay if playback fails
             }
-          }, 400); // Delay to allow fade to black
+          }, 400); // Delay to allow black overlay to be visible
           
           toast.success('Video caricato con successo', {
             duration: 2000,
@@ -187,27 +199,26 @@ const Hero = ({
         {/* Background system - condition rendering based on provided props */}
         {!vimeoEmbed && (
           <>
-            {/* Standard image background */}
+            {/* Standard image background - remains visible until black overlay shows */}
             <img 
               src={imageError ? fallbackImage : (imageSrc || fallbackImage)} 
               alt="Background" 
               className={cn(
-                "object-cover w-full h-full",
-                fadeToBlack ? 'opacity-0' : 'opacity-100',
-                'transition-opacity duration-800'
+                "object-cover w-full h-full transition-opacity duration-500",
+                blackOverlay ? 'opacity-0' : 'opacity-100'
               )}
               onError={handleImageError}
             />
             
-            {/* Black transition layer */}
+            {/* Black transition layer - shows during the transition */}
             <div 
               className="absolute inset-0 bg-black transition-opacity duration-500"
               style={{
-                opacity: fadeToBlack && !videoPlaying ? 1 : 0
+                opacity: blackOverlay && !videoPlaying ? 1 : 0
               }}
-            ></div>
+            />
             
-            {/* Video background if provided */}
+            {/* Video background if provided - fades in from black */}
             {videoSrc && !videoError && (
               <video
                 ref={videoRef}
@@ -217,9 +228,8 @@ const Hero = ({
                 playsInline
                 poster={videoPoster || imageSrc}
                 className={cn(
-                  "absolute inset-0 object-cover w-full h-full",
-                  videoPlaying ? 'opacity-100' : 'opacity-0',
-                  'transition-opacity duration-800'
+                  "absolute inset-0 object-cover w-full h-full transition-opacity duration-800",
+                  videoPlaying ? 'opacity-100' : 'opacity-0'
                 )}
               />
             )}

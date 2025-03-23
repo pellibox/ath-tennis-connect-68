@@ -46,8 +46,8 @@ const ProgramsSection = ({
   // State to track if videos are actually playing
   const [videosPlaying, setVideosPlaying] = useState<Record<string, boolean>>({});
   
-  // State to track transition to black
-  const [blackTransition, setBlackTransition] = useState<Record<string, boolean>>({});
+  // State to track black overlay visibility
+  const [blackOverlay, setBlackOverlay] = useState<Record<string, boolean>>({});
   
   // Refs for video elements
   const videoRefs = useRef<Record<string, HTMLVideoElement | null>>({});
@@ -66,43 +66,66 @@ const ProgramsSection = ({
   const handleMouseEnter = (id: string) => {
     setHoveredCard(id);
     
-    // First set black transition
-    setBlackTransition(prev => ({ ...prev, [id]: true }));
+    // Show black overlay immediately
+    setBlackOverlay(prev => ({ ...prev, [id]: true }));
     
-    // Then attempt to play the video after a small delay
-    setTimeout(() => {
-      if (videoRefs.current[id]) {
-        videoRefs.current[id]?.play().then(() => {
-          setVideosPlaying(prev => ({ ...prev, [id]: true }));
-        }).catch(err => {
-          console.log(`Failed to play video for ID: ${id}`, err);
-          setVideosPlaying(prev => ({ ...prev, [id]: false }));
-        });
-      }
-    }, 300); // Short delay for black background to appear
+    // Load the video and get it ready to play
+    if (videoRefs.current[id]) {
+      // Set currentTime to 0 to ensure we start from the beginning
+      videoRefs.current[id]!.currentTime = 0;
+      
+      // Preload the video
+      videoRefs.current[id]!.load();
+      
+      // Wait a moment for the black overlay to be visible, then try to play
+      setTimeout(() => {
+        try {
+          const playPromise = videoRefs.current[id]?.play();
+          if (playPromise !== undefined) {
+            playPromise.then(() => {
+              console.log(`Video playing for ID: ${id}`);
+              // Wait a short moment, then show the video (fade from black to video)
+              setTimeout(() => {
+                setVideosPlaying(prev => ({ ...prev, [id]: true }));
+              }, 300);
+            }).catch(err => {
+              console.log(`Failed to play video for ID: ${id}`, err);
+            });
+          }
+        } catch (error) {
+          console.error("Error playing video:", error);
+        }
+      }, 200); // Short delay before attempting to play
+    }
   };
 
   // Handle mouse leave for video cards
   const handleMouseLeave = (id: string) => {
     setHoveredCard(null);
+    
+    // Hide the video first
     setVideosPlaying(prev => ({ ...prev, [id]: false }));
-    setBlackTransition(prev => ({ ...prev, [id]: false }));
+    
+    // Wait a bit to hide the black overlay 
+    setTimeout(() => {
+      setBlackOverlay(prev => ({ ...prev, [id]: false }));
+    }, 200);
     
     if (videoRefs.current[id]) {
-      videoRefs.current[id]?.pause();
-      // Reset video to beginning to ensure poster shows on next hover
-      videoRefs.current[id]!.currentTime = 0;
+      try {
+        videoRefs.current[id]?.pause();
+        // Reset video to beginning for next hover
+        videoRefs.current[id]!.currentTime = 0;
+      } catch (error) {
+        console.error("Error pausing video:", error);
+      }
     }
   };
 
   // Handle video loaded metadata
   const handleVideoLoaded = (id: string) => {
+    console.log(`Video loaded for ID: ${id}`);
     setVideosReady(prev => ({ ...prev, [id]: true }));
-  };
-
-  // Handle video playing event
-  const handleVideoPlaying = (id: string) => {
-    setVideosPlaying(prev => ({ ...prev, [id]: true }));
   };
 
   return (
@@ -129,7 +152,7 @@ const ProgramsSection = ({
           {programs.map((program, index) => (
             <RevealAnimation key={program.id} delay={index * 50} className="h-full">
               <div 
-                className="group h-full flex flex-col border border-gray-200 bg-white transition-all hover:shadow-sm"
+                className="group h-full flex flex-col border border-gray-200 bg-white transition-all hover:shadow-sm overflow-hidden"
                 onMouseEnter={() => program.videoSrc && handleMouseEnter(program.id)}
                 onMouseLeave={() => program.videoSrc && handleMouseLeave(program.id)}
               >
@@ -140,53 +163,47 @@ const ProgramsSection = ({
                       dangerouslySetInnerHTML={{ 
                         __html: program.vimeoEmbed.replace('autoplay=1', `autoplay=${hoveredCard === program.id ? '1' : '0'}`) 
                       }}
-                      onMouseEnter={() => handleMouseEnter(program.id)}
-                      onMouseLeave={() => handleMouseLeave(program.id)}
                     />
                   ) : program.videoSrc ? (
                     <>
-                      {/* Initial image when not hovered */}
-                      <div 
+                      {/* Initial background image (always visible when video not playing) */}
+                      <img 
+                        src={failedImages[program.id] ? getFallbackImage(program) : program.image} 
+                        alt={program.title}
                         className={cn(
-                          "absolute inset-0 z-0 transition-opacity duration-500",
-                          (hoveredCard === program.id && blackTransition[program.id]) ? "opacity-0" : "opacity-100"
+                          "absolute inset-0 w-full h-full object-cover transition-opacity duration-300",
+                          blackOverlay[program.id] ? "opacity-0" : "opacity-100"
                         )}
-                        style={{
-                          backgroundImage: `url(${failedImages[program.id] ? getFallbackImage(program) : program.image})`,
-                          backgroundSize: 'cover',
-                          backgroundPosition: 'center'
-                        }}
-                      ></div>
+                        onError={() => handleImageError(program.id)}
+                      />
                       
-                      {/* Black background layer that appears on hover */}
+                      {/* Black overlay (visible during transition) */}
                       <div 
-                        className="absolute inset-0 z-10 bg-black transition-opacity duration-300"
+                        className="absolute inset-0 bg-black transition-opacity duration-300"
                         style={{
-                          opacity: hoveredCard === program.id && blackTransition[program.id] && !videosPlaying[program.id] ? 1 : 0
+                          opacity: blackOverlay[program.id] && !videosPlaying[program.id] ? 1 : 0,
+                          zIndex: 1
                         }}
                       ></div>
                       
+                      {/* Video element (initially hidden) */}
                       <video 
                         ref={el => videoRefs.current[program.id] = el}
                         src={program.videoSrc}
-                        poster={failedImages[program.id] ? getFallbackImage(program) : program.image}
                         muted
                         loop
                         playsInline
-                        className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 absolute inset-0 z-20"
-                        onError={() => handleImageError(program.id)}
+                        className="absolute inset-0 w-full h-full object-cover transition-opacity duration-700"
                         onLoadedMetadata={() => handleVideoLoaded(program.id)}
-                        onPlaying={() => handleVideoPlaying(program.id)}
                         style={{ 
-                          display: 'block', // Always keep the video element visible
-                          opacity: videosPlaying[program.id] ? 1 : 0, // Only show video when actually playing
-                          transition: 'opacity 0.8s ease-in-out'
+                          opacity: videosPlaying[program.id] ? 1 : 0,
+                          zIndex: 2
                         }}
                       />
                       
-                      {/* Overlay with play button that fades on hover */}
+                      {/* Play button overlay */}
                       <div className={cn(
-                        "absolute inset-0 z-30 flex items-center justify-center bg-black bg-opacity-30 transition-opacity duration-300",
+                        "absolute inset-0 z-10 flex items-center justify-center bg-black/30 transition-opacity duration-300",
                         hoveredCard === program.id ? "opacity-0" : "opacity-100"
                       )}>
                         <div className="w-12 h-12 rounded-full bg-white/80 flex items-center justify-center">
