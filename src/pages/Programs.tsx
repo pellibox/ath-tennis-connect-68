@@ -7,8 +7,11 @@ import AboutSection from '@/components/AboutSection';
 import RevealAnimation from '@/components/RevealAnimation';
 import ContactSection from '@/components/ContactSection';
 import { Link } from 'react-router-dom';
+import { useLanguage } from '@/contexts/LanguageContext';
 
 const Programs = () => {
+  const { t } = useLanguage();
+  
   // Smooth scroll functionality
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -84,34 +87,22 @@ const Programs = () => {
     },
     {
       id: '5',
-      title: 'Genitore/Tutor (6-12 anni)',
+      title: 'Genitore/Tutor (Giovani e Junior Agonisti 6-18 anni)',
       description: 'Supporto informativo e coinvolgimento nel percorso di sviluppo del giovane atleta.',
       image: 'https://images.unsplash.com/photo-1515377905703-c4788e51af15?q=80&w=2070&auto=format&fit=crop',
-      link: '/programs/parent-young',
+      link: '/programs/parent',
       features: [
-        'Accesso a report semplici e visualizzabili online',
-        'Streaming di allenamenti per seguire i progressi',
-        'Aggiornamenti sintetici su tecnica, crescita e stato psico-fisico',
-        'Consigli pratici per sostenere il percorso sportivo senza interferenze',
-        'Canali diretti con il coach per feedback e obiettivi'
+        'Accesso a report semplici e leggibili, con dati tecnici, fisici e mentali',
+        'Possibilità di seguire in streaming allenamenti e partite',
+        'Aggiornamenti regolari sull\'evoluzione tecnica e psico-fisica del ragazzo/a',
+        'Canali diretti con il coach per ricevere feedback chiari e condividere obiettivi',
+        'Analisi statistiche semplificate con visione d\'insieme dell\'andamento',
+        'Supporto pratico per accompagnare il percorso sportivo senza pressioni inutili',
+        'Filtraggio automatico dei dati per evitare interpretazioni errate o fuorvianti'
       ]
     },
     {
       id: '6',
-      title: 'Genitore/Tutor (13-18 anni)',
-      description: 'Coinvolgimento attivo nel percorso agonistico dell\'atleta junior.',
-      image: 'https://images.unsplash.com/photo-1533107862482-0e6974b06ec4?q=80&w=2071&auto=format&fit=crop',
-      link: '/programs/parent-junior',
-      features: [
-        'Accesso completo ai dati delle sessioni',
-        'Analisi delle statistiche con visione d\'insieme',
-        'Possibilità di seguire in streaming le partite',
-        'Confronto continuo con i coach su obiettivi e strategia',
-        'Supporto alla comprensione dei dati senza interpretazioni errate'
-      ]
-    },
-    {
-      id: '7',
       title: 'Amatori',
       description: 'Percorsi flessibili per giocatori amatoriali che vogliono migliorare le proprie capacità.',
       image: 'https://images.unsplash.com/photo-1535131749006-b7f58c99034b?q=80&w=2070&auto=format&fit=crop',
