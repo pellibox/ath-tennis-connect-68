@@ -33,9 +33,11 @@ const ContactPage = () => {
         <Hero
           title="Contattaci"
           subtitle="Per informazioni, prenotazioni o collaborazioni"
-          imageSrc="https://images.unsplash.com/photo-1576458088443-04a19bb13da6?q=80&w=2070"
+          imageSrc="/lovable-uploads/b06f970d-6ca3-4c8a-b55a-92ec5bc78f6a.png"
           fullHeight={false}
           overlayOpacity="dark"
+          contentPosition="center"
+          contentVerticalPosition="bottom"
         />
         
         <ContactSection 

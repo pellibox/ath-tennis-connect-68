@@ -1,4 +1,3 @@
-
 import { useState } from 'react';
 import { Mail, Phone, MapPin } from 'lucide-react';
 import RevealAnimation from './RevealAnimation';
