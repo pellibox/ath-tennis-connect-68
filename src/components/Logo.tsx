@@ -12,7 +12,7 @@ const Logo = ({ variant = 'default', className = '' }: LogoProps) => {
   return (
     <Link to="/" className={`flex items-center ${className}`}>
       <img 
-        src="/lovable-uploads/ca117fb6-0c83-4d3a-865b-e3a4b5b743a7.png" 
+        src="/lovable-uploads/cabb225e-0db8-4830-8967-24942c8f7d52.png" 
         alt="ATH - Advanced Tennis Hub" 
         className={`w-auto ${isFooter ? 'h-14' : 'h-16'}`}
       />
