@@ -75,10 +75,11 @@ const facilities = [
     image: "/lovable-uploads/38147937-4cd3-4caa-9a19-c801e8255f36.png",
     features: [
       "Design architettonico all'avanguardia",
-      "Illuminazione LED perimetrale",
-      "Spazi amministrativi e direzionali",
-      "Vetrate a tutta altezza",
-      "Materiali premium e finiture di alta qualità"
+      "Spazi amministrativi e direzionali con sistemi di visualizzazione dei campi",
+      "Video analisi con Vicki™ in stanze dedicate",
+      "Spogliatoi e aree recovery con ice bath, sauna e bagno turco",
+      "Ristorante con dehor e vista su campo centrale",
+      "Aree direzionali, locali medici e proshop"
     ]
   }
 ];
