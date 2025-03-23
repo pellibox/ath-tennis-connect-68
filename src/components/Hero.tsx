@@ -1,4 +1,3 @@
-
 import { useEffect, useRef, useState } from 'react';
 import ButtonLink from './ButtonLink';
 import { cn } from '@/lib/utils';
@@ -35,6 +34,7 @@ const Hero = ({
   const titleRef = useRef<HTMLHeadingElement>(null);
   const videoRef = useRef<HTMLVideoElement>(null);
   const [imageError, setImageError] = useState(false);
+  const [videoError, setVideoError] = useState(false);
   
   // Default fallback image if the main image fails to load
   const fallbackImage = "https://source.unsplash.com/featured/1920x1080/?tennis,court";
@@ -58,17 +58,33 @@ const Hero = ({
     }
   }, [title]); // Re-run when title changes (language changes)
   
-  // Handle video element errors
+  // Handle video element errors and start playing
   useEffect(() => {
     const video = videoRef.current;
     if (video) {
       const handleError = () => {
         console.error('Video failed to load:', videoSrc);
+        setVideoError(true);
+      };
+      
+      const handleLoadedData = () => {
+        try {
+          video.play().catch(err => {
+            console.warn('Auto-play failed:', err);
+            // Keep attempting to play on user interaction
+            document.addEventListener('click', () => video.play(), { once: true });
+          });
+        } catch (err) {
+          console.warn('Failed to start video:', err);
+        }
       };
       
       video.addEventListener('error', handleError);
+      video.addEventListener('loadeddata', handleLoadedData);
+      
       return () => {
         video.removeEventListener('error', handleError);
+        video.removeEventListener('loadeddata', handleLoadedData);
       };
     }
   }, [videoSrc]);
@@ -99,7 +115,7 @@ const Hero = ({
       )}
     >
       <div className="absolute inset-0 w-full h-full">
-        {videoSrc ? (
+        {videoSrc && !videoError ? (
           <video
             ref={videoRef}
             autoPlay
@@ -108,6 +124,7 @@ const Hero = ({
             playsInline
             poster={videoPoster || imageSrc}
             className="object-cover w-full h-full"
+            onError={() => setVideoError(true)}
           >
             <source src={videoSrc} type="video/mp4" />
             {/* Fallback to image if video can't play */}
@@ -154,7 +171,7 @@ const Hero = ({
           )}>
             {buttons.map((button, index) => (
               <ButtonLink
-                key={`${button.text}-${index}`} // Use text as part of key to force re-render on text change
+                key={`${button.text}-${index}`}
                 href={button.href}
                 variant={button.variant || (index === 0 ? 'primary' : 'outline')}
                 className={cn(
