@@ -130,7 +130,7 @@ const UserTypeSelector: React.FC<UserTypeSelectorProps> = ({ onSelectionComplete
                         <SelectItem value="performance">
                           <div className="flex items-center">
                             <Target className="mr-2 h-4 w-4" />
-                            <span>Performance Agonista</span>
+                            <span>Agonista performance</span>
                           </div>
                         </SelectItem>
                         <SelectItem value="professional">
