@@ -19,22 +19,22 @@ const TechnologySection = ({
   
   const technologies = [
     {
-      icon: <Server className="w-10 h-10 mb-4 text-purple-600" />,
+      icon: <Server className="w-10 h-10 mb-4 text-ath-clay" />,
       title: t('tech.data.title'),
       description: t('tech.data.desc')
     },
     {
-      icon: <Zap className="w-10 h-10 mb-4 text-purple-600" />,
+      icon: <Zap className="w-10 h-10 mb-4 text-ath-clay" />,
       title: t('tech.analysis.title'),
       description: t('tech.analysis.desc')
     },
     {
-      icon: <BarChart3 className="w-10 h-10 mb-4 text-purple-600" />,
+      icon: <BarChart3 className="w-10 h-10 mb-4 text-ath-clay" />,
       title: t('tech.ai.title'),
       description: t('tech.ai.desc')
     },
     {
-      icon: <Activity className="w-10 h-10 mb-4 text-purple-600" />,
+      icon: <Activity className="w-10 h-10 mb-4 text-ath-clay" />,
       title: t('tech.personal.title'),
       description: t('tech.personal.desc')
     }
@@ -42,22 +42,22 @@ const TechnologySection = ({
 
   const additionalFeatures = [
     {
-      icon: <Rocket className="w-8 h-8 mb-3 text-purple-600" />,
+      icon: <Rocket className="w-8 h-8 mb-3 text-ath-clay" />,
       title: t('tech.excellence.title'),
       description: t('tech.excellence.desc')
     },
     {
-      icon: <LineChart className="w-8 h-8 mb-3 text-purple-600" />,
+      icon: <LineChart className="w-8 h-8 mb-3 text-ath-clay" />,
       title: t('tech.continuous.title'),
       description: t('tech.continuous.desc')
     },
     {
-      icon: <Users className="w-8 h-8 mb-3 text-purple-600" />,
+      icon: <Users className="w-8 h-8 mb-3 text-ath-clay" />,
       title: t('tech.global.title'),
       description: t('tech.global.desc')
     },
     {
-      icon: <Share2 className="w-8 h-8 mb-3 text-purple-600" />,
+      icon: <Share2 className="w-8 h-8 mb-3 text-ath-clay" />,
       title: t('tech.comm.title'),
       description: t('tech.comm.desc')
     }
@@ -68,9 +68,9 @@ const TechnologySection = ({
       <div className="max-w-7xl mx-auto">
         <RevealAnimation>
           <div className="text-center mb-8">
-            <span className="inline-block px-4 py-1 rounded-full bg-purple-100 text-purple-600 text-sm font-medium mb-4">{t('tech.exclusive')}</span>
+            <span className="inline-block px-4 py-1 rounded-full bg-ath-clay bg-opacity-10 text-ath-clay text-sm font-medium mb-4">{t('tech.exclusive')}</span>
             <h2 className="text-3xl md:text-4xl font-display text-center mb-2">{title}</h2>
-            <h3 className="text-2xl md:text-3xl font-display text-center text-purple-600 mb-4">{t('tech.vicki')}</h3>
+            <h3 className="text-2xl md:text-3xl font-display text-center text-ath-clay mb-4">{t('tech.vicki')}</h3>
           </div>
         </RevealAnimation>
         
@@ -85,7 +85,7 @@ const TechnologySection = ({
             <RevealAnimation key={index} delay={index * 100}>
               <div className="text-center p-6 bg-white shadow-sm border border-gray-100 rounded-lg h-full flex flex-col items-center hover:shadow-md transition-shadow">
                 {tech.icon}
-                <h3 className="text-xl font-medium mb-3">{tech.title}</h3>
+                <h3 className="text-xl font-medium mb-3 text-ath-clay">{tech.title}</h3>
                 <p className="text-gray-600">{tech.description}</p>
               </div>
             </RevealAnimation>
@@ -94,25 +94,25 @@ const TechnologySection = ({
         
         <RevealAnimation delay={400}>
           <div className="mt-16 text-center">
-            <h4 className="text-xl font-medium mb-8 text-purple-600">{t('tech.title')}</h4>
+            <h4 className="text-xl font-medium mb-8 text-ath-clay">{t('tech.title')}</h4>
             
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mt-8">
               {additionalFeatures.map((feature, index) => (
-                <div key={index} className="bg-white p-5 rounded-lg border border-purple-100 shadow-sm hover:shadow-md transition-shadow">
+                <div key={index} className="bg-white p-5 rounded-lg border border-ath-clay border-opacity-20 shadow-sm hover:shadow-md transition-shadow">
                   <div className="flex items-center mb-3">
                     {feature.icon}
-                    <h5 className="text-lg font-medium ml-2">{feature.title}</h5>
+                    <h5 className="text-lg font-medium ml-2 text-ath-clay">{feature.title}</h5>
                   </div>
                   <p className="text-gray-600 text-sm">{feature.description}</p>
                 </div>
               ))}
             </div>
             
-            <div className="mt-16 bg-purple-50 p-6 rounded-lg border border-purple-100 max-w-4xl mx-auto">
+            <div className="mt-16 bg-ath-clay bg-opacity-5 p-6 rounded-lg border border-ath-clay border-opacity-20 max-w-4xl mx-auto">
               <p className="text-gray-700 italic font-medium">
                 {t('tech.quote')}
               </p>
-              <p className="text-purple-600 mt-4 font-bold">
+              <p className="text-ath-clay mt-4 font-bold">
                 {t('tech.only')}
               </p>
             </div>
