@@ -16,6 +16,8 @@ import {
   navigationMenuTriggerStyle,
 } from "@/components/ui/navigation-menu";
 import { useIsMobile } from '@/hooks/use-mobile';
+import ProfileIndicator from './ProfileIndicator';
+import { UserGender, UserType, loadUserPreferences } from './UserTypeSelector';
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -23,6 +25,10 @@ const Header = () => {
   const location = useLocation();
   const { t } = useLanguage();
   const isMobile = useIsMobile();
+  
+  // Load user preferences
+  const { gender, type } = loadUserPreferences();
+  const [showSelector, setShowSelector] = useState(false);
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
@@ -132,7 +138,15 @@ const Header = () => {
         </div>
         
         <div className="flex items-center z-50">
-          <div className={cn("hidden lg:block mr-4", textColorClass)}>
+          {gender && type && (
+            <ProfileIndicator 
+              gender={gender as UserGender} 
+              type={type as UserType} 
+              onEditClick={() => setShowSelector(true)}
+            />
+          )}
+          
+          <div className={cn("hidden lg:block", textColorClass)}>
             <LanguageSwitcher />
           </div>
           
@@ -172,6 +186,17 @@ const Header = () => {
             </div>
           </nav>
         </div>
+        
+        {showSelector && (
+          <div className="fixed inset-0 flex items-center justify-center bg-black/60 backdrop-blur-sm z-50 p-4">
+            <div className="max-w-md w-full">
+              {/* We'll import and use UserTypeSelector here when needed */}
+              <button onClick={() => setShowSelector(false)} className="absolute top-4 right-4 text-white">
+                <X size={24} />
+              </button>
+            </div>
+          </div>
+        )}
       </div>
     </header>
   );
