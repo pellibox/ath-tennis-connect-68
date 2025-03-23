@@ -27,6 +27,7 @@ import {
   DialogDescription,
   DialogTrigger,
 } from "@/components/ui/dialog";
+import ShareButton from './ShareButton';
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -172,6 +173,8 @@ const Header = () => {
         </div>
         
         <div className="flex items-center z-50">
+          <ShareButton variant="outline" className="mr-2" />
+          
           <Dialog open={dialogOpen} onOpenChange={setDialogOpen}>
             <DialogTrigger asChild>
               {userProfile.gender && userProfile.type ? (
@@ -239,7 +242,8 @@ const Header = () => {
               </LinkComponent>
             ))}
             
-            <div className="pt-4 border-t border-gray-100">
+            <div className="pt-4 border-t border-gray-100 flex items-center space-x-4">
+              <ShareButton variant="outline" />
               <LanguageSwitcher />
             </div>
           </nav>
