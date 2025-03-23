@@ -1,93 +1,125 @@
 
 import { useState, useEffect } from 'react';
+import { Link, useLocation } from 'react-router-dom';
 import { Menu, X } from 'lucide-react';
-import { Link } from 'react-router-dom';
-import { cn } from '@/lib/utils';
 import Logo from './Logo';
+import { cn } from '@/lib/utils';
+import LanguageSwitcher from './LanguageSwitcher';
+import { useLanguage } from '@/contexts/LanguageContext';
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [scrolled, setScrolled] = useState(false);
-  
+  const [isScrolled, setIsScrolled] = useState(false);
+  const location = useLocation();
+  const { t } = useLanguage();
+
+  const toggleMenu = () => {
+    setIsMenuOpen(!isMenuOpen);
+  };
+
   useEffect(() => {
     const handleScroll = () => {
-      setScrolled(window.scrollY > 20);
+      const offset = window.scrollY;
+      setIsScrolled(offset > 50);
     };
-    
+
     window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
   }, []);
 
-  const navItems = [
-    { name: 'Home', path: '/' },
-    { name: 'Programs', path: '/programs' },
-    { name: 'Facilities', path: '/facilities' },
-    { name: 'Coaches', path: '/coaches' },
-    { name: 'About', path: '/about' },
-    { name: 'Contact', path: '/contact' },
+  useEffect(() => {
+    // Close mobile menu when route changes
+    setIsMenuOpen(false);
+  }, [location.pathname]);
+
+  // Add or remove overflow-hidden class on body when menu is open/closed
+  useEffect(() => {
+    if (isMenuOpen) {
+      document.body.classList.add('overflow-hidden');
+    } else {
+      document.body.classList.remove('overflow-hidden');
+    }
+
+    return () => {
+      document.body.classList.remove('overflow-hidden');
+    };
+  }, [isMenuOpen]);
+
+  const navigationItems = [
+    { text: t('nav.home'), href: '/' },
+    { text: t('nav.programs'), href: '/programs' },
+    { text: t('nav.facilities'), href: '/facilities' },
+    { text: t('nav.coaches'), href: '/coaches' },
+    { text: t('nav.about'), href: '/about' },
+    { text: t('nav.contact'), href: '/contact' },
   ];
 
   return (
     <header 
       className={cn(
-        'fixed top-0 w-full z-50 transition-all duration-300 px-6 lg:px-10',
-        scrolled ? 'bg-white py-4 shadow-sm' : 'bg-transparent py-6'
+        'fixed top-0 left-0 w-full z-50 transition-all duration-300',
+        isScrolled ? 'bg-white shadow-md py-3' : 'bg-transparent py-5'
       )}
     >
-      <div className="max-w-7xl mx-auto flex items-center justify-between">
-        <Logo />
+      <div className="container mx-auto px-4 flex items-center justify-between">
+        <Link to="/" className="z-50">
+          <Logo variant={isScrolled || isMenuOpen ? 'dark' : 'light'} />
+        </Link>
 
         {/* Desktop Navigation */}
-        <nav className="hidden md:flex items-center space-x-8">
-          {navItems.map((item) => (
-            <Link 
-              key={item.name}
-              to={item.path}
-              className="text-sm font-medium relative animated-line pb-1"
+        <nav className="hidden lg:flex items-center space-x-8">
+          {navigationItems.map((item, index) => (
+            <Link
+              key={index}
+              to={item.href}
+              className={cn(
+                'text-sm font-medium hover:text-gray-600 transition-colors',
+                isScrolled ? 'text-black' : 'text-white'
+              )}
             >
-              {item.name}
+              {item.text}
             </Link>
           ))}
-          <Link 
-            to="/book-now" 
-            className="px-5 py-2 bg-black text-white text-sm hover:bg-opacity-90 transition-all"
-          >
-            BOOK NOW
-          </Link>
+          
+          <div className={isScrolled ? 'text-black' : 'text-white'}>
+            <LanguageSwitcher />
+          </div>
         </nav>
 
         {/* Mobile Menu Button */}
-        <button 
-          className="md:hidden z-50"
-          onClick={() => setIsMenuOpen(!isMenuOpen)}
+        <button
+          className="lg:hidden z-50 text-black flex items-center"
+          onClick={toggleMenu}
+          aria-expanded={isMenuOpen}
           aria-label="Toggle menu"
         >
           {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
         </button>
 
         {/* Mobile Navigation */}
-        <div className={cn(
-          "fixed inset-0 bg-white flex flex-col items-center justify-center transition-all duration-300 ease-in-out md:hidden",
-          isMenuOpen ? "opacity-100 visible" : "opacity-0 invisible"
-        )}>
-          <nav className="flex flex-col items-center space-y-8">
-            {navItems.map((item) => (
-              <Link 
-                key={item.name}
-                to={item.path}
-                className="text-xl font-medium"
-                onClick={() => setIsMenuOpen(false)}
+        <div
+          className={cn(
+            'fixed inset-0 bg-white pt-24 px-6 flex-col lg:hidden transition-transform duration-300 ease-in-out',
+            isMenuOpen ? 'translate-x-0 flex' : 'translate-x-full hidden'
+          )}
+        >
+          <nav className="flex flex-col space-y-6">
+            {navigationItems.map((item, index) => (
+              <Link
+                key={index}
+                to={item.href}
+                className="text-xl font-medium text-black hover:text-gray-600 transition-colors"
               >
-                {item.name}
+                {item.text}
               </Link>
             ))}
-            <Link 
-              to="/book-now" 
-              className="px-6 py-3 bg-black text-white hover:bg-opacity-90 transition-all mt-4"
-              onClick={() => setIsMenuOpen(false)}
-            >
-              BOOK NOW
-            </Link>
+            
+            <div className="pt-4 border-t border-gray-100">
+              <LanguageSwitcher />
+            </div>
           </nav>
         </div>
       </div>

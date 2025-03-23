@@ -2,6 +2,7 @@
 import { Server, Zap, BarChart3, Activity, Users, LineChart, Rocket, Share2 } from 'lucide-react';
 import RevealAnimation from './RevealAnimation';
 import { cn } from '@/lib/utils';
+import { useLanguage } from '@/contexts/LanguageContext';
 
 interface TechnologySectionProps {
   title: string;
@@ -14,49 +15,51 @@ const TechnologySection = ({
   subtitle,
   className 
 }: TechnologySectionProps) => {
+  const { t } = useLanguage();
+  
   const technologies = [
     {
       icon: <Server className="w-10 h-10 mb-4 text-purple-600" />,
-      title: "Advanced Data Collection",
-      description: "Our sophisticated VICKI system monitors and analyzes over 70 specific tennis performance parameters in real-time during every session."
+      title: t('tech.data.title'),
+      description: t('tech.data.desc')
     },
     {
       icon: <Zap className="w-10 h-10 mb-4 text-purple-600" />,
-      title: "Real-Time Analysis",
-      description: "High-speed cameras and sensors capture every movement, stroke and tactical decision, providing immediate insights for on-the-spot adjustments."
+      title: t('tech.analysis.title'),
+      description: t('tech.analysis.desc')
     },
     {
       icon: <BarChart3 className="w-10 h-10 mb-4 text-purple-600" />,
-      title: "AI-Powered Insights",
-      description: "VICKI's artificial intelligence analyzes every aspect of performance, identifying patterns and improvement opportunities that might escape even expert observation."
+      title: t('tech.ai.title'),
+      description: t('tech.ai.desc')
     },
     {
       icon: <Activity className="w-10 h-10 mb-4 text-purple-600" />,
-      title: "Personalized Development",
-      description: "The machine learning system evolves with each session, continually refining analyses and recommendations for your unique playing style and goals."
+      title: t('tech.personal.title'),
+      description: t('tech.personal.desc')
     }
   ];
 
   const additionalFeatures = [
     {
       icon: <Rocket className="w-8 h-8 mb-3 text-purple-600" />,
-      title: "Democratized Excellence",
-      description: "Access to high-level coaching methodologies previously reserved only for the elite."
+      title: t('tech.excellence.title'),
+      description: t('tech.excellence.desc')
     },
     {
       icon: <LineChart className="w-8 h-8 mb-3 text-purple-600" />,
-      title: "Continuous Development",
-      description: "Elimination of discontinuities in technical approach with a codified and consistent method."
+      title: t('tech.continuous.title'),
+      description: t('tech.continuous.desc')
     },
     {
       icon: <Users className="w-8 h-8 mb-3 text-purple-600" />,
-      title: "Global Excellence Community",
-      description: "Access to an international network of expertise and best practices from around the world."
+      title: t('tech.global.title'),
+      description: t('tech.global.desc')
     },
     {
       icon: <Share2 className="w-8 h-8 mb-3 text-purple-600" />,
-      title: "Advanced Communication",
-      description: "Effective information sharing between all team professionals with precise documentation."
+      title: t('tech.comm.title'),
+      description: t('tech.comm.desc')
     }
   ];
 
@@ -65,9 +68,9 @@ const TechnologySection = ({
       <div className="max-w-7xl mx-auto">
         <RevealAnimation>
           <div className="text-center mb-8">
-            <span className="inline-block px-4 py-1 rounded-full bg-purple-100 text-purple-600 text-sm font-medium mb-4">EXCLUSIVE TECHNOLOGY</span>
+            <span className="inline-block px-4 py-1 rounded-full bg-purple-100 text-purple-600 text-sm font-medium mb-4">{t('tech.exclusive')}</span>
             <h2 className="text-3xl md:text-4xl font-display text-center mb-2">{title}</h2>
-            <h3 className="text-2xl md:text-3xl font-display text-center text-purple-600 mb-4">VICKI: The Solution to Modern Tennis Challenges</h3>
+            <h3 className="text-2xl md:text-3xl font-display text-center text-purple-600 mb-4">{t('tech.vicki')}</h3>
           </div>
         </RevealAnimation>
         
@@ -91,7 +94,7 @@ const TechnologySection = ({
         
         <RevealAnimation delay={400}>
           <div className="mt-16 text-center">
-            <h4 className="text-xl font-medium mb-8 text-purple-600">Unprecedented Personalization & Integration</h4>
+            <h4 className="text-xl font-medium mb-8 text-purple-600">{t('tech.title')}</h4>
             
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mt-8">
               {additionalFeatures.map((feature, index) => (
@@ -107,10 +110,10 @@ const TechnologySection = ({
             
             <div className="mt-16 bg-purple-50 p-6 rounded-lg border border-purple-100 max-w-4xl mx-auto">
               <p className="text-gray-700 italic font-medium">
-                "VICKI integrates advanced technology and human expertise to unlock the hidden potential in every athlete, redefining the standards of modern tennis development."
+                {t('tech.quote')}
               </p>
               <p className="text-purple-600 mt-4 font-bold">
-                The only tennis center in the world using VICKI technology
+                {t('tech.only')}
               </p>
             </div>
           </div>
