@@ -11,6 +11,7 @@ import FacilitiesSection from '@/components/FacilitiesSection';
 import ContactSection from '@/components/ContactSection';
 import TechnologySection from '@/components/TechnologySection';
 import JoinRevolutionSection from '@/components/JoinRevolutionSection';
+import StatsAndNavSection from '@/components/StatsAndNavSection';
 import { useLanguage } from '@/contexts/LanguageContext';
 
 const HomePage = () => {
@@ -153,7 +154,7 @@ const HomePage = () => {
     },
   ];
 
-  // Statistiche aggiornate
+  // Updated stats to include hours monitored
   const stats = [
     {
       id: '1',
@@ -168,14 +169,14 @@ const HomePage = () => {
     },
     {
       id: '3',
-      value: 500,
+      value: 7000,
       suffix: '+',
-      label: 'Membri Attivi'
+      label: 'Ore Monitorate a Stagione'
     },
     {
       id: '4',
       value: 1,
-      label: 'Unico Centro con VICKI'
+      label: 'Primo Centro al Mondo'
     },
   ];
 
@@ -279,6 +280,8 @@ const HomePage = () => {
           contentPosition="center"
         />
         
+        <StatsAndNavSection stats={stats} />
+        
         <AboutSection 
           title="Chi Siamo"
           subtitle="ATH - Advanced Tennis Hub"
@@ -289,7 +292,7 @@ const HomePage = () => {
               <p>La struttura costituisce una rete professionale aperta a coach, atleti e specialisti per ottimizzare il processo evolutivo tennistico attraverso un metodo oggettivo e misurabile.</p>
             </div>
           }
-          image="https://images.unsplash.com/photo-1617711773026-ea7252c02cd3"
+          image="/lovable-uploads/9e980860-a20e-4ae3-839c-6d91f306bd07.png"
           buttons={[
             { text: "Scopri di più", href: '/about' }
           ]}
@@ -301,11 +304,6 @@ const HomePage = () => {
           programs={programs}
           className="bg-ath-gray"
           gridLayout="dense"
-        />
-        
-        <StatsSection 
-          stats={stats}
-          darkBg={true}
         />
         
         <TechnologySection 
@@ -340,7 +338,7 @@ const HomePage = () => {
               <p>Ogni atleta riceve un supporto evolutivo costante con analisi dettagliate, feedback immediati e programmi personalizzati basati su dati misurabili.</p>
             </div>
           }
-          image="https://images.unsplash.com/photo-1518005068251-37900150dfca"
+          image="/lovable-uploads/fc6643c2-4357-4c86-9e52-6f33d698668f.png"
           buttons={[
             { text: "Contattaci", href: '/contact' }
           ]}
