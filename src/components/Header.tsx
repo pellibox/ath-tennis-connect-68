@@ -58,10 +58,10 @@ const Header = () => {
     };
   }, [isMenuOpen]);
 
-  // New navigation structure based on provided menu items
+  // Updated navigation structure with corrected menu items
   const navigationItems = [
     { 
-      text: 'Cose ATH', 
+      text: "Cos'è ATH", 
       href: '/about',
       icon: <Home size={18} className="mr-2" />
     },

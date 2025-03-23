@@ -1,7 +1,6 @@
 
 import RevealAnimation from './RevealAnimation';
 import { cn } from '@/lib/utils';
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { useState, useEffect } from 'react';
 
 interface Facility {
@@ -32,29 +31,17 @@ const FacilitiesSection = ({
   // Generate random fallback images when component mounts
   useEffect(() => {
     const fallbacks: Record<string, string> = {};
-    facilities.forEach(facility => {
+    facilities.forEach((facility, index) => {
       // Generate a unique random image for each facility
-      fallbacks[facility.id] = `https://source.unsplash.com/random/800x600/?tennis,court,${facility.id}`;
+      fallbacks[facility.id] = `https://source.unsplash.com/random/800x600/?tennis,facility,${index}`;
     });
     setFallbackImages(fallbacks);
   }, [facilities]);
 
-  const handleImageError = (id: string, imagePath: string) => {
-    console.log(`Failed to load image: ${imagePath}`);
+  const handleImageError = (id: string) => {
+    console.log(`Failed to load facility image for ID: ${id}`);
     setFailedImages(prev => ({ ...prev, [id]: true }));
   };
-
-  // Pre-load fallback images
-  useEffect(() => {
-    facilities.forEach(facility => {
-      const img = new Image();
-      img.src = facility.image;
-      img.onerror = () => {
-        console.log(`Preloading failed for: ${facility.image}`);
-        setFailedImages(prev => ({ ...prev, [facility.id]: true }));
-      };
-    });
-  }, [facilities]);
 
   return (
     <section id="facilities" className={cn('py-20 px-6 lg:px-10 bg-white', className)}>
@@ -87,18 +74,16 @@ const FacilitiesSection = ({
                 
                 <div className={index % 2 === 0 ? 'md:order-1' : ''}>
                   <div className="overflow-hidden rounded-lg shadow-lg relative aspect-video">
-                    {/* If the image has not failed to load, try to show it */}
                     {!failedImages[facility.id] ? (
                       <img 
                         src={facility.image} 
                         alt={facility.title}
                         className="w-full h-full object-cover transform hover:scale-105 transition-transform duration-500"
-                        onError={() => handleImageError(facility.id, facility.image)}
+                        onError={() => handleImageError(facility.id)}
                       />
                     ) : (
-                      /* If the primary image fails, show the fallback image */
                       <img
-                        src={fallbackImages[facility.id] || `https://source.unsplash.com/random/800x600/?tennis,court,${index}`}
+                        src={fallbackImages[facility.id]}
                         alt={facility.title}
                         className="w-full h-full object-cover transform hover:scale-105 transition-transform duration-500"
                       />
