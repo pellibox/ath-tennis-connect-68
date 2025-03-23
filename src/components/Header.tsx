@@ -125,7 +125,7 @@ const Header = () => {
         isScrolled ? 'bg-white shadow-md py-3' : 'bg-transparent py-5'
       )}
     >
-      <div className="container mx-auto px-4 flex items-center justify-between">
+      <div className="container mx-auto px-6 flex items-center justify-between">
         <Link to="/" className="z-50">
           <Logo variant={isScrolled || isMenuOpen ? "default" : "footer"} />
         </Link>
@@ -173,7 +173,7 @@ const Header = () => {
         {/* Mobile Navigation */}
         <div
           className={cn(
-            'fixed inset-0 bg-white pt-24 px-6 flex-col lg:hidden transition-transform duration-300 ease-in-out',
+            'fixed inset-0 bg-white pt-24 px-8 flex-col lg:hidden transition-transform duration-300 ease-in-out',
             isMenuOpen ? 'translate-x-0 flex' : 'translate-x-full hidden'
           )}
         >
