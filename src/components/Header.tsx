@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Menu, X, Activity, Zap, BookOpen, Server, Home, Users } from 'lucide-react';
@@ -36,8 +35,14 @@ const Header = () => {
   const isMobile = useIsMobile();
   
   // Load user preferences
-  const [userProfile, setUserProfile] = useState(loadUserPreferences());
+  const [userProfile, setUserProfile] = useState<{ gender: UserGender | null, type: UserType | null }>({ gender: null, type: null });
   const [dialogOpen, setDialogOpen] = useState(false);
+  
+  // Load user preferences on mount
+  useEffect(() => {
+    const preferences = loadUserPreferences();
+    setUserProfile(preferences);
+  }, []);
   
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
@@ -46,6 +51,12 @@ const Header = () => {
   const handleProfileComplete = (gender: UserGender, type: UserType) => {
     setUserProfile({ gender, type });
     setDialogOpen(false);
+  };
+  
+  // Handle profile reset
+  const handleProfileReset = () => {
+    // Clear user profile state
+    setUserProfile({ gender: null, type: null });
   };
 
   useEffect(() => {
@@ -130,7 +141,8 @@ const Header = () => {
           <Logo 
             variant="default" 
             onDarkBackground={false}
-            preserveUserProfile={true}
+            preserveUserProfile={false}
+            resetProfile={true}
           />
         </div>
         
@@ -178,8 +190,8 @@ const Header = () => {
               </DialogHeader>
               <UserTypeSelector 
                 onSelectionComplete={handleProfileComplete}
-                initialGender={userProfile.gender as UserGender || undefined}
-                initialType={userProfile.type as UserType || undefined}
+                initialGender={userProfile.gender || undefined}
+                initialType={userProfile.type || undefined}
               />
             </DialogContent>
           </Dialog>

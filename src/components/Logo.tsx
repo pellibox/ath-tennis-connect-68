@@ -6,13 +6,15 @@ interface LogoProps {
   className?: string;
   onDarkBackground?: boolean;
   preserveUserProfile?: boolean;
+  resetProfile?: boolean;
 }
 
 const Logo = ({ 
   variant = 'default', 
   className = '', 
   onDarkBackground = false,
-  preserveUserProfile = false
+  preserveUserProfile = false,
+  resetProfile = false
 }: LogoProps) => {
   const isFooter = variant === 'footer';
   
@@ -24,17 +26,25 @@ const Logo = ({
   // Fixed size for logo - consistent across all states
   const sizeClasses = isFooter ? 'h-28' : 'h-16';
   
+  // Function to clear user profile data
+  const handleLogoClick = (e: React.MouseEvent) => {
+    if (resetProfile) {
+      // Clear user profile data from localStorage
+      localStorage.removeItem('ath_user_gender');
+      localStorage.removeItem('ath_user_type');
+    }
+    
+    // If we want to preserve navigation behavior but not profile
+    if (preserveUserProfile) {
+      e.preventDefault();
+      window.history.pushState({}, '', '/');
+      window.dispatchEvent(new Event('popstate'));
+    }
+  };
+  
   return (
     <div className={`${className}`}>
-      <Link to="/" onClick={(e) => {
-        // If we want to preserve user profile, prevent the default Link behavior 
-        // that would cause React Router to fully reload the page
-        if (preserveUserProfile) {
-          e.preventDefault();
-          window.history.pushState({}, '', '/');
-          window.dispatchEvent(new Event('popstate'));
-        }
-      }}>
+      <Link to="/" onClick={handleLogoClick}>
         <img 
           src={logoSrc} 
           alt="ATH - Advanced Tennis Hub" 
