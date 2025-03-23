@@ -25,8 +25,10 @@ const translations = {
   // Programs Section
   "programs.title": "I Nostri Programmi",
   "programs.subtitle": "Allenamento di tennis personalizzato per ogni età e livello di abilità",
-  "programs.junior": "Agonista Junior (13-18 anni)",
+  "programs.junior": "Junior Program",
   "programs.junior.desc": "Programma completo per giovani atleti che vogliono competere a livello agonistico.",
+  "programs.talent": "Scuola Individuazione Talenti (4-10 anni)",
+  "programs.talent.desc": "Programma specializzato per l'identificazione precoce dei talenti tennistici e lo sviluppo delle abilità fondamentali.",
   "programs.young": "Giovani Agonisti (6-12 anni)",
   "programs.young.desc": "Programma formativo per giovani atleti in fase di sviluppo tecnico e fisico.",
   "programs.elite": "Professionisti",
@@ -97,7 +99,8 @@ const translations = {
   // Footer
   "footer.description": "Elevare l'eccellenza del tennis attraverso programmi di allenamento innovativi, strutture di livello mondiale e coaching personalizzato.",
   "footer.programs": "Programmi",
-  "footer.junior": "Agonista Junior",
+  "footer.junior": "Junior Program",
+  "footer.talent": "Scuola Individuazione Talenti",
   "footer.young": "Giovani Agonisti",
   "footer.elite": "Professionisti",
   "footer.coach": "Per Coach e Club",

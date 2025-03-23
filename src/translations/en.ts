@@ -1,3 +1,4 @@
+
 const translations = {
   // Header & Navigation
   "nav.home": "Home",
@@ -24,7 +25,9 @@ const translations = {
   // Programs Section
   "programs.title": "Our Programs",
   "programs.subtitle": "Tailored tennis training for every age and skill level",
-  "programs.junior": "Junior Academy",
+  "programs.junior": "Junior Program",
+  "programs.talent": "Talent Identification School (4-10 years)",
+  "programs.talent.desc": "Specialized program for early identification of tennis talents and development of fundamental skills.",
   "programs.junior.desc": "Comprehensive training program for players aged 8-18 who want to develop their skills and compete at a high level.",
   "programs.elite": "Elite Program",
   "programs.elite.desc": "Intensive training for advanced players with professional aspirations, focusing on technical, tactical, physical, and mental aspects.",
@@ -90,7 +93,8 @@ const translations = {
   // Footer
   "footer.description": "Elevating tennis excellence through innovative training programs, world-class facilities, and personalized coaching.",
   "footer.programs": "Programs",
-  "footer.junior": "Junior Academy",
+  "footer.junior": "Junior Program",
+  "footer.talent": "Talent Identification School",
   "footer.elite": "Elite Program",
   "footer.adult": "Adult Training",
   "footer.camps": "Summer Camps",

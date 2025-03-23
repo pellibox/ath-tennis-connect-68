@@ -1,3 +1,4 @@
+
 import { useEffect } from 'react';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
@@ -18,8 +19,24 @@ const Programs = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }, []);
 
-  // Junior Academy programs
-  const juniorAcademyPrograms = [
+  // Junior Program programs
+  const juniorPrograms = [
+    {
+      id: '11',
+      title: 'Scuola Individuazione Talenti (4-10 anni)',
+      description: 'Programma specializzato per l\'identificazione precoce dei talenti tennistici e lo sviluppo delle abilità fondamentali.',
+      image: 'https://images.unsplash.com/photo-1596463059283-da257325bab8?q=80&w=2070&auto=format&fit=crop',
+      link: '/programs/talent-identification',
+      features: [
+        'Valutazione delle capacità motorie e coordinative di base',
+        'Approccio ludico e divertente all\'apprendimento tecnico',
+        'Monitoraggio dello sviluppo fisico e delle attitudini',
+        'Insegnamento dei fondamentali tecnici adattati all\'età',
+        'Sviluppo della passione per il tennis e lo sport',
+        'Percorsi personalizzati basati sulle caratteristiche individuali',
+        'Supporto per genitori con report e indicazioni sul potenziale'
+      ]
+    },
     {
       id: '1',
       title: 'Agonista Junior (13-18 anni)',
@@ -181,9 +198,9 @@ const Programs = () => {
   // Group programs into categories
   const programCategories = [
     {
-      id: 'junior-academy',
-      title: 'Junior Academy',
-      programs: juniorAcademyPrograms
+      id: 'junior-program',
+      title: 'Junior Program',
+      programs: juniorPrograms
     },
     {
       id: 'elite-program',

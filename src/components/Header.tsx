@@ -69,7 +69,7 @@ const Header = () => {
     },
     { 
       text: 'Il Metodo', 
-      href: '/about#method',
+      href: '/method',
       icon: <BookOpen size={18} className="mr-2" />
     },
     { 
@@ -79,7 +79,7 @@ const Header = () => {
     },
     { 
       text: 'Tecnologia:VICKI', 
-      href: '/about#technology',
+      href: '/method#technology',
       icon: <Zap size={18} className="mr-2" />
     },
     { 
