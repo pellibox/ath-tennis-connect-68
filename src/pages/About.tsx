@@ -5,6 +5,7 @@ import Footer from '@/components/Footer';
 import AboutSection from '@/components/AboutSection';
 import JoinRevolutionSection from '@/components/JoinRevolutionSection';
 import { useLanguage } from '@/contexts/LanguageContext';
+import Hero from '@/components/Hero';
 
 const AboutPage = () => {
   const { t } = useLanguage();
@@ -18,9 +19,13 @@ const AboutPage = () => {
       <Header />
       
       <main className="flex-grow pt-20">
-        <div className="h-40 bg-gradient-to-b from-ath-clay to-ath-secondary flex items-center justify-center">
-          <h1 className="text-4xl md:text-5xl font-display text-white">Chi Siamo</h1>
-        </div>
+        <Hero
+          title="Chi Siamo"
+          subtitle="Tecnologia e innovazione al servizio del tennis"
+          imageSrc="/lovable-uploads/6ea13aa7-2578-488b-8ed4-4b17fc2ddc4e.png"
+          fullHeight={false}
+          overlayOpacity="medium"
+        />
         
         <AboutSection 
           title="Advanced Tennis Hub"

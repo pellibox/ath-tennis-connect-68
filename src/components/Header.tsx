@@ -91,20 +91,25 @@ const Header = () => {
     },
   ];
 
-  const useDarkBackgroundLogo = !isScrolled && !isMenuOpen;
+  // Always use light background for header
+  const headerBgClass = isMenuOpen ? "bg-white" : (isScrolled ? "bg-white shadow-md" : "bg-white/90");
+  
+  // Always use dark text for navigation
+  const textColorClass = "text-black";
 
   return (
     <header 
       className={cn(
         'fixed top-0 left-0 w-full z-50 transition-all duration-300',
-        isScrolled ? 'bg-white shadow-md py-3' : 'bg-transparent py-5'
+        headerBgClass,
+        isScrolled ? 'py-3' : 'py-5'
       )}
     >
       <div className="container mx-auto px-6 flex items-center justify-between relative">
         <div className="flex items-center z-50">
           <Logo 
-            variant={isScrolled || isMenuOpen ? "default" : "footer"} 
-            onDarkBackground={useDarkBackgroundLogo}
+            variant={isScrolled || isMenuOpen ? "default" : "default"} 
+            onDarkBackground={false}
           />
         </div>
         
@@ -116,7 +121,7 @@ const Header = () => {
                 href={item.href}
                 className={cn(
                   "flex items-center text-sm font-medium transition-colors hover:text-ath-clay",
-                  isScrolled ? "text-black" : "text-white"
+                  textColorClass
                 )}
               >
                 {item.icon}
@@ -127,14 +132,14 @@ const Header = () => {
         </div>
         
         <div className="flex items-center z-50">
-          <div className={cn("hidden lg:block mr-4", isScrolled ? 'text-black' : 'text-white')}>
+          <div className={cn("hidden lg:block mr-4", textColorClass)}>
             <LanguageSwitcher />
           </div>
           
           <button
             className={cn(
               "lg:hidden flex items-center",
-              isScrolled || isMenuOpen ? "text-black" : "text-white"
+              textColorClass
             )}
             onClick={toggleMenu}
             aria-expanded={isMenuOpen}
