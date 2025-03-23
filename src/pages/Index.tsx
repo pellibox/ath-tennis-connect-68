@@ -6,7 +6,7 @@ import Hero from '@/components/Hero';
 import ContactSection from '@/components/ContactSection';
 import JoinRevolutionSection from '@/components/JoinRevolutionSection';
 import StatsAndNavSection from '@/components/StatsAndNavSection';
-import UserTypeSelector, { UserGender, UserType } from '@/components/UserTypeSelector';
+import UserTypeSelector, { UserGender, UserType, loadUserPreferences } from '@/components/UserTypeSelector';
 import { useLanguage } from '@/contexts/LanguageContext';
 
 const HomePage = () => {
@@ -17,6 +17,13 @@ const HomePage = () => {
   const [userGender, setUserGender] = useState<UserGender | null>(null);
   const [userType, setUserType] = useState<UserType | null>(null);
   const [showSelector, setShowSelector] = useState(false);
+  
+  // Load user preferences on mount
+  useEffect(() => {
+    const { gender, type } = loadUserPreferences();
+    if (gender) setUserGender(gender);
+    if (type) setUserType(type);
+  }, []);
   
   // Smooth scroll functionality
   useEffect(() => {
@@ -51,6 +58,11 @@ const HomePage = () => {
     // Coach video (regardless of gender)
     if (userType === 'coach') {
       videoEmbed = `<div style="padding:75% 0 0 0;position:relative;"><iframe src="https://player.vimeo.com/video/1068604198?h=07d9021fd2&autoplay=1&loop=1&background=1&autopause=0&player_id=0&app_id=58479" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media" style="position:absolute;top:0;left:0;width:100%;height:100%;" title="Coach"></iframe></div><script src="https://player.vimeo.com/api/player.js"></script>`;
+    }
+    
+    // Parent video (regardless of gender)
+    if (userType === 'parent') {
+      videoEmbed = `<div style="padding:75% 0 0 0;position:relative;"><iframe src="https://player.vimeo.com/video/1068629360?h=46b5c52b31&autoplay=1&loop=1&background=1&autopause=0&player_id=0&app_id=58479" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media" style="position:absolute;top:0;left:0;width:100%;height:100%;" title="Parent"></iframe></div><script src="https://player.vimeo.com/api/player.js"></script>`;
     }
     
     return videoEmbed;

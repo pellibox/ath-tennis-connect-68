@@ -22,6 +22,19 @@ interface UserTypeSelectorProps {
   onSelectionComplete: (gender: UserGender, type: UserType) => void;
 }
 
+// Save user preferences to localStorage
+export const saveUserPreferences = (gender: UserGender, type: UserType) => {
+  localStorage.setItem('ath_user_gender', gender);
+  localStorage.setItem('ath_user_type', type);
+};
+
+// Load user preferences from localStorage
+export const loadUserPreferences = (): { gender: UserGender | null, type: UserType | null } => {
+  const gender = localStorage.getItem('ath_user_gender') as UserGender | null;
+  const type = localStorage.getItem('ath_user_type') as UserType | null;
+  return { gender, type };
+};
+
 const UserTypeSelector: React.FC<UserTypeSelectorProps> = ({ onSelectionComplete }) => {
   const [step, setStep] = useState<1 | 2>(1);
   
@@ -37,7 +50,12 @@ const UserTypeSelector: React.FC<UserTypeSelectorProps> = ({ onSelectionComplete
   };
   
   const handleTypeSubmit = (data: UserTypeForm) => {
+    // Save preferences to localStorage
+    saveUserPreferences(data.gender, data.type);
+    
+    // Call the callback
     onSelectionComplete(data.gender, data.type);
+    
     toast.success(`Benvenuto! Contenuto personalizzato per ${data.type}`, {
       position: "bottom-center",
       duration: 3000

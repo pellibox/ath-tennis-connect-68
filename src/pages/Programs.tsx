@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import Hero from '@/components/Hero';
@@ -9,16 +9,54 @@ import ContactSection from '@/components/ContactSection';
 import JoinRevolutionSection from '@/components/JoinRevolutionSection';
 import { Link } from 'react-router-dom';
 import { useLanguage } from '@/contexts/LanguageContext';
+import { loadUserPreferences, UserGender, UserType } from '@/components/UserTypeSelector';
+import { Button } from '@/components/ui/button';
 
 const Programs = () => {
   const { t } = useLanguage();
+  const [userGender, setUserGender] = useState<UserGender | null>(null);
+  const [userType, setUserType] = useState<UserType | null>(null);
+  const [showAllPrograms, setShowAllPrograms] = useState(false);
   
-  // Smooth scroll functionality
+  useEffect(() => {
+    const { gender, type } = loadUserPreferences();
+    if (gender) setUserGender(gender);
+    if (type) setUserType(type);
+  }, []);
+  
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }, []);
 
-  // Junior Program programs
+  const getVimeoEmbed = () => {
+    let videoEmbed = `<div style="padding:56.25% 0 0 0;position:relative;"><iframe src="https://player.vimeo.com/video/1068596952?h=b7fa539b1c&autoplay=1&loop=1&title=0&byline=0&portrait=0&background=1&controls=0" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" style="position:absolute;top:0;left:0;width:100%;height:100%;" title="ATH Main Video"></iframe></div><script src="https://player.vimeo.com/api/player.js"></script>`;
+    
+    if (userGender === 'female') {
+      videoEmbed = `<div style="padding:56.25% 0 0 0;position:relative;"><iframe src="https://player.vimeo.com/video/867339842?h=5ecc384219&autoplay=1&loop=1&title=0&byline=0&portrait=0&background=1&controls=0" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" style="position:absolute;top:0;left:0;width:100%;height:100%;" title="Female"></iframe></div><script src="https://player.vimeo.com/api/player.js"></script>`;
+      
+      if (userType === 'professional') {
+        videoEmbed = `<div style="padding:56.25% 0 0 0;position:relative;"><iframe src="https://player.vimeo.com/video/1068596920?h=7f23339d4b&autoplay=1&loop=1&title=0&byline=0&portrait=0&background=1&controls=0" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" style="position:absolute;top:0;left:0;width:100%;height:100%;" title="Female Professional"></iframe></div><script src="https://player.vimeo.com/api/player.js"></script>`;
+      } 
+      else if (userType === 'performance') {
+        videoEmbed = `<div style="padding:56.25% 0 0 0;position:relative;"><iframe src="https://player.vimeo.com/video/1068596969?h=9bbee986ef&autoplay=1&loop=1&title=0&byline=0&portrait=0&background=1&controls=0" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" style="position:absolute;top:0;left:0;width:100%;height:100%;" title="Female Performance"></iframe></div><script src="https://player.vimeo.com/api/player.js"></script>`;
+      }
+    }
+    
+    if (userGender === 'male' && userType === 'professional') {
+      videoEmbed = `<div style="padding:56.25% 0 0 0;position:relative;"><iframe src="https://player.vimeo.com/video/1068596901?h=2ac5605207&autoplay=1&loop=1&title=0&byline=0&portrait=0&background=1&controls=0" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" style="position:absolute;top:0;left:0;width:100%;height:100%;" title="Male Professional"></iframe></div><script src="https://player.vimeo.com/api/player.js"></script>`;
+    }
+    
+    if (userType === 'coach') {
+      videoEmbed = `<div style="padding:56.25% 0 0 0;position:relative;"><iframe src="https://player.vimeo.com/video/1068604198?h=07d9021fd2&autoplay=1&loop=1&title=0&byline=0&portrait=0&background=1&controls=0" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" style="position:absolute;top:0;left:0;width:100%;height:100%;" title="Coach"></iframe></div><script src="https://player.vimeo.com/api/player.js"></script>`;
+    }
+    
+    if (userType === 'parent') {
+      videoEmbed = `<div style="padding:56.25% 0 0 0;position:relative;"><iframe src="https://player.vimeo.com/video/1068629360?h=46b5c52b31&autoplay=1&loop=1&title=0&byline=0&portrait=0&background=1&controls=0" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" style="position:absolute;top:0;left:0;width:100%;height:100%;" title="Parent"></iframe></div><script src="https://player.vimeo.com/api/player.js"></script>`;
+    }
+    
+    return videoEmbed;
+  };
+
   const juniorPrograms = [
     {
       id: '11',
@@ -73,7 +111,6 @@ const Programs = () => {
     }
   ];
 
-  // Elite Program
   const elitePrograms = [
     {
       id: '2',
@@ -124,7 +161,6 @@ const Programs = () => {
     }
   ];
 
-  // Adult Training
   const adultPrograms = [
     {
       id: '6',
@@ -143,7 +179,6 @@ const Programs = () => {
     }
   ];
 
-  // Summer Camps
   const summerCamps = [
     {
       id: '8',
@@ -160,7 +195,6 @@ const Programs = () => {
     }
   ];
 
-  // Coach/Private Lessons
   const coachPrograms = [
     {
       id: '4',
@@ -195,7 +229,6 @@ const Programs = () => {
     }
   ];
 
-  // Reorder program categories as requested: Elite, Junior, Coach, Adults, Summer Camps
   const programCategories = [
     {
       id: 'elite-program',
@@ -224,6 +257,79 @@ const Programs = () => {
     }
   ];
 
+  const getFilteredProgramCategories = () => {
+    if (!userType || showAllPrograms) {
+      return programCategories;
+    }
+
+    let filteredCategories = [];
+    let relevantPrograms = [];
+
+    switch (userType) {
+      case 'junior':
+        relevantPrograms = juniorPrograms;
+        filteredCategories.push({
+          id: 'junior-program',
+          title: 'Junior Program',
+          programs: juniorPrograms
+        });
+        break;
+      case 'performance':
+        const performancePrograms = elitePrograms.filter(p => p.id === '2');
+        filteredCategories.push({
+          id: 'performance-program',
+          title: 'Performance Program',
+          programs: performancePrograms
+        });
+        break;
+      case 'professional':
+        const professionalPrograms = elitePrograms.filter(p => p.id === '3');
+        filteredCategories.push({
+          id: 'professional-program',
+          title: 'Professional Program',
+          programs: professionalPrograms
+        });
+        break;
+      case 'coach':
+        filteredCategories.push({
+          id: 'coach-program',
+          title: 'Coach Program',
+          programs: coachPrograms.filter(p => p.id === '4')
+        });
+        break;
+      case 'parent':
+        filteredCategories.push({
+          id: 'parent-program',
+          title: 'Genitore/Tutor Program',
+          programs: juniorPrograms.filter(p => p.id === '5')
+        });
+        break;
+    }
+
+    return filteredCategories;
+  };
+
+  const getPersonalizedSubtitle = () => {
+    if (!userType) {
+      return "Approccio metodologico unico e personalizzato per ogni profilo di giocatore";
+    }
+
+    switch (userType) {
+      case 'junior':
+        return "Programmi specializzati per giovani tennisti in fase di sviluppo";
+      case 'performance':
+        return "Programmi avanzati per tennisti agonisti performance";
+      case 'professional':
+        return "Programmi elite per professionisti che cercano il massimo delle prestazioni";
+      case 'coach':
+        return "Programmi e strumenti avanzati per allenatori";
+      case 'parent':
+        return "Supporto e coinvolgimento per genitori di giovani atleti";
+      default:
+        return "Approccio metodologico unico e personalizzato per ogni profilo di giocatore";
+    }
+  };
+
   return (
     <div className="flex flex-col min-h-screen">
       <Header />
@@ -231,8 +337,8 @@ const Programs = () => {
       <main className="flex-grow">
         <Hero 
           title="Programmi ATH" 
-          subtitle="Approccio metodologico unico e personalizzato per ogni profilo di giocatore"
-          imageSrc="https://images.unsplash.com/photo-1595435934819-5704d86e29a1?q=80&w=2070&auto=format&fit=crop"
+          subtitle={getPersonalizedSubtitle()}
+          vimeoEmbed={getVimeoEmbed()}
           buttons={[
             { text: 'PRENOTA UNA PROVA', href: '/contact' },
             { text: 'CONTATTACI', href: '/contact', variant: 'outline' }
@@ -244,20 +350,39 @@ const Programs = () => {
         <section className="py-20 px-6 lg:px-10">
           <div className="max-w-7xl mx-auto">
             <RevealAnimation>
-              <h2 className="text-3xl md:text-4xl font-display mb-4">Programmi basati sul Metodo ATH</h2>
+              <div className="flex justify-between items-center mb-4">
+                <h2 className="text-3xl md:text-4xl font-display">Programmi basati sul Metodo ATH</h2>
+                
+                {userType && (
+                  <Button 
+                    variant="outline" 
+                    onClick={() => setShowAllPrograms(!showAllPrograms)}
+                    className="hidden md:block"
+                  >
+                    {showAllPrograms ? 'Mostra solo programmi rilevanti' : 'Vedi tutti i programmi'}
+                  </Button>
+                )}
+              </div>
             </RevealAnimation>
             
             <RevealAnimation delay={100}>
-              <div className="text-lg text-gray-600 max-w-3xl mb-12 space-y-4">
+              <div className="text-lg text-gray-600 max-w-3xl mb-6 space-y-4">
                 <p>
                   Tutti i nostri programmi si basano sul metodo ATH, un sistema innovativo che integra tecnologia avanzata con coaching esperto. 
                   Il nostro approccio garantisce che ogni atleta, indipendentemente dal livello o dall'età, riceva un allenamento personalizzato 
                   basato su dati oggettivi e supportato da professionisti altamente qualificati.
                 </p>
-                <p>
-                  Grazie al sistema VICKI™, monitoriamo in tempo reale oltre 70 parametri della performance, permettendo ai coach di fornire 
-                  feedback immediati e di sviluppare programmi di allenamento su misura per ogni giocatore.
-                </p>
+                
+                {userType && (
+                  <Button 
+                    variant="outline" 
+                    onClick={() => setShowAllPrograms(!showAllPrograms)}
+                    className="md:hidden w-full mt-4"
+                  >
+                    {showAllPrograms ? 'Mostra solo programmi rilevanti' : 'Vedi tutti i programmi'}
+                  </Button>
+                )}
+                
                 <div className="mt-6">
                   <Link to="/method" className="inline-flex items-center text-ath-clay font-medium hover:underline">
                     Scopri di più sul Metodo ATH e il sistema VICKI™ →
@@ -286,9 +411,19 @@ const Programs = () => {
         </section>
         
         <ProgramsSection 
-          title="Programmi ATH"
-          subtitle="Percorsi metodologici personalizzati in base alle tue esigenze specifiche"
-          categories={programCategories}
+          title={userType && !showAllPrograms ? `Programmi per ${userType === 'coach' ? 'Coach' : 
+                                    userType === 'parent' ? 'Genitori/Tutor' : 
+                                    userType === 'professional' ? 'Professionisti' : 
+                                    userType === 'performance' ? 'Agonisti Performance' : 
+                                    'Junior'}` : "Programmi ATH"}
+          subtitle={userType && !showAllPrograms ? 
+                   `Soluzioni specifiche per ${userType === 'coach' ? 'allenatori' : 
+                                   userType === 'parent' ? 'genitori e tutor' : 
+                                   userType === 'professional' ? 'tennisti professionisti' : 
+                                   userType === 'performance' ? 'agonisti di alto livello' : 
+                                   'giovani tennisti'}` : 
+                   "Percorsi metodologici personalizzati in base alle tue esigenze specifiche"}
+          categories={getFilteredProgramCategories()}
           className="bg-ath-gray"
         />
         
@@ -431,3 +566,4 @@ const Programs = () => {
 };
 
 export default Programs;
+
