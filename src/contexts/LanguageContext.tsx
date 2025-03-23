@@ -20,7 +20,12 @@ const translationsMap: Record<Language, Record<string, string>> = {
   de: deTranslations
 };
 
-const LanguageContext = createContext<LanguageContextType | undefined>(undefined);
+// Create the context with a default value to avoid the undefined check
+const LanguageContext = createContext<LanguageContextType>({
+  language: 'it', 
+  setLanguage: () => {}, 
+  t: (key) => key
+});
 
 export const LanguageProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   // Default language is Italian
@@ -67,8 +72,5 @@ export const LanguageProvider: React.FC<{ children: React.ReactNode }> = ({ chil
 
 export const useLanguage = (): LanguageContextType => {
   const context = useContext(LanguageContext);
-  if (context === undefined) {
-    throw new Error('useLanguage must be used within a LanguageProvider');
-  }
   return context;
 };
