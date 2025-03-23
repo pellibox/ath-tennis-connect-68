@@ -93,14 +93,37 @@ const TechnologySection = ({
             
             {/* ATH Technological Advantage */}
             <h2 className="text-3xl md:text-4xl font-display text-center text-ath-clay">
-              Il Vantaggio Tecnologico ATH
+              {title}
             </h2>
           </div>
         </RevealAnimation>
         
         {subtitle && (
           <RevealAnimation delay={100}>
-            <p className="text-lg text-ath-clay max-w-3xl mx-auto text-center mb-12">{subtitle}</p>
+            <p className="text-lg text-ath-clay max-w-3xl mx-auto text-center mb-8">{subtitle}</p>
+            <div className="max-w-4xl mx-auto bg-white p-6 rounded-sm shadow-sm mb-12">
+              <p className="text-gray-700 mb-4">
+                VICKI™ è un sistema avanzato di analisi per il tennis che combina visione artificiale, intelligenza artificiale e conoscenze tecniche. Monitora oltre 70 parametri in tempo reale e li trasforma in analisi utili per allenatori e atleti.
+              </p>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
+                <div>
+                  <h4 className="font-medium mb-2">1. Visual – Visione Artificiale</h4>
+                  <p className="text-gray-600 mb-1">Tracking ad alta frequenza di ogni dettaglio del gioco</p>
+                </div>
+                <div>
+                  <h4 className="font-medium mb-2">2. Intelligent – Algoritmi Predittivi</h4>
+                  <p className="text-gray-600 mb-1">Machine learning per prevedere e migliorare le prestazioni</p>
+                </div>
+                <div>
+                  <h4 className="font-medium mb-2">3. Coaching Knowledge</h4>
+                  <p className="text-gray-600 mb-1">Expertise digitale per suggerimenti personalizzati</p>
+                </div>
+                <div>
+                  <h4 className="font-medium mb-2">4. Insight – Personalizzazione</h4>
+                  <p className="text-gray-600 mb-1">Dati convertiti in strategie di allenamento su misura</p>
+                </div>
+              </div>
+            </div>
           </RevealAnimation>
         )}
         

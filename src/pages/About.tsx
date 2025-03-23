@@ -1,3 +1,4 @@
+
 import { useEffect } from 'react';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
@@ -8,6 +9,7 @@ import TechnologySection from '@/components/TechnologySection';
 import TestimonialsSection from '@/components/TestimonialsSection';
 import ContactSection from '@/components/ContactSection';
 import JoinRevolutionSection from '@/components/JoinRevolutionSection';
+import { useLanguage } from '@/contexts/LanguageContext';
 
 const stats = [
   {
@@ -30,7 +32,7 @@ const stats = [
   {
     id: '4',
     value: 1,
-    label: 'Unico Centro con VICKI'
+    label: 'Unico Centro con VICKI™'
   },
 ];
 
@@ -43,7 +45,7 @@ const testimonials = [
   },
   {
     id: '2',
-    quote: "L'integrazione tra coaching tradizionale e sistema VICKI ha migliorato la mia consistenza del 23% in tre mesi, con rilevamenti oggettivi delle performance.",
+    quote: "L'integrazione tra coaching tradizionale e sistema VICKI™ ha migliorato la mia consistenza del 23% in tre mesi, con rilevamenti oggettivi delle performance.",
     author: 'Michael Johnson',
     role: 'Giocatore Professionista'
   },
@@ -56,6 +58,8 @@ const testimonials = [
 ];
 
 const AboutPage = () => {
+  const { t } = useLanguage();
+  
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }, []);
@@ -80,7 +84,8 @@ const AboutPage = () => {
           description={
             <div className="space-y-4">
               <p>ATH è un centro di allenamento specializzato che integra tecnologia avanzata e metodologia strutturata per offrire percorsi evolutivi personalizzati basati su dati oggettivi.</p>
-              <p>Il sistema di monitoraggio parametrico garantisce continuità metodologica e supporto tecnico costante, indipendentemente dal coach presente in campo.</p>
+              <p>Il nostro approccio metodologico unico e personalizzato si adatta a ogni profilo di giocatore, riconoscendo le caratteristiche individuali e le esigenze specifiche di ciascun atleta.</p>
+              <p>Il sistema di monitoraggio parametrico VICKI™ garantisce continuità metodologica e supporto tecnico costante, indipendentemente dal coach presente in campo.</p>
               <p>La struttura costituisce una rete professionale aperta a coach, atleti e specialisti per ottimizzare il processo evolutivo tennistico attraverso un metodo oggettivo e misurabile.</p>
             </div>
           }
@@ -98,7 +103,7 @@ const AboutPage = () => {
           description={
             <div className="space-y-4">
               <p>La nostra missione è fornire un ambiente di allenamento all'avanguardia che combini tecnologia avanzata, coaching esperto e un approccio personalizzato per aiutare ogni tennista a raggiungere il proprio pieno potenziale.</p>
-              <p>Ci impegniamo a creare una comunità inclusiva e collaborativa in cui i giocatori possano crescere, imparare e avere successo, sia dentro che fuori dal campo.</p>
+              <p>Ci impegniamo a democratizzare l'accesso all'eccellenza tennistica attraverso il sistema VICKI™, rendendo le metodologie di allenamento di alto livello accessibili a giocatori di tutte le età e abilità.</p>
               <p>Attraverso l'innovazione continua e la dedizione all'eccellenza, miriamo a ridefinire gli standard dell'allenamento tennistico e a ispirare la prossima generazione di campioni.</p>
             </div>
           }
@@ -107,7 +112,7 @@ const AboutPage = () => {
         />
         
         <TechnologySection 
-          title="Tecnologia VICKI"
+          title="Tecnologia VICKI™"
           subtitle="Sistema di analisi con visione artificiale, AI e tracciamento 3D che analizza oltre 70 parametri in tempo reale"
         />
         
