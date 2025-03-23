@@ -170,7 +170,7 @@ const HomePage = () => {
     },
   ];
 
-  // Updated facilities with Players Lounge
+  // Updated facilities with Players Lounge and Headquarters
   const facilities = [
     {
       id: '1',
@@ -212,6 +212,18 @@ const HomePage = () => {
         'Area relax ergonomica',
         'Connessione diretta al sistema di analisi',
         'Design moderno e funzionale'
+      ]
+    },
+    {
+      id: '7',
+      title: 'Headquarters',
+      description: 'Edificio principale con architettura contemporanea, reception, uffici amministrativi e sale riunioni per il team tecnico.',
+      image: '/lovable-uploads/38147937-4cd3-4caa-9a19-c801e8255f36.png',
+      features: [
+        'Design architettonico all\'avanguardia',
+        'Illuminazione LED perimetrale',
+        'Spazi amministrativi e direzionali',
+        'Vetrate a tutta altezza e materiali premium'
       ]
     },
   ];

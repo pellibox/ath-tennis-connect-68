@@ -7,7 +7,7 @@ import AboutSection from '@/components/AboutSection';
 import { useLocation } from 'react-router-dom';
 import Hero from '@/components/Hero';
 
-// Updated mock data for facilities with Players Lounge
+// Updated mock data for facilities with Players Lounge and Headquarters
 const facilities = [
   {
     id: "facility-1",
@@ -64,6 +64,19 @@ const facilities = [
       "Connessione diretta al sistema di analisi",
       "Reception e assistenza dedicata",
       "Design moderno e funzionale"
+    ]
+  },
+  {
+    id: "facility-6",
+    title: "Headquarters",
+    description: "Edificio principale con architettura contemporanea, reception, uffici amministrativi e sale riunioni per il team tecnico.",
+    image: "/lovable-uploads/38147937-4cd3-4caa-9a19-c801e8255f36.png",
+    features: [
+      "Design architettonico all'avanguardia",
+      "Illuminazione LED perimetrale",
+      "Spazi amministrativi e direzionali",
+      "Vetrate a tutta altezza",
+      "Materiali premium e finiture di alta qualità"
     ]
   }
 ];
