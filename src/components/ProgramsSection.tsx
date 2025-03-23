@@ -11,7 +11,7 @@ interface Program {
   description: string;
   image: string;
   videoSrc?: string;
-  vimeoEmbed?: string; // Added vimeoEmbed property
+  vimeoEmbed?: string;
   link: string;
   features?: string[];
 }
