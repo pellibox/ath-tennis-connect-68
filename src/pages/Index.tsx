@@ -1,3 +1,4 @@
+
 import { useEffect } from 'react';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
@@ -21,100 +22,130 @@ const HomePage = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }, []);
 
-  // Programmi aggiornati in base alle specifiche
+  // Programmi aggiornati con descrizioni tecniche più concise
   const programs = [
     {
       id: '1',
       title: 'Agonisti 6-12 anni',
-      description: 'Programma di allenamento specializzato per giovani agonisti, con focus su sviluppo tecnico fondamentale, coordinazione e approccio mentale adeguato all\'età.',
+      description: 'Programma specializzato per giovani agonisti con monitoraggio completo dello sviluppo tecnico.',
       image: 'https://images.unsplash.com/photo-1551773148-efc73c5fdc70',
-      link: '/programs/agonisti'
+      link: '/programs/agonisti',
+      features: [
+        'Sviluppo tecnico fondamentale',
+        'Coordinazione specifica per età',
+        'Approccio mentale adeguato'
+      ]
     },
     {
       id: '2',
       title: 'Junior 13-18 anni',
-      description: 'Percorso di perfezionamento tecnico-tattico per adolescenti, con integrazione di preparazione fisica specifica e sviluppo di autonomia decisionale in campo.',
+      description: 'Percorso tecnico-tattico per adolescenti con analisi dati per ottimizzare la progressione.',
       image: 'https://images.unsplash.com/photo-1542144582-1ba00456b5e3',
-      link: '/programs/junior'
+      link: '/programs/junior',
+      features: [
+        'Perfezionamento tecnico avanzato',
+        'Preparazione fisica specifica',
+        'Sviluppo autonomia decisionale'
+      ]
     },
     {
       id: '3',
       title: 'Professionisti',
-      description: 'Programma elite per atleti professionisti con analisi completa, ottimizzazione della performance e pianificazione dettagliata della stagione agonistica.',
+      description: 'Programma per atleti professionisti con analisi completa e ottimizzazione della performance.',
       image: 'https://images.unsplash.com/photo-1622279888158-c6a5e6c4587c',
-      link: '/programs/pro'
+      link: '/programs/pro',
+      features: [
+        'Analisi multidimensionale',
+        'Ottimizzazione performance',
+        'Pianificazione stagione agonistica'
+      ]
     },
     {
       id: '4',
       title: 'Adulti',
-      description: 'Lezioni individuali, corsi di gruppo, affitto campi e clinics tematiche per giocatori amatoriali di ogni livello, con supporto tecnologico personalizzato.',
+      description: 'Programmi per giocatori amatoriali con supporto tecnologico personalizzato.',
       image: 'https://images.unsplash.com/photo-1587280501635-68a0e82cd5ff',
-      link: '/programs/adult'
+      link: '/programs/adult',
+      features: [
+        'Lezioni individuali e gruppi',
+        'Affitto campi con analisi',
+        'Clinics tematiche'
+      ]
     },
     {
       id: '5',
       title: 'Coaching a Distanza',
-      description: 'Supporto remoto continuo con analisi video, feedback tecnici e programmi di allenamento personalizzati per atleti non residenti.',
+      description: 'Supporto remoto continuo con analisi video, feedback tecnici e programmi personalizzati.',
       image: 'https://images.unsplash.com/photo-1606131731446-5568d87113aa',
-      link: '/programs/remote'
+      link: '/programs/remote',
+      features: [
+        'Analisi video dettagliata',
+        'Feedback tecnici periodici',
+        'Programmi personalizzati'
+      ]
     },
     {
       id: '6',
       title: 'Percorsi Specifici',
-      description: 'Preparazione intensiva per tornei, recupero tecnico/fisico dopo infortuni e valutazioni approfondite con protocolli personalizzati.',
+      description: 'Preparazione intensiva per obiettivi mirati con protocolli personalizzati e monitoraggio.',
       image: 'https://images.unsplash.com/photo-1599586120429-48281b6f0ece',
-      link: '/programs/specific'
+      link: '/programs/specific',
+      features: [
+        'Preparazione tornei',
+        'Recupero tecnico/fisico post-infortunio',
+        'Valutazioni approfondite'
+      ]
     },
   ];
 
-  // Sample data for coaches
+  // Dati aggiornati degli allenatori con focus sulle competenze tecniche
   const coaches = [
     {
       id: '1',
       name: 'Marco Rossi',
       title: 'Head Coach',
       image: 'https://images.unsplash.com/photo-1544717305-2782549b5136',
-      bio: '15+ years of professional coaching experience. Former top 100 ATP player.'
+      bio: 'Certificazione ITF Livello 3. Specializzato in analisi biomeccanica e integrazione dati VICKI.'
     },
     {
       id: '2',
       name: 'Sofia Garcia',
       title: 'Junior Development Coach',
       image: 'https://images.unsplash.com/photo-1615109398623-88346a601842',
-      bio: 'Specializes in developing junior players. Former WTA player.'
+      bio: 'Esperta nello sviluppo atletico giovanile. Integra metodologie tecniche con crescita psicofisica.'
     },
     {
       id: '3',
       name: 'David Chen',
-      title: 'Fitness Coach',
+      title: 'Performance Specialist',
       image: 'https://images.unsplash.com/photo-1517836357463-d25dfeac3438',
-      bio: 'Expert in sports-specific strength and conditioning for tennis players.'
+      bio: 'Specialista in preparazione atletica tennistica con focus su prevenzione infortuni e ottimizzazione.'
     },
   ];
 
-  // Sample data for testimonials
+  // Testimonianze più dirette e tecniche
   const testimonials = [
     {
       id: '1',
-      quote: "ATH ha trasformato il mio gioco. Gli allenatori forniscono un'attenzione personalizzata e le strutture sono di livello mondiale. Sono migliorato più in un anno qui che in cinque anni altrove.",
+      quote: "L'analisi oggettiva di ATH ha migliorato significativamente i miei parametri tecnici. I dati raccolti hanno permesso un'ottimizzazione precisa del mio gioco.",
       author: 'Emma Martins',
       role: 'Giocatore Junior, 16'
     },
     {
       id: '2',
-      quote: "L'approccio professionale di ATH è impareggiabile. Mi hanno aiutato non solo tecnicamente, ma anche mentalmente e fisicamente. È un ecosistema completo per lo sviluppo del tennis.",
+      quote: "L'integrazione tra coaching tradizionale e sistema VICKI ha migliorato la mia consistenza del 23% in tre mesi, con rilevamenti oggettivi delle performance.",
       author: 'Michael Johnson',
       role: 'Giocatore Professionista'
     },
     {
       id: '3',
-      quote: 'Come giocatore amatoriale, non pensavo di poter migliorare così tanto alla mia età. Il programma per adulti è fantastico - stimolante ma anche divertente e sociale.',
+      quote: 'Il monitoraggio parametrico ha evidenziato inefficienze tecniche nel mio servizio che nessun coach aveva identificato prima, permettendomi correzioni mirate.',
       author: 'Robert Chen',
       role: 'Membro del Programma per Adulti'
     },
   ];
 
-  // Updated stats with the correct information
+  // Statistiche aggiornate
   const stats = [
     {
       id: '1',
@@ -140,36 +171,36 @@ const HomePage = () => {
     },
   ];
 
-  // Facilities data
+  // Strutture con descrizioni più tecniche
   const facilities = [
     {
       id: '1',
       title: 'Campo Centrale ATP',
-      description: 'Il nostro campo centrale rispetta tutti gli standard ATP, con tribune per gli spettatori e tecnologia all\'avanguardia per ospitare tornei di livello internazionale.',
+      description: 'Campo principale con sistema VICKI integrato, tribuna spettatori e standard ATP per tornei internazionali.',
       image: 'https://images.unsplash.com/photo-1625601429244-5eec3a14b8b2?q=80&w=1200'
     },
     {
       id: '2',
       title: 'Campi in Superficie Veloce',
-      description: 'Due campi in superficie veloce di standard internazionale, progettati per un gioco veloce e adatti a sviluppare il gioco aggressivo e i colpi potenti.',
+      description: 'Due campi in superficie sintetica con coefficiente di attrito standardizzato e sistema di tracciamento integrato.',
       image: 'https://images.unsplash.com/photo-1544991936-9e0ee081bd27?q=80&w=1200'
     },
     {
       id: '3',
       title: 'Campi in Terra Rossa',
-      description: 'Quattro campi in terra rossa di alta qualità, mantenuti quotidianamente per garantire condizioni di gioco ottimali, ideali per il gioco tattico e per ridurre lo stress sulle articolazioni.',
+      description: 'Quattro campi in terra rossa calibrata, con manutenzione quotidiana e rilevamento parametrico completo.',
       image: 'https://images.unsplash.com/photo-1622279488220-3c7dd46f7c18?q=80&w=1200'
     },
     {
       id: '4',
       title: 'Centro Performance',
-      description: 'Il nostro centro di performance high-tech include una palestra completamente attrezzata, aree di recupero, sale di analisi video e strutture di scienze sportive per uno sviluppo completo dell\'atleta.',
+      description: 'Area dedicata all\'analisi dati e preparazione fisica, con strumentazione per valutazioni biomeccaniche e recupero.',
       image: 'https://images.unsplash.com/photo-1593079831268-3381b0db4a77?q=80&w=1200'
     },
     {
       id: '5',
       title: 'Strutture per Giocatori',
-      description: 'Spazi confortevoli per i giocatori per rilassarsi, studiare e socializzare. Per i giocatori in visita, offriamo alloggi in loco con tutti i comfort necessari per un soggiorno confortevole.',
+      description: 'Spazi dedicati con connessione diretta al sistema VICKI per revisione dati, analisi video e pianificazione sessioni.',
       image: 'https://images.unsplash.com/photo-1603988363607-e1e4a66962c6?q=80&w=1200'
     },
   ];
@@ -181,7 +212,7 @@ const HomePage = () => {
       <main className="flex-grow">
         <Hero 
           title="Advanced Tennis Hub"
-          subtitle="Centro di allenamento ad alta specializzazione con integrazione tra tecnologia avanzata e competenze professionali"
+          subtitle="Centro di allenamento ad alta specializzazione con monitoraggio parametrico completo e metodologia integrata"
           imageSrc="/lovable-uploads/fc6643c2-4357-4c86-9e52-6f33d698668f.png"
           buttons={[
             { text: "Programmi", href: '/programs' },
@@ -194,9 +225,9 @@ const HomePage = () => {
           subtitle="ATH - Advanced Tennis Hub"
           description={
             <div className="space-y-4">
-              <p>ATH è un centro di allenamento ad alta specializzazione che offre a ogni atleta un percorso evolutivo personalizzato, basato su dati oggettivi e supportato da tecnologia avanzata.</p>
-              <p>Il nostro approccio integra competenze professionali con sistemi di analisi all'avanguardia, garantendo continuità metodologica e supporto tecnico costante.</p>
-              <p>ATH costituisce una rete aperta a coach, atleti e specialisti, uniti dall'obiettivo di ottimizzare il processo di sviluppo tennistico attraverso un metodo oggettivo e misurabile.</p>
+              <p>ATH è un centro di allenamento specializzato che integra tecnologia avanzata e metodologia strutturata per offrire percorsi evolutivi personalizzati basati su dati oggettivi.</p>
+              <p>Il sistema di monitoraggio parametrico garantisce continuità metodologica e supporto tecnico costante, indipendentemente dal coach presente in campo.</p>
+              <p>La struttura costituisce una rete professionale aperta a coach, atleti e specialisti per ottimizzare il processo evolutivo tennistico attraverso un metodo oggettivo e misurabile.</p>
             </div>
           }
           image="https://images.unsplash.com/photo-1617711773026-ea7252c02cd3"
@@ -207,9 +238,10 @@ const HomePage = () => {
         
         <ProgramsSection 
           title="Programmi"
-          subtitle="Offriamo percorsi personalizzati per ogni fase di sviluppo del giocatore"
+          subtitle="Percorsi personalizzati con monitoraggio parametrico completo"
           programs={programs}
           className="bg-ath-gray"
+          gridLayout="dense"
         />
         
         <StatsSection 
@@ -218,25 +250,25 @@ const HomePage = () => {
         />
         
         <TechnologySection 
-          title={t('tech.title')}
+          title="Tecnologia VICKI"
           subtitle="Sistema di analisi con visione artificiale, AI e tracciamento 3D che analizza oltre 70 parametri in tempo reale"
         />
         
         <FacilitiesSection 
           title="Strutture"
-          subtitle="I nostri campi e spazi sono progettati per offrire un'esperienza di allenamento ottimale"
+          subtitle="Campi e spazi dotati di tecnologia VICKI per allenamento, analisi e ottimizzazione"
           facilities={facilities}
         />
         
         <CoachesSection 
           title="Coach e Staff"
-          subtitle="Il nostro team tecnico utilizza VICKI come supporto all'approccio individuale"
+          subtitle="Team tecnico specializzato nell'integrazione tra metodologia tradizionale e sistema VICKI"
           coaches={coaches}
         />
         
         <TestimonialsSection 
-          title={t('testimonials.title')}
-          subtitle={t('testimonials.subtitle')}
+          title="Riscontri Oggettivi"
+          subtitle="Risultati misurabili ottenuti attraverso il sistema di monitoraggio parametrico"
           testimonials={testimonials}
         />
         
@@ -244,9 +276,9 @@ const HomePage = () => {
           title="Il Metodo ATH"
           description={
             <div className="space-y-4">
-              <p>Il nostro metodo si basa su un allenamento personalizzato costruito su base oggettiva, utilizzando dati e intelligenza artificiale per guidare il percorso evolutivo di ogni atleta.</p>
-              <p>Adottiamo un approccio integrato che combina tecnica, fisico, tattica, mentale e salute, garantendo continuità metodologica indipendentemente dal coach presente in campo.</p>
-              <p>Ogni atleta riceve un supporto evolutivo costante, con analisi dettagliate, feedback immediati e programmi personalizzati per massimizzare il potenziale individuale.</p>
+              <p>Il metodo ATH si basa su parametri oggettivi ottenuti attraverso tecnologia avanzata per guidare scientificamente il percorso evolutivo di ogni atleta.</p>
+              <p>L'approccio integra tecnica, fisico, tattica, mentale e salute, garantendo continuità metodologica indipendentemente dal coach in campo.</p>
+              <p>Ogni atleta riceve un supporto evolutivo costante con analisi dettagliate, feedback immediati e programmi personalizzati basati su dati misurabili.</p>
             </div>
           }
           image="https://images.unsplash.com/photo-1518005068251-37900150dfca"
@@ -258,7 +290,7 @@ const HomePage = () => {
         
         <ContactSection 
           title="Contatti"
-          subtitle="Richiedi informazioni o prenota una sessione"
+          subtitle="Richiedi informazioni tecniche o prenota una sessione di valutazione"
           address="123 Tennis Court Avenue, Tennis City, 10001"
           phone="+1 (234) 567-890"
           email="info@ath-tennis.com"
