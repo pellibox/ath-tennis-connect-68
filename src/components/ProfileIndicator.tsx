@@ -30,7 +30,7 @@ const ProfileIndicator: React.FC<ProfileIndicatorProps> = ({ gender, type, onEdi
   };
   
   return (
-    <div className="flex items-center mr-4">
+    <div className="flex items-center cursor-pointer">
       <div className="flex items-center gap-2">
         <div className={`p-1 rounded-full ${gender === 'male' ? 'bg-blue-100' : 'bg-pink-100'}`}>
           <User size={16} className={gender === 'male' ? 'text-blue-500' : 'text-pink-500'} />
@@ -38,15 +38,7 @@ const ProfileIndicator: React.FC<ProfileIndicatorProps> = ({ gender, type, onEdi
         <div className="p-1 rounded-full bg-ath-clay/10">
           {getTypeIcon()}
         </div>
-        <Button 
-          variant="ghost" 
-          size="sm" 
-          className="flex items-center p-1 h-auto text-xs"
-          onClick={onEditClick}
-        >
-          <Edit size={12} className="mr-1" />
-          <span className="text-xs">Modifica</span>
-        </Button>
+        <span className="text-xs font-medium">Modifica</span>
       </div>
     </div>
   );

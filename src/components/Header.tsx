@@ -17,7 +17,13 @@ import {
 } from "@/components/ui/navigation-menu";
 import { useIsMobile } from '@/hooks/use-mobile';
 import ProfileIndicator from './ProfileIndicator';
+import UserTypeSelector from './UserTypeSelector';
 import { UserGender, UserType, loadUserPreferences } from './UserTypeSelector';
+import {
+  Dialog,
+  DialogContent,
+  DialogTrigger,
+} from "@/components/ui/dialog";
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -32,6 +38,12 @@ const Header = () => {
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
+  };
+  
+  const handleProfileComplete = (gender: UserGender, type: UserType) => {
+    setShowSelector(false);
+    // Force a reload to update the profile indicator
+    window.location.reload();
   };
 
   useEffect(() => {
@@ -138,12 +150,32 @@ const Header = () => {
         </div>
         
         <div className="flex items-center z-50">
-          {gender && type && (
-            <ProfileIndicator 
-              gender={gender as UserGender} 
-              type={type as UserType} 
-              onEditClick={() => setShowSelector(true)}
-            />
+          {gender && type ? (
+            <Dialog>
+              <DialogTrigger asChild>
+                <div className="mr-4">
+                  <ProfileIndicator 
+                    gender={gender as UserGender} 
+                    type={type as UserType} 
+                    onEditClick={() => {}}
+                  />
+                </div>
+              </DialogTrigger>
+              <DialogContent className="sm:max-w-md">
+                <UserTypeSelector onSelectionComplete={handleProfileComplete} />
+              </DialogContent>
+            </Dialog>
+          ) : (
+            <Dialog>
+              <DialogTrigger asChild>
+                <button className="mr-4 text-sm px-3 py-1 rounded-md bg-ath-clay text-white">
+                  Profilo
+                </button>
+              </DialogTrigger>
+              <DialogContent className="sm:max-w-md">
+                <UserTypeSelector onSelectionComplete={handleProfileComplete} />
+              </DialogContent>
+            </Dialog>
           )}
           
           <div className={cn("hidden lg:block", textColorClass)}>
@@ -186,17 +218,6 @@ const Header = () => {
             </div>
           </nav>
         </div>
-        
-        {showSelector && (
-          <div className="fixed inset-0 flex items-center justify-center bg-black/60 backdrop-blur-sm z-50 p-4">
-            <div className="max-w-md w-full">
-              {/* We'll import and use UserTypeSelector here when needed */}
-              <button onClick={() => setShowSelector(false)} className="absolute top-4 right-4 text-white">
-                <X size={24} />
-              </button>
-            </div>
-          </div>
-        )}
       </div>
     </header>
   );
