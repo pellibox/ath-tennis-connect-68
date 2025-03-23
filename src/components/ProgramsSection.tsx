@@ -128,6 +128,24 @@ const ProgramsSection = ({
     setVideosReady(prev => ({ ...prev, [id]: true }));
   };
 
+  // Process Vimeo embed code to ensure it has the right parameters
+  const processVimeoEmbed = (embed: string, isHovered: boolean): string => {
+    // Make sure autoplay is enabled only when hovered
+    let processed = embed.replace(/autoplay=[01]/, `autoplay=${isHovered ? '1' : '0'}`);
+    
+    // Ensure background=1 and controls=0 to hide controls and use as background
+    if (!processed.includes('background=')) {
+      processed = processed.replace(/player\.vimeo\.com\/video/, 'player.vimeo.com/video');
+      processed = processed.replace(/\?/, '?background=1&');
+    }
+    
+    if (!processed.includes('controls=')) {
+      processed = processed.replace(/\?/, '?controls=0&');
+    }
+    
+    return processed;
+  };
+
   return (
     <section id="programs" className={cn('py-16 px-6 lg:px-10', className)}>
       <div className="max-w-7xl mx-auto">
@@ -161,7 +179,7 @@ const ProgramsSection = ({
                     <div 
                       className="w-full h-full vimeo-container" 
                       dangerouslySetInnerHTML={{ 
-                        __html: program.vimeoEmbed.replace('autoplay=1', `autoplay=${hoveredCard === program.id ? '1' : '0'}`) 
+                        __html: processVimeoEmbed(program.vimeoEmbed, hoveredCard === program.id) 
                       }}
                     />
                   ) : program.videoSrc ? (
