@@ -1,6 +1,7 @@
 
 import { Link } from 'react-router-dom';
 import { cn } from '@/lib/utils';
+import React from 'react';
 
 interface ButtonLinkProps {
   href: string;
@@ -9,6 +10,7 @@ interface ButtonLinkProps {
   size?: 'sm' | 'md' | 'lg';
   className?: string;
   external?: boolean;
+  style?: React.CSSProperties; // Added style prop
 }
 
 const ButtonLink = ({
@@ -18,6 +20,7 @@ const ButtonLink = ({
   size = 'md',
   className,
   external = false,
+  style, // Added style prop
 }: ButtonLinkProps) => {
   const baseClasses = "inline-block text-center transition-all duration-300";
   
@@ -47,6 +50,7 @@ const ButtonLink = ({
         className={buttonClasses}
         target="_blank"
         rel="noopener noreferrer"
+        style={style}
       >
         {children}
       </a>
@@ -54,7 +58,7 @@ const ButtonLink = ({
   }
   
   return (
-    <Link to={href} className={buttonClasses}>
+    <Link to={href} className={buttonClasses} style={style}>
       {children}
     </Link>
   );
