@@ -85,12 +85,12 @@ const ProgramsSection = ({
         )}
         
         <div className={cn(
-          "grid gap-8", // Increased gap for better spacing
+          "grid gap-8",
           gridLayout === 'dense' 
             ? "grid-cols-1 sm:grid-cols-2 lg:grid-cols-3" 
             : compact 
               ? "grid-cols-1 sm:grid-cols-2 lg:grid-cols-3" 
-              : "grid-cols-1 md:grid-cols-2 lg:grid-cols-2" // Changed to 2 columns for better 16:9 display
+              : "grid-cols-1 md:grid-cols-2 lg:grid-cols-2"
         )}>
           {programs.map((program, index) => (
             <RevealAnimation key={program.id} delay={index * 50} className="h-full">
@@ -99,13 +99,13 @@ const ProgramsSection = ({
                 onMouseEnter={() => program.videoSrc && handleMouseEnter(program.id)}
                 onMouseLeave={() => program.videoSrc && handleMouseLeave(program.id)}
               >
-                <div className="relative overflow-hidden aspect-video"> {/* aspect-video ensures 16:9 ratio */}
+                <div className="relative overflow-hidden aspect-video">
                   {program.vimeoEmbed ? (
                     <div 
                       className="w-full h-full vimeo-container" 
                       dangerouslySetInnerHTML={{ 
                         __html: program.vimeoEmbed.replace('autoplay=1', `autoplay=${hoveredCard === program.id ? '1' : '0'}`) 
-                      }} 
+                      }}
                       onMouseEnter={() => handleMouseEnter(program.id)}
                       onMouseLeave={() => handleMouseLeave(program.id)}
                     />
@@ -120,9 +120,11 @@ const ProgramsSection = ({
                         playsInline
                         className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                         onError={() => handleImageError(program.id)}
+                        style={{ display: 'block' }} // Always keep the video element visible
                       />
+                      {/* Overlay with play button that fades on hover */}
                       <div className={cn(
-                        "absolute inset-0 flex items-center justify-center bg-black bg-opacity-30 transition-opacity",
+                        "absolute inset-0 flex items-center justify-center bg-black bg-opacity-30 transition-opacity duration-300",
                         hoveredCard === program.id ? "opacity-0" : "opacity-100"
                       )}>
                         <div className="w-12 h-12 rounded-full bg-white/80 flex items-center justify-center">

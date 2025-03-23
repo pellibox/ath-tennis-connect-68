@@ -92,9 +92,11 @@ const CoachesSection = ({
                         loop
                         playsInline
                         className="w-full aspect-[3/4] object-cover transition-transform duration-700 group-hover:scale-105"
+                        style={{ display: 'block' }} // Always keep the video element visible
                       />
+                      {/* Overlay with play button that fades on hover */}
                       <div className={cn(
-                        "absolute inset-0 flex items-center justify-center bg-black bg-opacity-30 transition-opacity",
+                        "absolute inset-0 flex items-center justify-center bg-black bg-opacity-30 transition-opacity duration-300",
                         hoveredCard === coach.id ? "opacity-0" : "opacity-100"
                       )}>
                         <div className="w-12 h-12 rounded-full bg-white/80 flex items-center justify-center">
