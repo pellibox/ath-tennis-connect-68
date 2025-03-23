@@ -21,6 +21,7 @@ interface HeroProps {
   overlayOpacity?: 'light' | 'medium' | 'dark';
   fullHeight?: boolean;
   contentVerticalPosition?: 'top' | 'center' | 'bottom';
+  subtitlePosition?: 'withTitle' | 'bottom';
 }
 
 const Hero = ({
@@ -36,6 +37,7 @@ const Hero = ({
   overlayOpacity = 'medium',
   fullHeight = true,
   contentVerticalPosition = 'center',
+  subtitlePosition = 'withTitle',
 }: HeroProps) => {
   const titleRef = useRef<HTMLHeadingElement>(null);
   const videoRef = useRef<HTMLVideoElement>(null);
@@ -281,7 +283,7 @@ const Hero = ({
           {title}
         </h1>
         
-        {subtitle && (
+        {subtitle && subtitlePosition === 'withTitle' && (
           <p className="text-white text-xl md:text-2xl opacity-90 mb-10 animate-fade-in drop-shadow-md" style={{ animationDelay: '0.4s' }}>
             {subtitle}
           </p>
@@ -309,6 +311,16 @@ const Hero = ({
           </div>
         )}
       </div>
+      
+      {/* Subtitle at bottom if position is 'bottom' */}
+      {subtitle && subtitlePosition === 'bottom' && (
+        <div className="absolute bottom-0 left-0 right-0 z-10 p-4 bg-gradient-to-t from-black/80 to-transparent">
+          <p className="text-white text-base md:text-lg opacity-90 max-w-3xl mx-auto text-center animate-fade-in drop-shadow-md" 
+            style={{ animationDelay: '0.4s' }}>
+            {subtitle}
+          </p>
+        </div>
+      )}
     </div>
   );
 };

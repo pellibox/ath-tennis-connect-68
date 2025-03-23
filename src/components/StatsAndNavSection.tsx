@@ -1,6 +1,6 @@
 
 import React from 'react';
-import { Activity, Users, Calendar, Award, FileAnalytics, MapPin, School, Target, LayoutGrid } from 'lucide-react';
+import { Activity, Users, Calendar, Award, FileText, MapPin, School, Target, LayoutGrid } from 'lucide-react';
 import ButtonLink from './ButtonLink';
 import RevealAnimation from './RevealAnimation';
 import { cn } from '@/lib/utils';
@@ -29,7 +29,7 @@ const StatsAndNavSection = ({ stats, className }: StatsAndNavSectionProps) => {
     },
     {
       title: 'Tecnologia',
-      icon: <FileAnalytics className="w-10 h-10 text-ath-clay mb-4" />,
+      icon: <FileText className="w-10 h-10 text-ath-clay mb-4" />,
       description: 'Esplora il sistema Vicki™ e i suoi benefici',
       href: '/technology',
       image: '/lovable-uploads/cabb225e-0db8-4830-8967-24942c8f7d52.png'
@@ -80,7 +80,7 @@ const StatsAndNavSection = ({ stats, className }: StatsAndNavSectionProps) => {
               <RevealAnimation key={stat.id} delay={index * 100}>
                 <div className="text-center flex flex-col items-center">
                   {index === 0 && <Activity className="w-12 h-12 mb-3 text-white opacity-80" />}
-                  {index === 1 && <FileAnalytics className="w-12 h-12 mb-3 text-white opacity-80" />}
+                  {index === 1 && <FileText className="w-12 h-12 mb-3 text-white opacity-80" />}
                   {index === 2 && <Calendar className="w-12 h-12 mb-3 text-white opacity-80" />}
                   {index === 3 && <Award className="w-12 h-12 mb-3 text-white opacity-80" />}
                   
