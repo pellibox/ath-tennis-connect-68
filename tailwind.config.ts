@@ -1,3 +1,4 @@
+
 import type { Config } from "tailwindcss";
 
 export default {
@@ -33,7 +34,7 @@ export default {
 					white: '#FFFFFF',
 					gray: '#F6F6F7',
 					darkgray: '#222222',
-					clay: '#993322',
+					clay: '#993322', // Tennis court clay red
 				},
 				primary: {
 					DEFAULT: 'hsl(var(--primary))',

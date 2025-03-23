@@ -90,7 +90,6 @@
     overscroll-behavior: none;
   }
 
-  /* Remove the circular dependency by not using @apply */
   .font-display {
     font-family: 'Playfair Display', serif;
   }
@@ -102,6 +101,35 @@
 
 .bg-ath-clay {
   background-color: hsl(var(--ath-clay));
+}
+
+.text-ath-clay {
+  color: hsl(var(--ath-clay));
+}
+
+.border-ath-clay {
+  border-color: hsl(var(--ath-clay));
+}
+
+.hover-ath-clay:hover {
+  background-color: hsl(var(--ath-clay));
+  color: white;
+}
+
+.btn-black {
+  @apply bg-black text-white hover:bg-opacity-90 transition-all duration-200;
+}
+
+.btn-clay {
+  @apply bg-ath-clay text-white hover:bg-opacity-90 transition-all duration-200;
+}
+
+.btn-outline-black {
+  @apply bg-transparent text-black border border-black hover:bg-black hover:text-white transition-all duration-200;
+}
+
+.btn-outline-clay {
+  @apply bg-transparent text-[#993322] border border-[#993322] hover:bg-[#993322] hover:text-white transition-all duration-200;
 }
 
 .animated-line {
