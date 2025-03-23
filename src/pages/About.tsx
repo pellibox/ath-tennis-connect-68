@@ -32,7 +32,7 @@ const AboutPage = () => {
       <main className="flex-grow pt-20">
         <section className="py-20 px-6 lg:px-10 bg-white">
           <div className="max-w-7xl mx-auto">
-            <h1 className="text-4xl md:text-5xl font-display text-center mb-12">Cose ATH</h1>
+            <h1 className="text-4xl md:text-5xl font-display text-center mb-12">Cos'è ATH</h1>
             
             <div className="prose prose-lg max-w-4xl mx-auto">
               <p className="lead text-xl mb-6">
