@@ -1,3 +1,4 @@
+
 import { useEffect } from 'react';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
@@ -18,8 +19,8 @@ const Programs = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }, []);
 
-  // Programs data with detailed features for each user profile
-  const methodologyPrograms = [
+  // Junior Academy programs
+  const juniorAcademyPrograms = [
     {
       id: '1',
       title: 'Agonista Junior (13-18 anni)',
@@ -38,6 +39,26 @@ const Programs = () => {
         'Coordinamento tra coach, preparatore, mental coach, medico'
       ]
     },
+    {
+      id: '5',
+      title: 'Genitore/Tutor (Giovani e Junior Agonisti 6-18 anni)',
+      description: 'Supporto informativo e coinvolgimento nel percorso di sviluppo del giovane atleta.',
+      image: 'https://images.unsplash.com/photo-1515377905703-c4788e51af15?q=80&w=2070&auto=format&fit=crop',
+      link: '/programs/parent',
+      features: [
+        'Accesso a report semplici e leggibili, con dati tecnici, fisici e mentali',
+        'Possibilità di seguire in streaming allenamenti e partite',
+        'Aggiornamenti regolari sull\'evoluzione tecnica e psico-fisica del ragazzo/a',
+        'Canali diretti con il coach per ricevere feedback chiari e condividere obiettivi',
+        'Analisi statistiche semplificate con visione d\'insieme dell\'andamento',
+        'Supporto pratico per accompagnare il percorso sportivo senza pressioni inutili',
+        'Filtraggio automatico dei dati per evitare interpretazioni errate o fuorvianti'
+      ]
+    }
+  ];
+
+  // Elite Program
+  const elitePrograms = [
     {
       id: '2',
       title: 'Agonisti Performance',
@@ -73,6 +94,59 @@ const Programs = () => {
       ]
     },
     {
+      id: '9',
+      title: 'Performance Analysis',
+      description: 'Analisi completa del gioco con tecnologia avanzata e feedback personalizzato.',
+      image: 'https://images.unsplash.com/photo-1549060279-7e168fcee0c2?q=80&w=2070&auto=format&fit=crop',
+      link: '/programs/analysis',
+      features: [
+        'Analisi biomeccanica completa',
+        'Heatmap e pattern di spostamento',
+        'Statistiche avanzate di gioco',
+        'Report dettagliato con raccomandazioni'
+      ]
+    }
+  ];
+
+  // Adult Training
+  const adultPrograms = [
+    {
+      id: '6',
+      title: 'Amatori',
+      description: 'Percorsi flessibili per giocatori amatoriali che vogliono migliorare le proprie capacità.',
+      image: 'https://images.unsplash.com/photo-1535131749006-b7f58c99034b?q=80&w=2070&auto=format&fit=crop',
+      link: '/programs/amateur',
+      features: [
+        'Allenamento personalizzato anche su base occasionale',
+        'Lezioni singole o pacchetti con analisi tecnica semplificata',
+        'Clinics su specifici aspetti (servizio, spostamenti, colpi)',
+        'Affitto campi con tecnologia attiva (per analisi post-sessione)',
+        'Percorsi di miglioramento progressivo senza sovraccarico',
+        'Report leggibili con focus su controllo, postura e miglioramenti visibili'
+      ]
+    }
+  ];
+
+  // Summer Camps
+  const summerCamps = [
+    {
+      id: '8',
+      title: 'Summer Camps',
+      description: 'Programmi intensivi di 1-4 settimane per giocatori di tutte le età e livelli.',
+      image: 'https://images.unsplash.com/photo-1544298621-35a989e4e54a?q=80&w=2070&auto=format&fit=crop',
+      link: '/programs/camps',
+      features: [
+        'Programmi per diverse fasce d\'età',
+        'Allenamento intensivo giornaliero',
+        'Attività complementari e team building',
+        'Analisi tecnica con sistema VICKI'
+      ]
+    }
+  ];
+
+  // Coach/Private Lessons
+  const coachPrograms = [
+    {
       id: '4',
       title: 'Coach / Allenatori / Club',
       description: 'Formazione avanzata e strumenti per allenatori che vogliono integrare la metodologia ATH e VICKI.',
@@ -91,66 +165,47 @@ const Programs = () => {
       ]
     },
     {
-      id: '5',
-      title: 'Genitore/Tutor (Giovani e Junior Agonisti 6-18 anni)',
-      description: 'Supporto informativo e coinvolgimento nel percorso di sviluppo del giovane atleta.',
-      image: 'https://images.unsplash.com/photo-1515377905703-c4788e51af15?q=80&w=2070&auto=format&fit=crop',
-      link: '/programs/parent',
+      id: '10',
+      title: 'Lezioni Private',
+      description: 'Sessioni di allenamento personalizzate con coach esperti e feedback immediato tramite VICKI™.',
+      image: 'https://images.unsplash.com/photo-1588453251771-cd919ff14bee?q=80&w=2070&auto=format&fit=crop',
+      link: '/programs/private-lessons',
       features: [
-        'Accesso a report semplici e leggibili, con dati tecnici, fisici e mentali',
-        'Possibilità di seguire in streaming allenamenti e partite',
-        'Aggiornamenti regolari sull\'evoluzione tecnica e psico-fisica del ragazzo/a',
-        'Canali diretti con il coach per ricevere feedback chiari e condividere obiettivi',
-        'Analisi statistiche semplificate con visione d\'insieme dell\'andamento',
-        'Supporto pratico per accompagnare il percorso sportivo senza pressioni inutili',
-        'Filtraggio automatico dei dati per evitare interpretazioni errate o fuorvianti'
-      ]
-    },
-    {
-      id: '6',
-      title: 'Amatori',
-      description: 'Percorsi flessibili per giocatori amatoriali che vogliono migliorare le proprie capacità.',
-      image: 'https://images.unsplash.com/photo-1535131749006-b7f58c99034b?q=80&w=2070&auto=format&fit=crop',
-      link: '/programs/amateur',
-      features: [
-        'Allenamento personalizzato anche su base occasionale',
-        'Lezioni singole o pacchetti con analisi tecnica semplificata',
-        'Clinics su specifici aspetti (servizio, spostamenti, colpi)',
-        'Affitto campi con tecnologia attiva (per analisi post-sessione)',
-        'Percorsi di miglioramento progressivo senza sovraccarico',
-        'Report leggibili con focus su controllo, postura e miglioramenti visibili'
+        'Sessioni one-to-one con coach certificati',
+        'Analisi dettagliata della tecnica con VICKI™',
+        'Focus su obiettivi specifici',
+        'Opzioni per singole lezioni o pacchetti'
       ]
     }
   ];
 
-  // Other programs data (keeping some original programs)
-  const additionalPrograms = [
+  // Group programs into categories
+  const programCategories = [
     {
-      id: '8',
+      id: 'junior-academy',
+      title: 'Junior Academy',
+      programs: juniorAcademyPrograms
+    },
+    {
+      id: 'elite-program',
+      title: 'Elite Program',
+      programs: elitePrograms
+    },
+    {
+      id: 'adult-training',
+      title: 'Adult Training',
+      programs: adultPrograms
+    },
+    {
+      id: 'summer-camps',
       title: 'Summer Camps',
-      description: 'Programmi intensivi di 1-4 settimane per giocatori di tutte le età e livelli.',
-      image: 'https://images.unsplash.com/photo-1544298621-35a989e4e54a?q=80&w=2070&auto=format&fit=crop',
-      link: '/programs/camps',
-      features: [
-        'Programmi per diverse fasce d\'età',
-        'Allenamento intensivo giornaliero',
-        'Attività complementari e team building',
-        'Analisi tecnica con sistema VICKI'
-      ]
+      programs: summerCamps
     },
     {
-      id: '9',
-      title: 'Performance Analysis',
-      description: 'Analisi completa del gioco con tecnologia avanzata e feedback personalizzato.',
-      image: 'https://images.unsplash.com/photo-1549060279-7e168fcee0c2?q=80&w=2070&auto=format&fit=crop',
-      link: '/programs/analysis',
-      features: [
-        'Analisi biomeccanica completa',
-        'Heatmap e pattern di spostamento',
-        'Statistiche avanzate di gioco',
-        'Report dettagliato con raccomandazioni'
-      ]
-    },
+      id: 'coach-private',
+      title: 'Coach & Private Lessons',
+      programs: coachPrograms
+    }
   ];
 
   return (
@@ -267,16 +322,10 @@ const Programs = () => {
         </section>
         
         <ProgramsSection 
-          title="Programmi"
+          title="Programmi ATH"
           subtitle="Percorsi metodologici personalizzati in base alle tue esigenze specifiche"
-          programs={methodologyPrograms}
+          categories={programCategories}
           className="bg-ath-gray"
-        />
-        
-        <ProgramsSection 
-          title="Programmi Specializzati"
-          subtitle="Opzioni di allenamento aggiuntive per completare il tuo sviluppo"
-          programs={additionalPrograms}
         />
         
         <AboutSection 
@@ -418,4 +467,3 @@ const Programs = () => {
 };
 
 export default Programs;
-
