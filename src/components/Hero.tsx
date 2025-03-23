@@ -202,7 +202,7 @@ const Hero = ({
         {vimeoEmbed && (
           <div className="absolute inset-0 w-full h-full bg-black">
             <div className="w-full h-full" dangerouslySetInnerHTML={{ __html: vimeoEmbed }} />
-            {/* Thin overlay to ensure text readability */}
+            {/* Thinner overlay to ensure text readability without darkening video too much */}
             <div className="absolute inset-0 bg-black/30"></div>
           </div>
         )}

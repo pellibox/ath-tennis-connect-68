@@ -22,8 +22,8 @@ const HomePage = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }, []);
 
-  // Vimeo embed code for the hero section
-  const vimeoEmbedCode = `<div style="padding:75% 0 0 0;position:relative;"><iframe src="https://player.vimeo.com/video/1068596952?h=b7fa539b1c&amp;badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media" style="position:absolute;top:0;left:0;width:100%;height:100%;" title="Junior male 2"></iframe></div><script src="https://player.vimeo.com/api/player.js"></script>`;
+  // Updated Vimeo embed code with autoplay, no controls, no UI elements
+  const vimeoEmbedCode = `<div style="padding:75% 0 0 0;position:relative;"><iframe src="https://player.vimeo.com/video/1068596952?h=b7fa539b1c&autoplay=1&loop=1&background=1&autopause=0&player_id=0&app_id=58479" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media" style="position:absolute;top:0;left:0;width:100%;height:100%;" title="Junior male 2"></iframe></div><script src="https://player.vimeo.com/api/player.js"></script>`;
 
   // Programmi aggiornati con descrizioni tecniche più concise
   const programs = [
@@ -358,4 +358,3 @@ const HomePage = () => {
 };
 
 export default HomePage;
-
