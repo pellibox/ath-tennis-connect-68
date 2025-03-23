@@ -43,9 +43,14 @@ const HomePage = () => {
       }
     }
     
-    // Male professional users get the professional video
-    if (userType === 'professional' && userGender === 'male') {
-      videoEmbed = `<div style="padding:75% 0 0 0;position:relative;"><iframe src="https://player.vimeo.com/video/867339831?h=7f8992b4a2&autoplay=1&loop=1&background=1&autopause=0&player_id=0&app_id=58479" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media" style="position:absolute;top:0;left:0;width:100%;height:100%;" title="Professional"></iframe></div><script src="https://player.vimeo.com/api/player.js"></script>`;
+    // Specific videos for male users and coaches
+    if (userGender === 'male' && userType === 'professional') {
+      videoEmbed = `<div style="padding:75% 0 0 0;position:relative;"><iframe src="https://player.vimeo.com/video/1068596901?h=2ac5605207&autoplay=1&loop=1&background=1&autopause=0&player_id=0&app_id=58479" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media" style="position:absolute;top:0;left:0;width:100%;height:100%;" title="Male Professional"></iframe></div><script src="https://player.vimeo.com/api/player.js"></script>`;
+    }
+    
+    // Coach video (regardless of gender)
+    if (userType === 'coach') {
+      videoEmbed = `<div style="padding:75% 0 0 0;position:relative;"><iframe src="https://player.vimeo.com/video/1068604198?h=07d9021fd2&autoplay=1&loop=1&background=1&autopause=0&player_id=0&app_id=58479" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media" style="position:absolute;top:0;left:0;width:100%;height:100%;" title="Coach"></iframe></div><script src="https://player.vimeo.com/api/player.js"></script>`;
     }
     
     return videoEmbed;
@@ -125,9 +130,9 @@ const HomePage = () => {
             subtitlePosition="bottom"
           />
           
-          {/* User Selection Overlay - Positioned at 3/4 from the top */}
+          {/* User Selection Overlay - Positioned at 2/3 from the top instead of 3/4 to show continue button */}
           {!userType && (
-            <div className="absolute top-3/4 left-0 right-0 flex justify-center px-4 z-20">
+            <div className="absolute top-2/3 left-0 right-0 flex justify-center px-4 z-20">
               {showSelector ? (
                 <UserTypeSelector onSelectionComplete={handleUserSelection} />
               ) : (
