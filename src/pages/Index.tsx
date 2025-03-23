@@ -272,6 +272,7 @@ const HomePage = () => {
           ]}
           overlayOpacity="medium"
           contentVerticalPosition="bottom"
+          contentPosition="center"
         />
         
         <AboutSection 
