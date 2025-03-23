@@ -1,4 +1,3 @@
-
 import { useEffect, useState } from 'react';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
@@ -358,9 +357,9 @@ const HomePage = () => {
             subtitlePosition="bottom"
           />
           
-          {/* User Selection Overlay */}
+          {/* User Selection Overlay - Positioned at 3/4 from the top */}
           {!userType && (
-            <div className="absolute top-1/3 left-0 right-0 flex justify-center px-4 z-20">
+            <div className="absolute top-3/4 left-0 right-0 flex justify-center px-4 z-20">
               {showSelector ? (
                 <UserTypeSelector onSelectionComplete={handleUserSelection} />
               ) : (

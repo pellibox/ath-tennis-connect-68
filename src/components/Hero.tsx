@@ -288,28 +288,6 @@ const Hero = ({
             {subtitle}
           </p>
         )}
-        
-        {buttons.length > 0 && (
-          <div className={cn(
-            'flex flex-wrap gap-5',
-            contentPosition === 'center' ? 'justify-center' : contentPosition === 'right' ? 'justify-end' : 'justify-start'
-          )}>
-            {buttons.map((button, index) => (
-              <ButtonLink
-                key={`${button.text}-${index}`}
-                href={button.href}
-                variant={button.variant || (index === 0 ? 'primary' : 'outline')}
-                className={cn(
-                  'text-lg px-8 py-3', 
-                  index === 0 ? 'animate-fade-in' : 'animate-fade-in'
-                )}
-                style={{ animationDelay: `${0.6 + index * 0.1}s` }}
-              >
-                {button.text}
-              </ButtonLink>
-            ))}
-          </div>
-        )}
       </div>
       
       {/* Subtitle at bottom if position is 'bottom' */}
@@ -319,6 +297,29 @@ const Hero = ({
             style={{ animationDelay: '0.4s' }}>
             {subtitle}
           </p>
+          
+          {/* Action buttons at bottom */}
+          {buttons.length > 0 && (
+            <div className={cn(
+              'flex flex-wrap gap-3 justify-center mt-3',
+            )}>
+              {buttons.map((button, index) => (
+                <ButtonLink
+                  key={`${button.text}-${index}`}
+                  href={button.href}
+                  variant={button.variant || (index === 0 ? 'primary' : 'outline')}
+                  className={cn(
+                    'text-sm px-4 py-2', 
+                    index === 0 ? 'animate-fade-in' : 'animate-fade-in'
+                  )}
+                  size="sm"
+                  style={{ animationDelay: `${0.6 + index * 0.1}s` }}
+                >
+                  {button.text}
+                </ButtonLink>
+              ))}
+            </div>
+          )}
         </div>
       )}
     </div>
