@@ -64,19 +64,19 @@ const TechnologySection = ({
   ];
 
   return (
-    <section id="technology" className={cn('py-20 px-6 lg:px-10 bg-gray-50', className)}>
+    <section id="technology" className={cn('py-20 px-6 lg:px-10', className)}>
       <div className="max-w-7xl mx-auto">
         <RevealAnimation>
           <div className="text-center mb-8">
             <span className="inline-block px-4 py-1 rounded-full bg-ath-clay bg-opacity-10 text-ath-clay text-sm font-medium mb-4">{t('tech.exclusive')}</span>
-            <h2 className="text-3xl md:text-4xl font-display text-center mb-2 text-gray-900">{title}</h2>
+            <h2 className="text-3xl md:text-4xl font-display text-center mb-2 text-ath-clay">{title}</h2>
             <h3 className="text-2xl md:text-3xl font-display text-center text-ath-clay mb-4">{t('tech.vicki')}</h3>
           </div>
         </RevealAnimation>
         
         {subtitle && (
           <RevealAnimation delay={100}>
-            <p className="text-lg text-gray-600 max-w-3xl mx-auto text-center mb-12">{subtitle}</p>
+            <p className="text-lg text-ath-clay max-w-3xl mx-auto text-center mb-12">{subtitle}</p>
           </RevealAnimation>
         )}
         
@@ -109,7 +109,7 @@ const TechnologySection = ({
             </div>
             
             <div className="mt-16 bg-ath-clay bg-opacity-5 p-6 rounded-lg border border-ath-clay border-opacity-20 max-w-4xl mx-auto">
-              <p className="text-gray-700 italic font-medium">
+              <p className="text-ath-clay italic font-medium">
                 {t('tech.quote')}
               </p>
               <p className="text-ath-clay mt-4 font-bold">
