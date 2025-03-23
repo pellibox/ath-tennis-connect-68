@@ -1,4 +1,3 @@
-
 const translations = {
   // Header & Navigation
   "nav.home": "Home",
@@ -37,13 +36,13 @@ const translations = {
   "tech.title": "The ATH Technology Advantage",
   "tech.subtitle": "Our innovative technology system integrates advanced analytics and AI to revolutionize tennis training",
   "tech.exclusive": "EXCLUSIVE TECHNOLOGY",
-  "tech.vicki": "VICKI: The Solution to Modern Tennis Challenges",
+  "tech.vicki.subtitle": "The Solution to Modern Tennis Challenges",
   "tech.data.title": "Advanced Data Collection",
-  "tech.data.desc": "Our sophisticated VICKI system monitors and analyzes over 70 specific tennis performance parameters in real-time during every session.",
+  "tech.data.desc": "Our sophisticated Vicki™ system monitors and analyzes over 70 specific tennis performance parameters in real-time during every session.",
   "tech.analysis.title": "Real-Time Analysis",
   "tech.analysis.desc": "High-speed cameras and sensors capture every movement, stroke and tactical decision, providing immediate insights for on-the-spot adjustments.",
   "tech.ai.title": "AI-Powered Insights",
-  "tech.ai.desc": "VICKI's artificial intelligence analyzes every aspect of performance, identifying patterns and improvement opportunities that might escape even expert observation.",
+  "tech.ai.desc": "Vicki™'s artificial intelligence analyzes every aspect of performance, identifying patterns and improvement opportunities that might escape even expert observation.",
   "tech.personal.title": "Personalized Development",
   "tech.personal.desc": "The machine learning system evolves with each session, continually refining analyses and recommendations for your unique playing style and goals.",
   "tech.excellence.title": "Democratized Excellence",
@@ -54,8 +53,8 @@ const translations = {
   "tech.global.desc": "Access to an international network of expertise and best practices from around the world.",
   "tech.comm.title": "Advanced Communication",
   "tech.comm.desc": "Effective information sharing between all team professionals with precise documentation.",
-  "tech.quote": "VICKI integrates advanced technology and human expertise to unlock the hidden potential in every athlete, redefining the standards of modern tennis development.",
-  "tech.only": "The only tennis center in the world using VICKI technology",
+  "tech.quote": "Vicki™ integrates advanced technology and human expertise to unlock the hidden potential in every athlete, redefining the standards of modern tennis development.",
+  "tech.only": "The only tennis center in the world using Vicki™ technology",
   
   // Facilities, Coaches, Contact and other sections
   "facilities.title": "World-Class Facilities",

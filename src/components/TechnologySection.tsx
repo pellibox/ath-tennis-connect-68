@@ -67,10 +67,22 @@ const TechnologySection = ({
     <section id="technology" className={cn('py-20 px-6 lg:px-10', className)}>
       <div className="max-w-7xl mx-auto">
         <RevealAnimation>
-          <div className="text-center mb-8">
+          <div className="text-center mb-8 relative">
             <span className="inline-block px-4 py-1 rounded-full bg-ath-clay bg-opacity-10 text-ath-clay text-sm font-medium mb-4">{t('tech.exclusive')}</span>
             <h2 className="text-3xl md:text-4xl font-display text-center mb-2 text-ath-clay">{title}</h2>
-            <h3 className="text-2xl md:text-3xl font-display text-center text-ath-clay mb-4">{t('tech.vicki')}</h3>
+            
+            <div className="flex items-center justify-center mb-4">
+              <div className="flex items-center">
+                <img 
+                  src="/lovable-uploads/f3b0a976-e692-48d9-a0c6-2d7e59034c25.png" 
+                  alt="Vicki™ Logo" 
+                  className="h-16 w-auto mr-3" 
+                />
+                <h3 className="text-2xl md:text-3xl font-display text-ath-clay">
+                  Vicki™: {t('tech.vicki.subtitle')}
+                </h3>
+              </div>
+            </div>
           </div>
         </RevealAnimation>
         
@@ -86,7 +98,7 @@ const TechnologySection = ({
               <div className="text-center p-6 bg-white shadow-sm border border-gray-100 rounded-lg h-full flex flex-col items-center hover:shadow-md transition-shadow">
                 {tech.icon}
                 <h3 className="text-xl font-medium mb-3 text-ath-clay">{tech.title}</h3>
-                <p className="text-gray-600">{tech.description}</p>
+                <p className="text-gray-600">{tech.description.replace(/VICKI/g, 'Vicki™')}</p>
               </div>
             </RevealAnimation>
           ))}
@@ -103,17 +115,17 @@ const TechnologySection = ({
                     {feature.icon}
                     <h5 className="text-lg font-medium ml-2 text-ath-clay">{feature.title}</h5>
                   </div>
-                  <p className="text-gray-600 text-sm">{feature.description}</p>
+                  <p className="text-gray-600 text-sm">{feature.description.replace(/VICKI/g, 'Vicki™')}</p>
                 </div>
               ))}
             </div>
             
             <div className="mt-16 bg-ath-clay bg-opacity-5 p-6 rounded-lg border border-ath-clay border-opacity-20 max-w-4xl mx-auto">
               <p className="text-ath-clay italic font-medium">
-                {t('tech.quote')}
+                {t('tech.quote').replace(/VICKI/g, 'Vicki™')}
               </p>
               <p className="text-ath-clay mt-4 font-bold">
-                {t('tech.only')}
+                {t('tech.only').replace(/VICKI/g, 'Vicki™')}
               </p>
             </div>
           </div>

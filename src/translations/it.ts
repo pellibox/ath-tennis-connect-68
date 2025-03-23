@@ -1,4 +1,3 @@
-
 const translations = {
   // Header & Navigation
   "nav.home": "Home",
@@ -45,13 +44,13 @@ const translations = {
   "tech.title": "Il Vantaggio Tecnologico ATH",
   "tech.subtitle": "Il nostro innovativo sistema tecnologico integra analisi avanzate e AI per rivoluzionare l'allenamento del tennis",
   "tech.exclusive": "TECNOLOGIA ESCLUSIVA",
-  "tech.vicki": "VICKI: La Soluzione alle Sfide del Tennis Moderno",
+  "tech.vicki.subtitle": "La Soluzione alle Sfide del Tennis Moderno",
   "tech.data.title": "Raccolta Dati Avanzata",
-  "tech.data.desc": "Il nostro sofisticato sistema VICKI monitora e analizza oltre 70 parametri specifici della performance tennistica in tempo reale durante ogni sessione.",
+  "tech.data.desc": "Il nostro sofisticato sistema Vicki™ monitora e analizza oltre 70 parametri specifici della performance tennistica in tempo reale durante ogni sessione.",
   "tech.analysis.title": "Analisi in Tempo Reale",
   "tech.analysis.desc": "Telecamere ad alta velocità e sensori catturano ogni movimento, colpo e decisione tattica, fornendo approfondimenti immediati per regolazioni sul posto.",
   "tech.ai.title": "Approfondimenti Basati su IA",
-  "tech.ai.desc": "L'intelligenza artificiale di VICKI analizza ogni aspetto della performance, identificando modelli e opportunità di miglioramento che potrebbero sfuggire anche all'osservazione esperta.",
+  "tech.ai.desc": "L'intelligenza artificiale di Vicki™ analizza ogni aspetto della performance, identificando modelli e opportunità di miglioramento che potrebbero sfuggire anche all'osservazione esperta.",
   "tech.personal.title": "Sviluppo Personalizzato",
   "tech.personal.desc": "Il sistema di apprendimento automatico si evolve con ogni sessione, perfezionando continuamente analisi e raccomandazioni per il tuo stile di gioco e i tuoi obiettivi unici.",
   "tech.excellence.title": "Eccellenza Democratizzata",
@@ -62,8 +61,8 @@ const translations = {
   "tech.global.desc": "Accesso a una rete internazionale di competenze e best practice da tutto il mondo.",
   "tech.comm.title": "Comunicazione Avanzata",
   "tech.comm.desc": "Condivisione efficace delle informazioni tra tutti i professionisti del team con documentazione precisa.",
-  "tech.quote": "VICKI integra tecnologia avanzata e competenza umana per sbloccare il potenziale nascosto in ogni atleta, ridefinendo gli standard di sviluppo del tennis moderno.",
-  "tech.only": "L'unico centro tennis al mondo che utilizza la tecnologia VICKI",
+  "tech.quote": "Vicki™ integra tecnologia avanzata e competenza umana per sbloccare il potenziale nascosto in ogni atleta, ridefinendo gli standard di sviluppo del tennis moderno.",
+  "tech.only": "L'unico centro tennis al mondo che utilizza la tecnologia Vicki™",
   
   // Facilities, Coaches, Contact and other sections
   "facilities.title": "Strutture di Classe Mondiale",
