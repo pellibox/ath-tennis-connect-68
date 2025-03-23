@@ -42,6 +42,8 @@ const Hero = ({
   const [imageError, setImageError] = useState(false);
   const [videoError, setVideoError] = useState(false);
   const [videoLoaded, setVideoLoaded] = useState(false);
+  const [videoPlaying, setVideoPlaying] = useState(false);
+  const [fadeToBlack, setFadeToBlack] = useState(false);
   
   // Default fallback image if the main image fails to load
   const fallbackImage = "https://images.unsplash.com/photo-1518005068251-37900150dfca?q=80&w=1920";
@@ -103,25 +105,37 @@ const Hero = ({
         const handleLoadedData = () => {
           console.log('Video loaded successfully');
           setVideoLoaded(true);
+          
+          // First fade to black
+          setFadeToBlack(true);
+          
+          // Then after a short delay, start playing and fade in the video
+          setTimeout(() => {
+            try {
+              // Try to play the video
+              video.play()
+                .then(() => {
+                  console.log('Video playback started successfully');
+                  setVideoPlaying(true);
+                })
+                .catch(err => {
+                  console.warn('Auto-play failed:', err);
+                  // On user interaction attempt to play again
+                  document.addEventListener('click', () => {
+                    video.play()
+                      .then(() => setVideoPlaying(true))
+                      .catch(e => console.warn('Play on click failed:', e));
+                  }, { once: true });
+                });
+            } catch (err) {
+              console.warn('Failed to start video:', err);
+            }
+          }, 400); // Delay to allow fade to black
+          
           toast.success('Video caricato con successo', {
             duration: 2000,
             position: 'bottom-center'
           });
-          
-          try {
-            // Try to play the video
-            video.play()
-              .then(() => console.log('Video playback started successfully'))
-              .catch(err => {
-                console.warn('Auto-play failed:', err);
-                // On user interaction attempt to play again
-                document.addEventListener('click', () => {
-                  video.play().catch(e => console.warn('Play on click failed:', e));
-                }, { once: true });
-              });
-          } catch (err) {
-            console.warn('Failed to start video:', err);
-          }
         };
         
         video.addEventListener('error', handleError);
@@ -179,11 +193,19 @@ const Hero = ({
               alt="Background" 
               className={cn(
                 "object-cover w-full h-full",
-                videoSrc && !videoError && videoLoaded ? 'opacity-0' : 'opacity-100',
-                'transition-opacity duration-500'
+                fadeToBlack ? 'opacity-0' : 'opacity-100',
+                'transition-opacity duration-800'
               )}
               onError={handleImageError}
             />
+            
+            {/* Black transition layer */}
+            <div 
+              className="absolute inset-0 bg-black transition-opacity duration-500"
+              style={{
+                opacity: fadeToBlack && !videoPlaying ? 1 : 0
+              }}
+            ></div>
             
             {/* Video background if provided */}
             {videoSrc && !videoError && (
@@ -196,8 +218,8 @@ const Hero = ({
                 poster={videoPoster || imageSrc}
                 className={cn(
                   "absolute inset-0 object-cover w-full h-full",
-                  videoLoaded ? 'opacity-100' : 'opacity-0',
-                  'transition-opacity duration-500'
+                  videoPlaying ? 'opacity-100' : 'opacity-0',
+                  'transition-opacity duration-800'
                 )}
               />
             )}

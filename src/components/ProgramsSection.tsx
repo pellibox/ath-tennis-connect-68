@@ -46,6 +46,9 @@ const ProgramsSection = ({
   // State to track if videos are actually playing
   const [videosPlaying, setVideosPlaying] = useState<Record<string, boolean>>({});
   
+  // State to track transition to black
+  const [blackTransition, setBlackTransition] = useState<Record<string, boolean>>({});
+  
   // Refs for video elements
   const videoRefs = useRef<Record<string, HTMLVideoElement | null>>({});
   
@@ -62,20 +65,29 @@ const ProgramsSection = ({
   // Handle mouse enter for video cards
   const handleMouseEnter = (id: string) => {
     setHoveredCard(id);
-    if (videoRefs.current[id]) {
-      videoRefs.current[id]?.play().then(() => {
-        setVideosPlaying(prev => ({ ...prev, [id]: true }));
-      }).catch(err => {
-        console.log(`Failed to play video for ID: ${id}`, err);
-        setVideosPlaying(prev => ({ ...prev, [id]: false }));
-      });
-    }
+    
+    // First set black transition
+    setBlackTransition(prev => ({ ...prev, [id]: true }));
+    
+    // Then attempt to play the video after a small delay
+    setTimeout(() => {
+      if (videoRefs.current[id]) {
+        videoRefs.current[id]?.play().then(() => {
+          setVideosPlaying(prev => ({ ...prev, [id]: true }));
+        }).catch(err => {
+          console.log(`Failed to play video for ID: ${id}`, err);
+          setVideosPlaying(prev => ({ ...prev, [id]: false }));
+        });
+      }
+    }, 300); // Short delay for black background to appear
   };
 
   // Handle mouse leave for video cards
   const handleMouseLeave = (id: string) => {
     setHoveredCard(null);
     setVideosPlaying(prev => ({ ...prev, [id]: false }));
+    setBlackTransition(prev => ({ ...prev, [id]: false }));
+    
     if (videoRefs.current[id]) {
       videoRefs.current[id]?.pause();
       // Reset video to beginning to ensure poster shows on next hover
@@ -137,7 +149,7 @@ const ProgramsSection = ({
                       <div 
                         className={cn(
                           "absolute inset-0 z-0 transition-opacity duration-500",
-                          hoveredCard === program.id ? "opacity-0" : "opacity-100"
+                          (hoveredCard === program.id && blackTransition[program.id]) ? "opacity-0" : "opacity-100"
                         )}
                         style={{
                           backgroundImage: `url(${failedImages[program.id] ? getFallbackImage(program) : program.image})`,
@@ -150,7 +162,7 @@ const ProgramsSection = ({
                       <div 
                         className="absolute inset-0 z-10 bg-black transition-opacity duration-300"
                         style={{
-                          opacity: hoveredCard === program.id && !videosPlaying[program.id] ? 1 : 0
+                          opacity: hoveredCard === program.id && blackTransition[program.id] && !videosPlaying[program.id] ? 1 : 0
                         }}
                       ></div>
                       
@@ -168,7 +180,7 @@ const ProgramsSection = ({
                         style={{ 
                           display: 'block', // Always keep the video element visible
                           opacity: videosPlaying[program.id] ? 1 : 0, // Only show video when actually playing
-                          transition: 'opacity 0.6s ease-in-out'
+                          transition: 'opacity 0.8s ease-in-out'
                         }}
                       />
                       
