@@ -4,7 +4,6 @@ import enTranslations from '../translations/en';
 import itTranslations from '../translations/it';
 import frTranslations from '../translations/fr';
 import deTranslations from '../translations/de';
-import { toast } from 'sonner';
 
 type Language = 'en' | 'it' | 'fr' | 'de';
 
@@ -30,41 +29,15 @@ export const LanguageProvider: React.FC<{ children: React.ReactNode }> = ({ chil
     return savedLanguage && ['en', 'it', 'fr', 'de'].includes(savedLanguage) ? savedLanguage : 'it';
   });
   
-  const [translations, setTranslations] = useState<Record<string, string>>(
-    translationsMap[language] || translationsMap['it']
-  );
+  const [translations, setTranslations] = useState<Record<string, string>>(translationsMap[language] || translationsMap.it);
 
-  // Handle language change
-  const handleSetLanguage = (newLanguage: Language) => {
-    if (newLanguage === language) return;
-    
-    console.log('Setting language to:', newLanguage);
-    setLanguage(newLanguage);
-    
-    // Show toast notification
-    const languageNames: Record<Language, string> = {
-      en: 'English',
-      it: 'Italiano',
-      fr: 'Français',
-      de: 'Deutsch'
-    };
-    
-    toast.success(`Lingua cambiata: ${languageNames[newLanguage]}`, {
-      duration: 3000,
-    });
-  };
-
-  // Load translations when component mounts and when language changes
+  // Load translations when language changes
   useEffect(() => {
     console.log('Language changed to:', language);
-    
-    if (!translationsMap[language]) {
-      console.error(`No translations found for language: ${language}`);
-      return;
-    }
+    console.log('Loading translations for:', language);
     
     // Force immediate update of translations
-    setTranslations(translationsMap[language]);
+    setTranslations({...translationsMap[language]});
     
     // Save language preference to localStorage
     localStorage.setItem('language', language);
@@ -76,16 +49,12 @@ export const LanguageProvider: React.FC<{ children: React.ReactNode }> = ({ chil
 
   // Translation function
   const t = (key: string): string => {
-    if (!translations[key]) {
-      console.warn(`Translation missing for key: "${key}" in language: ${language}`);
-      return key;
-    }
-    return translations[key];
+    return translations[key] || key;
   };
 
   const contextValue = {
     language,
-    setLanguage: handleSetLanguage,
+    setLanguage,
     t
   };
 

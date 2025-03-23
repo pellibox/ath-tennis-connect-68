@@ -1,4 +1,3 @@
-
 const translations = {
   // Header & Navigation
   "nav.home": "Home",
@@ -7,8 +6,6 @@ const translations = {
   "nav.coaches": "Coaches",
   "nav.about": "About",
   "nav.contact": "Contact",
-  "nav.method": "Our Method",
-  "nav.technology": "VICKI Technology",
   
   // Hero Section
   "hero.title": "Excel at Every Level",
@@ -17,74 +14,22 @@ const translations = {
   "hero.book": "BOOK A TRIAL",
   
   // About Section
-  "about.title": "About Us",
-  "about.subtitle": "ATH - Advanced Tennis Hub",
-  "about.contact": "Contact Us",
-  "about.center.title": "The ATH Center",
-  "about.center.p1": "ATH is a specialized training center that integrates advanced technology and structured methodology to offer personalized evolutionary paths based on objective data.",
-  "about.center.p2": "The parametric monitoring system ensures methodological continuity and constant technical support, regardless of the coach present on the court.",
-  "about.center.p3": "The facility constitutes an open professional network for coaches, athletes, and specialists to optimize the tennis evolutionary process through an objective and measurable method.",
-  
-  "about.mission.title": "Our Mission",
-  "about.mission.p1": "Our mission is to provide a cutting-edge training environment that combines advanced technology, expert coaching, and a personalized approach to help every tennis player reach their full potential.",
-  "about.mission.p2": "We are committed to creating an inclusive and collaborative community where players can grow, learn, and succeed, both on and off the court.",
-  "about.mission.p3": "Through continuous innovation and dedication to excellence, we aim to redefine the standards of tennis training and inspire the next generation of champions.",
-  
-  "about.stats.courts": "Courts",
-  "about.stats.parameters": "Monitored Parameters",
-  "about.stats.members": "Active Members",
-  "about.stats.center": "Unique Center with VICKI",
-  
-  "about.testimonial1": "ATH's objective analysis has significantly improved my technical parameters. The data collected has allowed precise optimization of my game.",
-  "about.testimonial1.role": "Junior Player, 16",
-  "about.testimonial2": "The integration between traditional coaching and the VICKI system has improved my consistency by 23% in three months, with objective performance measurements.",
-  "about.testimonial2.role": "Professional Player",
-  "about.testimonial3": "Parametric monitoring highlighted technical inefficiencies in my serve that no coach had identified before, allowing for targeted corrections.",
-  "about.testimonial3.role": "Adult Program Member",
+  "about.title": "About ATH Tennis Hub",
+  "about.subtitle": "OUR STORY",
+  "about.p1": "ATH Advanced Tennis Hub was founded with a simple mission: to create the perfect environment for tennis players to reach their full potential, regardless of their starting point or ultimate goals.",
+  "about.p2": "What sets us apart is our individualized approach. We recognize that every player is unique, with different strengths, weaknesses, and aspirations. Our methodology adapts to each player's profile, ensuring optimal development and progress.",
+  "about.p3": "With world-class facilities and an elite coaching team, we deliver a comprehensive program that addresses all aspects of the modern game: technical, tactical, physical, and mental.",
+  "about.learn": "LEARN MORE",
   
   // Programs Section
   "programs.title": "Our Programs",
   "programs.subtitle": "Tailored tennis training for every age and skill level",
-  "programs.contact": "Contact Us",
-  "programs.all.title": "All Programs",
-  "programs.all.subtitle": "Discover our comprehensive range of training programs for players at every stage",
-  
-  "programs.junior": "Junior Academy (13-18)",
-  "programs.junior.desc": "Comprehensive training program for players aged 13-18 who want to develop their skills and compete at a high level.",
-  "programs.junior.feature1": "Advanced technical development",
-  "programs.junior.feature2": "Competition strategy",
-  "programs.junior.feature3": "Mental conditioning",
-  
-  "programs.young": "Young Players (6-12)",
-  "programs.young.desc": "Development program for young players focusing on technical foundation and physical coordination.",
-  "programs.young.feature1": "Fundamental technical development",
-  "programs.young.feature2": "Age-appropriate coordination",
-  "programs.young.feature3": "Enjoyable introduction to competition",
-  
-  "programs.elite": "Professional Players",
-  "programs.elite.desc": "Intensive program for advanced players with professional aspirations, using comprehensive data analysis.",
-  "programs.elite.feature1": "Performance optimization",
-  "programs.elite.feature2": "Advanced data analytics",
-  "programs.elite.feature3": "Tournament preparation",
-  
+  "programs.junior": "Junior Academy",
+  "programs.junior.desc": "Comprehensive training program for players aged 8-18 who want to develop their skills and compete at a high level.",
+  "programs.elite": "Elite Program",
+  "programs.elite.desc": "Intensive training for advanced players with professional aspirations, focusing on technical, tactical, physical, and mental aspects.",
   "programs.adult": "Adult Training",
-  "programs.adult.desc": "Programs for recreational players with customized technology support to improve technique and enjoyment.",
-  "programs.adult.feature1": "Individual and group lessons",
-  "programs.adult.feature2": "Court rentals with analysis",
-  "programs.adult.feature3": "Themed clinics",
-  
-  "programs.coach": "Coaches & Clubs",
-  "programs.coach.desc": "Advanced training and tools for coaches who want to integrate VICKI methodology into their teaching.",
-  "programs.coach.feature1": "VICKI system integration",
-  "programs.coach.feature2": "Teaching methodology",
-  "programs.coach.feature3": "Data analysis for coaches",
-  
-  "programs.parent": "Parents/Guardians",
-  "programs.parent.desc": "Support and information for parents of junior players to help them understand and support development.",
-  "programs.parent.feature1": "Development understanding",
-  "programs.parent.feature2": "Supporting young athletes",
-  "programs.parent.feature3": "Progress tracking",
-  
+  "programs.adult.desc": "Programs for players of all levels who want to improve their skills, stay fit, and enjoy the game of tennis.",
   "programs.more": "Learn More",
   
   // Technology Section
@@ -167,12 +112,7 @@ const translations = {
   "language.en": "English",
   "language.it": "Italian",
   "language.fr": "French",
-  "language.de": "German",
-  
-  // Contact Section
-  "contact.ath.address": "123 Tennis Court Avenue, Tennis City, 10001",
-  "contact.ath.phone": "+1 (234) 567-890",
-  "contact.ath.email": "info@ath-tennis.com"
+  "language.de": "German"
 };
 
 export default translations;
