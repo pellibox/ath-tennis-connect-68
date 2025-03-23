@@ -73,11 +73,20 @@ const TechnologySection = ({
             
             <div className="flex items-center justify-center mb-4">
               <div className="flex items-center">
-                <img 
-                  src="/lovable-uploads/f3b0a976-e692-48d9-a0c6-2d7e59034c25.png" 
-                  alt="Vicki™ Logo" 
-                  className="h-16 w-auto mr-3" 
-                />
+                <div className="relative mr-4">
+                  {/* Black Vicki logo */}
+                  <img 
+                    src="/lovable-uploads/8f2b30a1-cb65-453e-ba82-d9721a192426.png" 
+                    alt="Vicki™ Logo" 
+                    className="h-16 w-auto" 
+                  />
+                  {/* Grey Vicki logo overlay */}
+                  <img 
+                    src="/lovable-uploads/dc679c8d-60cd-4841-a42c-0907926b7ef5.png" 
+                    alt="" 
+                    className="h-16 w-auto absolute top-0 left-0 opacity-30" 
+                  />
+                </div>
                 <h3 className="text-2xl md:text-3xl font-display text-ath-clay">
                   Vicki™: {t('tech.vicki.subtitle')}
                 </h3>
