@@ -22,6 +22,9 @@ const HomePage = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }, []);
 
+  // Vimeo embed code for the hero section
+  const vimeoEmbedCode = `<div style="padding:75% 0 0 0;position:relative;"><iframe src="https://player.vimeo.com/video/1068596952?h=b7fa539b1c&amp;badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media" style="position:absolute;top:0;left:0;width:100%;height:100%;" title="Junior male 2"></iframe></div><script src="https://player.vimeo.com/api/player.js"></script>`;
+
   // Programmi aggiornati con descrizioni tecniche più concise
   const programs = [
     {
@@ -261,7 +264,7 @@ const HomePage = () => {
         <Hero 
           title="Advanced Tennis Hub"
           subtitle="Centro di allenamento ad alta specializzazione con monitoraggio parametrico completo e metodologia integrata"
-          videoSrc="https://drive.google.com/file/d/1YZTWBDrPLTUF8s5OAQgVSs8Lwi343J7s/view?usp=sharing" 
+          vimeoEmbed={vimeoEmbedCode}
           imageSrc="/lovable-uploads/6ea13aa7-2578-488b-8ed4-4b17fc2ddc4e.png"
           buttons={[
             { text: "Programmi", href: '/programs' },
@@ -355,3 +358,4 @@ const HomePage = () => {
 };
 
 export default HomePage;
+

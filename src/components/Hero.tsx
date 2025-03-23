@@ -10,6 +10,7 @@ interface HeroProps {
   imageSrc?: string;
   videoSrc?: string;
   videoPoster?: string;
+  vimeoEmbed?: string;
   buttons?: Array<{
     text: string;
     href: string;
@@ -27,6 +28,7 @@ const Hero = ({
   imageSrc,
   videoSrc,
   videoPoster,
+  vimeoEmbed,
   buttons = [],
   className,
   contentPosition = 'center',
@@ -77,7 +79,7 @@ const Hero = ({
   // Handle video element loading and playing
   useEffect(() => {
     const video = videoRef.current;
-    if (video && videoSrc) {
+    if (video && videoSrc && !vimeoEmbed) {
       try {
         const formattedVideoSrc = getVideoUrl(videoSrc);
         console.log('Attempting to load video from:', formattedVideoSrc);
@@ -131,7 +133,7 @@ const Hero = ({
         setVideoError(true);
       }
     }
-  }, [videoSrc]);
+  }, [videoSrc, vimeoEmbed]);
   
   const positionClasses = {
     center: 'items-center text-center',
@@ -159,36 +161,51 @@ const Hero = ({
       )}
     >
       <div className="absolute inset-0 w-full h-full">
-        {/* Always show the background image first for immediate visual */}
-        <img 
-          src={imageError ? fallbackImage : (imageSrc || fallbackImage)} 
-          alt="Background" 
-          className={cn(
-            "object-cover w-full h-full",
-            videoSrc && !videoError && videoLoaded ? 'opacity-0' : 'opacity-100',
-            'transition-opacity duration-500'
-          )}
-          onError={handleImageError}
-        />
-        
-        {/* Only show video if we have a source and no errors */}
-        {videoSrc && !videoError && (
-          <video
-            ref={videoRef}
-            autoPlay
-            muted
-            loop
-            playsInline
-            poster={videoPoster || imageSrc}
-            className={cn(
-              "absolute inset-0 object-cover w-full h-full",
-              videoLoaded ? 'opacity-100' : 'opacity-0',
-              'transition-opacity duration-500'
+        {/* Background system - condition rendering based on provided props */}
+        {!vimeoEmbed && (
+          <>
+            {/* Standard image background */}
+            <img 
+              src={imageError ? fallbackImage : (imageSrc || fallbackImage)} 
+              alt="Background" 
+              className={cn(
+                "object-cover w-full h-full",
+                videoSrc && !videoError && videoLoaded ? 'opacity-0' : 'opacity-100',
+                'transition-opacity duration-500'
+              )}
+              onError={handleImageError}
+            />
+            
+            {/* Video background if provided */}
+            {videoSrc && !videoError && (
+              <video
+                ref={videoRef}
+                autoPlay
+                muted
+                loop
+                playsInline
+                poster={videoPoster || imageSrc}
+                className={cn(
+                  "absolute inset-0 object-cover w-full h-full",
+                  videoLoaded ? 'opacity-100' : 'opacity-0',
+                  'transition-opacity duration-500'
+                )}
+              />
             )}
-          />
+            
+            {/* Overlay for image or video */}
+            <div className={cn('absolute inset-0', overlayClasses[overlayOpacity])}></div>
+          </>
         )}
         
-        <div className={cn('absolute inset-0', overlayClasses[overlayOpacity])}></div>
+        {/* Vimeo embed when provided */}
+        {vimeoEmbed && (
+          <div className="absolute inset-0 w-full h-full bg-black">
+            <div className="w-full h-full" dangerouslySetInnerHTML={{ __html: vimeoEmbed }} />
+            {/* Thin overlay to ensure text readability */}
+            <div className="absolute inset-0 bg-black/30"></div>
+          </div>
+        )}
       </div>
       
       <div className={cn(
