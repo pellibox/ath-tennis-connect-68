@@ -10,9 +10,10 @@ interface Program {
   title: string;
   description: string;
   image: string;
-  videoSrc?: string; // New optional video source property
+  videoSrc?: string;
+  vimeoEmbed?: string; // Added vimeoEmbed property
   link: string;
-  features?: string[]; // Lista opzionale di caratteristiche del programma
+  features?: string[];
 }
 
 interface ProgramsSectionProps {
@@ -21,7 +22,7 @@ interface ProgramsSectionProps {
   programs: Program[];
   className?: string;
   compact?: boolean;
-  gridLayout?: 'standard' | 'dense'; // Opzione per layout denso (più elementi per riga)
+  gridLayout?: 'standard' | 'dense';
 }
 
 const ProgramsSection = ({ 
@@ -83,12 +84,12 @@ const ProgramsSection = ({
         )}
         
         <div className={cn(
-          "grid gap-6",
+          "grid gap-8", // Increased gap for better spacing
           gridLayout === 'dense' 
-            ? "grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4" 
+            ? "grid-cols-1 sm:grid-cols-2 lg:grid-cols-3" 
             : compact 
-              ? "grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4" 
-              : "grid-cols-1 md:grid-cols-2 lg:grid-cols-3"
+              ? "grid-cols-1 sm:grid-cols-2 lg:grid-cols-3" 
+              : "grid-cols-1 md:grid-cols-2 lg:grid-cols-2" // Changed to 2 columns for better 16:9 display
         )}>
           {programs.map((program, index) => (
             <RevealAnimation key={program.id} delay={index * 50} className="h-full">
@@ -97,8 +98,10 @@ const ProgramsSection = ({
                 onMouseEnter={() => program.videoSrc && handleMouseEnter(program.id)}
                 onMouseLeave={() => program.videoSrc && handleMouseLeave(program.id)}
               >
-                <div className="relative overflow-hidden">
-                  {program.videoSrc ? (
+                <div className="relative overflow-hidden aspect-video"> {/* aspect-video ensures 16:9 ratio */}
+                  {program.vimeoEmbed ? (
+                    <div className="w-full h-full" dangerouslySetInnerHTML={{ __html: program.vimeoEmbed }} />
+                  ) : program.videoSrc ? (
                     <>
                       <video 
                         ref={el => videoRefs.current[program.id] = el}
@@ -107,10 +110,7 @@ const ProgramsSection = ({
                         muted
                         loop
                         playsInline
-                        className={cn(
-                          "w-full object-cover transition-transform duration-700 group-hover:scale-105",
-                          compact || gridLayout === 'dense' ? "h-44" : "h-60"
-                        )}
+                        className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                         onError={() => handleImageError(program.id)}
                       />
                       <div className={cn(
@@ -126,25 +126,19 @@ const ProgramsSection = ({
                     <img 
                       src={failedImages[program.id] ? getFallbackImage(program) : program.image} 
                       alt={program.title} 
-                      className={cn(
-                        "w-full object-cover transition-transform duration-700 group-hover:scale-105",
-                        compact || gridLayout === 'dense' ? "h-44" : "h-60"
-                      )}
+                      className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                       onError={() => handleImageError(program.id)}
                     />
                   )}
                 </div>
-                <div className="flex flex-col flex-grow p-5">
-                  <h3 className="text-lg font-medium mb-2 text-ath-clay">{program.title}</h3>
-                  <p className={cn(
-                    "text-gray-600 mb-4 flex-grow",
-                    compact || gridLayout === 'dense' ? "text-sm" : ""
-                  )}>{program.description}</p>
+                <div className="flex flex-col flex-grow p-6">
+                  <h3 className="text-xl font-medium mb-3 text-ath-clay">{program.title}</h3>
+                  <p className="text-gray-600 mb-4 flex-grow">{program.description}</p>
                   
                   {program.features && program.features.length > 0 && (
-                    <ul className="text-sm text-gray-600 mb-4 space-y-1">
+                    <ul className="text-sm text-gray-600 mb-5 space-y-2">
                       {program.features.map((feature, idx) => (
-                        <li key={idx} className="flex items-start space-x-1">
+                        <li key={idx} className="flex items-start space-x-2">
                           <span className="text-ath-clay text-xs mt-1">●</span>
                           <span>{feature}</span>
                         </li>
