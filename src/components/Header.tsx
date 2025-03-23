@@ -1,3 +1,4 @@
+
 import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Menu, X, Activity, Zap, BookOpen, Server, Home, Users } from 'lucide-react';
@@ -102,19 +103,20 @@ const Header = () => {
       )}
     >
       <div className="container mx-auto px-6 flex items-center justify-between">
-        <div className="flex-1">
-          {/* Empty div to create space */}
-        </div>
-        
-        {/* Logo centrato */}
-        <div className="flex items-center justify-center z-50">
+        {/* Logo moved to the left */}
+        <div className="flex items-center z-50">
           <Logo 
             variant={isScrolled || isMenuOpen ? "default" : "footer"} 
             onDarkBackground={useDarkBackgroundLogo}
           />
         </div>
         
-        <div className="flex-1 flex justify-end">
+        {/* Center space for navigation */}
+        <div className="flex-1">
+          {/* Empty div to create space */}
+        </div>
+        
+        <div className="flex justify-end">
           {/* Mobile Menu Button */}
           <button
             className={cn(
