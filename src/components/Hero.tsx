@@ -1,4 +1,3 @@
-
 import { useEffect, useRef, useState } from 'react';
 import ButtonLink from './ButtonLink';
 import { cn } from '@/lib/utils';
@@ -47,10 +46,8 @@ const Hero = ({
   const [videoPlaying, setVideoPlaying] = useState(false);
   const [blackOverlay, setBlackOverlay] = useState(false);
   
-  // Default fallback image if the main image fails to load
   const fallbackImage = "https://images.unsplash.com/photo-1518005068251-37900150dfca?q=80&w=1920";
   
-  // Run title animation effect when title changes
   useEffect(() => {
     if (titleRef.current) {
       const text = title || '';
@@ -60,39 +57,32 @@ const Hero = ({
       
       titleRef.current.innerHTML = wrappedText;
       
-      // Reset animation
       titleRef.current.classList.remove('visible');
       
       setTimeout(() => {
         titleRef.current?.classList.add('visible');
       }, 100);
     }
-  }, [title]); // Re-run when title changes (language changes)
+  }, [title]);
   
-  // Format video URL if it's from Google Drive
   const getVideoUrl = (url: string): string => {
     if (url && url.includes('drive.google.com/file/d/')) {
-      // Extract the file ID from the Google Drive URL
       const match = url.match(/\/d\/([^\/]+)/);
       if (match && match[1]) {
-        // Use direct download link with file ID
         return `https://drive.google.com/uc?export=download&id=${match[1]}`;
       }
     }
     return url;
   };
 
-  // Handle Vimeo embed autoplay
   useEffect(() => {
     if (vimeoEmbed) {
-      // Make sure autoplay=1 is in the Vimeo embed code
       if (!vimeoEmbed.includes('autoplay=1')) {
         console.log('Vimeo embed does not include autoplay=1, videos will not autoplay');
       }
     }
   }, [vimeoEmbed]);
 
-  // Handle video element loading and playing
   useEffect(() => {
     const video = videoRef.current;
     if (video && videoSrc && !vimeoEmbed) {
@@ -100,9 +90,8 @@ const Hero = ({
         const formattedVideoSrc = getVideoUrl(videoSrc);
         console.log('Attempting to load video from:', formattedVideoSrc);
         
-        // Set source directly
         video.src = formattedVideoSrc;
-        video.loop = true; // Ensure video loops
+        video.loop = true;
         video.load();
         
         const handleError = (e: Event) => {
@@ -118,27 +107,22 @@ const Hero = ({
           console.log('Video loaded successfully');
           setVideoLoaded(true);
           
-          // First show black overlay
           setBlackOverlay(true);
           
-          // Then after a delay, start playing and fade in the video
           setTimeout(() => {
             try {
-              // Try to play the video
               video.play()
                 .then(() => {
                   console.log('Video playback started successfully');
-                  // Add a slight delay before showing the video (fading from black)
                   setTimeout(() => {
                     setVideoPlaying(true);
                   }, 300);
                 })
                 .catch(err => {
                   console.warn('Auto-play failed:', err);
-                  setBlackOverlay(false); // Hide black overlay if playback fails
-                  // On user interaction attempt to play again
+                  setBlackOverlay(false);
                   document.addEventListener('click', () => {
-                    setBlackOverlay(true); // Show black overlay again
+                    setBlackOverlay(true);
                     setTimeout(() => {
                       video.play()
                         .then(() => {
@@ -146,16 +130,16 @@ const Hero = ({
                         })
                         .catch(e => {
                           console.warn('Play on click failed:', e);
-                          setBlackOverlay(false); // Hide black overlay if playback fails
+                          setBlackOverlay(false);
                         });
                     }, 200);
                   }, { once: true });
                 });
             } catch (err) {
               console.warn('Failed to start video:', err);
-              setBlackOverlay(false); // Hide black overlay if playback fails
+              setBlackOverlay(false);
             }
-          }, 400); // Delay to allow black overlay to be visible
+          }, 400);
           
           toast.success('Video caricato con successo', {
             duration: 2000,
@@ -209,10 +193,8 @@ const Hero = ({
       )}
     >
       <div className="absolute inset-0 w-full h-full">
-        {/* Background system - condition rendering based on provided props */}
         {!vimeoEmbed && (
           <>
-            {/* Standard image background - remains visible until black overlay shows */}
             <img 
               src={imageError ? fallbackImage : (imageSrc || fallbackImage)} 
               alt="Background" 
@@ -223,7 +205,6 @@ const Hero = ({
               onError={handleImageError}
             />
             
-            {/* Black transition layer - shows during the transition */}
             <div 
               className="absolute inset-0 bg-black transition-opacity duration-500"
               style={{
@@ -231,7 +212,6 @@ const Hero = ({
               }}
             />
             
-            {/* Video background if provided - fades in from black */}
             {videoSrc && !videoError && (
               <video
                 ref={videoRef}
@@ -247,15 +227,12 @@ const Hero = ({
               />
             )}
             
-            {/* Overlay for image or video */}
             <div className={cn('absolute inset-0', overlayClasses[overlayOpacity])}></div>
           </>
         )}
         
-        {/* Vimeo embed when provided - fixed autoplay and background parameters */}
         {vimeoEmbed && (
           <div className="absolute inset-0 w-full h-full bg-black">
-            {/* Force autoplay, loop, and background mode in the iframe URL if not already present */}
             <div 
               className="w-full h-full" 
               dangerouslySetInnerHTML={{ 
@@ -265,7 +242,6 @@ const Hero = ({
                   .replace('loop=0', 'loop=1')
               }} 
             />
-            {/* Thinner overlay to ensure text readability without darkening video too much */}
             <div className="absolute inset-0 bg-black/30"></div>
           </div>
         )}
@@ -290,15 +266,13 @@ const Hero = ({
         )}
       </div>
       
-      {/* Subtitle at bottom if position is 'bottom' */}
       {subtitle && subtitlePosition === 'bottom' && (
         <div className="absolute bottom-0 left-0 right-0 z-10 p-4 bg-gradient-to-t from-black/80 to-transparent">
-          <p className="text-white text-base md:text-lg opacity-90 max-w-3xl mx-auto text-center animate-fade-in drop-shadow-md" 
+          <p className="text-white text-base md:text-lg opacity-90 max-w-3xl mx-auto text-center animate-fade-in drop-shadow-md whitespace-nowrap overflow-hidden text-ellipsis" 
             style={{ animationDelay: '0.4s' }}>
             {subtitle}
           </p>
           
-          {/* Action buttons at bottom */}
           {buttons.length > 0 && (
             <div className={cn(
               'flex flex-wrap gap-3 justify-center mt-3',

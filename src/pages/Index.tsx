@@ -367,7 +367,7 @@ const HomePage = () => {
                   onClick={() => setShowSelector(true)}
                   className="bg-white hover:bg-white/90 text-ath-clay px-8 py-4 rounded-xl text-lg font-medium shadow-lg transition-all hover:shadow-xl"
                 >
-                  Dimmi chi sei
+                  Dimmi che tennista sei
                 </button>
               )}
             </div>
