@@ -45,12 +45,46 @@ const translations = {
   // Programs Section
   "programs.title": "Our Programs",
   "programs.subtitle": "Tailored tennis training for every age and skill level",
-  "programs.junior": "Junior Academy",
-  "programs.junior.desc": "Comprehensive training program for players aged 8-18 who want to develop their skills and compete at a high level.",
-  "programs.elite": "Elite Program",
-  "programs.elite.desc": "Intensive training for advanced players with professional aspirations, focusing on technical, tactical, physical, and mental aspects.",
+  "programs.contact": "Contact Us",
+  "programs.all.title": "All Programs",
+  "programs.all.subtitle": "Discover our comprehensive range of training programs for players at every stage",
+  
+  "programs.junior": "Junior Academy (13-18)",
+  "programs.junior.desc": "Comprehensive training program for players aged 13-18 who want to develop their skills and compete at a high level.",
+  "programs.junior.feature1": "Advanced technical development",
+  "programs.junior.feature2": "Competition strategy",
+  "programs.junior.feature3": "Mental conditioning",
+  
+  "programs.young": "Young Players (6-12)",
+  "programs.young.desc": "Development program for young players focusing on technical foundation and physical coordination.",
+  "programs.young.feature1": "Fundamental technical development",
+  "programs.young.feature2": "Age-appropriate coordination",
+  "programs.young.feature3": "Enjoyable introduction to competition",
+  
+  "programs.elite": "Professional Players",
+  "programs.elite.desc": "Intensive program for advanced players with professional aspirations, using comprehensive data analysis.",
+  "programs.elite.feature1": "Performance optimization",
+  "programs.elite.feature2": "Advanced data analytics",
+  "programs.elite.feature3": "Tournament preparation",
+  
   "programs.adult": "Adult Training",
-  "programs.adult.desc": "Programs for players of all levels who want to improve their skills, stay fit, and enjoy the game of tennis.",
+  "programs.adult.desc": "Programs for recreational players with customized technology support to improve technique and enjoyment.",
+  "programs.adult.feature1": "Individual and group lessons",
+  "programs.adult.feature2": "Court rentals with analysis",
+  "programs.adult.feature3": "Themed clinics",
+  
+  "programs.coach": "Coaches & Clubs",
+  "programs.coach.desc": "Advanced training and tools for coaches who want to integrate VICKI methodology into their teaching.",
+  "programs.coach.feature1": "VICKI system integration",
+  "programs.coach.feature2": "Teaching methodology",
+  "programs.coach.feature3": "Data analysis for coaches",
+  
+  "programs.parent": "Parents/Guardians",
+  "programs.parent.desc": "Support and information for parents of junior players to help them understand and support development.",
+  "programs.parent.feature1": "Development understanding",
+  "programs.parent.feature2": "Supporting young athletes",
+  "programs.parent.feature3": "Progress tracking",
+  
   "programs.more": "Learn More",
   
   // Technology Section
@@ -136,9 +170,9 @@ const translations = {
   "language.de": "German",
   
   // Contact Section
-  "contact.ath.address": "Via del Tennis 123, 20873 Rodano (MI)",
-  "contact.ath.phone": "+39 02 1234567",
-  "contact.ath.email": "info@ath-tennis.it"
+  "contact.ath.address": "123 Tennis Court Avenue, Tennis City, 10001",
+  "contact.ath.phone": "+1 (234) 567-890",
+  "contact.ath.email": "info@ath-tennis.com"
 };
 
 export default translations;

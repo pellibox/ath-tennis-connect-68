@@ -4,6 +4,7 @@ import enTranslations from '../translations/en';
 import itTranslations from '../translations/it';
 import frTranslations from '../translations/fr';
 import deTranslations from '../translations/de';
+import { toast } from 'sonner';
 
 type Language = 'en' | 'it' | 'fr' | 'de';
 
@@ -29,7 +30,29 @@ export const LanguageProvider: React.FC<{ children: React.ReactNode }> = ({ chil
     return savedLanguage && ['en', 'it', 'fr', 'de'].includes(savedLanguage) ? savedLanguage : 'it';
   });
   
-  const [translations, setTranslations] = useState<Record<string, string>>({});
+  const [translations, setTranslations] = useState<Record<string, string>>(
+    translationsMap[language] || translationsMap['it']
+  );
+
+  // Handle language change
+  const handleSetLanguage = (newLanguage: Language) => {
+    if (newLanguage === language) return;
+    
+    console.log('Setting language to:', newLanguage);
+    setLanguage(newLanguage);
+    
+    // Show toast notification
+    const languageNames: Record<Language, string> = {
+      en: 'English',
+      it: 'Italiano',
+      fr: 'Français',
+      de: 'Deutsch'
+    };
+    
+    toast.success(`Lingua cambiata: ${languageNames[newLanguage]}`, {
+      duration: 3000,
+    });
+  };
 
   // Load translations when component mounts and when language changes
   useEffect(() => {
@@ -62,7 +85,7 @@ export const LanguageProvider: React.FC<{ children: React.ReactNode }> = ({ chil
 
   const contextValue = {
     language,
-    setLanguage,
+    setLanguage: handleSetLanguage,
     t
   };
 

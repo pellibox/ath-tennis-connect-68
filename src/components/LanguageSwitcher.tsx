@@ -3,7 +3,6 @@ import { Globe } from 'lucide-react';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { useState, useRef, useEffect } from 'react';
 import { cn } from '@/lib/utils';
-import { toast } from '@/components/ui/use-toast';
 
 const LanguageSwitcher = () => {
   const { language, setLanguage, t } = useLanguage();
@@ -36,10 +35,6 @@ const LanguageSwitcher = () => {
     console.log('Changing language to:', newLanguage);
     if (newLanguage !== language) {
       setLanguage(newLanguage);
-      toast({
-        title: `Language changed to ${languageNames[newLanguage]}`,
-        description: "The page language has been updated.",
-      });
     }
     setIsOpen(false);
   };

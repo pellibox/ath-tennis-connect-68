@@ -7,6 +7,8 @@ const translations = {
   "nav.coaches": "Allenatori",
   "nav.about": "Chi Siamo",
   "nav.contact": "Contatti",
+  "nav.method": "Il Nostro Metodo",
+  "nav.technology": "Tecnologia VICKI",
   
   // Hero Section
   "hero.title": "Eccellenza ad Ogni Livello",
@@ -17,26 +19,72 @@ const translations = {
   // About Section
   "about.title": "ATH Tennis Hub",
   "about.subtitle": "LA NOSTRA STORIA",
-  "about.p1": "ATH Advanced Tennis Hub è stato fondato con una missione semplice: creare l'ambiente perfetto affinché i giocatori di tennis raggiungano il loro pieno potenziale, indipendentemente dal loro punto di partenza o obiettivi finali.",
-  "about.p2": "Ciò che ci distingue è il nostro approccio individualizzato. Riconosciamo che ogni giocatore è unico, con diversi punti di forza, debolezze e aspirazioni. La nostra metodologia si adatta al profilo di ogni giocatore, garantendo uno sviluppo e un progresso ottimali.",
-  "about.p3": "Con strutture di livello mondiale e un team di allenatori d'élite, offriamo un programma completo che affronta tutti gli aspetti del gioco moderno: tecnico, tattico, fisico e mentale.",
-  "about.learn": "SCOPRI DI PIÙ",
+  "about.contact": "Contattaci",
+  "about.center.title": "Il Centro ATH",
+  "about.center.p1": "ATH è un centro di allenamento specializzato che integra tecnologia avanzata e metodologia strutturata per offrire percorsi evolutivi personalizzati basati su dati oggettivi.",
+  "about.center.p2": "Il sistema di monitoraggio parametrico garantisce continuità metodologica e supporto tecnico costante, indipendentemente dal coach presente in campo.",
+  "about.center.p3": "La struttura costituisce una rete professionale aperta a coach, atleti e specialisti per ottimizzare il processo evolutivo tennistico attraverso un metodo oggettivo e misurabile.",
+  
+  "about.mission.title": "La Nostra Missione",
+  "about.mission.p1": "La nostra missione è fornire un ambiente di allenamento all'avanguardia che combina tecnologia avanzata, coaching esperto e un approccio personalizzato per aiutare ogni tennista a raggiungere il suo pieno potenziale.",
+  "about.mission.p2": "Ci impegniamo a creare una comunità inclusiva e collaborativa dove i giocatori possono crescere, imparare e avere successo, sia dentro che fuori dal campo.",
+  "about.mission.p3": "Attraverso l'innovazione continua e la dedizione all'eccellenza, miriamo a ridefinire gli standard dell'allenamento tennistico e ispirare la prossima generazione di campioni.",
+  
+  "about.stats.courts": "Campi",
+  "about.stats.parameters": "Parametri Monitorati",
+  "about.stats.members": "Membri Attivi",
+  "about.stats.center": "Unico Centro con VICKI",
+  
+  "about.testimonial1": "L'analisi oggettiva di ATH ha migliorato significativamente i miei parametri tecnici. I dati raccolti hanno permesso un'ottimizzazione precisa del mio gioco.",
+  "about.testimonial1.role": "Giocatore Junior, 16",
+  "about.testimonial2": "L'integrazione tra coaching tradizionale e sistema VICKI ha migliorato la mia consistenza del 23% in tre mesi, con rilevamenti oggettivi delle performance.",
+  "about.testimonial2.role": "Giocatore Professionista",
+  "about.testimonial3": "Il monitoraggio parametrico ha evidenziato inefficienze tecniche nel mio servizio che nessun coach aveva identificato prima, permettendomi correzioni mirate.",
+  "about.testimonial3.role": "Membro del Programma per Adulti",
   
   // Programs Section
   "programs.title": "I Nostri Programmi",
   "programs.subtitle": "Allenamento di tennis personalizzato per ogni età e livello di abilità",
+  "programs.contact": "Contattaci",
+  "programs.all.title": "Tutti i Programmi",
+  "programs.all.subtitle": "Scopri la nostra gamma completa di programmi di allenamento per giocatori ad ogni livello",
+  
   "programs.junior": "Agonista Junior (13-18 anni)",
   "programs.junior.desc": "Programma completo per giovani atleti che vogliono competere a livello agonistico.",
+  "programs.junior.feature1": "Sviluppo tecnico avanzato",
+  "programs.junior.feature2": "Strategia di competizione",
+  "programs.junior.feature3": "Condizionamento mentale",
+  
   "programs.young": "Giovani Agonisti (6-12 anni)",
   "programs.young.desc": "Programma formativo per giovani atleti in fase di sviluppo tecnico e fisico.",
+  "programs.young.feature1": "Sviluppo tecnico fondamentale",
+  "programs.young.feature2": "Coordinazione specifica per età",
+  "programs.young.feature3": "Introduzione divertente alla competizione",
+  
   "programs.elite": "Professionisti",
   "programs.elite.desc": "Supporto completo per atleti professionisti con analisi avanzata e ottimizzazione della performance.",
-  "programs.coach": "Coach / Allenatori / Club",
-  "programs.coach.desc": "Formazione avanzata e strumenti per allenatori che vogliono integrare la metodologia ATH e VICKI.",
-  "programs.parent": "Genitore/Tutor (Giovani e Junior Agonisti 6-18 anni)",
-  "programs.parent.desc": "Supporto informativo e coinvolgimento nel percorso di sviluppo del giovane atleta.",
+  "programs.elite.feature1": "Ottimizzazione della performance",
+  "programs.elite.feature2": "Analisi dati avanzata",
+  "programs.elite.feature3": "Preparazione per tornei",
+  
   "programs.adult": "Amatori",
   "programs.adult.desc": "Percorsi flessibili per giocatori amatoriali che vogliono migliorare le proprie capacità.",
+  "programs.adult.feature1": "Lezioni individuali e di gruppo",
+  "programs.adult.feature2": "Affitto campi con analisi",
+  "programs.adult.feature3": "Clinics tematiche",
+  
+  "programs.coach": "Coach / Allenatori / Club",
+  "programs.coach.desc": "Formazione avanzata e strumenti per allenatori che vogliono integrare la metodologia ATH e VICKI.",
+  "programs.coach.feature1": "Integrazione sistema VICKI",
+  "programs.coach.feature2": "Metodologia di insegnamento",
+  "programs.coach.feature3": "Analisi dati per allenatori",
+  
+  "programs.parent": "Genitore/Tutor (6-18 anni)",
+  "programs.parent.desc": "Supporto informativo e coinvolgimento nel percorso di sviluppo del giovane atleta.",
+  "programs.parent.feature1": "Comprensione dello sviluppo",
+  "programs.parent.feature2": "Supporto ai giovani atleti",
+  "programs.parent.feature3": "Monitoraggio dei progressi",
+  
   "programs.more": "Scopri di Più",
   
   // Technology Section
@@ -121,7 +169,12 @@ const translations = {
   "language.en": "Inglese",
   "language.it": "Italiano",
   "language.fr": "Francese",
-  "language.de": "Tedesco"
+  "language.de": "Tedesco",
+  
+  // Contact Section
+  "contact.ath.address": "Via del Tennis 123, 20873 Rodano (MI)",
+  "contact.ath.phone": "+39 02 1234567",
+  "contact.ath.email": "info@ath-tennis.it"
 };
 
 export default translations;

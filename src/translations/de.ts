@@ -1,3 +1,4 @@
+
 const translations = {
   // Header & Navigation
   "nav.home": "Startseite",
@@ -6,6 +7,8 @@ const translations = {
   "nav.coaches": "Trainer",
   "nav.about": "Über Uns",
   "nav.contact": "Kontakt",
+  "nav.method": "Unsere Methode",
+  "nav.technology": "VICKI Technologie",
   
   // Hero Section
   "hero.title": "Auf Jedem Niveau Exzellieren",
@@ -16,20 +19,72 @@ const translations = {
   // About Section
   "about.title": "Über ATH Tennis Hub",
   "about.subtitle": "UNSERE GESCHICHTE",
-  "about.p1": "ATH Advanced Tennis Hub wurde mit einer einfachen Mission gegründet: die perfekte Umgebung zu schaffen, damit Tennisspieler ihr volles Potenzial erreichen können, unabhängig von ihrem Ausgangspunkt oder ihren ultimativen Zielen.",
-  "about.p2": "Was uns auszeichnet, ist unser individualisierter Ansatz. Wir erkennen an, dass jeder Spieler einzigartig ist, mit unterschiedlichen Stärken, Schwächen und Aspirationen. Unsere Methodik passt sich dem Profil jedes Spielers an und gewährleistet eine optimale Entwicklung und Fortschritte.",
-  "about.p3": "Mit erstklassigen Einrichtungen und einem Elite-Trainerteam bieten wir ein umfassendes Programm, das alle Aspekte des modernen Spiels abdeckt: technisch, taktisch, physisch und mental.",
-  "about.learn": "MEHR ERFAHREN",
+  "about.contact": "Kontaktieren Sie Uns",
+  "about.center.title": "Das ATH Zentrum",
+  "about.center.p1": "ATH ist ein spezialisiertes Trainingszentrum, das fortschrittliche Technologie und strukturierte Methodik integriert, um personalisierte Entwicklungswege auf Basis objektiver Daten anzubieten.",
+  "about.center.p2": "Das parametrische Überwachungssystem gewährleistet methodische Kontinuität und konstante technische Unterstützung, unabhängig vom anwesenden Trainer auf dem Platz.",
+  "about.center.p3": "Die Einrichtung bildet ein offenes professionelles Netzwerk für Trainer, Athleten und Spezialisten zur Optimierung des Tennis-Entwicklungsprozesses durch eine objektive und messbare Methode.",
+  
+  "about.mission.title": "Unsere Mission",
+  "about.mission.p1": "Unsere Mission ist es, eine fortschrittliche Trainingsumgebung zu bieten, die fortschrittliche Technologie, Expertencoaching und einen personalisierten Ansatz kombiniert, um jedem Tennisspieler zu helfen, sein volles Potenzial zu erreichen.",
+  "about.mission.p2": "Wir sind bestrebt, eine inklusive und kollaborative Gemeinschaft zu schaffen, in der Spieler sowohl auf als auch außerhalb des Platzes wachsen, lernen und erfolgreich sein können.",
+  "about.mission.p3": "Durch kontinuierliche Innovation und Hingabe an Exzellenz zielen wir darauf ab, die Standards des Tennistrainings neu zu definieren und die nächste Generation von Champions zu inspirieren.",
+  
+  "about.stats.courts": "Plätze",
+  "about.stats.parameters": "Überwachte Parameter",
+  "about.stats.members": "Aktive Mitglieder",
+  "about.stats.center": "Einzigartiges Zentrum mit VICKI",
+  
+  "about.testimonial1": "ATHs objektive Analyse hat meine technischen Parameter erheblich verbessert. Die gesammelten Daten haben eine präzise Optimierung meines Spiels ermöglicht.",
+  "about.testimonial1.role": "Juniorenspieler, 16",
+  "about.testimonial2": "Die Integration zwischen traditionellem Coaching und dem VICKI-System hat meine Konsistenz in drei Monaten um 23% verbessert, mit objektiven Leistungsmessungen.",
+  "about.testimonial2.role": "Professioneller Spieler",
+  "about.testimonial3": "Die parametrische Überwachung hat technische Ineffizienzen in meinem Aufschlag aufgezeigt, die kein Trainer zuvor identifiziert hatte, was gezielte Korrekturen ermöglichte.",
+  "about.testimonial3.role": "Mitglied des Erwachsenenprogramms",
   
   // Programs Section
   "programs.title": "Unsere Programme",
   "programs.subtitle": "Maßgeschneidertes Tennistraining für jedes Alter und Fähigkeitsniveau",
-  "programs.junior": "Junior Akademie",
-  "programs.junior.desc": "Umfassendes Trainingsprogramm für Spieler im Alter von 8-18 Jahren, die ihre Fähigkeiten entwickeln und auf hohem Niveau konkurrieren möchten.",
-  "programs.elite": "Elite-Programm",
-  "programs.elite.desc": "Intensives Training für fortgeschrittene Spieler mit professionellen Aspirationen, mit Fokus auf technische, taktische, physische und mentale Aspekte.",
+  "programs.contact": "Kontaktieren Sie Uns",
+  "programs.all.title": "Alle Programme",
+  "programs.all.subtitle": "Entdecken Sie unsere umfassende Palette an Trainingsprogrammen für Spieler in jeder Phase",
+  
+  "programs.junior": "Junior Akademie (13-18)",
+  "programs.junior.desc": "Umfassendes Trainingsprogramm für Spieler im Alter von 13-18 Jahren, die auf hohem Niveau konkurrieren möchten.",
+  "programs.junior.feature1": "Fortgeschrittene technische Entwicklung",
+  "programs.junior.feature2": "Wettkampfstrategie",
+  "programs.junior.feature3": "Mentale Konditionierung",
+  
+  "programs.young": "Junge Spieler (6-12)",
+  "programs.young.desc": "Entwicklungsprogramm für junge Spieler mit Fokus auf technischen Grundlagen und körperlicher Koordination.",
+  "programs.young.feature1": "Fundamentale technische Entwicklung",
+  "programs.young.feature2": "Altersgerechte Koordination",
+  "programs.young.feature3": "Freudvolle Einführung in den Wettkampf",
+  
+  "programs.elite": "Professionelle Spieler",
+  "programs.elite.desc": "Intensives Programm für fortgeschrittene Spieler mit professionellen Aspirationen, unter Verwendung umfassender Datenanalyse.",
+  "programs.elite.feature1": "Leistungsoptimierung",
+  "programs.elite.feature2": "Erweiterte Datenanalyse",
+  "programs.elite.feature3": "Turniervorbereitung",
+  
   "programs.adult": "Erwachsenentraining",
-  "programs.adult.desc": "Programme für Spieler aller Niveaus, die ihre Fähigkeiten verbessern, fit bleiben und das Tennisspiel genießen möchten.",
+  "programs.adult.desc": "Programme für Freizeitspieler mit individueller technologischer Unterstützung zur Verbesserung von Technik und Spielfreude.",
+  "programs.adult.feature1": "Einzel- und Gruppenunterricht",
+  "programs.adult.feature2": "Platzmiete mit Analyse",
+  "programs.adult.feature3": "Thematische Clinics",
+  
+  "programs.coach": "Trainer & Vereine",
+  "programs.coach.desc": "Fortgeschrittene Ausbildung und Werkzeuge für Trainer, die die VICKI-Methodik in ihren Unterricht integrieren möchten.",
+  "programs.coach.feature1": "VICKI-System Integration",
+  "programs.coach.feature2": "Lehrmethodik",
+  "programs.coach.feature3": "Datenanalyse für Trainer",
+  
+  "programs.parent": "Eltern/Erziehungsberechtigte (6-18)",
+  "programs.parent.desc": "Unterstützung und Information für Eltern von Juniorenspielern, um ihnen zu helfen, die Entwicklung zu verstehen und zu unterstützen.",
+  "programs.parent.feature1": "Entwicklungsverständnis",
+  "programs.parent.feature2": "Unterstützung junger Athleten",
+  "programs.parent.feature3": "Fortschrittsverfolgung",
+  
   "programs.more": "Mehr Erfahren",
   
   // Technology Section
@@ -112,7 +167,12 @@ const translations = {
   "language.en": "Englisch",
   "language.it": "Italienisch",
   "language.fr": "Französisch",
-  "language.de": "Deutsch"
+  "language.de": "Deutsch",
+  
+  // Contact Section
+  "contact.ath.address": "123 Tennisplatz Straße, Tennis Stadt, 10001",
+  "contact.ath.phone": "+49 123 4567890",
+  "contact.ath.email": "info@ath-tennis.de"
 };
 
 export default translations;
