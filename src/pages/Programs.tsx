@@ -58,7 +58,7 @@ const Programs = () => {
       id: '3',
       title: 'Professionisti',
       description: 'Supporto completo per atleti professionisti con analisi avanzata e ottimizzazione della performance.',
-      image: 'https://images.unsplash.com/photo-1531315630201-bb15abeb1653?q=80&w=2070&auto=format&fit=crop',
+      image: '/lovable-uploads/53047a4d-087d-4e68-942b-d441b33bf6ab.png',
       link: '/programs/professional',
       features: [
         'Allenamento completamente personalizzato su tutti i fronti',
