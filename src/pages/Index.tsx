@@ -94,17 +94,18 @@ const HomePage = () => {
     },
   ];
 
-  // Sample data for stats
+  // Updated stats with the correct information
   const stats = [
     {
       id: '1',
-      value: 7,
+      value: 6,
       label: 'Campi'
     },
     {
       id: '2',
-      value: 25,
-      label: 'Allenatori Professionisti'
+      value: 70,
+      suffix: '+',
+      label: 'Parametri Monitorati'
     },
     {
       id: '3',
@@ -114,8 +115,8 @@ const HomePage = () => {
     },
     {
       id: '4',
-      value: 15,
-      label: 'Campioni Prodotti'
+      value: 1,
+      label: 'Unico Centro con VICKI'
     },
   ];
 
