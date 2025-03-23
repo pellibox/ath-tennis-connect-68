@@ -1,4 +1,3 @@
-
 import { useEffect, useRef, useState } from 'react';
 import ButtonLink from './ButtonLink';
 import { cn } from '@/lib/utils';
@@ -49,7 +48,7 @@ const Hero = ({
   const [videoPlaying, setVideoPlaying] = useState(false);
   const [blackOverlay, setBlackOverlay] = useState(false);
   
-  const fallbackImage = "https://images.unsplash.com/photo-1518005068251-37900150dfca?q=80&w=1920";
+  const fallbackImage = "/lovable-uploads/6ea13aa7-2578-488b-8ed4-4b17fc2ddc4e.png";
   
   useEffect(() => {
     if (titleRef.current) {
@@ -78,52 +77,27 @@ const Hero = ({
     return url;
   };
 
-  // Handle Vimeo embed
   useEffect(() => {
     if (vimeoEmbed && vimeoRef.current) {
-      const checkVimeoStatus = () => {
-        try {
-          // Add a custom error handler
+      try {
+        vimeoRef.current.innerHTML = vimeoEmbed;
+        
+        const vimeoLoadTimeout = setTimeout(() => {
           if (vimeoRef.current) {
             const iframe = vimeoRef.current.querySelector('iframe');
-            if (iframe) {
-              // Check if iframe is loaded properly
-              const iframeDoc = iframe.contentDocument || iframe.contentWindow?.document;
-              
-              // If we can't access the iframe content, it might be cross-origin restricted
-              // In that case, we'll monitor for errors through error events
-              window.addEventListener('error', (e) => {
-                if (e.target === iframe) {
-                  console.error('Vimeo iframe error:', e);
-                  setVimeoError(true);
-                  setImageError(false); // Ensure fallback image shows
-                }
-              }, { once: true });
-              
-              // Set a timeout to check if the video appears to be working
-              setTimeout(() => {
-                if (vimeoRef.current && !vimeoRef.current.querySelector('.vp-video-wrapper')) {
-                  console.warn('Vimeo video wrapper not found after timeout');
-                  setVimeoError(true);
-                }
-              }, 5000);
+            if (!iframe || iframe.clientWidth === 0) {
+              console.error('Vimeo iframe failed to load properly');
+              setVimeoError(true);
             }
           }
-        } catch (err) {
-          console.error('Error checking Vimeo status:', err);
-          setVimeoError(true);
-        }
-      };
-      
-      // Run the check after a short delay to allow the iframe to load
-      setTimeout(checkVimeoStatus, 1500);
-    }
-  }, [vimeoEmbed]);
-
-  useEffect(() => {
-    if (vimeoEmbed) {
-      if (!vimeoEmbed.includes('autoplay=1')) {
-        console.log('Vimeo embed does not include autoplay=1, videos will not autoplay');
+        }, 3000);
+        
+        return () => {
+          clearTimeout(vimeoLoadTimeout);
+        };
+      } catch (err) {
+        console.error('Error setting up Vimeo embed:', err);
+        setVimeoError(true);
       }
     }
   }, [vimeoEmbed]);
@@ -280,13 +254,7 @@ const Hero = ({
           <div className="absolute inset-0 w-full h-full bg-black">
             <div 
               ref={vimeoRef}
-              className="w-full h-full" 
-              dangerouslySetInnerHTML={{ 
-                __html: vimeoEmbed
-                  .replace('autoplay=0', 'autoplay=1')
-                  .replace('background=0', 'background=1')
-                  .replace('loop=0', 'loop=1')
-              }} 
+              className="w-full h-full vimeo-container" 
             />
             <div className="absolute inset-0 bg-black/30"></div>
           </div>
