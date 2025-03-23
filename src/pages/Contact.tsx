@@ -41,6 +41,9 @@ const ContactPage = () => {
         <ContactSection 
           title="Richiedi Informazioni"
           subtitle="Compila il modulo per informazioni su programmi, disponibilità o collaborazioni"
+          address="Via del Tennis 123, 20873 Rodano (MI)"
+          phone="+39 02 1234567"
+          email="info@ath-tennis.it"
         />
         
         <section className="py-16 px-6 lg:px-10 bg-gray-50">

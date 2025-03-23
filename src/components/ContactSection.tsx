@@ -73,11 +73,11 @@ const ContactSection = ({
         <div className="grid md:grid-cols-2 gap-12">
           <RevealAnimation direction="left">
             <div>
-              <h3 className="text-xl font-medium mb-6">Send Us a Message</h3>
+              <h3 className="text-xl font-medium mb-6">Invia un Messaggio</h3>
               
               <form onSubmit={handleSubmit}>
                 <div className="mb-4">
-                  <label htmlFor="name" className="block text-sm font-medium mb-2">Full Name</label>
+                  <label htmlFor="name" className="block text-sm font-medium mb-2">Nome Completo</label>
                   <input
                     type="text"
                     id="name"
@@ -90,7 +90,7 @@ const ContactSection = ({
                 </div>
                 
                 <div className="mb-4">
-                  <label htmlFor="email" className="block text-sm font-medium mb-2">Email Address</label>
+                  <label htmlFor="email" className="block text-sm font-medium mb-2">Indirizzo Email</label>
                   <input
                     type="email"
                     id="email"
@@ -103,7 +103,7 @@ const ContactSection = ({
                 </div>
                 
                 <div className="mb-4">
-                  <label htmlFor="phone" className="block text-sm font-medium mb-2">Phone Number</label>
+                  <label htmlFor="phone" className="block text-sm font-medium mb-2">Numero di Telefono</label>
                   <input
                     type="tel"
                     id="phone"
@@ -115,7 +115,7 @@ const ContactSection = ({
                 </div>
                 
                 <div className="mb-6">
-                  <label htmlFor="message" className="block text-sm font-medium mb-2">Message</label>
+                  <label htmlFor="message" className="block text-sm font-medium mb-2">Messaggio</label>
                   <textarea
                     id="message"
                     name="message"
@@ -135,15 +135,15 @@ const ContactSection = ({
                     formStatus === 'submitting' ? 'opacity-70 cursor-not-allowed' : 'hover:bg-opacity-90'
                   )}
                 >
-                  {formStatus === 'submitting' ? 'Sending...' : 'Send Message'}
+                  {formStatus === 'submitting' ? 'Invio in corso...' : 'Invia Messaggio'}
                 </button>
                 
                 {formStatus === 'success' && (
-                  <p className="mt-4 text-green-600">Your message has been sent successfully. We'll get back to you soon!</p>
+                  <p className="mt-4 text-green-600">Il tuo messaggio è stato inviato con successo. Ti contatteremo presto!</p>
                 )}
                 
                 {formStatus === 'error' && (
-                  <p className="mt-4 text-red-600">There was an error sending your message. Please try again.</p>
+                  <p className="mt-4 text-red-600">Si è verificato un errore durante l'invio del messaggio. Riprova.</p>
                 )}
               </form>
             </div>
@@ -151,13 +151,13 @@ const ContactSection = ({
           
           <RevealAnimation direction="right">
             <div>
-              <h3 className="text-xl font-medium mb-6">Contact Information</h3>
+              <h3 className="text-xl font-medium mb-6">Informazioni di Contatto</h3>
               
               <div className="space-y-6">
                 <div className="flex items-start">
                   <MapPin size={20} className="mr-4 mt-1 text-gray-600" />
                   <div>
-                    <h4 className="font-medium mb-1">Address</h4>
+                    <h4 className="font-medium mb-1">Indirizzo</h4>
                     <p className="text-gray-600">{address}</p>
                   </div>
                 </div>
@@ -165,7 +165,7 @@ const ContactSection = ({
                 <div className="flex items-start">
                   <Phone size={20} className="mr-4 mt-1 text-gray-600" />
                   <div>
-                    <h4 className="font-medium mb-1">Phone</h4>
+                    <h4 className="font-medium mb-1">Telefono</h4>
                     <a href={`tel:${phone}`} className="text-gray-600 hover:underline">{phone}</a>
                   </div>
                 </div>
@@ -180,20 +180,20 @@ const ContactSection = ({
               </div>
               
               <div className="mt-10">
-                <h3 className="text-xl font-medium mb-6">Hours of Operation</h3>
+                <h3 className="text-xl font-medium mb-6">Orari di Apertura</h3>
                 
                 <div className="space-y-2">
                   <div className="flex justify-between">
-                    <span className="font-medium">Monday - Friday</span>
-                    <span className="text-gray-600">7:00 AM - 9:00 PM</span>
+                    <span className="font-medium">Lunedì - Venerdì</span>
+                    <span className="text-gray-600">7:00 - 21:00</span>
                   </div>
                   <div className="flex justify-between">
-                    <span className="font-medium">Saturday</span>
-                    <span className="text-gray-600">8:00 AM - 7:00 PM</span>
+                    <span className="font-medium">Sabato</span>
+                    <span className="text-gray-600">8:00 - 19:00</span>
                   </div>
                   <div className="flex justify-between">
-                    <span className="font-medium">Sunday</span>
-                    <span className="text-gray-600">9:00 AM - 5:00 PM</span>
+                    <span className="font-medium">Domenica</span>
+                    <span className="text-gray-600">9:00 - 17:00</span>
                   </div>
                 </div>
               </div>

@@ -1,4 +1,3 @@
-
 import { useEffect } from 'react';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
@@ -291,9 +290,9 @@ const HomePage = () => {
         <ContactSection 
           title="Contatti"
           subtitle="Richiedi informazioni tecniche o prenota una sessione di valutazione"
-          address="123 Tennis Court Avenue, Tennis City, 10001"
-          phone="+1 (234) 567-890"
-          email="info@ath-tennis.com"
+          address="Via del Tennis 123, 20873 Rodano (MI)"
+          phone="+39 02 1234567"
+          email="info@ath-tennis.it"
         />
       </main>
       
