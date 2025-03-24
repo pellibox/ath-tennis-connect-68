@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Menu, X, Activity, Zap, BookOpen, Server, HelpCircle, Users } from 'lucide-react';
@@ -149,12 +148,10 @@ const Header = ({ useVickiLogo = false }: HeaderProps) => {
     },
   ];
 
-  // Change header background based on scroll state
   const headerBgClass = isMenuOpen ? "bg-white" : (isScrolled ? "bg-white shadow-md" : "bg-white");
   
   const textColorClass = "text-black";
 
-  // Only show logo when scrolled
   const showLogoInHeader = isScrolled;
 
   return (
@@ -166,7 +163,6 @@ const Header = ({ useVickiLogo = false }: HeaderProps) => {
       )}
     >
       <div className="container mx-auto px-6 flex items-center justify-between relative">
-        {/* Only show the logo when scrolled */}
         <div className={cn("flex items-center z-50", !showLogoInHeader && "opacity-0")}>
           <Logo 
             variant="default" 
@@ -174,6 +170,7 @@ const Header = ({ useVickiLogo = false }: HeaderProps) => {
             preserveUserProfile={true}
             resetProfile={false}
             useVickiLogo={useVickiLogo}
+            isInMenu={true}
           />
         </div>
         
