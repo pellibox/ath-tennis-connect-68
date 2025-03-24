@@ -166,13 +166,14 @@ const HomePage = () => {
       {/* Centered logo with improved positioning */}
       <div 
         ref={logoRef}
-        className="fixed left-0 right-0 mx-auto w-full flex justify-center items-center z-50 pointer-events-none transition-opacity duration-300"
+        className="fixed top-0 left-0 right-0 flex justify-center items-center z-50 pointer-events-none transition-opacity duration-300"
         style={{
-          top: isMobile ? '120px' : '150px', // Adjusted position to be below the header
+          top: isMobile ? '120px' : '150px', // Positioned below the header
           opacity: logoOpacity
         }}
       >
         <div 
+          className="flex justify-center"
           style={{
             width: isMobile ? '120px' : '160px',
             transform: `translateY(-${logoYOffset}px)`
