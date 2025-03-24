@@ -1,4 +1,3 @@
-
 import { useEffect, useState, useRef } from 'react';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
@@ -170,7 +169,7 @@ const HomePage = () => {
         style={{
           left: '50%',
           top: isMobile ? '20%' : 'calc(25% - 100px)', // Logo positioned higher on mobile to be visible on video
-          transform: `translateX(-50%) translateY(-${logoYOffset}px)`, // Ensure perfect horizontal centering
+          transform: `translate(-50%, -${logoYOffset}px)`, // Simple transform with no X offset
           opacity: logoOpacity,
           width: isMobile ? '120px' : '160px',
           height: 'auto'
