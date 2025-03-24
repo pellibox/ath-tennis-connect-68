@@ -109,8 +109,11 @@ const FacilitiesPage = () => {
       <Header />
       
       <main className="flex-grow pt-20 font-swiss">
-        <div className="w-full bg-black min-h-[calc(100vw*9/16)] relative overflow-hidden">
-          <div className="w-[100.5%] h-[100.5%] absolute top-[-0.25%] left-[-0.25%]" dangerouslySetInnerHTML={{ __html: facilitiesVimeoEmbed }} />
+        {/* Full-width video container with no margins */}
+        <div className="w-full min-w-[100vw] relative" style={{ maxWidth: '100vw', left: '0', margin: '0', padding: '0', overflow: 'hidden', aspectRatio: '16/9' }}>
+          <div className="w-[101%] h-[101%] absolute top-[-0.5%] left-[-0.5%]" 
+               dangerouslySetInnerHTML={{ __html: facilitiesVimeoEmbed }} 
+          />
         </div>
         
         <div className="w-full bg-black py-16">
