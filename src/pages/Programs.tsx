@@ -18,6 +18,8 @@ const Programs = () => {
   const [userGender, setUserGender] = useState<UserGender | null>(null);
   const [userType, setUserType] = useState<UserType | null>(null);
   const [showAllPrograms, setShowAllPrograms] = useState(false);
+  const [logoYOffset, setLogoYOffset] = useState<number>(0);
+  const [logoOpacity, setLogoOpacity] = useState<number>(1);
   
   useEffect(() => {
     const { gender, type } = loadUserPreferences();
@@ -27,6 +29,31 @@ const Programs = () => {
   
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
+  }, []);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrollY = window.scrollY;
+      
+      setLogoYOffset(scrollY * 0.2);
+      
+      const fadeThreshold = 100;
+      const fadeOutBy = 300;
+      
+      if (scrollY > fadeThreshold) {
+        const opacity = Math.max(0, 1 - (scrollY - fadeThreshold) / (fadeOutBy - fadeThreshold));
+        setLogoOpacity(opacity);
+      } else {
+        setLogoOpacity(1);
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    handleScroll();
+    
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
   }, []);
 
   const getVimeoEmbed = () => {
@@ -332,35 +359,35 @@ const Programs = () => {
   };
 
   return (
-    <div className="flex flex-col min-h-screen">
+    <div className="flex flex-col min-h-screen relative">
+      <div 
+        className="fixed top-[calc(25%-100px)] left-1/2 transform -translate-x-1/2 z-50 w-40 h-40 pointer-events-none transition-opacity duration-300"
+        style={{
+          transform: `translate(-50%, -${logoYOffset}px)`,
+          opacity: logoOpacity
+        }}
+      >
+        <Logo 
+          onDarkBackground={true} 
+          className="w-full h-full"
+        />
+      </div>
+      
       <Header />
       
-      <main className="flex-grow">
-        <div className="relative">
-          <Hero 
-            title="Programmi ATH" 
-            vimeoEmbed={getVimeoEmbed()}
-            buttons={[
-              { text: 'PRENOTA UNA PROVA', href: '/contact' },
-              { text: 'CONTATTACI', href: '/contact', variant: 'outline' }
-            ]}
-            contentPosition="left"
-            overlayOpacity="medium"
-          />
-          
-          {/* Black banner with claim text - matching Method page style */}
-          <div className="w-full bg-black py-8 relative" style={{ height: '200px' }}>
-            <div className="max-w-6xl mx-auto px-6 h-full flex flex-col justify-center">
-              <div className="flex flex-col items-center justify-center h-full">
-                <Logo variant="default" onDarkBackground={true} className="mb-4" />
-                <div className="flex items-center">
-                  <h2 className="text-white text-lg font-display mr-3">PROGRAMMI:</h2>
-                  <p className="text-white text-lg font-swiss max-w-3xl">
-                    Approccio metodologico unico e personalizzato per ogni profilo di giocatore
-                  </p>
-                </div>
-              </div>
-            </div>
+      <main className="flex-grow pt-20">
+        <div className="w-full bg-black min-h-[calc(100vw*9/16)] relative">
+          <div dangerouslySetInnerHTML={{ __html: getVimeoEmbed() }} />
+        </div>
+        
+        <div className="w-full bg-black py-16">
+          <div className="max-w-3xl mx-auto text-center">
+            <h2 className="text-white text-xl md:text-2xl font-swiss uppercase mb-2">
+              PROGRAMMI:
+            </h2>
+            <p className="text-white text-xl md:text-2xl opacity-90 font-swiss drop-shadow-md">
+              Approccio metodologico unico e personalizzato per ogni profilo di giocatore
+            </p>
           </div>
         </div>
         
