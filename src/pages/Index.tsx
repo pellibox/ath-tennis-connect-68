@@ -1,3 +1,4 @@
+
 import { useEffect, useState, useRef } from 'react';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
@@ -162,23 +163,22 @@ const HomePage = () => {
 
   return (
     <div className="flex flex-col min-h-screen relative">
-      {/* Show the centered logo above video for both mobile and desktop with same scroll behavior */}
+      {/* Centered logo with improved positioning */}
       <div 
         ref={logoRef}
-        className="fixed z-50 pointer-events-none transition-opacity duration-300 w-full flex justify-center"
+        className="fixed z-50 pointer-events-none transition-opacity duration-300 w-full flex justify-center items-center"
         style={{
-          top: isMobile ? '20%' : 'calc(25% - 100px)', // Logo positioned higher on mobile to be visible on video
-          transform: `translateY(-${logoYOffset}px)`, // Only apply vertical transform
+          top: isMobile ? '20%' : '25%', // Adjusted position for better visibility on video
+          transform: `translateY(-${logoYOffset}px)`,
           opacity: logoOpacity
         }}
       >
-        <div style={{
-          width: isMobile ? '120px' : '160px',
-          height: 'auto'
+        <div className="transform-none" style={{
+          width: isMobile ? '120px' : '160px'
         }}>
           <Logo 
             onDarkBackground={true} 
-            className="w-full h-full"
+            className="w-full h-auto"
           />
         </div>
       </div>
