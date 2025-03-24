@@ -528,4 +528,141 @@ const Programs = () => {
             </RevealAnimation>
             
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8 mb-16">
-              <RevealAnimation delay={150} className="bg-white p-8 flex flex-col shadow-
+              <RevealAnimation delay={150} className="bg-white p-8 shadow-sm">
+                <h3 className="text-lg font-medium mb-2">Agonisti Elite (5 sessioni)</h3>
+                <p className="text-3xl font-bold mb-2">€300<span className="text-sm text-gray-500 font-normal">/mese</span></p>
+                <p className="text-sm text-gray-600 mb-4">Programma intensivo per agonisti di alto livello</p>
+                <ul className="text-sm space-y-2 mb-4">
+                  <li className="flex items-start">
+                    <span className="text-ath-clay mr-2">✓</span>
+                    <span>5 sessioni tecniche settimanali</span>
+                  </li>
+                  <li className="flex items-start">
+                    <span className="text-ath-clay mr-2">✓</span>
+                    <span>3 sessioni atletiche settimanali</span>
+                  </li>
+                  <li className="flex items-start">
+                    <span className="text-ath-clay mr-2">✓</span>
+                    <span>Analisi tecnica con VICKI™</span>
+                  </li>
+                  <li className="flex items-start">
+                    <span className="text-ath-clay mr-2">✓</span>
+                    <span>Pianificazione tornei personalizzata</span>
+                  </li>
+                </ul>
+              </RevealAnimation>
+              
+              <RevealAnimation delay={200} className="bg-white p-8 shadow-sm">
+                <h3 className="text-lg font-medium mb-2">Agonisti (3 sessioni)</h3>
+                <p className="text-3xl font-bold mb-2">€200<span className="text-sm text-gray-500 font-normal">/mese</span></p>
+                <p className="text-sm text-gray-600 mb-4">Programma avanzato per agonisti in crescita</p>
+                <ul className="text-sm space-y-2 mb-4">
+                  <li className="flex items-start">
+                    <span className="text-ath-clay mr-2">✓</span>
+                    <span>3 sessioni tecniche settimanali</span>
+                  </li>
+                  <li className="flex items-start">
+                    <span className="text-ath-clay mr-2">✓</span>
+                    <span>2 sessioni atletiche settimanali</span>
+                  </li>
+                  <li className="flex items-start">
+                    <span className="text-ath-clay mr-2">✓</span>
+                    <span>Analisi tecnica con VICKI™</span>
+                  </li>
+                  <li className="flex items-start">
+                    <span className="text-ath-clay mr-2">✓</span>
+                    <span>Supporto per tornei regionali</span>
+                  </li>
+                </ul>
+              </RevealAnimation>
+              
+              <RevealAnimation delay={250} className="bg-white p-8 shadow-sm">
+                <h3 className="text-lg font-medium mb-2">Agonisti (2 sessioni)</h3>
+                <p className="text-3xl font-bold mb-2">€150<span className="text-sm text-gray-500 font-normal">/mese</span></p>
+                <p className="text-sm text-gray-600 mb-4">Programma per agonisti part-time</p>
+                <ul className="text-sm space-y-2 mb-4">
+                  <li className="flex items-start">
+                    <span className="text-ath-clay mr-2">✓</span>
+                    <span>2 sessioni tecniche settimanali</span>
+                  </li>
+                  <li className="flex items-start">
+                    <span className="text-ath-clay mr-2">✓</span>
+                    <span>1 sessione atletica settimanale</span>
+                  </li>
+                  <li className="flex items-start">
+                    <span className="text-ath-clay mr-2">✓</span>
+                    <span>Analisi tecnica periodica</span>
+                  </li>
+                  <li className="flex items-start">
+                    <span className="text-ath-clay mr-2">✓</span>
+                    <span>Supporto per tornei locali</span>
+                  </li>
+                </ul>
+              </RevealAnimation>
+              
+              <RevealAnimation delay={300} className="bg-white p-8 shadow-sm">
+                <h3 className="text-lg font-medium mb-2">Junior Program (2 sessioni)</h3>
+                <p className="text-3xl font-bold mb-2">€120<span className="text-sm text-gray-500 font-normal">/mese</span></p>
+                <p className="text-sm text-gray-600 mb-4">Programma per giovani tennisti</p>
+                <ul className="text-sm space-y-2 mb-4">
+                  <li className="flex items-start">
+                    <span className="text-ath-clay mr-2">✓</span>
+                    <span>2 sessioni settimanali</span>
+                  </li>
+                  <li className="flex items-start">
+                    <span className="text-ath-clay mr-2">✓</span>
+                    <span>Sviluppo tecnico fondamentale</span>
+                  </li>
+                  <li className="flex items-start">
+                    <span className="text-ath-clay mr-2">✓</span>
+                    <span>Attività motorie complementari</span>
+                  </li>
+                  <li className="flex items-start">
+                    <span className="text-ath-clay mr-2">✓</span>
+                    <span>Approccio ludico all'agonismo</span>
+                  </li>
+                </ul>
+              </RevealAnimation>
+              
+              <RevealAnimation delay={350} className="bg-white p-8 shadow-sm">
+                <h3 className="text-lg font-medium mb-2">Scuola Tennis (1 sessione)</h3>
+                <p className="text-3xl font-bold mb-2">€80<span className="text-sm text-gray-500 font-normal">/mese</span></p>
+                <p className="text-sm text-gray-600 mb-4">Introduzione al tennis per tutte le età</p>
+                <ul className="text-sm space-y-2 mb-4">
+                  <li className="flex items-start">
+                    <span className="text-ath-clay mr-2">✓</span>
+                    <span>1 sessione settimanale</span>
+                  </li>
+                  <li className="flex items-start">
+                    <span className="text-ath-clay mr-2">✓</span>
+                    <span>Gruppi omogenei per età e livello</span>
+                  </li>
+                  <li className="flex items-start">
+                    <span className="text-ath-clay mr-2">✓</span>
+                    <span>Apprendimento dei fondamentali</span>
+                  </li>
+                  <li className="flex items-start">
+                    <span className="text-ath-clay mr-2">✓</span>
+                    <span>Approccio ludico e divertente</span>
+                  </li>
+                </ul>
+              </RevealAnimation>
+            </div>
+            
+            <RevealAnimation delay={400}>
+              <div className="text-center mt-8 mb-12">
+                <Link to="/contact" className="inline-flex items-center bg-ath-clay text-white px-6 py-3 rounded-full hover:bg-ath-clay-dark transition-colors">
+                  Richiedi informazioni sui prezzi
+                </Link>
+              </div>
+            </RevealAnimation>
+          </div>
+        </section>
+      </main>
+      
+      <Footer />
+    </div>
+  );
+};
+
+export default Programs;
