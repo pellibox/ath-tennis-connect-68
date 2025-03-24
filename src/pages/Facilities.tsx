@@ -109,13 +109,13 @@ const FacilitiesPage = () => {
       <Header />
       
       <main className="flex-grow font-swiss" style={{ marginTop: '80px' }}>
-        {/* Fixed full-width video container with significant oversizing to ensure complete coverage */}
-        <div className="fixed left-0 right-0 top-[80px] w-screen" style={{
+        {/* Fixed full-width video container with extreme oversizing to ensure no white borders */}
+        <div className="fixed left-0 right-0 top-0 w-screen" style={{
           height: '100vh', 
           overflow: 'hidden',
           zIndex: 0
         }}>
-          <div className="absolute inset-0 w-[120%] h-[120%] top-[-10%] left-[-10%]" 
+          <div className="absolute inset-0 w-[150%] h-[150%] top-[-25%] left-[-25%]" 
                dangerouslySetInnerHTML={{ __html: facilitiesVimeoEmbed }} 
           />
         </div>
