@@ -11,6 +11,7 @@ import { Link } from 'react-router-dom';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { loadUserPreferences, UserGender, UserType } from '@/components/UserTypeSelector';
 import { Button } from '@/components/ui/button';
+import Logo from '@/components/Logo';
 
 const Programs = () => {
   const { t } = useLanguage();
@@ -348,13 +349,16 @@ const Programs = () => {
           />
           
           {/* Black banner with claim text - matching Method page style */}
-          <div className="w-full bg-black py-16 relative" style={{ height: '300px' }}>
+          <div className="w-full bg-black py-8 relative" style={{ height: '200px' }}>
             <div className="max-w-6xl mx-auto px-6 h-full flex flex-col justify-center">
-              <div className="flex items-center mb-2">
-                <h2 className="text-white text-lg font-display mr-3">PROGRAMMI:</h2>
-                <p className="text-white text-lg font-swiss max-w-3xl">
-                  Approccio metodologico unico e personalizzato per ogni profilo di giocatore
-                </p>
+              <div className="flex flex-col items-center justify-center h-full">
+                <Logo variant="default" onDarkBackground={true} className="mb-4" />
+                <div className="flex items-center">
+                  <h2 className="text-white text-lg font-display mr-3">PROGRAMMI:</h2>
+                  <p className="text-white text-lg font-swiss max-w-3xl">
+                    Approccio metodologico unico e personalizzato per ogni profilo di giocatore
+                  </p>
+                </div>
               </div>
             </div>
           </div>
@@ -579,4 +583,3 @@ const Programs = () => {
 };
 
 export default Programs;
-
