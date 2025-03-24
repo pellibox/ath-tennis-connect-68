@@ -33,6 +33,28 @@ const translations = {
   "programs.adult.desc": "Programme für Spieler aller Niveaus, die ihre Fähigkeiten verbessern, fit bleiben und das Tennisspiel genießen möchten.",
   "programs.more": "Mehr Erfahren",
   
+  // Camps Section
+  "camps.title": "CAMPS",
+  "camps.subtitle": "Hochwertige Intensiverfahrung für Spieler aller Altersgruppen während der Sommer- und Schulferien",
+  "camps.summer": "Sommercamps",
+  "camps.intro": "Hochwertige Intensiverfahrung für Spieler aller Altersgruppen während der Sommer- und Schulferien.",
+  "camps.description1": "Unsere Sommercamps bieten ein komplettes Eintauchen in hochwertiges Tennis, kombinieren intensives Training, Spaß und Sozialisierung in einer stimulierenden und professionellen Umgebung.",
+  "camps.description2": "Dank der VICKI™-Technologie können wir selbst in einem kurzen Format wie Camps ein bedeutungsvolles Trainingserlebnis mit präzisem und messbarem Feedback bieten.",
+  "camps.features": "Programmmerkmale",
+  "camps.feature1": "Morgendliche technische Sitzungen mit Videoanalyse",
+  "camps.feature2": "Taktische Aktivitäten und Matchpraxis am Nachmittag",
+  "camps.feature3": "Mini-Turniere und organisierte Wettbewerbe",
+  "camps.feature4": "Altersgerechte mentale Trainingseinheiten",
+  "camps.feature5": "Ergänzende körperliche Aktivitäten und Gruppenspiele",
+  "camps.feature6": "Detaillierter Abschlussbericht mit Leitlinien für die Zukunft",
+  "camps.benefits": "Vorteile",
+  "camps.benefit1": "Intensive technische Verbesserung in kurzer Zeit",
+  "camps.benefit2": "Immersives und motivierendes Tenniserlebnis",
+  "camps.benefit3": "Sozialisierung mit anderen Spielern und Entwicklung von Freundschaften",
+  "camps.benefit4": "Entdeckung Ihrer Stärken und Verbesserungsbereiche",
+  "camps.benefit5": "Einblick in die professionelle ATH-Methodik",
+  "camps.benefit6": "Spaß und Leidenschaft für Tennis in einer positiven Umgebung",
+  
   // Technology Section
   "tech.title": "Der ATH Technologievorteil",
   "tech.subtitle": "Unser innovatives Technologiesystem integriert fortschrittliche Analytik und KI, um das Tennistraining zu revolutionieren",
@@ -113,7 +135,11 @@ const translations = {
   "language.en": "Englisch",
   "language.it": "Italienisch",
   "language.fr": "Französisch",
-  "language.de": "Deutsch"
+  "language.de": "Deutsch",
+  
+  // Method section
+  "method.title": "ATH-Methode",
+  "method.subtitle": "Ein innovativer Ansatz für Tennis-Exzellenz"
 };
 
 export default translations;

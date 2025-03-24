@@ -1,4 +1,3 @@
-
 const translations = {
   // Header & Navigation
   "nav.home": "Home",
@@ -42,6 +41,28 @@ const translations = {
   "programs.adult": "Adult Training",
   "programs.adult.desc": "Percorsi flessibili per giocatori amatoriali che vogliono migliorare le proprie capacità.",
   "programs.more": "Scopri di Più",
+  
+  // Camps Section
+  "camps.title": "CAMPS",
+  "camps.subtitle": "Esperienza intensiva di alta qualità per giocatori di tutte le età durante i periodi estivi e vacanze scolastiche",
+  "camps.summer": "Camp Estivi",
+  "camps.intro": "Esperienza intensiva di alta qualità per giocatori di tutte le età durante i periodi estivi e vacanze scolastiche.",
+  "camps.description1": "I nostri Camp Estivi offrono un'immersione completa nel tennis di qualità, combinando allenamento intensivo, divertimento e socializzazione in un ambiente stimolante e professionale.",
+  "camps.description2": "Grazie alla tecnologia VICKI™, anche in un formato breve come quello dei camp, siamo in grado di offrire un'esperienza formativa significativa con feedback precisi e misurabili.",
+  "camps.features": "Caratteristiche del Programma",
+  "camps.feature1": "Sessioni tecniche mattutine con analisi video",
+  "camps.feature2": "Attività tattiche e match practice pomeridiane",
+  "camps.feature3": "Mini-tornei e competizioni organizzate",
+  "camps.feature4": "Sessioni di mental training adatte all'età",
+  "camps.feature5": "Attività fisiche complementari e giochi di gruppo",
+  "camps.feature6": "Report dettagliato finale con indicazioni per il futuro",
+  "camps.benefits": "Benefici",
+  "camps.benefit1": "Miglioramento tecnico intensivo in breve tempo",
+  "camps.benefit2": "Esperienza di tennis immersiva e motivante",
+  "camps.benefit3": "Socializzazione con altri giocatori e sviluppo di amicizie",
+  "camps.benefit4": "Scoperta dei propri punti di forza e aree di miglioramento",
+  "camps.benefit5": "Esposizione alla metodologia professionale ATH",
+  "camps.benefit6": "Divertimento e passione per il tennis in un ambiente positivo",
   
   // Technology Section
   "tech.title": "Il Vantaggio Tecnologico ATH",
@@ -127,7 +148,11 @@ const translations = {
   "language.en": "Inglese",
   "language.it": "Italiano",
   "language.fr": "Francese",
-  "language.de": "Tedesco"
+  "language.de": "Tedesco",
+  
+  // Method section
+  "method.title": "Metodo ATH",
+  "method.subtitle": "Un approccio innovativo all'eccellenza tennistica"
 };
 
 export default translations;

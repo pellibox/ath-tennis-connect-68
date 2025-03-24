@@ -33,10 +33,10 @@ const CampsProgram = () => {
         <div className="w-full bg-black py-16">
           <div className="max-w-3xl mx-auto text-center">
             <h2 className="text-white text-xl md:text-2xl font-swiss uppercase mb-2">
-              CAMPS:
+              {t('camps.title')}:
             </h2>
             <p className="text-white text-xl md:text-2xl opacity-90 font-swiss max-w-3xl drop-shadow-md">
-              Esperienza intensiva di alta qualità per giocatori di tutte le età durante i periodi estivi e vacanze scolastiche
+              {t('camps.subtitle')}
             </p>
             <div className="mt-6">
               <VickiMonitoringBadge level="basic" className="bg-opacity-20 border-opacity-30 text-white" />
@@ -48,49 +48,47 @@ const CampsProgram = () => {
           <div className="mb-12">
             <RevealAnimation>
               <div className="flex flex-wrap items-center gap-3 mb-6">
-                <h2 className="text-3xl font-display">Camp Estivi</h2>
+                <h2 className="text-3xl font-display">{t('camps.summer')}</h2>
                 <VickiMonitoringBadge level="basic" />
               </div>
             </RevealAnimation>
             <RevealAnimation delay={100}>
-              <p className="text-lg mb-6">Esperienza intensiva di alta qualità per giocatori di tutte le età durante i periodi estivi e vacanze scolastiche.</p>
+              <p className="text-lg mb-6">{t('camps.intro')}</p>
             </RevealAnimation>
             <RevealAnimation delay={150}>
               <p className="mb-4">
-                I nostri Camp Estivi offrono un'immersione completa nel tennis di qualità, combinando allenamento intensivo, 
-                divertimento e socializzazione in un ambiente stimolante e professionale.
+                {t('camps.description1')}
               </p>
             </RevealAnimation>
             <RevealAnimation delay={200}>
               <p>
-                Grazie alla tecnologia VICKI™, anche in un formato breve come quello dei camp, 
-                siamo in grado di offrire un'esperienza formativa significativa con feedback precisi e misurabili.
+                {t('camps.description2')}
               </p>
             </RevealAnimation>
           </div>
           
           <div className="grid md:grid-cols-2 gap-10">
             <RevealAnimation delay={250} className="bg-gray-50 p-8 rounded-lg">
-              <h3 className="text-xl font-semibold mb-4">Caratteristiche del Programma</h3>
+              <h3 className="text-xl font-semibold mb-4">{t('camps.features')}</h3>
               <ul className="list-disc list-inside space-y-2">
-                <li>Sessioni tecniche mattutine con analisi video</li>
-                <li>Attività tattiche e match practice pomeridiane</li>
-                <li>Mini-tornei e competizioni organizzate</li>
-                <li>Sessioni di mental training adatte all'età</li>
-                <li>Attività fisiche complementari e giochi di gruppo</li>
-                <li>Report dettagliato finale con indicazioni per il futuro</li>
+                <li>{t('camps.feature1')}</li>
+                <li>{t('camps.feature2')}</li>
+                <li>{t('camps.feature3')}</li>
+                <li>{t('camps.feature4')}</li>
+                <li>{t('camps.feature5')}</li>
+                <li>{t('camps.feature6')}</li>
               </ul>
             </RevealAnimation>
             
             <RevealAnimation delay={300} className="bg-gray-50 p-8 rounded-lg">
-              <h3 className="text-xl font-semibold mb-4">Benefici</h3>
+              <h3 className="text-xl font-semibold mb-4">{t('camps.benefits')}</h3>
               <ul className="list-disc list-inside space-y-2">
-                <li>Miglioramento tecnico intensivo in breve tempo</li>
-                <li>Esperienza di tennis immersiva e motivante</li>
-                <li>Socializzazione con altri giocatori e sviluppo di amicizie</li>
-                <li>Scoperta dei propri punti di forza e aree di miglioramento</li>
-                <li>Esposizione alla metodologia professionale ATH</li>
-                <li>Divertimento e passione per il tennis in un ambiente positivo</li>
+                <li>{t('camps.benefit1')}</li>
+                <li>{t('camps.benefit2')}</li>
+                <li>{t('camps.benefit3')}</li>
+                <li>{t('camps.benefit4')}</li>
+                <li>{t('camps.benefit5')}</li>
+                <li>{t('camps.benefit6')}</li>
               </ul>
             </RevealAnimation>
           </div>

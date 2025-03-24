@@ -35,6 +35,28 @@ const translations = {
   "programs.adult.desc": "Programs for players of all levels who want to improve their skills, stay fit, and enjoy the game of tennis.",
   "programs.more": "Learn More",
   
+  // Camps Section
+  "camps.title": "CAMPS",
+  "camps.subtitle": "High-quality immersive experience for players of all ages during summer and school holidays",
+  "camps.summer": "Summer Camps",
+  "camps.intro": "High-quality immersive experience for players of all ages during summer and school holidays.",
+  "camps.description1": "Our Summer Camps offer a complete immersion in quality tennis, combining intensive training, fun, and socialization in a stimulating and professional environment.",
+  "camps.description2": "Thanks to VICKI™ technology, even in a short format like camps, we are able to offer a meaningful training experience with precise and measurable feedback.",
+  "camps.features": "Program Features",
+  "camps.feature1": "Morning technical sessions with video analysis",
+  "camps.feature2": "Afternoon tactical activities and match practice",
+  "camps.feature3": "Mini-tournaments and organized competitions",
+  "camps.feature4": "Age-appropriate mental training sessions",
+  "camps.feature5": "Complementary physical activities and group games",
+  "camps.feature6": "Detailed final report with guidance for the future",
+  "camps.benefits": "Benefits",
+  "camps.benefit1": "Intensive technical improvement in a short time",
+  "camps.benefit2": "Immersive and motivating tennis experience",
+  "camps.benefit3": "Socialization with other players and development of friendships",
+  "camps.benefit4": "Discovery of your strengths and areas for improvement",
+  "camps.benefit5": "Exposure to ATH professional methodology",
+  "camps.benefit6": "Fun and passion for tennis in a positive environment",
+  
   // Technology Section
   "tech.title": "The ATH Technology Advantage",
   "tech.subtitle": "Our innovative technology system integrates advanced analytics and AI to revolutionize tennis training",
@@ -116,7 +138,11 @@ const translations = {
   "language.en": "English",
   "language.it": "Italian",
   "language.fr": "French",
-  "language.de": "German"
+  "language.de": "German",
+  
+  // Method section
+  "method.title": "ATH Method",
+  "method.subtitle": "An innovative approach to tennis excellence"
 };
 
 export default translations;

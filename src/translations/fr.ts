@@ -32,6 +32,28 @@ const translations = {
   "programs.adult.desc": "Programmes pour les joueurs de tous niveaux qui souhaitent améliorer leurs compétences, rester en forme et profiter du jeu de tennis.",
   "programs.more": "En Savoir Plus",
   
+  // Camps Section
+  "camps.title": "CAMPS",
+  "camps.subtitle": "Expérience immersive de haute qualité pour joueurs de tous âges pendant les vacances d'été et scolaires",
+  "camps.summer": "Camps d'Été",
+  "camps.intro": "Expérience immersive de haute qualité pour joueurs de tous âges pendant les vacances d'été et scolaires.",
+  "camps.description1": "Nos Camps d'Été offrent une immersion complète dans le tennis de qualité, combinant entraînement intensif, plaisir et socialisation dans un environnement stimulant et professionnel.",
+  "camps.description2": "Grâce à la technologie VICKI™, même dans un format court comme celui des camps, nous sommes en mesure d'offrir une expérience de formation significative avec des retours précis et mesurables.",
+  "camps.features": "Caractéristiques du Programme",
+  "camps.feature1": "Sessions techniques matinales avec analyse vidéo",
+  "camps.feature2": "Activités tactiques et pratique de match l'après-midi",
+  "camps.feature3": "Mini-tournois et compétitions organisées",
+  "camps.feature4": "Sessions d'entraînement mental adaptées à l'âge",
+  "camps.feature5": "Activités physiques complémentaires et jeux de groupe",
+  "camps.feature6": "Rapport final détaillé avec des indications pour l'avenir",
+  "camps.benefits": "Avantages",
+  "camps.benefit1": "Amélioration technique intensive en peu de temps",
+  "camps.benefit2": "Expérience de tennis immersive et motivante",
+  "camps.benefit3": "Socialisation avec d'autres joueurs et développement d'amitiés",
+  "camps.benefit4": "Découverte de vos points forts et domaines d'amélioration",
+  "camps.benefit5": "Exposition à la méthodologie professionnelle ATH",
+  "camps.benefit6": "Plaisir et passion pour le tennis dans un environnement positif",
+  
   // Technology Section
   "tech.title": "L'Avantage Technologique ATH",
   "tech.subtitle": "Notre système technologique innovant intègre des analyses avancées et l'IA pour révolutionner l'entraînement au tennis",
@@ -112,7 +134,11 @@ const translations = {
   "language.en": "Anglais",
   "language.it": "Italien",
   "language.fr": "Français",
-  "language.de": "Allemand"
+  "language.de": "Allemand",
+  
+  // Method section
+  "method.title": "Méthode ATH",
+  "method.subtitle": "Une approche innovante de l'excellence en tennis"
 };
 
 export default translations;
