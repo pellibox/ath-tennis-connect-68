@@ -22,8 +22,11 @@ import AdultProgram from '@/pages/programs/Adult';
 import PrivateProgram from '@/pages/programs/Private';
 import CampsProgram from '@/pages/programs/Camps';
 
-// New program detail pages
+// Performance program detail pages
 import Performance2Program from '@/pages/programs/Performance2';
+import Performance3Program from '@/pages/programs/Performance3';
+import Performance4Program from '@/pages/programs/Performance4';
+import EliteFullProgram from '@/pages/programs/EliteFull';
 
 function App() {
   return (
@@ -49,8 +52,11 @@ function App() {
             <Route path="/programs/private" element={<PrivateProgram />} />
             <Route path="/programs/camps" element={<CampsProgram />} />
             
-            {/* New program detail routes */}
+            {/* Performance program detail routes */}
             <Route path="/programs/performance-2" element={<Performance2Program />} />
+            <Route path="/programs/performance-3" element={<Performance3Program />} />
+            <Route path="/programs/performance-4" element={<Performance4Program />} />
+            <Route path="/programs/elite-full" element={<EliteFullProgram />} />
             
             <Route path="*" element={<NotFoundPage />} />
           </Routes>
