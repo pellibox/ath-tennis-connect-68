@@ -1,3 +1,4 @@
+
 import { useEffect, useState, useRef } from 'react';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
@@ -131,6 +132,9 @@ const MethodPage = () => {
         <div className="w-full bg-black relative">
           <div dangerouslySetInnerHTML={{ __html: getVimeoEmbed() }} />
           <div className="absolute bottom-0 left-0 right-0 z-10 p-4 bg-gradient-to-t from-black/80 to-transparent">
+            <h2 className="text-white text-2xl md:text-3xl font-display uppercase max-w-3xl mx-auto text-center mb-2">
+              IL METODO:
+            </h2>
             <p className="text-white text-xl md:text-2xl opacity-90 max-w-3xl mx-auto text-center animate-fade-in drop-shadow-md">
               Tecnologia e competenza umana al servizio dell'eccellenza tennistica
             </p>

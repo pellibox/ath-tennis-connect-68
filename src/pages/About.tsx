@@ -1,4 +1,3 @@
-
 import { useEffect, useState, useRef } from 'react';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
@@ -61,14 +60,27 @@ const AboutPage = () => {
       <Header />
       
       <main className="flex-grow pt-20">
-        <Hero
-          title="Perché ATH"
-          subtitle="La rivoluzione nell'allenamento del tennis moderno"
-          imageSrc="/lovable-uploads/6ea13aa7-2578-488b-8ed4-4b17fc2ddc4e.png"
-          fullHeight={false}
-          overlayOpacity="medium"
-          vimeoEmbed="<div style='padding:56.25% 0 0 0;position:relative;'><iframe src='https://player.vimeo.com/video/1068596952?h=b7fa539b1c&autoplay=1&loop=1&background=1&autopause=0&player_id=0&app_id=58479' frameborder='0' allow='autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media' style='position:absolute;top:0;left:0;width:100%;height:100%;' title='ATH Main Video'></iframe></div><script src='https://player.vimeo.com/api/player.js'></script>"
-        />
+        {/* Video background with claim below it */}
+        <div className="w-full bg-black relative">
+          <div style={{ padding:'56.25% 0 0 0', position:'relative' }}>
+            <iframe 
+              src="https://player.vimeo.com/video/1068596952?h=b7fa539b1c&autoplay=1&loop=1&background=1&controls=0" 
+              style={{ position:'absolute', top:0, left:0, width:'100%', height:'100%' }} 
+              frameBorder="0" 
+              allow="autoplay; fullscreen; picture-in-picture" 
+              title="ATH Main Video">
+            </iframe>
+            <script src="https://player.vimeo.com/api/player.js"></script>
+          </div>
+          <div className="absolute bottom-0 left-0 right-0 z-10 p-4 bg-gradient-to-t from-black/80 to-transparent">
+            <h2 className="text-white text-2xl md:text-3xl font-display uppercase max-w-3xl mx-auto text-center mb-2">
+              PERCHÉ ATH:
+            </h2>
+            <p className="text-white text-xl md:text-2xl opacity-90 max-w-3xl mx-auto text-center animate-fade-in drop-shadow-md">
+              La rivoluzione nell'allenamento del tennis moderno
+            </p>
+          </div>
+        </div>
         
         <div className="bg-gradient-to-r from-ath-clay/5 to-white py-16 px-6">
           <div className="max-w-4xl mx-auto text-center">
