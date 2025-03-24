@@ -1,3 +1,4 @@
+
 import { useEffect } from 'react';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
@@ -108,17 +109,22 @@ const FacilitiesPage = () => {
       <Header />
       
       <main className="flex-grow font-swiss" style={{ marginTop: '80px' }}>
-        <div className="w-screen relative left-[50%] right-[50%] mx-[-50vw]" style={{ 
-          aspectRatio: '16/9', 
+        {/* Full-width video container that spans beyond screen edges */}
+        <div className="absolute left-0 right-0 w-full" style={{
+          height: '56.25vw', /* Maintain 16:9 aspect ratio */
           overflow: 'hidden',
           position: 'relative',
           margin: 0,
-          padding: 0
+          padding: 0,
+          zIndex: 0
         }}>
-          <div className="absolute inset-0 w-[102%] h-[102%] top-[-1%] left-[-1%]" 
+          <div className="absolute inset-0 w-[105%] h-[105%] top-[-2.5%] left-[-2.5%]" 
                dangerouslySetInnerHTML={{ __html: facilitiesVimeoEmbed }} 
           />
         </div>
+        
+        {/* Spacer to push content below video */}
+        <div style={{ height: '56.25vw' }}></div>
         
         <div className="w-full bg-black py-16">
           <div className="max-w-3xl mx-auto text-center">
