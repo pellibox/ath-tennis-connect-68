@@ -1,65 +1,19 @@
-
 import { useEffect, useState } from 'react';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import TechnologySection from '@/components/TechnologySection';
 import { useLanguage } from '@/contexts/LanguageContext';
-import { loadUserPreferences, UserGender, UserType } from '@/components/UserTypeSelector';
-import { Link } from 'react-router-dom';
+import { useProfile } from '@/contexts/ProfileContext';
 import RevealAnimation from '@/components/RevealAnimation';
-import Logo from '@/components/Logo';
+import { getVimeoEmbed } from '@/utils/videoUtils';
 
 const TechnologyPage = () => {
   const { t } = useLanguage();
-  const [userGender, setUserGender] = useState<UserGender | null>(null);
-  const [userType, setUserType] = useState<UserType | null>(null);
-  const [logoYOffset, setLogoYOffset] = useState<number>(0);
-  const [logoOpacity, setLogoOpacity] = useState<number>(1);
-  
-  // Load user preferences on mount
-  useEffect(() => {
-    const { gender, type } = loadUserPreferences();
-    if (gender) setUserGender(gender);
-    if (type) setUserType(type);
-  }, []);
+  const { userGender, userType } = useProfile();
   
   // Smooth scroll functionality
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
-  }, []);
-
-  // Handle scroll effect for the logo
-  useEffect(() => {
-    const handleScroll = () => {
-      // Get current scroll position
-      const scrollY = window.scrollY;
-      
-      // Calculate offset to move the logo up as user scrolls down
-      setLogoYOffset(scrollY * 0.2); // Adjust the multiplier to control the speed
-      
-      // Fade out logo as user scrolls down
-      // Start fading at 100px of scroll, completely fade out by 300px
-      const fadeThreshold = 100;
-      const fadeOutBy = 300;
-      
-      if (scrollY > fadeThreshold) {
-        const opacity = Math.max(0, 1 - (scrollY - fadeThreshold) / (fadeOutBy - fadeThreshold));
-        setLogoOpacity(opacity);
-      } else {
-        setLogoOpacity(1);
-      }
-    };
-
-    // Add scroll event listener
-    window.addEventListener('scroll', handleScroll);
-    
-    // Initial calculation
-    handleScroll();
-    
-    // Clean up
-    return () => {
-      window.removeEventListener('scroll', handleScroll);
-    };
   }, []);
 
   // Get personalized description based on user type
@@ -84,79 +38,35 @@ const TechnologyPage = () => {
     }
   };
 
-  // Get Vimeo embed code based on user type
-  const getVimeoEmbed = () => {
-    // Default video
-    let videoEmbed = `<div style="padding:56.25% 0 0 0;position:relative;"><iframe src="https://player.vimeo.com/video/1068596952?h=b7fa539b1c&autoplay=1&loop=1&background=1&controls=0" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" style="position:absolute;top:0;left:0;width:100%;height:100%;" title="ATH Main Video"></iframe></div><script src="https://player.vimeo.com/api/player.js"></script>`;
-    
-    // Only change video if user has explicitly selected a profile
-    if (userGender && userType) {
-      // Female user videos based on type
-      if (userGender === 'female') {
-        // Default female video (for junior, non-specific)
-        videoEmbed = `<div style="padding:56.25% 0 0 0;position:relative;"><iframe src="https://player.vimeo.com/video/867339842?h=5ecc384219&autoplay=1&loop=1&background=1&controls=0" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" style="position:absolute;top:0;left:0;width:100%;height:100%;" title="Female"></iframe></div><script src="https://player.vimeo.com/api/player.js"></script>`;
-        
-        // Female professional 
-        if (userType === 'professional') {
-          videoEmbed = `<div style="padding:56.25% 0 0 0;position:relative;"><iframe src="https://player.vimeo.com/video/1068596920?h=7f23339d4b&autoplay=1&loop=1&background=1&controls=0" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" style="position:absolute;top:0;left:0;width:100%;height:100%;" title="Female Professional"></iframe></div><script src="https://player.vimeo.com/api/player.js"></script>`;
-        } 
-        // Female performance
-        else if (userType === 'performance') {
-          videoEmbed = `<div style="padding:56.25% 0 0 0;position:relative;"><iframe src="https://player.vimeo.com/video/1068596969?h=9bbee986ef&autoplay=1&loop=1&background=1&controls=0" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" style="position:absolute;top:0;left:0;width:100%;height:100%;" title="Female Performance"></iframe></div><script src="https://player.vimeo.com/api/player.js"></script>`;
-        }
-      }
-      
-      // Male professional
-      if (userGender === 'male' && userType === 'professional') {
-        videoEmbed = `<div style="padding:56.25% 0 0 0;position:relative;"><iframe src="https://player.vimeo.com/video/1068596901?h=2ac5605207&autoplay=1&loop=1&background=1&controls=0" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" style="position:absolute;top:0;left:0;width:100%;height:100%;" title="Male Professional"></iframe></div><script src="https://player.vimeo.com/api/player.js"></script>`;
-      }
-      
-      // Coach video (regardless of gender)
-      if (userType === 'coach') {
-        videoEmbed = `<div style="padding:56.25% 0 0 0;position:relative;"><iframe src="https://player.vimeo.com/video/1068604198?h=07d9021fd2&autoplay=1&loop=1&background=1&controls=0" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" style="position:absolute;top:0;left:0;width:100%;height:100%;" title="Coach"></iframe></div><script src="https://player.vimeo.com/api/player.js"></script>`;
-      }
-      
-      // Parent video (regardless of gender)
-      if (userType === 'parent') {
-        videoEmbed = `<div style="padding:56.25% 0 0 0;position:relative;"><iframe src="https://player.vimeo.com/video/1068629360?h=46b5c52b31&autoplay=1&loop=1&background=1&controls=0" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" style="position:absolute;top:0;left:0;width:100%;height:100%;" title="Parent"></iframe></div><script src="https://player.vimeo.com/api/player.js"></script>`;
-      }
-    }
-    
-    return videoEmbed;
-  };
+  // Get Vimeo embed from the profile context
+  const vimeoEmbed = getVimeoEmbed(userGender, userType);
 
   return (
     <div className="flex flex-col min-h-screen">
-      <Header useVickiLogo={true} />
+      <Header useVickiLogo={false} />
       
-      <main className="flex-grow pt-20">
-        {/* Overlay logo for technology page */}
-        <div 
-          className="fixed top-[calc(25%-100px)] left-1/2 transform -translate-x-1/2 z-50 w-40 h-40 pointer-events-none transition-opacity duration-300"
-          style={{
-            transform: `translate(-50%, -${logoYOffset}px)`,
-            opacity: logoOpacity
-          }}
-        >
-          <Logo 
-            useVickiLogo={true} 
-            onDarkBackground={true} 
-            className="w-full h-full"
-          />
-        </div>
-        
-        <div className="h-40 bg-gradient-to-b from-ath-clay to-ath-secondary flex items-center justify-center">
-          <h1 className="text-4xl md:text-5xl font-swiss text-white">Tecnologia VICKI™</h1>
-        </div>
-        
-        <div className="w-full bg-black min-h-[calc(100vw*9/16+100px)] relative">
+      <main className="flex-grow">
+        {/* Hero video section with caption - matching Method page style */}
+        <div className="w-full bg-black relative">
           <div className="w-full aspect-video">
-            <div dangerouslySetInnerHTML={{ __html: getVimeoEmbed() }} />
+            <div dangerouslySetInnerHTML={{ __html: vimeoEmbed }} />
           </div>
           <div className="absolute bottom-0 left-0 right-0 z-10 p-4 bg-gradient-to-t from-black/80 to-transparent h-[100px] flex items-end">
             <p className="text-white text-base md:text-lg opacity-90 max-w-3xl mx-auto text-center font-swiss">
               {getPersonalizedDescription()}
             </p>
+          </div>
+        </div>
+        
+        {/* Black banner with claim text - matching Method page style */}
+        <div className="w-full bg-black py-16 relative" style={{ height: '300px' }}>
+          <div className="max-w-6xl mx-auto px-6 h-full flex flex-col justify-center">
+            <div className="flex items-center mb-2">
+              <h2 className="text-white text-lg font-display mr-3">TECNOLOGIA VICKI:</h2>
+              <p className="text-white text-lg font-swiss max-w-3xl">
+                {getPersonalizedDescription()}
+              </p>
+            </div>
           </div>
         </div>
         
