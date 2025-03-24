@@ -98,7 +98,7 @@ const FacilitiesSection = ({
                       <ul className="space-y-2">
                         {facility.features.map((feature, i) => (
                           <li key={i} className="flex items-start">
-                            <span className="inline-flex items-center justify-center h-5 w-5 rounded-full bg-green-100 text-green-800 mr-3 mt-0.5">
+                            <span className="inline-flex items-center justify-center h-5 w-5 rounded-full bg-ath-clay/10 text-ath-clay mr-3 mt-0.5">
                               <svg
                                 xmlns="http://www.w3.org/2000/svg"
                                 viewBox="0 0 20 20"

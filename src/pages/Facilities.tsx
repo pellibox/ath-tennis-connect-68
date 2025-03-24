@@ -1,3 +1,4 @@
+
 import { useEffect } from 'react';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
@@ -104,18 +105,24 @@ const FacilitiesPage = () => {
   const facilitiesVimeoEmbed = `<div style="position:relative;padding-bottom:56.25%;height:0;overflow:hidden;width:100%;"><iframe src="https://player.vimeo.com/video/1068878064?h=2b90638be1&autoplay=1&loop=1&background=1&autopause=0&player_id=0&app_id=58479&controls=0" style="position:absolute;top:0;left:0;width:100%;height:100%;" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media" title="ATH Facilities Video"></iframe></div><script src="https://player.vimeo.com/api/player.js"></script>`;
 
   return (
-    <div className="flex flex-col min-h-screen">
+    <div className="flex flex-col min-h-screen relative">
       <Header />
       
       <main className="flex-grow pt-20 font-swiss">
-        <Hero
-          title="Le Nostre Strutture"
-          subtitle="Impianti all'avanguardia dotati di tecnologia Vicki™"
-          vimeoEmbed={facilitiesVimeoEmbed}
-          fullHeight={false}
-          overlayOpacity="medium"
-          className="w-full max-w-none"
-        />
+        <div className="w-full bg-black min-h-[calc(100vw*9/16)] relative">
+          <div dangerouslySetInnerHTML={{ __html: facilitiesVimeoEmbed }} />
+        </div>
+        
+        <div className="w-full bg-black py-16">
+          <div className="max-w-3xl mx-auto text-center">
+            <h2 className="text-white text-xl md:text-2xl font-swiss uppercase mb-2">
+              LE STRUTTURE:
+            </h2>
+            <p className="text-white text-xl md:text-2xl opacity-90 font-swiss drop-shadow-md">
+              Impianti all'avanguardia dotati di tecnologia Vicki™
+            </p>
+          </div>
+        </div>
         
         <section className="py-16 px-6 lg:px-10 bg-white">
           <div className="max-w-7xl mx-auto">
@@ -181,7 +188,7 @@ const FacilitiesPage = () => {
           buttons={[
             { text: "Prenota ora", href: '/contact' }
           ]}
-          accent="green"
+          accent="ath-clay"
           elegant={true}
         />
       </main>
