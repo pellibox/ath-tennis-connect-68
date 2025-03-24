@@ -1,3 +1,4 @@
+
 import { useEffect, useState, useRef } from 'react';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
@@ -60,17 +61,25 @@ const AboutPage = () => {
 
   return (
     <div className="flex flex-col min-h-screen relative">
+      {/* Centered logo with improved positioning - fixed higher position to avoid header overlap */}
       <div 
-        className="fixed top-[calc(25%-100px)] left-1/2 transform -translate-x-1/2 z-50 w-40 h-40 pointer-events-none transition-opacity duration-300"
+        className="fixed left-0 right-0 mx-auto w-full flex justify-center items-center z-50 pointer-events-none transition-opacity duration-300"
         style={{
-          transform: `translate(-50%, -${logoYOffset}px)`,
+          top: '120px', // Positioned below the header
           opacity: logoOpacity
         }}
       >
-        <Logo 
-          onDarkBackground={true}
-          className="w-full h-full"
-        />
+        <div 
+          className="w-40 h-40"
+          style={{
+            transform: `translateY(-${logoYOffset}px)`
+          }}
+        >
+          <Logo 
+            onDarkBackground={true}
+            className="w-full h-full"
+          />
+        </div>
       </div>
       
       <Header />
