@@ -1,3 +1,4 @@
+
 import { useEffect, useState } from 'react';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
@@ -6,11 +7,13 @@ import { useLanguage } from '@/contexts/LanguageContext';
 import { loadUserPreferences, UserGender, UserType } from '@/components/UserTypeSelector';
 import { Link } from 'react-router-dom';
 import RevealAnimation from '@/components/RevealAnimation';
+import Logo from '@/components/Logo';
 
 const TechnologyPage = () => {
   const { t } = useLanguage();
   const [userGender, setUserGender] = useState<UserGender | null>(null);
   const [userType, setUserType] = useState<UserType | null>(null);
+  const [logoYOffset, setLogoYOffset] = useState<number>(0);
   
   // Load user preferences on mount
   useEffect(() => {
@@ -22,6 +25,29 @@ const TechnologyPage = () => {
   // Smooth scroll functionality
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
+  }, []);
+
+  // Handle scroll effect for the logo
+  useEffect(() => {
+    const handleScroll = () => {
+      // Get current scroll position
+      const scrollY = window.scrollY;
+      
+      // Calculate offset to move the logo up as user scrolls down
+      // This creates a "fixed position" effect relative to the background
+      setLogoYOffset(scrollY * 0.2); // Adjust the multiplier to control the speed
+    };
+
+    // Add scroll event listener
+    window.addEventListener('scroll', handleScroll);
+    
+    // Initial calculation
+    handleScroll();
+    
+    // Clean up
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
   }, []);
 
   // Get personalized description based on user type
@@ -89,15 +115,36 @@ const TechnologyPage = () => {
 
   return (
     <div className="flex flex-col min-h-screen">
-      <Header />
+      <Header useVickiLogo={true} />
       
       <main className="flex-grow pt-20">
+        {/* Overlay logo for technology page */}
+        <div 
+          className="fixed top-[calc(25%-100px)] left-1/2 transform -translate-x-1/2 z-50 w-40 h-40 pointer-events-none"
+          style={{
+            transform: `translate(-50%, -${logoYOffset}px)` // Apply dynamic Y offset
+          }}
+        >
+          <Logo 
+            useVickiLogo={true} 
+            onDarkBackground={true} 
+            className="w-full h-full"
+          />
+        </div>
+        
         <div className="h-40 bg-gradient-to-b from-ath-clay to-ath-secondary flex items-center justify-center">
           <h1 className="text-4xl md:text-5xl font-display text-white">Tecnologia VICKI™</h1>
         </div>
         
-        <div className="w-full bg-black aspect-video relative">
-          <div dangerouslySetInnerHTML={{ __html: getVimeoEmbed() }} />
+        <div className="w-full bg-black min-h-[calc(100vw*9/16+100px)] relative">
+          <div className="w-full aspect-video">
+            <div dangerouslySetInnerHTML={{ __html: getVimeoEmbed() }} />
+          </div>
+          <div className="absolute bottom-0 left-0 right-0 z-10 p-4 bg-gradient-to-t from-black/80 to-transparent h-[100px] flex items-end">
+            <p className="text-white text-base md:text-lg opacity-90 max-w-3xl mx-auto text-center font-swiss">
+              {getPersonalizedDescription()}
+            </p>
+          </div>
         </div>
         
         <TechnologySection 

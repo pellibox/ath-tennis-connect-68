@@ -6,11 +6,13 @@ import { useLanguage } from '@/contexts/LanguageContext';
 import Hero from '@/components/Hero';
 import RevealAnimation from '@/components/RevealAnimation';
 import { UserGender, UserType, loadUserPreferences } from '@/components/UserTypeSelector';
+import Logo from '@/components/Logo';
 
 const AdultProgram = () => {
   const { t } = useLanguage();
   const [userGender, setUserGender] = useState<UserGender | null>(null);
   const [userType, setUserType] = useState<UserType | null>(null);
+  const [logoYOffset, setLogoYOffset] = useState<number>(0);
   
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -21,22 +23,60 @@ const AdultProgram = () => {
     if (type) setUserType(type);
   }, []);
 
+  // Handle scroll effect for the logo
+  useEffect(() => {
+    const handleScroll = () => {
+      // Get current scroll position
+      const scrollY = window.scrollY;
+      
+      // Calculate offset to move the logo up as user scrolls down
+      setLogoYOffset(scrollY * 0.2); // Adjust the multiplier to control the speed
+    };
+
+    // Add scroll event listener
+    window.addEventListener('scroll', handleScroll);
+    
+    // Initial calculation
+    handleScroll();
+    
+    // Clean up
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, []);
+
   return (
-    <div className="flex flex-col min-h-screen">
+    <div className="flex flex-col min-h-screen relative">
+      {/* Overlay logo */}
+      <div 
+        className="fixed top-[calc(25%-100px)] left-1/2 transform -translate-x-1/2 z-50 w-40 h-40 pointer-events-none"
+        style={{
+          transform: `translate(-50%, -${logoYOffset}px)` // Apply dynamic Y offset
+        }}
+      >
+        <Logo 
+          onDarkBackground={true} 
+          className="w-full h-full"
+        />
+      </div>
+      
       <Header />
       
       <main className="flex-grow">
-        <Hero 
-          title={t('footer.adult')}
-          subtitle={t('programs.adult.desc')}
-          imageSrc="https://images.unsplash.com/photo-1535131749006-b7f58c99034b?q=80&w=2070&auto=format&fit=crop"
-          buttons={[
-            { text: 'PRENOTA UNA PROVA', href: '/contact' },
-            { text: 'CONTATTACI', href: '/contact', variant: 'outline' }
-          ]}
-          contentPosition="left"
-          overlayOpacity="medium"
-        />
+        <div className="relative">
+          <Hero 
+            title={t('footer.adult')}
+            subtitle={t('programs.adult.desc')}
+            imageSrc="https://images.unsplash.com/photo-1535131749006-b7f58c99034b?q=80&w=2070&auto=format&fit=crop"
+            buttons={[
+              { text: 'PRENOTA UNA PROVA', href: '/contact' },
+              { text: 'CONTATTACI', href: '/contact', variant: 'outline' }
+            ]}
+            contentPosition="left"
+            overlayOpacity="medium"
+            subtitlePosition="bottom"
+          />
+        </div>
         
         <div className="max-w-6xl mx-auto px-6 py-16">
           <div className="mb-12">

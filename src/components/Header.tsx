@@ -29,7 +29,11 @@ import {
 } from "@/components/ui/dialog";
 import { toast } from "sonner";
 
-const Header = () => {
+interface HeaderProps {
+  useVickiLogo?: boolean;
+}
+
+const Header = ({ useVickiLogo = false }: HeaderProps) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const location = useLocation();
@@ -165,6 +169,7 @@ const Header = () => {
             onDarkBackground={false}
             preserveUserProfile={true}
             resetProfile={false}
+            useVickiLogo={useVickiLogo}
           />
         </div>
         

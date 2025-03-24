@@ -1,3 +1,4 @@
+
 import { useEffect, useRef, useState } from 'react';
 import ButtonLink from './ButtonLink';
 import { cn } from '@/lib/utils';
@@ -188,11 +189,13 @@ const Hero = ({
         
         {vimeoEmbed && !vimeoError && (
           <div className="absolute inset-0 w-full h-full bg-black">
-            <div 
-              ref={vimeoRef}
-              className="w-full h-full vimeo-container" 
-              key={`vimeo-container-${vimeoKey}`}
-            />
+            <div className="w-full h-[calc(100%-100px)]">
+              <div 
+                ref={vimeoRef}
+                className="w-full h-full vimeo-container" 
+                key={`vimeo-container-${vimeoKey}`}
+              />
+            </div>
             <div className="absolute inset-0 bg-black/30"></div>
           </div>
         )}
@@ -211,16 +214,38 @@ const Hero = ({
         </h1>
         
         {subtitle && subtitlePosition === 'withTitle' && (
-          <p className="text-white text-xl md:text-2xl opacity-90 mb-10 animate-fade-in drop-shadow-md" style={{ animationDelay: '0.4s' }}>
+          <p className="text-white text-xl md:text-2xl opacity-90 mb-10 animate-fade-in drop-shadow-md font-swiss" style={{ animationDelay: '0.4s' }}>
             {subtitle}
           </p>
+        )}
+        
+        {buttons.length > 0 && subtitlePosition === 'withTitle' && (
+          <div className={cn(
+            'flex flex-wrap gap-3 justify-center mt-6 md:mt-8',
+            positionClasses[contentPosition].includes('items-start') ? 'justify-start' : (positionClasses[contentPosition].includes('items-end') ? 'justify-end' : 'justify-center')
+          )}>
+            {buttons.map((button, index) => (
+              <ButtonLink
+                key={`${button.text}-${index}`}
+                href={button.href}
+                variant={button.variant || (index === 0 ? 'primary' : 'outline')}
+                className={cn(
+                  'text-sm px-4 py-2 font-swiss', 
+                  index === 0 ? 'animate-fade-in' : 'animate-fade-in'
+                )}
+                size="sm"
+                style={{ animationDelay: `${0.6 + index * 0.1}s` }}
+              >
+                {button.text}
+              </ButtonLink>
+            ))}
+          </div>
         )}
       </div>
       
       {subtitle && subtitlePosition === 'bottom' && (
-        <div className="absolute bottom-0 left-0 right-0 z-10 p-4 bg-gradient-to-t from-black/80 to-transparent">
-          <p className="text-white text-base md:text-lg opacity-90 max-w-3xl mx-auto text-center animate-fade-in drop-shadow-md whitespace-nowrap overflow-hidden text-ellipsis" 
-            style={{ animationDelay: '0.4s' }}>
+        <div className="absolute bottom-0 left-0 right-0 z-10 p-4 bg-gradient-to-t from-black/80 to-transparent h-[100px] flex flex-col justify-end">
+          <p className="text-white text-base md:text-lg opacity-90 max-w-3xl mx-auto text-center drop-shadow-md font-swiss">
             {subtitle}
           </p>
           
@@ -234,7 +259,7 @@ const Hero = ({
                   href={button.href}
                   variant={button.variant || (index === 0 ? 'primary' : 'outline')}
                   className={cn(
-                    'text-sm px-4 py-2', 
+                    'text-sm px-4 py-2 font-swiss', 
                     index === 0 ? 'animate-fade-in' : 'animate-fade-in'
                   )}
                   size="sm"
