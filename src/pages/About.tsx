@@ -1,4 +1,3 @@
-
 import { useEffect, useState, useRef } from 'react';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
@@ -9,11 +8,13 @@ import ButtonLink from '@/components/ButtonLink';
 import { Award, Users, BarChart, Target, Layers, Headphones } from 'lucide-react';
 import RevealAnimation from '@/components/RevealAnimation';
 import Logo from '@/components/Logo';
+import { useIsMobile } from '@/hooks/use-mobile';
 
 const AboutPage = () => {
   const { t } = useLanguage();
   const [logoYOffset, setLogoYOffset] = useState<number>(0);
   const [logoOpacity, setLogoOpacity] = useState<number>(1);
+  const isMobile = useIsMobile();
   
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -52,6 +53,10 @@ const AboutPage = () => {
       window.removeEventListener('scroll', handleScroll);
     };
   }, []);
+
+  // Icon sizes based on device type
+  const iconSize = isMobile ? 40 : 64;
+  const iconContainerSize = isMobile ? "w-20 h-20" : "w-36 h-36";
 
   return (
     <div className="flex flex-col min-h-screen relative">
@@ -121,8 +126,8 @@ const AboutPage = () => {
             </div>
           }
           icon={
-            <div className="w-36 h-36 bg-white rounded-full flex items-center justify-center shadow-inner">
-              <Headphones size={64} className="text-ath-clay" />
+            <div className={`${iconContainerSize} bg-white rounded-full flex items-center justify-center shadow-inner`}>
+              <Headphones size={iconSize} className="text-ath-clay" />
             </div>
           }
           accent="clay"
@@ -141,8 +146,8 @@ const AboutPage = () => {
             </div>
           }
           icon={
-            <div className="w-36 h-36 bg-white rounded-full flex items-center justify-center shadow-inner">
-              <Users size={64} className="text-ath-clay" />
+            <div className={`${iconContainerSize} bg-white rounded-full flex items-center justify-center shadow-inner`}>
+              <Users size={iconSize} className="text-ath-clay" />
             </div>
           }
           reversed={true}
@@ -163,8 +168,8 @@ const AboutPage = () => {
             </div>
           }
           icon={
-            <div className="w-36 h-36 bg-white rounded-full flex items-center justify-center shadow-inner">
-              <BarChart size={64} className="text-ath-clay" />
+            <div className={`${iconContainerSize} bg-white rounded-full flex items-center justify-center shadow-inner`}>
+              <BarChart size={iconSize} className="text-ath-clay" />
             </div>
           }
           accent="clay"
@@ -183,8 +188,8 @@ const AboutPage = () => {
             </div>
           }
           icon={
-            <div className="w-36 h-36 bg-white rounded-full flex items-center justify-center shadow-inner">
-              <Target size={64} className="text-ath-clay" />
+            <div className={`${iconContainerSize} bg-white rounded-full flex items-center justify-center shadow-inner`}>
+              <Target size={iconSize} className="text-ath-clay" />
             </div>
           }
           reversed={true}
@@ -205,8 +210,8 @@ const AboutPage = () => {
             </div>
           }
           icon={
-            <div className="w-36 h-36 bg-white rounded-full flex items-center justify-center shadow-inner">
-              <Layers size={64} className="text-ath-clay" />
+            <div className={`${iconContainerSize} bg-white rounded-full flex items-center justify-center shadow-inner`}>
+              <Layers size={iconSize} className="text-ath-clay" />
             </div>
           }
           accent="clay"
