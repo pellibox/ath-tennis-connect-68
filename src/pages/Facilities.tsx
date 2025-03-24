@@ -24,9 +24,9 @@ const facilities = [
     description: "Due campi in superficie sintetica con coefficiente di attrito standardizzato e sistema di tracciamento Vicki™ integrato.",
     image: "/lovable-uploads/f9c89e9c-6847-411b-b1f9-e208caf726b4.png",
     features: [
-      "N1 campo coperto tutto l'anno N1 campo con copetura rimuovibile",
+      "N1 campo coperto tutto l'anno",
       "Illuminazione led per sessioni serali",
-      "Tecnologia Vicki™"
+      "Vicki™Powered court"
     ]
   },
   {
