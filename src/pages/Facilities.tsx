@@ -1,3 +1,4 @@
+
 import { useEffect } from 'react';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
@@ -104,7 +105,7 @@ const FacilitiesPage = () => {
     <div className="flex flex-col min-h-screen">
       <Header />
       
-      <main className="flex-grow pt-20">
+      <main className="flex-grow pt-20 font-swiss">
         <Hero
           title="Le Nostre Strutture"
           subtitle="Impianti all'avanguardia dotati di tecnologia Vicki™"
@@ -115,14 +116,14 @@ const FacilitiesPage = () => {
         
         <section className="py-16 px-6 lg:px-10 bg-white">
           <div className="max-w-7xl mx-auto">
-            <h1 className="text-4xl md:text-5xl font-display text-center mb-12">Strutture ATH</h1>
+            <h1 className="text-4xl md:text-5xl font-swiss text-center mb-12">Strutture ATH</h1>
             
             <div className="prose prose-lg max-w-4xl mx-auto mb-16">
-              <p className="lead text-xl mb-6">
+              <p className="lead text-xl mb-6 font-swiss">
                 L'Advanced Tennis Hub di Rodano è un centro di eccellenza progettato specificamente per ottimizzare l'utilizzo del metodo ATH e della tecnologia Vicki™.
               </p>
               
-              <p>
+              <p className="font-swiss">
                 Le nostre strutture combinano campi da tennis tecnologicamente avanzati, aree di analisi dati e spazi per la preparazione atletica, creando un ambiente integrato che supporta ogni aspetto dello sviluppo del tennista.
               </p>
             </div>
@@ -137,27 +138,27 @@ const FacilitiesPage = () => {
         
         <section className="py-16 px-6 lg:px-10 bg-gray-50">
           <div className="max-w-7xl mx-auto">
-            <h2 className="text-3xl md:text-4xl font-display text-center mb-12">Servizi Offerti</h2>
+            <h2 className="text-3xl md:text-4xl font-swiss text-center mb-12">Servizi Offerti</h2>
             
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
               <div className="bg-white p-6 rounded-lg shadow-sm">
-                <h3 className="text-xl font-semibold mb-3">Affitti Premium</h3>
-                <p className="text-gray-700">Prenota un campo con sistema Vicki™ integrato per sessioni di allenamento con analisi dati in tempo reale. Ideale per giocatori che vogliono approfondire specifici aspetti tecnici.</p>
+                <h3 className="text-xl font-semibold mb-3 font-swiss">Affitti Premium</h3>
+                <p className="text-gray-700 font-swiss">Prenota un campo con sistema Vicki™ integrato per sessioni di allenamento con analisi dati in tempo reale. Ideale per giocatori che vogliono approfondire specifici aspetti tecnici.</p>
               </div>
               
               <div className="bg-white p-6 rounded-lg shadow-sm">
-                <h3 className="text-xl font-semibold mb-3">Clinics Tematici</h3>
-                <p className="text-gray-700">Sessioni specializzate su aspetti specifici del gioco, con analisi dettagliate e feedback personalizzati basati sui dati raccolti.</p>
+                <h3 className="text-xl font-semibold mb-3 font-swiss">Clinics Tematici</h3>
+                <p className="text-gray-700 font-swiss">Sessioni specializzate su aspetti specifici del gioco, con analisi dettagliate e feedback personalizzati basati sui dati raccolti.</p>
               </div>
               
               <div className="bg-white p-6 rounded-lg shadow-sm">
-                <h3 className="text-xl font-semibold mb-3">Percorsi Valutativi</h3>
-                <p className="text-gray-700">Valutazioni complete delle performance tecniche, fisiche e tattiche, con report dettagliati e suggerimenti personalizzati per il miglioramento.</p>
+                <h3 className="text-xl font-semibold mb-3 font-swiss">Percorsi Valutativi</h3>
+                <p className="text-gray-700 font-swiss">Valutazioni complete delle performance tecniche, fisiche e tattiche, con report dettagliati e suggerimenti personalizzati per il miglioramento.</p>
               </div>
               
               <div className="bg-white p-6 rounded-lg shadow-sm">
-                <h3 className="text-xl font-semibold mb-3">Eventi e Tornei</h3>
-                <p className="text-gray-700">Competizioni con analisi avanzata delle performance, ideali per testare in ambiente competitivo i progressi ottenuti durante gli allenamenti.</p>
+                <h3 className="text-xl font-semibold mb-3 font-swiss">Eventi e Tornei</h3>
+                <p className="text-gray-700 font-swiss">Competizioni con analisi avanzata delle performance, ideali per testare in ambiente competitivo i progressi ottenuti durante gli allenamenti.</p>
               </div>
             </div>
           </div>
