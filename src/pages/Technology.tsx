@@ -7,6 +7,7 @@ import { useLanguage } from '@/contexts/LanguageContext';
 import { useProfile } from '@/contexts/ProfileContext';
 import RevealAnimation from '@/components/RevealAnimation';
 import { getVimeoEmbed } from '@/utils/videoUtils';
+import { AspectRatio } from '@/components/ui/aspect-ratio';
 
 const TechnologyPage = () => {
   const { t } = useLanguage();
@@ -47,10 +48,15 @@ const TechnologyPage = () => {
       <Header useVickiLogo={false} />
       
       <main className="flex-grow">
-        {/* Hero video section with caption - matching Method page style */}
-        <div className="w-full bg-black relative">
-          <div className="w-full aspect-video">
-            <div dangerouslySetInnerHTML={{ __html: vimeoEmbed }} />
+        {/* Hero video section - now matching size with other sections */}
+        <div className="w-full bg-black">
+          <div className="max-w-7xl mx-auto">
+            <AspectRatio ratio={16/9} className="w-full">
+              <div 
+                className="w-full h-full absolute top-0 left-0"
+                dangerouslySetInnerHTML={{ __html: vimeoEmbed }} 
+              />
+            </AspectRatio>
           </div>
           <div className="absolute bottom-0 left-0 right-0 z-10 p-4 bg-gradient-to-t from-black/80 to-transparent h-[100px] flex items-end">
             <p className="text-white text-base md:text-lg opacity-90 max-w-3xl mx-auto text-center font-swiss">
