@@ -166,22 +166,22 @@ const HomePage = () => {
 
   return (
     <div className="flex flex-col min-h-screen relative">
-      {/* Only show the overlay logo when not on mobile */}
-      {!isMobile && (
-        <div 
-          ref={logoRef}
-          className="fixed top-[calc(25%-100px)] left-1/2 transform -translate-x-1/2 z-50 w-40 h-40 pointer-events-none transition-opacity duration-300"
-          style={{
-            transform: `translate(-50%, -${logoYOffset}px)`,
-            opacity: logoOpacity
-          }}
-        >
-          <Logo 
-            onDarkBackground={true} 
-            className="w-full h-full"
-          />
-        </div>
-      )}
+      {/* Show the centered logo above video for both mobile and desktop */}
+      <div 
+        ref={logoRef}
+        className="fixed top-[calc(25%-100px)] left-1/2 transform -translate-x-1/2 z-50 pointer-events-none transition-opacity duration-300"
+        style={{
+          transform: `translate(-50%, -${logoYOffset}px)`,
+          opacity: logoOpacity,
+          width: isMobile ? '120px' : '160px', // Adjust size for mobile
+          height: 'auto'
+        }}
+      >
+        <Logo 
+          onDarkBackground={true} 
+          className="w-full h-full"
+        />
+      </div>
       
       <Header />
       
