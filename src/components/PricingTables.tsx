@@ -128,17 +128,17 @@ const PricingTables = () => {
   ];
 
   const PricingCard = ({ program }: { program: any }) => (
-    <Card className={`p-6 ${program.highlight ? 'border-purple-500 border-2' : ''}`}>
+    <Card className={`p-6 ${program.highlight ? 'border-ath-clay border-2 shadow-lg' : 'hover:border-ath-clay/50'} transition-all duration-300`}>
       <div className="flex flex-col h-full">
         <div className="mb-4">
-          <h3 className="text-xl font-semibold mb-1">{program.title}</h3>
+          <h3 className={`text-xl font-semibold mb-1 ${program.highlight ? 'text-ath-clay' : ''}`}>{program.title}</h3>
           <p className="text-gray-600 text-sm">{program.subtitle}</p>
         </div>
         <div className="mb-4 flex-grow">
           <ul className="space-y-2">
             {program.features.map((feature: string, index: number) => (
               <li key={index} className="text-sm flex items-start">
-                <span className="mr-2">•</span>
+                <span className="mr-2 text-ath-clay">•</span>
                 {feature}
               </li>
             ))}
@@ -146,10 +146,13 @@ const PricingTables = () => {
         </div>
         <div className="mt-auto">
           <div className="flex items-center justify-between mb-3">
-            <span className="text-2xl font-bold">€{program.price}</span>
+            <span className={`text-2xl font-bold ${program.highlight ? 'text-ath-clay' : ''}`}>€{program.price}</span>
             {program.vickiPowered && <VickiPoweredBadge small />}
             {program.vickiOnRequest && <VickiPoweredBadge small onRequest />}
           </div>
+          {program.highlight && (
+            <div className="h-1 w-full bg-ath-clay rounded-full mt-2"></div>
+          )}
         </div>
       </div>
     </Card>
@@ -168,7 +171,7 @@ const PricingTables = () => {
         </RevealAnimation>
 
         <RevealAnimation>
-          <h2 className="text-3xl font-display mb-2">Agonisti Performance ed Elite</h2>
+          <h2 className="text-3xl font-display mb-2 border-l-4 border-ath-clay pl-3">Agonisti Performance ed Elite</h2>
           <p className="text-gray-600 mb-8">
             Percorsi ad alto contenuto tecnico e fisico, pensati per chi compete a livello FITP, Tennis Europe o ITF.
           </p>
@@ -182,7 +185,7 @@ const PricingTables = () => {
         </RevealAnimation>
 
         <RevealAnimation>
-          <h2 className="text-3xl font-display mb-2">Junior Program</h2>
+          <h2 className="text-3xl font-display mb-2 border-l-4 border-ath-clay pl-3">Junior Program</h2>
           <p className="text-gray-600 mb-8">
             Percorsi dedicati allo sviluppo motorio e tecnico dai 4 ai 12 anni.
           </p>
@@ -196,7 +199,7 @@ const PricingTables = () => {
         </RevealAnimation>
 
         <RevealAnimation>
-          <h2 className="text-3xl font-display mb-2">Personal Training</h2>
+          <h2 className="text-3xl font-display mb-2 border-l-4 border-ath-clay pl-3">Personal Training</h2>
           <p className="text-gray-600 mb-8">
             Allenamenti individuali o su richiesta, per lavorare in modo specifico su aspetti tecnici e tattici.
           </p>
@@ -210,7 +213,7 @@ const PricingTables = () => {
         </RevealAnimation>
 
         <RevealAnimation>
-          <h2 className="text-3xl font-display mb-2">Adulti e Universitari</h2>
+          <h2 className="text-3xl font-display mb-2 border-l-4 border-ath-clay pl-3">Adulti e Universitari</h2>
           <p className="text-gray-600 mb-8">
             Programmi per adulti e studenti con esigenze di flessibilità.
           </p>
