@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Menu, X, Activity, Zap, BookOpen, Server, HelpCircle, Users } from 'lucide-react';
 import Logo from './Logo';
@@ -27,6 +27,7 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog";
 import { toast } from "sonner";
+import ProfileTooltip from './ProfileTooltip';
 
 interface HeaderProps {
   useVickiLogo?: boolean;
@@ -46,6 +47,7 @@ const Header = ({ useVickiLogo = false }: HeaderProps) => {
   
   const [userProfile, setUserProfile] = useState<{ gender: UserGender | null, type: UserType | null }>({ gender: null, type: null });
   const [dialogOpen, setDialogOpen] = useState(false);
+  const profileButtonRef = useRef(null);
   
   useEffect(() => {
     window.addEventListener('beforeunload', () => {
@@ -195,8 +197,8 @@ const Header = ({ useVickiLogo = false }: HeaderProps) => {
         <div className="flex items-center z-50">
           <Dialog open={dialogOpen} onOpenChange={setDialogOpen}>
             <DialogTrigger asChild>
-              {userProfile.gender && userProfile.type ? (
-                <div className="mr-4 cursor-pointer">
+              <div ref={profileButtonRef} className="mr-4 cursor-pointer relative">
+                {userProfile.gender && userProfile.type ? (
                   <ProfileIndicator 
                     gender={userProfile.gender as UserGender} 
                     type={userProfile.type as UserType} 
@@ -204,12 +206,16 @@ const Header = ({ useVickiLogo = false }: HeaderProps) => {
                     onDeleteProfile={handleProfileDelete}
                     onResetProfile={handleProfileReset}
                   />
-                </div>
-              ) : (
-                <button className="mr-4 text-sm px-3 py-1 rounded-md bg-ath-clay text-white font-swiss">
-                  Profilo
-                </button>
-              )}
+                ) : (
+                  <button className="mr-4 text-sm px-3 py-1 rounded-md bg-ath-clay text-white font-swiss">
+                    Profilo
+                  </button>
+                )}
+                
+                {!userProfile.gender || !userProfile.type ? (
+                  <ProfileTooltip buttonRef={profileButtonRef} />
+                ) : null}
+              </div>
             </DialogTrigger>
             <DialogContent className="sm:max-w-md">
               <DialogHeader>
