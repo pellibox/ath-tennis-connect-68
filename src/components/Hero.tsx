@@ -1,4 +1,3 @@
-
 import { useEffect, useRef, useState } from 'react';
 import ButtonLink from './ButtonLink';
 import { cn } from '@/lib/utils';
@@ -189,7 +188,7 @@ const Hero = ({
         
         {vimeoEmbed && !vimeoError && (
           <div className="absolute inset-0 w-full h-full bg-black">
-            <div className="w-full h-[calc(100%-100px)]">
+            <div className="w-full h-full">
               <div 
                 ref={vimeoRef}
                 className="w-full h-full vimeo-container" 
