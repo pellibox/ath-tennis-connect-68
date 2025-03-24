@@ -12,6 +12,7 @@ import { useLanguage } from '@/contexts/LanguageContext';
 import { loadUserPreferences, UserGender, UserType } from '@/components/UserTypeSelector';
 import { Button } from '@/components/ui/button';
 import Logo from '@/components/Logo';
+import VickiPoweredBadge from '@/components/VickiPoweredBadge';
 
 const Programs = () => {
   const { t } = useLanguage();
@@ -57,29 +58,29 @@ const Programs = () => {
   }, []);
 
   const getVimeoEmbed = () => {
-    let videoEmbed = `<div style="padding:56.25% 0 0 0;position:relative;"><iframe src="https://player.vimeo.com/video/1068596952?h=b7fa539b1c&autoplay=1&loop=1&title=0&byline=0&portrait=0&background=1&controls=0" title="ATH Main Video"></iframe></div><script src="https://player.vimeo.com/api/player.js"></script>`;
+    let videoEmbed = `<div style="padding:56.25% 0 0 0;position:relative;"><iframe src="https://player.vimeo.com/video/1068596952?h=b7fa539b1c&autoplay=1&loop=1&title=0&byline=0&portrait=0&background=1&controls=0" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" style="position:absolute;top:0;left:0;width:100%;height:100%;" title="ATH Main Video"></iframe></div><script src="https://player.vimeo.com/api/player.js"></script>`;
     
     if (userGender === 'female') {
-      videoEmbed = `<div style="padding:56.25% 0 0 0;position:relative;"><iframe src="https://player.vimeo.com/video/867339842?h=5ecc384219&autoplay=1&loop=1&title=0&byline=0&portrait=0&background=1&controls=0" title="Female"></iframe></div><script src="https://player.vimeo.com/api/player.js"></script>`;
+      videoEmbed = `<div style="padding:56.25% 0 0 0;position:relative;"><iframe src="https://player.vimeo.com/video/867339842?h=5ecc384219&autoplay=1&loop=1&title=0&byline=0&portrait=0&background=1&controls=0" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" style="position:absolute;top:0;left:0;width:100%;height:100%;" title="Female"></iframe></div><script src="https://player.vimeo.com/api/player.js"></script>`;
       
       if (userType === 'professional') {
-        videoEmbed = `<div style="padding:56.25% 0 0 0;position:relative;"><iframe src="https://player.vimeo.com/video/1068596920?h=7f23339d4b&autoplay=1&loop=1&title=0&byline=0&portrait=0&background=1&controls=0" title="Female Professional"></iframe></div><script src="https://player.vimeo.com/api/player.js"></script>`;
+        videoEmbed = `<div style="padding:56.25% 0 0 0;position:relative;"><iframe src="https://player.vimeo.com/video/1068596920?h=7f23339d4b&autoplay=1&loop=1&title=0&byline=0&portrait=0&background=1&controls=0" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" style="position:absolute;top:0;left:0;width:100%;height:100%;" title="Female Professional"></iframe></div><script src="https://player.vimeo.com/api/player.js"></script>`;
       } 
       else if (userType === 'performance') {
-        videoEmbed = `<div style="padding:56.25% 0 0 0;position:relative;"><iframe src="https://player.vimeo.com/video/1068596969?h=9bbee986ef&autoplay=1&loop=1&title=0&byline=0&portrait=0&background=1&controls=0" title="Female Performance"></iframe></div><script src="https://player.vimeo.com/api/player.js"></script>`;
+        videoEmbed = `<div style="padding:56.25% 0 0 0;position:relative;"><iframe src="https://player.vimeo.com/video/1068596969?h=9bbee986ef&autoplay=1&loop=1&title=0&byline=0&portrait=0&background=1&controls=0" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" style="position:absolute;top:0;left:0;width:100%;height:100%;" title="Female Performance"></iframe></div><script src="https://player.vimeo.com/api/player.js"></script>`;
       }
     }
     
     if (userGender === 'male' && userType === 'professional') {
-      videoEmbed = `<div style="padding:56.25% 0 0 0;position:relative;"><iframe src="https://player.vimeo.com/video/1068596901?h=2ac5605207&autoplay=1&loop=1&title=0&byline=0&portrait=0&background=1&controls=0" title="Male Professional"></iframe></div><script src="https://player.vimeo.com/api/player.js"></script>`;
+      videoEmbed = `<div style="padding:56.25% 0 0 0;position:relative;"><iframe src="https://player.vimeo.com/video/1068596901?h=2ac5605207&autoplay=1&loop=1&title=0&byline=0&portrait=0&background=1&controls=0" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" style="position:absolute;top:0;left:0;width:100%;height:100%;" title="Male Professional"></iframe></div><script src="https://player.vimeo.com/api/player.js"></script>`;
     }
     
     if (userType === 'coach') {
-      videoEmbed = `<div style="padding:56.25% 0 0 0;position:relative;"><iframe src="https://player.vimeo.com/video/1068604198?h=07d9021fd2&autoplay=1&loop=1&title=0&byline=0&portrait=0&controls=0" title="Coach"></iframe></div><script src="https://player.vimeo.com/api/player.js"></script>`;
+      videoEmbed = `<div style="padding:56.25% 0 0 0;position:relative;"><iframe src="https://player.vimeo.com/video/1068604198?h=07d9021fd2&autoplay=1&loop=1&title=0&byline=0&portrait=0&controls=0" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" style="position:absolute;top:0;left:0;width:100%;height:100%;" title="Coach"></iframe></div><script src="https://player.vimeo.com/api/player.js"></script>`;
     }
     
     if (userType === 'parent') {
-      videoEmbed = `<div style="padding:56.25% 0 0 0;position:relative;"><iframe src="https://player.vimeo.com/video/1068629360?h=46b5c52b31&autoplay=1&loop=1&title=0&byline=0&portrait=0&background=1&controls=0" title="Parent"></iframe></div><script src="https://player.vimeo.com/api/player.js"></script>`;
+      videoEmbed = `<div style="padding:56.25% 0 0 0;position:relative;"><iframe src="https://player.vimeo.com/video/1068629360?h=46b5c52b31&autoplay=1&loop=1&title=0&byline=0&portrait=0&background=1&controls=0" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" style="position:absolute;top:0;left:0;width:100%;height:100%;" title="Parent"></iframe></div><script src="https://player.vimeo.com/api/player.js"></script>`;
     }
     
     return videoEmbed;
@@ -102,7 +103,7 @@ const Programs = () => {
         'Percorsi personalizzati basati sulle caratteristiche individuali rilevate da Vicki™',
         'Supporto per genitori con report dettagliati e indicazioni sul potenziale'
       ],
-      vickiOnRequest: true
+      vickiPowered: true
     },
     {
       id: '1',
@@ -202,7 +203,7 @@ const Programs = () => {
       id: '6',
       title: 'Amatori',
       description: 'Percorsi flessibili per giocatori amatoriali che vogliono migliorare le proprie capacità.',
-      image: 'https://images.unsplash.com/photo-1535131749006-b7f58c99034b?q=80&w=2070&auto=format&fit=crop',
+      image: 'https://images.unsplash.com/photo-1535131749006-b7f58c990c4b?q=80&w=2070&auto=format&fit=crop',
       vimeoEmbed: '<div style="padding:56.25% 0 0 0;position:relative;"><iframe src="https://player.vimeo.com/video/1068788229?h=5f3c14e5ec&autoplay=1&loop=1&title=0&byline=0&portrait=0&controls=0" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen style="position:absolute;top:0;left:0;width:100%;height:100%;"></iframe></div>',
       link: '/programs/amateur',
       features: [
@@ -213,7 +214,7 @@ const Programs = () => {
         'Percorsi di miglioramento progressivo senza sovraccarico',
         'Report leggibili con focus su controllo, postura e miglioramenti visibili'
       ],
-      vickiPowered: true
+      vickiOnRequest: true
     }
   ];
 
@@ -527,7 +528,8 @@ const Programs = () => {
             </RevealAnimation>
             
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8 mb-16">
-              <RevealAnimation delay={150} className="bg-white p-8 flex flex-col shadow-sm">
+              <RevealAnimation delay={150} className="bg-white p-8 flex flex-col shadow-sm relative">
+                <VickiPoweredBadge logoOnly small className="absolute top-2 right-2" />
                 <h3 className="text-xl font-medium mb-4">Agonisti - 4 volte a settimana</h3>
                 <div className="text-3xl font-bold mb-2">€6.500<span className="text-sm font-normal">/anno</span></div>
                 <p className="text-gray-600 mb-6">Programma intensivo con allenamenti 4 volte a settimana.</p>
@@ -546,7 +548,8 @@ const Programs = () => {
                 </Link>
               </RevealAnimation>
               
-              <RevealAnimation delay={200} className="bg-white p-8 flex flex-col shadow-sm">
+              <RevealAnimation delay={200} className="bg-white p-8 flex flex-col shadow-sm relative">
+                <VickiPoweredBadge logoOnly small className="absolute top-2 right-2" />
                 <h3 className="text-xl font-medium mb-4">Agonisti - 3 volte a settimana</h3>
                 <div className="text-3xl font-bold mb-2">€5.000<span className="text-sm font-normal">/anno</span></div>
                 <p className="text-gray-600 mb-6">Programma avanzato con allenamenti 3 volte a settimana.</p>
@@ -565,7 +568,8 @@ const Programs = () => {
                 </Link>
               </RevealAnimation>
               
-              <RevealAnimation delay={250} className="bg-white p-8 flex flex-col shadow-sm">
+              <RevealAnimation delay={250} className="bg-white p-8 flex flex-col shadow-sm relative">
+                <VickiPoweredBadge logoOnly small className="absolute top-2 right-2" />
                 <h3 className="text-xl font-medium mb-4">Agonisti - 2 volte a settimana</h3>
                 <div className="text-3xl font-bold mb-2">€4.000<span className="text-sm font-normal">/anno</span></div>
                 <p className="text-gray-600 mb-6">Programma base per agonisti con 2 allenamenti settimanali.</p>
@@ -588,6 +592,7 @@ const Programs = () => {
                 <div className="absolute top-0 right-0 bg-ath-clay text-white px-4 py-1 text-sm">
                   VICKI™
                 </div>
+                <VickiPoweredBadge logoOnly small className="absolute top-8 right-2" />
                 <h3 className="text-xl font-medium mb-4">Agonisti Elite - 5 volte a settimana</h3>
                 <div className="text-3xl font-bold mb-2">€7.500<span className="text-sm font-normal">/anno</span></div>
                 <p className="text-gray-600 mb-6">Programma elite con analisi avanzata Vicki™.</p>
@@ -614,6 +619,7 @@ const Programs = () => {
                 <div className="absolute top-0 right-0 bg-black text-white px-4 py-1 text-sm">
                   ELITE
                 </div>
+                <VickiPoweredBadge logoOnly small className="absolute top-8 right-2" />
                 <h3 className="text-xl font-medium mb-4">Performance Full Time</h3>
                 <div className="text-3xl font-bold mb-2">€15.000<span className="text-sm font-normal">/anno</span></div>
                 <p className="text-gray-600 mb-6">Programma completo per agonisti professionisti.</p>
@@ -641,7 +647,8 @@ const Programs = () => {
             </RevealAnimation>
             
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16">
-              <RevealAnimation delay={400} className="bg-white p-8 flex flex-col shadow-sm">
+              <RevealAnimation delay={400} className="bg-white p-8 flex flex-col shadow-sm relative">
+                <VickiPoweredBadge logoOnly small className="absolute top-2 right-2" />
                 <h3 className="text-xl font-medium mb-4">Scuola SIT (Selezione e Individuazione Talenti)</h3>
                 <div className="text-3xl font-bold mb-2">€950<span className="text-sm font-normal">/anno</span></div>
                 <p className="text-gray-600 mb-6">Programma specializzato per l'identificazione precoce dei talenti tennistici.</p>
@@ -660,7 +667,7 @@ const Programs = () => {
                 </Link>
               </RevealAnimation>
               
-              <RevealAnimation delay={450} className="bg-white p-8 flex flex-col shadow-sm">
+              <RevealAnimation delay={450} className="bg-white p-8 flex flex-col shadow-sm relative">
                 <h3 className="text-xl font-medium mb-4">Scuola SAT - Propedeutico (sede di Rodano)</h3>
                 <div className="text-3xl font-bold mb-2">€500<span className="text-sm font-normal">/anno</span></div>
                 <p className="text-gray-600 mb-6">Percorso introduttivo per giovani atleti.</p>
@@ -688,7 +695,8 @@ const Programs = () => {
             </RevealAnimation>
             
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-              <RevealAnimation delay={550} className="bg-white p-8 flex flex-col shadow-sm">
+              <RevealAnimation delay={550} className="bg-white p-8 flex flex-col shadow-sm relative">
+                <VickiPoweredBadge logoOnly small className="absolute top-2 right-2" />
                 <h3 className="text-xl font-medium mb-4">Personal Training (under 13-18)</h3>
                 <div className="text-3xl font-bold mb-2">€2.000<span className="text-sm font-normal">/anno</span></div>
                 <p className="text-gray-600 mb-6">Programma di allenamento personalizzato per giovani talenti.</p>
@@ -703,7 +711,8 @@ const Programs = () => {
                 </Link>
               </RevealAnimation>
               
-              <RevealAnimation delay={600} className="bg-white p-8 flex flex-col shadow-sm">
+              <RevealAnimation delay={600} className="bg-white p-8 flex flex-col shadow-sm relative">
+                <VickiPoweredBadge logoOnly small className="absolute top-2 right-2" />
                 <h3 className="text-xl font-medium mb-4">Private Personal Training (su richiesta)</h3>
                 <div className="text-2xl font-bold mb-2">Prezzo su richiesta</div>
                 <p className="text-gray-600 mb-6">Sessioni private completamente personalizzate.</p>
@@ -731,7 +740,8 @@ const Programs = () => {
             </RevealAnimation>
             
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-              <RevealAnimation delay={700} className="bg-white p-8 flex flex-col shadow-sm">
+              <RevealAnimation delay={700} className="bg-white p-8 flex flex-col shadow-sm relative">
+                <VickiPoweredBadge logoOnly small className="absolute top-2 right-2" />
                 <h3 className="text-xl font-medium mb-4">Adult Training</h3>
                 <div className="text-3xl font-bold mb-2">€700<span className="text-sm font-normal">/anno</span></div>
                 <p className="text-gray-600 mb-6">Programma per adulti che vogliono migliorare il proprio tennis.</p>
@@ -746,7 +756,7 @@ const Programs = () => {
                 </Link>
               </RevealAnimation>
               
-              <RevealAnimation delay={750} className="bg-white p-8 flex flex-col shadow-sm">
+              <RevealAnimation delay={750} className="bg-white p-8 flex flex-col shadow-sm relative">
                 <h3 className="text-xl font-medium mb-4">Settore Universitari / Scuole Online</h3>
                 <div className="text-3xl font-bold mb-2">€1.000<span className="text-sm font-normal">/anno</span></div>
                 <p className="text-gray-600 mb-6">Programma flessibile per studenti universitari.</p>
