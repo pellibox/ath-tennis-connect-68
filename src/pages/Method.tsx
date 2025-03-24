@@ -141,13 +141,15 @@ const MethodPage = () => {
         {/* Video background with claim below it */}
         <div className="w-full bg-black min-h-[calc(100vw*9/16+100px)] relative">
           <div dangerouslySetInnerHTML={{ __html: getVimeoEmbed() }} />
-          <div className="absolute bottom-0 left-0 right-0 z-10 p-4 bg-gradient-to-t from-black/80 to-transparent h-[100px] flex items-end">
-            <h2 className="text-white text-2xl md:text-3xl font-swiss uppercase max-w-3xl mx-auto text-center mb-2">
-              IL METODO:
-            </h2>
-            <p className="text-white text-xl md:text-2xl opacity-90 max-w-3xl mx-auto text-center animate-fade-in drop-shadow-md font-swiss">
-              Tecnologia e competenza umana al servizio dell'eccellenza tennistica
-            </p>
+          <div className="absolute bottom-0 left-0 right-0 z-10 p-4 bg-gradient-to-t from-black/80 to-transparent h-[300px] flex items-end">
+            <div className="max-w-3xl mx-auto text-center mb-6">
+              <h2 className="text-white text-xl md:text-2xl font-swiss uppercase mb-2">
+                IL METODO:
+              </h2>
+              <p className="text-white text-xl md:text-2xl opacity-90 font-swiss drop-shadow-md animate-fade-in">
+                Tecnologia e competenza umana al servizio dell'eccellenza tennistica
+              </p>
+            </div>
           </div>
         </div>
         
