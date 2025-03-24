@@ -1,4 +1,3 @@
-
 import { useEffect } from 'react';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
@@ -105,13 +104,18 @@ const FacilitiesPage = () => {
   const facilitiesVimeoEmbed = `<div style="position:relative;padding-bottom:56.25%;height:0;overflow:hidden;width:100%;"><iframe src="https://player.vimeo.com/video/1068878064?h=2b90638be1&autoplay=1&loop=1&background=1&autopause=0&player_id=0&app_id=58479&controls=0" style="position:absolute;top:0;left:0;width:100%;height:100%;" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media" title="ATH Facilities Video"></iframe></div><script src="https://player.vimeo.com/api/player.js"></script>`;
 
   return (
-    <div className="flex flex-col min-h-screen relative">
+    <div className="flex flex-col min-h-screen relative overflow-hidden">
       <Header />
       
-      <main className="flex-grow pt-20 font-swiss">
-        {/* Full-width video container with no margins */}
-        <div className="w-full min-w-[100vw] relative" style={{ maxWidth: '100vw', left: '0', margin: '0', padding: '0', overflow: 'hidden', aspectRatio: '16/9' }}>
-          <div className="w-[101%] h-[101%] absolute top-[-0.5%] left-[-0.5%]" 
+      <main className="flex-grow font-swiss" style={{ marginTop: '80px' }}>
+        <div className="w-screen relative left-[50%] right-[50%] mx-[-50vw]" style={{ 
+          aspectRatio: '16/9', 
+          overflow: 'hidden',
+          position: 'relative',
+          margin: 0,
+          padding: 0
+        }}>
+          <div className="absolute inset-0 w-[102%] h-[102%] top-[-1%] left-[-1%]" 
                dangerouslySetInnerHTML={{ __html: facilitiesVimeoEmbed }} 
           />
         </div>
