@@ -14,8 +14,8 @@ const Footer = () => {
           <div className="mb-6 flex justify-center md:justify-start">
             <Logo variant="footer" onDarkBackground={true} />
           </div>
-          <p className="text-gray-400 text-sm mb-6">
-            {t('footer.description')}
+          <p className="text-gray-400 text-sm mb-6 font-swiss">
+            Elevare l'eccellenza del tennis attraverso programmi di allenamento innovativi, strutture di livello internazionale e coaching personalizzato.
           </p>
           <div className="flex space-x-4 mb-4">
             <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className="hover:text-gray-400 transition-colors" aria-label="Instagram">
