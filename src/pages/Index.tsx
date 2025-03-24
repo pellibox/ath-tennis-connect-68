@@ -1,4 +1,3 @@
-
 import { useEffect, useState, useRef } from 'react';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
@@ -166,10 +165,10 @@ const HomePage = () => {
       {/* Show the centered logo above video for both mobile and desktop with same scroll behavior */}
       <div 
         ref={logoRef}
-        className="fixed left-1/2 transform -translate-x-1/2 z-50 pointer-events-none transition-opacity duration-300"
+        className="fixed left-1/2 z-50 pointer-events-none transition-opacity duration-300"
         style={{
-          top: isMobile ? 'calc(30% - 60px)' : 'calc(25% - 100px)', // Abbassiamo il logo nella versione mobile
-          transform: `translate(-50%, -${logoYOffset}px)`,
+          top: isMobile ? 'calc(30% - 60px)' : 'calc(25% - 100px)', // Logo positioned lower on mobile
+          transform: `translate(-50%, -${logoYOffset}px)`, // Ensure perfect horizontal centering
           opacity: logoOpacity,
           width: isMobile ? '120px' : '160px',
           height: 'auto'
