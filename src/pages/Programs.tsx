@@ -516,7 +516,7 @@ const Programs = () => {
               </p>
             </RevealAnimation>
             
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-16">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8 mb-16">
               <RevealAnimation delay={150} className="bg-white p-8 flex flex-col shadow-sm">
                 <h3 className="text-xl font-medium mb-4">Agonisti - 4 volte a settimana</h3>
                 <div className="text-3xl font-bold mb-2">€6.500<span className="text-sm font-normal">/anno</span></div>
@@ -574,11 +574,37 @@ const Programs = () => {
                 </Link>
               </RevealAnimation>
               
+              <RevealAnimation delay={275} className="bg-white p-8 flex flex-col shadow-sm relative">
+                <div className="absolute top-0 right-0 bg-ath-clay text-white px-4 py-1 text-sm">
+                  VICKI™
+                </div>
+                <h3 className="text-xl font-medium mb-4">Agonisti Elite - 5 volte a settimana</h3>
+                <div className="text-3xl font-bold mb-2">€7.500<span className="text-sm font-normal">/anno</span></div>
+                <p className="text-gray-600 mb-6">Programma elite con analisi avanzata Vicki™.</p>
+                <ul className="space-y-2 mb-8 flex-grow">
+                  <li className="flex items-start">
+                    <span className="text-black mr-2">✓</span>
+                    <span>5 sessioni di tennis da 1,5 ore (7,5 ore settimanali)</span>
+                  </li>
+                  <li className="flex items-start">
+                    <span className="text-black mr-2">✓</span>
+                    <span>5 sessioni di preparazione atletica da 1,5 ore (7,5 ore settimanali)</span>
+                  </li>
+                  <li className="flex items-start">
+                    <span className="text-black mr-2">✓</span>
+                    <span>Analisi Vicki™ completa su tutti gli allenamenti</span>
+                  </li>
+                </ul>
+                <Link to="/contact" className="mt-auto px-6 py-3 bg-black text-white text-center hover:bg-opacity-90 transition-all">
+                  CONTATTACI
+                </Link>
+              </RevealAnimation>
+              
               <RevealAnimation delay={300} className="bg-white p-8 flex flex-col shadow-md relative">
                 <div className="absolute top-0 right-0 bg-black text-white px-4 py-1 text-sm">
                   ELITE
                 </div>
-                <h3 className="text-xl font-medium mb-4">Agonisti Full Time</h3>
+                <h3 className="text-xl font-medium mb-4">Performance Full Time</h3>
                 <div className="text-3xl font-bold mb-2">€15.000<span className="text-sm font-normal">/anno</span></div>
                 <p className="text-gray-600 mb-6">Programma completo per agonisti professionisti.</p>
                 <ul className="space-y-2 mb-8 flex-grow">
@@ -651,7 +677,7 @@ const Programs = () => {
               </p>
             </RevealAnimation>
             
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
               <RevealAnimation delay={550} className="bg-white p-8 flex flex-col shadow-sm">
                 <h3 className="text-xl font-medium mb-4">Personal Training (under 13-18)</h3>
                 <div className="text-3xl font-bold mb-2">€2.000<span className="text-sm font-normal">/anno</span></div>
@@ -749,4 +775,3 @@ const Programs = () => {
 };
 
 export default Programs;
-
