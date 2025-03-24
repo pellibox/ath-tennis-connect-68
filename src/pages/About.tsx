@@ -1,10 +1,10 @@
+
 import { useEffect, useState, useRef } from 'react';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import AboutSection from '@/components/AboutSection';
 import JoinRevolutionSection from '@/components/JoinRevolutionSection';
 import { useLanguage } from '@/contexts/LanguageContext';
-import Hero from '@/components/Hero';
 import ButtonLink from '@/components/ButtonLink';
 import { Award, Users, BarChart, Target, Layers, Headphones } from 'lucide-react';
 import RevealAnimation from '@/components/RevealAnimation';
@@ -12,6 +12,7 @@ import RevealAnimation from '@/components/RevealAnimation';
 const AboutPage = () => {
   const { t } = useLanguage();
   const [logoYOffset, setLogoYOffset] = useState<number>(0);
+  const [logoOpacity, setLogoOpacity] = useState<number>(1);
   const logoRef = useRef<HTMLDivElement>(null);
   
   useEffect(() => {
@@ -25,8 +26,19 @@ const AboutPage = () => {
       const scrollY = window.scrollY;
       
       // Calculate offset to move the logo up as user scrolls down
-      // This creates a "fixed position" effect relative to the background
       setLogoYOffset(scrollY * 0.2); // Adjust the multiplier to control the speed
+      
+      // Fade out logo as user scrolls down
+      // Start fading at 100px of scroll, completely fade out by 200px
+      const fadeThreshold = 100;
+      const fadeOutBy = 200;
+      
+      if (scrollY > fadeThreshold) {
+        const opacity = Math.max(0, 1 - (scrollY - fadeThreshold) / (fadeOutBy - fadeThreshold));
+        setLogoOpacity(opacity);
+      } else {
+        setLogoOpacity(1);
+      }
     };
 
     // Add scroll event listener
@@ -45,9 +57,10 @@ const AboutPage = () => {
     <div className="flex flex-col min-h-screen relative">
       <div 
         ref={logoRef}
-        className="fixed top-[calc(25%-100px)] left-1/2 transform -translate-x-1/2 z-50 w-40 h-40 pointer-events-none"
+        className="fixed top-[calc(25%-100px)] left-1/2 transform -translate-x-1/2 z-50 w-40 h-40 pointer-events-none transition-opacity duration-300"
         style={{
-          transform: `translate(-50%, -${logoYOffset}px)` // Apply dynamic Y offset
+          transform: `translate(-50%, -${logoYOffset}px)`,
+          opacity: logoOpacity
         }}
       >
         <img 

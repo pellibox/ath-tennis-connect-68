@@ -31,13 +31,18 @@ import { toast } from "sonner";
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
+  const [centerLogoVisible, setCenterLogoVisible] = useState(true);
   const location = useLocation();
   const { t } = useLanguage();
   const isMobile = useIsMobile();
   
   const isHomePage = location.pathname === '/';
   const isAboutPage = location.pathname === '/about';
-  const showHeaderLogo = !isHomePage && !isAboutPage || isScrolled;
+  const isMethodPage = location.pathname === '/method';
+  
+  const hasSpecialLayout = isAboutPage || isMethodPage;
+  
+  const showHeaderLogo = isScrolled && (!hasSpecialLayout || !centerLogoVisible);
   
   const [userProfile, setUserProfile] = useState<{ gender: UserGender | null, type: UserType | null }>({ gender: null, type: null });
   const [dialogOpen, setDialogOpen] = useState(false);
@@ -84,6 +89,10 @@ const Header = () => {
     const handleScroll = () => {
       const offset = window.scrollY;
       setIsScrolled(offset > 50);
+      
+      if (hasSpecialLayout) {
+        setCenterLogoVisible(offset < 200);
+      }
     };
 
     window.addEventListener('scroll', handleScroll);
@@ -92,7 +101,7 @@ const Header = () => {
     return () => {
       window.removeEventListener('scroll', handleScroll);
     };
-  }, []);
+  }, [hasSpecialLayout]);
 
   useEffect(() => {
     setIsMenuOpen(false);
@@ -157,7 +166,7 @@ const Header = () => {
     >
       <div className="container mx-auto px-6 flex items-center justify-between relative">
         <div className={cn(
-          "flex items-center z-50",
+          "flex items-center z-50 transition-opacity duration-300",
           showHeaderLogo ? "opacity-100" : "opacity-0"
         )}>
           <Logo 
