@@ -1,4 +1,3 @@
-
 const translations = {
   // Header & Navigation
   "nav.home": "Home",
@@ -97,7 +96,7 @@ const translations = {
   "contact.sunday": "Domenica",
   
   // Footer
-  "footer.description": "Elevare l'eccellenza del tennis attraverso programmi di allenamento innovativi, strutture di livello mondiale e coaching personalizzato.",
+  "footer.description": "Elevare l'eccellenza del tennis attraverso programmi di allenamento innovativi, strutture di livello internazionale e coaching personalizzato.",
   "footer.programs": "Programmi",
   "footer.junior": "Junior Program",
   "footer.talent": "Scuola Individuazione Talenti",

@@ -1,4 +1,3 @@
-
 import { Link } from 'react-router-dom';
 import { Instagram, Facebook, Twitter, Mail, Phone, MapPin } from 'lucide-react';
 import Logo from './Logo';
@@ -57,7 +56,7 @@ const Footer = () => {
           <ul className="space-y-4">
             <li className="flex items-start">
               <MapPin size={18} className="mr-3 mt-0.5 text-gray-400" />
-              <span className="text-gray-400 text-sm">123 Tennis Court Avenue, Tennis City, 10001</span>
+              <span className="text-gray-400 text-sm">Via F. Turati, 9, 20090 Rodano MI, Italia</span>
             </li>
             <li className="flex items-center">
               <Phone size={18} className="mr-3 text-gray-400" />
@@ -65,7 +64,7 @@ const Footer = () => {
             </li>
             <li className="flex items-center">
               <Mail size={18} className="mr-3 text-gray-400" />
-              <a href="mailto:info@ath-tennis.com" className="text-gray-400 hover:text-white text-sm transition-colors">info@ath-tennis.com</a>
+              <a href="mailto:info@ath.tennis" className="text-gray-400 hover:text-white text-sm transition-colors">info@ath.tennis</a>
             </li>
           </ul>
         </div>
