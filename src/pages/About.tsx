@@ -6,7 +6,7 @@ import JoinRevolutionSection from '@/components/JoinRevolutionSection';
 import { useLanguage } from '@/contexts/LanguageContext';
 import Hero from '@/components/Hero';
 import ButtonLink from '@/components/ButtonLink';
-import { Award, Users, BarChart, Target, Layers } from 'lucide-react';
+import { Award, Users, BarChart, Target, Layers, Headphones } from 'lucide-react';
 import RevealAnimation from '@/components/RevealAnimation';
 
 const AboutPage = () => {
@@ -18,7 +18,7 @@ const AboutPage = () => {
 
   return (
     <div className="flex flex-col min-h-screen relative">
-      <div className="fixed top-8 left-1/2 transform -translate-x-1/2 z-50 w-32 h-32 pointer-events-none">
+      <div className="fixed top-1/4 left-1/2 transform -translate-x-1/2 z-50 w-40 h-40 pointer-events-none">
         <img 
           src="/lovable-uploads/ebada5d3-6c5e-43a0-ab7d-a5850900d950.png" 
           alt="ATH Logo" 
@@ -61,7 +61,11 @@ const AboutPage = () => {
               <p>Per ampliare l'accesso all'allenamento d'élite, ATH utilizza strumenti digitali che raccolgono dati su tecnica, tattica, stato fisico, approccio mentale, oltre a parametri medici e biochimici. Gli head coach possono così fornire un supporto estremamente personalizzato, ottimizzando i tempi e le risorse a vantaggio di ogni atleta.</p>
             </div>
           }
-          image="https://images.unsplash.com/photo-1560012057-4372e14c5085"
+          icon={
+            <div className="w-36 h-36 bg-white rounded-full flex items-center justify-center shadow-inner">
+              <Headphones size={64} className="text-ath-clay" />
+            </div>
+          }
           accent="clay"
           elegant={true}
         />
