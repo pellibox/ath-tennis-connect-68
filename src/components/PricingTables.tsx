@@ -159,6 +159,15 @@ const PricingTables = () => {
     <div className="py-16 bg-gray-50">
       <div className="max-w-6xl mx-auto px-6">
         <RevealAnimation>
+          <div className="text-center mb-12">
+            <h2 className="text-4xl font-display mb-3 text-ath-clay">Il Valore della Tua Scelta</h2>
+            <p className="text-xl text-gray-700 max-w-3xl mx-auto">
+              I nostri Percorsi verso l'Eccellenza Tennistica
+            </p>
+          </div>
+        </RevealAnimation>
+
+        <RevealAnimation>
           <h2 className="text-3xl font-display mb-2">Agonisti Performance ed Elite</h2>
           <p className="text-gray-600 mb-8">
             Percorsi ad alto contenuto tecnico e fisico, pensati per chi compete a livello FITP, Tennis Europe o ITF.
