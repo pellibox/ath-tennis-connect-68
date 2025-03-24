@@ -378,7 +378,7 @@ const Programs = () => {
   return (
     <div className="flex flex-col min-h-screen relative">
       <div 
-        className="fixed top-[calc(25%-100px)] left-1/2 transform -translate-x-1/2 z-50 w-40 h-40 pointer-events-none transition-opacity duration-300 flex justify-center"
+        className="fixed top-[calc(50%-100px)] left-1/2 transform -translate-x-1/2 z-50 w-40 h-40 pointer-events-none transition-opacity duration-300 flex justify-center"
         style={{
           transform: `translate(-50%, -${logoYOffset}px)`,
           opacity: logoOpacity
@@ -406,9 +406,9 @@ const Programs = () => {
             <div className="absolute inset-0 w-full h-full" dangerouslySetInnerHTML={{ __html: getVimeoEmbed() }} />
           </div>
         
-          <div className="w-full bg-black py-8">
-            <div className="max-w-3xl mx-auto text-center px-4">
-              <h2 className="text-white text-xl md:text-2xl font-swiss uppercase mb-2">
+          <div className="w-full bg-black text-center py-20">
+            <div className="max-w-3xl mx-auto px-4">
+              <h2 className="text-white text-3xl md:text-4xl font-display mb-4">
                 PROGRAMMI:
               </h2>
               <p className="text-white text-xl md:text-2xl opacity-90 font-swiss drop-shadow-md">
