@@ -60,11 +60,10 @@ const facilities = [
     description: "Area esclusiva di relax per atleti con monitor per analisi dati, connessione al sistema Vicki™ e ambiente premium.",
     image: "/lovable-uploads/a39367a8-2cd2-4dca-88ac-68898efc50da.png",
     features: [
-      "Postazioni multimediali integrate",
+      "Postazioni video per streaming on court con analisi dati",
       "Area relax ergonomica",
       "Connessione diretta al sistema di analisi",
-      "Reception e assistenza dedicata",
-      "Design moderno e funzionale"
+      "Reception e assistenza dedicata"
     ]
   },
   {
@@ -181,4 +180,3 @@ const FacilitiesPage = () => {
 };
 
 export default FacilitiesPage;
-
