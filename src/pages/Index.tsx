@@ -122,7 +122,16 @@ const HomePage = () => {
   ];
 
   return (
-    <div className="flex flex-col min-h-screen">
+    <div className="flex flex-col min-h-screen relative">
+      {/* Overlay logo for home/about page */}
+      <div className="fixed top-8 left-1/2 transform -translate-x-1/2 z-50 w-32 h-32 pointer-events-none">
+        <img 
+          src="/lovable-uploads/ebada5d3-6c5e-43a0-ab7d-a5850900d950.png" 
+          alt="ATH Logo" 
+          className="w-full h-full object-contain"
+        />
+      </div>
+      
       <Header />
       
       <main className="flex-grow">

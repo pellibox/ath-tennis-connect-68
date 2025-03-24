@@ -35,6 +35,10 @@ const Header = () => {
   const { t } = useLanguage();
   const isMobile = useIsMobile();
   
+  const isHomePage = location.pathname === '/';
+  const isAboutPage = location.pathname === '/about';
+  const showHeaderLogo = !isHomePage && !isAboutPage || isScrolled;
+  
   const [userProfile, setUserProfile] = useState<{ gender: UserGender | null, type: UserType | null }>({ gender: null, type: null });
   const [dialogOpen, setDialogOpen] = useState(false);
   
@@ -152,7 +156,10 @@ const Header = () => {
       )}
     >
       <div className="container mx-auto px-6 flex items-center justify-between relative">
-        <div className="flex items-center z-50">
+        <div className={cn(
+          "flex items-center z-50",
+          showHeaderLogo ? "opacity-100" : "opacity-0"
+        )}>
           <Logo 
             variant="default" 
             onDarkBackground={false}

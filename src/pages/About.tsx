@@ -1,4 +1,3 @@
-
 import { useEffect } from 'react';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
@@ -18,7 +17,15 @@ const AboutPage = () => {
   }, []);
 
   return (
-    <div className="flex flex-col min-h-screen">
+    <div className="flex flex-col min-h-screen relative">
+      <div className="fixed top-8 left-1/2 transform -translate-x-1/2 z-50 w-32 h-32 pointer-events-none">
+        <img 
+          src="/lovable-uploads/ebada5d3-6c5e-43a0-ab7d-a5850900d950.png" 
+          alt="ATH Logo" 
+          className="w-full h-full object-contain"
+        />
+      </div>
+      
       <Header />
       
       <main className="flex-grow pt-20">
@@ -28,7 +35,7 @@ const AboutPage = () => {
           imageSrc="/lovable-uploads/6ea13aa7-2578-488b-8ed4-4b17fc2ddc4e.png"
           fullHeight={false}
           overlayOpacity="medium"
-          vimeoEmbed="<div style='padding:56.25% 0 0 0;position:relative;'><iframe src='https://player.vimeo.com/video/868596952?h=b7fa539b1c&autoplay=1&loop=1&background=1&autopause=0&player_id=0&app_id=58479' frameborder='0' allow='autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media' style='position:absolute;top:0;left:0;width:100%;height:100%;' title='Junior male 2'></iframe></div><script src='https://player.vimeo.com/api/player.js'></script>"
+          vimeoEmbed="<div style='padding:56.25% 0 0 0;position:relative;'><iframe src='https://player.vimeo.com/video/1068596952?h=b7fa539b1c&autoplay=1&loop=1&background=1&autopause=0&player_id=0&app_id=58479' frameborder='0' allow='autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media' style='position:absolute;top:0;left:0;width:100%;height:100%;' title='ATH Main Video'></iframe></div><script src='https://player.vimeo.com/api/player.js'></script>"
         />
         
         <div className="bg-gradient-to-r from-ath-clay/5 to-white py-16 px-6">
