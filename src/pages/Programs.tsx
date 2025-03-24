@@ -394,16 +394,11 @@ const Programs = () => {
       
       <main className="flex-grow">
         <div className="w-full bg-black flex flex-col">
-          <div 
-            className="w-full overflow-hidden" 
-            style={{ 
-              height: "100vh",
-              width: "100vw",
-              maxWidth: "100vw",
-              position: "relative"
-            }}
-          >
-            <div className="absolute inset-0 w-full h-full" dangerouslySetInnerHTML={{ __html: getVimeoEmbed() }} />
+          <div className="relative w-full bg-black min-h-[calc(100vw*9/16)]">
+            <div 
+              className="w-full h-full" 
+              dangerouslySetInnerHTML={{ __html: getVimeoEmbed() }} 
+            />
           </div>
         
           <div className="w-full bg-black text-center py-20">
