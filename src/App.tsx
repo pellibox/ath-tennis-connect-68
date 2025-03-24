@@ -24,6 +24,17 @@ import CampsProgram from '@/pages/programs/Camps';
 
 // New program detail pages
 import Performance2Program from '@/pages/programs/Performance2';
+import Performance3Program from '@/pages/programs/Performance3';
+import Performance4Program from '@/pages/programs/Performance4';
+import ElitePerformanceProgram from '@/pages/programs/ElitePerformance';
+import ElitePerformanceFullProgram from '@/pages/programs/ElitePerformanceFull';
+import SitProgram from '@/pages/programs/Sit';
+import SatProgram from '@/pages/programs/Sat';
+import PersonalTrainingProgram from '@/pages/programs/PersonalTraining';
+import AdultTrainingProgram from '@/pages/programs/AdultTraining';
+import UniversityProgram from '@/pages/programs/University';
+import CoachProgram from '@/pages/programs/Coach';
+import ClubProgram from '@/pages/programs/Club';
 
 function App() {
   return (
@@ -51,6 +62,17 @@ function App() {
             
             {/* New program detail routes */}
             <Route path="/programs/performance-2" element={<Performance2Program />} />
+            <Route path="/programs/performance-3" element={<Performance3Program />} />
+            <Route path="/programs/performance-4" element={<Performance4Program />} />
+            <Route path="/programs/elite-performance" element={<ElitePerformanceProgram />} />
+            <Route path="/programs/elite-full" element={<ElitePerformanceFullProgram />} />
+            <Route path="/programs/talent-identification" element={<SitProgram />} />
+            <Route path="/programs/sat" element={<SatProgram />} />
+            <Route path="/programs/personal" element={<PersonalTrainingProgram />} />
+            <Route path="/programs/adult-training" element={<AdultTrainingProgram />} />
+            <Route path="/programs/university" element={<UniversityProgram />} />
+            <Route path="/programs/coach" element={<CoachProgram />} />
+            <Route path="/programs/club" element={<ClubProgram />} />
             
             <Route path="*" element={<NotFoundPage />} />
           </Routes>

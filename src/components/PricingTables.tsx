@@ -53,7 +53,7 @@ const PricingTables = () => {
       ],
       price: '7.500',
       vickiPowered: true,
-      link: '/programs/elite'
+      link: '/programs/elite-performance'
     },
     {
       title: 'Elite Performance Full',
@@ -126,7 +126,7 @@ const PricingTables = () => {
       ],
       price: '700',
       vickiPowered: true,
-      link: '/programs/adult'
+      link: '/programs/adult-training'
     },
     {
       title: 'Universitari / Scuole Online',
@@ -142,17 +142,33 @@ const PricingTables = () => {
 
   const coachPrograms = [
     {
-      title: 'Coach / Allenatori / Club',
+      title: 'Coach / Allenatori',
       subtitle: 'Formazione avanzata (tutto l\'anno)',
       features: [
         'Accesso alla piattaforma di tracking e analisi video',
         'Integrazione con il sistema VICKI per analisi avanzata',
-        'Creazione di un metodo personalizzato',
+        'Creazione di un metodo personalizzato (codificabile nel sistema)',
         'Formazione continua e aggiornamento metodologico',
       ],
       price: 'Prezzo personalizzato',
       vickiPowered: true,
       link: '/programs/coach'
+    }
+  ];
+
+  const clubPrograms = [
+    {
+      title: 'Club / Accademie',
+      subtitle: 'Integrazione e supporto (tutto l\'anno)',
+      features: [
+        'Monitoraggio degli atleti su base oggettiva e condivisa',
+        'Condivisione dati e report con staff multidisciplinare',
+        'Possibilità di integrare ATH nel proprio centro/accademia',
+        'Uso di AI e dashboard per ottimizzare sessioni e calendari',
+      ],
+      price: 'Prezzo personalizzato',
+      vickiPowered: true,
+      link: '/programs/club'
     }
   ];
 
@@ -262,12 +278,26 @@ const PricingTables = () => {
         </RevealAnimation>
         
         <RevealAnimation>
-          <h2 className="text-3xl font-display mb-2 border-l-4 border-ath-clay pl-3">Programmi per Coach e Club</h2>
+          <h2 className="text-3xl font-display mb-2 border-l-4 border-ath-clay pl-3">Programmi per Coach</h2>
           <p className="text-gray-600 mb-8">
-            Formazione e strumenti avanzati per coach e club tennistici. Disponibili tutto l'anno con prezzi personalizzati.
+            Formazione e strumenti avanzati per allenatori di tennis. Disponibili tutto l'anno con prezzi personalizzati.
+          </p>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-16">
+            {coachPrograms.map((program, index) => (
+              <RevealAnimation key={index} delay={index * 100}>
+                <PricingCard program={program} />
+              </RevealAnimation>
+            ))}
+          </div>
+        </RevealAnimation>
+
+        <RevealAnimation>
+          <h2 className="text-3xl font-display mb-2 border-l-4 border-ath-clay pl-3">Programmi per Club</h2>
+          <p className="text-gray-600 mb-8">
+            Soluzioni per integrare il metodo ATH e la tecnologia VICKI™ nei centri tennistici e accademie. Prezzi personalizzati in base alle esigenze.
           </p>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {coachPrograms.map((program, index) => (
+            {clubPrograms.map((program, index) => (
               <RevealAnimation key={index} delay={index * 100}>
                 <PricingCard program={program} />
               </RevealAnimation>
