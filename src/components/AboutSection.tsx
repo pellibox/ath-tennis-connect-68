@@ -2,12 +2,14 @@
 import RevealAnimation from './RevealAnimation';
 import ButtonLink from './ButtonLink';
 import { cn } from '@/lib/utils';
+import { ReactNode } from 'react';
 
 interface AboutSectionProps {
   title: string;
   subtitle?: string;
   description: string | React.ReactNode;
-  image: string;
+  image?: string;
+  icon?: ReactNode;
   buttons?: Array<{
     text: string;
     href: string;
@@ -15,6 +17,7 @@ interface AboutSectionProps {
   }>;
   reversed?: boolean;
   className?: string;
+  accent?: 'clay' | 'blue' | 'green' | 'orange' | 'purple';
 }
 
 const AboutSection = ({ 
@@ -22,12 +25,23 @@ const AboutSection = ({
   subtitle,
   description, 
   image, 
+  icon,
   buttons = [],
   reversed = false,
-  className 
+  className,
+  accent = 'clay'
 }: AboutSectionProps) => {
+  // Map accent to color classes
+  const accentClasses = {
+    clay: 'bg-ath-clay/5 border-ath-clay/20',
+    blue: 'bg-blue-500/5 border-blue-500/20',
+    green: 'bg-green-500/5 border-green-500/20',
+    orange: 'bg-orange-500/5 border-orange-500/20',
+    purple: 'bg-purple-500/5 border-purple-500/20',
+  };
+
   return (
-    <section className={cn('py-20 px-6 lg:px-10', className)}>
+    <section className={cn('py-16 px-6 lg:px-10', className)}>
       <div className="max-w-7xl mx-auto">
         <div className={cn(
           'grid md:grid-cols-2 gap-12 items-center',
@@ -74,13 +88,26 @@ const AboutSection = ({
             )}
             direction={reversed ? 'left' : 'right'}
           >
-            <div className="relative overflow-hidden">
-              <img 
-                src={image} 
-                alt={title} 
-                className="w-full h-auto object-cover rounded-none"
-              />
-            </div>
+            {image ? (
+              <div className="relative overflow-hidden rounded-lg shadow-lg">
+                <img 
+                  src={image} 
+                  alt={title} 
+                  className="w-full h-auto object-cover"
+                />
+              </div>
+            ) : icon ? (
+              <div className={cn(
+                "p-8 rounded-lg border flex items-center justify-center", 
+                accentClasses[accent]
+              )}>
+                <div className="text-center">
+                  <div className="flex justify-center mb-6">
+                    {icon}
+                  </div>
+                </div>
+              </div>
+            ) : null}
           </RevealAnimation>
         </div>
       </div>

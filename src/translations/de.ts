@@ -1,10 +1,11 @@
+
 const translations = {
   // Header & Navigation
   "nav.home": "Startseite",
   "nav.programs": "Programme",
   "nav.facilities": "Einrichtungen",
   "nav.coaches": "Trainer",
-  "nav.about": "Über Uns",
+  "nav.about": "Warum ATH",
   "nav.contact": "Kontakt",
   
   // Hero Section

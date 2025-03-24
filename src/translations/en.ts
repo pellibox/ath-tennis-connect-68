@@ -5,7 +5,7 @@ const translations = {
   "nav.programs": "Programs",
   "nav.facilities": "Facilities",
   "nav.coaches": "Coaches",
-  "nav.about": "About",
+  "nav.about": "Why ATH",
   "nav.contact": "Contact",
   
   // Hero Section

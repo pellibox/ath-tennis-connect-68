@@ -5,7 +5,7 @@ const translations = {
   "nav.programs": "Programmi",
   "nav.facilities": "Strutture",
   "nav.coaches": "Allenatori",
-  "nav.about": "Chi Siamo",
+  "nav.about": "Perché ATH",
   "nav.contact": "Contatti",
   
   // Hero Section
