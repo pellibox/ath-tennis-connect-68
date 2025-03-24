@@ -1,3 +1,4 @@
+
 import { useEffect, useState, useRef } from 'react';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
@@ -127,22 +128,21 @@ const HomePage = () => {
       
       <Header />
       
-      <main className="flex-grow">
-        <div className="relative">
-          <Hero 
-            title="Advanced Tennis Hub"
-            subtitle={getWelcomeMessage(userType)}
-            vimeoEmbed={vimeoEmbed}
-            imageSrc="/lovable-uploads/6ea13aa7-2578-488b-8ed4-4b17fc2ddc4e.png"
-            buttons={[
-              { text: "Programmi", href: '/programs' },
-              { text: "Contattaci", href: '/contact', variant: 'outline' }
-            ]}
-            overlayOpacity="medium"
-            contentVerticalPosition="bottom"
-            contentPosition="center"
-            subtitlePosition="bottom"
-          />
+      <main className="flex-grow pt-20">
+        {/* Replaced Hero component with direct Vimeo embed for consistency with Method page */}
+        <div className="w-full bg-black min-h-[calc(100vw*9/16)] relative">
+          <div dangerouslySetInnerHTML={{ __html: vimeoEmbed }} />
+        </div>
+        
+        <div className="w-full bg-black py-16">
+          <div className="max-w-3xl mx-auto text-center">
+            <h2 className="text-white text-xl md:text-2xl font-swiss uppercase mb-2">
+              ADVANCED TENNIS HUB:
+            </h2>
+            <p className="text-white text-xl md:text-2xl opacity-90 font-swiss max-w-3xl drop-shadow-md">
+              {getWelcomeMessage(userType)}
+            </p>
+          </div>
         </div>
         
         {/* Vicki Monitoring Levels */}
