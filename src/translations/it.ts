@@ -1,4 +1,3 @@
-
 const translations = {
   // Header & Navigation
   "nav.home": "Home",
@@ -81,6 +80,7 @@ const translations = {
   "join.desc": "Fai il primo passo verso l'eccellenza nel tennis. Unisciti ad ATH Advanced Tennis Hub e sperimenta la differenza che le nostre strutture di livello mondiale, il coaching esperto e l'approccio personalizzato possono fare al tuo gioco.",
   "join.cta": "INIZIA IL TUO PERCORSO",
   
+  // Contact section
   "contact.title": "Contattaci",
   "contact.subtitle": "Ci piacerebbe sentirti. Contattaci per qualsiasi domanda o per programmare una visita.",
   "contact.send": "Inviaci un Messaggio",
