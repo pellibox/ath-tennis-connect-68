@@ -394,7 +394,21 @@ const Programs = () => {
       
       <main className="flex-grow">
         <div className="w-full bg-black">
-          <div className="w-full h-screen" dangerouslySetInnerHTML={{ __html: getVimeoEmbed() }} />
+          <div 
+            className="w-full overflow-hidden relative" 
+            style={{ 
+              height: "100vh",
+              width: "100vw",
+              maxWidth: "100vw",
+              position: "relative",
+              left: "0",
+              right: "0",
+              marginLeft: "0",
+              marginRight: "0"
+            }}
+          >
+            <div className="absolute inset-0 w-full h-full" dangerouslySetInnerHTML={{ __html: getVimeoEmbed() }} />
+          </div>
         </div>
         
         <div className="w-full bg-black py-16">
