@@ -7,7 +7,6 @@ import { useLanguage } from '@/contexts/LanguageContext';
 import { useProfile } from '@/contexts/ProfileContext';
 import RevealAnimation from '@/components/RevealAnimation';
 import { getVimeoEmbed } from '@/utils/videoUtils';
-import { AspectRatio } from '@/components/ui/aspect-ratio';
 
 const TechnologyPage = () => {
   const { t } = useLanguage();
@@ -47,30 +46,19 @@ const TechnologyPage = () => {
     <div className="flex flex-col min-h-screen">
       <Header useVickiLogo={false} />
       
-      <main className="flex-grow">
-        {/* Hero video section - full width like other pages */}
-        <div className="w-full bg-black relative">
-          <div className="w-full">
-            <div 
-              className="w-full aspect-video"
-              dangerouslySetInnerHTML={{ __html: vimeoEmbed }} 
-            />
-          </div>
-          
-          {/* Caption positioned below the video properly */}
-          <div className="w-full bg-gradient-to-t from-black to-transparent py-8">
-            <div className="container mx-auto text-center">
-              <p className="text-white text-base md:text-lg font-swiss px-4">
-                {getPersonalizedDescription()}
-              </p>
-            </div>
-          </div>
+      <main className="flex-grow pt-20">
+        <div className="w-full bg-black min-h-[calc(100vw*9/16)] relative">
+          <div dangerouslySetInnerHTML={{ __html: vimeoEmbed }} />
         </div>
         
-        {/* Black banner with reduced height - matching Method page style */}
-        <div className="w-full bg-black py-10 relative" style={{ height: '100px' }}>
-          <div className="max-w-6xl mx-auto px-6 h-full flex flex-col justify-center">
-            {/* Empty banner for spacing, to match Method page style */}
+        <div className="w-full bg-black py-16">
+          <div className="max-w-3xl mx-auto text-center">
+            <h2 className="text-white text-xl md:text-2xl font-swiss uppercase mb-2">
+              LA TECNOLOGIA:
+            </h2>
+            <p className="text-white text-xl md:text-2xl opacity-90 font-swiss drop-shadow-md">
+              {getPersonalizedDescription()}
+            </p>
           </div>
         </div>
         
