@@ -1,7 +1,10 @@
+
 import { useState } from 'react';
 import { Mail, Phone, MapPin } from 'lucide-react';
 import RevealAnimation from './RevealAnimation';
 import { cn } from '@/lib/utils';
+import { useLanguage } from '@/contexts/LanguageContext';
+import { toast } from "sonner";
 
 interface ContactSectionProps {
   title: string;
@@ -20,6 +23,7 @@ const ContactSection = ({
   email,
   className 
 }: ContactSectionProps) => {
+  const { t } = useLanguage();
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -38,9 +42,11 @@ const ContactSection = ({
     e.preventDefault();
     setFormStatus('submitting');
     
-    // Simulate form submission
+    // Simulate form submission to info@ath.tennis
+    console.log('Sending message to info@ath.tennis:', formData);
+    
+    // Simulate sending email
     setTimeout(() => {
-      console.log('Form submitted:', formData);
       setFormStatus('success');
       setFormData({
         name: '',
@@ -48,6 +54,8 @@ const ContactSection = ({
         phone: '',
         message: ''
       });
+      
+      toast.success("Messaggio inviato con successo! Ti contatteremo presto.");
       
       // Reset status after 5 seconds
       setTimeout(() => {
@@ -65,7 +73,7 @@ const ContactSection = ({
         
         {subtitle && (
           <RevealAnimation delay={100}>
-            <p className="text-lg text-gray-600 max-w-3xl mx-auto text-center mb-12">{subtitle}</p>
+            <p className="text-lg text-gray-600 max-w-3xl mx-auto text-center mb-12 font-swiss">{subtitle}</p>
           </RevealAnimation>
         )}
         
@@ -76,52 +84,52 @@ const ContactSection = ({
               
               <form onSubmit={handleSubmit}>
                 <div className="mb-4">
-                  <label htmlFor="name" className="block text-sm font-medium mb-2">Nome Completo</label>
+                  <label htmlFor="name" className="block text-sm font-medium mb-2 font-swiss">Nome Completo</label>
                   <input
                     type="text"
                     id="name"
                     name="name"
                     value={formData.name}
                     onChange={handleChange}
-                    className="w-full px-4 py-3 border border-gray-300 focus:outline-none focus:ring-1 focus:ring-black"
+                    className="w-full px-4 py-3 border border-gray-300 focus:outline-none focus:ring-1 focus:ring-black font-swiss"
                     required
                   />
                 </div>
                 
                 <div className="mb-4">
-                  <label htmlFor="email" className="block text-sm font-medium mb-2">Indirizzo Email</label>
+                  <label htmlFor="email" className="block text-sm font-medium mb-2 font-swiss">Indirizzo Email</label>
                   <input
                     type="email"
                     id="email"
                     name="email"
                     value={formData.email}
                     onChange={handleChange}
-                    className="w-full px-4 py-3 border border-gray-300 focus:outline-none focus:ring-1 focus:ring-black"
+                    className="w-full px-4 py-3 border border-gray-300 focus:outline-none focus:ring-1 focus:ring-black font-swiss"
                     required
                   />
                 </div>
                 
                 <div className="mb-4">
-                  <label htmlFor="phone" className="block text-sm font-medium mb-2">Numero di Telefono</label>
+                  <label htmlFor="phone" className="block text-sm font-medium mb-2 font-swiss">Numero di Telefono</label>
                   <input
                     type="tel"
                     id="phone"
                     name="phone"
                     value={formData.phone}
                     onChange={handleChange}
-                    className="w-full px-4 py-3 border border-gray-300 focus:outline-none focus:ring-1 focus:ring-black"
+                    className="w-full px-4 py-3 border border-gray-300 focus:outline-none focus:ring-1 focus:ring-black font-swiss"
                   />
                 </div>
                 
                 <div className="mb-6">
-                  <label htmlFor="message" className="block text-sm font-medium mb-2">Messaggio</label>
+                  <label htmlFor="message" className="block text-sm font-medium mb-2 font-swiss">Messaggio</label>
                   <textarea
                     id="message"
                     name="message"
                     rows={5}
                     value={formData.message}
                     onChange={handleChange}
-                    className="w-full px-4 py-3 border border-gray-300 focus:outline-none focus:ring-1 focus:ring-black"
+                    className="w-full px-4 py-3 border border-gray-300 focus:outline-none focus:ring-1 focus:ring-black font-swiss"
                     required
                   ></textarea>
                 </div>
@@ -130,7 +138,7 @@ const ContactSection = ({
                   type="submit"
                   disabled={formStatus === 'submitting'}
                   className={cn(
-                    "px-6 py-3 bg-black text-white text-sm transition-all w-full md:w-auto",
+                    "px-6 py-3 bg-black text-white text-sm transition-all w-full md:w-auto font-swiss",
                     formStatus === 'submitting' ? 'opacity-70 cursor-not-allowed' : 'hover:bg-opacity-90'
                   )}
                 >
@@ -138,11 +146,11 @@ const ContactSection = ({
                 </button>
                 
                 {formStatus === 'success' && (
-                  <p className="mt-4 text-green-600">Il tuo messaggio è stato inviato con successo. Ti contatteremo presto!</p>
+                  <p className="mt-4 text-green-600 font-swiss">Il tuo messaggio è stato inviato con successo. Ti contatteremo presto!</p>
                 )}
                 
                 {formStatus === 'error' && (
-                  <p className="mt-4 text-red-600">Si è verificato un errore durante l'invio del messaggio. Riprova.</p>
+                  <p className="mt-4 text-red-600 font-swiss">Si è verificato un errore durante l'invio del messaggio. Riprova.</p>
                 )}
               </form>
             </div>
@@ -157,7 +165,7 @@ const ContactSection = ({
                   <MapPin size={20} className="mr-4 mt-1 text-gray-600" />
                   <div>
                     <h4 className="font-medium mb-1">Indirizzo</h4>
-                    <p className="text-gray-600">{address}</p>
+                    <p className="text-gray-600 font-swiss">{address}</p>
                   </div>
                 </div>
                 
@@ -165,7 +173,7 @@ const ContactSection = ({
                   <Phone size={20} className="mr-4 mt-1 text-gray-600" />
                   <div>
                     <h4 className="font-medium mb-1">Telefono</h4>
-                    <a href={`tel:${phone}`} className="text-gray-600 hover:underline">{phone}</a>
+                    <a href={`tel:${phone}`} className="text-gray-600 hover:underline font-swiss">{phone}</a>
                   </div>
                 </div>
                 
@@ -173,7 +181,7 @@ const ContactSection = ({
                   <Mail size={20} className="mr-4 mt-1 text-gray-600" />
                   <div>
                     <h4 className="font-medium mb-1">Email</h4>
-                    <a href={`mailto:${email}`} className="text-gray-600 hover:underline">{email}</a>
+                    <a href={`mailto:${email}`} className="text-gray-600 hover:underline font-swiss">{email}</a>
                   </div>
                 </div>
               </div>
@@ -184,15 +192,15 @@ const ContactSection = ({
                 <div className="space-y-2">
                   <div className="flex justify-between">
                     <span className="font-medium">Lunedì - Venerdì</span>
-                    <span className="text-gray-600">7:00 - 21:00</span>
+                    <span className="text-gray-600 font-swiss">7:00 - 23:00</span>
                   </div>
                   <div className="flex justify-between">
                     <span className="font-medium">Sabato</span>
-                    <span className="text-gray-600">8:00 - 19:00</span>
+                    <span className="text-gray-600 font-swiss">8:00 - 19:00</span>
                   </div>
                   <div className="flex justify-between">
                     <span className="font-medium">Domenica</span>
-                    <span className="text-gray-600">9:00 - 17:00</span>
+                    <span className="text-gray-600 font-swiss">9:00 - 17:00</span>
                   </div>
                 </div>
               </div>

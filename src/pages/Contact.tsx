@@ -53,17 +53,17 @@ const ContactPage = () => {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
               <div>
                 <h2 className="text-2xl font-display mb-6">ATH Tennis Hub</h2>
-                <p className="mb-4">Via F. Turati, 9</p>
-                <p className="mb-4">20090 Rodano MI, Italia</p>
-                <p className="mb-4">Email: info@ath.tennis</p>
-                <p className="mb-4">Tel: +39 02 1234567</p>
+                <p className="mb-4 font-swiss">Via F. Turati, 9</p>
+                <p className="mb-4 font-swiss">20090 Rodano MI, Italia</p>
+                <p className="mb-4 font-swiss">Email: info@ath.tennis</p>
+                <p className="mb-4 font-swiss">Tel: +39 02 1234567</p>
               </div>
               
               <div>
                 <h2 className="text-2xl font-display mb-6">Orari</h2>
-                <p className="mb-4">Lunedì - Venerdì: 7:00 - 23:00</p>
-                <p className="mb-4">Sabato: 9:00 - 20:00</p>
-                <p className="mb-4">Domenica: 9:00 - 18:00</p>
+                <p className="mb-4 font-swiss">Lunedì - Venerdì: 7:00 - 23:00</p>
+                <p className="mb-4 font-swiss">Sabato: 9:00 - 20:00</p>
+                <p className="mb-4 font-swiss">Domenica: 9:00 - 18:00</p>
               </div>
             </div>
           </div>
