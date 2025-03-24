@@ -1,3 +1,4 @@
+
 const translations = {
   // Header & Navigation
   "nav.home": "Home",
@@ -92,7 +93,7 @@ const translations = {
   "contact.submit": "Invia Messaggio",
   "contact.success": "Il tuo messaggio è stato inviato con successo. Ti risponderemo presto!",
   "contact.error": "C'è stato un errore nell'invio del messaggio. Per favore riprova.",
-  "contact.address": "Indirizzo",
+  "contact.address": "Via F. Turati, 9, 20090 Rodano MI, Italia",
   "contact.hours": "Orari di Apertura",
   "contact.mon-fri": "Lunedì - Venerdì",
   "contact.saturday": "Sabato",
