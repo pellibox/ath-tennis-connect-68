@@ -101,7 +101,8 @@ const Programs = () => {
         'Sviluppo della passione per il tennis e lo sport',
         'Percorsi personalizzati basati sulle caratteristiche individuali rilevate da Vicki™',
         'Supporto per genitori con report dettagliati e indicazioni sul potenziale'
-      ]
+      ],
+      vickiPowered: true
     },
     {
       id: '1',
@@ -118,7 +119,8 @@ const Programs = () => {
         'AI dedicata per tracciare la coordinazione',
         'Equilibrio tra miglioramento tecnico e componente ludica',
         'Coinvolgimento attivo dei genitori attraverso report visivi e aggiornamenti chiari'
-      ]
+      ],
+      vickiPowered: true
     },
     {
       id: '5',
@@ -135,7 +137,8 @@ const Programs = () => {
         'Analisi statistiche semplificate con visione d\'insieme dell\'andamento',
         'Supporto pratico per accompagnare il percorso sportivo senza pressioni inutili',
         'Filtraggio automatico dei dati per evitare interpretazioni errate o fuorvianti'
-      ]
+      ],
+      vickiOnRequest: true
     }
   ];
 
@@ -156,7 +159,8 @@ const Programs = () => {
         'Percorsi personalizzati in base allo sviluppo fisico, biotipo e stile di gioco',
         'Integrazione tra valutazioni tecniche, fisiche, mediche e mentali',
         'Coordinamento tra coach, preparatore, mental coach, medico'
-      ]
+      ],
+      vickiPowered: true
     },
     {
       id: '3',
@@ -173,7 +177,8 @@ const Programs = () => {
         'Supporto tecnico sia in sede che da remoto',
         'Gestione ottimale dei cicli di carico, recupero e picco forma',
         'Integrazione di parametri medici e biochimici per massimizzare la performance'
-      ]
+      ],
+      vickiPowered: true
     },
     {
       id: '9',
@@ -187,7 +192,8 @@ const Programs = () => {
         'Heatmap e pattern di spostamento',
         'Statistiche avanzate di gioco',
         'Report dettagliato con raccomandazioni'
-      ]
+      ],
+      vickiPowered: true
     }
   ];
 
@@ -206,7 +212,8 @@ const Programs = () => {
         'Affitto campi con tecnologia attiva (per analisi post-sessione)',
         'Percorsi di miglioramento progressivo senza sovraccarico',
         'Report leggibili con focus su controllo, postura e miglioramenti visibili'
-      ]
+      ],
+      vickiOnRequest: true
     }
   ];
 
@@ -222,7 +229,8 @@ const Programs = () => {
         'Allenamento intensivo giornaliero',
         'Attività complementari e team building',
         'Analisi tecnica con sistema VICKI'
-      ]
+      ],
+      vickiOnRequest: true
     }
   ];
 
@@ -243,7 +251,8 @@ const Programs = () => {
         'Condivisione dati e report con staff multidisciplinare',
         'Possibilità di integrare ATH nel proprio centro/accademia',
         'Uso di AI e dashboard per ottimizzare sessioni e calendari'
-      ]
+      ],
+      vickiPowered: true
     },
     {
       id: '10',
@@ -257,7 +266,8 @@ const Programs = () => {
         'Analisi dettagliata della tecnica con VICKI™',
         'Focus su obiettivi specifici',
         'Opzioni per singole lezioni o pacchetti'
-      ]
+      ],
+      vickiPowered: true
     }
   ];
 
@@ -775,3 +785,4 @@ const Programs = () => {
 };
 
 export default Programs;
+
