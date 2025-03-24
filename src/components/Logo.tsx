@@ -40,8 +40,10 @@ const Logo = ({
       : "/lovable-uploads/fa0d6412-fbae-4d76-98c8-1d7a6cb96b19.png"; // Logo nero per sfondi chiari (ATH_B)
   }
   
-  // Fixed size for logo - consistent across all states
-  const sizeClasses = isFooter ? 'h-28' : 'h-16';
+  // Size classes based on logo type
+  const sizeClasses = isFooter 
+    ? 'h-28' 
+    : (isInMenu ? 'w-20 h-auto' : 'h-16');
   
   // Function to handle logo click
   const handleLogoClick = (e: React.MouseEvent) => {
@@ -65,7 +67,7 @@ const Logo = ({
         <img 
           src={logoSrc} 
           alt={useVickiLogo || isInMenu ? "Vicki™" : "ATH - Advanced Tennis Hub"} 
-          className={`w-auto ${sizeClasses} object-contain`}
+          className={`${sizeClasses} object-contain`}
         />
       </Link>
     </div>
