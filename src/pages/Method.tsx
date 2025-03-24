@@ -51,9 +51,9 @@ const MethodPage = () => {
   return (
     <div className="flex flex-col min-h-screen relative">
       <div 
-        className={`fixed z-50 pointer-events-none transition-opacity duration-300 ${isMobile ? 'left-8' : 'left-0 right-0 flex justify-center'}`}
+        className="fixed z-50 pointer-events-none transition-opacity duration-300 left-0 right-0 flex justify-center"
         style={{
-          top: isMobile ? '180px' : '220px',
+          top: isMobile ? '140px' : '180px',
           opacity: logoOpacity
         }}
       >
