@@ -31,24 +31,24 @@ const FacilitiesSection = ({
   const [activeIndex, setActiveIndex] = useState(0);
 
   return (
-    <section id="facilities" className={cn("py-16 px-4 md:px-8 bg-white", className)}>
+    <section id="facilities" className={cn("py-12 px-4 md:px-8 bg-white", className)}>
       <div className="max-w-7xl mx-auto">
         <RevealAnimation>
           <h2 className="text-3xl md:text-4xl font-swiss text-center mb-4">{title}</h2>
           {subtitle && (
-            <p className="text-lg text-center max-w-3xl mx-auto mb-12 text-gray-600 font-swiss">
+            <p className="text-lg text-center max-w-3xl mx-auto mb-10 text-gray-600 font-swiss">
               {subtitle}
             </p>
           )}
         </RevealAnimation>
 
-        <div className="mt-12">
+        <div className="mt-8">
           {facilities.map((facility, index) => (
             <div
               key={facility.id}
               id={facility.id}
               className={cn(
-                "mb-24 last:mb-0 grid grid-cols-1 md:grid-cols-2 gap-8 items-center",
+                "mb-16 last:mb-0 grid grid-cols-1 md:grid-cols-2 gap-8 items-center",
                 index % 2 === 1 ? 'md:flex-row-reverse' : '',
                 index % 2 === 1 ? 'md:[grid-template-areas:_"content_media"]' : 'md:[grid-template-areas:_"media_content"]'
               )}

@@ -168,7 +168,7 @@ const FacilitiesPage = () => {
         {/* Video container with bottom margin set to negative value */}
         <div className="relative w-full overflow-hidden" style={{ 
           height: '100vh', 
-          marginBottom: '-3px' // Adjust this value as needed to eliminate any gap
+          marginBottom: '-3px' // Eliminate any gap between video and banner
         }}>
           <div className="absolute inset-0 w-[150%] h-[150%] top-[-25%] left-[-25%]" 
                dangerouslySetInnerHTML={{ __html: facilitiesVimeoEmbed }} 
@@ -187,12 +187,13 @@ const FacilitiesPage = () => {
           </div>
         </div>
         
-        <section className="py-16 px-6 lg:px-10 bg-white relative z-10">
+        {/* Removed extra padding from this section and added negative margin to close the gap */}
+        <section className="py-8 px-6 lg:px-10 bg-white relative z-10" style={{ marginTop: '-1px' }}>
           <div className="max-w-7xl mx-auto">
-            <h1 className="text-4xl md:text-5xl font-swiss text-center mb-12">Strutture ATH</h1>
+            <h1 className="text-4xl md:text-5xl font-swiss text-center mb-8">Strutture ATH</h1>
             
-            <div className="prose prose-lg max-w-4xl mx-auto mb-16">
-              <p className="lead text-xl mb-6 font-swiss">
+            <div className="prose prose-lg max-w-4xl mx-auto mb-8">
+              <p className="lead text-xl mb-4 font-swiss">
                 L'Advanced Tennis Hub di Rodano è un centro di eccellenza progettato specificamente per ottimizzare l'utilizzo del metodo ATH e della tecnologia Vicki™.
               </p>
               
@@ -203,11 +204,12 @@ const FacilitiesPage = () => {
           </div>
         </section>
         
+        {/* Reduced top padding for this section */}
         <FacilitiesSection 
           title="Impianti"
           subtitle="Strutture progettate per massimizzare l'efficacia del metodo ATH e della tecnologia Vicki™"
           facilities={facilities}
-          className="relative z-10"
+          className="relative z-10 pt-0"
         />
         
         <section className="py-16 px-6 lg:px-10 bg-gray-50 relative z-10">
