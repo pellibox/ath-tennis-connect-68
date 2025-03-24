@@ -1,3 +1,4 @@
+
 import { useEffect, useState, useRef } from 'react';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
@@ -65,7 +66,7 @@ const AboutPage = () => {
       <div 
         className={`fixed z-50 pointer-events-none transition-opacity duration-300 left-0 right-0 flex justify-center`}
         style={{
-          top: isMobile ? '180px' : '220px', // Positioned lower on the page
+          top: isMobile ? '140px' : '180px', // Positioned higher on the page (was 180px/220px)
           opacity: logoOpacity
         }}
       >
