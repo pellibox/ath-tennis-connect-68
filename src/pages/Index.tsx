@@ -8,6 +8,7 @@ import JoinRevolutionSection from '@/components/JoinRevolutionSection';
 import StatsAndNavSection from '@/components/StatsAndNavSection';
 import { UserGender, UserType, loadUserPreferences } from '@/components/UserTypeSelector';
 import { useLanguage } from '@/contexts/LanguageContext';
+import Logo from '@/components/Logo';
 
 const HomePage = () => {
   // Get translation function
@@ -19,6 +20,7 @@ const HomePage = () => {
   // State for the Vimeo embed HTML
   const [vimeoEmbed, setVimeoEmbed] = useState<string>('');
   const [logoYOffset, setLogoYOffset] = useState<number>(0);
+  const [logoOpacity, setLogoOpacity] = useState<number>(1);
   const logoRef = useRef<HTMLDivElement>(null);
   
   // Smooth scroll functionality
@@ -33,8 +35,19 @@ const HomePage = () => {
       const scrollY = window.scrollY;
       
       // Calculate offset to move the logo up as user scrolls down
-      // This creates a "fixed position" effect relative to the background
       setLogoYOffset(scrollY * 0.2); // Adjust the multiplier to control the speed
+      
+      // Fade out logo as user scrolls down
+      // Start fading at 100px of scroll, completely fade out by 300px
+      const fadeThreshold = 100;
+      const fadeOutBy = 300;
+      
+      if (scrollY > fadeThreshold) {
+        const opacity = Math.max(0, 1 - (scrollY - fadeThreshold) / (fadeOutBy - fadeThreshold));
+        setLogoOpacity(opacity);
+      } else {
+        setLogoOpacity(1);
+      }
     };
 
     // Add scroll event listener
@@ -151,15 +164,15 @@ const HomePage = () => {
       {/* Overlay logo for home/about page */}
       <div 
         ref={logoRef}
-        className="fixed top-[calc(25%-100px)] left-1/2 transform -translate-x-1/2 z-50 w-40 h-40 pointer-events-none"
+        className="fixed top-[calc(25%-100px)] left-1/2 transform -translate-x-1/2 z-50 w-40 h-40 pointer-events-none transition-opacity duration-300"
         style={{
-          transform: `translate(-50%, -${logoYOffset}px)` // Apply dynamic Y offset
+          transform: `translate(-50%, -${logoYOffset}px)`,
+          opacity: logoOpacity
         }}
       >
-        <img 
-          src="/lovable-uploads/ebada5d3-6c5e-43a0-ab7d-a5850900d950.png" 
-          alt="ATH Logo" 
-          className="w-full h-full object-contain"
+        <Logo 
+          onDarkBackground={true} 
+          className="w-full h-full"
         />
       </div>
       

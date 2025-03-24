@@ -1,10 +1,10 @@
-
 import { useEffect, useState, useRef } from 'react';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { loadUserPreferences, UserGender, UserType } from '@/components/UserTypeSelector';
 import RevealAnimation from '@/components/RevealAnimation';
+import Logo from '@/components/Logo';
 
 const MethodPage = () => {
   const { t } = useLanguage();
@@ -12,7 +12,6 @@ const MethodPage = () => {
   const [userType, setUserType] = useState<UserType | null>(null);
   const [logoYOffset, setLogoYOffset] = useState<number>(0);
   const [logoOpacity, setLogoOpacity] = useState<number>(1);
-  const logoRef = useRef<HTMLDivElement>(null);
   
   // Load user preferences on mount
   useEffect(() => {
@@ -36,9 +35,9 @@ const MethodPage = () => {
       setLogoYOffset(scrollY * 0.2); // Adjust the multiplier to control the speed
       
       // Fade out logo as user scrolls down
-      // Start fading at 100px of scroll, completely fade out by 200px
+      // Start fading at 100px of scroll, completely fade out by 300px
       const fadeThreshold = 100;
-      const fadeOutBy = 200;
+      const fadeOutBy = 300;
       
       if (scrollY > fadeThreshold) {
         const opacity = Math.max(0, 1 - (scrollY - fadeThreshold) / (fadeOutBy - fadeThreshold));
@@ -124,17 +123,15 @@ const MethodPage = () => {
     <div className="flex flex-col min-h-screen relative">
       {/* Overlay logo for method page */}
       <div 
-        ref={logoRef}
         className="fixed top-[calc(25%-100px)] left-1/2 transform -translate-x-1/2 z-50 w-40 h-40 pointer-events-none transition-opacity duration-300"
         style={{
           transform: `translate(-50%, -${logoYOffset}px)`,
           opacity: logoOpacity
         }}
       >
-        <img 
-          src="/lovable-uploads/ebada5d3-6c5e-43a0-ab7d-a5850900d950.png" 
-          alt="ATH Logo" 
-          className="w-full h-full object-contain"
+        <Logo 
+          onDarkBackground={true} 
+          className="w-full h-full"
         />
       </div>
       
@@ -142,13 +139,13 @@ const MethodPage = () => {
       
       <main className="flex-grow pt-20">
         {/* Video background with claim below it */}
-        <div className="w-full bg-black relative">
+        <div className="w-full bg-black min-h-[calc(100vw*9/16+100px)] relative">
           <div dangerouslySetInnerHTML={{ __html: getVimeoEmbed() }} />
-          <div className="absolute bottom-0 left-0 right-0 z-10 p-4 bg-gradient-to-t from-black/80 to-transparent">
-            <h2 className="text-white text-2xl md:text-3xl font-display uppercase max-w-3xl mx-auto text-center mb-2">
+          <div className="absolute bottom-0 left-0 right-0 z-10 p-4 bg-gradient-to-t from-black/80 to-transparent h-[100px] flex items-end">
+            <h2 className="text-white text-2xl md:text-3xl font-swiss uppercase max-w-3xl mx-auto text-center mb-2">
               IL METODO:
             </h2>
-            <p className="text-white text-xl md:text-2xl opacity-90 max-w-3xl mx-auto text-center animate-fade-in drop-shadow-md">
+            <p className="text-white text-xl md:text-2xl opacity-90 max-w-3xl mx-auto text-center animate-fade-in drop-shadow-md font-swiss">
               Tecnologia e competenza umana al servizio dell'eccellenza tennistica
             </p>
           </div>

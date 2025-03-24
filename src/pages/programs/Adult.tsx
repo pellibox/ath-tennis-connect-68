@@ -13,6 +13,7 @@ const AdultProgram = () => {
   const [userGender, setUserGender] = useState<UserGender | null>(null);
   const [userType, setUserType] = useState<UserType | null>(null);
   const [logoYOffset, setLogoYOffset] = useState<number>(0);
+  const [logoOpacity, setLogoOpacity] = useState<number>(1);
   
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -31,6 +32,18 @@ const AdultProgram = () => {
       
       // Calculate offset to move the logo up as user scrolls down
       setLogoYOffset(scrollY * 0.2); // Adjust the multiplier to control the speed
+      
+      // Fade out logo as user scrolls down
+      // Start fading at 100px of scroll, completely fade out by 300px
+      const fadeThreshold = 100;
+      const fadeOutBy = 300;
+      
+      if (scrollY > fadeThreshold) {
+        const opacity = Math.max(0, 1 - (scrollY - fadeThreshold) / (fadeOutBy - fadeThreshold));
+        setLogoOpacity(opacity);
+      } else {
+        setLogoOpacity(1);
+      }
     };
 
     // Add scroll event listener
@@ -49,9 +62,10 @@ const AdultProgram = () => {
     <div className="flex flex-col min-h-screen relative">
       {/* Overlay logo */}
       <div 
-        className="fixed top-[calc(25%-100px)] left-1/2 transform -translate-x-1/2 z-50 w-40 h-40 pointer-events-none"
+        className="fixed top-[calc(25%-100px)] left-1/2 transform -translate-x-1/2 z-50 w-40 h-40 pointer-events-none transition-opacity duration-300"
         style={{
-          transform: `translate(-50%, -${logoYOffset}px)` // Apply dynamic Y offset
+          transform: `translate(-50%, -${logoYOffset}px)`,
+          opacity: logoOpacity
         }}
       >
         <Logo 

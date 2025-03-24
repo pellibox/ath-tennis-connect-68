@@ -14,6 +14,7 @@ const TechnologyPage = () => {
   const [userGender, setUserGender] = useState<UserGender | null>(null);
   const [userType, setUserType] = useState<UserType | null>(null);
   const [logoYOffset, setLogoYOffset] = useState<number>(0);
+  const [logoOpacity, setLogoOpacity] = useState<number>(1);
   
   // Load user preferences on mount
   useEffect(() => {
@@ -34,8 +35,19 @@ const TechnologyPage = () => {
       const scrollY = window.scrollY;
       
       // Calculate offset to move the logo up as user scrolls down
-      // This creates a "fixed position" effect relative to the background
       setLogoYOffset(scrollY * 0.2); // Adjust the multiplier to control the speed
+      
+      // Fade out logo as user scrolls down
+      // Start fading at 100px of scroll, completely fade out by 300px
+      const fadeThreshold = 100;
+      const fadeOutBy = 300;
+      
+      if (scrollY > fadeThreshold) {
+        const opacity = Math.max(0, 1 - (scrollY - fadeThreshold) / (fadeOutBy - fadeThreshold));
+        setLogoOpacity(opacity);
+      } else {
+        setLogoOpacity(1);
+      }
     };
 
     // Add scroll event listener
@@ -120,9 +132,10 @@ const TechnologyPage = () => {
       <main className="flex-grow pt-20">
         {/* Overlay logo for technology page */}
         <div 
-          className="fixed top-[calc(25%-100px)] left-1/2 transform -translate-x-1/2 z-50 w-40 h-40 pointer-events-none"
+          className="fixed top-[calc(25%-100px)] left-1/2 transform -translate-x-1/2 z-50 w-40 h-40 pointer-events-none transition-opacity duration-300"
           style={{
-            transform: `translate(-50%, -${logoYOffset}px)` // Apply dynamic Y offset
+            transform: `translate(-50%, -${logoYOffset}px)`,
+            opacity: logoOpacity
           }}
         >
           <Logo 
@@ -133,7 +146,7 @@ const TechnologyPage = () => {
         </div>
         
         <div className="h-40 bg-gradient-to-b from-ath-clay to-ath-secondary flex items-center justify-center">
-          <h1 className="text-4xl md:text-5xl font-display text-white">Tecnologia VICKI™</h1>
+          <h1 className="text-4xl md:text-5xl font-swiss text-white">Tecnologia VICKI™</h1>
         </div>
         
         <div className="w-full bg-black min-h-[calc(100vw*9/16+100px)] relative">

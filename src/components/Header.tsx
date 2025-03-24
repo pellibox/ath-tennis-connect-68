@@ -43,6 +43,7 @@ const Header = ({ useVickiLogo = false }: HeaderProps) => {
   const isHomePage = location.pathname === '/';
   const isAboutPage = location.pathname === '/about';
   const isMethodPage = location.pathname === '/method';
+  const isTechnologyPage = location.pathname === '/technology';
   
   const [userProfile, setUserProfile] = useState<{ gender: UserGender | null, type: UserType | null }>({ gender: null, type: null });
   const [dialogOpen, setDialogOpen] = useState(false);
@@ -148,10 +149,13 @@ const Header = ({ useVickiLogo = false }: HeaderProps) => {
     },
   ];
 
-  // Change from bg-white/90 to bg-white for full opacity
+  // Change header background based on scroll state
   const headerBgClass = isMenuOpen ? "bg-white" : (isScrolled ? "bg-white shadow-md" : "bg-white");
   
   const textColorClass = "text-black";
+
+  // Only show logo when scrolled
+  const showLogoInHeader = isScrolled;
 
   return (
     <header 
@@ -162,8 +166,8 @@ const Header = ({ useVickiLogo = false }: HeaderProps) => {
       )}
     >
       <div className="container mx-auto px-6 flex items-center justify-between relative">
-        {/* Always show the logo, not conditionally */}
-        <div className="flex items-center z-50">
+        {/* Only show the logo when scrolled */}
+        <div className={cn("flex items-center z-50", !showLogoInHeader && "opacity-0")}>
           <Logo 
             variant="default" 
             onDarkBackground={false}
