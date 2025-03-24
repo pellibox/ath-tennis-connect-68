@@ -1,4 +1,3 @@
-
 import { useEffect, useState, useRef } from 'react';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
@@ -165,17 +164,22 @@ const FacilitiesPage = () => {
       <Header />
       
       <main className="flex-grow font-swiss relative" style={{ marginTop: '80px' }}>
-        {/* Video container with responsive height adjustments for mobile */}
         <div className="relative w-full overflow-hidden" style={{ 
           height: isMobile ? '40vh' : '100vh', 
-          marginBottom: '-4px'
+          marginBottom: '-4px',
+          marginLeft: '0',
+          marginRight: '0',
+          width: '100vw',
+          maxWidth: '100vw',
+          left: '0',
+          right: '0',
+          position: 'relative'
         }}>
-          <div className={`absolute inset-0 ${isMobile ? 'w-full h-full' : 'w-[150%] h-[150%] top-[-25%] left-[-25%]'}`}
+          <div className="absolute inset-0 w-full h-full"
                dangerouslySetInnerHTML={{ __html: facilitiesVimeoEmbed }} 
           />
         </div>
         
-        {/* Black banner adjusted to eliminate gap */}
         <div className="w-full bg-black py-12 md:py-16 relative z-10" style={{ marginTop: '-1px' }}>
           <div className="max-w-3xl mx-auto text-center px-4">
             <h2 className="text-white text-xl md:text-3xl font-swiss uppercase mb-2">
@@ -187,7 +191,6 @@ const FacilitiesPage = () => {
           </div>
         </div>
         
-        {/* Content section with negative margin to connect with banner */}
         <section className="pt-4 pb-8 px-6 lg:px-10 bg-white relative z-10" style={{ marginTop: '-1px' }}>
           <div className="max-w-7xl mx-auto">
             <h1 className="text-3xl md:text-5xl font-swiss text-center mb-6">Strutture ATH</h1>
@@ -204,7 +207,6 @@ const FacilitiesPage = () => {
           </div>
         </section>
         
-        {/* FacilitiesSection with no top padding and negative margin */}
         <FacilitiesSection 
           title="Impianti"
           subtitle="Strutture progettate per massimizzare l'efficacia del metodo ATH e della tecnologia Vicki™"
