@@ -1,7 +1,6 @@
-
 import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Menu, X, Activity, Zap, BookOpen, Server, Home, Users } from 'lucide-react';
+import { Menu, X, Activity, Zap, BookOpen, Server, HelpCircle, Users } from 'lucide-react';
 import Logo from './Logo';
 import { cn } from '@/lib/utils';
 import LanguageSwitcher from './LanguageSwitcher';
@@ -36,11 +35,9 @@ const Header = () => {
   const { t } = useLanguage();
   const isMobile = useIsMobile();
   
-  // Load user preferences
   const [userProfile, setUserProfile] = useState<{ gender: UserGender | null, type: UserType | null }>({ gender: null, type: null });
   const [dialogOpen, setDialogOpen] = useState(false);
   
-  // Clear preferences on page reload
   useEffect(() => {
     window.addEventListener('beforeunload', () => {
       localStorage.removeItem('ath_user_gender');
@@ -52,7 +49,6 @@ const Header = () => {
     };
   }, []);
   
-  // Load user preferences on mount
   useEffect(() => {
     const preferences = loadUserPreferences();
     setUserProfile(preferences);
@@ -67,9 +63,7 @@ const Header = () => {
     setDialogOpen(false);
   };
   
-  // Handle profile reset - questa è una nuova funzione
   const handleProfileReset = () => {
-    // Mostra dialog di selezione per reimpostare le preferenze
     setDialogOpen(true);
     
     toast.info("Seleziona nuove preferenze di profilo", {
@@ -78,9 +72,7 @@ const Header = () => {
     });
   };
   
-  // Handle profile deletion
   const handleProfileDelete = () => {
-    // Update local state
     setUserProfile({ gender: null, type: null });
   };
 
@@ -91,7 +83,7 @@ const Header = () => {
     };
 
     window.addEventListener('scroll', handleScroll);
-    handleScroll(); // Initial check
+    handleScroll();
 
     return () => {
       window.removeEventListener('scroll', handleScroll);
@@ -116,9 +108,9 @@ const Header = () => {
 
   const navigationItems = [
     { 
-      text: "Chi Siamo", 
+      text: "Perché ATH", 
       href: '/about',
-      icon: <Home size={18} className="mr-2" />
+      icon: <HelpCircle size={18} className="mr-2" />
     },
     { 
       text: 'Il Metodo', 
@@ -147,10 +139,8 @@ const Header = () => {
     },
   ];
 
-  // Always use light background for header
   const headerBgClass = isMenuOpen ? "bg-white" : (isScrolled ? "bg-white shadow-md" : "bg-white/90");
   
-  // Always use dark text for navigation
   const textColorClass = "text-black";
 
   return (
@@ -158,7 +148,7 @@ const Header = () => {
       className={cn(
         'fixed top-0 left-0 w-full z-50 transition-all duration-300',
         headerBgClass,
-        'py-3' // Fixed consistent padding
+        'py-3'
       )}
     >
       <div className="container mx-auto px-6 flex items-center justify-between relative">
