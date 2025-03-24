@@ -55,11 +55,11 @@ const ProfileTooltip: React.FC<ProfileTooltipProps> = ({ buttonRef }) => {
     <TooltipProvider>
       <Tooltip open={open} onOpenChange={setOpen}>
         <TooltipTrigger asChild>
-          <span className="absolute top-0 left-0 w-0 h-0" />
+          <span className="absolute top-0 left-0 w-0 h-0 pointer-events-none" />
         </TooltipTrigger>
         <TooltipContent
           side="bottom"
-          className="bg-ath-clay text-white p-3 max-w-[200px] animate-pulse relative"
+          className="bg-ath-clay text-white p-3 max-w-[200px] relative z-[60]"
           sideOffset={5}
         >
           <button 

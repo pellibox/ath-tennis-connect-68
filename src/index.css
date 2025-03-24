@@ -108,6 +108,7 @@
     @apply bg-background text-foreground;
     font-family: 'Swiss721 BT', 'Inter', sans-serif;
     overscroll-behavior: none;
+    -webkit-text-size-adjust: 100%;
   }
 
   h1, h2, h3, h4, h5, h6 {
@@ -120,6 +121,27 @@
   
   .font-swiss {
     font-family: 'Swiss721 BT', 'Inter', sans-serif;
+  }
+  
+  @media (max-width: 768px) {
+    button, 
+    a, 
+    [role="button"], 
+    input, 
+    select, 
+    textarea {
+      min-height: 44px;
+      min-width: 44px;
+    }
+  }
+  
+  @media (max-width: 768px) {
+    .container {
+      width: 100%;
+      max-width: 100%;
+      padding-left: 1rem;
+      padding-right: 1rem;
+    }
   }
 }
 
@@ -227,13 +249,29 @@
   z-index: 1;
 }
 
-.radix-dialog-content {
-  z-index: 9999;
-  position: relative;
+@media (max-width: 768px) {
+  .hero-image {
+    background-attachment: scroll;
+  }
+  
+  .staggered-animation > * {
+    opacity: 1;
+    transform: none;
+  }
+  
+  .reveal-text {
+    opacity: 1;
+    transform: none;
+  }
 }
 
 [data-radix-popper-content-wrapper] {
   z-index: 9999 !important;
+}
+
+.radix-dialog-content {
+  z-index: 9999;
+  position: relative;
 }
 
 ::-webkit-scrollbar {

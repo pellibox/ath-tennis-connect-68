@@ -1,3 +1,4 @@
+
 import { useState, useEffect, useRef } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Menu, X, Activity, Zap, BookOpen, Server, HelpCircle, Users } from 'lucide-react';
@@ -165,7 +166,7 @@ const Header = ({ useVickiLogo = false }: HeaderProps) => {
       )}
     >
       <div className="container mx-auto px-6 flex items-center justify-between relative">
-        <div className={cn("flex items-center z-50", !showLogoInHeader && "opacity-0")}>
+        <div className={cn("flex items-center z-50 absolute left-6 md:left-6", !showLogoInHeader && "opacity-0")}>
           <Logo 
             variant="default" 
             onDarkBackground={false}
@@ -176,7 +177,7 @@ const Header = ({ useVickiLogo = false }: HeaderProps) => {
           />
         </div>
         
-        <div className="hidden lg:flex items-center space-x-1">
+        <div className="hidden lg:flex items-center ml-auto justify-center flex-1">
           <nav className="flex items-center space-x-6">
             {navigationItems.map((item, index) => (
               <LinkComponent 
@@ -194,7 +195,7 @@ const Header = ({ useVickiLogo = false }: HeaderProps) => {
           </nav>
         </div>
         
-        <div className="flex items-center z-50">
+        <div className="flex items-center z-50 ml-auto lg:ml-0">
           <Dialog open={dialogOpen} onOpenChange={setDialogOpen}>
             <DialogTrigger asChild>
               <div ref={profileButtonRef} className="mr-4 cursor-pointer relative">

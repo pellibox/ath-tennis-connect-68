@@ -43,7 +43,7 @@ const Logo = ({
   // Size classes based on logo type
   const sizeClasses = isFooter 
     ? 'h-28' 
-    : (isInMenu ? 'w-20 h-auto' : 'w-32 h-auto'); // Adjusted size for header
+    : (isInMenu ? 'w-16 sm:w-20 h-auto' : 'w-24 sm:w-32 h-auto'); // Responsive size adjustments
   
   // Function to handle logo click
   const handleLogoClick = (e: React.MouseEvent) => {
