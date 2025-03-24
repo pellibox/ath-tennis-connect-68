@@ -49,6 +49,11 @@ export const getVimeoEmbed = (userGender: UserGender | null, userType: UserType 
     if (userType === 'adult') {
       videoEmbed = `<div style="padding:56.25% 0 0 0;position:relative;"><iframe src="https://player.vimeo.com/video/1068788229?h=5f3c14e5ec&autoplay=1&loop=1&background=${useBackground ? '1' : '0'}&autopause=0&player_id=0&app_id=58479&controls=0" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media" style="position:absolute;top:0;left:0;width:100%;height:100%;" title="Adult"></iframe></div><script src="https://player.vimeo.com/api/player.js"></script>`;
     }
+    
+    // Summer camps video
+    if (userType === 'camps') {
+      videoEmbed = `<div style="padding:56.25% 0 0 0;position:relative;"><iframe src="https://player.vimeo.com/video/1068835737?h=f0a05fef01&autoplay=1&loop=1&background=${useBackground ? '1' : '0'}&autopause=0&player_id=0&app_id=58479&controls=0" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media" style="position:absolute;top:0;left:0;width:100%;height:100%;" title="Summer Camps"></iframe></div><script src="https://player.vimeo.com/api/player.js"></script>`;
+    }
   }
   
   return videoEmbed;

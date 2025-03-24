@@ -1,3 +1,4 @@
+
 import { useEffect, useState } from 'react';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
@@ -27,17 +28,9 @@ const CampsProgram = () => {
       
       <main className="flex-grow">
         <div className="relative">
-          <Hero 
-            title={t('footer.camps')}
-            subtitle="Esperienza intensiva di alta qualità per giocatori di tutte le età durante i periodi estivi e vacanze scolastiche"
-            imageSrc="https://images.unsplash.com/photo-1544298621-35a989e4e54a?q=80&w=2070&auto=format&fit=crop"
-            buttons={[
-              { text: 'PRENOTA UNA PROVA', href: '/contact' },
-              { text: 'CONTATTACI', href: '/contact', variant: 'outline' }
-            ]}
-            contentPosition="left"
-            overlayOpacity="medium"
-          />
+          <div className="w-full bg-black min-h-[calc(100vw*9/16)] relative">
+            <div dangerouslySetInnerHTML={{ __html: `<div style="padding:56.25% 0 0 0;position:relative;"><iframe src="https://player.vimeo.com/video/1068835737?h=f0a05fef01&autoplay=1&loop=1&title=0&byline=0&portrait=0&background=1&controls=0" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen style="position:absolute;top:0;left:0;width:100%;height:100%;"></iframe></div><script src="https://player.vimeo.com/api/player.js"></script>` }} />
+          </div>
           
           {/* Black banner with claim text - matching Method page style */}
           <div className="w-full bg-black py-16 relative" style={{ height: '300px' }}>
