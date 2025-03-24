@@ -10,6 +10,7 @@ import { Award, Users, BarChart, Target, Layers, Headphones } from 'lucide-react
 import RevealAnimation from '@/components/RevealAnimation';
 import Logo from '@/components/Logo';
 import { useIsMobile } from '@/hooks/use-mobile';
+import { AspectRatio } from '@/components/ui/aspect-ratio';
 
 const AboutPage = () => {
   const { t } = useLanguage();
@@ -86,41 +87,46 @@ const AboutPage = () => {
       <Header />
       
       <main className="flex-grow pt-20">
-        {/* Video background */}
-        <div className="w-full bg-black min-h-[calc(100vw*9/16)] relative">
-          <div style={{ padding:'56.25% 0 0 0', position:'relative' }}>
-            <iframe 
-              src="https://player.vimeo.com/video/1068596952?h=b7fa539b1c&autoplay=1&loop=1&background=1&controls=0" 
-              style={{ position:'absolute', top:0, left:0, width:'100%', height:'100%' }} 
-              frameBorder="0" 
-              allow="autoplay; fullscreen; picture-in-picture" 
-              title="ATH Main Video">
-            </iframe>
-            <script src="https://player.vimeo.com/api/player.js"></script>
+        {/* Video background - now constrained to match section width */}
+        <div className="w-full bg-black flex justify-center">
+          <div className="max-w-7xl w-full mx-auto">
+            <AspectRatio ratio={16/9} className="w-full">
+              <iframe 
+                src="https://player.vimeo.com/video/1068596952?h=b7fa539b1c&autoplay=1&loop=1&background=1&controls=0" 
+                className="w-full h-full absolute top-0 left-0"
+                frameBorder="0" 
+                allow="autoplay; fullscreen; picture-in-picture" 
+                title="ATH Main Video">
+              </iframe>
+            </AspectRatio>
           </div>
         </div>
         
         {/* Black frame with claim */}
         <div className="w-full bg-black py-16">
-          <div className="max-w-3xl mx-auto text-center">
-            <h2 className="text-white text-xl md:text-2xl font-swiss uppercase mb-2">
-              PERCHÉ ATH:
-            </h2>
-            <p className="text-white text-xl md:text-2xl opacity-90 font-swiss drop-shadow-md">
-              La rivoluzione nell'allenamento del tennis moderno
-            </p>
+          <div className="max-w-7xl mx-auto px-6">
+            <div className="max-w-3xl mx-auto text-center">
+              <h2 className="text-white text-xl md:text-2xl font-swiss uppercase mb-2">
+                PERCHÉ ATH:
+              </h2>
+              <p className="text-white text-xl md:text-2xl opacity-90 font-swiss drop-shadow-md">
+                La rivoluzione nell'allenamento del tennis moderno
+              </p>
+            </div>
           </div>
         </div>
         
         <div className="bg-gradient-to-r from-ath-clay/5 to-white py-16 px-6">
-          <div className="max-w-4xl mx-auto text-center">
-            <RevealAnimation>
-              <h2 className="text-3xl md:text-4xl font-display mb-6 text-ath-clay">Le Sfide del Tennis Moderno e le Soluzioni di ATH</h2>
-              <p className="text-gray-600 leading-relaxed mb-8">
-                Il tennis contemporaneo affronta diverse sfide che ne limitano l'evoluzione e l'accessibilità. 
-                ATH ha sviluppato soluzioni specifiche per superarle.
-              </p>
-            </RevealAnimation>
+          <div className="max-w-7xl mx-auto">
+            <div className="max-w-4xl mx-auto text-center">
+              <RevealAnimation>
+                <h2 className="text-3xl md:text-4xl font-display mb-6 text-ath-clay">Le Sfide del Tennis Moderno e le Soluzioni di ATH</h2>
+                <p className="text-gray-600 leading-relaxed mb-8">
+                  Il tennis contemporaneo affronta diverse sfide che ne limitano l'evoluzione e l'accessibilità. 
+                  ATH ha sviluppato soluzioni specifiche per superarle.
+                </p>
+              </RevealAnimation>
+            </div>
           </div>
         </div>
         
@@ -229,18 +235,20 @@ const AboutPage = () => {
         />
         
         <div className="bg-ath-clay text-white py-20 px-6">
-          <div className="max-w-4xl mx-auto text-center">
-            <RevealAnimation>
-              <h2 className="text-3xl md:text-4xl font-display mb-8">Il Nostro Approccio</h2>
-              <p className="text-white/90 leading-relaxed text-lg mb-10">
-                Immagina un ambiente in cui ogni dettaglio del tuo gioco è monitorato e ottimizzato. ATH non è solo un centro di allenamento, ma un modo nuovo di insegnare e vivere il tennis. Ogni elemento del nostro sistema risponde alle criticità del tennis moderno, offrendo un'esperienza completa in cui ogni aspetto lavora in sinergia.
-              </p>
-              <div className="flex justify-center">
-                <ButtonLink href="/method" variant="secondary">
-                  Scopri il Metodo ATH
-                </ButtonLink>
-              </div>
-            </RevealAnimation>
+          <div className="max-w-7xl mx-auto">
+            <div className="max-w-4xl mx-auto text-center">
+              <RevealAnimation>
+                <h2 className="text-3xl md:text-4xl font-display mb-8">Il Nostro Approccio</h2>
+                <p className="text-white/90 leading-relaxed text-lg mb-10">
+                  Immagina un ambiente in cui ogni dettaglio del tuo gioco è monitorato e ottimizzato. ATH non è solo un centro di allenamento, ma un modo nuovo di insegnare e vivere il tennis. Ogni elemento del nostro sistema risponde alle criticità del tennis moderno, offrendo un'esperienza completa in cui ogni aspetto lavora in sinergia.
+                </p>
+                <div className="flex justify-center">
+                  <ButtonLink href="/method" variant="secondary">
+                    Scopri il Metodo ATH
+                  </ButtonLink>
+                </div>
+              </RevealAnimation>
+            </div>
           </div>
         </div>
         
