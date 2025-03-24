@@ -165,7 +165,7 @@ const FacilitiesPage = () => {
           className="flex justify-center"
         >
           <Logo 
-            onDarkBackground={true} 
+            onDarkBackground={false} 
             className="w-full h-auto"
             isCentered={true}
           />
@@ -181,9 +181,9 @@ const FacilitiesPage = () => {
           />
         </div>
         
-        <div className="w-full bg-black py-16 relative z-10">
+        <div className="w-full bg-black py-16 relative z-10 mt-0">
           <div className="max-w-3xl mx-auto text-center">
-            <h2 className="text-white text-xl md:text-2xl font-swiss uppercase mb-2">
+            <h2 className="text-white text-2xl md:text-3xl font-swiss uppercase mb-2">
               LE STRUTTURE:
             </h2>
             <p className="text-white text-xl md:text-2xl opacity-90 font-swiss drop-shadow-md">
@@ -222,27 +222,27 @@ const FacilitiesPage = () => {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
               <div className="bg-white p-6 rounded-lg shadow-sm">
                 <h3 className="text-xl font-semibold mb-3 font-swiss">Affitti Premium</h3>
-                <p className="text-gray-700 font-swiss">Prenota un campo con sistema Vicki™ integrato per sessioni di allenamento con analisi dati in tempo reale. Ideale per giocatori che vogliono approfondire specifici aspetti tecnici.</p>
+                <p className="text-gray-700 font-swiss text-base">Prenota un campo con sistema Vicki™ integrato per sessioni di allenamento con analisi dati in tempo reale. Ideale per giocatori che vogliono approfondire specifici aspetti tecnici.</p>
               </div>
               
               <div className="bg-white p-6 rounded-lg shadow-sm">
                 <h3 className="text-xl font-semibold mb-3 font-swiss">Clinics Tematici</h3>
-                <p className="text-gray-700 font-swiss">Sessioni specializzate su aspetti specifici del gioco, con analisi dettagliate e feedback personalizzati basati sui dati raccolti.</p>
+                <p className="text-gray-700 font-swiss text-base">Sessioni specializzate su aspetti specifici del gioco, con analisi dettagliate e feedback personalizzati basati sui dati raccolti.</p>
               </div>
               
               <div className="bg-white p-6 rounded-lg shadow-sm">
                 <h3 className="text-xl font-semibold mb-3 font-swiss">Percorsi Valutativi</h3>
-                <p className="text-gray-700 font-swiss">Valutazioni complete delle performance tecniche, fisiche e tattiche, con report dettagliati e suggerimenti personalizzati per il miglioramento.</p>
+                <p className="text-gray-700 font-swiss text-base">Valutazioni complete delle performance tecniche, fisiche e tattiche, con report dettagliati e suggerimenti personalizzati per il miglioramento.</p>
               </div>
               
               <div className="bg-white p-6 rounded-lg shadow-sm">
                 <h3 className="text-xl font-semibold mb-3 font-swiss">Eventi e Tornei</h3>
-                <p className="text-gray-700 font-swiss">Competizioni con analisi avanzata delle performance, ideali per testare in ambiente competitivo i progressi ottenuti durante gli allenamenti.</p>
+                <p className="text-gray-700 font-swiss text-base">Competizioni con analisi avanzata delle performance, ideali per testare in ambiente competitivo i progressi ottenuti durante gli allenamenti.</p>
               </div>
               
               <div className="bg-white p-6 rounded-lg shadow-sm">
                 <h3 className="text-xl font-semibold mb-3 font-swiss">Corsi Specialistici</h3>
-                <p className="text-gray-700 font-swiss">Programmi formativi dedicati ad aspetti specifici del tennis come servizio, risposta, gioco di rete o tattica. Ogni corso utilizza l'analisi Vicki™ per personalizzare l'apprendimento.</p>
+                <p className="text-gray-700 font-swiss text-base">Programmi formativi dedicati ad aspetti specifici del tennis come servizio, risposta, gioco di rete o tattica. Ogni corso utilizza l'analisi Vicki™ per personalizzare l'apprendimento.</p>
               </div>
             </div>
           </div>
