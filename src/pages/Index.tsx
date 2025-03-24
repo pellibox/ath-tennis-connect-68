@@ -1,4 +1,5 @@
-import { useEffect, useState } from 'react';
+
+import { useEffect, useState, useRef } from 'react';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import Hero from '@/components/Hero';
@@ -17,10 +18,35 @@ const HomePage = () => {
   const [userType, setUserType] = useState<UserType | null>(null);
   // State for the Vimeo embed HTML
   const [vimeoEmbed, setVimeoEmbed] = useState<string>('');
+  const [logoYOffset, setLogoYOffset] = useState<number>(0);
+  const logoRef = useRef<HTMLDivElement>(null);
   
   // Smooth scroll functionality
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
+  }, []);
+
+  // Handle scroll effect for the logo
+  useEffect(() => {
+    const handleScroll = () => {
+      // Get current scroll position
+      const scrollY = window.scrollY;
+      
+      // Calculate offset to move the logo up as user scrolls down
+      // This creates a "fixed position" effect relative to the background
+      setLogoYOffset(scrollY * 0.2); // Adjust the multiplier to control the speed
+    };
+
+    // Add scroll event listener
+    window.addEventListener('scroll', handleScroll);
+    
+    // Initial calculation
+    handleScroll();
+    
+    // Clean up
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
   }, []);
 
   // Load user preferences on mount and when they change
@@ -123,7 +149,13 @@ const HomePage = () => {
   return (
     <div className="flex flex-col min-h-screen relative">
       {/* Overlay logo for home/about page */}
-      <div className="fixed top-[calc(25%-50px)] left-1/2 transform -translate-x-1/2 z-50 w-40 h-40 pointer-events-none">
+      <div 
+        ref={logoRef}
+        className="fixed top-[calc(25%-100px)] left-1/2 transform -translate-x-1/2 z-50 w-40 h-40 pointer-events-none"
+        style={{
+          transform: `translate(-50%, -${logoYOffset}px)` // Apply dynamic Y offset
+        }}
+      >
         <img 
           src="/lovable-uploads/ebada5d3-6c5e-43a0-ab7d-a5850900d950.png" 
           alt="ATH Logo" 
