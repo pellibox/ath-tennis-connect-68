@@ -165,20 +165,22 @@ const HomePage = () => {
       {/* Show the centered logo above video for both mobile and desktop with same scroll behavior */}
       <div 
         ref={logoRef}
-        className="fixed z-50 pointer-events-none transition-opacity duration-300"
+        className="fixed z-50 pointer-events-none transition-opacity duration-300 w-full flex justify-center"
         style={{
-          left: '50%',
           top: isMobile ? '20%' : 'calc(25% - 100px)', // Logo positioned higher on mobile to be visible on video
-          transform: `translate(-50%, -${logoYOffset}px)`, // Simple transform with no X offset
-          opacity: logoOpacity,
-          width: isMobile ? '120px' : '160px',
-          height: 'auto'
+          transform: `translateY(-${logoYOffset}px)`, // Only apply vertical transform
+          opacity: logoOpacity
         }}
       >
-        <Logo 
-          onDarkBackground={true} 
-          className="w-full h-full"
-        />
+        <div style={{
+          width: isMobile ? '120px' : '160px',
+          height: 'auto'
+        }}>
+          <Logo 
+            onDarkBackground={true} 
+            className="w-full h-full"
+          />
+        </div>
       </div>
       
       <Header />
