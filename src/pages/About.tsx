@@ -8,12 +8,12 @@ import { useLanguage } from '@/contexts/LanguageContext';
 import ButtonLink from '@/components/ButtonLink';
 import { Award, Users, BarChart, Target, Layers, Headphones } from 'lucide-react';
 import RevealAnimation from '@/components/RevealAnimation';
+import Logo from '@/components/Logo';
 
 const AboutPage = () => {
   const { t } = useLanguage();
   const [logoYOffset, setLogoYOffset] = useState<number>(0);
   const [logoOpacity, setLogoOpacity] = useState<number>(1);
-  const logoRef = useRef<HTMLDivElement>(null);
   
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -29,9 +29,9 @@ const AboutPage = () => {
       setLogoYOffset(scrollY * 0.2); // Adjust the multiplier to control the speed
       
       // Fade out logo as user scrolls down
-      // Start fading at 100px of scroll, completely fade out by 200px
+      // Start fading at 100px of scroll, completely fade out by 300px
       const fadeThreshold = 100;
-      const fadeOutBy = 200;
+      const fadeOutBy = 300;
       
       if (scrollY > fadeThreshold) {
         const opacity = Math.max(0, 1 - (scrollY - fadeThreshold) / (fadeOutBy - fadeThreshold));
@@ -56,25 +56,23 @@ const AboutPage = () => {
   return (
     <div className="flex flex-col min-h-screen relative">
       <div 
-        ref={logoRef}
         className="fixed top-[calc(25%-100px)] left-1/2 transform -translate-x-1/2 z-50 w-40 h-40 pointer-events-none transition-opacity duration-300"
         style={{
           transform: `translate(-50%, -${logoYOffset}px)`,
           opacity: logoOpacity
         }}
       >
-        <img 
-          src="/lovable-uploads/ebada5d3-6c5e-43a0-ab7d-a5850900d950.png" 
-          alt="ATH Logo" 
-          className="w-full h-full object-contain"
+        <Logo 
+          onDarkBackground={true}
+          className="w-full h-full"
         />
       </div>
       
       <Header />
       
       <main className="flex-grow pt-20">
-        {/* Video background with claim below it */}
-        <div className="w-full bg-black relative">
+        {/* Video background */}
+        <div className="w-full bg-black min-h-[calc(100vw*9/16)] relative">
           <div style={{ padding:'56.25% 0 0 0', position:'relative' }}>
             <iframe 
               src="https://player.vimeo.com/video/1068596952?h=b7fa539b1c&autoplay=1&loop=1&background=1&controls=0" 
@@ -85,11 +83,15 @@ const AboutPage = () => {
             </iframe>
             <script src="https://player.vimeo.com/api/player.js"></script>
           </div>
-          <div className="absolute bottom-0 left-0 right-0 z-10 p-4 bg-gradient-to-t from-black/80 to-transparent">
-            <h2 className="text-white text-2xl md:text-3xl font-display uppercase max-w-3xl mx-auto text-center mb-2">
+        </div>
+        
+        {/* Black frame with claim */}
+        <div className="w-full bg-black py-16">
+          <div className="max-w-3xl mx-auto text-center">
+            <h2 className="text-white text-xl md:text-2xl font-swiss uppercase mb-2">
               PERCHÉ ATH:
             </h2>
-            <p className="text-white text-xl md:text-2xl opacity-90 max-w-3xl mx-auto text-center animate-fade-in drop-shadow-md">
+            <p className="text-white text-xl md:text-2xl opacity-90 font-swiss drop-shadow-md">
               La rivoluzione nell'allenamento del tennis moderno
             </p>
           </div>
