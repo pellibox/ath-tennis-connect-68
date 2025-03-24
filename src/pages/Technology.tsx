@@ -49,22 +49,26 @@ const TechnologyPage = () => {
       
       <main className="flex-grow">
         {/* Hero video section - full width like other pages */}
-        <div className="w-full bg-black">
+        <div className="w-full bg-black relative">
           <div className="w-full">
             <div 
               className="w-full aspect-video"
               dangerouslySetInnerHTML={{ __html: vimeoEmbed }} 
             />
           </div>
-          <div className="absolute bottom-0 left-0 right-0 z-10 p-4 bg-gradient-to-t from-black/80 to-transparent h-[100px] flex items-end">
-            <p className="text-white text-base md:text-lg opacity-90 max-w-3xl mx-auto text-center font-swiss">
-              {getPersonalizedDescription()}
-            </p>
+          
+          {/* Caption positioned below the video properly */}
+          <div className="w-full bg-gradient-to-t from-black to-transparent py-8">
+            <div className="container mx-auto text-center">
+              <p className="text-white text-base md:text-lg font-swiss px-4">
+                {getPersonalizedDescription()}
+              </p>
+            </div>
           </div>
         </div>
         
         {/* Black banner with reduced height - matching Method page style */}
-        <div className="w-full bg-black py-10 relative" style={{ height: '150px' }}>
+        <div className="w-full bg-black py-10 relative" style={{ height: '100px' }}>
           <div className="max-w-6xl mx-auto px-6 h-full flex flex-col justify-center">
             {/* Empty banner for spacing, to match Method page style */}
           </div>
