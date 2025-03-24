@@ -1,4 +1,3 @@
-
 import { useEffect, useState, useRef } from 'react';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
@@ -128,12 +127,12 @@ const MethodPage = () => {
       <Header />
       
       <main className="flex-grow pt-20">
-        {/* Remove the clay gradient and replace with a title and claim similar to About page */}
+        {/* Video background with claim below it */}
         <div className="w-full bg-black relative">
           <div dangerouslySetInnerHTML={{ __html: getVimeoEmbed() }} />
           <div className="absolute bottom-0 left-0 right-0 z-10 p-4 bg-gradient-to-t from-black/80 to-transparent">
-            <p className="text-white text-base md:text-lg opacity-90 max-w-3xl mx-auto text-center animate-fade-in drop-shadow-md">
-              La rivoluzione nell'allenamento del tennis moderno
+            <p className="text-white text-xl md:text-2xl opacity-90 max-w-3xl mx-auto text-center animate-fade-in drop-shadow-md">
+              Tecnologia e competenza umana al servizio dell'eccellenza tennistica
             </p>
           </div>
         </div>
@@ -209,7 +208,7 @@ const MethodPage = () => {
                     <div className="space-y-4">
                       <p className="text-lg">
                         Per gli agonisti di alto livello, il Metodo ATH si concentra sul perfezionamento tecnico-tattico e sullo sviluppo delle capacità 
-                        fisiche e mentali necessarie per competere ad alto livello.
+                        fisiche e mentali necessarie per competire ad alto livello.
                       </p>
                       <p className="text-lg">
                         La tecnologia VICKI™ permette di identificare pattern di gioco efficaci e inefficaci, analizzare le prestazioni in partita 
