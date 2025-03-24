@@ -5,56 +5,85 @@ import Footer from '@/components/Footer';
 import { useLanguage } from '@/contexts/LanguageContext';
 import ProgramsSection from '@/components/ProgramsSection';
 import RevealAnimation from '@/components/RevealAnimation';
+import { UserGender, UserType, loadUserPreferences } from '@/components/UserTypeSelector';
+import { useState } from 'react';
 
 const JuniorProgram = () => {
   const { t } = useLanguage();
+  const [userProfile, setUserProfile] = useState<{ gender: UserGender | null, type: UserType | null }>({ gender: null, type: null });
   
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
+    
+    // Carica le preferenze dell'utente
+    const preferences = loadUserPreferences();
+    setUserProfile(preferences);
   }, []);
 
-  const juniorPrograms = [
-    {
-      id: 'talent-id',
-      title: 'Scuola Individuazione Talenti (4-10 anni)',
-      description: 'Programma specializzato per l\'identificazione precoce dei talenti tennistici tramite il sistema Vicki™.',
-      image: 'https://images.unsplash.com/photo-1596463059283-da257325bab8?q=80&w=2070&auto=format&fit=crop',
-      vimeoEmbed: '<div style="padding:56.25% 0 0 0;position:relative;"><iframe src="https://player.vimeo.com/video/1068618561?h=f1a4f80a91&autoplay=0&loop=1&title=0&byline=0&portrait=0&controls=0&background=1" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen style="position:absolute;top:0;left:0;width:100%;height:100%;"></iframe></div>',
-      link: '#',
-      features: [
-        'Valutazione iniziale con sistema Vicki™ che monitora pattern motori e attitudinali',
-        'Approccio ludico e divertente all\'apprendimento tecnico',
-        'Monitoraggio dello sviluppo fisico e delle attitudini con parametri oggettivi'
-      ]
-    },
-    {
-      id: 'junior-competitive',
-      title: 'Agonista Junior (6-12 anni)',
-      description: 'Programma formativo per giovani atleti in fase di sviluppo tecnico e fisico.',
-      image: 'https://images.unsplash.com/photo-1612458225454-41c3991c0c49?q=80&w=1973&auto=format&fit=crop',
-      vimeoEmbed: '<div style="padding:56.25% 0 0 0;position:relative;"><iframe src="https://player.vimeo.com/video/1068596987?h=c9dad61d03&autoplay=0&loop=1&title=0&byline=0&portrait=0&controls=0&background=1" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen style="position:absolute;top:0;left:0;width:100%;height:100%;"></iframe></div>',
-      link: '#',
-      features: [
-        'Valutazioni tecniche, fisiche, mentali e tattiche costanti',
-        'Analisi biomeccanica in campo',
-        'Monitoraggio crescita per evitare sovraccarichi',
-        'Programmi adattati all\'età e all\'evoluzione motoria'
-      ]
-    },
-    {
-      id: 'parent-support',
-      title: 'Genitore/Tutor (Giovani e Junior Agonisti 6-18 anni)',
-      description: 'Supporto informativo e coinvolgimento nel percorso di sviluppo del giovane atleta.',
-      image: 'https://images.unsplash.com/photo-1515377905703-c4788e51af15?q=80&w=2070&auto=format&fit=crop',
-      vimeoEmbed: '<div style="padding:56.25% 0 0 0;position:relative;"><iframe src="https://player.vimeo.com/video/1068621034?h=7b8c99f420&ts=0&autoplay=0&loop=1&title=0&byline=0&portrait=0&controls=0&background=1" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen style="position:absolute;top:0;left:0;width:100%;height:100%;"></iframe></div>',
-      link: '#',
-      features: [
-        'Accesso a report semplici e leggibili, con dati tecnici, fisici e mentali',
-        'Possibilità di seguire in streaming allenamenti e partite',
-        'Aggiornamenti regolari sull\'evoluzione tecnica e psico-fisica'
-      ]
+  // Definisci i programmi junior di base
+  const getJuniorPrograms = () => {
+    const basePrograms = [
+      {
+        id: 'talent-id',
+        title: 'Scuola Individuazione Talenti (4-10 anni)',
+        description: 'Programma specializzato per l\'identificazione precoce dei talenti tennistici tramite il sistema Vicki™.',
+        image: 'https://images.unsplash.com/photo-1596463059283-da257325bab8?q=80&w=2070&auto=format&fit=crop',
+        vimeoEmbed: '<div style="padding:56.25% 0 0 0;position:relative;"><iframe src="https://player.vimeo.com/video/1068618561?h=f1a4f80a91&autoplay=0&loop=1&title=0&byline=0&portrait=0&controls=0&background=1" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen style="position:absolute;top:0;left:0;width:100%;height:100%;"></iframe></div>',
+        link: '#',
+        features: [
+          'Valutazione iniziale con sistema Vicki™ che monitora pattern motori e attitudinali',
+          'Approccio ludico e divertente all\'apprendimento tecnico',
+          'Monitoraggio dello sviluppo fisico e delle attitudini con parametri oggettivi'
+        ]
+      },
+      {
+        id: 'junior-competitive',
+        title: 'Agonista Junior (6-12 anni)',
+        description: 'Programma formativo per giovani atleti in fase di sviluppo tecnico e fisico.',
+        image: 'https://images.unsplash.com/photo-1612458225454-41c3991c0c49?q=80&w=1973&auto=format&fit=crop',
+        vimeoEmbed: '<div style="padding:56.25% 0 0 0;position:relative;"><iframe src="https://player.vimeo.com/video/1068596987?h=c9dad61d03&autoplay=0&loop=1&title=0&byline=0&portrait=0&controls=0&background=1" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen style="position:absolute;top:0;left:0;width:100%;height:100%;"></iframe></div>',
+        link: '#',
+        features: [
+          'Valutazioni tecniche, fisiche, mentali e tattiche costanti',
+          'Analisi biomeccanica in campo',
+          'Monitoraggio crescita per evitare sovraccarichi',
+          'Programmi adattati all\'età e all\'evoluzione motoria'
+        ]
+      },
+      {
+        id: 'parent-support',
+        title: 'Genitore/Tutor (Giovani e Junior Agonisti 6-18 anni)',
+        description: 'Supporto informativo e coinvolgimento nel percorso di sviluppo del giovane atleta.',
+        image: 'https://images.unsplash.com/photo-1515377905703-c4788e51af15?q=80&w=2070&auto=format&fit=crop',
+        vimeoEmbed: '<div style="padding:56.25% 0 0 0;position:relative;"><iframe src="https://player.vimeo.com/video/1068621034?h=7b8c99f420&ts=0&autoplay=0&loop=1&title=0&byline=0&portrait=0&controls=0&background=1" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen style="position:absolute;top:0;left:0;width:100%;height:100%;"></iframe></div>',
+        link: '#',
+        features: [
+          'Accesso a report semplici e leggibili, con dati tecnici, fisici e mentali',
+          'Possibilità di seguire in streaming allenamenti e partite',
+          'Aggiornamenti regolari sull\'evoluzione tecnica e psico-fisica'
+        ]
+      }
+    ];
+    
+    // Personalizza in base al profilo dell'utente
+    if (userProfile.type === 'parent') {
+      // Evidenzia il programma per genitori
+      return basePrograms.map(program => 
+        program.id === 'parent-support' 
+          ? {...program, image: 'https://images.unsplash.com/photo-1534367990512-edbdca781b00?q=80&w=2070&auto=format&fit=crop'} 
+          : program
+      );
+    } else if (userProfile.type === 'athlete' && userProfile.gender === 'female') {
+      // Personalizza per atlete femminili
+      return basePrograms.map(program => 
+        program.id === 'junior-competitive'
+          ? {...program, image: 'https://images.unsplash.com/photo-1518611012118-696072aa579a?q=80&w=2070&auto=format&fit=crop'}
+          : program
+      );
     }
-  ];
+    
+    return basePrograms;
+  };
 
   return (
     <div className="flex flex-col min-h-screen">
@@ -110,7 +139,7 @@ const JuniorProgram = () => {
               <h3 className="text-2xl font-display mb-8">I nostri programmi Junior</h3>
               <ProgramsSection 
                 title="Programmi Junior"
-                programs={juniorPrograms}
+                programs={getJuniorPrograms()}
                 gridLayout="dense"
               />
             </div>

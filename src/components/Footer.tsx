@@ -1,8 +1,8 @@
+
 import { Link } from 'react-router-dom';
 import { Instagram, Facebook, Twitter, Mail, Phone, MapPin } from 'lucide-react';
 import Logo from './Logo';
 import { useLanguage } from '@/contexts/LanguageContext';
-import ShareButton from './ShareButton';
 
 const Footer = () => {
   const { t } = useLanguage();
@@ -28,7 +28,6 @@ const Footer = () => {
               <Twitter size={20} />
             </a>
           </div>
-          <ShareButton variant="secondary" />
         </div>
 
         <div>
