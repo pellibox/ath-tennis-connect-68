@@ -57,29 +57,29 @@ const Programs = () => {
   }, []);
 
   const getVimeoEmbed = () => {
-    let videoEmbed = `<div style="padding:56.25% 0 0 0;position:relative;"><iframe src="https://player.vimeo.com/video/1068596952?h=b7fa539b1c&autoplay=1&loop=1&title=0&byline=0&portrait=0&background=1&controls=0" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" style="position:absolute;top:0;left:0;width:100%;height:100%;" title="ATH Main Video"></iframe></div><script src="https://player.vimeo.com/api/player.js"></script>`;
+    let videoEmbed = `<div style="padding:56.25% 0 0 0;position:relative;"><iframe src="https://player.vimeo.com/video/1068596952?h=b7fa539b1c&autoplay=1&loop=1&title=0&byline=0&portrait=0&background=1&controls=0" title="ATH Main Video"></iframe></div><script src="https://player.vimeo.com/api/player.js"></script>`;
     
     if (userGender === 'female') {
-      videoEmbed = `<div style="padding:56.25% 0 0 0;position:relative;"><iframe src="https://player.vimeo.com/video/867339842?h=5ecc384219&autoplay=1&loop=1&title=0&byline=0&portrait=0&background=1&controls=0" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" style="position:absolute;top:0;left:0;width:100%;height:100%;" title="Female"></iframe></div><script src="https://player.vimeo.com/api/player.js"></script>`;
+      videoEmbed = `<div style="padding:56.25% 0 0 0;position:relative;"><iframe src="https://player.vimeo.com/video/867339842?h=5ecc384219&autoplay=1&loop=1&title=0&byline=0&portrait=0&background=1&controls=0" title="Female"></iframe></div><script src="https://player.vimeo.com/api/player.js"></script>`;
       
       if (userType === 'professional') {
-        videoEmbed = `<div style="padding:56.25% 0 0 0;position:relative;"><iframe src="https://player.vimeo.com/video/1068596920?h=7f23339d4b&autoplay=1&loop=1&title=0&byline=0&portrait=0&background=1&controls=0" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" style="position:absolute;top:0;left:0;width:100%;height:100%;" title="Female Professional"></iframe></div><script src="https://player.vimeo.com/api/player.js"></script>`;
+        videoEmbed = `<div style="padding:56.25% 0 0 0;position:relative;"><iframe src="https://player.vimeo.com/video/1068596920?h=7f23339d4b&autoplay=1&loop=1&title=0&byline=0&portrait=0&background=1&controls=0" title="Female Professional"></iframe></div><script src="https://player.vimeo.com/api/player.js"></script>`;
       } 
       else if (userType === 'performance') {
-        videoEmbed = `<div style="padding:56.25% 0 0 0;position:relative;"><iframe src="https://player.vimeo.com/video/1068596969?h=9bbee986ef&autoplay=1&loop=1&title=0&byline=0&portrait=0&background=1&controls=0" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" style="position:absolute;top:0;left:0;width:100%;height:100%;" title="Female Performance"></iframe></div><script src="https://player.vimeo.com/api/player.js"></script>`;
+        videoEmbed = `<div style="padding:56.25% 0 0 0;position:relative;"><iframe src="https://player.vimeo.com/video/1068596969?h=9bbee986ef&autoplay=1&loop=1&title=0&byline=0&portrait=0&background=1&controls=0" title="Female Performance"></iframe></div><script src="https://player.vimeo.com/api/player.js"></script>`;
       }
     }
     
     if (userGender === 'male' && userType === 'professional') {
-      videoEmbed = `<div style="padding:56.25% 0 0 0;position:relative;"><iframe src="https://player.vimeo.com/video/1068596901?h=2ac5605207&autoplay=1&loop=1&title=0&byline=0&portrait=0&background=1&controls=0" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" style="position:absolute;top:0;left:0;width:100%;height:100%;" title="Male Professional"></iframe></div><script src="https://player.vimeo.com/api/player.js"></script>`;
+      videoEmbed = `<div style="padding:56.25% 0 0 0;position:relative;"><iframe src="https://player.vimeo.com/video/1068596901?h=2ac5605207&autoplay=1&loop=1&title=0&byline=0&portrait=0&background=1&controls=0" title="Male Professional"></iframe></div><script src="https://player.vimeo.com/api/player.js"></script>`;
     }
     
     if (userType === 'coach') {
-      videoEmbed = `<div style="padding:56.25% 0 0 0;position:relative;"><iframe src="https://player.vimeo.com/video/1068604198?h=07d9021fd2&autoplay=1&loop=1&title=0&byline=0&portrait=0&controls=0" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" style="position:absolute;top:0;left:0;width:100%;height:100%;" title="Coach"></iframe></div><script src="https://player.vimeo.com/api/player.js"></script>`;
+      videoEmbed = `<div style="padding:56.25% 0 0 0;position:relative;"><iframe src="https://player.vimeo.com/video/1068604198?h=07d9021fd2&autoplay=1&loop=1&title=0&byline=0&portrait=0&controls=0" title="Coach"></iframe></div><script src="https://player.vimeo.com/api/player.js"></script>`;
     }
     
     if (userType === 'parent') {
-      videoEmbed = `<div style="padding:56.25% 0 0 0;position:relative;"><iframe src="https://player.vimeo.com/video/1068629360?h=46b5c52b31&autoplay=1&loop=1&title=0&byline=0&portrait=0&background=1&controls=0" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" style="position:absolute;top:0;left:0;width:100%;height:100%;" title="Parent"></iframe></div><script src="https://player.vimeo.com/api/player.js"></script>`;
+      videoEmbed = `<div style="padding:56.25% 0 0 0;position:relative;"><iframe src="https://player.vimeo.com/video/1068629360?h=46b5c52b31&autoplay=1&loop=1&title=0&byline=0&portrait=0&background=1&controls=0" title="Parent"></iframe></div><script src="https://player.vimeo.com/api/player.js"></script>`;
     }
     
     return videoEmbed;
@@ -101,7 +101,8 @@ const Programs = () => {
         'Sviluppo della passione per il tennis e lo sport',
         'Percorsi personalizzati basati sulle caratteristiche individuali rilevate da Vicki™',
         'Supporto per genitori con report dettagliati e indicazioni sul potenziale'
-      ]
+      ],
+      vickiOnRequest: true
     },
     {
       id: '1',
@@ -118,7 +119,8 @@ const Programs = () => {
         'AI dedicata per tracciare la coordinazione',
         'Equilibrio tra miglioramento tecnico e componente ludica',
         'Coinvolgimento attivo dei genitori attraverso report visivi e aggiornamenti chiari'
-      ]
+      ],
+      vickiPowered: true
     },
     {
       id: '5',
@@ -135,7 +137,8 @@ const Programs = () => {
         'Analisi statistiche semplificate con visione d\'insieme dell\'andamento',
         'Supporto pratico per accompagnare il percorso sportivo senza pressioni inutili',
         'Filtraggio automatico dei dati per evitare interpretazioni errate o fuorvianti'
-      ]
+      ],
+      vickiOnRequest: true
     }
   ];
 
@@ -156,7 +159,8 @@ const Programs = () => {
         'Percorsi personalizzati in base allo sviluppo fisico, biotipo e stile di gioco',
         'Integrazione tra valutazioni tecniche, fisiche, mediche e mentali',
         'Coordinamento tra coach, preparatore, mental coach, medico'
-      ]
+      ],
+      vickiPowered: true
     },
     {
       id: '3',
@@ -173,7 +177,8 @@ const Programs = () => {
         'Supporto tecnico sia in sede che da remoto',
         'Gestione ottimale dei cicli di carico, recupero e picco forma',
         'Integrazione di parametri medici e biochimici per massimizzare la performance'
-      ]
+      ],
+      vickiPowered: true
     },
     {
       id: '9',
@@ -187,7 +192,8 @@ const Programs = () => {
         'Heatmap e pattern di spostamento',
         'Statistiche avanzate di gioco',
         'Report dettagliato con raccomandazioni'
-      ]
+      ],
+      vickiPowered: true
     }
   ];
 
@@ -206,7 +212,8 @@ const Programs = () => {
         'Affitto campi con tecnologia attiva (per analisi post-sessione)',
         'Percorsi di miglioramento progressivo senza sovraccarico',
         'Report leggibili con focus su controllo, postura e miglioramenti visibili'
-      ]
+      ],
+      vickiPowered: true
     }
   ];
 
@@ -222,7 +229,8 @@ const Programs = () => {
         'Allenamento intensivo giornaliero',
         'Attività complementari e team building',
         'Analisi tecnica con sistema VICKI'
-      ]
+      ],
+      vickiOnRequest: true
     }
   ];
 
@@ -243,7 +251,8 @@ const Programs = () => {
         'Condivisione dati e report con staff multidisciplinare',
         'Possibilità di integrare ATH nel proprio centro/accademia',
         'Uso di AI e dashboard per ottimizzare sessioni e calendari'
-      ]
+      ],
+      vickiPowered: true
     },
     {
       id: '10',
@@ -257,7 +266,8 @@ const Programs = () => {
         'Analisi dettagliata della tecnica con VICKI™',
         'Focus su obiettivi specifici',
         'Opzioni per singole lezioni o pacchetti'
-      ]
+      ],
+      vickiPowered: true
     }
   ];
 

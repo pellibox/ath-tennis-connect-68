@@ -6,21 +6,19 @@ import { cn } from '@/lib/utils';
 interface VickiPoweredBadgeProps {
   className?: string;
   onRequest?: boolean;
-  bgColor?: string;
-  textColor?: string;
+  transparent?: boolean;
 }
 
 const VickiPoweredBadge = ({ 
   className,
   onRequest = false,
-  bgColor = 'bg-purple-50',
-  textColor = 'text-purple-700'
+  transparent = false
 }: VickiPoweredBadgeProps) => {
+  // Use ath-clay color (red) for styling
   return (
     <div className={cn(
-      'inline-flex items-center px-3 py-1 rounded-full border text-sm font-medium border-purple-200',
-      bgColor,
-      textColor,
+      'inline-flex items-center px-3 py-1 rounded-full text-sm font-medium',
+      transparent ? 'bg-transparent border border-ath-clay text-ath-clay' : 'bg-ath-clay text-white',
       className
     )}>
       <BadgeCheck className="w-4 h-4 mr-2" />
