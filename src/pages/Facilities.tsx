@@ -1,4 +1,3 @@
-
 import { useEffect } from 'react';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
@@ -109,19 +108,11 @@ const FacilitiesPage = () => {
       <Header />
       
       <main className="flex-grow font-swiss" style={{ marginTop: '80px' }}>
-        {/* Fixed full-width video container with extreme oversizing to ensure no white borders */}
-        <div className="fixed left-0 right-0 top-0 w-screen" style={{
-          height: '100vh', 
-          overflow: 'hidden',
-          zIndex: 0
-        }}>
+        <div className="relative w-full overflow-hidden" style={{ height: '100vh' }}>
           <div className="absolute inset-0 w-[150%] h-[150%] top-[-25%] left-[-25%]" 
                dangerouslySetInnerHTML={{ __html: facilitiesVimeoEmbed }} 
           />
         </div>
-        
-        {/* Increased spacer height to ensure content starts below video */}
-        <div style={{ height: '100vh' }}></div>
         
         <div className="w-full bg-black py-16 relative z-10">
           <div className="max-w-3xl mx-auto text-center">
@@ -134,7 +125,6 @@ const FacilitiesPage = () => {
           </div>
         </div>
         
-        {/* Make sure all remaining content sections have z-index to appear above the video */}
         <section className="py-16 px-6 lg:px-10 bg-white relative z-10">
           <div className="max-w-7xl mx-auto">
             <h1 className="text-4xl md:text-5xl font-swiss text-center mb-12">Strutture ATH</h1>
