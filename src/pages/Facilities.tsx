@@ -165,23 +165,23 @@ const FacilitiesPage = () => {
       <Header />
       
       <main className="flex-grow font-swiss relative" style={{ marginTop: '80px' }}>
-        {/* Video container with bottom margin removed and negative margin applied */}
+        {/* Video container with responsive height adjustments for mobile */}
         <div className="relative w-full overflow-hidden" style={{ 
-          height: '100vh', 
-          marginBottom: '-4px' // Increased negative margin to eliminate gap
+          height: isMobile ? '40vh' : '100vh', 
+          marginBottom: '-4px'
         }}>
-          <div className="absolute inset-0 w-[150%] h-[150%] top-[-25%] left-[-25%]" 
+          <div className={`absolute inset-0 ${isMobile ? 'w-full h-full' : 'w-[150%] h-[150%] top-[-25%] left-[-25%]'}`}
                dangerouslySetInnerHTML={{ __html: facilitiesVimeoEmbed }} 
           />
         </div>
         
         {/* Black banner adjusted to eliminate gap */}
-        <div className="w-full bg-black py-16 relative z-10" style={{ marginTop: '-1px' }}>
-          <div className="max-w-3xl mx-auto text-center">
-            <h2 className="text-white text-2xl md:text-3xl font-swiss uppercase mb-2">
+        <div className="w-full bg-black py-12 md:py-16 relative z-10" style={{ marginTop: '-1px' }}>
+          <div className="max-w-3xl mx-auto text-center px-4">
+            <h2 className="text-white text-xl md:text-3xl font-swiss uppercase mb-2">
               LE STRUTTURE:
             </h2>
-            <p className="text-white text-xl md:text-2xl opacity-90 font-swiss drop-shadow-md">
+            <p className="text-white text-lg md:text-2xl opacity-90 font-swiss drop-shadow-md">
               Impianti all'avanguardia dotati di tecnologia Vicki™
             </p>
           </div>
@@ -190,14 +190,14 @@ const FacilitiesPage = () => {
         {/* Content section with negative margin to connect with banner */}
         <section className="pt-4 pb-8 px-6 lg:px-10 bg-white relative z-10" style={{ marginTop: '-1px' }}>
           <div className="max-w-7xl mx-auto">
-            <h1 className="text-4xl md:text-5xl font-swiss text-center mb-6">Strutture ATH</h1>
+            <h1 className="text-3xl md:text-5xl font-swiss text-center mb-6">Strutture ATH</h1>
             
             <div className="prose prose-lg max-w-4xl mx-auto mb-6">
-              <p className="lead text-xl mb-4 font-swiss">
+              <p className="lead text-lg md:text-xl mb-4 font-swiss">
                 L'Advanced Tennis Hub di Rodano è un centro di eccellenza progettato specificamente per ottimizzare l'utilizzo del metodo ATH e della tecnologia Vicki™.
               </p>
               
-              <p className="font-swiss">
+              <p className="font-swiss text-base md:text-lg">
                 Le nostre strutture combinano campi da tennis tecnologicamente avanzati, aree di analisi dati e spazi per la preparazione atletica, creando un ambiente integrato che supporta ogni aspetto dello sviluppo del tennista.
               </p>
             </div>
