@@ -48,15 +48,13 @@ const TechnologyPage = () => {
       <Header useVickiLogo={false} />
       
       <main className="flex-grow">
-        {/* Hero video section - now matching size with other sections */}
+        {/* Hero video section - full width like other pages */}
         <div className="w-full bg-black">
-          <div className="max-w-7xl mx-auto">
-            <AspectRatio ratio={16/9} className="w-full">
-              <div 
-                className="w-full h-full absolute top-0 left-0"
-                dangerouslySetInnerHTML={{ __html: vimeoEmbed }} 
-              />
-            </AspectRatio>
+          <div className="w-full">
+            <div 
+              className="w-full aspect-video"
+              dangerouslySetInnerHTML={{ __html: vimeoEmbed }} 
+            />
           </div>
           <div className="absolute bottom-0 left-0 right-0 z-10 p-4 bg-gradient-to-t from-black/80 to-transparent h-[100px] flex items-end">
             <p className="text-white text-base md:text-lg opacity-90 max-w-3xl mx-auto text-center font-swiss">
