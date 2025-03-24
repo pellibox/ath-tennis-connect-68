@@ -12,11 +12,11 @@ const SummaryQuote = ({ className }: SummaryQuoteProps) => {
   return (
     <RevealAnimation delay={600}>
       <div className={`mt-12 bg-white p-6 rounded-lg border border-ath-clay max-w-4xl mx-auto ${className}`}>
-        <p className="text-ath-clay italic font-swiss">
-          {t('tech.quote').replace(/VICKI/g, 'Vicki™')}
+        <p className="text-ath-clay italic font-swiss mb-4">
+          Vicki™ è un sistema unico, specificamente sviluppato per potenziare le capacità del coach, non per sostituirle. L'expertise umana rimane essenziale nel processo di allenamento, mentre la tecnologia fornisce dati e analisi che amplificano l'intuizione e l'esperienza dell'allenatore.
         </p>
-        <p className="text-ath-clay mt-4 font-bold font-swiss">
-          {t('tech.only').replace(/VICKI/g, 'Vicki™')}
+        <p className="text-ath-clay font-bold font-swiss mb-4">
+          ATH è oggi L'unico centro tennis al mondo che utilizza la tecnologia Vicki™
         </p>
         
         <div className="mt-6 text-center">
