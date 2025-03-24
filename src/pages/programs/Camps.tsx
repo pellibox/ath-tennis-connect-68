@@ -3,7 +3,6 @@ import { useEffect, useState } from 'react';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import { useLanguage } from '@/contexts/LanguageContext';
-import Hero from '@/components/Hero';
 import RevealAnimation from '@/components/RevealAnimation';
 import { UserGender, UserType, loadUserPreferences } from '@/components/UserTypeSelector';
 import VickiMonitoringBadge from '@/components/VickiMonitoringBadge';
@@ -26,24 +25,21 @@ const CampsProgram = () => {
     <div className="flex flex-col min-h-screen">
       <Header />
       
-      <main className="flex-grow">
-        <div className="relative">
-          <div className="relative w-full bg-black min-h-[calc(100vw*9/16)]">
-            <div dangerouslySetInnerHTML={{ __html: `<div style="padding:56.25% 0 0 0;position:relative;"><iframe src="https://player.vimeo.com/video/1068835737?h=f0a05fef01&autoplay=1&loop=1&title=0&byline=0&portrait=0&background=1&controls=0" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen style="position:absolute;top:0;left:0;width:100%;height:100%;"></iframe></div><script src="https://player.vimeo.com/api/player.js"></script>` }} />
-          </div>
-          
-          {/* Black banner with claim text - matching Method page style */}
-          <div className="w-full bg-black py-16 text-center">
-            <div className="max-w-3xl mx-auto px-4">
-              <h2 className="text-white text-3xl md:text-4xl font-display mb-4">
-                CAMPS:
-              </h2>
-              <p className="text-white text-xl md:text-2xl opacity-90 font-swiss max-w-3xl drop-shadow-md">
-                Esperienza intensiva di alta qualità per giocatori di tutte le età durante i periodi estivi e vacanze scolastiche
-              </p>
-              <div className="mt-6">
-                <VickiMonitoringBadge level="basic" className="bg-opacity-20 border-opacity-30 text-white" />
-              </div>
+      <main className="flex-grow pt-20">
+        <div className="w-full bg-black min-h-[calc(100vw*9/16)] relative">
+          <div dangerouslySetInnerHTML={{ __html: `<div style="padding:56.25% 0 0 0;position:relative;"><iframe src="https://player.vimeo.com/video/1068835737?h=f0a05fef01&autoplay=1&loop=1&title=0&byline=0&portrait=0&background=1&controls=0" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen style="position:absolute;top:0;left:0;width:100%;height:100%;"></iframe></div><script src="https://player.vimeo.com/api/player.js"></script>` }} />
+        </div>
+        
+        <div className="w-full bg-black py-16">
+          <div className="max-w-3xl mx-auto text-center">
+            <h2 className="text-white text-xl md:text-2xl font-swiss uppercase mb-2">
+              CAMPS:
+            </h2>
+            <p className="text-white text-xl md:text-2xl opacity-90 font-swiss max-w-3xl drop-shadow-md">
+              Esperienza intensiva di alta qualità per giocatori di tutte le età durante i periodi estivi e vacanze scolastiche
+            </p>
+            <div className="mt-6">
+              <VickiMonitoringBadge level="basic" className="bg-opacity-20 border-opacity-30 text-white" />
             </div>
           </div>
         </div>

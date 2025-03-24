@@ -1,19 +1,16 @@
+
 import { useEffect, useState } from 'react';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
-import Hero from '@/components/Hero';
 import ProgramsSection from '@/components/ProgramsSection';
 import AboutSection from '@/components/AboutSection';
 import RevealAnimation from '@/components/RevealAnimation';
-import ContactSection from '@/components/ContactSection';
-import JoinRevolutionSection from '@/components/JoinRevolutionSection';
 import PricingTables from '@/components/PricingTables';
 import { Link } from 'react-router-dom';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { loadUserPreferences, UserGender, UserType } from '@/components/UserTypeSelector';
-import { Button } from '@/components/ui/button';
 import Logo from '@/components/Logo';
-import VickiPoweredBadge from '@/components/VickiPoweredBadge';
+import { useIsMobile } from '@/hooks/use-mobile';
 
 const Programs = () => {
   const { t } = useLanguage();
@@ -22,6 +19,7 @@ const Programs = () => {
   const [showAllPrograms, setShowAllPrograms] = useState(false);
   const [logoYOffset, setLogoYOffset] = useState<number>(0);
   const [logoOpacity, setLogoOpacity] = useState<number>(1);
+  const isMobile = useIsMobile();
   
   useEffect(() => {
     const { gender, type } = loadUserPreferences();
@@ -378,55 +376,58 @@ const Programs = () => {
   return (
     <div className="flex flex-col min-h-screen relative">
       <div 
-        className="fixed top-[calc(50%-100px)] left-1/2 transform -translate-x-1/2 z-50 w-40 h-40 pointer-events-none transition-opacity duration-300 flex justify-center"
+        className="fixed z-50 pointer-events-none transition-opacity duration-300 left-0 right-0 flex justify-center"
         style={{
-          transform: `translate(-50%, -${logoYOffset}px)`,
+          top: isMobile ? '140px' : '180px',
           opacity: logoOpacity
         }}
       >
-        <Logo 
-          onDarkBackground={true} 
-          className="w-full h-full"
-        />
+        <div 
+          style={{
+            width: isMobile ? '120px' : '160px',
+            transform: `translateY(-${logoYOffset}px)`
+          }}
+          className="flex justify-center"
+        >
+          <Logo 
+            onDarkBackground={true} 
+            className="w-full h-auto"
+            isCentered={true}
+          />
+        </div>
       </div>
       
       <Header />
       
-      <main className="flex-grow">
-        <div className="w-full bg-black flex flex-col">
-          <div className="relative w-full bg-black min-h-[calc(100vw*9/16)]">
-            <div 
-              className="w-full h-full" 
-              dangerouslySetInnerHTML={{ __html: getVimeoEmbed() }} 
-            />
-          </div>
+      <main className="flex-grow pt-20">
+        <div className="w-full bg-black min-h-[calc(100vw*9/16)] relative">
+          <div dangerouslySetInnerHTML={{ __html: getVimeoEmbed() }} />
+        </div>
         
-          <div className="w-full bg-black text-center py-20">
-            <div className="max-w-3xl mx-auto px-4">
-              <h2 className="text-white text-3xl md:text-4xl font-display mb-4">
-                PROGRAMMI:
-              </h2>
-              <p className="text-white text-xl md:text-2xl opacity-90 font-swiss drop-shadow-md">
-                {getPersonalizedSubtitle()}
-              </p>
-            </div>
+        <div className="w-full bg-black py-16">
+          <div className="max-w-3xl mx-auto text-center">
+            <h2 className="text-white text-xl md:text-2xl font-swiss uppercase mb-2">
+              PROGRAMMI:
+            </h2>
+            <p className="text-white text-xl md:text-2xl opacity-90 font-swiss drop-shadow-md">
+              {getPersonalizedSubtitle()}
+            </p>
           </div>
         </div>
         
-        <section className="py-20 px-6 lg:px-10">
+        <section className="py-16 px-6 lg:px-10">
           <div className="max-w-7xl mx-auto">
             <RevealAnimation>
               <div className="flex justify-between items-center mb-4">
                 <h2 className="text-3xl md:text-4xl font-display">Programmi basati sul Metodo ATH</h2>
                 
                 {userType && (
-                  <Button 
-                    variant="outline" 
+                  <button 
                     onClick={() => setShowAllPrograms(!showAllPrograms)}
-                    className="hidden md:block"
+                    className="hidden md:block px-4 py-2 border border-gray-300 rounded-md hover:bg-gray-50"
                   >
                     {showAllPrograms ? 'Mostra solo programmi rilevanti' : 'Vedi tutti i programmi'}
-                  </Button>
+                  </button>
                 )}
               </div>
             </RevealAnimation>
@@ -440,13 +441,12 @@ const Programs = () => {
                 </p>
                 
                 {userType && (
-                  <Button 
-                    variant="outline" 
+                  <button 
                     onClick={() => setShowAllPrograms(!showAllPrograms)}
-                    className="md:hidden w-full mt-4"
+                    className="md:hidden w-full mt-4 px-4 py-2 border border-gray-300 rounded-md hover:bg-gray-50"
                   >
                     {showAllPrograms ? 'Mostra solo programmi rilevanti' : 'Vedi tutti i programmi'}
-                  </Button>
+                  </button>
                 )}
                 
                 <div className="mt-6">
