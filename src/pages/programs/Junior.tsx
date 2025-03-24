@@ -8,6 +8,7 @@ import { UserGender, UserType, loadUserPreferences } from '@/components/UserType
 import Hero from '@/components/Hero';
 import VickiMonitoringBadge, { MonitoringLevel } from '@/components/VickiMonitoringBadge';
 import VickiPoweredBadge from '@/components/VickiPoweredBadge';
+import PricingTables from '@/components/PricingTables';
 
 const JuniorProgram = () => {
   const { t } = useLanguage();
