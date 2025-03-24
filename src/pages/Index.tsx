@@ -1,3 +1,4 @@
+
 import { useEffect, useState, useRef } from 'react';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
@@ -168,7 +169,7 @@ const HomePage = () => {
         className="fixed z-50 pointer-events-none transition-opacity duration-300"
         style={{
           left: '50%',
-          top: isMobile ? 'calc(30% - 60px)' : 'calc(25% - 100px)', // Logo positioned lower on mobile
+          top: isMobile ? '20%' : 'calc(25% - 100px)', // Logo positioned higher on mobile to be visible on video
           transform: `translateX(-50%) translateY(-${logoYOffset}px)`, // Ensure perfect horizontal centering
           opacity: logoOpacity,
           width: isMobile ? '120px' : '160px',
