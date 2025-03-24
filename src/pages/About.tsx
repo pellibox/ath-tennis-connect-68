@@ -1,4 +1,3 @@
-
 import { useEffect, useState, useRef } from 'react';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
@@ -64,7 +63,7 @@ const AboutPage = () => {
     <div className="flex flex-col min-h-screen relative">
       {/* Centered logo with improved positioning */}
       <div 
-        className={`fixed z-50 pointer-events-none transition-opacity duration-300 ${isMobile ? 'left-8' : 'left-0 right-0 flex justify-center'}`}
+        className={`fixed z-50 pointer-events-none transition-opacity duration-300 left-0 right-0 flex justify-center`}
         style={{
           top: isMobile ? '180px' : '220px', // Positioned lower on the page
           opacity: logoOpacity
