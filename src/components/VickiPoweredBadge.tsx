@@ -16,8 +16,8 @@ interface VickiPoweredBadgeProps {
 const VickiPoweredBadge = ({ 
   className,
   onRequest = false,
-  bgColor = 'bg-purple-50',
-  textColor = 'text-purple-700',
+  bgColor = 'bg-red-50',
+  textColor = 'text-ath-clay',
   logoOnly = false,
   small = false,
   customText
@@ -44,7 +44,7 @@ const VickiPoweredBadge = ({
 
   return (
     <div className={cn(
-      'inline-flex items-center px-3 py-1 rounded-full border text-sm font-medium border-purple-200',
+      'inline-flex items-center px-3 py-1 rounded-full border text-sm font-medium border-red-200',
       bgColor,
       textColor,
       className

@@ -21,25 +21,25 @@ const VickiMonitoringBadge = ({
     switch (level) {
       case 'basic':
         return {
-          color: 'bg-blue-100 text-blue-700 border-blue-200',
+          color: 'bg-red-50 text-ath-clay border-red-200',
           icon: <Monitor className="w-4 h-4 mr-2" />,
           label: 'Monitoraggio Vicki™ Base'
         };
       case 'standard':
         return {
-          color: 'bg-green-100 text-green-700 border-green-200',
+          color: 'bg-red-100 text-ath-clay border-red-200',
           icon: <Monitor className="w-4 h-4 mr-2" />,
           label: 'Monitoraggio Vicki™ Standard'
         };
       case 'advanced':
         return {
-          color: 'bg-purple-100 text-purple-700 border-purple-200',
+          color: 'bg-red-100 text-ath-clay border-red-200',
           icon: <ShieldCheck className="w-4 h-4 mr-2" />,
           label: 'Monitoraggio Vicki™ Avanzato'
         };
       case 'elite':
         return {
-          color: 'bg-amber-100 text-amber-700 border-amber-200',
+          color: 'bg-red-100 text-ath-clay border-red-200',
           icon: <Shield className="w-4 h-4 mr-2" />,
           label: 'Monitoraggio Vicki™ Elite'
         };
