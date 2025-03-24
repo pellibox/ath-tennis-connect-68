@@ -1,4 +1,3 @@
-
 import { useState, useEffect, useRef } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Menu, X, Activity, Zap, BookOpen, Server, HelpCircle, Users } from 'lucide-react';
@@ -28,7 +27,6 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog";
 import { toast } from "sonner";
-import ProfileTooltip from './ProfileTooltip';
 
 interface HeaderProps {
   useVickiLogo?: boolean;
@@ -212,10 +210,6 @@ const Header = ({ useVickiLogo = false }: HeaderProps) => {
                     Profilo
                   </button>
                 )}
-                
-                {!userProfile.gender || !userProfile.type ? (
-                  <ProfileTooltip buttonRef={profileButtonRef} />
-                ) : null}
               </div>
             </DialogTrigger>
             <DialogContent className="sm:max-w-md">
