@@ -13,7 +13,7 @@ const Logo = ({
   variant = 'default', 
   className = '', 
   onDarkBackground = false,
-  preserveUserProfile = false,
+  preserveUserProfile = true,  // Cambiato a true come default
   resetProfile = false
 }: LogoProps) => {
   const isFooter = variant === 'footer';
@@ -26,7 +26,7 @@ const Logo = ({
   // Fixed size for logo - consistent across all states
   const sizeClasses = isFooter ? 'h-28' : 'h-16';
   
-  // Function to clear user profile data
+  // Function to handle logo click
   const handleLogoClick = (e: React.MouseEvent) => {
     if (resetProfile) {
       // Clear user profile data from localStorage
@@ -35,7 +35,7 @@ const Logo = ({
     }
     
     // If we want to preserve navigation behavior but not profile
-    if (preserveUserProfile) {
+    if (!preserveUserProfile) {
       e.preventDefault();
       window.history.pushState({}, '', '/');
       window.dispatchEvent(new Event('popstate'));

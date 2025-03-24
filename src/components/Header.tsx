@@ -1,3 +1,4 @@
+
 import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Menu, X, Activity, Zap, BookOpen, Server, Home, Users } from 'lucide-react';
@@ -26,6 +27,7 @@ import {
   DialogDescription,
   DialogTrigger,
 } from "@/components/ui/dialog";
+import { toast } from "sonner";
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -37,6 +39,18 @@ const Header = () => {
   // Load user preferences
   const [userProfile, setUserProfile] = useState<{ gender: UserGender | null, type: UserType | null }>({ gender: null, type: null });
   const [dialogOpen, setDialogOpen] = useState(false);
+  
+  // Clear preferences on page reload
+  useEffect(() => {
+    window.addEventListener('beforeunload', () => {
+      localStorage.removeItem('ath_user_gender');
+      localStorage.removeItem('ath_user_type');
+    });
+    
+    return () => {
+      window.removeEventListener('beforeunload', () => {});
+    };
+  }, []);
   
   // Load user preferences on mount
   useEffect(() => {
@@ -53,10 +67,15 @@ const Header = () => {
     setDialogOpen(false);
   };
   
-  // Handle profile reset
+  // Handle profile reset - questa è una nuova funzione
   const handleProfileReset = () => {
-    // Clear user profile state
-    setUserProfile({ gender: null, type: null });
+    // Mostra dialog di selezione per reimpostare le preferenze
+    setDialogOpen(true);
+    
+    toast.info("Seleziona nuove preferenze di profilo", {
+      position: "bottom-center",
+      duration: 3000
+    });
   };
   
   // Handle profile deletion
@@ -147,8 +166,8 @@ const Header = () => {
           <Logo 
             variant="default" 
             onDarkBackground={false}
-            preserveUserProfile={false}
-            resetProfile={true}
+            preserveUserProfile={true}
+            resetProfile={false}
           />
         </div>
         
@@ -180,6 +199,7 @@ const Header = () => {
                     type={userProfile.type as UserType} 
                     onEditClick={() => setDialogOpen(true)}
                     onDeleteProfile={handleProfileDelete}
+                    onResetProfile={handleProfileReset}
                   />
                 </div>
               ) : (

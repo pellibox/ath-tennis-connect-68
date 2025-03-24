@@ -2,7 +2,7 @@
 import React from 'react';
 import { UserGender, UserType } from './UserTypeSelector';
 import { Button } from "@/components/ui/button";
-import { User, GraduationCap, Target, Briefcase, UserCog, Users, Edit, X } from 'lucide-react';
+import { User, GraduationCap, Target, Briefcase, UserCog, Users, Edit, X, RotateCcw } from 'lucide-react';
 import {
   HoverCard,
   HoverCardContent,
@@ -25,13 +25,15 @@ interface ProfileIndicatorProps {
   type: UserType;
   onEditClick: () => void;
   onDeleteProfile?: () => void;
+  onResetProfile?: () => void;
 }
 
 const ProfileIndicator: React.FC<ProfileIndicatorProps> = ({ 
   gender, 
   type, 
   onEditClick,
-  onDeleteProfile 
+  onDeleteProfile,
+  onResetProfile
 }) => {
   // Get icon based on user type
   const getTypeIcon = () => {
@@ -88,6 +90,14 @@ const ProfileIndicator: React.FC<ProfileIndicatorProps> = ({
     // Reload page to reset the UI
     window.location.reload();
   };
+
+  // Handle profile reset
+  const handleResetProfile = () => {
+    // If callback provided, call it
+    if (onResetProfile) {
+      onResetProfile();
+    }
+  };
   
   return (
     <HoverCard>
@@ -123,31 +133,43 @@ const ProfileIndicator: React.FC<ProfileIndicatorProps> = ({
             Contenuti personalizzati in base al tuo profilo
           </p>
           
-          <AlertDialog>
-            <AlertDialogTrigger asChild>
-              <Button variant="outline" size="sm" className="w-full mt-4 text-red-500 border-red-200 hover:bg-red-50 flex items-center justify-center gap-2">
-                <X size={14} />
-                <span>Elimina profilo</span>
-              </Button>
-            </AlertDialogTrigger>
-            <AlertDialogContent>
-              <AlertDialogHeader>
-                <AlertDialogTitle>Eliminare il profilo?</AlertDialogTitle>
-                <AlertDialogDescription>
-                  Vuoi davvero eliminare le tue preferenze di profilo? Tornerai alla navigazione standard senza contenuti personalizzati.
-                </AlertDialogDescription>
-              </AlertDialogHeader>
-              <AlertDialogFooter>
-                <AlertDialogCancel>Annulla</AlertDialogCancel>
-                <AlertDialogAction 
-                  onClick={handleDeleteProfile}
-                  className="bg-red-500 hover:bg-red-600"
-                >
-                  Elimina
-                </AlertDialogAction>
-              </AlertDialogFooter>
-            </AlertDialogContent>
-          </AlertDialog>
+          <div className="flex gap-2 mt-4">
+            <Button 
+              variant="outline" 
+              size="sm" 
+              className="flex-1 text-amber-500 border-amber-200 hover:bg-amber-50 flex items-center justify-center gap-2"
+              onClick={handleResetProfile}
+            >
+              <RotateCcw size={14} />
+              <span>Reset</span>
+            </Button>
+            
+            <AlertDialog>
+              <AlertDialogTrigger asChild>
+                <Button variant="outline" size="sm" className="flex-1 text-red-500 border-red-200 hover:bg-red-50 flex items-center justify-center gap-2">
+                  <X size={14} />
+                  <span>Elimina</span>
+                </Button>
+              </AlertDialogTrigger>
+              <AlertDialogContent>
+                <AlertDialogHeader>
+                  <AlertDialogTitle>Eliminare il profilo?</AlertDialogTitle>
+                  <AlertDialogDescription>
+                    Vuoi davvero eliminare le tue preferenze di profilo? Tornerai alla navigazione standard senza contenuti personalizzati.
+                  </AlertDialogDescription>
+                </AlertDialogHeader>
+                <AlertDialogFooter>
+                  <AlertDialogCancel>Annulla</AlertDialogCancel>
+                  <AlertDialogAction 
+                    onClick={handleDeleteProfile}
+                    className="bg-red-500 hover:bg-red-600"
+                  >
+                    Elimina
+                  </AlertDialogAction>
+                </AlertDialogFooter>
+              </AlertDialogContent>
+            </AlertDialog>
+          </div>
         </div>
       </HoverCardContent>
     </HoverCard>
