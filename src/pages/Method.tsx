@@ -13,29 +13,22 @@ const MethodPage = () => {
   const [logoYOffset, setLogoYOffset] = useState<number>(0);
   const [logoOpacity, setLogoOpacity] = useState<number>(1);
   
-  // Load user preferences on mount
   useEffect(() => {
     const { gender, type } = loadUserPreferences();
     if (gender) setUserGender(gender);
     if (type) setUserType(type);
   }, []);
   
-  // Smooth scroll functionality
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }, []);
 
-  // Handle scroll effect for the logo
   useEffect(() => {
     const handleScroll = () => {
-      // Get current scroll position
       const scrollY = window.scrollY;
       
-      // Calculate offset to move the logo up as user scrolls down
-      setLogoYOffset(scrollY * 0.2); // Adjust the multiplier to control the speed
+      setLogoYOffset(scrollY * 0.2);
       
-      // Fade out logo as user scrolls down
-      // Start fading at 100px of scroll, completely fade out by 300px
       const fadeThreshold = 100;
       const fadeOutBy = 300;
       
@@ -47,49 +40,36 @@ const MethodPage = () => {
       }
     };
 
-    // Add scroll event listener
     window.addEventListener('scroll', handleScroll);
-    
-    // Initial calculation
     handleScroll();
     
-    // Clean up
     return () => {
       window.removeEventListener('scroll', handleScroll);
     };
   }, []);
 
-  // Get Vimeo embed code based on user type
   const getVimeoEmbed = () => {
-    // Default video
     let videoEmbed = `<div style="padding:56.25% 0 0 0;position:relative;"><iframe src="https://player.vimeo.com/video/1068596952?h=b7fa539b1c&autoplay=1&loop=1&background=1&controls=0" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" style="position:absolute;top:0;left:0;width:100%;height:100%;" title="ATH Main Video"></iframe></div><script src="https://player.vimeo.com/api/player.js"></script>`;
     
-    // Female user videos based on type
     if (userGender === 'female') {
-      // Default female video (for junior, non-specific)
       videoEmbed = `<div style="padding:56.25% 0 0 0;position:relative;"><iframe src="https://player.vimeo.com/video/867339842?h=5ecc384219&autoplay=1&loop=1&background=1&controls=0" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" style="position:absolute;top:0;left:0;width:100%;height:100%;" title="Female"></iframe></div><script src="https://player.vimeo.com/api/player.js"></script>`;
       
-      // Female professional 
       if (userType === 'professional') {
         videoEmbed = `<div style="padding:56.25% 0 0 0;position:relative;"><iframe src="https://player.vimeo.com/video/1068596920?h=7f23339d4b&autoplay=1&loop=1&background=1&controls=0" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" style="position:absolute;top:0;left:0;width:100%;height:100%;" title="Female Professional"></iframe></div><script src="https://player.vimeo.com/api/player.js"></script>`;
       } 
-      // Female performance
       else if (userType === 'performance') {
         videoEmbed = `<div style="padding:56.25% 0 0 0;position:relative;"><iframe src="https://player.vimeo.com/video/1068596969?h=9bbee986ef&autoplay=1&loop=1&background=1&controls=0" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" style="position:absolute;top:0;left:0;width:100%;height:100%;" title="Female Performance"></iframe></div><script src="https://player.vimeo.com/api/player.js"></script>`;
       }
     }
     
-    // Male professional
     if (userGender === 'male' && userType === 'professional') {
       videoEmbed = `<div style="padding:56.25% 0 0 0;position:relative;"><iframe src="https://player.vimeo.com/video/1068596901?h=2ac5605207&autoplay=1&loop=1&background=1&controls=0" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" style="position:absolute;top:0;left:0;width:100%;height:100%;" title="Male Professional"></iframe></div><script src="https://player.vimeo.com/api/player.js"></script>`;
     }
     
-    // Coach video (regardless of gender)
     if (userType === 'coach') {
       videoEmbed = `<div style="padding:56.25% 0 0 0;position:relative;"><iframe src="https://player.vimeo.com/video/1068604198?h=07d9021fd2&autoplay=1&loop=1&background=1&controls=0" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" style="position:absolute;top:0;left:0;width:100%;height:100%;" title="Coach"></iframe></div><script src="https://player.vimeo.com/api/player.js"></script>`;
     }
     
-    // Parent video (regardless of gender)
     if (userType === 'parent') {
       videoEmbed = `<div style="padding:56.25% 0 0 0;position:relative;"><iframe src="https://player.vimeo.com/video/1068629360?h=46b5c52b31&autoplay=1&loop=1&background=1&controls=0" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" style="position:absolute;top:0;left:0;width:100%;height:100%;" title="Parent"></iframe></div><script src="https://player.vimeo.com/api/player.js"></script>`;
     }
@@ -97,7 +77,6 @@ const MethodPage = () => {
     return videoEmbed;
   };
 
-  // Get personalized method description based on user type
   const getPersonalizedMethodDescription = () => {
     if (!userType) {
       return "Il Metodo ATH è un sistema integrato che unisce tecnologia avanzata e coaching esperto";
@@ -121,7 +100,6 @@ const MethodPage = () => {
 
   return (
     <div className="flex flex-col min-h-screen relative">
-      {/* Overlay logo for method page */}
       <div 
         className="fixed top-[calc(25%-100px)] left-1/2 transform -translate-x-1/2 z-50 w-40 h-40 pointer-events-none transition-opacity duration-300"
         style={{
@@ -138,18 +116,18 @@ const MethodPage = () => {
       <Header />
       
       <main className="flex-grow pt-20">
-        {/* Video background with claim below it */}
-        <div className="w-full bg-black min-h-[calc(100vw*9/16+100px)] relative">
+        <div className="w-full bg-black min-h-[calc(100vw*9/16)] relative">
           <div dangerouslySetInnerHTML={{ __html: getVimeoEmbed() }} />
-          <div className="absolute bottom-0 left-0 right-0 z-10 p-4 bg-gradient-to-t from-black/80 to-transparent h-[300px] flex items-end">
-            <div className="max-w-3xl mx-auto text-center mb-6">
-              <h2 className="text-white text-xl md:text-2xl font-swiss uppercase mb-2">
-                IL METODO:
-              </h2>
-              <p className="text-white text-xl md:text-2xl opacity-90 font-swiss drop-shadow-md animate-fade-in">
-                Tecnologia e competenza umana al servizio dell'eccellenza tennistica
-              </p>
-            </div>
+        </div>
+        
+        <div className="w-full bg-black py-16">
+          <div className="max-w-3xl mx-auto text-center">
+            <h2 className="text-white text-xl md:text-2xl font-swiss uppercase mb-2">
+              IL METODO:
+            </h2>
+            <p className="text-white text-xl md:text-2xl opacity-90 font-swiss drop-shadow-md">
+              Tecnologia e competenza umana al servizio dell'eccellenza tennistica
+            </p>
           </div>
         </div>
         
@@ -191,7 +169,6 @@ const MethodPage = () => {
               </RevealAnimation>
             </div>
             
-            {/* Personalized content based on user type */}
             {userType && (
               <RevealAnimation>
                 <div className="bg-ath-gray p-8 rounded-lg mb-16">
