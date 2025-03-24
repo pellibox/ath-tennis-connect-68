@@ -1,4 +1,3 @@
-
 import { useEffect } from 'react';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
@@ -80,7 +79,8 @@ const facilities = [
       "Spogliatoi e aree recovery con ice bath, sauna e bagno turco",
       "Ristorante con dehor e vista su campo centrale",
       "Aree direzionali, locali medici e proshop"
-    ]
+    ],
+    vimeoEmbed: `<div style="position:relative;padding-bottom:56.25%;height:0;overflow:hidden;width:100%;"><iframe src="https://player.vimeo.com/video/1068882045?h=ec85ec8e85&autoplay=1&loop=1&background=1&autopause=0&player_id=0&app_id=58479&controls=0" style="position:absolute;top:0;left:0;width:100%;height:100%;" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media" title="ATH Headquarters Video"></iframe></div><script src="https://player.vimeo.com/api/player.js"></script>`
   }
 ];
 

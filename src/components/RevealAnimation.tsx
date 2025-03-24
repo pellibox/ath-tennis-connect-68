@@ -1,5 +1,5 @@
 
-import { useEffect, useRef, useState, ReactNode } from 'react';
+import { useEffect, useRef, useState, ReactNode, CSSProperties } from 'react';
 import { cn } from '@/lib/utils';
 
 interface RevealAnimationProps {
@@ -8,6 +8,7 @@ interface RevealAnimationProps {
   delay?: number;
   threshold?: number;
   direction?: 'up' | 'down' | 'left' | 'right';
+  style?: CSSProperties;
 }
 
 const RevealAnimation = ({
@@ -15,7 +16,8 @@ const RevealAnimation = ({
   className,
   delay = 0,
   threshold = 0.1,
-  direction = 'up'
+  direction = 'up',
+  style
 }: RevealAnimationProps) => {
   const [isVisible, setIsVisible] = useState(false);
   const ref = useRef<HTMLDivElement>(null);
@@ -63,7 +65,8 @@ const RevealAnimation = ({
         className
       )}
       style={{
-        transitionDelay: `${delay}ms`
+        transitionDelay: `${delay}ms`,
+        ...style
       }}
     >
       {children}

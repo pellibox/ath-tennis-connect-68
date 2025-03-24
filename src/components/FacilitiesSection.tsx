@@ -55,10 +55,9 @@ const FacilitiesSection = ({
             >
               <RevealAnimation
                 delay={0.2}
-                className="md:[grid-area:media] relative h-full"
-                style={{
-                  gridArea: "media",
-                }}
+                className={cn(
+                  "md:[grid-area:media] relative h-full"
+                )}
               >
                 {facility.vimeoEmbed ? (
                   <div className="relative rounded-xl overflow-hidden shadow-lg w-full h-full" style={{ minHeight: "300px" }}
@@ -71,19 +70,21 @@ const FacilitiesSection = ({
                       alt={facility.title}
                       className="w-full h-full object-cover object-center max-h-[500px]"
                     />
-                    <div className="absolute bottom-3 right-3">
-                      <VickiPoweredBadge />
-                    </div>
+                    {/* Only show VickiPoweredBadge for the first three facilities (Clay courts, Central court and Synthetic courts) */}
+                    {index < 3 && (
+                      <div className="absolute bottom-3 right-3">
+                        <VickiPoweredBadge />
+                      </div>
+                    )}
                   </div>
                 )}
               </RevealAnimation>
 
               <RevealAnimation
                 delay={0.4}
-                className="md:[grid-area:content]"
-                style={{
-                  gridArea: "content",
-                }}
+                className={cn(
+                  "md:[grid-area:content]"
+                )}
               >
                 <div className="h-full flex flex-col justify-center">
                   <h3 className="text-2xl md:text-3xl font-bold mb-4 font-swiss">
