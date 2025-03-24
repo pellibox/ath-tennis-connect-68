@@ -168,7 +168,7 @@ const Programs = () => {
       title: 'Professionisti',
       description: 'Supporto completo per atleti professionisti con analisi avanzata e ottimizzazione della performance.',
       image: '/lovable-uploads/53047a4d-087d-4e68-942b-d441b33bf6ab.png',
-      vimeoEmbed: '<div style="padding:56.25% 0 0 0;position:relative;"><iframe src="https://player.vimeo.com/video/1068596901?h=2ac5605207&autoplay=1&loop=1&title=0&byline=0&portrait=0&controls=0" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen style="position:absolute;top:0;left:0;width:100%;height:100%;"></iframe></div>',
+      vimeoEmbed: '<div style="padding:56.25% 0 0 0;position:relative;"><iframe src="https://player.vimeo.com/video/1068596901?h=2ac5605207&autoplay=1&loop=1&title=0&byline=0&portrait=0&controls=0" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen style="position:absolute;top:0;left:0;width:100%;height:100%;" title="Male Professional"></iframe></div>',
       link: '/programs/professional',
       features: [
         'Allenamento completamente personalizzato su tutti i fronti',
@@ -186,7 +186,7 @@ const Programs = () => {
       title: 'Performance Analysis',
       description: 'Analisi completa del gioco con tecnologia avanzata e feedback personalizzato.',
       image: 'https://images.unsplash.com/photo-1549060279-7e168fcee0c2?q=80&w=2070&auto=format&fit=crop',
-      vimeoEmbed: '<div style="padding:56.25% 0 0 0;position:relative;"><iframe src="https://player.vimeo.com/video/1068785493?h=fe90d50dae&autoplay=1&loop=1&title=0&byline=0&portrait=0&controls=0" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen style="position:absolute;top:0;left:0;width:100%;height:100%;"></iframe></div>',
+      vimeoEmbed: '<div style="padding:56.25% 0 0 0;position:relative;"><iframe src="https://player.vimeo.com/video/1068785493?h=fe90d50dae&autoplay=1&loop=1&title=0&byline=0&portrait=0&controls=0" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen style="position:absolute;top:0;left:0;width:100%;height:100%;" title="Performance Analysis"></iframe></div>',
       link: '/programs/analysis',
       features: [
         'Analisi biomeccanica completa',
@@ -204,7 +204,7 @@ const Programs = () => {
       title: 'Amatori',
       description: 'Percorsi flessibili per giocatori amatoriali che vogliono migliorare le proprie capacità.',
       image: 'https://images.unsplash.com/photo-1535131749006-b7f58c990c4b?q=80&w=2070&auto=format&fit=crop',
-      vimeoEmbed: '<div style="padding:56.25% 0 0 0;position:relative;"><iframe src="https://player.vimeo.com/video/1068788229?h=5f3c14e5ec&autoplay=1&loop=1&title=0&byline=0&portrait=0&controls=0" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen style="position:absolute;top:0;left:0;width:100%;height:100%;"></iframe></div>',
+      vimeoEmbed: '<div style="padding:56.25% 0 0 0;position:relative;"><iframe src="https://player.vimeo.com/video/1068788229?h=5f3c14e5ec&autoplay=1&loop=1&title=0&byline=0&portrait=0&controls=0" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen style="position:absolute;top:0;left:0;width:100%;height:100%;" title="Amatori"></iframe></div>',
       link: '/programs/amateur',
       features: [
         'Allenamento personalizzato anche su base occasionale',
@@ -508,19 +508,11 @@ const Programs = () => {
           ]}
           reversed={true}
         />
-        
-        <section className="py-20 px-6 lg:px-10 bg-ath-gray">
-          <div className="max-w-7xl mx-auto">
-            <RevealAnimation>
-              <h2 className="text-3xl md:text-4xl font-display text-center mb-4">Prezzi Programmi</h2>
-            </RevealAnimation>
-            
-            <RevealAnimation delay={100}>
-              <p className="text-lg text-gray-600 max-w-3xl mx-auto text-center mb-8">
-                I corsi seguono una programmazione annuale. I programmi agonistici si sviluppano su 48 settimane, mentre i corsi giovanili e propedeutici seguono un calendario su 40 settimane.
-              </p>
-            </RevealAnimation>
-            
-            <RevealAnimation delay={120}>
-              <h3 className="text-2xl font-display text-center mb-8">Agonisti</h3>
-            </RevealAnimation>
+      </main>
+      
+      <Footer />
+    </div>
+  );
+};
+
+export default Programs;
