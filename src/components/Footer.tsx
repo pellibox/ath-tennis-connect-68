@@ -34,10 +34,10 @@ const Footer = () => {
           <h3 className="text-lg font-medium mb-6">{t('footer.programs')}</h3>
           <ul className="space-y-3">
             <li><Link to="/programs/junior" className="text-gray-400 hover:text-white text-sm transition-colors font-swiss">{t('footer.junior')}</Link></li>
-            <li><Link to="/programs/elite" className="text-gray-400 hover:text-white text-sm transition-colors font-swiss">{t('footer.elite')}</Link></li>
-            <li><Link to="/programs/adult" className="text-gray-400 hover:text-white text-sm transition-colors font-swiss">{t('footer.adult')}</Link></li>
-            <li><Link to="/programs/camps" className="text-gray-400 hover:text-white text-sm transition-colors font-swiss">{t('footer.camps')}</Link></li>
-            <li><Link to="/programs/private" className="text-gray-400 hover:text-white text-sm transition-colors font-swiss">{t('footer.private')}</Link></li>
+            <li><Link to="/programs/performance-3" className="text-gray-400 hover:text-white text-sm transition-colors font-swiss">Performance</Link></li>
+            <li><Link to="/programs/adult-training" className="text-gray-400 hover:text-white text-sm transition-colors font-swiss">Amatori</Link></li>
+            <li><Link to="/programs/camps" className="text-gray-400 hover:text-white text-sm transition-colors font-swiss">Camp Estivi</Link></li>
+            <li><Link to="/programs/personal" className="text-gray-400 hover:text-white text-sm transition-colors font-swiss">Lezioni Private</Link></li>
           </ul>
         </div>
 
