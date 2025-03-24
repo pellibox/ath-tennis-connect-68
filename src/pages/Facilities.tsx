@@ -1,4 +1,3 @@
-
 import { useEffect } from 'react';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
@@ -12,12 +11,11 @@ const facilities = [
   {
     id: "facility-1",
     title: "Campo Centrale ATP",
-    description: "Campo principale con sistema Vicki™ integrato, tribuna spettatori e standard ATP per tornei internazionali.",
+    description: "Campo principale con tribuna spettatori e standard ATP per tornei internazionali.",
     image: "/lovable-uploads/d4ba3935-f901-4a99-972b-6a86e47787db.png",
     features: [
       "Dimensioni ATP standard",
-      "Illuminazione LED ad alta efficienza",
-      "Condizionamento e ventilazione ottimizzati"
+      "Illuminazione LED ad alta efficienza"
     ]
   },
   {
