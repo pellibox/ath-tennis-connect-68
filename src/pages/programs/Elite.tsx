@@ -1,39 +1,23 @@
-
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import { useLanguage } from '@/contexts/LanguageContext';
+import { useProfile } from '@/contexts/ProfileContext';
 import Hero from '@/components/Hero';
 import RevealAnimation from '@/components/RevealAnimation';
-import { UserGender, UserType, loadUserPreferences } from '@/components/UserTypeSelector';
+import { getVimeoEmbed } from '@/utils/videoUtils';
 
 const EliteProgram = () => {
   const { t } = useLanguage();
-  const [userGender, setUserGender] = useState<UserGender | null>(null);
-  const [userType, setUserType] = useState<UserType | null>(null);
-  const [vimeoEmbed, setVimeoEmbed] = useState<string>('');
+  const { userGender, userType } = useProfile();
   
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
-    
-    // Load user preferences
-    const { gender, type } = loadUserPreferences();
-    if (gender) setUserGender(gender);
-    if (type) setUserType(type);
   }, []);
   
-  // Update vimeo embed when user preferences change
-  useEffect(() => {
-    // Only show video for professional users, else show image
-    if (userType === 'professional') {
-      const embed = userGender === 'female'
-        ? '<div style="padding:56.25% 0 0 0;position:relative;"><iframe src="https://player.vimeo.com/video/1068596920?h=7f23339d4b&autoplay=1&loop=1&title=0&byline=0&portrait=0&background=1&controls=0" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" style="position:absolute;top:0;left:0;width:100%;height:100%;" title="Female Professional"></iframe></div><script src="https://player.vimeo.com/api/player.js"></script>'
-        : '<div style="padding:56.25% 0 0 0;position:relative;"><iframe src="https://player.vimeo.com/video/1068596901?h=2ac5605207&autoplay=1&loop=1&title=0&byline=0&portrait=0&background=1&controls=0" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" style="position:absolute;top:0;left:0;width:100%;height:100%;" title="Male Professional"></iframe></div><script src="https://player.vimeo.com/api/player.js"></script>';
-      setVimeoEmbed(embed);
-    } else {
-      setVimeoEmbed('');
-    }
-  }, [userGender, userType]);
+  // Determine if we should show video (only for professional users)
+  const shouldShowVideo = userType === 'professional';
+  const vimeoEmbed = shouldShowVideo ? getVimeoEmbed(userGender, userType, false) : '';
 
   return (
     <div className="flex flex-col min-h-screen">

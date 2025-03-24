@@ -1,3 +1,4 @@
+
 import { useState, useEffect, useRef } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Menu, X, Activity, Zap, BookOpen, Server, HelpCircle, Users } from 'lucide-react';
@@ -5,6 +6,7 @@ import Logo from './Logo';
 import { cn } from '@/lib/utils';
 import LanguageSwitcher from './LanguageSwitcher';
 import { useLanguage } from '@/contexts/LanguageContext';
+import { useProfile } from '@/contexts/ProfileContext';
 import {
   NavigationMenu,
   NavigationMenuContent,
@@ -17,7 +19,7 @@ import {
 import { useIsMobile } from '@/hooks/use-mobile';
 import ProfileIndicator from './ProfileIndicator';
 import UserTypeSelector from './UserTypeSelector';
-import { UserGender, UserType, loadUserPreferences } from './UserTypeSelector';
+import { UserGender, UserType } from './UserTypeSelector';
 import {
   Dialog,
   DialogContent,
@@ -38,39 +40,28 @@ const Header = ({ useVickiLogo = false }: HeaderProps) => {
   const location = useLocation();
   const { t } = useLanguage();
   const isMobile = useIsMobile();
+  const { userGender, userType, updateProfile, resetProfile, deleteProfile } = useProfile();
   
   const isHomePage = location.pathname === '/';
   const isAboutPage = location.pathname === '/about';
   const isMethodPage = location.pathname === '/method';
   const isTechnologyPage = location.pathname === '/technology';
   
-  const [userProfile, setUserProfile] = useState<{ gender: UserGender | null, type: UserType | null }>({ gender: null, type: null });
   const [dialogOpen, setDialogOpen] = useState(false);
   const profileButtonRef = useRef(null);
-  
-  useEffect(() => {
-    window.addEventListener('beforeunload', () => {
-      localStorage.removeItem('ath_user_gender');
-      localStorage.removeItem('ath_user_type');
-    });
-    
-    return () => {
-      window.removeEventListener('beforeunload', () => {});
-    };
-  }, []);
-  
-  useEffect(() => {
-    const preferences = loadUserPreferences();
-    setUserProfile(preferences);
-  }, []);
   
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
   };
   
   const handleProfileComplete = (gender: UserGender, type: UserType) => {
-    setUserProfile({ gender, type });
+    updateProfile(gender, type);
     setDialogOpen(false);
+    
+    toast.success(`Benvenuto! Contenuto personalizzato per ${type}`, {
+      position: "bottom-center",
+      duration: 3000
+    });
   };
   
   const handleProfileReset = () => {
@@ -83,7 +74,7 @@ const Header = ({ useVickiLogo = false }: HeaderProps) => {
   };
   
   const handleProfileDelete = () => {
-    setUserProfile({ gender: null, type: null });
+    deleteProfile();
   };
 
   useEffect(() => {
@@ -198,10 +189,10 @@ const Header = ({ useVickiLogo = false }: HeaderProps) => {
           <Dialog open={dialogOpen} onOpenChange={setDialogOpen}>
             <DialogTrigger asChild>
               <div ref={profileButtonRef} className="mr-4 cursor-pointer relative">
-                {userProfile.gender && userProfile.type ? (
+                {userGender && userType ? (
                   <ProfileIndicator 
-                    gender={userProfile.gender as UserGender} 
-                    type={userProfile.type as UserType} 
+                    gender={userGender as UserGender} 
+                    type={userType as UserType} 
                     onEditClick={() => setDialogOpen(true)}
                     onDeleteProfile={handleProfileDelete}
                     onResetProfile={handleProfileReset}
@@ -222,8 +213,8 @@ const Header = ({ useVickiLogo = false }: HeaderProps) => {
               </DialogHeader>
               <UserTypeSelector 
                 onSelectionComplete={handleProfileComplete}
-                initialGender={userProfile.gender || undefined}
-                initialType={userProfile.type || undefined}
+                initialGender={userGender || undefined}
+                initialType={userType || undefined}
               />
             </DialogContent>
           </Dialog>

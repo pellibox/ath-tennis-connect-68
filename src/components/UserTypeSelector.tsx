@@ -56,16 +56,8 @@ const UserTypeSelector: React.FC<UserTypeSelectorProps> = ({
   };
   
   const handleTypeSubmit = (data: UserTypeForm) => {
-    // Save preferences to localStorage
-    saveUserPreferences(data.gender, data.type);
-    
-    // Call the callback
+    // Call the callback with the selected gender and type
     onSelectionComplete(data.gender, data.type);
-    
-    toast.success(`Benvenuto! Contenuto personalizzato per ${data.type}`, {
-      position: "bottom-center",
-      duration: 3000
-    });
   };
 
   return (
