@@ -18,7 +18,7 @@ import { useProfile } from '@/contexts/ProfileContext';
 
 // Define types for user selections
 export type UserGender = 'male' | 'female';
-export type UserType = 'junior' | 'performance' | 'professional' | 'coach' | 'parent' | 'adult';
+export type UserType = 'junior' | 'performance' | 'professional' | 'coach' | 'parent' | 'adult' | 'camps';
 
 interface UserTypeSelectorProps {
   onSelectionComplete: (gender: UserGender, type: UserType) => void;
@@ -211,6 +211,16 @@ const UserTypeSelector: React.FC<UserTypeSelectorProps> = ({
           description="Adulto di atleta"
           selected={selectedType === 'adult'} 
           onClick={() => handleTypeSelect('adult')} 
+          genderColor={selectedGender === 'male' ? 'blue' : 'pink'}
+        />
+        
+        <TypeButton 
+          type="camps" 
+          icon={<Mail size={24} />} 
+          label="Camps" 
+          description="Camps"
+          selected={selectedType === 'camps'} 
+          onClick={() => handleTypeSelect('camps')} 
           genderColor={selectedGender === 'male' ? 'blue' : 'pink'}
         />
       </div>
