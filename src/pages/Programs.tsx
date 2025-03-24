@@ -7,6 +7,7 @@ import AboutSection from '@/components/AboutSection';
 import RevealAnimation from '@/components/RevealAnimation';
 import ContactSection from '@/components/ContactSection';
 import JoinRevolutionSection from '@/components/JoinRevolutionSection';
+import PricingTables from '@/components/PricingTables';
 import { Link } from 'react-router-dom';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { loadUserPreferences, UserGender, UserType } from '@/components/UserTypeSelector';
@@ -72,7 +73,7 @@ const Programs = () => {
     }
     
     if (userGender === 'male' && userType === 'professional') {
-      videoEmbed = `<div style="padding:56.25% 0 0 0;position:relative;"><iframe src="https://player.vimeo.com/video/1068596901?h=2ac5605207&autoplay=1&loop=1&title=0&byline=0&portrait=0&background=1&controls=0" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" style="position:absolute;top:0;left:0;width:100%;height:100%;" title="Male Professional"></iframe></div><script src="https://player.vimeo.com/api/player.js"></script>`;
+      videoEmbed = `<div style="padding:56.25% 0 0 0;position:relative;"><iframe src="https://player.vimeo.com/video/1068596901?h=2ac5605207&autoplay=1&loop=1&title=0&byline=0&portrait=0&controls=0" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" style="position:absolute;top:0;left:0;width:100%;height:100%;" title="Male Professional"></iframe></div><script src="https://player.vimeo.com/api/player.js"></script>`;
     }
     
     if (userType === 'coach') {
@@ -508,6 +509,8 @@ const Programs = () => {
           ]}
           reversed={true}
         />
+        
+        <PricingTables />
       </main>
       
       <Footer />
