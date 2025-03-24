@@ -1,4 +1,3 @@
-
 import { useEffect, useState } from 'react';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
@@ -75,7 +74,7 @@ const JuniorProgram = () => {
           'Aggiornamenti regolari sull\'evoluzione tecnica e psico-fisica del ragazzo/a',
           'Canali diretti con il coach per ricevere feedback chiari e condividere obiettivi',
           'Analisi statistiche semplificate con visione d\'insieme dell\'andamento',
-          'Supporto pratico per accompagnare il percorso sportivo senza pressioni inutili',
+          'Supporto pratico per accompagnare il percorso sportivo',
           'Filtraggio dei dati da parte dei coach per comunicazioni non interpretative o fuorvianti'
         ],
         monitoringLevel: 'basic' as MonitoringLevel,
