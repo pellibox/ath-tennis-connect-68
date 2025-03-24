@@ -11,6 +11,7 @@ interface LogoProps {
   resetProfile?: boolean;
   useVickiLogo?: boolean;
   isInMenu?: boolean;
+  isCentered?: boolean;
 }
 
 const Logo = ({ 
@@ -20,7 +21,8 @@ const Logo = ({
   preserveUserProfile = true,
   resetProfile = false,
   useVickiLogo = false,
-  isInMenu = false
+  isInMenu = false,
+  isCentered = false
 }: LogoProps) => {
   const isFooter = variant === 'footer';
   const location = useLocation();

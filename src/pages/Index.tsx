@@ -96,7 +96,7 @@ const HomePage = () => {
       {/* Centered logo with improved positioning */}
       <div 
         ref={logoRef}
-        className="fixed left-0 right-0 flex justify-center z-50 pointer-events-none transition-opacity duration-300"
+        className={`fixed z-50 pointer-events-none transition-opacity duration-300 ${isMobile ? 'left-8' : 'left-0 right-0 flex justify-center'}`}
         style={{
           top: isMobile ? '180px' : '220px', // Positioned lower on the page
           opacity: logoOpacity
@@ -111,6 +111,7 @@ const HomePage = () => {
           <Logo 
             onDarkBackground={true} 
             className="w-full h-auto"
+            isCentered={true}
           />
         </div>
       </div>
