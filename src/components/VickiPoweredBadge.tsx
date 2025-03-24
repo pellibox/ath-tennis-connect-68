@@ -24,7 +24,7 @@ const VickiPoweredBadge = ({
     return (
       <div className={cn(
         'inline-flex items-center justify-center rounded-full',
-        small ? 'w-8 h-8' : 'w-10 h-10',
+        small ? 'w-10 h-10' : 'w-12 h-12',
         'bg-black',
         className
       )}>
@@ -33,7 +33,7 @@ const VickiPoweredBadge = ({
           alt="Vicki" 
           className={cn(
             'rounded-full',
-            small ? 'w-7 h-7' : 'w-9 h-9'
+            small ? 'w-8 h-8' : 'w-10 h-10'
           )}
         />
       </div>
