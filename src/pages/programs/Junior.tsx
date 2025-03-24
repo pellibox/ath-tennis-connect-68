@@ -6,7 +6,7 @@ import ProgramsSection from '@/components/ProgramsSection';
 import RevealAnimation from '@/components/RevealAnimation';
 import { UserGender, UserType, loadUserPreferences } from '@/components/UserTypeSelector';
 import Hero from '@/components/Hero';
-import VickiMonitoringBadge from '@/components/VickiMonitoringBadge';
+import VickiMonitoringBadge, { MonitoringLevel } from '@/components/VickiMonitoringBadge';
 
 const JuniorProgram = () => {
   const { t } = useLanguage();
