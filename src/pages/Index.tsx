@@ -107,6 +107,7 @@ const HomePage = () => {
             width: isMobile ? '120px' : '160px',
             transform: `translateY(-${logoYOffset}px)`
           }}
+          className="flex justify-center" // Added to ensure centering
         >
           <Logo 
             onDarkBackground={true} 
