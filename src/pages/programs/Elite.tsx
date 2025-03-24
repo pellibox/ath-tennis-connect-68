@@ -1,3 +1,4 @@
+
 import { useEffect } from 'react';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
@@ -7,6 +8,7 @@ import Hero from '@/components/Hero';
 import RevealAnimation from '@/components/RevealAnimation';
 import { getVimeoEmbed } from '@/utils/videoUtils';
 import VickiMonitoringBadge from '@/components/VickiMonitoringBadge';
+import VickiPoweredBadge from '@/components/VickiPoweredBadge';
 
 const EliteProgram = () => {
   const { t } = useLanguage();
@@ -27,8 +29,8 @@ const EliteProgram = () => {
       <main className="flex-grow">
         <div className="relative">
           <Hero 
-            title={t('footer.elite')}
-            subtitle={t('programs.elite.desc')}
+            title="Performance"
+            subtitle="Supporto completo per atleti professionisti con analisi avanzata e ottimizzazione della performance."
             vimeoEmbed={vimeoEmbed}
             imageSrc={vimeoEmbed ? undefined : "/lovable-uploads/53047a4d-087d-4e68-942b-d441b33bf6ab.png"}
             buttons={[
@@ -43,13 +45,14 @@ const EliteProgram = () => {
           <div className="w-full bg-black py-16 relative" style={{ height: '300px' }}>
             <div className="max-w-6xl mx-auto px-6 h-full flex flex-col justify-center">
               <div className="flex items-center mb-2">
-                <h2 className="text-white text-lg font-display mr-3">ELITE:</h2>
+                <h2 className="text-white text-lg font-display mr-3">PERFORMANCE:</h2>
                 <p className="text-white text-lg font-swiss max-w-3xl">
-                  {t('programs.elite.desc')}
+                  Supporto completo per atleti professionisti con analisi avanzata e ottimizzazione della performance.
                 </p>
               </div>
-              <div className="mt-4">
+              <div className="mt-4 flex flex-wrap gap-3">
                 <VickiMonitoringBadge level="elite" className="bg-opacity-20 border-opacity-30 text-white" />
+                <VickiPoweredBadge className="bg-opacity-20 border-opacity-30 text-white" />
               </div>
             </div>
           </div>
@@ -59,16 +62,17 @@ const EliteProgram = () => {
           <div className="mb-12">
             <RevealAnimation>
               <div className="flex flex-wrap items-center gap-3 mb-6">
-                <h2 className="text-3xl font-display">{t('programs.elite')}</h2>
+                <h2 className="text-3xl font-display">Performance</h2>
                 <VickiMonitoringBadge level="elite" />
+                <VickiPoweredBadge />
               </div>
             </RevealAnimation>
             <RevealAnimation delay={100}>
-              <p className="text-lg mb-6">{t('programs.elite.desc')}</p>
+              <p className="text-lg mb-6">Supporto completo per atleti professionisti con analisi avanzata e ottimizzazione della performance.</p>
             </RevealAnimation>
             <RevealAnimation delay={150}>
               <p className="mb-4">
-                Il nostro programma Elite rappresenta il massimo livello di supporto per atleti professionisti o con ambizioni professionali, 
+                Il nostro programma Performance rappresenta il massimo livello di supporto per atleti professionisti o con ambizioni professionali, 
                 offrendo un ambiente di allenamento innovativo che integra tecnologia avanzata e competenza umana di alto livello.
               </p>
             </RevealAnimation>
@@ -116,4 +120,3 @@ const EliteProgram = () => {
 };
 
 export default EliteProgram;
-

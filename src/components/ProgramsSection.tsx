@@ -6,6 +6,7 @@ import { useState, useEffect, useRef } from 'react';
 import { HoverCard, HoverCardTrigger, HoverCardContent } from '@/components/ui/hover-card';
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from '@/components/ui/collapsible';
 import VickiMonitoringBadge, { MonitoringLevel } from './VickiMonitoringBadge';
+import VickiPoweredBadge from './VickiPoweredBadge';
 
 interface Program {
   id: string;
@@ -17,6 +18,8 @@ interface Program {
   link: string;
   features?: string[];
   monitoringLevel?: MonitoringLevel;
+  vickiPowered?: boolean;
+  vickiOnRequest?: boolean;
 }
 
 interface ProgramCategory {
@@ -46,28 +49,14 @@ const ProgramsSection = ({
   gridLayout = 'standard',
   categoryCollapsible = false
 }: ProgramsSectionProps) => {
-  // State to track failed images
   const [failedImages, setFailedImages] = useState<Record<string, boolean>>({});
-  
-  // State to track hover for video cards
   const [hoveredCard, setHoveredCard] = useState<string | null>(null);
-  
-  // State to track if videos are ready to play
   const [videosReady, setVideosReady] = useState<Record<string, boolean>>({});
-  
-  // State to track if videos are actually playing
   const [videosPlaying, setVideosPlaying] = useState<Record<string, boolean>>({});
-  
-  // State to track black overlay visibility
   const [blackOverlay, setBlackOverlay] = useState<Record<string, boolean>>({});
-  
-  // State to track open categories (for collapsible mode)
   const [openCategories, setOpenCategories] = useState<Record<string, boolean>>({});
-  
-  // Refs for video elements
   const videoRefs = useRef<Record<string, HTMLVideoElement | null>>({});
-  
-  // Generate fallback image URL based on program title
+
   const getFallbackImage = (program: Program) => {
     return `https://source.unsplash.com/featured/800x600/?tennis,${encodeURIComponent(program.title.toLowerCase())}`;
   };
@@ -77,7 +66,6 @@ const ProgramsSection = ({
     setFailedImages(prev => ({ ...prev, [id]: true }));
   };
 
-  // Debug vimeo embeds on mount
   useEffect(() => {
     if (programs) {
       programs.forEach(program => {
@@ -97,30 +85,19 @@ const ProgramsSection = ({
     }
   }, [programs, categories]);
 
-  // Handle mouse enter for video cards
   const handleMouseEnter = (id: string) => {
     console.log(`Mouse enter for program ID: ${id}`);
     setHoveredCard(id);
-    
-    // Show black overlay immediately
     setBlackOverlay(prev => ({ ...prev, [id]: true }));
-    
-    // If it's a standard video element
     if (videoRefs.current[id]) {
-      // Set currentTime to 0 to ensure we start from the beginning
       videoRefs.current[id]!.currentTime = 0;
-      
-      // Preload the video
       videoRefs.current[id]!.load();
-      
-      // Wait a moment for the black overlay to be visible, then try to play
       setTimeout(() => {
         try {
           const playPromise = videoRefs.current[id]?.play();
           if (playPromise !== undefined) {
             playPromise.then(() => {
               console.log(`Video playing for ID: ${id}`);
-              // Wait a short moment, then show the video (fade from black to video)
               setTimeout(() => {
                 setVideosPlaying(prev => ({ ...prev, [id]: true }));
               }, 300);
@@ -131,27 +108,20 @@ const ProgramsSection = ({
         } catch (error) {
           console.error("Error playing video:", error);
         }
-      }, 200); // Short delay before attempting to play
+      }, 200);
     }
   };
 
-  // Handle mouse leave for video cards
   const handleMouseLeave = (id: string) => {
     console.log(`Mouse leave for program ID: ${id}`);
     setHoveredCard(null);
-    
-    // Hide the video first
     setVideosPlaying(prev => ({ ...prev, [id]: false }));
-    
-    // Wait a bit to hide the black overlay 
     setTimeout(() => {
       setBlackOverlay(prev => ({ ...prev, [id]: false }));
     }, 200);
-    
     if (videoRefs.current[id]) {
       try {
         videoRefs.current[id]?.pause();
-        // Reset video to beginning for next hover
         videoRefs.current[id]!.currentTime = 0;
       } catch (error) {
         console.error("Error pausing video:", error);
@@ -159,13 +129,11 @@ const ProgramsSection = ({
     }
   };
 
-  // Handle video loaded metadata
   const handleVideoLoaded = (id: string) => {
     console.log(`Video loaded for ID: ${id}`);
     setVideosReady(prev => ({ ...prev, [id]: true }));
   };
 
-  // Toggle category open/closed state
   const toggleCategory = (categoryId: string) => {
     setOpenCategories(prev => ({
       ...prev,
@@ -173,65 +141,48 @@ const ProgramsSection = ({
     }));
   };
 
-  // Initialize all categories as open
   useEffect(() => {
     if (categories) {
       const initialOpenStates: Record<string, boolean> = {};
       categories.forEach(category => {
-        initialOpenStates[category.id] = true; // Start with all categories open
+        initialOpenStates[category.id] = true;
       });
       setOpenCategories(initialOpenStates);
     }
   }, [categories]);
 
-  // Function to clean Vimeo embed code
   const getProcessedVimeoEmbed = (embed: string, isHovered: boolean) => {
-    // Ensure single quotes are converted to double quotes for proper parsing
     let processedEmbed = embed.replace(/'/g, '"');
-    
-    // Extract the iframe src URL
     const srcMatch = processedEmbed.match(/src="([^"]+)"/);
     if (srcMatch && srcMatch[1]) {
       const originalSrc = srcMatch[1];
       let newSrc = originalSrc;
-      
-      // Add or modify parameters
       if (isHovered) {
-        // When hovered, ensure autoplay is on
         if (newSrc.includes('autoplay=0')) {
           newSrc = newSrc.replace('autoplay=0', 'autoplay=1');
         } else if (!newSrc.includes('autoplay=')) {
           newSrc += (newSrc.includes('?') ? '&' : '?') + 'autoplay=1';
         }
       } else {
-        // When not hovered, ensure autoplay is off
         if (newSrc.includes('autoplay=1')) {
           newSrc = newSrc.replace('autoplay=1', 'autoplay=0');
         }
       }
-      
-      // Always ensure these parameters
       if (!newSrc.includes('loop=')) {
         newSrc += (newSrc.includes('?') ? '&' : '?') + 'loop=1';
       }
-      
       if (!newSrc.includes('background=')) {
         newSrc += (newSrc.includes('?') ? '&' : '?') + 'background=1';
       }
-      
       if (!newSrc.includes('controls=')) {
         newSrc += (newSrc.includes('?') ? '&' : '?') + 'controls=0';
       }
-      
-      // Replace the original src with the new one
       processedEmbed = processedEmbed.replace(originalSrc, newSrc);
       console.log(`Processed Vimeo embed for hover=${isHovered}: ${newSrc.substring(0, 100)}...`);
     }
-    
     return processedEmbed;
   };
 
-  // Render a single program card
   const renderProgramCard = (program: Program, index: number) => (
     <RevealAnimation key={program.id} delay={index * 50} className="h-full">
       <div 
@@ -262,7 +213,6 @@ const ProgramsSection = ({
             />
           ) : program.videoSrc ? (
             <>
-              {/* Initial background image (always visible when video not playing) */}
               <img 
                 src={failedImages[program.id] ? getFallbackImage(program) : program.image} 
                 alt={program.title}
@@ -272,8 +222,6 @@ const ProgramsSection = ({
                 )}
                 onError={() => handleImageError(program.id)}
               />
-              
-              {/* Black overlay (visible during transition) */}
               <div 
                 className="absolute inset-0 bg-black transition-opacity duration-300"
                 style={{
@@ -281,8 +229,6 @@ const ProgramsSection = ({
                   zIndex: 1
                 }}
               ></div>
-              
-              {/* Video element (initially hidden) */}
               <video 
                 ref={el => videoRefs.current[program.id] = el}
                 src={program.videoSrc}
@@ -296,8 +242,6 @@ const ProgramsSection = ({
                   zIndex: 2
                 }}
               />
-              
-              {/* Play button overlay */}
               <div className={cn(
                 "absolute inset-0 z-10 flex items-center justify-center bg-black/30 transition-opacity duration-300",
                 hoveredCard === program.id ? "opacity-0" : "opacity-100"
@@ -319,9 +263,17 @@ const ProgramsSection = ({
         <div className="flex flex-col flex-grow p-6">
           <div className="flex flex-wrap items-start justify-between mb-3 gap-2">
             <h3 className="text-xl font-medium text-ath-clay">{program.title}</h3>
-            {program.monitoringLevel && (
-              <VickiMonitoringBadge level={program.monitoringLevel} showLabel={false} className="mt-1" />
-            )}
+            <div className="flex flex-wrap gap-2">
+              {program.monitoringLevel && (
+                <VickiMonitoringBadge level={program.monitoringLevel} showLabel={false} className="mt-1" />
+              )}
+              {program.vickiPowered && (
+                <VickiPoweredBadge className="mt-1" />
+              )}
+              {program.vickiOnRequest && (
+                <VickiPoweredBadge onRequest className="mt-1" />
+              )}
+            </div>
           </div>
           <p className="text-gray-600 mb-4 flex-grow">{program.description}</p>
           
@@ -360,7 +312,6 @@ const ProgramsSection = ({
           </RevealAnimation>
         )}
         
-        {/* Render programs by categories if categories are provided */}
         {categories && categories.length > 0 ? (
           <div className="space-y-16">
             {categories.map((category, categoryIndex) => (
@@ -421,7 +372,6 @@ const ProgramsSection = ({
             ))}
           </div>
         ) : (
-          // Original program grid rendering when no categories are provided
           <div className={cn(
             "grid gap-8",
             gridLayout === 'dense' 

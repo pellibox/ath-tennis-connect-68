@@ -1,3 +1,4 @@
+
 import { useEffect, useState } from 'react';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
@@ -7,6 +8,7 @@ import RevealAnimation from '@/components/RevealAnimation';
 import { UserGender, UserType, loadUserPreferences } from '@/components/UserTypeSelector';
 import Hero from '@/components/Hero';
 import VickiMonitoringBadge, { MonitoringLevel } from '@/components/VickiMonitoringBadge';
+import VickiPoweredBadge from '@/components/VickiPoweredBadge';
 
 const JuniorProgram = () => {
   const { t } = useLanguage();
@@ -41,11 +43,12 @@ const JuniorProgram = () => {
           'Approccio ludico e divertente all\'apprendimento tecnico',
           'Monitoraggio dello sviluppo fisico e delle attitudini con parametri oggettivi'
         ],
-        monitoringLevel: 'basic' as MonitoringLevel
+        monitoringLevel: 'basic' as MonitoringLevel,
+        vickiPowered: true
       },
       {
         id: 'junior-competitive',
-        title: 'Agonista Junior (6-12 anni)',
+        title: 'Performance Junior (6-12 anni)',
         description: 'Programma formativo per giovani atleti in fase di sviluppo tecnico e fisico.',
         image: 'https://images.unsplash.com/photo-1612458225454-41c3991c0c49?q=80&w=1973&auto=format&fit=crop',
         vimeoEmbed: '<div style="padding:56.25% 0 0 0;position:relative;"><iframe src="https://player.vimeo.com/video/1068596987?h=c9dad61d03&autoplay=0&loop=1&title=0&byline=0&portrait=0&controls=0&background=1" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen style="position:absolute;top:0;left:0;width:100%;height:100%;"></iframe></div>',
@@ -56,7 +59,8 @@ const JuniorProgram = () => {
           'Monitoraggio crescita per evitare sovraccarichi',
           'Programmi adattati all\'età e all\'evoluzione motoria'
         ],
-        monitoringLevel: 'advanced' as MonitoringLevel
+        monitoringLevel: 'advanced' as MonitoringLevel,
+        vickiPowered: true
       },
       {
         id: 'parent-support',
@@ -70,7 +74,8 @@ const JuniorProgram = () => {
           'Possibilità di seguire in streaming allenamenti e partite',
           'Aggiornamenti regolari sull\'evoluzione tecnica e psico-fisica'
         ],
-        monitoringLevel: 'basic' as MonitoringLevel
+        monitoringLevel: 'basic' as MonitoringLevel,
+        vickiPowered: false
       }
     ];
     
@@ -122,8 +127,9 @@ const JuniorProgram = () => {
                   Sviluppo completo di giovani atleti in un ambiente innovativo e stimolante
                 </p>
               </div>
-              <div className="mt-4">
+              <div className="mt-4 flex flex-wrap gap-3">
                 <VickiMonitoringBadge level="advanced" className="bg-opacity-20 border-opacity-30 text-white" />
+                <VickiPoweredBadge className="bg-opacity-20 border-opacity-30 text-white" />
               </div>
             </div>
           </div>
@@ -135,6 +141,7 @@ const JuniorProgram = () => {
               <div className="flex flex-wrap items-center gap-3 mb-6">
                 <h2 className="text-3xl font-display">{t('programs.junior')}</h2>
                 <VickiMonitoringBadge level="advanced" />
+                <VickiPoweredBadge />
               </div>
             </RevealAnimation>
             <RevealAnimation delay={100}>

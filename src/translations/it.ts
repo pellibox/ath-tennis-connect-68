@@ -1,3 +1,4 @@
+
 const translations = {
   // Header & Navigation
   "nav.home": "Home",
@@ -28,15 +29,15 @@ const translations = {
   "programs.junior.desc": "Programma completo per giovani atleti che vogliono competere a livello agonistico.",
   "programs.talent": "Scuola Individuazione Talenti (4-10 anni)",
   "programs.talent.desc": "Programma specializzato per l'identificazione precoce dei talenti tennistici e lo sviluppo delle abilità fondamentali.",
-  "programs.young": "Giovani Agonisti (6-12 anni)",
+  "programs.young": "Performance Junior (6-12 anni)",
   "programs.young.desc": "Programma formativo per giovani atleti in fase di sviluppo tecnico e fisico.",
-  "programs.elite": "Professionisti",
+  "programs.elite": "Performance",
   "programs.elite.desc": "Supporto completo per atleti professionisti con analisi avanzata e ottimizzazione della performance.",
   "programs.coach": "Coach / Allenatori / Club",
   "programs.coach.desc": "Formazione avanzata e strumenti per allenatori che vogliono integrare la metodologia ATH e VICKI.",
   "programs.parent": "Genitore/Tutor (Giovani e Junior Agonisti 6-18 anni)",
   "programs.parent.desc": "Supporto informativo e coinvolgimento nel percorso di sviluppo del giovane atleta.",
-  "programs.adult": "Amatori",
+  "programs.adult": "Adult Training",
   "programs.adult.desc": "Percorsi flessibili per giocatori amatoriali che vogliono migliorare le proprie capacità.",
   "programs.more": "Scopri di Più",
   

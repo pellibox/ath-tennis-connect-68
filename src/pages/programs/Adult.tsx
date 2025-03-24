@@ -1,3 +1,4 @@
+
 import { useEffect, useState } from 'react';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
@@ -7,6 +8,7 @@ import RevealAnimation from '@/components/RevealAnimation';
 import { UserGender, UserType, loadUserPreferences } from '@/components/UserTypeSelector';
 import Logo from '@/components/Logo';
 import VickiMonitoringBadge from '@/components/VickiMonitoringBadge';
+import VickiPoweredBadge from '@/components/VickiPoweredBadge';
 
 const AdultProgram = () => {
   const { t } = useLanguage();
@@ -79,8 +81,8 @@ const AdultProgram = () => {
       <main className="flex-grow">
         <div className="relative">
           <Hero 
-            title={t('footer.adult')}
-            subtitle={t('programs.adult.desc')}
+            title="Adult Training"
+            subtitle="Percorsi flessibili per giocatori amatoriali che vogliono migliorare le proprie capacità."
             imageSrc="https://images.unsplash.com/photo-1535131749006-b7f58c99034b?q=80&w=2070&auto=format&fit=crop"
             buttons={[
               { text: 'PRENOTA UNA PROVA', href: '/contact' },
@@ -97,11 +99,12 @@ const AdultProgram = () => {
               <div className="flex items-center mb-2">
                 <h2 className="text-white text-lg font-display mr-3">ADULT:</h2>
                 <p className="text-white text-lg font-swiss max-w-3xl">
-                  {t('programs.adult.desc')}
+                  Percorsi flessibili per giocatori amatoriali che vogliono migliorare le proprie capacità.
                 </p>
               </div>
-              <div className="mt-4">
+              <div className="mt-4 flex flex-wrap gap-3">
                 <VickiMonitoringBadge level="standard" className="bg-opacity-20 border-opacity-30 text-white" />
+                <VickiPoweredBadge className="bg-opacity-20 border-opacity-30 text-white" />
               </div>
             </div>
           </div>
@@ -111,12 +114,13 @@ const AdultProgram = () => {
           <div className="mb-12">
             <RevealAnimation>
               <div className="flex flex-wrap items-center gap-3 mb-6">
-                <h2 className="text-3xl font-swiss">{t('programs.adult')}</h2>
+                <h2 className="text-3xl font-swiss">Adult Training</h2>
                 <VickiMonitoringBadge level="standard" />
+                <VickiPoweredBadge />
               </div>
             </RevealAnimation>
             <RevealAnimation delay={100}>
-              <p className="text-lg mb-6 font-swiss">{t('programs.adult.desc')}</p>
+              <p className="text-lg mb-6 font-swiss">Percorsi flessibili per giocatori amatoriali che vogliono migliorare le proprie capacità.</p>
             </RevealAnimation>
             <RevealAnimation delay={150}>
               <p className="mb-4 font-swiss">

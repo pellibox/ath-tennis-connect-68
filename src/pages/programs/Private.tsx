@@ -1,3 +1,4 @@
+
 import { useEffect, useState } from 'react';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
@@ -6,6 +7,7 @@ import Hero from '@/components/Hero';
 import RevealAnimation from '@/components/RevealAnimation';
 import { UserGender, UserType, loadUserPreferences } from '@/components/UserTypeSelector';
 import VickiMonitoringBadge from '@/components/VickiMonitoringBadge';
+import VickiPoweredBadge from '@/components/VickiPoweredBadge';
 
 const PrivateProgram = () => {
   const { t } = useLanguage();
@@ -28,7 +30,7 @@ const PrivateProgram = () => {
       <main className="flex-grow">
         <div className="relative">
           <Hero 
-            title={t('footer.private')}
+            title="Private Tennis Training"
             subtitle="Sessioni personalizzate one-to-one per un'attenzione dedicata e un progresso accelerato"
             imageSrc="https://images.unsplash.com/photo-1588453251771-cd919ff14bee?q=80&w=2070&auto=format&fit=crop"
             vimeoEmbed='<div style="padding:75% 0 0 0;position:relative;"><iframe src="https://player.vimeo.com/video/1068788542?h=698f55b033&autoplay=1&loop=1&background=1&autopause=0&player_id=0&app_id=58479&controls=0" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media" style="position:absolute;top:0;left:0;width:100%;height:100%;" title="Private Lessons"></iframe></div><script src="https://player.vimeo.com/api/player.js"></script>'
@@ -44,13 +46,14 @@ const PrivateProgram = () => {
           <div className="w-full bg-black py-16 relative" style={{ height: '300px' }}>
             <div className="max-w-6xl mx-auto px-6 h-full flex flex-col justify-center">
               <div className="flex items-center mb-2">
-                <h2 className="text-white text-lg font-display mr-3">PRIVATE:</h2>
+                <h2 className="text-white text-lg font-display mr-3">PRIVATE TENNIS:</h2>
                 <p className="text-white text-lg font-swiss max-w-3xl">
                   Sessioni personalizzate one-to-one per un'attenzione dedicata e un progresso accelerato
                 </p>
               </div>
-              <div className="mt-4">
+              <div className="mt-4 flex flex-wrap gap-3">
                 <VickiMonitoringBadge level="advanced" className="bg-opacity-20 border-opacity-30 text-white" />
+                <VickiPoweredBadge className="bg-opacity-20 border-opacity-30 text-white" />
               </div>
             </div>
           </div>
@@ -60,8 +63,9 @@ const PrivateProgram = () => {
           <div className="mb-12">
             <RevealAnimation>
               <div className="flex flex-wrap items-center gap-3 mb-6">
-                <h2 className="text-3xl font-swiss">Lezioni Private</h2>
+                <h2 className="text-3xl font-swiss">Private Tennis Training</h2>
                 <VickiMonitoringBadge level="advanced" />
+                <VickiPoweredBadge />
               </div>
             </RevealAnimation>
             <RevealAnimation delay={100}>
