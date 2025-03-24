@@ -393,7 +393,7 @@ const Programs = () => {
       
       <main className="flex-grow">
         <div className="w-full bg-black">
-          <div className="w-full" dangerouslySetInnerHTML={{ __html: getVimeoEmbed() }} />
+          <div className="w-full h-screen" dangerouslySetInnerHTML={{ __html: getVimeoEmbed() }} />
         </div>
         
         <div className="w-full bg-black py-16">
@@ -402,7 +402,7 @@ const Programs = () => {
               PROGRAMMI:
             </h2>
             <p className="text-white text-xl md:text-2xl opacity-90 font-swiss drop-shadow-md">
-              Approccio metodologico unico e personalizzato per ogni profilo di giocatore
+              {getPersonalizedSubtitle()}
             </p>
           </div>
         </div>
@@ -523,4 +523,4 @@ const Programs = () => {
             
             <RevealAnimation delay={120}>
               <h3 className="text-2xl font-display text-center mb-8">Agonisti</h3>
-              <
+            </RevealAnimation>
