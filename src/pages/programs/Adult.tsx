@@ -41,19 +41,19 @@ const AdultProgram = () => {
         <div className="max-w-6xl mx-auto px-6 py-16">
           <div className="mb-12">
             <RevealAnimation>
-              <h2 className="text-3xl font-display mb-6">{t('programs.adult')}</h2>
+              <h2 className="text-3xl font-swiss mb-6">{t('programs.adult')}</h2>
             </RevealAnimation>
             <RevealAnimation delay={100}>
-              <p className="text-lg mb-6">{t('programs.adult.desc')}</p>
+              <p className="text-lg mb-6 font-swiss">{t('programs.adult.desc')}</p>
             </RevealAnimation>
             <RevealAnimation delay={150}>
-              <p className="mb-4">
+              <p className="mb-4 font-swiss">
                 Il nostro programma per Amatori è stato progettato per offrire a giocatori adulti di tutti i livelli 
                 un'esperienza tennistica di alta qualità che combina miglioramento tecnico, divertimento e benessere fisico.
               </p>
             </RevealAnimation>
             <RevealAnimation delay={200}>
-              <p>
+              <p className="font-swiss">
                 Utilizzando la tecnologia VICKI™ in modo accessibile e intuitivo, aiutiamo ogni giocatore a comprendere 
                 e migliorare il proprio tennis, rendendo il processo di apprendimento più efficace e gratificante.
               </p>
@@ -62,8 +62,8 @@ const AdultProgram = () => {
           
           <div className="grid md:grid-cols-2 gap-10">
             <RevealAnimation delay={250} className="bg-gray-50 p-8 rounded-lg">
-              <h3 className="text-xl font-semibold mb-4">Caratteristiche del Programma</h3>
-              <ul className="list-disc list-inside space-y-2">
+              <h3 className="text-xl font-swiss font-semibold mb-4">Caratteristiche del Programma</h3>
+              <ul className="list-disc list-inside space-y-2 font-swiss">
                 <li>Lezioni flessibili adattate agli impegni lavorativi</li>
                 <li>Analisi tecnica semplificata ma efficace</li>
                 <li>Approccio personalizzato per ogni livello di gioco</li>
@@ -74,8 +74,8 @@ const AdultProgram = () => {
             </RevealAnimation>
             
             <RevealAnimation delay={300} className="bg-gray-50 p-8 rounded-lg">
-              <h3 className="text-xl font-semibold mb-4">Benefici</h3>
-              <ul className="list-disc list-inside space-y-2">
+              <h3 className="text-xl font-swiss font-semibold mb-4">Benefici</h3>
+              <ul className="list-disc list-inside space-y-2 font-swiss">
                 <li>Miglioramento tecnico visibile e misurabile</li>
                 <li>Maggiore soddisfazione nel gioco attraverso colpi più efficaci</li>
                 <li>Riduzione del rischio di infortuni comuni negli adulti</li>

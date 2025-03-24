@@ -13,7 +13,7 @@ const Logo = ({
   variant = 'default', 
   className = '', 
   onDarkBackground = false,
-  preserveUserProfile = true,  // Cambiato a true come default
+  preserveUserProfile = true,
   resetProfile = false
 }: LogoProps) => {
   const isFooter = variant === 'footer';

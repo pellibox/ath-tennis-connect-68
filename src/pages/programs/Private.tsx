@@ -41,19 +41,19 @@ const PrivateProgram = () => {
         <div className="max-w-6xl mx-auto px-6 py-16">
           <div className="mb-12">
             <RevealAnimation>
-              <h2 className="text-3xl font-display mb-6">Lezioni Private</h2>
+              <h2 className="text-3xl font-swiss mb-6">Lezioni Private</h2>
             </RevealAnimation>
             <RevealAnimation delay={100}>
-              <p className="text-lg mb-6">Sessioni personalizzate one-to-one per un'attenzione dedicata e un progresso accelerato.</p>
+              <p className="text-lg mb-6 font-swiss">Sessioni personalizzate one-to-one per un'attenzione dedicata e un progresso accelerato.</p>
             </RevealAnimation>
             <RevealAnimation delay={150}>
-              <p className="mb-4">
+              <p className="mb-4 font-swiss">
                 Le nostre lezioni private rappresentano l'esperienza più personalizzata e focalizzata che ATH può offrire, 
                 combinando l'attenzione individuale di un coach esperto con l'analisi precisa della tecnologia VICKI™.
               </p>
             </RevealAnimation>
             <RevealAnimation delay={200}>
-              <p>
+              <p className="font-swiss">
                 Questo formato permette di lavorare in modo mirato su aspetti specifici del gioco, 
                 accelerando il processo di apprendimento e ottimizzando ogni minuto trascorso in campo.
               </p>
@@ -62,8 +62,8 @@ const PrivateProgram = () => {
           
           <div className="grid md:grid-cols-2 gap-10">
             <RevealAnimation delay={250} className="bg-gray-50 p-8 rounded-lg">
-              <h3 className="text-xl font-semibold mb-4">Caratteristiche del Programma</h3>
-              <ul className="list-disc list-inside space-y-2">
+              <h3 className="text-xl font-swiss font-semibold mb-4">Caratteristiche del Programma</h3>
+              <ul className="list-disc list-inside space-y-2 font-swiss">
                 <li>Attenzione completa e dedicata del coach</li>
                 <li>Analisi tecnica dettagliata tramite VICKI™</li>
                 <li>Personalizzazione completa degli obiettivi e contenuti</li>
@@ -74,8 +74,8 @@ const PrivateProgram = () => {
             </RevealAnimation>
             
             <RevealAnimation delay={300} className="bg-gray-50 p-8 rounded-lg">
-              <h3 className="text-xl font-semibold mb-4">Benefici</h3>
-              <ul className="list-disc list-inside space-y-2">
+              <h3 className="text-xl font-swiss font-semibold mb-4">Benefici</h3>
+              <ul className="list-disc list-inside space-y-2 font-swiss">
                 <li>Progressi accelerati grazie all'attenzione individuale</li>
                 <li>Correzione efficace e rapida di problemi tecnici</li>
                 <li>Adattamento preciso alle esigenze specifiche del giocatore</li>

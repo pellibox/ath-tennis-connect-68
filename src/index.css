@@ -110,6 +110,10 @@
     overscroll-behavior: none;
   }
 
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Swiss721 BT', 'Inter', sans-serif;
+  }
+  
   .font-display {
     font-family: 'Playfair Display', serif;
   }

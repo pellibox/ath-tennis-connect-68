@@ -32,7 +32,6 @@ import { toast } from "sonner";
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
-  const [centerLogoVisible, setCenterLogoVisible] = useState(true);
   const location = useLocation();
   const { t } = useLanguage();
   const isMobile = useIsMobile();
@@ -40,10 +39,6 @@ const Header = () => {
   const isHomePage = location.pathname === '/';
   const isAboutPage = location.pathname === '/about';
   const isMethodPage = location.pathname === '/method';
-  
-  const hasSpecialLayout = isAboutPage || isMethodPage;
-  
-  const showHeaderLogo = isScrolled && (!hasSpecialLayout || !centerLogoVisible);
   
   const [userProfile, setUserProfile] = useState<{ gender: UserGender | null, type: UserType | null }>({ gender: null, type: null });
   const [dialogOpen, setDialogOpen] = useState(false);
@@ -90,10 +85,6 @@ const Header = () => {
     const handleScroll = () => {
       const offset = window.scrollY;
       setIsScrolled(offset > 50);
-      
-      if (hasSpecialLayout) {
-        setCenterLogoVisible(offset < 200);
-      }
     };
 
     window.addEventListener('scroll', handleScroll);
@@ -102,7 +93,7 @@ const Header = () => {
     return () => {
       window.removeEventListener('scroll', handleScroll);
     };
-  }, [hasSpecialLayout]);
+  }, []);
 
   useEffect(() => {
     setIsMenuOpen(false);
@@ -167,10 +158,8 @@ const Header = () => {
       )}
     >
       <div className="container mx-auto px-6 flex items-center justify-between relative">
-        <div className={cn(
-          "flex items-center z-50 transition-opacity duration-300",
-          showHeaderLogo ? "opacity-100" : "opacity-0"
-        )}>
+        {/* Always show the logo, not conditionally */}
+        <div className="flex items-center z-50">
           <Logo 
             variant="default" 
             onDarkBackground={false}
@@ -186,7 +175,7 @@ const Header = () => {
                 key={index}
                 href={item.href}
                 className={cn(
-                  "flex items-center text-sm font-medium transition-colors hover:text-ath-clay",
+                  "flex items-center text-sm font-swiss transition-colors hover:text-ath-clay",
                   textColorClass
                 )}
               >
@@ -211,15 +200,15 @@ const Header = () => {
                   />
                 </div>
               ) : (
-                <button className="mr-4 text-sm px-3 py-1 rounded-md bg-ath-clay text-white">
+                <button className="mr-4 text-sm px-3 py-1 rounded-md bg-ath-clay text-white font-swiss">
                   Profilo
                 </button>
               )}
             </DialogTrigger>
             <DialogContent className="sm:max-w-md">
               <DialogHeader>
-                <DialogTitle>Seleziona Profilo</DialogTitle>
-                <DialogDescription>
+                <DialogTitle className="font-swiss">Seleziona Profilo</DialogTitle>
+                <DialogDescription className="font-swiss">
                   Personalizza la tua esperienza su ATH
                 </DialogDescription>
               </DialogHeader>
@@ -259,7 +248,7 @@ const Header = () => {
               <LinkComponent
                 key={index}
                 href={item.href}
-                className="text-xl font-medium text-black hover:text-ath-clay transition-colors flex items-center"
+                className="text-base font-swiss text-black hover:text-ath-clay transition-colors flex items-center"
               >
                 {item.icon}
                 {item.text}
