@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { Button } from "@/components/ui/button";
 import { useLanguage } from '@/contexts/LanguageContext';
@@ -19,7 +18,7 @@ import { useProfile } from '@/contexts/ProfileContext';
 
 // Define types for user selections
 export type UserGender = 'male' | 'female';
-export type UserType = 'junior' | 'performance' | 'professional' | 'coach' | 'parent';
+export type UserType = 'junior' | 'performance' | 'professional' | 'coach' | 'parent' | 'adult';
 
 interface UserTypeSelectorProps {
   onSelectionComplete: (gender: UserGender, type: UserType) => void;
@@ -202,6 +201,16 @@ const UserTypeSelector: React.FC<UserTypeSelectorProps> = ({
           description="Genitore di atleta"
           selected={selectedType === 'parent'} 
           onClick={() => handleTypeSelect('parent')} 
+          genderColor={selectedGender === 'male' ? 'blue' : 'pink'}
+        />
+        
+        <TypeButton 
+          type="adult" 
+          icon={<Mail size={24} />} 
+          label="Adulto" 
+          description="Adulto di atleta"
+          selected={selectedType === 'adult'} 
+          onClick={() => handleTypeSelect('adult')} 
           genderColor={selectedGender === 'male' ? 'blue' : 'pink'}
         />
       </div>

@@ -58,7 +58,8 @@ export const getWelcomeMessage = (userType: UserType | null): string => {
     performance: "Ottimizzazione parametrica completa per agonisti di alto livello",
     professional: "Analisi avanzata e supporto integrato per atleti professionisti",
     coach: "Strumenti di analisi professionali per supportare la tua metodologia",
-    parent: "Supporto completo per la crescita tennistica dei giovani atleti"
+    parent: "Supporto completo per la crescita tennistica dei giovani atleti",
+    adult: "Programmi flessibili e personalizzati per tennisti amatoriali di ogni livello"
   };
   
   return messages[userType];
@@ -81,6 +82,8 @@ export const getPersonalizedMethodDescription = (userType: UserType | null): str
       return "Il Metodo ATH per coach fornisce strumenti avanzati di analisi e supporto per sviluppare una metodologia efficace";
     case 'parent':
       return "Il Metodo ATH per genitori offre supporto e trasparenza nel percorso di sviluppo del giovane atleta";
+    case 'adult':
+      return "Il Metodo ATH per amatori offre programmi flessibili ma completi per migliorare il tuo tennis a qualsiasi età";
     default:
       return "Il Metodo ATH è un sistema integrato che unisce tecnologia avanzata e coaching esperto";
   }
