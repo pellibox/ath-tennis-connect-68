@@ -1,3 +1,4 @@
+
 import { useEffect } from 'react';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
@@ -16,7 +17,8 @@ const facilities = [
     features: [
       "Dimensioni ATP standard",
       "Illuminazione LED ad alta efficienza"
-    ]
+    ],
+    vimeoEmbed: `<div style="position:relative;padding-bottom:56.25%;height:0;overflow:hidden;width:100%;"><iframe src="https://player.vimeo.com/video/1068880352?h=4d6b04576c&autoplay=1&loop=1&background=1&autopause=0&player_id=0&app_id=58479&controls=0" style="position:absolute;top:0;left:0;width:100%;height:100%;" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media" title="ATH Campo Centrale Video"></iframe></div><script src="https://player.vimeo.com/api/player.js"></script>`
   },
   {
     id: "facility-2",
@@ -112,6 +114,7 @@ const FacilitiesPage = () => {
           vimeoEmbed={facilitiesVimeoEmbed}
           fullHeight={false}
           overlayOpacity="medium"
+          className="w-full max-w-none"
         />
         
         <section className="py-16 px-6 lg:px-10 bg-white">
