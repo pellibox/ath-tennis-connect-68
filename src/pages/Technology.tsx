@@ -1,16 +1,15 @@
 
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import TechnologySection from '@/components/TechnologySection';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { useProfile } from '@/contexts/ProfileContext';
 import RevealAnimation from '@/components/RevealAnimation';
-import { getVimeoEmbed } from '@/utils/videoUtils';
 
 const TechnologyPage = () => {
   const { t } = useLanguage();
-  const { userGender, userType } = useProfile();
+  const { userType } = useProfile();
   
   // Smooth scroll functionality
   useEffect(() => {
@@ -39,8 +38,8 @@ const TechnologyPage = () => {
     }
   };
 
-  // Get Vimeo embed from the profile context, with forTechnologyPage=true
-  const vimeoEmbed = getVimeoEmbed(userGender, userType, true, true);
+  // Always use the technology video
+  const technologyVideoEmbed = `<div style="padding:56.25% 0 0 0;position:relative;"><iframe src="https://player.vimeo.com/video/1068785493?h=fe90d50dae&autoplay=1&loop=1&background=1&autopause=0&player_id=0&app_id=58479&controls=0" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media" style="position:absolute;top:0;left:0;width:100%;height:100%;" title="ATH Technology Video"></iframe></div><script src="https://player.vimeo.com/api/player.js"></script>`;
 
   return (
     <div className="flex flex-col min-h-screen">
@@ -48,7 +47,7 @@ const TechnologyPage = () => {
       
       <main className="flex-grow pt-20">
         <div className="w-full bg-black min-h-[calc(100vw*9/16)] relative">
-          <div dangerouslySetInnerHTML={{ __html: vimeoEmbed }} />
+          <div dangerouslySetInnerHTML={{ __html: technologyVideoEmbed }} />
         </div>
         
         <div className="w-full bg-black py-16">
@@ -175,3 +174,4 @@ const TechnologyPage = () => {
 };
 
 export default TechnologyPage;
+
