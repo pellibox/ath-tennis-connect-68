@@ -1,3 +1,4 @@
+
 import { useEffect } from 'react';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
@@ -25,6 +26,7 @@ const facilities = [
     image: "/lovable-uploads/f9c89e9c-6847-411b-b1f9-e208caf726b4.png",
     features: [
       "N1 campo coperto tutto l'anno",
+      "N1 campo con copetura rimuovibile",
       "Illuminazione led per sessioni serali",
       "Vicki™Powered court"
     ]
