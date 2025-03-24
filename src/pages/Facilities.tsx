@@ -1,3 +1,4 @@
+
 import { useEffect } from 'react';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
@@ -172,7 +173,7 @@ const FacilitiesPage = () => {
         <AboutSection 
           title="Tecnologia e Ambiente"
           description="ATH combina innovazione tecnologica e attenzione all'ambiente, utilizzando soluzioni sostenibili per l'illuminazione, il riscaldamento e la gestione delle risorse. I nostri campi da tennis sono integrati armoniosamente con l'ambiente naturale circostante."
-          image="/lovable-uploads/f55d3f98-ba82-4220-81ac-86540f2b2862.png"
+          image="/lovable-uploads/dffc3218-3307-465f-b953-635b8789ae9e.png"
           buttons={[
             { text: "Prenota ora", href: '/contact' }
           ]}
