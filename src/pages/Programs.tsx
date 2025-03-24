@@ -1,4 +1,3 @@
-
 import { useEffect, useState } from 'react';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
@@ -48,7 +47,7 @@ const Programs = () => {
     }
     
     if (userType === 'coach') {
-      videoEmbed = `<div style="padding:56.25% 0 0 0;position:relative;"><iframe src="https://player.vimeo.com/video/1068604198?h=07d9021fd2&autoplay=1&loop=1&title=0&byline=0&portrait=0&background=1&controls=0" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" style="position:absolute;top:0;left:0;width:100%;height:100%;" title="Coach"></iframe></div><script src="https://player.vimeo.com/api/player.js"></script>`;
+      videoEmbed = `<div style="padding:56.25% 0 0 0;position:relative;"><iframe src="https://player.vimeo.com/video/1068604198?h=07d9021fd2&autoplay=1&loop=1&title=0&byline=0&portrait=0&controls=0" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" style="position:absolute;top:0;left:0;width:100%;height:100%;" title="Coach"></iframe></div><script src="https://player.vimeo.com/api/player.js"></script>`;
     }
     
     if (userType === 'parent') {
@@ -339,7 +338,6 @@ const Programs = () => {
         <div className="relative">
           <Hero 
             title="Programmi ATH" 
-            subtitle={getPersonalizedSubtitle()}
             vimeoEmbed={getVimeoEmbed()}
             buttons={[
               { text: 'PRENOTA UNA PROVA', href: '/contact' },
@@ -581,3 +579,4 @@ const Programs = () => {
 };
 
 export default Programs;
+
