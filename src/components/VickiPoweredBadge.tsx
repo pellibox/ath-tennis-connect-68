@@ -24,7 +24,7 @@ const VickiPoweredBadge = ({
     return (
       <div className={cn(
         'inline-flex items-center justify-center rounded-full',
-        small ? 'w-6 h-6' : 'w-8 h-8',
+        small ? 'w-8 h-8' : 'w-10 h-10',
         'bg-black',
         className
       )}>
@@ -33,7 +33,7 @@ const VickiPoweredBadge = ({
           alt="Vicki" 
           className={cn(
             'rounded-full',
-            small ? 'w-5 h-5' : 'w-7 h-7'
+            small ? 'w-7 h-7' : 'w-9 h-9'
           )}
         />
       </div>
@@ -42,12 +42,12 @@ const VickiPoweredBadge = ({
 
   return (
     <div className={cn(
-      'inline-flex items-center px-3 py-1 rounded-full border text-sm font-medium border-purple-200',
+      'inline-flex items-center px-4 py-2 rounded-full border text-base font-medium border-purple-200',
       bgColor,
       textColor,
       className
     )}>
-      <BadgeCheck className="w-4 h-4 mr-2" />
+      <BadgeCheck className="w-5 h-5 mr-2" />
       <span>{onRequest ? 'Vicki™ su richiesta' : 'Vicki™ powered'}</span>
     </div>
   );
