@@ -142,9 +142,9 @@ const HomePage = () => {
         <ContactSection 
           title="Contatti"
           subtitle="Richiedi informazioni tecniche o prenota una sessione di valutazione"
-          address="Via del Tennis 123, 20873 Rodano (MI)"
+          address="Via F. Turati, 9, 20090 Rodano MI, Italia"
           phone="+39 02 1234567"
-          email="info@ath-tennis.it"
+          email="info@ath.tennis"
         />
       </main>
       
