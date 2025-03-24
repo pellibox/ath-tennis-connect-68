@@ -10,9 +10,12 @@ import { Award, Users, BarChart, Target, Layers, Headphones } from 'lucide-react
 import RevealAnimation from '@/components/RevealAnimation';
 import Logo from '@/components/Logo';
 import { useIsMobile } from '@/hooks/use-mobile';
+import { useProfile } from '@/contexts/ProfileContext';
+import { getVimeoEmbed } from '@/utils/videoUtils';
 
 const AboutPage = () => {
   const { t } = useLanguage();
+  const { userGender, userType } = useProfile();
   const [logoYOffset, setLogoYOffset] = useState<number>(0);
   const [logoOpacity, setLogoOpacity] = useState<number>(1);
   const isMobile = useIsMobile();
@@ -58,6 +61,9 @@ const AboutPage = () => {
   // Icon sizes based on device type
   const iconSize = isMobile ? 40 : 64;
   const iconContainerSize = isMobile ? "w-20 h-20" : "w-36 h-36";
+  
+  // Get personalized video based on user profile
+  const vimeoEmbed = getVimeoEmbed(userGender, userType);
 
   return (
     <div className="flex flex-col min-h-screen relative">
@@ -87,15 +93,9 @@ const AboutPage = () => {
       <Header />
       
       <main className="flex-grow pt-20">
-        {/* Video background - now using the same layout as Method page */}
+        {/* Video background - using personalized video based on user profile */}
         <div className="w-full bg-black min-h-[calc(100vw*9/16)] relative">
-          <iframe 
-            src="https://player.vimeo.com/video/1068596952?h=b7fa539b1c&autoplay=1&loop=1&background=1&controls=0" 
-            className="w-full h-full absolute top-0 left-0"
-            frameBorder="0" 
-            allow="autoplay; fullscreen; picture-in-picture" 
-            title="ATH Main Video">
-          </iframe>
+          <div dangerouslySetInnerHTML={{ __html: vimeoEmbed }} />
         </div>
         
         {/* Black frame with claim */}
