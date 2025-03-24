@@ -1,4 +1,3 @@
-
 import { useEffect, useState, useRef } from 'react';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
@@ -10,7 +9,6 @@ import { Award, Users, BarChart, Target, Layers, Headphones } from 'lucide-react
 import RevealAnimation from '@/components/RevealAnimation';
 import Logo from '@/components/Logo';
 import { useIsMobile } from '@/hooks/use-mobile';
-import { AspectRatio } from '@/components/ui/aspect-ratio';
 
 const AboutPage = () => {
   const { t } = useLanguage();
@@ -87,32 +85,26 @@ const AboutPage = () => {
       <Header />
       
       <main className="flex-grow pt-20">
-        {/* Video background - now constrained to match section width */}
-        <div className="w-full bg-black flex justify-center">
-          <div className="max-w-7xl w-full mx-auto">
-            <AspectRatio ratio={16/9} className="w-full">
-              <iframe 
-                src="https://player.vimeo.com/video/1068596952?h=b7fa539b1c&autoplay=1&loop=1&background=1&controls=0" 
-                className="w-full h-full absolute top-0 left-0"
-                frameBorder="0" 
-                allow="autoplay; fullscreen; picture-in-picture" 
-                title="ATH Main Video">
-              </iframe>
-            </AspectRatio>
-          </div>
+        {/* Video background - now using the same layout as Method page */}
+        <div className="w-full bg-black min-h-[calc(100vw*9/16)] relative">
+          <iframe 
+            src="https://player.vimeo.com/video/1068596952?h=b7fa539b1c&autoplay=1&loop=1&background=1&controls=0" 
+            className="w-full h-full absolute top-0 left-0"
+            frameBorder="0" 
+            allow="autoplay; fullscreen; picture-in-picture" 
+            title="ATH Main Video">
+          </iframe>
         </div>
         
         {/* Black frame with claim */}
         <div className="w-full bg-black py-16">
-          <div className="max-w-7xl mx-auto px-6">
-            <div className="max-w-3xl mx-auto text-center">
-              <h2 className="text-white text-xl md:text-2xl font-swiss uppercase mb-2">
-                PERCHÉ ATH:
-              </h2>
-              <p className="text-white text-xl md:text-2xl opacity-90 font-swiss drop-shadow-md">
-                La rivoluzione nell'allenamento del tennis moderno
-              </p>
-            </div>
+          <div className="max-w-3xl mx-auto text-center">
+            <h2 className="text-white text-xl md:text-2xl font-swiss uppercase mb-2">
+              PERCHÉ ATH:
+            </h2>
+            <p className="text-white text-xl md:text-2xl opacity-90 font-swiss drop-shadow-md">
+              La rivoluzione nell'allenamento del tennis moderno
+            </p>
           </div>
         </div>
         
