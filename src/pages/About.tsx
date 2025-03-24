@@ -1,3 +1,4 @@
+
 import { useEffect, useState, useRef } from 'react';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
@@ -60,11 +61,11 @@ const AboutPage = () => {
 
   return (
     <div className="flex flex-col min-h-screen relative">
-      {/* Centered logo with improved positioning */}
+      {/* Centered logo with improved positioning for both mobile and desktop */}
       <div 
-        className={`fixed z-50 pointer-events-none transition-opacity duration-300 left-0 right-0 flex justify-center`}
+        className="fixed z-50 pointer-events-none transition-opacity duration-300 left-0 right-0 flex justify-center"
         style={{
-          top: isMobile ? '140px' : '180px', // Positioned higher on the page (was 180px/220px)
+          top: isMobile ? '140px' : '180px', // Adjusted position
           opacity: logoOpacity
         }}
       >
