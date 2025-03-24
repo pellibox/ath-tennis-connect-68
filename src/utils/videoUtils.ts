@@ -1,4 +1,3 @@
-
 import { UserGender, UserType } from '@/components/UserTypeSelector';
 
 // Get Vimeo embed code based on user profile

@@ -250,7 +250,8 @@ const Programs = () => {
       title: 'Lezioni Private',
       description: 'Sessioni di allenamento personalizzate con coach esperti e feedback immediato tramite VICKI™.',
       image: 'https://images.unsplash.com/photo-1588453251771-cd919ff14bee?q=80&w=2070&auto=format&fit=crop',
-      link: '/programs/private-lessons',
+      vimeoEmbed: '<div style="padding:56.25% 0 0 0;position:relative;"><iframe src="https://player.vimeo.com/video/1068788542?h=698f55b033&autoplay=1&loop=1&title=0&byline=0&portrait=0&controls=0" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen style="position:absolute;top:0;left:0;width:100%;height:100%;"></iframe></div>',
+      link: '/programs/private',
       features: [
         'Sessioni one-to-one con coach certificati',
         'Analisi dettagliata della tecnica con VICKI™',
