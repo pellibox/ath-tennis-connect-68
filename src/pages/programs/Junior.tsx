@@ -29,16 +29,16 @@ const JuniorProgram = () => {
     },
     {
       id: 'junior-competitive',
-      title: 'Agonista Junior (13-18 anni)',
-      description: 'Programma completo per giovani atleti che vogliono competere a livello agonistico.',
+      title: 'Agonista Junior (6-12 anni)',
+      description: 'Programma formativo per giovani atleti in fase di sviluppo tecnico e fisico.',
       image: 'https://images.unsplash.com/photo-1612458225454-41c3991c0c49?q=80&w=1973&auto=format&fit=crop',
       vimeoEmbed: '<div style="padding:56.25% 0 0 0;position:relative;"><iframe src="https://player.vimeo.com/video/1068596987?h=c9dad61d03&autoplay=0&loop=1&title=0&byline=0&portrait=0&controls=0&background=1" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen style="position:absolute;top:0;left:0;width:100%;height:100%;"></iframe></div>',
       link: '#',
       features: [
-        'Analisi in tempo reale di tecnica, tattica, parametri mentali e fisici',
-        'Feedback continuo (durante e dopo la sessione)',
-        'Database personale per pianificare il calendario tornei',
-        'Monitoraggio carico di lavoro e progressi'
+        'Valutazioni tecniche, fisiche, mentali e tattiche costanti',
+        'Analisi biomeccanica in campo',
+        'Monitoraggio crescita per evitare sovraccarichi',
+        'Programmi adattati all\'età e all\'evoluzione motoria'
       ]
     },
     {
