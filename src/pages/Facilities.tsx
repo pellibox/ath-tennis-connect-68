@@ -164,19 +164,19 @@ const FacilitiesPage = () => {
       
       <Header />
       
-      <main className="flex-grow font-swiss" style={{ marginTop: '80px' }}>
-        {/* Video container with bottom margin set to negative value */}
+      <main className="flex-grow font-swiss relative" style={{ marginTop: '80px' }}>
+        {/* Video container with bottom margin removed and negative margin applied */}
         <div className="relative w-full overflow-hidden" style={{ 
           height: '100vh', 
-          marginBottom: '-3px' // Eliminate any gap between video and banner
+          marginBottom: '-4px' // Increased negative margin to eliminate gap
         }}>
           <div className="absolute inset-0 w-[150%] h-[150%] top-[-25%] left-[-25%]" 
                dangerouslySetInnerHTML={{ __html: facilitiesVimeoEmbed }} 
           />
         </div>
         
-        {/* Black banner with no top margin */}
-        <div className="w-full bg-black py-16 relative z-10" style={{ marginTop: '0' }}>
+        {/* Black banner adjusted to eliminate gap */}
+        <div className="w-full bg-black py-16 relative z-10" style={{ marginTop: '-1px' }}>
           <div className="max-w-3xl mx-auto text-center">
             <h2 className="text-white text-2xl md:text-3xl font-swiss uppercase mb-2">
               LE STRUTTURE:
@@ -187,12 +187,12 @@ const FacilitiesPage = () => {
           </div>
         </div>
         
-        {/* Removed extra padding from this section and added negative margin to close the gap */}
-        <section className="py-8 px-6 lg:px-10 bg-white relative z-10" style={{ marginTop: '-1px' }}>
+        {/* Content section with negative margin to connect with banner */}
+        <section className="pt-4 pb-8 px-6 lg:px-10 bg-white relative z-10" style={{ marginTop: '-1px' }}>
           <div className="max-w-7xl mx-auto">
-            <h1 className="text-4xl md:text-5xl font-swiss text-center mb-8">Strutture ATH</h1>
+            <h1 className="text-4xl md:text-5xl font-swiss text-center mb-6">Strutture ATH</h1>
             
-            <div className="prose prose-lg max-w-4xl mx-auto mb-8">
+            <div className="prose prose-lg max-w-4xl mx-auto mb-6">
               <p className="lead text-xl mb-4 font-swiss">
                 L'Advanced Tennis Hub di Rodano è un centro di eccellenza progettato specificamente per ottimizzare l'utilizzo del metodo ATH e della tecnologia Vicki™.
               </p>
@@ -204,17 +204,17 @@ const FacilitiesPage = () => {
           </div>
         </section>
         
-        {/* Reduced top padding for this section */}
+        {/* FacilitiesSection with no top padding and negative margin */}
         <FacilitiesSection 
           title="Impianti"
           subtitle="Strutture progettate per massimizzare l'efficacia del metodo ATH e della tecnologia Vicki™"
           facilities={facilities}
-          className="relative z-10 pt-0"
+          className="relative z-10 pt-0 mt-0"
         />
         
-        <section className="py-16 px-6 lg:px-10 bg-gray-50 relative z-10">
+        <section className="py-12 px-6 lg:px-10 bg-gray-50 relative z-10">
           <div className="max-w-7xl mx-auto">
-            <h2 className="text-3xl md:text-4xl font-swiss text-center mb-12">Servizi Offerti</h2>
+            <h2 className="text-3xl md:text-4xl font-swiss text-center mb-8">Servizi Offerti</h2>
             
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
               <div className="bg-white p-6 rounded-lg shadow-sm">
