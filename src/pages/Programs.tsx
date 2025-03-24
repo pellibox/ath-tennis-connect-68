@@ -58,7 +58,7 @@ const Programs = () => {
   }, []);
 
   const getVimeoEmbed = () => {
-    let videoEmbed = `<div style="padding:56.25% 0 0 0;position:relative;"><iframe src="https://player.vimeo.com/video/1068596952?h=b7fa539b1c&autoplay=1&loop=1&title=0&byline=0&portrait=0&background=1&controls=0" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" style="position:absolute;top:0;left:0;width:100%;height:100%;" title="ATH Main Video"></iframe></div><script src="https://player.vimeo.com/api/player.js"></script>`;
+    let videoEmbed = `<div style="padding:56.25% 0 0 0;position:relative;"><iframe src="https://player.vimeo.com/video/1068596952?h=b7fa539b1c&autoplay=1&loop=1&title=0&byline=0&portrait=0&background=1&controls=0" title="ATH Main Video"></iframe></div><script src="https://player.vimeo.com/api/player.js"></script>`;
     
     if (userGender === 'female') {
       videoEmbed = `<div style="padding:56.25% 0 0 0;position:relative;"><iframe src="https://player.vimeo.com/video/867339842?h=5ecc384219&autoplay=1&loop=1&title=0&byline=0&portrait=0&background=1&controls=0" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" style="position:absolute;top:0;left:0;width:100%;height:100%;" title="Female"></iframe></div><script src="https://player.vimeo.com/api/player.js"></script>`;
@@ -139,7 +139,7 @@ const Programs = () => {
         'Supporto pratico per accompagnare il percorso sportivo senza pressioni inutili',
         'Filtraggio automatico dei dati per evitare interpretazioni errate o fuorvianti'
       ],
-      vickiOnRequest: true
+      vickiCustomBadge: 'Vicki™ report and stream'
     }
   ];
 
@@ -796,3 +796,4 @@ const Programs = () => {
 };
 
 export default Programs;
+

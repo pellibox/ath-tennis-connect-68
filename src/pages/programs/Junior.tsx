@@ -75,7 +75,7 @@ const JuniorProgram = () => {
           'Aggiornamenti regolari sull\'evoluzione tecnica e psico-fisica'
         ],
         monitoringLevel: 'basic' as MonitoringLevel,
-        vickiPowered: false
+        vickiCustomBadge: 'Vicki™ report and stream'
       }
     ];
     

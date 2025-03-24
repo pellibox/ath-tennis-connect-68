@@ -20,6 +20,7 @@ interface Program {
   monitoringLevel?: MonitoringLevel;
   vickiPowered?: boolean;
   vickiOnRequest?: boolean;
+  vickiCustomBadge?: string;
 }
 
 interface ProgramCategory {
@@ -272,6 +273,9 @@ const ProgramsSection = ({
               )}
               {program.vickiOnRequest && (
                 <VickiPoweredBadge onRequest className="mt-1" />
+              )}
+              {program.vickiCustomBadge && (
+                <VickiPoweredBadge customText={program.vickiCustomBadge} className="mt-1" />
               )}
             </div>
           </div>

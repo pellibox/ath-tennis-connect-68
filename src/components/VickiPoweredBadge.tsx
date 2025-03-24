@@ -10,6 +10,7 @@ interface VickiPoweredBadgeProps {
   textColor?: string;
   logoOnly?: boolean;
   small?: boolean;
+  customText?: string;
 }
 
 const VickiPoweredBadge = ({ 
@@ -18,7 +19,8 @@ const VickiPoweredBadge = ({
   bgColor = 'bg-purple-50',
   textColor = 'text-purple-700',
   logoOnly = false,
-  small = false
+  small = false,
+  customText
 }: VickiPoweredBadgeProps) => {
   if (logoOnly) {
     return (
@@ -48,7 +50,7 @@ const VickiPoweredBadge = ({
       className
     )}>
       <BadgeCheck className="w-4 h-4 mr-2" />
-      <span>{onRequest ? 'Vicki™ su richiesta' : 'Vicki™ powered'}</span>
+      <span>{customText || (onRequest ? 'Vicki™ su richiesta' : 'Vicki™ powered')}</span>
     </div>
   );
 };
