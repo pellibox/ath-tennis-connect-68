@@ -1,3 +1,4 @@
+
 import { useEffect } from 'react';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
@@ -157,6 +158,11 @@ const FacilitiesPage = () => {
               <div className="bg-white p-6 rounded-lg shadow-sm">
                 <h3 className="text-xl font-semibold mb-3 font-swiss">Eventi e Tornei</h3>
                 <p className="text-gray-700 font-swiss">Competizioni con analisi avanzata delle performance, ideali per testare in ambiente competitivo i progressi ottenuti durante gli allenamenti.</p>
+              </div>
+              
+              <div className="bg-white p-6 rounded-lg shadow-sm">
+                <h3 className="text-xl font-semibold mb-3 font-swiss">Corsi Specialistici</h3>
+                <p className="text-gray-700 font-swiss">Programmi formativi dedicati ad aspetti specifici del tennis come servizio, risposta, gioco di rete o tattica. Ogni corso utilizza l'analisi Vicki™ per personalizzare l'apprendimento.</p>
               </div>
             </div>
           </div>
