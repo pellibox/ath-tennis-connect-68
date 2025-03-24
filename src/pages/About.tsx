@@ -6,6 +6,7 @@ import AboutSection from '@/components/AboutSection';
 import JoinRevolutionSection from '@/components/JoinRevolutionSection';
 import { useLanguage } from '@/contexts/LanguageContext';
 import Hero from '@/components/Hero';
+import ButtonLink from '@/components/ButtonLink';
 import { Award, Users, BarChart, Target, Layers } from 'lucide-react';
 
 const AboutPage = () => {
