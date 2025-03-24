@@ -1,7 +1,5 @@
-
 import { UserGender, UserType } from '@/components/UserTypeSelector';
 
-// Get Vimeo embed code based on user profile
 export const getVimeoEmbed = (userGender: UserGender | null, userType: UserType | null, useBackground: boolean = true, forTechnologyPage: boolean = false): string => {
   // Technology page video override
   if (forTechnologyPage) {
@@ -14,6 +12,12 @@ export const getVimeoEmbed = (userGender: UserGender | null, userType: UserType 
   // Only change video if user has explicitly selected a profile
   if (userGender && userType) {
     console.log(`Selecting video for gender: ${userGender}, type: ${userType}`);
+    
+    // Female professional - NEW VIDEO
+    if (userGender === 'female' && userType === 'professional') {
+      videoEmbed = `<div style="padding:56.25% 0 0 0;position:relative;"><iframe src="https://player.vimeo.com/video/1068909035?h=1169847ac0&autoplay=1&loop=1&background=${useBackground ? '1' : '0'}&autopause=0&player_id=0&app_id=58479&controls=0" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media" style="position:absolute;top:0;left:0;width:100%;height:100%;" title="Female Professional"></iframe></div><script src="https://player.vimeo.com/api/player.js"></script>`;
+      return videoEmbed;
+    }
     
     // Female junior video - Use the specified video for all sections
     if (userGender === 'female' && userType === 'junior') {
@@ -65,7 +69,6 @@ export const getVimeoEmbed = (userGender: UserGender | null, userType: UserType 
   return videoEmbed;
 };
 
-// Helper function for personalized welcome message
 export const getWelcomeMessage = (userType: UserType | null): string => {
   if (!userType) return "Centro di allenamento ad alta specializzazione con monitoraggio parametrico completo e metodologia integrata";
   
@@ -81,7 +84,6 @@ export const getWelcomeMessage = (userType: UserType | null): string => {
   return messages[userType];
 };
 
-// Helper function for personalized method description
 export const getPersonalizedMethodDescription = (userType: UserType | null): string => {
   if (!userType) {
     return "Il Metodo ATH è un sistema integrato che unisce tecnologia avanzata e coaching esperto";
