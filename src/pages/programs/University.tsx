@@ -1,18 +1,27 @@
 
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
+import { useLanguage } from '@/contexts/LanguageContext';
 import Hero from '@/components/Hero';
-import AboutSection from '@/components/AboutSection';
 import RevealAnimation from '@/components/RevealAnimation';
-import ContactSection from '@/components/ContactSection';
+import { UserGender, UserType, loadUserPreferences } from '@/components/UserTypeSelector';
+import VickiMonitoringBadge from '@/components/VickiMonitoringBadge';
 import VickiPoweredBadge from '@/components/VickiPoweredBadge';
-import { ArrowRight, Calendar, Clock, Users, Zap, Calendar as CalendarIcon, Briefcase, GraduationCap } from 'lucide-react';
-import { Link } from 'react-router-dom';
+import ContactSection from '@/components/ContactSection';
 
-const University = () => {
+const UniversityProgram = () => {
+  const { t } = useLanguage();
+  const [userGender, setUserGender] = useState<UserGender | null>(null);
+  const [userType, setUserType] = useState<UserType | null>(null);
+  
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
+    
+    // Load user preferences
+    const { gender, type } = loadUserPreferences();
+    if (gender) setUserGender(gender);
+    if (type) setUserType(type);
   }, []);
 
   return (
@@ -20,260 +29,106 @@ const University = () => {
       <Header />
       
       <main className="flex-grow">
-        <Hero 
-          title="Universitari / Scuole Online"
-          subtitle="Programma flessibile per conciliare studio e tennis"
-          imageUrl="https://images.unsplash.com/photo-1523580846011-d3a5bc25702b?q=80&w=2670&auto=format&fit=crop"
-          height="medium"
-          overlay="dark"
-        />
-        
-        <section className="py-16 px-6">
-          <div className="max-w-6xl mx-auto">
-            <div className="flex flex-col md:flex-row gap-12">
-              <div className="md:w-2/3">
-                <RevealAnimation>
-                  <div className="flex items-center mb-6">
-                    <h1 className="text-3xl md:text-4xl font-display">Universitari / Scuole Online</h1>
-                    <VickiPoweredBadge onRequest className="ml-4" />
-                  </div>
-                  
-                  <div className="prose max-w-none">
-                    <p className="text-lg text-gray-600 mb-4">
-                      Il programma Universitari/Scuole Online è stato progettato specificamente per studenti che seguono 
-                      percorsi di studio flessibili o online e desiderano mantenere un'attività tennistica di qualità. 
-                      Con sessioni settimanali da 1,5 ore, il programma si adatta alle esigenze di studio permettendo di 
-                      coltivare la passione per il tennis.
-                    </p>
-                    
-                    <p className="text-lg text-gray-600 mb-4">
-                      La flessibilità del programma e l'opzione di includere sessioni tennistiche permettono agli studenti 
-                      di mantenere un equilibrio ottimale tra impegni accademici e sportivi, con la possibilità di 
-                      beneficiare della tecnologia VICKI™ su richiesta.
-                    </p>
-                    
-                    <h2 className="text-2xl font-display mt-8 mb-4">Caratteristiche del Programma</h2>
-                    
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
-                      <div className="bg-white p-6 rounded-lg shadow-sm">
-                        <h3 className="flex items-center text-xl font-medium mb-3">
-                          <CalendarIcon size={20} className="text-ath-clay mr-2" />
-                          Flessibilità Organizzativa
-                        </h3>
-                        <ul className="space-y-2">
-                          <li className="flex items-start">
-                            <span className="text-ath-clay mr-2">•</span>
-                            Orari compatibili con lo studio
-                          </li>
-                          <li className="flex items-start">
-                            <span className="text-ath-clay mr-2">•</span>
-                            Possibilità di recuperare le sessioni
-                          </li>
-                          <li className="flex items-start">
-                            <span className="text-ath-clay mr-2">•</span>
-                            Adattamento ai calendari accademici
-                          </li>
-                          <li className="flex items-start">
-                            <span className="text-ath-clay mr-2">•</span>
-                            Programmi personalizzabili
-                          </li>
-                        </ul>
-                      </div>
-                      
-                      <div className="bg-white p-6 rounded-lg shadow-sm">
-                        <h3 className="flex items-center text-xl font-medium mb-3">
-                          <Zap size={20} className="text-ath-clay mr-2" />
-                          Sessioni di Qualità
-                        </h3>
-                        <ul className="space-y-2">
-                          <li className="flex items-start">
-                            <span className="text-ath-clay mr-2">•</span>
-                            1,5 ore settimanali di attività
-                          </li>
-                          <li className="flex items-start">
-                            <span className="text-ath-clay mr-2">•</span>
-                            Tennis opzionale nella sessione
-                          </li>
-                          <li className="flex items-start">
-                            <span className="text-ath-clay mr-2">•</span>
-                            Focus su benessere e forma fisica
-                          </li>
-                          <li className="flex items-start">
-                            <span className="text-ath-clay mr-2">•</span>
-                            Preparazione fisica adattata
-                          </li>
-                        </ul>
-                      </div>
-                    </div>
-                    
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
-                      <div className="bg-white p-6 rounded-lg shadow-sm">
-                        <h3 className="flex items-center text-xl font-medium mb-3">
-                          <GraduationCap size={20} className="text-ath-clay mr-2" />
-                          Supporto Accademico
-                        </h3>
-                        <ul className="space-y-2">
-                          <li className="flex items-start">
-                            <span className="text-ath-clay mr-2">•</span>
-                            Coordinamento con impegni di studio
-                          </li>
-                          <li className="flex items-start">
-                            <span className="text-ath-clay mr-2">•</span>
-                            Spazi studio disponibili in struttura
-                          </li>
-                          <li className="flex items-start">
-                            <span className="text-ath-clay mr-2">•</span>
-                            Wi-Fi ad alta velocità
-                          </li>
-                          <li className="flex items-start">
-                            <span className="text-ath-clay mr-2">•</span>
-                            Ambiente ideale per studio e sport
-                          </li>
-                        </ul>
-                      </div>
-                      
-                      <div className="bg-white p-6 rounded-lg shadow-sm">
-                        <h3 className="flex items-center text-xl font-medium mb-3">
-                          <Briefcase size={20} className="text-ath-clay mr-2" />
-                          Servizi Extra
-                        </h3>
-                        <ul className="space-y-2">
-                          <li className="flex items-start">
-                            <span className="text-ath-clay mr-2">•</span>
-                            Analisi VICKI™ su richiesta
-                          </li>
-                          <li className="flex items-start">
-                            <span className="text-ath-clay mr-2">•</span>
-                            Possibilità di sessioni aggiuntive
-                          </li>
-                          <li className="flex items-start">
-                            <span className="text-ath-clay mr-2">•</span>
-                            Accesso alle strutture ATH
-                          </li>
-                          <li className="flex items-start">
-                            <span className="text-ath-clay mr-2">•</span>
-                            Networking con altri studenti-atleti
-                          </li>
-                        </ul>
-                      </div>
-                    </div>
-                    
-                    <h2 className="text-2xl font-display mt-8 mb-4">Vantaggi del Programma</h2>
-                    <ul className="space-y-3 mb-8">
-                      <li className="flex items-start">
-                        <span className="text-ath-clay mr-2">•</span>
-                        <span>Equilibrio ottimale tra studio e attività sportiva</span>
-                      </li>
-                      <li className="flex items-start">
-                        <span className="text-ath-clay mr-2">•</span>
-                        <span>Orari flessibili adatti agli impegni universitari</span>
-                      </li>
-                      <li className="flex items-start">
-                        <span className="text-ath-clay mr-2">•</span>
-                        <span>Ambiente stimolante per studio e allenamento</span>
-                      </li>
-                      <li className="flex items-start">
-                        <span className="text-ath-clay mr-2">•</span>
-                        <span>Possibilità di mantenere un'attività sportiva di qualità</span>
-                      </li>
-                    </ul>
-                    
-                    <div className="bg-gray-50 p-6 rounded-lg mb-8">
-                      <h3 className="text-xl font-medium mb-4">A Chi è Dedicato</h3>
-                      <p>
-                        Il programma è ideale per studenti universitari o di scuole online che desiderano mantenere 
-                        un'attività sportiva regolare senza compromettere il loro percorso di studi. È particolarmente 
-                        adatto a chi cerca flessibilità nell'organizzazione delle proprie attività e vuole combinare 
-                        efficacemente studio e sport.
-                      </p>
-                    </div>
-                    
-                    <Link 
-                      to="/contact" 
-                      className="inline-flex items-center bg-ath-clay text-white py-3 px-6 rounded-md hover:bg-ath-clay/90 transition-colors"
-                    >
-                      Richiedi Informazioni <ArrowRight size={18} className="ml-2" />
-                    </Link>
-                  </div>
-                </RevealAnimation>
+        <div className="relative">
+          <Hero 
+            title="Universitari / Scuole Online"
+            subtitle="Programma flessibile (40 settimane)"
+            imageSrc="https://images.unsplash.com/photo-1523050854058-8df90110c9f1?q=80&w=2071&auto=format&fit=crop"
+            vimeoEmbed='<div style="padding:75% 0 0 0;position:relative;"><iframe src="https://player.vimeo.com/video/1068788542?h=698f55b033&autoplay=1&loop=1&background=1&autopause=0&player_id=0&app_id=58479&controls=0" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media" style="position:absolute;top:0;left:0;width:100%;height:100%;" title="University Program"></iframe></div><script src="https://player.vimeo.com/api/player.js"></script>'
+            buttons={[
+              { text: 'RICHIEDI INFORMAZIONI', href: '/contact' },
+              { text: 'CONTATTACI', href: '/contact', variant: 'outline' }
+            ]}
+            contentPosition="left"
+            overlayOpacity="medium"
+          />
+          
+          {/* Black banner with claim text */}
+          <div className="w-full bg-black py-16 relative" style={{ height: '300px' }}>
+            <div className="max-w-6xl mx-auto px-6 h-full flex flex-col justify-center">
+              <div className="flex items-center mb-2">
+                <h2 className="text-white text-lg font-display mr-3">UNIVERSITARI:</h2>
+                <p className="text-white text-lg font-swiss max-w-3xl">
+                  Programma flessibile per studenti universitari e frequentanti scuole online
+                </p>
               </div>
-              
-              <div className="md:w-1/3">
-                <RevealAnimation delay={200}>
-                  <div className="bg-white p-6 rounded-lg shadow-sm sticky top-24">
-                    <h2 className="text-2xl font-display mb-6 pb-2 border-b">Dettagli Programma</h2>
-                    
-                    <div className="space-y-6">
-                      <div className="flex items-start">
-                        <Calendar size={22} className="text-ath-clay mr-3 mt-1" />
-                        <div>
-                          <h3 className="font-medium">Durata</h3>
-                          <p className="text-gray-600">40 settimane</p>
-                        </div>
-                      </div>
-                      
-                      <div className="flex items-start">
-                        <Clock size={22} className="text-ath-clay mr-3 mt-1" />
-                        <div>
-                          <h3 className="font-medium">Sessioni</h3>
-                          <p className="text-gray-600">1,5 ore settimanali</p>
-                        </div>
-                      </div>
-                      
-                      <div className="flex items-start">
-                        <Users size={22} className="text-ath-clay mr-3 mt-1" />
-                        <div>
-                          <h3 className="font-medium">Target</h3>
-                          <p className="text-gray-600">Studenti universitari e scuole online</p>
-                        </div>
-                      </div>
-                      
-                      <div className="pt-4 mt-6 border-t">
-                        <div className="text-center mb-3">
-                          <span className="text-sm text-gray-500">Prezzo Annuale</span>
-                          <div className="text-3xl font-bold text-ath-clay">€1.000</div>
-                        </div>
-                        
-                        <Link 
-                          to="/contact" 
-                          className="w-full inline-flex items-center justify-center bg-ath-clay text-white py-3 px-6 rounded-md hover:bg-ath-clay/90 transition-colors"
-                        >
-                          Contattaci
-                        </Link>
-                      </div>
-                    </div>
-                  </div>
-                </RevealAnimation>
+              <div className="mt-4 flex flex-wrap gap-3">
+                <VickiMonitoringBadge level="basic" className="bg-opacity-20 border-opacity-30 text-white" />
+                <VickiPoweredBadge onRequest className="bg-opacity-20 border-opacity-30 text-white" />
               </div>
             </div>
           </div>
-        </section>
+        </div>
         
-        <AboutSection 
-          title="Studio e Sport in Equilibrio"
-          description={
-            <div className="space-y-4">
-              <p>
-                In ATH comprendiamo l'importanza di mantenere un equilibrio tra formazione accademica e attività sportiva. 
-                Il nostro programma per universitari e studenti online è stato pensato per offrire la massima flessibilità 
-                senza rinunciare alla qualità dell'allenamento.
+        <div className="max-w-6xl mx-auto px-6 py-16">
+          <div className="mb-12">
+            <RevealAnimation>
+              <div className="flex flex-wrap items-center gap-3 mb-6">
+                <h2 className="text-3xl font-swiss">Universitari / Scuole Online</h2>
+                <VickiMonitoringBadge level="basic" />
+                <VickiPoweredBadge onRequest />
+              </div>
+            </RevealAnimation>
+            <RevealAnimation delay={100}>
+              <p className="text-lg mb-6 font-swiss">Programma flessibile, 40 settimane all'anno.</p>
+            </RevealAnimation>
+            <RevealAnimation delay={150}>
+              <p className="mb-4 font-swiss">
+                Il programma per Universitari e studenti di scuole online è progettato per adattarsi
+                alle esigenze di chi ha orari flessibili o variabili. Con una sessione settimanale da 1,5 ore,
+                questo programma può essere personalizzato per includere allenamento tennistico opzionale,
+                in base alle preferenze individuali.
               </p>
-              <p>
-                Le nostre strutture offrono l'ambiente ideale per alternare studio e sport, con spazi dedicati e 
-                tutti i servizi necessari per ottimizzare entrambe le attività.
+            </RevealAnimation>
+            <RevealAnimation delay={200}>
+              <p className="font-swiss">
+                La flessibilità è la caratteristica principale di questo programma, che può essere adattato
+                al calendario accademico e alle esigenze personali. La tecnologia VICKI™ può essere attivata
+                su richiesta per monitorare i progressi e fornire feedback oggettivi.
               </p>
-            </div>
-          }
-          image="https://images.unsplash.com/photo-1523240795612-9a054b0db644?q=80&w=2070&auto=format&fit=crop"
-          buttons={[
-            { text: 'SCOPRI LE NOSTRE STRUTTURE', href: '/facilities' }
-          ]}
-          reversed={true}
-        />
+            </RevealAnimation>
+          </div>
+          
+          <div className="grid md:grid-cols-2 gap-10">
+            <RevealAnimation delay={250} className="bg-gray-50 p-8 rounded-lg">
+              <h3 className="text-xl font-swiss font-semibold mb-4">Caratteristiche del Programma</h3>
+              <ul className="list-disc list-inside space-y-2 font-swiss">
+                <li>1 sessione a settimana da 1,5 ore (tennis opzionale)</li>
+                <li>40 settimane di allenamento</li>
+                <li>Programma altamente flessibile</li>
+                <li>Monitoraggio VICKI™ disponibile su richiesta</li>
+                <li>Possibilità di riorganizzare il calendario in base agli impegni universitari</li>
+                <li>Opzioni per sessioni di gruppo o individuali</li>
+                <li>Possibilità di organizzare eventi con altri universitari</li>
+              </ul>
+            </RevealAnimation>
+            
+            <RevealAnimation delay={300} className="bg-gray-50 p-8 rounded-lg">
+              <h3 className="text-xl font-swiss font-semibold mb-4">Prezzo</h3>
+              <div className="mb-4">
+                <p className="text-3xl font-bold text-ath-clay">€1.000</p>
+                <p className="text-sm text-gray-600">per stagione (40 settimane)</p>
+              </div>
+              <p className="text-sm text-gray-600 mb-4">
+                Possibilità di pacchetti personalizzati in base alla frequenza desiderata.
+                Contattaci per maggiori informazioni.
+              </p>
+              <a 
+                href="/contact" 
+                className="inline-block bg-ath-clay text-white py-2 px-4 rounded hover:bg-ath-clay/90 transition-colors"
+              >
+                Richiedi informazioni
+              </a>
+            </RevealAnimation>
+          </div>
+        </div>
         
         <ContactSection 
-          title="Concilia Studio e Tennis"
-          subtitle="Contattaci per scoprire come il nostro programma può adattarsi al tuo percorso di studi."
+          title="Vuoi saperne di più?" 
+          subtitle="Contattaci per un programma personalizzato"
+          address="Via Carlo D'Adda 6/8, 20143 Milano (MI)"
+          email="info@advancedtennishub.com"
+          phone="+39 02 123 4567"
         />
       </main>
       
@@ -282,4 +137,4 @@ const University = () => {
   );
 };
 
-export default University;
+export default UniversityProgram;
