@@ -1,4 +1,3 @@
-
 import { useEffect } from 'react';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
@@ -18,24 +17,7 @@ const TechnologyPage = () => {
 
   // Get personalized description based on user type
   const getPersonalizedDescription = () => {
-    if (!userType) {
-      return "Sistema di analisi con visione artificiale, AI e tracciamento 3D che analizza oltre 70 parametri in tempo reale";
-    }
-
-    switch (userType) {
-      case 'junior':
-        return "Analisi e monitoraggio tecnico adattato per giovani tennisti in fase di sviluppo, con focus su coordinazione e pattern motori";
-      case 'performance':
-        return "Analisi avanzata per tennisti agonisti con tracciamento biomeccanico e supporto tecnico-tattico per ottimizzare la performance";
-      case 'professional':
-        return "Sistema di monitoraggio e analisi completo per professionisti con integrazione di parametri fisici, mentali e tattici in tempo reale";
-      case 'coach':
-        return "Strumento completo di analisi per coach, con dashboard personalizzabile, tracking multi-atleta e statistiche avanzate";
-      case 'parent':
-        return "Analisi semplificata e report visivi per genitori, con tracciamento dello sviluppo tecnico e fisico del giovane atleta";
-      default:
-        return "Sistema di analisi con visione artificiale, AI e tracciamento 3D che analizza oltre 70 parametri in tempo reale";
-    }
+    return "Sistema di analisi con visione artificiale, AI e tracciamento 3D che analizza oltre 70 parametri in tempo reale";
   };
 
   // Always use the technology video
@@ -56,14 +38,14 @@ const TechnologyPage = () => {
               LA TECNOLOGIA:
             </h2>
             <p className="text-white text-xl md:text-2xl opacity-90 font-swiss drop-shadow-md">
-              {getPersonalizedDescription()}
+              {t('tech.subtitle')}
             </p>
           </div>
         </div>
         
         <TechnologySection 
           title="Sistema di analisi con visione artificiale e AI"
-          subtitle={getPersonalizedDescription()}
+          subtitle="Sistema di analisi con visione artificiale, AI e tracciamento 3D che analizza oltre 70 parametri in tempo reale"
         />
         
         {userType && (
@@ -174,4 +156,3 @@ const TechnologyPage = () => {
 };
 
 export default TechnologyPage;
-

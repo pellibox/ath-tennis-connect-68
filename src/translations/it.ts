@@ -1,3 +1,4 @@
+
 const translations = {
   // Header & Navigation
   "nav.home": "Home",
@@ -66,7 +67,7 @@ const translations = {
   
   // Technology Section
   "tech.title": "Il Vantaggio Tecnologico ATH",
-  "tech.subtitle": "Il nostro innovativo sistema tecnologico integra analisi avanzate e AI per rivoluzionare l'allenamento del tennis",
+  "tech.subtitle": "Sistema di analisi con visione artificiale, AI e tracciamento 3D che analizza oltre 70 parametri in tempo reale",
   "tech.exclusive": "TECNOLOGIA ESCLUSIVA",
   "tech.vicki.subtitle": "La Soluzione alle Sfide del Tennis Moderno",
   "tech.data.title": "Raccolta Dati Avanzata",
@@ -85,7 +86,7 @@ const translations = {
   "tech.global.desc": "Accesso a una rete internazionale di competenze e best practice da tutto il mondo.",
   "tech.comm.title": "Comunicazione Avanzata",
   "tech.comm.desc": "Condivisione efficace delle informazioni tra tutti i professionisti del team con documentazione precisa.",
-  "tech.quote": "Vicki™ integra tecnologia avanzata e competenza umana per sbloccare il potenziale nascosto in ogni atleta, ridefinendo gli standard di sviluppo del tennis moderno.",
+  "tech.quote": "Vicki™ è un sistema unico, specificamente sviluppato per potenziare le capacità del coach, non per sostituirle. L'expertise umana rimane essenziale nel processo di allenamento, mentre la tecnologia fornisce dati e analisi che amplificano l'intuizione e l'esperienza dell'allenatore.",
   "tech.only": "L'unico centro tennis al mondo che utilizza la tecnologia Vicki™",
   
   // Facilities, Coaches, Contact and other sections
