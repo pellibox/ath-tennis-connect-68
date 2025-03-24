@@ -11,7 +11,7 @@ const SummaryQuote = ({ className }: SummaryQuoteProps) => {
   
   return (
     <RevealAnimation delay={600}>
-      <div className={`mt-12 bg-ath-clay bg-opacity-5 p-6 rounded-lg border border-ath-clay border-opacity-20 max-w-4xl mx-auto ${className}`}>
+      <div className={`mt-12 bg-white p-6 rounded-lg border border-ath-clay max-w-4xl mx-auto ${className}`}>
         <p className="text-ath-clay italic font-swiss">
           {t('tech.quote').replace(/VICKI/g, 'Vicki™')}
         </p>

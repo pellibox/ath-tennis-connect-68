@@ -9,13 +9,13 @@ interface CoachCenteredProps {
 const CoachCentered = ({ className }: CoachCenteredProps) => {
   return (
     <RevealAnimation delay={120}>
-      <div className={`mb-16 bg-ath-clay bg-opacity-5 p-8 rounded-lg ${className}`}>
+      <div className={`mb-16 bg-white border border-ath-clay p-8 rounded-lg ${className}`}>
         <h3 className="text-2xl font-medium mb-6 text-center text-black font-swiss">Il Coach al Centro del Sistema</h3>
         <div className="flex flex-col md:flex-row gap-6 items-center">
           <div className="md:w-1/3 text-center">
             <Users className="w-20 h-20 mx-auto text-ath-clay mb-4" />
           </div>
-          <div className="md:w-2/3 text-center">
+          <div className="md:w-2/3">
             <p className="mb-4 font-swiss text-black">
               Vicki™ è concepito come uno strumento di potenziamento per il coach, non come sostituto. 
               Il sistema posiziona l'allenatore al centro del processo decisionale, fornendogli dati completi e analisi 
