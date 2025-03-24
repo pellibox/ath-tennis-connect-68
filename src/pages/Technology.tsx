@@ -39,8 +39,8 @@ const TechnologyPage = () => {
     }
   };
 
-  // Get Vimeo embed from the profile context
-  const vimeoEmbed = getVimeoEmbed(userGender, userType);
+  // Get Vimeo embed from the profile context, with forTechnologyPage=true
+  const vimeoEmbed = getVimeoEmbed(userGender, userType, true, true);
 
   return (
     <div className="flex flex-col min-h-screen">
