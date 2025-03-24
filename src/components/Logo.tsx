@@ -43,7 +43,7 @@ const Logo = ({
   // Size classes based on logo type
   const sizeClasses = isFooter 
     ? 'h-28' 
-    : (isInMenu ? 'w-20 h-auto' : 'h-16');
+    : (isInMenu ? 'w-20 h-auto' : 'w-40 h-auto');
   
   // Function to handle logo click
   const handleLogoClick = (e: React.MouseEvent) => {
