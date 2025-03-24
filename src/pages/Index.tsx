@@ -9,10 +9,12 @@ import StatsAndNavSection from '@/components/StatsAndNavSection';
 import { UserGender, UserType, loadUserPreferences } from '@/components/UserTypeSelector';
 import { useLanguage } from '@/contexts/LanguageContext';
 import Logo from '@/components/Logo';
+import { useIsMobile } from '@/hooks/use-mobile';
 
 const HomePage = () => {
   // Get translation function
   const { t } = useLanguage();
+  const isMobile = useIsMobile();
   
   // State to track user preferences
   const [userGender, setUserGender] = useState<UserGender | null>(null);
@@ -31,22 +33,25 @@ const HomePage = () => {
   // Handle scroll effect for the logo
   useEffect(() => {
     const handleScroll = () => {
-      // Get current scroll position
-      const scrollY = window.scrollY;
-      
-      // Calculate offset to move the logo up as user scrolls down
-      setLogoYOffset(scrollY * 0.2); // Adjust the multiplier to control the speed
-      
-      // Fade out logo as user scrolls down
-      // Start fading at 100px of scroll, completely fade out by 300px
-      const fadeThreshold = 100;
-      const fadeOutBy = 300;
-      
-      if (scrollY > fadeThreshold) {
-        const opacity = Math.max(0, 1 - (scrollY - fadeThreshold) / (fadeOutBy - fadeThreshold));
-        setLogoOpacity(opacity);
-      } else {
-        setLogoOpacity(1);
+      // Only apply scroll effects for non-mobile
+      if (!isMobile) {
+        // Get current scroll position
+        const scrollY = window.scrollY;
+        
+        // Calculate offset to move the logo up as user scrolls down
+        setLogoYOffset(scrollY * 0.2); // Adjust the multiplier to control the speed
+        
+        // Fade out logo as user scrolls down
+        // Start fading at 100px of scroll, completely fade out by 300px
+        const fadeThreshold = 100;
+        const fadeOutBy = 300;
+        
+        if (scrollY > fadeThreshold) {
+          const opacity = Math.max(0, 1 - (scrollY - fadeThreshold) / (fadeOutBy - fadeThreshold));
+          setLogoOpacity(opacity);
+        } else {
+          setLogoOpacity(1);
+        }
       }
     };
 
@@ -60,7 +65,7 @@ const HomePage = () => {
     return () => {
       window.removeEventListener('scroll', handleScroll);
     };
-  }, []);
+  }, [isMobile]);
 
   // Load user preferences on mount and when they change
   useEffect(() => {
@@ -161,20 +166,22 @@ const HomePage = () => {
 
   return (
     <div className="flex flex-col min-h-screen relative">
-      {/* Overlay logo for home/about page */}
-      <div 
-        ref={logoRef}
-        className="fixed top-[calc(25%-100px)] left-1/2 transform -translate-x-1/2 z-50 w-40 h-40 pointer-events-none transition-opacity duration-300"
-        style={{
-          transform: `translate(-50%, -${logoYOffset}px)`,
-          opacity: logoOpacity
-        }}
-      >
-        <Logo 
-          onDarkBackground={true} 
-          className="w-full h-full"
-        />
-      </div>
+      {/* Only show the overlay logo when not on mobile */}
+      {!isMobile && (
+        <div 
+          ref={logoRef}
+          className="fixed top-[calc(25%-100px)] left-1/2 transform -translate-x-1/2 z-50 w-40 h-40 pointer-events-none transition-opacity duration-300"
+          style={{
+            transform: `translate(-50%, -${logoYOffset}px)`,
+            opacity: logoOpacity
+          }}
+        >
+          <Logo 
+            onDarkBackground={true} 
+            className="w-full h-full"
+          />
+        </div>
+      )}
       
       <Header />
       

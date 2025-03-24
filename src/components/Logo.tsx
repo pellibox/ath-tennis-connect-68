@@ -1,6 +1,7 @@
 
 import { Link } from 'react-router-dom';
 import { useLocation } from 'react-router-dom';
+import { useIsMobile } from '@/hooks/use-mobile';
 
 interface LogoProps {
   variant?: 'default' | 'footer';
@@ -23,6 +24,7 @@ const Logo = ({
 }: LogoProps) => {
   const isFooter = variant === 'footer';
   const location = useLocation();
+  const isMobile = useIsMobile();
   
   // Logo paths
   let logoSrc;
@@ -43,7 +45,11 @@ const Logo = ({
   // Size classes based on logo type
   const sizeClasses = isFooter 
     ? 'h-28' 
-    : (isInMenu ? 'w-16 sm:w-20 h-auto' : 'w-24 sm:w-32 h-auto'); // Responsive size adjustments
+    : (isInMenu 
+        ? 'w-14 sm:w-16 h-auto' // Smaller menu logo
+        : (isMobile 
+            ? 'w-20 h-auto' // Smaller logo on mobile for center logo
+            : 'w-24 sm:w-32 h-auto')); // Normal size on desktop
   
   // Function to handle logo click
   const handleLogoClick = (e: React.MouseEvent) => {

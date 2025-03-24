@@ -1,3 +1,4 @@
+
 import { useState, useEffect, useRef } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Menu, X, Activity, Zap, BookOpen, Server, HelpCircle, Users } from 'lucide-react';
@@ -153,7 +154,8 @@ const Header = ({ useVickiLogo = false }: HeaderProps) => {
   
   const textColorClass = "text-black";
 
-  const showLogoInHeader = isScrolled;
+  // Always show the center logo regardless of scroll position
+  const showLogoInHeader = true;
 
   return (
     <header 
@@ -164,7 +166,8 @@ const Header = ({ useVickiLogo = false }: HeaderProps) => {
       )}
     >
       <div className="container mx-auto px-6 flex items-center justify-between relative">
-        <div className={cn("flex items-center z-50 absolute left-6 md:left-6", !showLogoInHeader && "opacity-0")}>
+        {/* Left menu logo */}
+        <div className={cn("flex items-center z-50 absolute left-6 md:left-6")}>
           <Logo 
             variant="default" 
             onDarkBackground={false}
@@ -172,6 +175,17 @@ const Header = ({ useVickiLogo = false }: HeaderProps) => {
             resetProfile={false}
             useVickiLogo={useVickiLogo}
             isInMenu={true}
+          />
+        </div>
+        
+        {/* Center logo - always visible */}
+        <div className="absolute left-1/2 transform -translate-x-1/2 z-50">
+          <Logo 
+            variant="default" 
+            onDarkBackground={false}
+            preserveUserProfile={true}
+            resetProfile={false}
+            className="mx-auto"
           />
         </div>
         
