@@ -188,7 +188,7 @@ const FacilitiesPage = () => {
           buttons={[
             { text: "Prenota ora", href: '/contact' }
           ]}
-          accent="ath-clay"
+          accent="clay"
           elegant={true}
         />
       </main>
