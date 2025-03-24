@@ -1,3 +1,4 @@
+
 import { useEffect, useState } from 'react';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
@@ -58,12 +59,10 @@ const TechnologyPage = () => {
           </div>
         </div>
         
-        {/* Black banner with claim text - no longer duplicating the caption */}
-        <div className="w-full bg-black py-16 relative" style={{ height: '300px' }}>
+        {/* Black banner with reduced height - matching Method page style */}
+        <div className="w-full bg-black py-10 relative" style={{ height: '150px' }}>
           <div className="max-w-6xl mx-auto px-6 h-full flex flex-col justify-center">
-            <div className="flex items-center mb-2">
-              <h2 className="text-white text-lg font-display mr-3">TECNOLOGIA VICKI:</h2>
-            </div>
+            {/* Empty banner for spacing, to match Method page style */}
           </div>
         </div>
         
@@ -76,7 +75,7 @@ const TechnologyPage = () => {
           <section className="py-16 px-6 bg-ath-gray">
             <div className="max-w-7xl mx-auto">
               <RevealAnimation>
-                <h2 className="text-3xl font-display mb-8">Benefici per {userType === 'coach' ? 'i Coach' : 
+                <h2 className="text-3xl font-swiss mb-8">Benefici per {userType === 'coach' ? 'i Coach' : 
                                                   userType === 'parent' ? 'i Genitori' : 
                                                   userType === 'professional' ? 'i Professionisti' : 
                                                   userType === 'performance' ? 'gli Agonisti' : 
@@ -87,16 +86,16 @@ const TechnologyPage = () => {
                 {userType === 'professional' && (
                   <>
                     <RevealAnimation delay={100} className="bg-white p-6 shadow-sm">
-                      <h3 className="text-xl font-medium mb-4">Analisi Predittiva</h3>
-                      <p>Algoritmi avanzati che anticipano trend e rischi di infortunio basati su pattern biomeccanici e di carico.</p>
+                      <h3 className="text-xl font-medium mb-4 font-swiss">Analisi Predittiva</h3>
+                      <p className="font-swiss">Algoritmi avanzati che anticipano trend e rischi di infortunio basati su pattern biomeccanici e di carico.</p>
                     </RevealAnimation>
                     <RevealAnimation delay={150} className="bg-white p-6 shadow-sm">
-                      <h3 className="text-xl font-medium mb-4">Monitoraggio Completo</h3>
-                      <p>Tracking integrato di parametri tecnici, fisici, mentali e tattici con feedback in tempo reale.</p>
+                      <h3 className="text-xl font-medium mb-4 font-swiss">Monitoraggio Completo</h3>
+                      <p className="font-swiss">Tracking integrato di parametri tecnici, fisici, mentali e tattici con feedback in tempo reale.</p>
                     </RevealAnimation>
                     <RevealAnimation delay={200} className="bg-white p-6 shadow-sm">
-                      <h3 className="text-xl font-medium mb-4">Gestione Ottimale</h3>
-                      <p>Ottimizzazione del carico allenante e pianificazione dei picchi di forma in base ai tornei programmati.</p>
+                      <h3 className="text-xl font-medium mb-4 font-swiss">Gestione Ottimale</h3>
+                      <p className="font-swiss">Ottimizzazione del carico allenante e pianificazione dei picchi di forma in base ai tornei programmati.</p>
                     </RevealAnimation>
                   </>
                 )}
@@ -104,16 +103,16 @@ const TechnologyPage = () => {
                 {userType === 'performance' && (
                   <>
                     <RevealAnimation delay={100} className="bg-white p-6 shadow-sm">
-                      <h3 className="text-xl font-medium mb-4">Analisi Tecnica</h3>
-                      <p>Monitoraggio completo di tutti i colpi con feedback sul miglioramento dei parametri biomeccanici.</p>
+                      <h3 className="text-xl font-medium mb-4 font-swiss">Analisi Tecnica</h3>
+                      <p className="font-swiss">Monitoraggio completo di tutti i colpi con feedback sul miglioramento dei parametri biomeccanici.</p>
                     </RevealAnimation>
                     <RevealAnimation delay={150} className="bg-white p-6 shadow-sm">
-                      <h3 className="text-xl font-medium mb-4">Supporto Tattico</h3>
-                      <p>Analisi delle partite e dei pattern di gioco per adattare l'allenamento alle esigenze competitive.</p>
+                      <h3 className="text-xl font-medium mb-4 font-swiss">Supporto Tattico</h3>
+                      <p className="font-swiss">Analisi delle partite e dei pattern di gioco per adattare l'allenamento alle esigenze competitive.</p>
                     </RevealAnimation>
                     <RevealAnimation delay={200} className="bg-white p-6 shadow-sm">
-                      <h3 className="text-xl font-medium mb-4">Prevenzione Infortuni</h3>
-                      <p>Identificazione dei sovraccarichi e dei pattern motori rischiosi per prevenire infortuni comuni.</p>
+                      <h3 className="text-xl font-medium mb-4 font-swiss">Prevenzione Infortuni</h3>
+                      <p className="font-swiss">Identificazione dei sovraccarichi e dei pattern motori rischiosi per prevenire infortuni comuni.</p>
                     </RevealAnimation>
                   </>
                 )}
@@ -121,16 +120,16 @@ const TechnologyPage = () => {
                 {userType === 'junior' && (
                   <>
                     <RevealAnimation delay={100} className="bg-white p-6 shadow-sm">
-                      <h3 className="text-xl font-medium mb-4">Sviluppo Coordinativo</h3>
-                      <p>Monitoraggio della coordinazione e dei pattern motori fondamentali per una crescita armonica.</p>
+                      <h3 className="text-xl font-medium mb-4 font-swiss">Sviluppo Coordinativo</h3>
+                      <p className="font-swiss">Monitoraggio della coordinazione e dei pattern motori fondamentali per una crescita armonica.</p>
                     </RevealAnimation>
                     <RevealAnimation delay={150} className="bg-white p-6 shadow-sm">
-                      <h3 className="text-xl font-medium mb-4">Apprendimento Efficace</h3>
-                      <p>Feedback visivi immediati che accelerano l'apprendimento tecnico e la comprensione del movimento.</p>
+                      <h3 className="text-xl font-medium mb-4 font-swiss">Apprendimento Efficace</h3>
+                      <p className="font-swiss">Feedback visivi immediati che accelerano l'apprendimento tecnico e la comprensione del movimento.</p>
                     </RevealAnimation>
                     <RevealAnimation delay={200} className="bg-white p-6 shadow-sm">
-                      <h3 className="text-xl font-medium mb-4">Monitoraggio Crescita</h3>
-                      <p>Adattamento continuo dei programmi in base allo sviluppo fisico e alla crescita del giovane atleta.</p>
+                      <h3 className="text-xl font-medium mb-4 font-swiss">Monitoraggio Crescita</h3>
+                      <p className="font-swiss">Adattamento continuo dei programmi in base allo sviluppo fisico e alla crescita del giovane atleta.</p>
                     </RevealAnimation>
                   </>
                 )}
@@ -138,16 +137,16 @@ const TechnologyPage = () => {
                 {userType === 'coach' && (
                   <>
                     <RevealAnimation delay={100} className="bg-white p-6 shadow-sm">
-                      <h3 className="text-xl font-medium mb-4">Dashboard Avanzata</h3>
-                      <p>Gestione completa dei tuoi atleti con visualizzazione dati personalizzabile e reportistica avanzata.</p>
+                      <h3 className="text-xl font-medium mb-4 font-swiss">Dashboard Avanzata</h3>
+                      <p className="font-swiss">Gestione completa dei tuoi atleti con visualizzazione dati personalizzabile e reportistica avanzata.</p>
                     </RevealAnimation>
                     <RevealAnimation delay={150} className="bg-white p-6 shadow-sm">
-                      <h3 className="text-xl font-medium mb-4">Supporto Metodologico</h3>
-                      <p>Integrazione della tua metodologia nel sistema con possibilità di codificare esercizi e progressioni.</p>
+                      <h3 className="text-xl font-medium mb-4 font-swiss">Supporto Metodologico</h3>
+                      <p className="font-swiss">Integrazione della tua metodologia nel sistema con possibilità di codificare esercizi e progressioni.</p>
                     </RevealAnimation>
                     <RevealAnimation delay={200} className="bg-white p-6 shadow-sm">
-                      <h3 className="text-xl font-medium mb-4">Condivisione Dati</h3>
-                      <p>Collaborazione facile con altri professionisti (fisioterapisti, preparatori, mental coach) tramite la piattaforma.</p>
+                      <h3 className="text-xl font-medium mb-4 font-swiss">Condivisione Dati</h3>
+                      <p className="font-swiss">Collaborazione facile con altri professionisti (fisioterapisti, preparatori, mental coach) tramite la piattaforma.</p>
                     </RevealAnimation>
                   </>
                 )}
@@ -155,16 +154,16 @@ const TechnologyPage = () => {
                 {userType === 'parent' && (
                   <>
                     <RevealAnimation delay={100} className="bg-white p-6 shadow-sm">
-                      <h3 className="text-xl font-medium mb-4">Report Semplificati</h3>
-                      <p>Visualizzazione chiara e comprensibile dei progressi del tuo ragazzo/a senza terminologia troppo tecnica.</p>
+                      <h3 className="text-xl font-medium mb-4 font-swiss">Report Semplificati</h3>
+                      <p className="font-swiss">Visualizzazione chiara e comprensibile dei progressi del tuo ragazzo/a senza terminologia troppo tecnica.</p>
                     </RevealAnimation>
                     <RevealAnimation delay={150} className="bg-white p-6 shadow-sm">
-                      <h3 className="text-xl font-medium mb-4">Monitoraggio Sicuro</h3>
-                      <p>Controllo dello sviluppo fisico e tecnico con attenzione alla salute e alla prevenzione di sovraccarichi.</p>
+                      <h3 className="text-xl font-medium mb-4 font-swiss">Monitoraggio Sicuro</h3>
+                      <p className="font-swiss">Controllo dello sviluppo fisico e tecnico con attenzione alla salute e alla prevenzione di sovraccarichi.</p>
                     </RevealAnimation>
                     <RevealAnimation delay={200} className="bg-white p-6 shadow-sm">
-                      <h3 className="text-xl font-medium mb-4">Connessione con Coach</h3>
-                      <p>Canale diretto con lo staff tecnico per seguire il percorso formativo in modo trasparente e collaborativo.</p>
+                      <h3 className="text-xl font-medium mb-4 font-swiss">Connessione con Coach</h3>
+                      <p className="font-swiss">Canale diretto con lo staff tecnico per seguire il percorso formativo in modo trasparente e collaborativo.</p>
                     </RevealAnimation>
                   </>
                 )}

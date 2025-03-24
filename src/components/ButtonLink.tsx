@@ -22,7 +22,7 @@ const ButtonLink = ({
   external = false,
   style,
 }: ButtonLinkProps) => {
-  const baseClasses = "inline-block text-center transition-all duration-300 rounded-md font-medium";
+  const baseClasses = "inline-block text-center transition-all duration-300 rounded-md font-swiss";
   
   const variantClasses = {
     primary: "bg-ath-clay text-white hover:bg-opacity-90 shadow-md",

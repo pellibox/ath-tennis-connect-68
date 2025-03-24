@@ -8,7 +8,7 @@ interface TechnologySectionProps {
   title: string;
   subtitle?: string;
   className?: string;
-  id?: string; // Add the id prop to the interface
+  id?: string;
 }
 
 const TechnologySection = ({ 
@@ -154,12 +154,12 @@ const TechnologySection = ({
             </div>
             
             {/* Vicki subtitle */}
-            <h3 className="text-2xl md:text-3xl font-display text-ath-clay mb-4">
+            <h3 className="text-2xl md:text-3xl font-swiss text-ath-clay mb-4">
               Vicki™: Visual Intelligent Coaching for Knowledge Insights
             </h3>
             
             {/* ATH Technological Advantage */}
-            <h2 className="text-3xl md:text-4xl font-display text-center text-ath-clay">
+            <h2 className="text-3xl md:text-4xl font-swiss text-center text-ath-clay">
               {title}
             </h2>
           </div>
@@ -167,21 +167,21 @@ const TechnologySection = ({
         
         {subtitle && (
           <RevealAnimation delay={100}>
-            <p className="text-lg text-ath-clay max-w-3xl mx-auto text-center mb-12">{subtitle}</p>
+            <p className="text-lg text-ath-clay max-w-3xl mx-auto text-center mb-12 font-swiss">{subtitle}</p>
           </RevealAnimation>
         )}
         
         {/* What is VICKI - core components explained */}
         <RevealAnimation delay={150}>
           <div className="mb-16">
-            <h3 className="text-2xl font-medium mb-8 text-center text-ath-clay">Il Significato di VICKI™</h3>
+            <h3 className="text-2xl font-medium mb-8 text-center text-ath-clay font-swiss">Il Significato di VICKI™</h3>
             <div className="grid grid-cols-1 md:grid-cols-5 gap-6">
               {coreFeatures.map((feature, index) => (
                 <RevealAnimation key={index} delay={index * 50}>
                   <div className="bg-white p-6 shadow-sm rounded-md border border-gray-100 text-center h-full flex flex-col items-center hover:shadow-md transition-shadow">
                     {feature.icon}
-                    <h4 className="text-xl font-medium mb-3 text-ath-clay">{feature.title}</h4>
-                    <p className="text-gray-600 text-sm">{feature.description}</p>
+                    <h4 className="text-xl font-medium mb-3 text-ath-clay font-swiss">{feature.title}</h4>
+                    <p className="text-gray-600 text-sm font-swiss">{feature.description}</p>
                   </div>
                 </RevealAnimation>
               ))}
@@ -192,14 +192,14 @@ const TechnologySection = ({
         {/* VICKI Technology Benefits */}
         <RevealAnimation delay={200}>
           <div className="mb-16">
-            <h3 className="text-2xl font-medium mb-8 text-center text-ath-clay">La Tecnologia VICKI™</h3>
+            <h3 className="text-2xl font-medium mb-8 text-center text-ath-clay font-swiss">La Tecnologia VICKI™</h3>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
               {technologies.map((tech, index) => (
                 <RevealAnimation key={index} delay={index * 100}>
                   <div className="text-center p-6 bg-white shadow-sm border border-gray-100 rounded-lg h-full flex flex-col items-center hover:shadow-md transition-shadow">
                     {tech.icon}
-                    <h3 className="text-xl font-medium mb-3 text-ath-clay">{tech.title}</h3>
-                    <p className="text-gray-600">{tech.description.replace(/VICKI/g, 'Vicki™')}</p>
+                    <h3 className="text-xl font-medium mb-3 text-ath-clay font-swiss">{tech.title}</h3>
+                    <p className="text-gray-600 font-swiss">{tech.description.replace(/VICKI/g, 'Vicki™')}</p>
                   </div>
                 </RevealAnimation>
               ))}
@@ -210,16 +210,16 @@ const TechnologySection = ({
         {/* VICKI Evaluation Areas */}
         <RevealAnimation delay={300}>
           <div className="mb-16">
-            <h3 className="text-2xl font-medium mb-8 text-center text-ath-clay">Sistema di Valutazione Integrato</h3>
+            <h3 className="text-2xl font-medium mb-8 text-center text-ath-clay font-swiss">Sistema di Valutazione Integrato</h3>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
               {evaluationAreas.map((area, index) => (
                 <RevealAnimation key={index} delay={index * 50}>
                   <div className="bg-white p-5 rounded-lg border border-ath-clay border-opacity-20 shadow-sm hover:shadow-md transition-shadow h-full">
                     <div className="flex items-center mb-3">
                       {area.icon}
-                      <h5 className="text-lg font-medium ml-2 text-ath-clay">{area.title}</h5>
+                      <h5 className="text-lg font-medium ml-2 text-ath-clay font-swiss">{area.title}</h5>
                     </div>
-                    <p className="text-gray-600 text-sm">{area.description}</p>
+                    <p className="text-gray-600 text-sm font-swiss">{area.description}</p>
                   </div>
                 </RevealAnimation>
               ))}
@@ -230,16 +230,16 @@ const TechnologySection = ({
         {/* Target Groups */}
         <RevealAnimation delay={400}>
           <div className="mb-16">
-            <h3 className="text-2xl font-medium mb-8 text-center text-ath-clay">Target Groups</h3>
+            <h3 className="text-2xl font-medium mb-8 text-center text-ath-clay font-swiss">Target Groups</h3>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
               {targetGroups.map((group, index) => (
                 <RevealAnimation key={index} delay={index * 50}>
                   <div className="bg-white p-5 rounded-lg border border-ath-clay border-opacity-20 shadow-sm hover:shadow-md transition-shadow h-full">
                     <div className="flex items-center mb-3">
                       {group.icon}
-                      <h5 className="text-lg font-medium ml-2 text-ath-clay">{group.title}</h5>
+                      <h5 className="text-lg font-medium ml-2 text-ath-clay font-swiss">{group.title}</h5>
                     </div>
-                    <p className="text-gray-600 text-sm">{group.description}</p>
+                    <p className="text-gray-600 text-sm font-swiss">{group.description}</p>
                   </div>
                 </RevealAnimation>
               ))}
@@ -250,25 +250,25 @@ const TechnologySection = ({
         {/* Visual representation of data flow */}
         <RevealAnimation delay={500}>
           <div className="relative py-12 px-8 bg-gradient-to-r from-gray-50 to-white rounded-lg border border-gray-100 shadow-sm mb-16">
-            <h3 className="text-2xl font-medium mb-6 text-center text-ath-clay">Il Potere di VICKI™</h3>
+            <h3 className="text-2xl font-medium mb-6 text-center text-ath-clay font-swiss">Il Potere di VICKI™</h3>
             
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
               <div className="bg-white p-6 rounded-md shadow-sm border border-ath-clay border-opacity-10 text-center">
                 <Zap className="w-12 h-12 mx-auto mb-4 text-ath-clay" />
-                <h4 className="text-lg font-medium mb-2 text-ath-clay">Potenza Analitica</h4>
-                <p className="text-gray-600 text-sm">Integrazione di visione artificiale e machine learning per analizzare decine di parametri in tempo reale.</p>
+                <h4 className="text-lg font-medium mb-2 text-ath-clay font-swiss">Potenza Analitica</h4>
+                <p className="text-gray-600 text-sm font-swiss">Integrazione di visione artificiale e machine learning per analizzare decine di parametri in tempo reale.</p>
               </div>
               
               <div className="bg-white p-6 rounded-md shadow-sm border border-ath-clay border-opacity-10 text-center">
                 <Brain className="w-12 h-12 mx-auto mb-4 text-ath-clay" />
-                <h4 className="text-lg font-medium mb-2 text-ath-clay">Potenza Cognitiva</h4>
-                <p className="text-gray-600 text-sm">Trasformazione di informazioni complesse in conoscenza pratica, apprendendo dall'esperienza dei professionisti.</p>
+                <h4 className="text-lg font-medium mb-2 text-ath-clay font-swiss">Potenza Cognitiva</h4>
+                <p className="text-gray-600 text-sm font-swiss">Trasformazione di informazioni complesse in conoscenza pratica, apprendendo dall'esperienza dei professionisti.</p>
               </div>
               
               <div className="bg-white p-6 rounded-md shadow-sm border border-ath-clay border-opacity-10 text-center">
                 <Rocket className="w-12 h-12 mx-auto mb-4 text-ath-clay" />
-                <h4 className="text-lg font-medium mb-2 text-ath-clay">Potenza Trasformativa</h4>
-                <p className="text-gray-600 text-sm">Amplificazione dell'expertise umana, personalizzazione degli interventi e accelerazione dello sviluppo in ogni dimensione.</p>
+                <h4 className="text-lg font-medium mb-2 text-ath-clay font-swiss">Potenza Trasformativa</h4>
+                <p className="text-gray-600 text-sm font-swiss">Amplificazione dell'expertise umana, personalizzazione degli interventi e accelerazione dello sviluppo in ogni dimensione.</p>
               </div>
             </div>
           </div>
@@ -277,15 +277,15 @@ const TechnologySection = ({
         {/* Summary quote */}
         <RevealAnimation delay={600}>
           <div className="mt-12 bg-ath-clay bg-opacity-5 p-6 rounded-lg border border-ath-clay border-opacity-20 max-w-4xl mx-auto">
-            <p className="text-ath-clay italic font-medium">
+            <p className="text-ath-clay italic font-swiss">
               {t('tech.quote').replace(/VICKI/g, 'Vicki™')}
             </p>
-            <p className="text-ath-clay mt-4 font-bold">
+            <p className="text-ath-clay mt-4 font-bold font-swiss">
               {t('tech.only').replace(/VICKI/g, 'Vicki™')}
             </p>
             
             <div className="mt-6 text-center">
-              <p className="text-ath-clay text-sm">
+              <p className="text-ath-clay text-sm font-swiss">
                 VICKI™ opera come una lente d'ingrandimento nelle mani esperte del coach, trasformando la complessità dei dati in conoscenza pratica immediatamente applicabile.
               </p>
             </div>
