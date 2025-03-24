@@ -1,9 +1,9 @@
 
 import React from 'react';
-import { Monitor, Shield, ShieldCheck } from 'lucide-react';
+import { Monitor, Shield, ShieldCheck, Award } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
-export type MonitoringLevel = 'basic' | 'standard' | 'advanced' | 'elite';
+export type MonitoringLevel = 'basic' | 'standard' | 'advanced' | 'elite' | 'pro';
 
 interface VickiMonitoringBadgeProps {
   level: MonitoringLevel;
@@ -42,6 +42,12 @@ const VickiMonitoringBadge = ({
           color: 'bg-red-100 text-ath-clay border-red-200',
           icon: <Shield className="w-4 h-4 mr-2" />,
           label: 'Monitoraggio Vicki™ Elite'
+        };
+      case 'pro':
+        return {
+          color: 'bg-red-200 text-ath-clay border-red-300',
+          icon: <Award className="w-4 h-4 mr-2" />,
+          label: 'Monitoraggio Vicki™ Pro'
         };
     }
   };
