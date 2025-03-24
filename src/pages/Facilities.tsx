@@ -109,8 +109,8 @@ const FacilitiesPage = () => {
       <Header />
       
       <main className="flex-grow pt-20 font-swiss">
-        <div className="w-full bg-black min-h-[calc(100vw*9/16)] relative">
-          <div dangerouslySetInnerHTML={{ __html: facilitiesVimeoEmbed }} />
+        <div className="w-full bg-black min-h-[calc(100vw*9/16)] relative overflow-hidden">
+          <div className="w-[100.5%] h-[100.5%] absolute top-[-0.25%] left-[-0.25%]" dangerouslySetInnerHTML={{ __html: facilitiesVimeoEmbed }} />
         </div>
         
         <div className="w-full bg-black py-16">
