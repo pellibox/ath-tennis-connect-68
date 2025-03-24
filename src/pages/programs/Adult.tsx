@@ -90,6 +90,18 @@ const AdultProgram = () => {
             overlayOpacity="medium"
             subtitlePosition="bottom"
           />
+          
+          {/* Black banner with claim text - matching Method page style */}
+          <div className="w-full bg-black py-16 relative" style={{ height: '300px' }}>
+            <div className="max-w-6xl mx-auto px-6 h-full flex flex-col justify-center">
+              <div className="flex items-center mb-2">
+                <h2 className="text-white text-lg font-display mr-3">ADULT:</h2>
+                <p className="text-white text-lg font-swiss max-w-3xl">
+                  {t('programs.adult.desc')}
+                </p>
+              </div>
+            </div>
+          </div>
         </div>
         
         <div className="max-w-6xl mx-auto px-6 py-16">

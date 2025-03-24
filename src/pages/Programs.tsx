@@ -1,3 +1,4 @@
+
 import { useEffect, useState } from 'react';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
@@ -335,17 +336,31 @@ const Programs = () => {
       <Header />
       
       <main className="flex-grow">
-        <Hero 
-          title="Programmi ATH" 
-          subtitle={getPersonalizedSubtitle()}
-          vimeoEmbed={getVimeoEmbed()}
-          buttons={[
-            { text: 'PRENOTA UNA PROVA', href: '/contact' },
-            { text: 'CONTATTACI', href: '/contact', variant: 'outline' }
-          ]}
-          contentPosition="left"
-          overlayOpacity="medium"
-        />
+        <div className="relative">
+          <Hero 
+            title="Programmi ATH" 
+            subtitle={getPersonalizedSubtitle()}
+            vimeoEmbed={getVimeoEmbed()}
+            buttons={[
+              { text: 'PRENOTA UNA PROVA', href: '/contact' },
+              { text: 'CONTATTACI', href: '/contact', variant: 'outline' }
+            ]}
+            contentPosition="left"
+            overlayOpacity="medium"
+          />
+          
+          {/* Black banner with claim text - matching Method page style */}
+          <div className="w-full bg-black py-16 relative" style={{ height: '300px' }}>
+            <div className="max-w-6xl mx-auto px-6 h-full flex flex-col justify-center">
+              <div className="flex items-center mb-2">
+                <h2 className="text-white text-lg font-display mr-3">PROGRAMMI:</h2>
+                <p className="text-white text-lg font-swiss max-w-3xl">
+                  Approccio metodologico unico e personalizzato per ogni profilo di giocatore
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
         
         <section className="py-20 px-6 lg:px-10">
           <div className="max-w-7xl mx-auto">

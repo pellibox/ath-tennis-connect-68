@@ -26,17 +26,31 @@ const PrivateProgram = () => {
       <Header />
       
       <main className="flex-grow">
-        <Hero 
-          title={t('footer.private')}
-          subtitle="Sessioni personalizzate one-to-one per un'attenzione dedicata e un progresso accelerato"
-          imageSrc="https://images.unsplash.com/photo-1588453251771-cd919ff14bee?q=80&w=2070&auto=format&fit=crop"
-          buttons={[
-            { text: 'PRENOTA UNA PROVA', href: '/contact' },
-            { text: 'CONTATTACI', href: '/contact', variant: 'outline' }
-          ]}
-          contentPosition="left"
-          overlayOpacity="medium"
-        />
+        <div className="relative">
+          <Hero 
+            title={t('footer.private')}
+            subtitle="Sessioni personalizzate one-to-one per un'attenzione dedicata e un progresso accelerato"
+            imageSrc="https://images.unsplash.com/photo-1588453251771-cd919ff14bee?q=80&w=2070&auto=format&fit=crop"
+            buttons={[
+              { text: 'PRENOTA UNA PROVA', href: '/contact' },
+              { text: 'CONTATTACI', href: '/contact', variant: 'outline' }
+            ]}
+            contentPosition="left"
+            overlayOpacity="medium"
+          />
+          
+          {/* Black banner with claim text - matching Method page style */}
+          <div className="w-full bg-black py-16 relative" style={{ height: '300px' }}>
+            <div className="max-w-6xl mx-auto px-6 h-full flex flex-col justify-center">
+              <div className="flex items-center mb-2">
+                <h2 className="text-white text-lg font-display mr-3">PRIVATE:</h2>
+                <p className="text-white text-lg font-swiss max-w-3xl">
+                  Sessioni personalizzate one-to-one per un'attenzione dedicata e un progresso accelerato
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
         
         <div className="max-w-6xl mx-auto px-6 py-16">
           <div className="mb-12">

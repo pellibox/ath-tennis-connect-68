@@ -96,18 +96,32 @@ const JuniorProgram = () => {
       <Header />
       
       <main className="flex-grow">
-        <Hero 
-          title={t('footer.junior')}
-          subtitle="Sviluppo completo di giovani atleti in un ambiente innovativo e stimolante"
-          vimeoEmbed={vimeoEmbed}
-          imageSrc={vimeoEmbed ? undefined : "https://images.unsplash.com/photo-1612458225454-41c3991c0c49?q=80&w=1973&auto=format&fit=crop"}
-          buttons={[
-            { text: 'PRENOTA UNA PROVA', href: '/contact' },
-            { text: 'CONTATTACI', href: '/contact', variant: 'outline' }
-          ]}
-          contentPosition="left"
-          overlayOpacity="medium"
-        />
+        <div className="relative">
+          <Hero 
+            title={t('footer.junior')}
+            subtitle="Sviluppo completo di giovani atleti in un ambiente innovativo e stimolante"
+            vimeoEmbed={vimeoEmbed}
+            imageSrc={vimeoEmbed ? undefined : "https://images.unsplash.com/photo-1612458225454-41c3991c0c49?q=80&w=1973&auto=format&fit=crop"}
+            buttons={[
+              { text: 'PRENOTA UNA PROVA', href: '/contact' },
+              { text: 'CONTATTACI', href: '/contact', variant: 'outline' }
+            ]}
+            contentPosition="left"
+            overlayOpacity="medium"
+          />
+          
+          {/* Black banner with claim text - matching Method page style */}
+          <div className="w-full bg-black py-16 relative" style={{ height: '300px' }}>
+            <div className="max-w-6xl mx-auto px-6 h-full flex flex-col justify-center">
+              <div className="flex items-center mb-2">
+                <h2 className="text-white text-lg font-display mr-3">JUNIOR:</h2>
+                <p className="text-white text-lg font-swiss max-w-3xl">
+                  Sviluppo completo di giovani atleti in un ambiente innovativo e stimolante
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
         
         <div className="max-w-6xl mx-auto px-6 py-16">
           <div className="mb-12">

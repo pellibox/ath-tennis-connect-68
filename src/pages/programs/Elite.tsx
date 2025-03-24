@@ -40,18 +40,32 @@ const EliteProgram = () => {
       <Header />
       
       <main className="flex-grow">
-        <Hero 
-          title={t('footer.elite')}
-          subtitle={t('programs.elite.desc')}
-          vimeoEmbed={vimeoEmbed}
-          imageSrc={vimeoEmbed ? undefined : "/lovable-uploads/53047a4d-087d-4e68-942b-d441b33bf6ab.png"}
-          buttons={[
-            { text: 'PRENOTA UNA PROVA', href: '/contact' },
-            { text: 'CONTATTACI', href: '/contact', variant: 'outline' }
-          ]}
-          contentPosition="left"
-          overlayOpacity="medium"
-        />
+        <div className="relative">
+          <Hero 
+            title={t('footer.elite')}
+            subtitle={t('programs.elite.desc')}
+            vimeoEmbed={vimeoEmbed}
+            imageSrc={vimeoEmbed ? undefined : "/lovable-uploads/53047a4d-087d-4e68-942b-d441b33bf6ab.png"}
+            buttons={[
+              { text: 'PRENOTA UNA PROVA', href: '/contact' },
+              { text: 'CONTATTACI', href: '/contact', variant: 'outline' }
+            ]}
+            contentPosition="left"
+            overlayOpacity="medium"
+          />
+          
+          {/* Black banner with claim text - matching Method page style */}
+          <div className="w-full bg-black py-16 relative" style={{ height: '300px' }}>
+            <div className="max-w-6xl mx-auto px-6 h-full flex flex-col justify-center">
+              <div className="flex items-center mb-2">
+                <h2 className="text-white text-lg font-display mr-3">ELITE:</h2>
+                <p className="text-white text-lg font-swiss max-w-3xl">
+                  {t('programs.elite.desc')}
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
         
         <div className="max-w-6xl mx-auto px-6 py-16">
           <div className="mb-12">
