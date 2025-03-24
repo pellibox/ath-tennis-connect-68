@@ -12,7 +12,6 @@ import { useLanguage } from '@/contexts/LanguageContext';
 import { loadUserPreferences, UserGender, UserType } from '@/components/UserTypeSelector';
 import { Button } from '@/components/ui/button';
 import Logo from '@/components/Logo';
-import VickiPoweredBadge from '@/components/VickiPoweredBadge';
 
 const Programs = () => {
   const { t } = useLanguage();
@@ -102,8 +101,7 @@ const Programs = () => {
         'Sviluppo della passione per il tennis e lo sport',
         'Percorsi personalizzati basati sulle caratteristiche individuali rilevate da Vicki™',
         'Supporto per genitori con report dettagliati e indicazioni sul potenziale'
-      ],
-      vickiPowered: true
+      ]
     },
     {
       id: '1',
@@ -120,8 +118,7 @@ const Programs = () => {
         'AI dedicata per tracciare la coordinazione',
         'Equilibrio tra miglioramento tecnico e componente ludica',
         'Coinvolgimento attivo dei genitori attraverso report visivi e aggiornamenti chiari'
-      ],
-      vickiPowered: true
+      ]
     },
     {
       id: '5',
@@ -138,8 +135,7 @@ const Programs = () => {
         'Analisi statistiche semplificate con visione d\'insieme dell\'andamento',
         'Supporto pratico per accompagnare il percorso sportivo senza pressioni inutili',
         'Filtraggio automatico dei dati per evitare interpretazioni errate o fuorvianti'
-      ],
-      vickiOnRequest: true
+      ]
     }
   ];
 
@@ -160,15 +156,14 @@ const Programs = () => {
         'Percorsi personalizzati in base allo sviluppo fisico, biotipo e stile di gioco',
         'Integrazione tra valutazioni tecniche, fisiche, mediche e mentali',
         'Coordinamento tra coach, preparatore, mental coach, medico'
-      ],
-      vickiPowered: true
+      ]
     },
     {
       id: '3',
       title: 'Professionisti',
       description: 'Supporto completo per atleti professionisti con analisi avanzata e ottimizzazione della performance.',
       image: '/lovable-uploads/53047a4d-087d-4e68-942b-d441b33bf6ab.png',
-      vimeoEmbed: '<div style="padding:56.25% 0 0 0;position:relative;"><iframe src="https://player.vimeo.com/video/1068596901?h=2ac5605207&autoplay=1&loop=1&title=0&byline=0&portrait=0&background=1&controls=0" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen style="position:absolute;top:0;left:0;width:100%;height:100%;"></iframe></div>',
+      vimeoEmbed: '<div style="padding:56.25% 0 0 0;position:relative;"><iframe src="https://player.vimeo.com/video/1068596901?h=2ac5605207&autoplay=1&loop=1&title=0&byline=0&portrait=0&controls=0" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen style="position:absolute;top:0;left:0;width:100%;height:100%;"></iframe></div>',
       link: '/programs/professional',
       features: [
         'Allenamento completamente personalizzato su tutti i fronti',
@@ -178,8 +173,7 @@ const Programs = () => {
         'Supporto tecnico sia in sede che da remoto',
         'Gestione ottimale dei cicli di carico, recupero e picco forma',
         'Integrazione di parametri medici e biochimici per massimizzare la performance'
-      ],
-      vickiPowered: true
+      ]
     },
     {
       id: '9',
@@ -193,8 +187,7 @@ const Programs = () => {
         'Heatmap e pattern di spostamento',
         'Statistiche avanzate di gioco',
         'Report dettagliato con raccomandazioni'
-      ],
-      vickiPowered: true
+      ]
     }
   ];
 
@@ -203,7 +196,7 @@ const Programs = () => {
       id: '6',
       title: 'Amatori',
       description: 'Percorsi flessibili per giocatori amatoriali che vogliono migliorare le proprie capacità.',
-      image: 'https://images.unsplash.com/photo-1535131749006-b7f58c990c4b?q=80&w=2070&auto=format&fit=crop',
+      image: 'https://images.unsplash.com/photo-1535131749006-b7f58c99034b?q=80&w=2070&auto=format&fit=crop',
       vimeoEmbed: '<div style="padding:56.25% 0 0 0;position:relative;"><iframe src="https://player.vimeo.com/video/1068788229?h=5f3c14e5ec&autoplay=1&loop=1&title=0&byline=0&portrait=0&controls=0" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen style="position:absolute;top:0;left:0;width:100%;height:100%;"></iframe></div>',
       link: '/programs/amateur',
       features: [
@@ -213,8 +206,7 @@ const Programs = () => {
         'Affitto campi con tecnologia attiva (per analisi post-sessione)',
         'Percorsi di miglioramento progressivo senza sovraccarico',
         'Report leggibili con focus su controllo, postura e miglioramenti visibili'
-      ],
-      vickiOnRequest: true
+      ]
     }
   ];
 
@@ -230,8 +222,7 @@ const Programs = () => {
         'Allenamento intensivo giornaliero',
         'Attività complementari e team building',
         'Analisi tecnica con sistema VICKI'
-      ],
-      vickiOnRequest: true
+      ]
     }
   ];
 
@@ -252,8 +243,7 @@ const Programs = () => {
         'Condivisione dati e report con staff multidisciplinare',
         'Possibilità di integrare ATH nel proprio centro/accademia',
         'Uso di AI e dashboard per ottimizzare sessioni e calendari'
-      ],
-      vickiPowered: true
+      ]
     },
     {
       id: '10',
@@ -267,8 +257,7 @@ const Programs = () => {
         'Analisi dettagliata della tecnica con VICKI™',
         'Focus su obiettivi specifici',
         'Opzioni per singole lezioni o pacchetti'
-      ],
-      vickiPowered: true
+      ]
     }
   ];
 
@@ -528,136 +517,256 @@ const Programs = () => {
             </RevealAnimation>
             
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8 mb-16">
-              <RevealAnimation delay={150} className="bg-white p-8 shadow-sm">
-                <h3 className="text-lg font-medium mb-2">Agonisti Elite (5 sessioni)</h3>
-                <p className="text-3xl font-bold mb-2">€300<span className="text-sm text-gray-500 font-normal">/mese</span></p>
-                <p className="text-sm text-gray-600 mb-4">Programma intensivo per agonisti di alto livello</p>
-                <ul className="text-sm space-y-2 mb-4">
+              <RevealAnimation delay={150} className="bg-white p-8 flex flex-col shadow-sm">
+                <h3 className="text-xl font-medium mb-4">Agonisti - 4 volte a settimana</h3>
+                <div className="text-3xl font-bold mb-2">€6.500<span className="text-sm font-normal">/anno</span></div>
+                <p className="text-gray-600 mb-6">Programma intensivo con allenamenti 4 volte a settimana.</p>
+                <ul className="space-y-2 mb-8 flex-grow">
                   <li className="flex items-start">
-                    <span className="text-ath-clay mr-2">✓</span>
-                    <span>5 sessioni tecniche settimanali</span>
+                    <span className="text-black mr-2">✓</span>
+                    <span>4 sessioni di tennis da 1,5 ore (6 ore settimanali)</span>
                   </li>
                   <li className="flex items-start">
-                    <span className="text-ath-clay mr-2">✓</span>
-                    <span>3 sessioni atletiche settimanali</span>
-                  </li>
-                  <li className="flex items-start">
-                    <span className="text-ath-clay mr-2">✓</span>
-                    <span>Analisi tecnica con VICKI™</span>
-                  </li>
-                  <li className="flex items-start">
-                    <span className="text-ath-clay mr-2">✓</span>
-                    <span>Pianificazione tornei personalizzata</span>
+                    <span className="text-black mr-2">✓</span>
+                    <span>4 sessioni di preparazione atletica da 1,5 ore (6 ore settimanali)</span>
                   </li>
                 </ul>
+                <Link to="/contact" className="mt-auto px-6 py-3 bg-black text-white text-center hover:bg-opacity-90 transition-all">
+                  CONTATTACI
+                </Link>
               </RevealAnimation>
               
-              <RevealAnimation delay={200} className="bg-white p-8 shadow-sm">
-                <h3 className="text-lg font-medium mb-2">Agonisti (3 sessioni)</h3>
-                <p className="text-3xl font-bold mb-2">€200<span className="text-sm text-gray-500 font-normal">/mese</span></p>
-                <p className="text-sm text-gray-600 mb-4">Programma avanzato per agonisti in crescita</p>
-                <ul className="text-sm space-y-2 mb-4">
+              <RevealAnimation delay={200} className="bg-white p-8 flex flex-col shadow-sm">
+                <h3 className="text-xl font-medium mb-4">Agonisti - 3 volte a settimana</h3>
+                <div className="text-3xl font-bold mb-2">€5.000<span className="text-sm font-normal">/anno</span></div>
+                <p className="text-gray-600 mb-6">Programma avanzato con allenamenti 3 volte a settimana.</p>
+                <ul className="space-y-2 mb-8 flex-grow">
                   <li className="flex items-start">
-                    <span className="text-ath-clay mr-2">✓</span>
-                    <span>3 sessioni tecniche settimanali</span>
+                    <span className="text-black mr-2">✓</span>
+                    <span>3 sessioni di tennis da 1,5 ore (4,5 ore settimanali)</span>
                   </li>
                   <li className="flex items-start">
-                    <span className="text-ath-clay mr-2">✓</span>
-                    <span>2 sessioni atletiche settimanali</span>
-                  </li>
-                  <li className="flex items-start">
-                    <span className="text-ath-clay mr-2">✓</span>
-                    <span>Analisi tecnica con VICKI™</span>
-                  </li>
-                  <li className="flex items-start">
-                    <span className="text-ath-clay mr-2">✓</span>
-                    <span>Supporto per tornei regionali</span>
+                    <span className="text-black mr-2">✓</span>
+                    <span>3 sessioni di preparazione atletica da 1,5 ore (4,5 ore settimanali)</span>
                   </li>
                 </ul>
+                <Link to="/contact" className="mt-auto px-6 py-3 bg-black text-white text-center hover:bg-opacity-90 transition-all">
+                  CONTATTACI
+                </Link>
               </RevealAnimation>
               
-              <RevealAnimation delay={250} className="bg-white p-8 shadow-sm">
-                <h3 className="text-lg font-medium mb-2">Agonisti (2 sessioni)</h3>
-                <p className="text-3xl font-bold mb-2">€150<span className="text-sm text-gray-500 font-normal">/mese</span></p>
-                <p className="text-sm text-gray-600 mb-4">Programma per agonisti part-time</p>
-                <ul className="text-sm space-y-2 mb-4">
+              <RevealAnimation delay={250} className="bg-white p-8 flex flex-col shadow-sm">
+                <h3 className="text-xl font-medium mb-4">Agonisti - 2 volte a settimana</h3>
+                <div className="text-3xl font-bold mb-2">€4.000<span className="text-sm font-normal">/anno</span></div>
+                <p className="text-gray-600 mb-6">Programma base per agonisti con 2 allenamenti settimanali.</p>
+                <ul className="space-y-2 mb-8 flex-grow">
                   <li className="flex items-start">
-                    <span className="text-ath-clay mr-2">✓</span>
-                    <span>2 sessioni tecniche settimanali</span>
+                    <span className="text-black mr-2">✓</span>
+                    <span>2 sessioni di tennis da 1,5 ore (3 ore settimanali)</span>
                   </li>
                   <li className="flex items-start">
-                    <span className="text-ath-clay mr-2">✓</span>
-                    <span>1 sessione atletica settimanale</span>
-                  </li>
-                  <li className="flex items-start">
-                    <span className="text-ath-clay mr-2">✓</span>
-                    <span>Analisi tecnica periodica</span>
-                  </li>
-                  <li className="flex items-start">
-                    <span className="text-ath-clay mr-2">✓</span>
-                    <span>Supporto per tornei locali</span>
+                    <span className="text-black mr-2">✓</span>
+                    <span>2 sessioni di preparazione atletica da 1,5 ore (3 ore settimanali)</span>
                   </li>
                 </ul>
+                <Link to="/contact" className="mt-auto px-6 py-3 bg-black text-white text-center hover:bg-opacity-90 transition-all">
+                  CONTATTACI
+                </Link>
               </RevealAnimation>
               
-              <RevealAnimation delay={300} className="bg-white p-8 shadow-sm">
-                <h3 className="text-lg font-medium mb-2">Junior Program (2 sessioni)</h3>
-                <p className="text-3xl font-bold mb-2">€120<span className="text-sm text-gray-500 font-normal">/mese</span></p>
-                <p className="text-sm text-gray-600 mb-4">Programma per giovani tennisti</p>
-                <ul className="text-sm space-y-2 mb-4">
+              <RevealAnimation delay={275} className="bg-white p-8 flex flex-col shadow-sm relative">
+                <div className="absolute top-0 right-0 bg-ath-clay text-white px-4 py-1 text-sm">
+                  VICKI™
+                </div>
+                <h3 className="text-xl font-medium mb-4">Agonisti Elite - 5 volte a settimana</h3>
+                <div className="text-3xl font-bold mb-2">€7.500<span className="text-sm font-normal">/anno</span></div>
+                <p className="text-gray-600 mb-6">Programma elite con analisi avanzata Vicki™.</p>
+                <ul className="space-y-2 mb-8 flex-grow">
                   <li className="flex items-start">
-                    <span className="text-ath-clay mr-2">✓</span>
-                    <span>2 sessioni settimanali</span>
+                    <span className="text-black mr-2">✓</span>
+                    <span>5 sessioni di tennis da 1,5 ore (7,5 ore settimanali)</span>
                   </li>
                   <li className="flex items-start">
-                    <span className="text-ath-clay mr-2">✓</span>
-                    <span>Sviluppo tecnico fondamentale</span>
+                    <span className="text-black mr-2">✓</span>
+                    <span>5 sessioni di preparazione atletica da 1,5 ore (7,5 ore settimanali)</span>
                   </li>
                   <li className="flex items-start">
-                    <span className="text-ath-clay mr-2">✓</span>
-                    <span>Attività motorie complementari</span>
-                  </li>
-                  <li className="flex items-start">
-                    <span className="text-ath-clay mr-2">✓</span>
-                    <span>Approccio ludico all'agonismo</span>
+                    <span className="text-black mr-2">✓</span>
+                    <span>Analisi Vicki™ completa su tutti gli allenamenti</span>
                   </li>
                 </ul>
+                <Link to="/contact" className="mt-auto px-6 py-3 bg-black text-white text-center hover:bg-opacity-90 transition-all">
+                  CONTATTACI
+                </Link>
               </RevealAnimation>
               
-              <RevealAnimation delay={350} className="bg-white p-8 shadow-sm">
-                <h3 className="text-lg font-medium mb-2">Scuola Tennis (1 sessione)</h3>
-                <p className="text-3xl font-bold mb-2">€80<span className="text-sm text-gray-500 font-normal">/mese</span></p>
-                <p className="text-sm text-gray-600 mb-4">Introduzione al tennis per tutte le età</p>
-                <ul className="text-sm space-y-2 mb-4">
+              <RevealAnimation delay={300} className="bg-white p-8 flex flex-col shadow-md relative">
+                <div className="absolute top-0 right-0 bg-black text-white px-4 py-1 text-sm">
+                  ELITE
+                </div>
+                <h3 className="text-xl font-medium mb-4">Performance Full Time</h3>
+                <div className="text-3xl font-bold mb-2">€15.000<span className="text-sm font-normal">/anno</span></div>
+                <p className="text-gray-600 mb-6">Programma completo per agonisti professionisti.</p>
+                <ul className="space-y-2 mb-8 flex-grow">
                   <li className="flex items-start">
-                    <span className="text-ath-clay mr-2">✓</span>
-                    <span>1 sessione settimanale</span>
+                    <span className="text-black mr-2">✓</span>
+                    <span>5 sessioni tennis mattina + 5 pomeriggio da 2 ore (20 ore settimanali)</span>
                   </li>
                   <li className="flex items-start">
-                    <span className="text-ath-clay mr-2">✓</span>
-                    <span>Gruppi omogenei per età e livello</span>
-                  </li>
-                  <li className="flex items-start">
-                    <span className="text-ath-clay mr-2">✓</span>
-                    <span>Apprendimento dei fondamentali</span>
-                  </li>
-                  <li className="flex items-start">
-                    <span className="text-ath-clay mr-2">✓</span>
-                    <span>Approccio ludico e divertente</span>
+                    <span className="text-black mr-2">✓</span>
+                    <span>7 sessioni di preparazione atletica da 1,5 ore (10,5 ore settimanali)</span>
                   </li>
                 </ul>
+                <Link to="/contact" className="mt-auto px-6 py-3 bg-black text-white text-center hover:bg-opacity-90 transition-all">
+                  CONTATTACI
+                </Link>
               </RevealAnimation>
             </div>
             
-            <RevealAnimation delay={400}>
-              <div className="text-center mt-8 mb-12">
-                <Link to="/contact" className="inline-flex items-center bg-ath-clay text-white px-6 py-3 rounded-full hover:bg-ath-clay-dark transition-colors">
-                  Richiedi informazioni sui prezzi
-                </Link>
-              </div>
+            <RevealAnimation delay={350}>
+              <h3 className="text-2xl font-display text-center mb-8">Settore Giovanile</h3>
+              <p className="text-lg text-gray-600 max-w-3xl mx-auto text-center mb-8">
+                I corsi giovanili sono orientati all'apprendimento tecnico, allo sviluppo motorio e al gioco.
+              </p>
             </RevealAnimation>
+            
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16">
+              <RevealAnimation delay={400} className="bg-white p-8 flex flex-col shadow-sm">
+                <h3 className="text-xl font-medium mb-4">Scuola SIT (Selezione e Individuazione Talenti)</h3>
+                <div className="text-3xl font-bold mb-2">€950<span className="text-sm font-normal">/anno</span></div>
+                <p className="text-gray-600 mb-6">Programma specializzato per l'identificazione precoce dei talenti tennistici.</p>
+                <ul className="space-y-2 mb-8 flex-grow">
+                  <li className="flex items-start">
+                    <span className="text-black mr-2">✓</span>
+                    <span>1 sessione di tennis da 1 ora a settimana</span>
+                  </li>
+                  <li className="flex items-start">
+                    <span className="text-black mr-2">✓</span>
+                    <span>2 sessioni di preparazione atletica da 1 ora a settimana</span>
+                  </li>
+                </ul>
+                <Link to="/contact" className="mt-auto px-6 py-3 bg-black text-white text-center hover:bg-opacity-90 transition-all">
+                  CONTATTACI
+                </Link>
+              </RevealAnimation>
+              
+              <RevealAnimation delay={450} className="bg-white p-8 flex flex-col shadow-sm">
+                <h3 className="text-xl font-medium mb-4">Scuola SAT - Propedeutico (sede di Rodano)</h3>
+                <div className="text-3xl font-bold mb-2">€500<span className="text-sm font-normal">/anno</span></div>
+                <p className="text-gray-600 mb-6">Percorso introduttivo per giovani atleti.</p>
+                <ul className="space-y-2 mb-8 flex-grow">
+                  <li className="flex items-start">
+                    <span className="text-black mr-2">✓</span>
+                    <span>1 sessione di tennis da 1 ora a settimana</span>
+                  </li>
+                  <li className="flex items-start">
+                    <span className="text-black mr-2">✓</span>
+                    <span>1 sessione di preparazione atletica da 30 minuti a settimana</span>
+                  </li>
+                </ul>
+                <Link to="/contact" className="mt-auto px-6 py-3 bg-black text-white text-center hover:bg-opacity-90 transition-all">
+                  CONTATTACI
+                </Link>
+              </RevealAnimation>
+            </div>
+            
+            <RevealAnimation delay={500}>
+              <h3 className="text-2xl font-display text-center mb-8">Personal Training</h3>
+              <p className="text-lg text-gray-600 max-w-3xl mx-auto text-center mb-8">
+                Percorsi individuali per migliorare aspetti tecnici specifici.
+              </p>
+            </RevealAnimation>
+            
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+              <RevealAnimation delay={550} className="bg-white p-8 flex flex-col shadow-sm">
+                <h3 className="text-xl font-medium mb-4">Personal Training (under 13-18)</h3>
+                <div className="text-3xl font-bold mb-2">€2.000<span className="text-sm font-normal">/anno</span></div>
+                <p className="text-gray-600 mb-6">Programma di allenamento personalizzato per giovani talenti.</p>
+                <ul className="space-y-2 mb-8 flex-grow">
+                  <li className="flex items-start">
+                    <span className="text-black mr-2">✓</span>
+                    <span>1 sessione di tennis da 1 ora a settimana</span>
+                  </li>
+                </ul>
+                <Link to="/contact" className="mt-auto px-6 py-3 bg-black text-white text-center hover:bg-opacity-90 transition-all">
+                  CONTATTACI
+                </Link>
+              </RevealAnimation>
+              
+              <RevealAnimation delay={600} className="bg-white p-8 flex flex-col shadow-sm">
+                <h3 className="text-xl font-medium mb-4">Private Personal Training (su richiesta)</h3>
+                <div className="text-2xl font-bold mb-2">Prezzo su richiesta</div>
+                <p className="text-gray-600 mb-6">Sessioni private completamente personalizzate.</p>
+                <ul className="space-y-2 mb-8 flex-grow">
+                  <li className="flex items-start">
+                    <span className="text-black mr-2">✓</span>
+                    <span>1 sessione di tennis da 1 ora a settimana</span>
+                  </li>
+                  <li className="flex items-start">
+                    <span className="text-black mr-2">✓</span>
+                    <span>Programma adattato alle esigenze individuali</span>
+                  </li>
+                </ul>
+                <Link to="/contact" className="mt-auto px-6 py-3 bg-black text-white text-center hover:bg-opacity-90 transition-all">
+                  CONTATTACI
+                </Link>
+              </RevealAnimation>
+            </div>
+            
+            <RevealAnimation delay={650}>
+              <h3 className="text-2xl font-display text-center mb-8">Adulti e Universitari</h3>
+              <p className="text-lg text-gray-600 max-w-3xl mx-auto text-center mb-8">
+                Corsi pensati per adulti e studenti universitari, anche con scuola online.
+              </p>
+            </RevealAnimation>
+            
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+              <RevealAnimation delay={700} className="bg-white p-8 flex flex-col shadow-sm">
+                <h3 className="text-xl font-medium mb-4">Adult Training</h3>
+                <div className="text-3xl font-bold mb-2">€700<span className="text-sm font-normal">/anno</span></div>
+                <p className="text-gray-600 mb-6">Programma per adulti che vogliono migliorare il proprio tennis.</p>
+                <ul className="space-y-2 mb-8 flex-grow">
+                  <li className="flex items-start">
+                    <span className="text-black mr-2">✓</span>
+                    <span>1 sessione di tennis da 1 ora a settimana</span>
+                  </li>
+                </ul>
+                <Link to="/contact" className="mt-auto px-6 py-3 bg-black text-white text-center hover:bg-opacity-90 transition-all">
+                  CONTATTACI
+                </Link>
+              </RevealAnimation>
+              
+              <RevealAnimation delay={750} className="bg-white p-8 flex flex-col shadow-sm">
+                <h3 className="text-xl font-medium mb-4">Settore Universitari / Scuole Online</h3>
+                <div className="text-3xl font-bold mb-2">€1.000<span className="text-sm font-normal">/anno</span></div>
+                <p className="text-gray-600 mb-6">Programma flessibile per studenti universitari.</p>
+                <ul className="space-y-2 mb-8 flex-grow">
+                  <li className="flex items-start">
+                    <span className="text-black mr-2">✓</span>
+                    <span>1 sessione a settimana da 1,5 ore</span>
+                  </li>
+                  <li className="flex items-start">
+                    <span className="text-black mr-2">✓</span>
+                    <span>Programma flessibile</span>
+                  </li>
+                </ul>
+                <Link to="/contact" className="mt-auto px-6 py-3 bg-black text-white text-center hover:bg-opacity-90 transition-all">
+                  CONTATTACI
+                </Link>
+              </RevealAnimation>
+            </div>
           </div>
         </section>
+        
+        <ContactSection 
+          title="Pronto a Iniziare?"
+          subtitle="Contattaci per saperne di più sui nostri programmi o per pianificare una valutazione."
+          address="Via del Tennis 123, 20873 Rodano (MI)"
+          phone="+39 02 1234567"
+          email="info@ath-tennis.it"
+        />
+        
+        <JoinRevolutionSection />
       </main>
       
       <Footer />
