@@ -109,24 +109,21 @@ const FacilitiesPage = () => {
       <Header />
       
       <main className="flex-grow font-swiss" style={{ marginTop: '80px' }}>
-        {/* Full-width video container that spans beyond screen edges */}
-        <div className="absolute left-0 right-0 w-full" style={{
-          height: '56.25vw', /* Maintain 16:9 aspect ratio */
+        {/* Fixed full-width video container with significant oversizing to ensure complete coverage */}
+        <div className="fixed left-0 right-0 top-[80px] w-screen" style={{
+          height: '100vh', 
           overflow: 'hidden',
-          position: 'relative',
-          margin: 0,
-          padding: 0,
           zIndex: 0
         }}>
-          <div className="absolute inset-0 w-[105%] h-[105%] top-[-2.5%] left-[-2.5%]" 
+          <div className="absolute inset-0 w-[120%] h-[120%] top-[-10%] left-[-10%]" 
                dangerouslySetInnerHTML={{ __html: facilitiesVimeoEmbed }} 
           />
         </div>
         
-        {/* Spacer to push content below video */}
-        <div style={{ height: '56.25vw' }}></div>
+        {/* Increased spacer height to ensure content starts below video */}
+        <div style={{ height: '100vh' }}></div>
         
-        <div className="w-full bg-black py-16">
+        <div className="w-full bg-black py-16 relative z-10">
           <div className="max-w-3xl mx-auto text-center">
             <h2 className="text-white text-xl md:text-2xl font-swiss uppercase mb-2">
               LE STRUTTURE:
@@ -137,7 +134,8 @@ const FacilitiesPage = () => {
           </div>
         </div>
         
-        <section className="py-16 px-6 lg:px-10 bg-white">
+        {/* Make sure all remaining content sections have z-index to appear above the video */}
+        <section className="py-16 px-6 lg:px-10 bg-white relative z-10">
           <div className="max-w-7xl mx-auto">
             <h1 className="text-4xl md:text-5xl font-swiss text-center mb-12">Strutture ATH</h1>
             
@@ -157,9 +155,10 @@ const FacilitiesPage = () => {
           title="Impianti"
           subtitle="Strutture progettate per massimizzare l'efficacia del metodo ATH e della tecnologia Vicki™"
           facilities={facilities}
+          className="relative z-10"
         />
         
-        <section className="py-16 px-6 lg:px-10 bg-gray-50">
+        <section className="py-16 px-6 lg:px-10 bg-gray-50 relative z-10">
           <div className="max-w-7xl mx-auto">
             <h2 className="text-3xl md:text-4xl font-swiss text-center mb-12">Servizi Offerti</h2>
             
@@ -192,7 +191,7 @@ const FacilitiesPage = () => {
           </div>
         </section>
         
-        <JoinRevolutionSection />
+        <JoinRevolutionSection className="relative z-10" />
         
         <AboutSection 
           title="Tecnologia e Ambiente"
@@ -203,6 +202,7 @@ const FacilitiesPage = () => {
           ]}
           accent="clay"
           elegant={true}
+          className="relative z-10"
         />
       </main>
       
