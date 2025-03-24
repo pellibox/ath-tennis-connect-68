@@ -73,8 +73,8 @@ const JuniorProgram = () => {
           ? {...program, image: 'https://images.unsplash.com/photo-1534367990512-edbdca781b00?q=80&w=2070&auto=format&fit=crop'} 
           : program
       );
-    } else if (userProfile.type === 'athlete' && userProfile.gender === 'female') {
-      // Personalizza per atlete femminili
+    } else if ((userProfile.type === 'junior' || userProfile.type === 'performance') && userProfile.gender === 'female') {
+      // Personalizza per atlete femminili (junior o performance)
       return basePrograms.map(program => 
         program.id === 'junior-competitive'
           ? {...program, image: 'https://images.unsplash.com/photo-1518611012118-696072aa579a?q=80&w=2070&auto=format&fit=crop'}
