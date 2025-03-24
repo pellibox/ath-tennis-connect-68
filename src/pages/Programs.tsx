@@ -393,32 +393,28 @@ const Programs = () => {
       <Header />
       
       <main className="flex-grow">
-        <div className="w-full bg-black">
+        <div className="w-full bg-black flex flex-col">
           <div 
-            className="w-full overflow-hidden relative" 
+            className="w-full overflow-hidden" 
             style={{ 
               height: "100vh",
               width: "100vw",
               maxWidth: "100vw",
-              position: "relative",
-              left: "0",
-              right: "0",
-              marginLeft: "0",
-              marginRight: "0"
+              position: "relative"
             }}
           >
             <div className="absolute inset-0 w-full h-full" dangerouslySetInnerHTML={{ __html: getVimeoEmbed() }} />
           </div>
-        </div>
         
-        <div className="w-full bg-black py-16">
-          <div className="max-w-3xl mx-auto text-center">
-            <h2 className="text-white text-xl md:text-2xl font-swiss uppercase mb-2">
-              PROGRAMMI:
-            </h2>
-            <p className="text-white text-xl md:text-2xl opacity-90 font-swiss drop-shadow-md">
-              {getPersonalizedSubtitle()}
-            </p>
+          <div className="w-full bg-black py-8">
+            <div className="max-w-3xl mx-auto text-center px-4">
+              <h2 className="text-white text-xl md:text-2xl font-swiss uppercase mb-2">
+                PROGRAMMI:
+              </h2>
+              <p className="text-white text-xl md:text-2xl opacity-90 font-swiss drop-shadow-md">
+                {getPersonalizedSubtitle()}
+              </p>
+            </div>
           </div>
         </div>
         
