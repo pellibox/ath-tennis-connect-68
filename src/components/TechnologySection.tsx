@@ -1,4 +1,3 @@
-
 import { Server, Zap, BarChart3, Activity, Users, LineChart, Rocket, Share2, Brain, Shield, Target, Sparkles, AreaChart, Eye, Cpu, Settings } from 'lucide-react';
 import RevealAnimation from './RevealAnimation';
 import { cn } from '@/lib/utils';
@@ -34,17 +33,17 @@ const TechnologySection = ({
     {
       icon: <Users className="w-12 h-12 mb-4 text-ath-clay" />,
       title: "Coaching",
-      description: "Expertise dei coach integrata in una libreria digitale che alimenta suggerimenti personalizzati."
+      description: "Expertise dei coach integrata in una libreria digitale, posizionando l'allenatore al centro del processo decisionale."
     },
     {
       icon: <Brain className="w-12 h-12 mb-4 text-ath-clay" />,
       title: "Knowledge",
-      description: "Conoscenze tecniche trasformate in metodologie digitali per suggerimenti personalizzati."
+      description: "Conoscenze tecniche trasformate in metodologie digitali per supportare le decisioni del coach e del team multidisciplinare."
     },
     {
       icon: <Target className="w-12 h-12 mb-4 text-ath-clay" />,
       title: "Insights",
-      description: "Conversione dei dati in strategie di allenamento su misura per ogni atleta."
+      description: "Conversione dei dati in strategie di allenamento su misura, valorizzando l'esperienza e l'intuizione del coach."
     }
   ];
 
@@ -170,6 +169,35 @@ const TechnologySection = ({
             <p className="text-lg text-ath-clay max-w-3xl mx-auto text-center mb-12 font-swiss">{subtitle}</p>
           </RevealAnimation>
         )}
+        
+        {/* New section: Coach-Centered Approach */}
+        <RevealAnimation delay={120}>
+          <div className="mb-16 bg-ath-clay bg-opacity-5 p-8 rounded-lg">
+            <h3 className="text-2xl font-medium mb-6 text-center text-ath-clay font-swiss">Il Coach al Centro del Sistema</h3>
+            <div className="flex flex-col md:flex-row gap-6 items-center">
+              <div className="md:w-1/3 text-center">
+                <Users className="w-20 h-20 mx-auto text-ath-clay mb-4" />
+              </div>
+              <div className="md:w-2/3">
+                <p className="mb-4 font-swiss text-ath-clay">
+                  Vicki™ è concepito come uno strumento di potenziamento per il coach, non come sostituto. 
+                  Il sistema posiziona l'allenatore al centro del processo decisionale, fornendogli dati completi e analisi 
+                  avanzate che amplificano la sua esperienza e intuizione.
+                </p>
+                <p className="mb-4 font-swiss text-ath-clay">
+                  I coach utilizzano i dati forniti dal sistema per implementare le proprie metodologie 
+                  e coordinare le decisioni di tutti i professionisti coinvolti nella crescita dell'atleta - 
+                  preparatori atletici, fisioterapisti, nutrizionisti e mental coach - creando un approccio veramente integrato.
+                </p>
+                <p className="font-swiss text-ath-clay">
+                  Questa collaborazione coordinata, basata su dati oggettivi ma guidata dall'expertise umana, 
+                  rappresenta una rivoluzione nel tennis moderno, dove la tecnologia amplifica - ma mai sostituisce - 
+                  l'insostituibile competenza degli allenatori.
+                </p>
+              </div>
+            </div>
+          </div>
+        </RevealAnimation>
         
         {/* What is VICKI - core components explained */}
         <RevealAnimation delay={150}>
