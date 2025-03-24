@@ -1,4 +1,3 @@
-
 import { useEffect } from 'react';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
@@ -39,7 +38,7 @@ const facilities = [
     features: [
       "Manutenzione quotidiana professionale",
       "Calibrazione personalizzata della superficie",
-      "Sistema Vicki™ completo"
+      "Vicki™ powered Court"
     ]
   },
   {
@@ -182,3 +181,4 @@ const FacilitiesPage = () => {
 };
 
 export default FacilitiesPage;
+
