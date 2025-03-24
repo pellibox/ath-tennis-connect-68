@@ -1,4 +1,5 @@
-import { useEffect } from 'react';
+
+import { useEffect, useState, useRef } from 'react';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import FacilitiesSection from '@/components/FacilitiesSection';
@@ -6,6 +7,8 @@ import AboutSection from '@/components/AboutSection';
 import { useLocation } from 'react-router-dom';
 import Hero from '@/components/Hero';
 import JoinRevolutionSection from '@/components/JoinRevolutionSection';
+import Logo from '@/components/Logo';
+import { useIsMobile } from '@/hooks/use-mobile';
 
 const facilities = [
   {
@@ -86,6 +89,12 @@ const facilities = [
 
 const FacilitiesPage = () => {
   const location = useLocation();
+  const isMobile = useIsMobile();
+  
+  // Logo animation state
+  const [logoYOffset, setLogoYOffset] = useState<number>(0);
+  const [logoOpacity, setLogoOpacity] = useState<number>(1);
+  const logoRef = useRef<HTMLDivElement>(null);
   
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -101,10 +110,68 @@ const FacilitiesPage = () => {
     }
   }, [location]);
 
+  // Handle scroll effect for the logo - matching homepage behavior
+  useEffect(() => {
+    const handleScroll = () => {
+      // Get current scroll position
+      const scrollY = window.scrollY;
+      
+      // Calculate offset to move the logo up as user scrolls down
+      setLogoYOffset(scrollY * 0.2); // Adjust the multiplier to control the speed
+      
+      // Fade out logo as user scrolls down
+      // Start fading at 100px of scroll, completely fade out by 300px
+      const fadeThreshold = 100;
+      const fadeOutBy = 300;
+      
+      if (scrollY > fadeThreshold) {
+        const opacity = Math.max(0, 1 - (scrollY - fadeThreshold) / (fadeOutBy - fadeThreshold));
+        setLogoOpacity(opacity);
+      } else {
+        setLogoOpacity(1);
+      }
+    };
+
+    // Add scroll event listener
+    window.addEventListener('scroll', handleScroll);
+    
+    // Initial calculation
+    handleScroll();
+    
+    // Clean up
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, []);
+
   const facilitiesVimeoEmbed = `<div style="position:relative;padding-bottom:56.25%;height:0;overflow:hidden;width:100%;"><iframe src="https://player.vimeo.com/video/1068878064?h=2b90638be1&autoplay=1&loop=1&background=1&autopause=0&player_id=0&app_id=58479&controls=0" style="position:absolute;top:0;left:0;width:100%;height:100%;" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media" title="ATH Facilities Video"></iframe></div><script src="https://player.vimeo.com/api/player.js"></script>`;
 
   return (
     <div className="flex flex-col min-h-screen relative overflow-hidden">
+      {/* Centered logo with improved positioning for both mobile and desktop */}
+      <div 
+        ref={logoRef}
+        className="fixed z-50 pointer-events-none transition-opacity duration-300 left-0 right-0 flex justify-center"
+        style={{
+          top: isMobile ? '140px' : '180px',
+          opacity: logoOpacity
+        }}
+      >
+        <div 
+          style={{
+            width: isMobile ? '120px' : '160px',
+            transform: `translateY(-${logoYOffset}px)`
+          }}
+          className="flex justify-center"
+        >
+          <Logo 
+            onDarkBackground={true} 
+            className="w-full h-auto"
+            isCentered={true}
+          />
+        </div>
+      </div>
+      
       <Header />
       
       <main className="flex-grow font-swiss" style={{ marginTop: '80px' }}>
