@@ -1,3 +1,4 @@
+
 import { useEffect, useState, useRef } from 'react';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
@@ -164,12 +165,17 @@ const FacilitiesPage = () => {
       <Header />
       
       <main className="flex-grow font-swiss" style={{ marginTop: '80px' }}>
-        <div className="relative w-full overflow-hidden" style={{ height: '100vh', marginBottom: '-2px' }}>
+        {/* Video container with bottom margin set to negative value */}
+        <div className="relative w-full overflow-hidden" style={{ 
+          height: '100vh', 
+          marginBottom: '-3px' // Adjust this value as needed to eliminate any gap
+        }}>
           <div className="absolute inset-0 w-[150%] h-[150%] top-[-25%] left-[-25%]" 
                dangerouslySetInnerHTML={{ __html: facilitiesVimeoEmbed }} 
           />
         </div>
         
+        {/* Black banner with no top margin */}
         <div className="w-full bg-black py-16 relative z-10" style={{ marginTop: '0' }}>
           <div className="max-w-3xl mx-auto text-center">
             <h2 className="text-white text-2xl md:text-3xl font-swiss uppercase mb-2">
