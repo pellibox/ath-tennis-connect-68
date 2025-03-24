@@ -1,4 +1,3 @@
-
 import { useEffect, useState, useRef } from 'react';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
@@ -91,7 +90,6 @@ const FacilitiesPage = () => {
   const location = useLocation();
   const isMobile = useIsMobile();
   
-  // Logo animation state
   const [logoYOffset, setLogoYOffset] = useState<number>(0);
   const [logoOpacity, setLogoOpacity] = useState<number>(1);
   const logoRef = useRef<HTMLDivElement>(null);
@@ -110,17 +108,12 @@ const FacilitiesPage = () => {
     }
   }, [location]);
 
-  // Handle scroll effect for the logo - matching homepage behavior
   useEffect(() => {
     const handleScroll = () => {
-      // Get current scroll position
       const scrollY = window.scrollY;
       
-      // Calculate offset to move the logo up as user scrolls down
-      setLogoYOffset(scrollY * 0.2); // Adjust the multiplier to control the speed
+      setLogoYOffset(scrollY * 0.2);
       
-      // Fade out logo as user scrolls down
-      // Start fading at 100px of scroll, completely fade out by 300px
       const fadeThreshold = 100;
       const fadeOutBy = 300;
       
@@ -132,13 +125,10 @@ const FacilitiesPage = () => {
       }
     };
 
-    // Add scroll event listener
     window.addEventListener('scroll', handleScroll);
     
-    // Initial calculation
     handleScroll();
     
-    // Clean up
     return () => {
       window.removeEventListener('scroll', handleScroll);
     };
@@ -148,7 +138,6 @@ const FacilitiesPage = () => {
 
   return (
     <div className="flex flex-col min-h-screen relative overflow-hidden">
-      {/* Centered logo with improved positioning for both mobile and desktop */}
       <div 
         ref={logoRef}
         className="fixed z-50 pointer-events-none transition-opacity duration-300 left-0 right-0 flex justify-center"
@@ -175,13 +164,13 @@ const FacilitiesPage = () => {
       <Header />
       
       <main className="flex-grow font-swiss" style={{ marginTop: '80px' }}>
-        <div className="relative w-full overflow-hidden" style={{ height: '100vh' }}>
+        <div className="relative w-full overflow-hidden" style={{ height: '100vh', marginBottom: '-2px' }}>
           <div className="absolute inset-0 w-[150%] h-[150%] top-[-25%] left-[-25%]" 
                dangerouslySetInnerHTML={{ __html: facilitiesVimeoEmbed }} 
           />
         </div>
         
-        <div className="w-full bg-black py-16 relative z-10 mt-0">
+        <div className="w-full bg-black py-16 relative z-10" style={{ marginTop: '0' }}>
           <div className="max-w-3xl mx-auto text-center">
             <h2 className="text-white text-2xl md:text-3xl font-swiss uppercase mb-2">
               LE STRUTTURE:
