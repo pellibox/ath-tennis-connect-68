@@ -87,7 +87,7 @@ const CoachesSection = ({
                     <div 
                       className="w-full vimeo-container aspect-[3/4]" 
                       dangerouslySetInnerHTML={{ 
-                        __html: coach.vimeoEmbed.replace('autoplay=1', `autoplay=${hoveredCard === coach.id ? '1' : '0'}`) 
+                        __html: coach.vimeoEmbed.replace('autoplay=1', `autoplay=${hoveredCard === coach.id ? '1' : '0'}`).replace(/controls=\d/g, 'controls=0')
                       }} 
                       onMouseEnter={() => handleMouseEnter(coach.id)}
                       onMouseLeave={() => handleMouseLeave(coach.id)}
@@ -118,6 +118,7 @@ const CoachesSection = ({
                           opacity: hoveredCard === coach.id ? 1 : 0, // Only show video when hovered
                           transition: 'opacity 0.3s ease-in-out'
                         }}
+                        controls={false}
                       />
                       
                       {/* Overlay with play button that fades on hover */}
