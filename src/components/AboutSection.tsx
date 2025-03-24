@@ -18,6 +18,7 @@ interface AboutSectionProps {
   reversed?: boolean;
   className?: string;
   accent?: 'clay' | 'blue' | 'green' | 'orange' | 'purple';
+  elegant?: boolean;
 }
 
 const AboutSection = ({ 
@@ -29,19 +30,44 @@ const AboutSection = ({
   buttons = [],
   reversed = false,
   className,
-  accent = 'clay'
+  accent = 'clay',
+  elegant = false
 }: AboutSectionProps) => {
   // Map accent to color classes
   const accentClasses = {
-    clay: 'bg-ath-clay/5 border-ath-clay/20',
-    blue: 'bg-blue-500/5 border-blue-500/20',
-    green: 'bg-green-500/5 border-green-500/20',
-    orange: 'bg-orange-500/5 border-orange-500/20',
-    purple: 'bg-purple-500/5 border-purple-500/20',
+    clay: {
+      bg: 'bg-ath-clay/5 border-ath-clay/20',
+      icon: 'text-ath-clay',
+      title: 'text-ath-clay'
+    },
+    blue: {
+      bg: 'bg-blue-500/5 border-blue-500/20',
+      icon: 'text-blue-500',
+      title: 'text-blue-500'
+    },
+    green: {
+      bg: 'bg-green-500/5 border-green-500/20',
+      icon: 'text-green-500',
+      title: 'text-green-500'
+    },
+    orange: {
+      bg: 'bg-orange-500/5 border-orange-500/20',
+      icon: 'text-orange-500',
+      title: 'text-orange-500'
+    },
+    purple: {
+      bg: 'bg-purple-500/5 border-purple-500/20',
+      icon: 'text-purple-500',
+      title: 'text-purple-500'
+    },
   };
 
   return (
-    <section className={cn('py-16 px-6 lg:px-10', className)}>
+    <section className={cn(
+      'py-16 px-6 lg:px-10', 
+      elegant ? 'bg-gray-50/50 backdrop-blur-sm' : '',
+      className
+    )}>
       <div className="max-w-7xl mx-auto">
         <div className={cn(
           'grid md:grid-cols-2 gap-12 items-center',
@@ -57,7 +83,10 @@ const AboutSection = ({
                   {subtitle}
                 </span>
               )}
-              <h2 className="text-3xl md:text-4xl font-display mb-6">{title}</h2>
+              <h2 className={cn("text-3xl md:text-4xl font-display mb-6", 
+                elegant ? accentClasses[accent].title : '')}>
+                {title}
+              </h2>
               
               {typeof description === 'string' ? (
                 <p className="text-gray-600 leading-relaxed mb-8">{description}</p>
@@ -98,8 +127,8 @@ const AboutSection = ({
               </div>
             ) : icon ? (
               <div className={cn(
-                "p-8 rounded-lg border flex items-center justify-center", 
-                accentClasses[accent]
+                "p-8 rounded-lg border flex items-center justify-center",
+                elegant ? 'bg-white shadow-md' : accentClasses[accent].bg
               )}>
                 <div className="text-center">
                   <div className="flex justify-center mb-6">
