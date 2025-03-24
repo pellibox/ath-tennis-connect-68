@@ -15,8 +15,8 @@ interface VickiPoweredBadgeProps {
 const VickiPoweredBadge = ({ 
   className,
   onRequest = false,
-  bgColor = 'bg-purple-50',
-  textColor = 'text-purple-700',
+  bgColor = 'bg-red-500',
+  textColor = 'text-white',
   logoOnly = false,
   small = false
 }: VickiPoweredBadgeProps) => {
@@ -42,9 +42,10 @@ const VickiPoweredBadge = ({
 
   return (
     <div className={cn(
-      'inline-flex items-center px-4 py-2 rounded-full border text-base font-medium border-purple-200',
+      'inline-flex items-center px-4 py-2 rounded-full text-base font-medium',
       bgColor,
       textColor,
+      'border-none shadow-sm',
       className
     )}>
       <BadgeCheck className="w-5 h-5 mr-2" />
