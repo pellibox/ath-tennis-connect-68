@@ -20,7 +20,8 @@ export default {
 		},
 		extend: {
 			fontFamily: {
-				sans: ["Inter", "sans-serif"],
+				sans: ["Swiss721 BT", "Inter", "sans-serif"],
+				swiss: ["Swiss721 BT", "Inter", "sans-serif"],
 				display: ["Playfair Display", "serif"],
 			},
 			colors: {
