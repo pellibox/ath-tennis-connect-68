@@ -6,6 +6,7 @@ import { useProfile } from '@/contexts/ProfileContext';
 import Hero from '@/components/Hero';
 import RevealAnimation from '@/components/RevealAnimation';
 import { getVimeoEmbed } from '@/utils/videoUtils';
+import VickiMonitoringBadge from '@/components/VickiMonitoringBadge';
 
 const EliteProgram = () => {
   const { t } = useLanguage();
@@ -47,6 +48,9 @@ const EliteProgram = () => {
                   {t('programs.elite.desc')}
                 </p>
               </div>
+              <div className="mt-4">
+                <VickiMonitoringBadge level="elite" className="bg-opacity-20 border-opacity-30 text-white" />
+              </div>
             </div>
           </div>
         </div>
@@ -54,7 +58,10 @@ const EliteProgram = () => {
         <div className="max-w-6xl mx-auto px-6 py-16">
           <div className="mb-12">
             <RevealAnimation>
-              <h2 className="text-3xl font-display mb-6">{t('programs.elite')}</h2>
+              <div className="flex flex-wrap items-center gap-3 mb-6">
+                <h2 className="text-3xl font-display">{t('programs.elite')}</h2>
+                <VickiMonitoringBadge level="elite" />
+              </div>
             </RevealAnimation>
             <RevealAnimation delay={100}>
               <p className="text-lg mb-6">{t('programs.elite.desc')}</p>
@@ -109,3 +116,4 @@ const EliteProgram = () => {
 };
 
 export default EliteProgram;
+

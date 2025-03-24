@@ -1,4 +1,3 @@
-
 import { useEffect, useState } from 'react';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
@@ -7,6 +6,7 @@ import ProgramsSection from '@/components/ProgramsSection';
 import RevealAnimation from '@/components/RevealAnimation';
 import { UserGender, UserType, loadUserPreferences } from '@/components/UserTypeSelector';
 import Hero from '@/components/Hero';
+import VickiMonitoringBadge from '@/components/VickiMonitoringBadge';
 
 const JuniorProgram = () => {
   const { t } = useLanguage();
@@ -40,7 +40,8 @@ const JuniorProgram = () => {
           'Valutazione iniziale con sistema Vicki™ che monitora pattern motori e attitudinali',
           'Approccio ludico e divertente all\'apprendimento tecnico',
           'Monitoraggio dello sviluppo fisico e delle attitudini con parametri oggettivi'
-        ]
+        ],
+        monitoringLevel: 'basic' as MonitoringLevel
       },
       {
         id: 'junior-competitive',
@@ -54,7 +55,8 @@ const JuniorProgram = () => {
           'Analisi biomeccanica in campo',
           'Monitoraggio crescita per evitare sovraccarichi',
           'Programmi adattati all\'età e all\'evoluzione motoria'
-        ]
+        ],
+        monitoringLevel: 'advanced' as MonitoringLevel
       },
       {
         id: 'parent-support',
@@ -67,7 +69,8 @@ const JuniorProgram = () => {
           'Accesso a report semplici e leggibili, con dati tecnici, fisici e mentali',
           'Possibilità di seguire in streaming allenamenti e partite',
           'Aggiornamenti regolari sull\'evoluzione tecnica e psico-fisica'
-        ]
+        ],
+        monitoringLevel: 'basic' as MonitoringLevel
       }
     ];
     
@@ -119,6 +122,9 @@ const JuniorProgram = () => {
                   Sviluppo completo di giovani atleti in un ambiente innovativo e stimolante
                 </p>
               </div>
+              <div className="mt-4">
+                <VickiMonitoringBadge level="advanced" className="bg-opacity-20 border-opacity-30 text-white" />
+              </div>
             </div>
           </div>
         </div>
@@ -126,7 +132,10 @@ const JuniorProgram = () => {
         <div className="max-w-6xl mx-auto px-6 py-16">
           <div className="mb-12">
             <RevealAnimation>
-              <h2 className="text-3xl font-display mb-6">{t('programs.junior')}</h2>
+              <div className="flex flex-wrap items-center gap-3 mb-6">
+                <h2 className="text-3xl font-display">{t('programs.junior')}</h2>
+                <VickiMonitoringBadge level="advanced" />
+              </div>
             </RevealAnimation>
             <RevealAnimation delay={100}>
               <p className="text-lg mb-6">{t('programs.junior.desc')}</p>

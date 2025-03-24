@@ -1,4 +1,3 @@
-
 import { useEffect, useState } from 'react';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
@@ -6,6 +5,7 @@ import { useLanguage } from '@/contexts/LanguageContext';
 import Hero from '@/components/Hero';
 import RevealAnimation from '@/components/RevealAnimation';
 import { UserGender, UserType, loadUserPreferences } from '@/components/UserTypeSelector';
+import VickiMonitoringBadge from '@/components/VickiMonitoringBadge';
 
 const PrivateProgram = () => {
   const { t } = useLanguage();
@@ -49,6 +49,9 @@ const PrivateProgram = () => {
                   Sessioni personalizzate one-to-one per un'attenzione dedicata e un progresso accelerato
                 </p>
               </div>
+              <div className="mt-4">
+                <VickiMonitoringBadge level="advanced" className="bg-opacity-20 border-opacity-30 text-white" />
+              </div>
             </div>
           </div>
         </div>
@@ -56,7 +59,10 @@ const PrivateProgram = () => {
         <div className="max-w-6xl mx-auto px-6 py-16">
           <div className="mb-12">
             <RevealAnimation>
-              <h2 className="text-3xl font-swiss mb-6">Lezioni Private</h2>
+              <div className="flex flex-wrap items-center gap-3 mb-6">
+                <h2 className="text-3xl font-swiss">Lezioni Private</h2>
+                <VickiMonitoringBadge level="advanced" />
+              </div>
             </RevealAnimation>
             <RevealAnimation delay={100}>
               <p className="text-lg mb-6 font-swiss">Sessioni personalizzate one-to-one per un'attenzione dedicata e un progresso accelerato.</p>

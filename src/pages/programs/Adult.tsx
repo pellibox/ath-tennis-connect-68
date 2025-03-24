@@ -1,4 +1,3 @@
-
 import { useEffect, useState } from 'react';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
@@ -7,6 +6,7 @@ import Hero from '@/components/Hero';
 import RevealAnimation from '@/components/RevealAnimation';
 import { UserGender, UserType, loadUserPreferences } from '@/components/UserTypeSelector';
 import Logo from '@/components/Logo';
+import VickiMonitoringBadge from '@/components/VickiMonitoringBadge';
 
 const AdultProgram = () => {
   const { t } = useLanguage();
@@ -62,7 +62,7 @@ const AdultProgram = () => {
     <div className="flex flex-col min-h-screen relative">
       {/* Overlay logo */}
       <div 
-        className="fixed top-[calc(25%-100px)] left-1/2 transform -translate-x-1/2 z-50 w-40 h-40 pointer-events-none transition-opacity duration-300"
+        className="fixed top-[calc(25%-100px)] left-1/2 transform -translate-x-1/2 z-50 w-40 h-40 pointer-events-none transition-opacity duration-300 flex justify-center"
         style={{
           transform: `translate(-50%, -${logoYOffset}px)`,
           opacity: logoOpacity
@@ -100,6 +100,9 @@ const AdultProgram = () => {
                   {t('programs.adult.desc')}
                 </p>
               </div>
+              <div className="mt-4">
+                <VickiMonitoringBadge level="standard" className="bg-opacity-20 border-opacity-30 text-white" />
+              </div>
             </div>
           </div>
         </div>
@@ -107,7 +110,10 @@ const AdultProgram = () => {
         <div className="max-w-6xl mx-auto px-6 py-16">
           <div className="mb-12">
             <RevealAnimation>
-              <h2 className="text-3xl font-swiss mb-6">{t('programs.adult')}</h2>
+              <div className="flex flex-wrap items-center gap-3 mb-6">
+                <h2 className="text-3xl font-swiss">{t('programs.adult')}</h2>
+                <VickiMonitoringBadge level="standard" />
+              </div>
             </RevealAnimation>
             <RevealAnimation delay={100}>
               <p className="text-lg mb-6 font-swiss">{t('programs.adult.desc')}</p>

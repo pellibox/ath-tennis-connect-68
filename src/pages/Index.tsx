@@ -11,6 +11,7 @@ import { useProfile } from '@/contexts/ProfileContext';
 import { getVimeoEmbed, getWelcomeMessage } from '@/utils/videoUtils';
 import Logo from '@/components/Logo';
 import { useIsMobile } from '@/hooks/use-mobile';
+import VickiMonitoringBadge, { MonitoringLevel } from '@/components/VickiMonitoringBadge';
 
 const HomePage = () => {
   // Get translation function
@@ -91,6 +92,14 @@ const HomePage = () => {
     },
   ];
 
+  // Monitoring levels for homepage display
+  const monitoringLevels: { level: MonitoringLevel, label: string }[] = [
+    { level: 'basic', label: 'Base' },
+    { level: 'standard', label: 'Standard' },
+    { level: 'advanced', label: 'Avanzato' },
+    { level: 'elite', label: 'Elite' }
+  ];
+
   return (
     <div className="flex flex-col min-h-screen relative">
       {/* Centered logo with improved positioning for both mobile and desktop */}
@@ -135,6 +144,21 @@ const HomePage = () => {
             contentPosition="center"
             subtitlePosition="bottom"
           />
+        </div>
+        
+        {/* Vicki Monitoring Levels */}
+        <div className="bg-gray-100 py-8">
+          <div className="max-w-6xl mx-auto px-6">
+            <h3 className="text-xl font-display mb-4 text-center">Livelli di Monitoraggio Vicki™</h3>
+            <div className="flex flex-wrap justify-center gap-4">
+              {monitoringLevels.map((item) => (
+                <div key={item.level} className="text-center">
+                  <VickiMonitoringBadge level={item.level} showLabel={false} className="mb-2" />
+                  <span className="text-sm block">{item.label}</span>
+                </div>
+              ))}
+            </div>
+          </div>
         </div>
         
         <StatsAndNavSection stats={stats} />

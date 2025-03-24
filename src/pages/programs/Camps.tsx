@@ -1,4 +1,3 @@
-
 import { useEffect, useState } from 'react';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
@@ -6,6 +5,7 @@ import { useLanguage } from '@/contexts/LanguageContext';
 import Hero from '@/components/Hero';
 import RevealAnimation from '@/components/RevealAnimation';
 import { UserGender, UserType, loadUserPreferences } from '@/components/UserTypeSelector';
+import VickiMonitoringBadge from '@/components/VickiMonitoringBadge';
 
 const CampsProgram = () => {
   const { t } = useLanguage();
@@ -48,6 +48,9 @@ const CampsProgram = () => {
                   Esperienza intensiva di alta qualità per giocatori di tutte le età durante i periodi estivi e vacanze scolastiche
                 </p>
               </div>
+              <div className="mt-4">
+                <VickiMonitoringBadge level="basic" className="bg-opacity-20 border-opacity-30 text-white" />
+              </div>
             </div>
           </div>
         </div>
@@ -55,7 +58,10 @@ const CampsProgram = () => {
         <div className="max-w-6xl mx-auto px-6 py-16">
           <div className="mb-12">
             <RevealAnimation>
-              <h2 className="text-3xl font-display mb-6">Camp Estivi</h2>
+              <div className="flex flex-wrap items-center gap-3 mb-6">
+                <h2 className="text-3xl font-display">Camp Estivi</h2>
+                <VickiMonitoringBadge level="basic" />
+              </div>
             </RevealAnimation>
             <RevealAnimation delay={100}>
               <p className="text-lg mb-6">Esperienza intensiva di alta qualità per giocatori di tutte le età durante i periodi estivi e vacanze scolastiche.</p>

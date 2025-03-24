@@ -1,4 +1,3 @@
-
 import { ArrowRight, Play } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import RevealAnimation from './RevealAnimation';
@@ -6,6 +5,7 @@ import { cn } from '@/lib/utils';
 import { useState, useEffect, useRef } from 'react';
 import { HoverCard, HoverCardTrigger, HoverCardContent } from '@/components/ui/hover-card';
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from '@/components/ui/collapsible';
+import VickiMonitoringBadge, { MonitoringLevel } from './VickiMonitoringBadge';
 
 interface Program {
   id: string;
@@ -16,6 +16,7 @@ interface Program {
   vimeoEmbed?: string;
   link: string;
   features?: string[];
+  monitoringLevel?: MonitoringLevel;
 }
 
 interface ProgramCategory {
@@ -316,7 +317,12 @@ const ProgramsSection = ({
           )}
         </div>
         <div className="flex flex-col flex-grow p-6">
-          <h3 className="text-xl font-medium mb-3 text-ath-clay">{program.title}</h3>
+          <div className="flex flex-wrap items-start justify-between mb-3 gap-2">
+            <h3 className="text-xl font-medium text-ath-clay">{program.title}</h3>
+            {program.monitoringLevel && (
+              <VickiMonitoringBadge level={program.monitoringLevel} showLabel={false} className="mt-1" />
+            )}
+          </div>
           <p className="text-gray-600 mb-4 flex-grow">{program.description}</p>
           
           {program.features && program.features.length > 0 && (
