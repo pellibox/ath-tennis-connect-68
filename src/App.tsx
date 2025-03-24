@@ -22,6 +22,9 @@ import AdultProgram from '@/pages/programs/Adult';
 import PrivateProgram from '@/pages/programs/Private';
 import CampsProgram from '@/pages/programs/Camps';
 
+// New program detail pages
+import Performance2Program from '@/pages/programs/Performance2';
+
 function App() {
   return (
     <LanguageProvider>
@@ -45,6 +48,9 @@ function App() {
             <Route path="/programs/adult" element={<AdultProgram />} />
             <Route path="/programs/private" element={<PrivateProgram />} />
             <Route path="/programs/camps" element={<CampsProgram />} />
+            
+            {/* New program detail routes */}
+            <Route path="/programs/performance-2" element={<Performance2Program />} />
             
             <Route path="*" element={<NotFoundPage />} />
           </Routes>
