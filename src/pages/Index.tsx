@@ -1,4 +1,3 @@
-
 import { useEffect, useState, useRef } from 'react';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
@@ -30,28 +29,25 @@ const HomePage = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }, []);
 
-  // Handle scroll effect for the logo
+  // Handle scroll effect for the logo - now for both mobile and desktop
   useEffect(() => {
     const handleScroll = () => {
-      // Only apply scroll effects for non-mobile
-      if (!isMobile) {
-        // Get current scroll position
-        const scrollY = window.scrollY;
-        
-        // Calculate offset to move the logo up as user scrolls down
-        setLogoYOffset(scrollY * 0.2); // Adjust the multiplier to control the speed
-        
-        // Fade out logo as user scrolls down
-        // Start fading at 100px of scroll, completely fade out by 300px
-        const fadeThreshold = 100;
-        const fadeOutBy = 300;
-        
-        if (scrollY > fadeThreshold) {
-          const opacity = Math.max(0, 1 - (scrollY - fadeThreshold) / (fadeOutBy - fadeThreshold));
-          setLogoOpacity(opacity);
-        } else {
-          setLogoOpacity(1);
-        }
+      // Get current scroll position
+      const scrollY = window.scrollY;
+      
+      // Calculate offset to move the logo up as user scrolls down
+      setLogoYOffset(scrollY * 0.2); // Adjust the multiplier to control the speed
+      
+      // Fade out logo as user scrolls down
+      // Start fading at 100px of scroll, completely fade out by 300px
+      const fadeThreshold = 100;
+      const fadeOutBy = 300;
+      
+      if (scrollY > fadeThreshold) {
+        const opacity = Math.max(0, 1 - (scrollY - fadeThreshold) / (fadeOutBy - fadeThreshold));
+        setLogoOpacity(opacity);
+      } else {
+        setLogoOpacity(1);
       }
     };
 
@@ -65,7 +61,7 @@ const HomePage = () => {
     return () => {
       window.removeEventListener('scroll', handleScroll);
     };
-  }, [isMobile]);
+  }, []);
 
   // Load user preferences on mount and when they change
   useEffect(() => {
@@ -166,7 +162,7 @@ const HomePage = () => {
 
   return (
     <div className="flex flex-col min-h-screen relative">
-      {/* Show the centered logo above video for both mobile and desktop */}
+      {/* Show the centered logo above video for both mobile and desktop with same scroll behavior */}
       <div 
         ref={logoRef}
         className="fixed top-[calc(25%-100px)] left-1/2 transform -translate-x-1/2 z-50 pointer-events-none transition-opacity duration-300"
