@@ -1,5 +1,5 @@
 
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import { useLanguage } from '@/contexts/LanguageContext';
@@ -10,6 +10,8 @@ const MethodPage = () => {
   const { t } = useLanguage();
   const [userGender, setUserGender] = useState<UserGender | null>(null);
   const [userType, setUserType] = useState<UserType | null>(null);
+  const [logoYOffset, setLogoYOffset] = useState<number>(0);
+  const logoRef = useRef<HTMLDivElement>(null);
   
   // Load user preferences on mount
   useEffect(() => {
@@ -21,6 +23,29 @@ const MethodPage = () => {
   // Smooth scroll functionality
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
+  }, []);
+
+  // Handle scroll effect for the logo
+  useEffect(() => {
+    const handleScroll = () => {
+      // Get current scroll position
+      const scrollY = window.scrollY;
+      
+      // Calculate offset to move the logo up as user scrolls down
+      // This creates a "fixed position" effect relative to the background
+      setLogoYOffset(scrollY * 0.2); // Adjust the multiplier to control the speed
+    };
+
+    // Add scroll event listener
+    window.addEventListener('scroll', handleScroll);
+    
+    // Initial calculation
+    handleScroll();
+    
+    // Clean up
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
   }, []);
 
   // Get Vimeo embed code based on user type
@@ -84,16 +109,33 @@ const MethodPage = () => {
   };
 
   return (
-    <div className="flex flex-col min-h-screen">
+    <div className="flex flex-col min-h-screen relative">
+      {/* Overlay logo for method page */}
+      <div 
+        ref={logoRef}
+        className="fixed top-[calc(25%-100px)] left-1/2 transform -translate-x-1/2 z-50 w-40 h-40 pointer-events-none"
+        style={{
+          transform: `translate(-50%, -${logoYOffset}px)` // Apply dynamic Y offset
+        }}
+      >
+        <img 
+          src="/lovable-uploads/ebada5d3-6c5e-43a0-ab7d-a5850900d950.png" 
+          alt="ATH Logo" 
+          className="w-full h-full object-contain"
+        />
+      </div>
+      
       <Header />
       
       <main className="flex-grow pt-20">
-        <div className="h-40 bg-gradient-to-b from-ath-clay to-ath-secondary flex items-center justify-center">
-          <h1 className="text-4xl md:text-5xl font-display text-white">Il Metodo ATH</h1>
-        </div>
-        
-        <div className="w-full bg-black aspect-video relative">
+        {/* Remove the clay gradient and replace with a title and claim similar to About page */}
+        <div className="w-full bg-black relative">
           <div dangerouslySetInnerHTML={{ __html: getVimeoEmbed() }} />
+          <div className="absolute bottom-0 left-0 right-0 z-10 p-4 bg-gradient-to-t from-black/80 to-transparent">
+            <p className="text-white text-base md:text-lg opacity-90 max-w-3xl mx-auto text-center animate-fade-in drop-shadow-md">
+              La rivoluzione nell'allenamento del tennis moderno
+            </p>
+          </div>
         </div>
         
         <section className="py-16 px-6 lg:px-10">
