@@ -72,7 +72,11 @@ const JuniorProgram = () => {
         features: [
           'Accesso a report semplici e leggibili, con dati tecnici, fisici e mentali',
           'Possibilità di seguire in streaming allenamenti e partite',
-          'Aggiornamenti regolari sull\'evoluzione tecnica e psico-fisica'
+          'Aggiornamenti regolari sull\'evoluzione tecnica e psico-fisica del ragazzo/a',
+          'Canali diretti con il coach per ricevere feedback chiari e condividere obiettivi',
+          'Analisi statistiche semplificate con visione d\'insieme dell\'andamento',
+          'Supporto pratico per accompagnare il percorso sportivo senza pressioni inutili',
+          'Filtraggio dei dati da parte dei coach per comunicazioni non interpretative o fuorvianti'
         ],
         monitoringLevel: 'basic' as MonitoringLevel,
         vickiCustomBadge: 'Vicki™ report and stream'
