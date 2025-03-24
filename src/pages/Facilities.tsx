@@ -1,4 +1,3 @@
-
 import { useEffect } from 'react';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
@@ -100,6 +99,8 @@ const FacilitiesPage = () => {
     }
   }, [location]);
 
+  const facilitiesVimeoEmbed = `<div style="padding:56.25% 0 0 0;position:relative;"><iframe src="https://player.vimeo.com/video/1068878064?h=2b90638be1&autoplay=1&loop=1&background=1&autopause=0&player_id=0&app_id=58479&controls=0" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media" style="position:absolute;top:0;left:0;width:100%;height:100%;" title="ATH Facilities Video"></iframe></div><script src="https://player.vimeo.com/api/player.js"></script>`;
+
   return (
     <div className="flex flex-col min-h-screen">
       <Header />
@@ -108,7 +109,7 @@ const FacilitiesPage = () => {
         <Hero
           title="Le Nostre Strutture"
           subtitle="Impianti all'avanguardia dotati di tecnologia Vicki™"
-          imageSrc="/lovable-uploads/9e980860-a20e-4ae3-839c-6d91f306bd07.png"
+          vimeoEmbed={facilitiesVimeoEmbed}
           fullHeight={false}
           overlayOpacity="medium"
         />
