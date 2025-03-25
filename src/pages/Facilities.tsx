@@ -48,15 +48,18 @@ const facilities = [
   },
   {
     id: "facility-padel",
-    title: "Campi Padel",
-    description: "Due campi da padel con standard internazionali, illuminazione LED e tecnologia di tracciamento Vicki™.",
-    image: "/lovable-uploads/ca117fb6-0c83-4d3a-865b-e3a4b5b743a7.png",
+    title: "Campi Padel ATH",
+    description: "Due campi da padel di ultima generazione con pareti in cristallo, sistema di tracciamento Vicki™ e illuminazione LED studiata per performance ottimali.",
+    image: "/lovable-uploads/padel-courts.png",
     features: [
-      "N2 campi con standard internazionali",
-      "Pareti in cristallo temperato",
-      "Illuminazione LED di ultima generazione",
-      "Vicki™ powered Court"
-    ]
+      "N2 campi con standard internazionali WPT",
+      "Pareti in cristallo temperato di alta qualità",
+      "Sistema di tracciamento Vicki™ integrato",
+      "Illuminazione LED dinamica e regolabile",
+      "Area dedicata per analisi tecnica e tattica",
+      "Zona riscaldamento e preparazione atletica specifica per padel"
+    ],
+    vimeoEmbed: `<div style="position:relative;padding-bottom:56.25%;height:0;overflow:hidden;width:100%;"><iframe src="https://player.vimeo.com/video/1068880352?h=4d6b04576c&autoplay=1&loop=1&background=1&autopause=0&player_id=0&app_id=58479&controls=0" style="position:absolute;top:0;left:0;width:100%;height:100%;" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media" title="ATH Padel Courts Video"></iframe></div><script src="https://player.vimeo.com/api/player.js"></script>`
   },
   {
     id: "facility-pickleball",
