@@ -80,17 +80,32 @@ const SitProgram = () => {
               </p>
             </RevealAnimation>
             <RevealAnimation delay={200}>
-              <p className="font-swiss">
+              <p className="mb-4 font-swiss">
                 Grazie alla tecnologia VICKI™, ogni bambino viene monitorato in modo oggettivo,
                 permettendo di identificare precocemente potenziali talenti e predisposizioni particolari.
                 L'approccio scientifico consente di guidare lo sviluppo di ciascun giovane atleta
                 in modo mirato e personalizzato.
               </p>
             </RevealAnimation>
+            <RevealAnimation delay={250}>
+              <p className="mb-4 font-swiss">
+                <strong>Analisi Iniziale Inclusa:</strong> Il programma SIT include una valutazione iniziale completa 
+                che analizza le capacità motorie, coordinative e attitudinali del giovane atleta. Questa analisi 
+                è fondamentale per l'integrazione nel programma e fornisce una base oggettiva per la personalizzazione 
+                del percorso formativo.
+              </p>
+            </RevealAnimation>
+            <RevealAnimation delay={300}>
+              <p className="font-swiss">
+                I bambini provenienti dal programma SAT possono accedere al programma SIT dopo aver superato 
+                una valutazione specifica che ne attesti la predisposizione e il potenziale. Questo permette 
+                un'evoluzione naturale nel percorso formativo in base alle effettive capacità dimostrate.
+              </p>
+            </RevealAnimation>
           </div>
           
           <div className="grid md:grid-cols-2 gap-10">
-            <RevealAnimation delay={250} className="bg-gray-50 p-8 rounded-lg">
+            <RevealAnimation delay={350} className="bg-gray-50 p-8 rounded-lg">
               <h3 className="text-xl font-swiss font-semibold mb-4">Caratteristiche del Programma</h3>
               <ul className="list-disc list-inside space-y-2 font-swiss">
                 <li>1 sessione tennis da 1 ora a settimana</li>
@@ -101,14 +116,23 @@ const SitProgram = () => {
                 <li>Introduzione graduale alle tecniche fondamentali del tennis</li>
                 <li>Valutazioni periodiche del potenziale</li>
                 <li>Approccio ludico e motivante</li>
+                <li>Analisi iniziale completa per personalizzare il percorso</li>
+                <li>Possibilità di upgrade dal programma SAT dopo valutazione</li>
               </ul>
             </RevealAnimation>
             
-            <RevealAnimation delay={300} className="bg-gray-50 p-8 rounded-lg">
+            <RevealAnimation delay={400} className="bg-gray-50 p-8 rounded-lg">
               <h3 className="text-xl font-swiss font-semibold mb-4">Prezzo</h3>
               <div className="mb-4">
                 <p className="text-3xl font-bold text-ath-clay">€950</p>
                 <p className="text-sm text-gray-600">per stagione (40 settimane)</p>
+              </div>
+              <div className="mb-4 p-4 bg-ath-clay/10 rounded-lg">
+                <h4 className="text-sm font-semibold mb-2">Analisi Iniziale Inclusa</h4>
+                <p className="text-sm text-gray-600">
+                  La valutazione iniziale VICKI™ è inclusa nel prezzo del programma e rappresenta 
+                  un valore aggiunto significativo per ottimizzare il percorso formativo del giovane atleta.
+                </p>
               </div>
               <p className="text-sm text-gray-600 mb-4">
                 Possibilità di pagamento rateizzato. Contattaci per maggiori informazioni.

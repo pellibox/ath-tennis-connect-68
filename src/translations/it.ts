@@ -89,6 +89,16 @@ const translations = {
   "tech.quote": "Vicki™ è un sistema unico, specificamente sviluppato per potenziare le capacità del coach, non per sostituirle. L'expertise umana rimane essenziale nel processo di allenamento, mentre la tecnologia fornisce dati e analisi che amplificano l'intuizione e l'esperienza dell'allenatore.",
   "tech.only": "L'unico centro tennis al mondo che utilizza la tecnologia Vicki™",
   
+  // SIT & SAT Programs
+  "sit.analysis.title": "Analisi Iniziale Inclusa",
+  "sit.analysis.desc": "Valutazione completa delle capacità motorie, coordinative e attitudinali inclusa nel programma.",
+  "sit.upgrade.title": "Percorso Evolutivo",
+  "sit.upgrade.desc": "Possibilità di accesso dal programma SAT dopo valutazione specifica.",
+  "sat.test.title": "Test di Valutazione per SIT",
+  "sat.test.desc": "Possibilità di upgrade al programma SIT dopo superamento del test attitudinale.",
+  "sat.upgrade.title": "Upgrade al Programma SIT",
+  "sat.upgrade.desc": "Percorso evolutivo per i bambini che mostrano particolari attitudini tecniche e coordinative.",
+  
   // Facilities, Coaches, Contact and other sections
   "facilities.title": "Strutture di Classe Mondiale",
   "facilities.subtitle": "Vivi l'ambiente perfetto per l'eccellenza nel tennis",

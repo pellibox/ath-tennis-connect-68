@@ -34,7 +34,9 @@ export const juniorPrograms: Program[] = [
       'Insegnamento dei fondamentali tecnici adattati all\'età',
       'Sviluppo della passione per il tennis e lo sport',
       'Percorsi personalizzati basati sulle caratteristiche individuali rilevate da Vicki™',
-      'Supporto per genitori con report dettagliati e indicazioni sul potenziale'
+      'Supporto per genitori con report dettagliati e indicazioni sul potenziale',
+      'Analisi iniziale completa inclusa nel programma',
+      'Possibilità di accesso dal programma SAT dopo valutazione specifica'
     ],
     vickiPowered: true
   },

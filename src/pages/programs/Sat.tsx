@@ -80,17 +80,35 @@ const SatProgram = () => {
               </p>
             </RevealAnimation>
             <RevealAnimation delay={200}>
-              <p className="font-swiss">
+              <p className="mb-4 font-swiss">
                 Una sessione settimanale di tennis da 1 ora, accompagnata da 30 minuti di attività atletica,
                 permette ai più piccoli di coltivare il divertimento verso lo sport e sviluppare
                 le prime abilità di coordinazione. La tecnologia VICKI™ può essere attivata su richiesta
                 per monitorare i progressi dei piccoli atleti.
               </p>
             </RevealAnimation>
+            <RevealAnimation delay={250}>
+              <p className="font-swiss mb-4">
+                <strong>Percorso Evolutivo:</strong> I bambini che mostrano particolari attitudini durante il 
+                programma SAT possono accedere al programma SIT (Selezione e Individuazione Talenti) dopo aver 
+                superato un test di valutazione. Questo permette una progressione naturale nel percorso formativo, 
+                basata sulle effettive capacità e predisposizioni del bambino.
+              </p>
+            </RevealAnimation>
+            <RevealAnimation delay={300}>
+              <div className="p-4 bg-ath-clay/10 rounded-lg mb-6">
+                <h3 className="text-lg font-semibold mb-2">Possibilità di Upgrade al Programma SIT</h3>
+                <p className="font-swiss">
+                  I piccoli atleti che dimostrano particolare predisposizione tecnica e coordinativa possono 
+                  essere inseriti nel percorso SIT dopo una valutazione specifica condotta con la tecnologia VICKI™.
+                  Questa opportunità di upgrade viene valutata dai nostri tecnici durante il corso dell'anno.
+                </p>
+              </div>
+            </RevealAnimation>
           </div>
           
           <div className="grid md:grid-cols-2 gap-10">
-            <RevealAnimation delay={250} className="bg-gray-50 p-8 rounded-lg">
+            <RevealAnimation delay={350} className="bg-gray-50 p-8 rounded-lg">
               <h3 className="text-xl font-swiss font-semibold mb-4">Caratteristiche del Programma</h3>
               <ul className="list-disc list-inside space-y-2 font-swiss">
                 <li>1 sessione tennis da 1 ora a settimana</li>
@@ -101,14 +119,22 @@ const SatProgram = () => {
                 <li>Sviluppo delle capacità motorie fondamentali</li>
                 <li>Prima familiarizzazione con racchetta e pallina</li>
                 <li>Gruppi ridotti per massima attenzione</li>
+                <li>Possibilità di accesso al programma SIT dopo valutazione</li>
               </ul>
             </RevealAnimation>
             
-            <RevealAnimation delay={300} className="bg-gray-50 p-8 rounded-lg">
+            <RevealAnimation delay={400} className="bg-gray-50 p-8 rounded-lg">
               <h3 className="text-xl font-swiss font-semibold mb-4">Prezzo</h3>
               <div className="mb-4">
                 <p className="text-3xl font-bold text-ath-clay">€500</p>
                 <p className="text-sm text-gray-600">per stagione (40 settimane)</p>
+              </div>
+              <div className="mb-4 p-4 bg-ath-clay/10 rounded-lg">
+                <h4 className="text-sm font-semibold mb-2">Test di Valutazione per SIT</h4>
+                <p className="text-sm text-gray-600">
+                  La valutazione per l'accesso al programma SIT ha un costo aggiuntivo di €50 e viene proposta 
+                  dai nostri tecnici solo ai bambini che mostrano particolari attitudini.
+                </p>
               </div>
               <p className="text-sm text-gray-600 mb-4">
                 Possibilità di pagamento rateizzato. Contattaci per maggiori informazioni.
