@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Card } from '@/components/ui/card';
 import VickiPoweredBadge from './VickiPoweredBadge';
@@ -53,6 +52,7 @@ const PricingTables = () => {
       ],
       price: '7.500',
       vickiPowered: true,
+      highlight: true,
       link: '/programs/elite-performance'
     },
     {
@@ -200,7 +200,9 @@ const PricingTables = () => {
         </div>
         <div className="mt-auto">
           <div className="flex items-center justify-between mb-3">
-            <span className={`text-2xl font-bold ${program.highlight ? 'text-ath-clay' : ''}`}>€{program.price}</span>
+            <span className={`text-2xl font-bold ${program.highlight ? 'text-ath-clay' : ''}`}>
+              {program.price.startsWith('Prezzo') ? program.price : `€${program.price}`}
+            </span>
             {program.vickiPowered && <VickiPoweredBadge small />}
             {program.vickiOnRequest && <VickiPoweredBadge small onRequest />}
           </div>
@@ -261,7 +263,7 @@ const PricingTables = () => {
         <RevealAnimation>
           <h2 className="text-3xl font-display mb-2 border-l-4 border-ath-clay pl-3">Personal Coaching e Lezioni Private</h2>
           <p className="text-gray-600 mb-8">
-            Allenamenti individuali con maestro e sparring dedicati, per lavorare in modo specifico su aspetti tecnici e tattici. Disponibili su prenotazione per atleti dai 13 anni in su.
+            Il Personal Coaching include maestro e sparring dedicati con analisi VICKI™, mentre le Lezioni Private offrono sessioni personalizzate con un maestro certificato. Entrambi i programmi disponibili su prenotazione.
           </p>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-16">
             {personalTrainingPrograms.map((program, index) => (
