@@ -24,11 +24,6 @@ export const navigationItems = [
     icon: <Zap size={18} className="mr-2" />
   },
   { 
-    text: 'Padel & Pickleball', 
-    href: '/padel-pickleball',
-    icon: <Dumbbell size={18} className="mr-2" />
-  },
-  { 
     text: 'Strutture', 
     href: '/facilities',
     icon: <Server size={18} className="mr-2" />
@@ -37,6 +32,11 @@ export const navigationItems = [
     text: 'Coach', 
     href: '/coaches',
     icon: <Users size={18} className="mr-2" />
+  },
+  { 
+    text: 'Padel & Pickleball', 
+    href: '/padel-pickleball',
+    icon: <Dumbbell size={18} className="mr-2" />
   },
 ];
 
