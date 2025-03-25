@@ -1,4 +1,3 @@
-
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { Toaster } from "@/components/ui/sonner";
 import { LanguageProvider } from './contexts/LanguageContext';
@@ -30,7 +29,7 @@ import ElitePerformanceProgram from '@/pages/programs/ElitePerformance';
 import ElitePerformanceFullProgram from '@/pages/programs/ElitePerformanceFull';
 import SitProgram from '@/pages/programs/Sit';
 import SatProgram from '@/pages/programs/Sat';
-import PersonalTrainingProgram from '@/pages/programs/PersonalTraining';
+import PersonalCoachingProgram from '@/pages/programs/PersonalTraining';
 import AdultTrainingProgram from '@/pages/programs/AdultTraining';
 import UniversityProgram from '@/pages/programs/University';
 import CoachProgram from '@/pages/programs/Coach';
@@ -68,7 +67,7 @@ function App() {
             <Route path="/programs/elite-full" element={<ElitePerformanceFullProgram />} />
             <Route path="/programs/talent-identification" element={<SitProgram />} />
             <Route path="/programs/sat" element={<SatProgram />} />
-            <Route path="/programs/personal" element={<PersonalTrainingProgram />} />
+            <Route path="/programs/personal" element={<PersonalCoachingProgram />} />
             <Route path="/programs/adult-training" element={<AdultTrainingProgram />} />
             <Route path="/programs/university" element={<UniversityProgram />} />
             <Route path="/programs/coach" element={<CoachProgram />} />

@@ -91,7 +91,7 @@ const PrivateProgram = () => {
               <h3 className="text-xl font-swiss font-semibold mb-4">Caratteristiche del Programma</h3>
               <ul className="list-disc list-inside space-y-2 font-swiss">
                 <li>Attenzione completa e dedicata del coach</li>
-                <li>Sparring professionale incluso nella sessione</li>
+                <li>Sparring professionale incluso (minimo 2.8 FIT o di categoria pari o superiore all'atleta)</li>
                 <li>Disponibile per atleti dai 13 anni in su</li>
                 <li>Analisi tecnica dettagliata tramite VICKI™</li>
                 <li>Personalizzazione completa degli obiettivi e contenuti</li>
