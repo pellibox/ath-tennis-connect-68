@@ -1,4 +1,3 @@
-
 import { useEffect } from 'react';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
@@ -18,7 +17,6 @@ const EliteProgram = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }, []);
   
-  // Determine if we should show video (only for performance users)
   const shouldShowVideo = userType === 'performance';
   const vimeoEmbed = shouldShowVideo ? getVimeoEmbed(userGender, userType, false) : '';
 
@@ -41,7 +39,6 @@ const EliteProgram = () => {
             overlayOpacity="medium"
           />
           
-          {/* Black banner with claim text - matching Method page style */}
           <div className="w-full bg-black py-16 relative" style={{ height: '300px' }}>
             <div className="max-w-6xl mx-auto px-6 h-full flex flex-col justify-center">
               <div className="flex items-center mb-2">

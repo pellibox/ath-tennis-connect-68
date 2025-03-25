@@ -15,11 +15,6 @@ export const programCategories: ProgramCategory[] = [
     programs: elitePrograms
   },
   {
-    id: 'professional-program',
-    title: 'Professional Players',
-    programs: professionalPrograms
-  },
-  {
     id: 'junior-program',
     title: 'Junior Program',
     programs: juniorPrograms
@@ -28,6 +23,11 @@ export const programCategories: ProgramCategory[] = [
     id: 'coach-private',
     title: 'Coaches, Private Training e Performance Analysis',
     programs: coachPrograms
+  },
+  {
+    id: 'professional-program',
+    title: 'Professional Players',
+    programs: professionalPrograms
   },
   {
     id: 'adult-training',
