@@ -1,4 +1,3 @@
-
 // Program data types
 export interface Program {
   id: string;
@@ -214,7 +213,7 @@ export const coachPrograms: Program[] = [
     link: '/programs/private',
     features: [
       'Sessioni one-to-one con maestro certificato',
-      'Sparring professionale (minimo 2.8 FIT o di categoria pari o superiore all\'atleta)',
+      'Sparring professionale incluso (minimo 2.8 FIT o di categoria pari o superiore all\'atleta)',
       'Analisi dettagliata della tecnica con VICKI™ in modalità Elite o Advanced',
       'Focus su obiettivi specifici e correzioni in tempo reale',
       'Disponibile solo su prenotazione (soggetto a disponibilità)',
@@ -225,21 +224,21 @@ export const coachPrograms: Program[] = [
   },
   {
     id: '12',
-    title: 'Lezioni Private (Prezzo Personalizzato)',
-    description: 'Lezioni private con prezzo personalizzato in base alle esigenze specifiche e alla frequenza delle sessioni.',
+    title: 'Lezioni Private',
+    description: 'Lezioni individuali o in piccoli gruppi (max 2 allievi) con un maestro certificato, senza sparring.',
     image: 'https://images.unsplash.com/photo-1572307480813-ceb0e59d8325?q=80&w=2035&auto=format&fit=crop',
     vimeoEmbed: '<div style="padding:56.25% 0 0 0;position:relative;"><iframe src="https://player.vimeo.com/video/1068788542?h=698f55b033&autoplay=1&loop=1&title=0&byline=0&portrait=0&controls=0" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen style="position:absolute;top:0;left:0;width:100%;height:100%;"></iframe></div>',
     link: '/programs/personal',
     features: [
-      'Sessioni personalizzate con maestro certificato',
-      'Opzione sparring professionale',
-      'Monitoraggio e analisi VICKI™ disponibile',
+      'Lezioni individuali o in piccoli gruppi (max 2 allievi)',
+      'Maestro certificato dedicato',
+      'Nessun sparring incluso',
+      'Monitoraggio e analisi VICKI™ disponibile su richiesta',
       'Prezzo personalizzato in base alla frequenza e alle specifiche richieste',
-      'Disponibile su prenotazione (soggetto a disponibilità)',
-      'Percorso completamente personalizzabile'
+      'Disponibile su prenotazione'
     ],
-    vickiPowered: true,
-    vickiMonitoringLevel: 'elite'
+    vickiOnRequest: true,
+    vickiMonitoringLevel: 'standard'
   }
 ];
 

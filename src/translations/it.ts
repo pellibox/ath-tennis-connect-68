@@ -43,6 +43,8 @@ const translations = {
   "programs.adult.desc": "Percorsi flessibili per giocatori amatoriali che vogliono migliorare le proprie capacità.",
   "programs.personalCoaching": "Private Training (13+ anni)",
   "programs.personalCoaching.desc": "Lezioni private con maestro e sparring dedicati, disponibili su prenotazione per atleti dai 13 anni.",
+  "programs.privateLessons": "Lezioni Private",
+  "programs.privateLessons.desc": "Lezioni individuali o in piccoli gruppi (max 2 allievi) con un maestro certificato, senza sparring.",
   "programs.more": "Scopri di Più",
   
   // Camps Section

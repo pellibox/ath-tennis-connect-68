@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { Card } from '@/components/ui/card';
 import VickiPoweredBadge from './VickiPoweredBadge';
@@ -112,14 +113,14 @@ const PricingTables = () => {
       title: 'Lezioni Private',
       subtitle: 'Frequenza su richiesta (tutto l\'anno)',
       features: [
-        'Maestro dedicato',
-        'Opzione sparring disponibile',
-        'Analisi VICKI™ disponibile',
-        'Prezzo personalizzato in base alle esigenze',
-        'Riservato ad atleti dai 13 anni in su'
+        'Lezioni individuali o in piccoli gruppi (max 2 allievi)',
+        'Maestro certificato dedicato',
+        'Nessun sparring incluso',
+        'Analisi VICKI™ disponibile su richiesta',
+        'Prezzo personalizzato in base alle esigenze'
       ],
       price: 'Prezzo personalizzato',
-      vickiPowered: true,
+      vickiOnRequest: true,
       link: '/programs/personal'
     }
   ];

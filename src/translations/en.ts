@@ -1,3 +1,4 @@
+
 const translations = {
   // Header & Navigation
   "nav.home": "Home",
@@ -34,6 +35,8 @@ const translations = {
   "programs.adult.desc": "Programs for players of all levels who want to improve their skills, stay fit, and enjoy the game of tennis.",
   "programs.privateTraining": "Private Training (13+ years)",
   "programs.privateTraining.desc": "Private lessons with dedicated coach and sparring partner, available by appointment for athletes 13 years and older.",
+  "programs.privateLessons": "Private Lessons",
+  "programs.privateLessons.desc": "One-to-one or small group lessons (max 2 students) with a certified coach, no sparring included.",
   "programs.more": "Learn More",
   
   // Camps Section
