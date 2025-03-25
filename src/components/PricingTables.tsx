@@ -101,7 +101,7 @@ const PricingTables = () => {
       subtitle: 'Per atleti dai 13 anni in su (tutto l\'anno)',
       features: [
         'Sessioni di 1,5 ore, una volta alla settimana',
-        'Maestro e sparring dedicati',
+        'Professional coach e sparring dedicato',
         'Analisi VICKI™ Elite o Advanced',
         'Report dettagliato post-sessione'
       ],
@@ -115,7 +115,6 @@ const PricingTables = () => {
       features: [
         'Lezioni individuali o in piccoli gruppi (max 2 allievi)',
         'Maestro certificato dedicato',
-        'Nessun sparring incluso',
         'Analisi VICKI™ disponibile su richiesta',
         'Prezzo personalizzato in base alle esigenze'
       ],
