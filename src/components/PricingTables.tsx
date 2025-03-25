@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { Card } from '@/components/ui/card';
 import VickiPoweredBadge from './VickiPoweredBadge';
@@ -9,7 +10,7 @@ const PricingTables = () => {
   const performancePrograms = [
     {
       title: 'Performance 2',
-      subtitle: '2 giorni a settimana (48 settimane)',
+      subtitle: '2 giorni a settimana (40 settimane)',
       features: [
         '2 sessioni tennis da 1,5 ore (3 ore settimanali)',
         '2 sessioni atletica da 1,5 ore (3 ore settimanali)',
@@ -21,7 +22,7 @@ const PricingTables = () => {
     },
     {
       title: 'Performance 3',
-      subtitle: '3 giorni a settimana (48 settimane)',
+      subtitle: '3 giorni a settimana (40 settimane)',
       features: [
         '3 sessioni tennis da 1,5 ore (4,5 ore settimanali)',
         '3 sessioni atletica da 1,5 ore (4,5 ore settimanali)',
@@ -33,7 +34,7 @@ const PricingTables = () => {
     },
     {
       title: 'Performance 4',
-      subtitle: '4 giorni a settimana (48 settimane)',
+      subtitle: '4 giorni a settimana (40 settimane)',
       features: [
         '4 sessioni tennis da 1,5 ore (6 ore settimanali)',
         '4 sessioni atletica da 1,5 ore (6 ore settimanali)',
@@ -45,7 +46,7 @@ const PricingTables = () => {
     },
     {
       title: 'Elite Performance',
-      subtitle: '5 giorni a settimana (48 settimane)',
+      subtitle: '5 giorni a settimana (40 settimane)',
       features: [
         '5 sessioni tennis da 1,5 ore (7,5 ore settimanali)',
         'Massimo 2 atleti per campo',
@@ -57,7 +58,7 @@ const PricingTables = () => {
     },
     {
       title: 'Elite Performance Full',
-      subtitle: 'Programma completo (48 settimane)',
+      subtitle: 'Programma completo (40 settimane)',
       features: [
         '5 sessioni tennis mattina + 5 pomeriggio (totale 20 ore settimanali)',
         '7 sessioni atletica da 1,5 ore (10,5 ore settimanali)',

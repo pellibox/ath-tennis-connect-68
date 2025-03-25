@@ -32,7 +32,7 @@ const ElitePerformanceFullProgram = () => {
         <div className="relative">
           <Hero 
             title="Elite Performance Full"
-            subtitle="Programma completo (48 settimane)"
+            subtitle="Programma completo (40 settimane)"
             imageSrc="https://images.unsplash.com/photo-1533561052604-c3beb6d55b8d?q=80&w=2071&auto=format&fit=crop"
             vimeoEmbed='<div style="padding:75% 0 0 0;position:relative;"><iframe src="https://player.vimeo.com/video/1068788542?h=698f55b033&autoplay=1&loop=1&background=1&autopause=0&player_id=0&app_id=58479&controls=0" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media" style="position:absolute;top:0;left:0;width:100%;height:100%;" title="Elite Performance Full"></iframe></div><script src="https://player.vimeo.com/api/player.js"></script>'
             buttons={[
@@ -70,7 +70,7 @@ const ElitePerformanceFullProgram = () => {
               </div>
             </RevealAnimation>
             <RevealAnimation delay={100}>
-              <p className="text-lg mb-6 font-swiss">Programma completo, 48 settimane all'anno.</p>
+              <p className="text-lg mb-6 font-swiss">Programma completo, 40 settimane all'anno.</p>
             </RevealAnimation>
             <RevealAnimation delay={150}>
               <p className="mb-4 font-swiss">
@@ -103,7 +103,7 @@ const ElitePerformanceFullProgram = () => {
                 <li>5 sessioni tennis mattina + 5 pomeriggio (totale 20 ore settimanali)</li>
                 <li>7 sessioni atletica da 1,5 ore (10,5 ore settimanali)</li>
                 <li>Massimo 2 atleti per campo</li>
-                <li>48 settimane di allenamento</li>
+                <li>40 settimane di allenamento</li>
                 <li>Monitoraggio professionale avanzato con VICKI™</li>
                 <li>Analisi video dettagliata quotidiana</li>
                 <li>Programma di sviluppo completo personalizzato</li>
@@ -118,7 +118,7 @@ const ElitePerformanceFullProgram = () => {
               <h3 className="text-xl font-swiss font-semibold mb-4">Prezzo</h3>
               <div className="mb-4">
                 <p className="text-3xl font-bold text-ath-clay">€15.000</p>
-                <p className="text-sm text-gray-600">per stagione (48 settimane)</p>
+                <p className="text-sm text-gray-600">per stagione (40 settimane)</p>
               </div>
               <p className="text-sm text-gray-600 mb-4">
                 Possibilità di pagamento rateizzato. Contattaci per maggiori informazioni sui piani di pagamento.

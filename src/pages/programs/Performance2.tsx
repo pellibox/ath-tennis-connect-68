@@ -42,7 +42,7 @@ const Performance2Program = () => {
               <div className="flex items-center mb-2">
                 <h2 className="text-white text-lg font-display mr-3">PERFORMANCE 2:</h2>
                 <p className="text-white text-lg font-swiss max-w-3xl">
-                  Programma di 48 settimane per un percorso verso il proprio massimo potenziale
+                  Programma di 40 settimane per un percorso verso il proprio massimo potenziale
                 </p>
               </div>
               <div className="mt-4 flex flex-wrap gap-3">
@@ -63,7 +63,7 @@ const Performance2Program = () => {
               </div>
             </RevealAnimation>
             <RevealAnimation delay={100}>
-              <p className="text-lg mb-6">2 giorni a settimana - Programma di 48 settimane per un percorso verso il proprio massimo potenziale</p>
+              <p className="text-lg mb-6">2 giorni a settimana - Programma di 40 settimane per un percorso verso il proprio massimo potenziale</p>
             </RevealAnimation>
             <RevealAnimation delay={150}>
               <p className="mb-4">
@@ -86,7 +86,7 @@ const Performance2Program = () => {
                 <li>2 sessioni tennis da 1,5 ore (3 ore settimanali)</li>
                 <li>2 sessioni atletica da 1,5 ore (3 ore settimanali)</li>
                 <li>Massimo 3 atleti per campo</li>
-                <li>Durata: 48 settimane</li>
+                <li>Durata: 40 settimane</li>
                 <li>Analisi tecnica e tattica con sistema VICKI™</li>
                 <li>Report periodici sui progressi</li>
                 <li>Pianificazione annuale della preparazione</li>
@@ -110,11 +110,11 @@ const Performance2Program = () => {
             <div className="bg-ath-clay/5 border border-ath-clay/20 p-8 rounded-lg mb-12">
               <h3 className="text-2xl font-display mb-4 text-ath-clay">Investimento</h3>
               <p className="text-xl mb-2">€ 4.000</p>
-              <p className="text-gray-600 mb-6">Programma completo di 48 settimane</p>
+              <p className="text-gray-600 mb-6">Programma completo di 40 settimane</p>
               <div className="space-y-2 mb-6">
                 <p><strong>Cosa include:</strong></p>
                 <ul className="list-disc list-inside space-y-1">
-                  <li>144 ore di allenamento (tennis + atletica)</li>
+                  <li>120 ore di allenamento (tennis + atletica)</li>
                   <li>Accesso alla piattaforma VICKI™ per monitoraggio progressi</li>
                   <li>Report periodici personalizzati</li>
                   <li>2 valutazioni complete durante l'anno</li>

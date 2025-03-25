@@ -26,7 +26,7 @@ export const juniorPrograms: Program[] = [
   },
   {
     id: '1',
-    title: 'Agonista Junior (6-12 anni)',
+    title: 'SAT - Agonista Junior (6-12 anni)',
     description: 'Programma formativo per giovani atleti in fase di sviluppo tecnico e fisico.',
     image: 'https://images.unsplash.com/photo-1612458225454-41c3991c0c49?q=80&w=1973&auto=format&fit=crop',
     vimeoEmbed: '<div style="padding:56.25% 0 0 0;position:relative;"><iframe src="https://player.vimeo.com/video/1068596987?h=c9dad61d03&autoplay=1&loop=1&title=0&byline=0&portrait=0&controls=0" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen style="position:absolute;top:0;left:0;width:100%;height:100%;"></iframe></div>',
