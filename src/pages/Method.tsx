@@ -237,7 +237,7 @@ const MethodPage = () => {
                       <Settings className="w-8 h-8" />
                     </div>
                   </div>
-                  <h4 className="text-xl font-medium text-center mb-3">Performance Tecnica</h4>
+                  <h4 className="text-xl font-medium text-center mb-3">Eccellenza Tecnica</h4>
                   <p className="text-gray-600 text-center">Analisi biomeccanica dettagliata di ogni colpo e movimento, con feedback immediato e indicazioni correttive precise.</p>
                 </div>
                 
@@ -247,18 +247,8 @@ const MethodPage = () => {
                       <Activity className="w-8 h-8" />
                     </div>
                   </div>
-                  <h4 className="text-xl font-medium text-center mb-3">Performance Atletica</h4>
-                  <p className="text-gray-600 text-center">Monitoraggio delle capacità fisiche, programmi di sviluppo personalizzati e prevenzione infortuni basata sui dati.</p>
-                </div>
-                
-                <div className="bg-gradient-to-b from-white to-ath-gray p-6 rounded-lg shadow-md hover:shadow-lg transition-all border border-gray-200">
-                  <div className="flex justify-center mb-4">
-                    <div className="p-3 bg-ath-clay text-white rounded-full">
-                      <Target className="w-8 h-8" />
-                    </div>
-                  </div>
-                  <h4 className="text-xl font-medium text-center mb-3">Performance Tattica</h4>
-                  <p className="text-gray-600 text-center">Analisi dei pattern di gioco, strategia match-specific e capacità decisionale sotto pressione.</p>
+                  <h4 className="text-xl font-medium text-center mb-3">Preparazione Atletica</h4>
+                  <p className="text-gray-600 text-center">Monitoraggio delle capacità atletiche, programmi di sviluppo personalizzati e prevenzione infortuni basata sui dati.</p>
                 </div>
                 
                 <div className="bg-gradient-to-b from-white to-ath-gray p-6 rounded-lg shadow-md hover:shadow-lg transition-all border border-gray-200">
@@ -267,8 +257,18 @@ const MethodPage = () => {
                       <Brain className="w-8 h-8" />
                     </div>
                   </div>
-                  <h4 className="text-xl font-medium text-center mb-3">Performance Mentale</h4>
+                  <h4 className="text-xl font-medium text-center mb-3">Forza Mentale</h4>
                   <p className="text-gray-600 text-center">Sviluppo delle abilità cognitive, gestione dello stress agonistico e ottimizzazione della concentrazione in partita.</p>
+                </div>
+                
+                <div className="bg-gradient-to-b from-white to-ath-gray p-6 rounded-lg shadow-md hover:shadow-lg transition-all border border-gray-200">
+                  <div className="flex justify-center mb-4">
+                    <div className="p-3 bg-ath-clay text-white rounded-full">
+                      <Target className="w-8 h-8" />
+                    </div>
+                  </div>
+                  <h4 className="text-xl font-medium text-center mb-3">Strategia Tattica</h4>
+                  <p className="text-gray-600 text-center">Analisi dei pattern di gioco, strategia match-specific e capacità decisionale sotto pressione.</p>
                 </div>
               </div>
             </RevealAnimation>
