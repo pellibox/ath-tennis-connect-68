@@ -1,4 +1,3 @@
-
 const translations = {
   // Header & Navigation
   "nav.home": "Accueil",
@@ -36,12 +35,12 @@ const translations = {
   "programs.more": "En Savoir Plus",
   
   // Camps Section
-  "camps.title": "CAMPS",
+  "camps.title": "CLINICS",
   "camps.subtitle": "Expérience immersive de haute qualité pour joueurs de tous âges pendant les vacances d'été et scolaires",
-  "camps.summer": "Camps d'Été",
+  "camps.summer": "Clinics/Clinics d'Été",
   "camps.intro": "Expérience immersive de haute qualité pour joueurs de tous âges pendant les vacances d'été et scolaires.",
-  "camps.description1": "Nos Camps d'Été offrent une immersion complète dans le tennis de qualité, combinant entraînement intensif, plaisir et socialisation dans un environnement stimulant et professionnel.",
-  "camps.description2": "Grâce à la technologie VICKI™, même dans un format court comme celui des camps, nous sommes en mesure d'offrir une expérience de formation significative avec des retours précis et mesurables.",
+  "camps.description1": "Nos Clinics offrent une immersion complète dans le tennis de qualité, combinant entraînement intensif, plaisir et socialisation dans un environnement stimulant et professionnel.",
+  "camps.description2": "Grâce à la technologie VICKI™, même dans un format court comme celui des clinics, nous sommes en mesure d'offrir une expérience de formation significative avec des retours précis et mesurables.",
   "camps.features": "Caractéristiques du Programme",
   "camps.feature1": "Sessions techniques matinales avec analyse vidéo",
   "camps.feature2": "Activités tactiques et pratique de match l'après-midi",
@@ -118,7 +117,7 @@ const translations = {
   "footer.junior": "Académie Junior",
   "footer.elite": "Programme Élite",
   "footer.adult": "Entraînement pour Adultes",
-  "footer.camps": "Camps d'Été",
+  "footer.camps": "Clinics/Clinics d'Été",
   "footer.private": "Leçons Privées",
   "footer.links": "Liens Rapides",
   "footer.about": "À Propos de Nous",

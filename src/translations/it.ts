@@ -22,7 +22,7 @@ const translations = {
   "about.learn": "SCOPRI DI PIÙ",
   
   // Programs Section
-  "programs.title": "I Nostri Programmi",
+  "programs.title": "I NOSTRI PROGRAMMI",
   "programs.subtitle": "Allenamento di tennis personalizzato per ogni età e livello di abilità",
   "programs.junior": "Junior Program",
   "programs.junior.desc": "Programma completo per giovani atleti che vogliono competere a livello agonistico.",
@@ -47,12 +47,12 @@ const translations = {
   "programs.more": "Scopri di Più",
   
   // Camps Section
-  "camps.title": "CAMPS",
+  "camps.title": "CLINICS",
   "camps.subtitle": "Esperienza intensiva di alta qualità per giocatori di tutte le età durante i periodi estivi e vacanze scolastiche",
-  "camps.summer": "Camp Estivi",
+  "camps.summer": "Clinics/Summer Clinics",
   "camps.intro": "Esperienza intensiva di alta qualità per giocatori di tutte le età durante i periodi estivi e vacanze scolastiche.",
-  "camps.description1": "I nostri Camp Estivi offrono un'immersione completa nel tennis di qualità, combinando allenamento intensivo, divertimento e socializzazione in un ambiente stimolante e professionale.",
-  "camps.description2": "Grazie alla tecnologia VICKI™, anche in un formato breve come quello dei camp, siamo in grado di offrire un'esperienza formativa significativa con feedback preciso e misurabili.",
+  "camps.description1": "I nostri Clinics offrono un'immersione completa nel tennis di qualità, combinando allenamento intensivo, divertimento e socializzazione in un ambiente stimolante e professionale.",
+  "camps.description2": "Grazie alla tecnologia VICKI™, anche in un formato breve come quello dei clinics, siamo in grado di offrire un'esperienza formativa significativa con feedback preciso e misurabili.",
   "camps.features": "Caratteristiche del Programma",
   "camps.feature1": "Sessioni tecniche mattutine con analisi video",
   "camps.feature2": "Attività tattiche e match practice pomeridiane",
@@ -143,7 +143,7 @@ const translations = {
   "footer.elite": "Performance",
   "footer.coach": "Per Coach e Club",
   "footer.adult": "Amatori",
-  "footer.camps": "Camp Estivi",
+  "footer.camps": "Clinics/Summer Clinics",
   "footer.private": "Lezioni Private",
   "footer.links": "Link Rapidi",
   "footer.about": "Chi Siamo",
