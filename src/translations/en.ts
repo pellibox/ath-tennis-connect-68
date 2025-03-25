@@ -1,4 +1,3 @@
-
 const translations = {
   // Header & Navigation
   "nav.home": "Home",
@@ -33,8 +32,8 @@ const translations = {
   "programs.elite.desc": "Intensive training for advanced players with professional aspirations, focusing on technical, tactical, physical, and mental aspects.",
   "programs.adult": "Adult Training",
   "programs.adult.desc": "Programs for players of all levels who want to improve their skills, stay fit, and enjoy the game of tennis.",
-  "programs.personalCoaching": "Private Training (13+ years)",
-  "programs.personalCoaching.desc": "Private lessons with dedicated coach and sparring partner, available by appointment for athletes 13 years and older.",
+  "programs.privateTraining": "Private Training (13+ years)",
+  "programs.privateTraining.desc": "Private lessons with dedicated coach and sparring partner, available by appointment for athletes 13 years and older.",
   "programs.more": "Learn More",
   
   // Camps Section
@@ -122,7 +121,7 @@ const translations = {
   "footer.elite": "Elite Program",
   "footer.adult": "Adult Training",
   "footer.camps": "Summer Camps",
-  "footer.private": "Private Lessons",
+  "footer.private": "Private Training",
   "footer.links": "Quick Links",
   "footer.about": "About Us",
   "footer.facilities": "Our Facilities",

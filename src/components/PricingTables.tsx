@@ -96,28 +96,31 @@ const PricingTables = () => {
 
   const personalTrainingPrograms = [
     {
-      title: 'Personal Coaching (13+ anni)',
+      title: 'Private Training (13+ anni)',
       subtitle: 'Per atleti dai 13 anni in su (tutto l\'anno)',
       features: [
-        '1 sessione tennis da 1 ora a settimana',
+        'Sessioni di 1,5 ore, una volta alla settimana',
         'Maestro e sparring dedicati',
+        'Analisi VICKI™ Elite o Advanced',
+        'Report dettagliato post-sessione'
       ],
       price: '120',
       vickiPowered: true,
-      link: '/programs/personal'
+      link: '/programs/private'
     },
     {
-      title: 'Private Personal Coaching',
+      title: 'Lezioni Private',
       subtitle: 'Frequenza su richiesta (tutto l\'anno)',
       features: [
-        'Maestro e sparring dedicati',
-        'Sessioni su prenotazione',
-        'Soggetto a disponibilità',
+        'Maestro dedicato',
+        'Opzione sparring disponibile',
+        'Analisi VICKI™ disponibile',
+        'Prezzo personalizzato in base alle esigenze',
         'Riservato ad atleti dai 13 anni in su'
       ],
       price: 'Prezzo personalizzato',
       vickiPowered: true,
-      link: '/programs/private'
+      link: '/programs/personal'
     }
   ];
 
@@ -255,7 +258,7 @@ const PricingTables = () => {
         </RevealAnimation>
 
         <RevealAnimation>
-          <h2 className="text-3xl font-display mb-2 border-l-4 border-ath-clay pl-3">Personal Coaching (13+ anni)</h2>
+          <h2 className="text-3xl font-display mb-2 border-l-4 border-ath-clay pl-3">Private Training</h2>
           <p className="text-gray-600 mb-8">
             Allenamenti individuali con maestro e sparring dedicati, per lavorare in modo specifico su aspetti tecnici e tattici. Disponibili su prenotazione per atleti dai 13 anni in su.
           </p>

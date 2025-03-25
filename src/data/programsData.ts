@@ -1,3 +1,4 @@
+
 // Program data types
 export interface Program {
   id: string;
@@ -206,7 +207,7 @@ export const coachPrograms: Program[] = [
   },
   {
     id: '10',
-    title: 'Personal Coaching (13+ anni)',
+    title: 'Private Training (13+ anni)',
     description: 'Sessioni di allenamento personalizzate con maestro e sparring dedicati, disponibili solo su prenotazione.',
     image: 'https://images.unsplash.com/photo-1588453251771-cd919ff14bee?q=80&w=2070&auto=format&fit=crop',
     vimeoEmbed: '<div style="padding:56.25% 0 0 0;position:relative;"><iframe src="https://player.vimeo.com/video/1068788542?h=698f55b033&autoplay=1&loop=1&title=0&byline=0&portrait=0&controls=0" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen style="position:absolute;top:0;left:0;width:100%;height:100%;"></iframe></div>',
@@ -218,6 +219,24 @@ export const coachPrograms: Program[] = [
       'Focus su obiettivi specifici e correzioni in tempo reale',
       'Disponibile solo su prenotazione (soggetto a disponibilità)',
       'Riservato ad atleti dai 13 anni in su'
+    ],
+    vickiPowered: true,
+    vickiMonitoringLevel: 'elite'
+  },
+  {
+    id: '12',
+    title: 'Lezioni Private (Prezzo Personalizzato)',
+    description: 'Lezioni private con prezzo personalizzato in base alle esigenze specifiche e alla frequenza delle sessioni.',
+    image: 'https://images.unsplash.com/photo-1572307480813-ceb0e59d8325?q=80&w=2035&auto=format&fit=crop',
+    vimeoEmbed: '<div style="padding:56.25% 0 0 0;position:relative;"><iframe src="https://player.vimeo.com/video/1068788542?h=698f55b033&autoplay=1&loop=1&title=0&byline=0&portrait=0&controls=0" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen style="position:absolute;top:0;left:0;width:100%;height:100%;"></iframe></div>',
+    link: '/programs/personal',
+    features: [
+      'Sessioni personalizzate con maestro certificato',
+      'Opzione sparring professionale',
+      'Monitoraggio e analisi VICKI™ disponibile',
+      'Prezzo personalizzato in base alla frequenza e alle specifiche richieste',
+      'Disponibile su prenotazione (soggetto a disponibilità)',
+      'Percorso completamente personalizzabile'
     ],
     vickiPowered: true,
     vickiMonitoringLevel: 'elite'
@@ -238,7 +257,7 @@ export const programCategories: ProgramCategory[] = [
   },
   {
     id: 'coach-private',
-    title: 'Coach & Personal Coaching',
+    title: 'Coach & Private Training',
     programs: coachPrograms
   },
   {
