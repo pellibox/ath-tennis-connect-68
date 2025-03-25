@@ -97,7 +97,7 @@ const PrivateProgram = () => {
                 <li>Analisi tecnica dettagliata tramite VICKI™ in modalità Elite o Advanced</li>
                 <li>Personalizzazione completa degli obiettivi e contenuti</li>
                 <li>Feedback immediato e correzioni in tempo reale</li>
-                <li>Flessibilità di orari e programmazione</li>
+                <li>Sessioni di 1,5 ore, una volta alla settimana</li>
                 <li>Report dettagliati dopo ogni sessione</li>
               </ul>
               
@@ -135,7 +135,7 @@ const PrivateProgram = () => {
               <h3 className="text-xl font-swiss font-semibold mb-4">Prezzi e Prenotazione</h3>
               <div className="mb-4">
                 <p className="text-3xl font-bold text-ath-clay">€120</p>
-                <p className="text-sm text-gray-600">per lezione</p>
+                <p className="text-sm text-gray-600">per lezione di 1,5 ore</p>
               </div>
               <p className="text-sm text-gray-600 mb-6">
                 Il Personal Coaching include sia il maestro che lo sparring partner, offrendo un'esperienza
@@ -180,7 +180,8 @@ const PrivateProgram = () => {
               <div className="mt-6 text-sm text-gray-600">
                 <p className="italic">
                   Nota: Le sessioni di Personal Coaching sono disponibili solo su prenotazione
-                  e soggette alla disponibilità dei maestri e sparring partner.
+                  e soggette alla disponibilità dei maestri e sparring partner. Ogni sessione dura 1,5 ore
+                  e può essere prenotata una volta alla settimana.
                 </p>
               </div>
             </RevealAnimation>

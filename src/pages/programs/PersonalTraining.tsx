@@ -100,7 +100,7 @@ const PersonalCoachingProgram = () => {
                 <li>Focus su aspetti specifici della tecnica e tattica</li>
                 <li>Analisi video dettagliata</li>
                 <li>Feedback personalizzati dopo ogni sessione</li>
-                <li>Flessibilità nella programmazione</li>
+                <li>Sessioni di 1,5 ore, una volta alla settimana</li>
               </ul>
               
               <div className="mt-8 p-4 bg-amber-50 border-l-4 border-amber-500 rounded-r">
@@ -118,7 +118,7 @@ const PersonalCoachingProgram = () => {
               <h3 className="text-xl font-swiss font-semibold mb-4">Prezzo</h3>
               <div className="mb-4">
                 <p className="text-3xl font-bold text-ath-clay">€120</p>
-                <p className="text-sm text-gray-600">per lezione</p>
+                <p className="text-sm text-gray-600">per lezione di 1,5 ore</p>
               </div>
               <p className="text-sm text-gray-600 mb-4">
                 Il Personal Coaching include sia il maestro che lo sparring partner, offrendo un'esperienza
@@ -143,7 +143,8 @@ const PersonalCoachingProgram = () => {
               <div className="mt-6 text-sm text-gray-600">
                 <p className="italic">
                   Nota: Le sessioni di Personal Coaching sono disponibili solo su prenotazione
-                  e soggette alla disponibilità dei maestri e sparring partner.
+                  e soggette alla disponibilità dei maestri e sparring partner. Ogni sessione dura 1,5 ore
+                  e può essere prenotata una volta alla settimana.
                 </p>
               </div>
             </RevealAnimation>
