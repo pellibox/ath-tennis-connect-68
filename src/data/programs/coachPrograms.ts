@@ -57,5 +57,21 @@ export const coachPrograms: Program[] = [
     ],
     vickiOnRequest: true,
     vickiMonitoringLevel: 'standard'
+  },
+  {
+    id: '9',
+    title: 'Performance Analysis',
+    description: 'Analisi completa del gioco con tecnologia avanzata e feedback personalizzato.',
+    image: 'https://images.unsplash.com/photo-1549060279-7e168fcee0c2?q=80&w=2070&auto=format&fit=crop',
+    vimeoEmbed: '<div style="padding:56.25% 0 0 0;position:relative;"><iframe src="https://player.vimeo.com/video/1068785493?h=fe90d50dae&autoplay=1&loop=1&title=0&byline=0&portrait=0&controls=0" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen style="position:absolute;top:0;left:0;width:100%;height:100%;" title="Performance Analysis"></iframe></div>',
+    link: '/programs/analysis',
+    features: [
+      'Analisi biomeccanica completa',
+      'Heatmap e pattern di spostamento',
+      'Statistiche avanzate di gioco',
+      'Report dettagliato con raccomandazioni'
+    ],
+    vickiPowered: true,
+    vickiMonitoringLevel: 'pro'
   }
 ];

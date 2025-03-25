@@ -6,4 +6,5 @@ export * from './elitePrograms';
 export * from './adultPrograms';
 export * from './summerCamps';
 export * from './coachPrograms';
+export * from './professionalPrograms';
 export * from './categories';
