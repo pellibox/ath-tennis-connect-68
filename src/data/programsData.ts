@@ -225,14 +225,13 @@ export const coachPrograms: Program[] = [
   {
     id: '12',
     title: 'Lezioni Private',
-    description: 'Lezioni individuali o in piccoli gruppi (max 2 allievi) con un maestro certificato, senza sparring.',
+    description: 'Lezioni individuali o in piccoli gruppi (max 2 allievi) con un maestro certificato.',
     image: 'https://images.unsplash.com/photo-1572307480813-ceb0e59d8325?q=80&w=2035&auto=format&fit=crop',
-    vimeoEmbed: '<div style="padding:56.25% 0 0 0;position:relative;"><iframe src="https://player.vimeo.com/video/1068788542?h=698f55b033&autoplay=1&loop=1&title=0&byline=0&portrait=0&controls=0" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen style="position:absolute;top:0;left:0;width:100%;height:100%;"></iframe></div>',
+    vimeoEmbed: '<div style="padding:75% 0 0 0;position:relative;"><iframe src="https://player.vimeo.com/video/1068788542?h=698f55b033&autoplay=1&loop=1&background=1&autopause=0&player_id=0&app_id=58479&controls=0" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media" style="position:absolute;top:0;left:0;width:100%;height:100%;" title="Private Lessons"></iframe></div>',
     link: '/programs/personal',
     features: [
       'Lezioni individuali o in piccoli gruppi (max 2 allievi)',
       'Maestro certificato dedicato',
-      'Nessun sparring incluso',
       'Monitoraggio e analisi VICKI™ disponibile su richiesta',
       'Prezzo personalizzato in base alla frequenza e alle specifiche richieste',
       'Disponibile su prenotazione'
