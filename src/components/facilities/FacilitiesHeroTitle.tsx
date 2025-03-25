@@ -7,7 +7,7 @@ const FacilitiesHeroTitle = () => {
           LE STRUTTURE:
         </h2>
         <p className="text-white text-lg md:text-2xl opacity-90 font-swiss drop-shadow-md">
-          Impianti all'avanguardia dotati di tecnologia Vicki™
+          Impianti all'avanguardia di tennis, padel e pickleball dotati di tecnologia Vicki™
         </p>
       </div>
     </div>

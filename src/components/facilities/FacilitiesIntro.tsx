@@ -11,7 +11,7 @@ const FacilitiesIntro = () => {
           </p>
           
           <p className="font-swiss text-base md:text-lg">
-            Le nostre strutture combinano campi da tennis, padel e pickleball tecnologicamente avanzati, aree di analisi dati e spazi per la preparazione atletica, creando un ambiente integrato che supporta ogni aspetto dello sviluppo del tennista e degli sport di racchetta.
+            Le nostre strutture combinano campi da tennis, padel e pickleball tecnologicamente avanzati, aree di analisi dati e spazi per la preparazione atletica, creando un ambiente integrato che supporta ogni aspetto dello sviluppo del giocatore negli sport di racchetta.
           </p>
         </div>
       </div>

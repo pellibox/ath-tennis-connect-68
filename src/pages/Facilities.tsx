@@ -1,4 +1,3 @@
-
 import { useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import Header from '@/components/Header';
@@ -45,6 +44,42 @@ const facilities = [
       "Manutenzione quotidiana professionale",
       "Calibrazione personalizzata della superficie",
       "Vicki™ powered Court"
+    ]
+  },
+  {
+    id: "facility-padel",
+    title: "Campi Padel",
+    description: "Due campi da padel con standard internazionali, illuminazione LED e tecnologia di tracciamento Vicki™.",
+    image: "/lovable-uploads/ca117fb6-0c83-4d3a-865b-e3a4b5b743a7.png",
+    features: [
+      "N2 campi con standard internazionali",
+      "Pareti in cristallo temperato",
+      "Illuminazione LED di ultima generazione",
+      "Vicki™ powered Court"
+    ]
+  },
+  {
+    id: "facility-pickleball",
+    title: "Campo Pickleball",
+    description: "Campo da pickleball professionale con superficie di gioco premium e tecnologia di tracciamento integrata.",
+    image: "/lovable-uploads/c4c120e8-c90d-48a3-933c-d4cce08b5129.png",
+    features: [
+      "Superficie professionale certificata",
+      "Dimensioni regolamentari ufficiali",
+      "Sistema di tracciamento Vicki™",
+      "Illuminazione ottimizzata"
+    ]
+  },
+  {
+    id: "facility-touch",
+    title: "Campo Touch Tennis",
+    description: "Campo specializzato per touch tennis, ideale per allenamento tecnico di precisione e sviluppo delle abilità di tocco.",
+    image: "/lovable-uploads/f55d3f98-ba82-4220-81ac-86540f2b2862.png",
+    features: [
+      "Superficie studiata per gioco di precisione",
+      "Dimensioni ottimizzate per sviluppo tecnico",
+      "Ideale per allenamento di controllo e tocco",
+      "Analisi tecnica con sistema Vicki™"
     ]
   },
   {
