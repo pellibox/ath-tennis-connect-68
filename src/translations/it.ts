@@ -1,4 +1,3 @@
-
 const translations = {
   // Header & Navigation
   "nav.home": "Home",
@@ -49,7 +48,7 @@ const translations = {
   "camps.summer": "Camp Estivi",
   "camps.intro": "Esperienza intensiva di alta qualità per giocatori di tutte le età durante i periodi estivi e vacanze scolastiche.",
   "camps.description1": "I nostri Camp Estivi offrono un'immersione completa nel tennis di qualità, combinando allenamento intensivo, divertimento e socializzazione in un ambiente stimolante e professionale.",
-  "camps.description2": "Grazie alla tecnologia VICKI™, anche in un formato breve come quello dei camp, siamo in grado di offrire un'esperienza formativa significativa con feedback precisi e misurabili.",
+  "camps.description2": "Grazie alla tecnologia VICKI™, anche in un formato breve come quello dei camp, siamo in grado di offrire un'esperienza formativa significativa con feedback preciso e misurabili.",
   "camps.features": "Caratteristiche del Programma",
   "camps.feature1": "Sessioni tecniche mattutine con analisi video",
   "camps.feature2": "Attività tattiche e match practice pomeridiane",
