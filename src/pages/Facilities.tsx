@@ -1,13 +1,16 @@
-import { useEffect, useState, useRef } from 'react';
+
+import { useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import FacilitiesSection from '@/components/FacilitiesSection';
 import AboutSection from '@/components/AboutSection';
-import { useLocation } from 'react-router-dom';
-import Hero from '@/components/Hero';
 import JoinRevolutionSection from '@/components/JoinRevolutionSection';
-import Logo from '@/components/Logo';
-import { useIsMobile } from '@/hooks/use-mobile';
+import AnimatedLogo from '@/components/facilities/AnimatedLogo';
+import FacilitiesHero from '@/components/facilities/FacilitiesHero';
+import FacilitiesHeroTitle from '@/components/facilities/FacilitiesHeroTitle';
+import FacilitiesIntro from '@/components/facilities/FacilitiesIntro';
+import ServicesSection from '@/components/facilities/ServicesSection';
 
 const facilities = [
   {
@@ -88,11 +91,6 @@ const facilities = [
 
 const FacilitiesPage = () => {
   const location = useLocation();
-  const isMobile = useIsMobile();
-  
-  const [logoYOffset, setLogoYOffset] = useState<number>(0);
-  const [logoOpacity, setLogoOpacity] = useState<number>(1);
-  const logoRef = useRef<HTMLDivElement>(null);
   
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -108,104 +106,20 @@ const FacilitiesPage = () => {
     }
   }, [location]);
 
-  useEffect(() => {
-    const handleScroll = () => {
-      const scrollY = window.scrollY;
-      
-      setLogoYOffset(scrollY * 0.2);
-      
-      const fadeThreshold = 100;
-      const fadeOutBy = 300;
-      
-      if (scrollY > fadeThreshold) {
-        const opacity = Math.max(0, 1 - (scrollY - fadeThreshold) / (fadeOutBy - fadeThreshold));
-        setLogoOpacity(opacity);
-      } else {
-        setLogoOpacity(1);
-      }
-    };
-
-    window.addEventListener('scroll', handleScroll);
-    
-    handleScroll();
-    
-    return () => {
-      window.removeEventListener('scroll', handleScroll);
-    };
-  }, []);
-
   const facilitiesVimeoEmbed = `<div style="position:relative;padding-bottom:56.25%;height:0;overflow:hidden;width:100%;"><iframe src="https://player.vimeo.com/video/1068878064?h=2b90638be1&autoplay=1&loop=1&background=1&autopause=0&player_id=0&app_id=58479&controls=0" style="position:absolute;top:0;left:0;width:100%;height:100%;" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media" title="ATH Facilities Video"></iframe></div><script src="https://player.vimeo.com/api/player.js"></script>`;
 
   return (
     <div className="flex flex-col min-h-screen relative overflow-hidden">
-      <div 
-        ref={logoRef}
-        className="fixed z-50 pointer-events-none transition-opacity duration-300 left-0 right-0 flex justify-center"
-        style={{
-          top: isMobile ? '140px' : '180px',
-          opacity: logoOpacity
-        }}
-      >
-        <div 
-          style={{
-            width: isMobile ? '120px' : '160px',
-            transform: `translateY(-${logoYOffset}px)`
-          }}
-          className="flex justify-center"
-        >
-          <Logo 
-            onDarkBackground={false} 
-            className="w-full h-auto"
-            isCentered={true}
-          />
-        </div>
-      </div>
+      <AnimatedLogo />
       
       <Header />
       
       <main className="flex-grow font-swiss relative" style={{ marginTop: '80px' }}>
-        <div className="relative w-full overflow-hidden" style={{ 
-          height: isMobile ? '40vh' : '100vh', 
-          marginBottom: '-4px',
-          marginLeft: '0',
-          marginRight: '0',
-          width: '100vw',
-          maxWidth: '100vw',
-          left: '0',
-          right: '0',
-          position: 'relative'
-        }}>
-          <div className="absolute inset-0 w-full h-full"
-               dangerouslySetInnerHTML={{ __html: facilitiesVimeoEmbed }} 
-          />
-        </div>
+        <FacilitiesHero vimeoEmbed={facilitiesVimeoEmbed} />
         
-        <div className="w-full bg-black py-12 md:py-16 relative z-10" style={{ marginTop: '-1px' }}>
-          <div className="max-w-3xl mx-auto text-center px-4">
-            <h2 className="text-white text-xl md:text-3xl font-swiss uppercase mb-2">
-              LE STRUTTURE:
-            </h2>
-            <p className="text-white text-lg md:text-2xl opacity-90 font-swiss drop-shadow-md">
-              Impianti all'avanguardia dotati di tecnologia Vicki™
-            </p>
-          </div>
-        </div>
+        <FacilitiesHeroTitle />
         
-        <section className="pt-4 pb-8 px-6 lg:px-10 bg-white relative z-10" style={{ marginTop: '-1px' }}>
-          <div className="max-w-7xl mx-auto">
-            <h1 className="text-3xl md:text-5xl font-swiss text-center mb-6">Strutture ATH</h1>
-            
-            <div className="prose prose-lg max-w-4xl mx-auto mb-6">
-              <p className="lead text-lg md:text-xl mb-4 font-swiss">
-                L'Advanced Tennis Hub di Rodano è un centro di eccellenza progettato specificamente per ottimizzare l'utilizzo del metodo ATH e della tecnologia Vicki™.
-              </p>
-              
-              <p className="font-swiss text-base md:text-lg">
-                Le nostre strutture combinano campi da tennis, padel e pickleball tecnologicamente avanzati, aree di analisi dati e spazi per la preparazione atletica, creando un ambiente integrato che supporta ogni aspetto dello sviluppo del tennista e degli sport di racchetta.
-              </p>
-            </div>
-          </div>
-        </section>
+        <FacilitiesIntro />
         
         <FacilitiesSection 
           title="Impianti"
@@ -214,43 +128,7 @@ const FacilitiesPage = () => {
           className="relative z-10 pt-0 mt-0"
         />
         
-        <section className="py-12 px-6 lg:px-10 bg-gray-50 relative z-10">
-          <div className="max-w-7xl mx-auto">
-            <h2 className="text-3xl md:text-4xl font-swiss text-center mb-8">Servizi Offerti</h2>
-            
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-              <div className="bg-white p-6 rounded-lg shadow-sm">
-                <h3 className="text-xl font-semibold mb-3 font-swiss">Noleggio Campi da Tennis, Padel e Pickleball</h3>
-                <p className="text-gray-700 font-swiss text-base">Prenota i nostri campi tecnologicamente avanzati e a standard internazionale per Tennis, Padel e Pickleball. Tutti i campi sono dotati di attrezzature professionali e possibilità di integrazione con sistema Vicki™ su richiesta.</p>
-              </div>
-              
-              <div className="bg-white p-6 rounded-lg shadow-sm">
-                <h3 className="text-xl font-semibold mb-3 font-swiss">Affitti Premium</h3>
-                <p className="text-gray-700 font-swiss text-base">Prenota un campo con sistema Vicki™ integrato per sessioni di allenamento con analisi dati in tempo reale. Ideale per giocatori che vogliono approfondire specifici aspetti tecnici.</p>
-              </div>
-              
-              <div className="bg-white p-6 rounded-lg shadow-sm">
-                <h3 className="text-xl font-semibold mb-3 font-swiss">Clinics Tematici</h3>
-                <p className="text-gray-700 font-swiss text-base">Sessioni specializzate su aspetti specifici del gioco, con analisi dettagliate e feedback personalizzati basati sui dati raccolti.</p>
-              </div>
-              
-              <div className="bg-white p-6 rounded-lg shadow-sm">
-                <h3 className="text-xl font-semibold mb-3 font-swiss">Percorsi Valutativi</h3>
-                <p className="text-gray-700 font-swiss text-base">Valutazioni complete delle performance tecniche, fisiche e tattiche, con report dettagliati e suggerimenti personalizzati per il miglioramento.</p>
-              </div>
-              
-              <div className="bg-white p-6 rounded-lg shadow-sm">
-                <h3 className="text-xl font-semibold mb-3 font-swiss">Eventi e Tornei</h3>
-                <p className="text-gray-700 font-swiss text-base">Competizioni con analisi avanzata delle performance, ideali per testare in ambiente competitivo i progressi ottenuti durante gli allenamenti.</p>
-              </div>
-              
-              <div className="bg-white p-6 rounded-lg shadow-sm">
-                <h3 className="text-xl font-semibold mb-3 font-swiss">Corsi Specialistici</h3>
-                <p className="text-gray-700 font-swiss text-base">Programmi formativi dedicati ad aspetti specifici del tennis come servizio, risposta, gioco di rete o tattica. Ogni corso utilizza l'analisi Vicki™ per personalizzare l'apprendimento.</p>
-              </div>
-            </div>
-          </div>
-        </section>
+        <ServicesSection />
         
         <JoinRevolutionSection className="relative z-10" />
         
