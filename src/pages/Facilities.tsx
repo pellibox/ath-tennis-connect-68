@@ -1,4 +1,3 @@
-
 import { useEffect, useState, useRef } from 'react';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
@@ -202,7 +201,7 @@ const FacilitiesPage = () => {
               </p>
               
               <p className="font-swiss text-base md:text-lg">
-                Le nostre strutture combinano campi da tennis tecnologicamente avanzati, aree di analisi dati e spazi per la preparazione atletica, creando un ambiente integrato che supporta ogni aspetto dello sviluppo del tennista.
+                Le nostre strutture combinano campi da tennis, padel e pickleball tecnologicamente avanzati, aree di analisi dati e spazi per la preparazione atletica, creando un ambiente integrato che supporta ogni aspetto dello sviluppo del tennista e degli sport di racchetta.
               </p>
             </div>
           </div>
