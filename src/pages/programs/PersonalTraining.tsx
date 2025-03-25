@@ -53,7 +53,7 @@ const PersonalCoachingProgram = () => {
                 </p>
               </div>
               <div className="mt-4 flex flex-wrap gap-3">
-                <VickiMonitoringBadge level="advanced" className="bg-opacity-20 border-opacity-30 text-white" />
+                <VickiMonitoringBadge level="elite" className="bg-opacity-20 border-opacity-30 text-white" />
                 <VickiPoweredBadge className="bg-opacity-20 border-opacity-30 text-white" />
               </div>
             </div>
@@ -65,7 +65,7 @@ const PersonalCoachingProgram = () => {
             <RevealAnimation>
               <div className="flex flex-wrap items-center gap-3 mb-6">
                 <h2 className="text-3xl font-swiss">Personal Coaching (13+ anni)</h2>
-                <VickiMonitoringBadge level="advanced" />
+                <VickiMonitoringBadge level="elite" />
                 <VickiPoweredBadge />
               </div>
             </RevealAnimation>
@@ -82,7 +82,7 @@ const PersonalCoachingProgram = () => {
             </RevealAnimation>
             <RevealAnimation delay={200}>
               <p className="font-swiss">
-                La tecnologia VICKI™ monitora e analizza ogni dettaglio della performance,
+                La tecnologia VICKI™ in modalità Elite o Advanced monitora e analizza ogni dettaglio della performance,
                 consentendo di identificare rapidamente aree di miglioramento e misurare i progressi in modo oggettivo.
                 Questo approccio scientifico accelera lo sviluppo tecnico e tattico dell'atleta.
               </p>
@@ -96,7 +96,7 @@ const PersonalCoachingProgram = () => {
                 <li>Attenzione completa e dedicata del coach</li>
                 <li>Sparring professionale incluso (minimo 2.8 FIT o di categoria pari o superiore all'atleta)</li>
                 <li>Disponibile esclusivamente per atleti dai 13 anni in su</li>
-                <li>Monitoraggio avanzato con VICKI™</li>
+                <li>Monitoraggio Elite o Advanced con VICKI™</li>
                 <li>Focus su aspetti specifici della tecnica e tattica</li>
                 <li>Analisi video dettagliata</li>
                 <li>Feedback personalizzati dopo ogni sessione</li>
@@ -122,7 +122,7 @@ const PersonalCoachingProgram = () => {
               </div>
               <p className="text-sm text-gray-600 mb-4">
                 Il Personal Coaching include sia il maestro che lo sparring partner, offrendo un'esperienza
-                di allenamento completa e personalizzata potenziata dalla tecnologia VICKI™.
+                di allenamento completa e personalizzata potenziata dalla tecnologia VICKI™ Elite o Advanced.
               </p>
               <h3 className="text-lg font-swiss font-semibold mb-2">Benefici</h3>
               <ul className="list-disc list-inside space-y-2 font-swiss mb-6">
@@ -131,6 +131,7 @@ const PersonalCoachingProgram = () => {
                 <li>Correzione efficace e rapida di problemi tecnici</li>
                 <li>Adattamento preciso alle esigenze specifiche del giocatore</li>
                 <li>Ambiente ottimale per superare blocchi o difficoltà</li>
+                <li>Monitoraggio completo con tecnologia VICKI™ avanzata</li>
               </ul>
               <a 
                 href="/contact" 

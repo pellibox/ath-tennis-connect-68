@@ -10,6 +10,7 @@ export interface Program {
   vickiPowered?: boolean;
   vickiOnRequest?: boolean;
   vickiCustomBadge?: string;
+  vickiMonitoringLevel?: 'basic' | 'standard' | 'advanced' | 'elite' | 'pro';
 }
 
 export interface ProgramCategory {
@@ -38,7 +39,8 @@ export const juniorPrograms: Program[] = [
       'Analisi iniziale completa inclusa nel programma',
       'Possibilità di accesso dal programma SAT dopo valutazione specifica'
     ],
-    vickiPowered: true
+    vickiPowered: true,
+    vickiMonitoringLevel: 'basic'
   },
   {
     id: '1',
@@ -56,7 +58,8 @@ export const juniorPrograms: Program[] = [
       'Equilibrio tra miglioramento tecnico e componente ludica',
       'Coinvolgimento attivo dei genitori attraverso report visivi e aggiornamenti chiari'
     ],
-    vickiPowered: true
+    vickiPowered: true,
+    vickiMonitoringLevel: 'standard'
   },
   {
     id: '5',
@@ -97,7 +100,8 @@ export const elitePrograms: Program[] = [
       'Integrazione tra valutazioni tecniche, fisiche, mediche e mentali',
       'Coordinamento tra coach, preparatore, mental coach, medico'
     ],
-    vickiPowered: true
+    vickiPowered: true,
+    vickiMonitoringLevel: 'advanced'
   },
   {
     id: '3',
@@ -115,7 +119,8 @@ export const elitePrograms: Program[] = [
       'Gestione ottimale dei cicli di carico, recupero e picco forma',
       'Integrazione di parametri medici e biochimici per massimizzare la performance'
     ],
-    vickiPowered: true
+    vickiPowered: true,
+    vickiMonitoringLevel: 'elite'
   },
   {
     id: '9',
@@ -130,7 +135,8 @@ export const elitePrograms: Program[] = [
       'Statistiche avanzate di gioco',
       'Report dettagliato con raccomandazioni'
     ],
-    vickiPowered: true
+    vickiPowered: true,
+    vickiMonitoringLevel: 'pro'
   }
 ];
 
@@ -151,7 +157,8 @@ export const adultPrograms: Program[] = [
       'Percorsi di miglioramento progressivo senza sovraccarico',
       'Report leggibili con focus su controllo, postura e miglioramenti visibili'
     ],
-    vickiOnRequest: true
+    vickiOnRequest: true,
+    vickiMonitoringLevel: 'basic'
   }
 ];
 
@@ -170,7 +177,8 @@ export const summerCamps: Program[] = [
       'Attività complementari e team building',
       'Analisi tecnica con sistema VICKI'
     ],
-    vickiOnRequest: true
+    vickiOnRequest: true,
+    vickiMonitoringLevel: 'standard'
   }
 ];
 
@@ -193,7 +201,8 @@ export const coachPrograms: Program[] = [
       'Possibilità di integrare ATH nel proprio centro/accademia',
       'Uso di AI e dashboard per ottimizzare sessioni e calendari'
     ],
-    vickiPowered: true
+    vickiPowered: true,
+    vickiMonitoringLevel: 'advanced'
   },
   {
     id: '10',
@@ -205,12 +214,13 @@ export const coachPrograms: Program[] = [
     features: [
       'Sessioni one-to-one con maestro certificato',
       'Sparring professionale (minimo 2.8 FIT o di categoria pari o superiore all\'atleta)',
-      'Analisi dettagliata della tecnica con VICKI™',
+      'Analisi dettagliata della tecnica con VICKI™ in modalità Elite o Advanced',
       'Focus su obiettivi specifici e correzioni in tempo reale',
       'Disponibile solo su prenotazione (soggetto a disponibilità)',
       'Riservato ad atleti dai 13 anni in su'
     ],
-    vickiPowered: true
+    vickiPowered: true,
+    vickiMonitoringLevel: 'elite'
   }
 ];
 

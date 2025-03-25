@@ -53,7 +53,7 @@ const PrivateProgram = () => {
                 </p>
               </div>
               <div className="mt-4 flex flex-wrap gap-3">
-                <VickiMonitoringBadge level="advanced" className="bg-opacity-20 border-opacity-30 text-white" />
+                <VickiMonitoringBadge level="elite" className="bg-opacity-20 border-opacity-30 text-white" />
                 <VickiPoweredBadge className="bg-opacity-20 border-opacity-30 text-white" />
               </div>
             </div>
@@ -65,7 +65,7 @@ const PrivateProgram = () => {
             <RevealAnimation>
               <div className="flex flex-wrap items-center gap-3 mb-6">
                 <h2 className="text-3xl font-swiss">Personal Coaching (13+ anni)</h2>
-                <VickiMonitoringBadge level="advanced" />
+                <VickiMonitoringBadge level="elite" />
                 <VickiPoweredBadge />
               </div>
             </RevealAnimation>
@@ -75,7 +75,8 @@ const PrivateProgram = () => {
             <RevealAnimation delay={150}>
               <p className="mb-4 font-swiss">
                 Le nostre lezioni di Personal Coaching rappresentano l'esperienza più personalizzata e focalizzata che ATH può offrire, 
-                combinando l'attenzione individuale di un coach esperto e un partner di allenamento (sparring) con l'analisi precisa della tecnologia VICKI™.
+                combinando l'attenzione individuale di un coach esperto e un partner di allenamento (sparring) con l'analisi precisa della tecnologia VICKI™
+                in modalità Elite.
               </p>
             </RevealAnimation>
             <RevealAnimation delay={200}>
@@ -93,7 +94,7 @@ const PrivateProgram = () => {
                 <li>Attenzione completa e dedicata del coach</li>
                 <li>Sparring professionale incluso (minimo 2.8 FIT o di categoria pari o superiore all'atleta)</li>
                 <li>Disponibile esclusivamente per atleti dai 13 anni in su</li>
-                <li>Analisi tecnica dettagliata tramite VICKI™</li>
+                <li>Analisi tecnica dettagliata tramite VICKI™ in modalità Elite o Advanced</li>
                 <li>Personalizzazione completa degli obiettivi e contenuti</li>
                 <li>Feedback immediato e correzioni in tempo reale</li>
                 <li>Flessibilità di orari e programmazione</li>
@@ -119,7 +120,7 @@ const PrivateProgram = () => {
               </div>
               <p className="text-sm text-gray-600 mb-6">
                 Il Personal Coaching include sia il maestro che lo sparring partner, offrendo un'esperienza
-                di allenamento completa e personalizzata potenziata dalla tecnologia VICKI™.
+                di allenamento completa e personalizzata potenziata dalla tecnologia VICKI™ in modalità Elite o Advanced.
               </p>
               <h3 className="text-lg font-swiss font-semibold mb-2">Benefici</h3>
               <ul className="list-disc list-inside space-y-2 font-swiss mb-6">
@@ -127,7 +128,8 @@ const PrivateProgram = () => {
                 <li>Pratica reale con sparring di alto livello</li>
                 <li>Correzione efficace e rapida di problemi tecnici</li>
                 <li>Adattamento preciso alle esigenze specifiche del giocatore</li>
-                <li>Ambiente ottimale per superare blocchi o difficoltà</li>
+                <li>Monitoraggio avanzato dei parametri tecnici e fisici</li>
+                <li>Analisi dettagliata della prestazione tramite VICKI™</li>
               </ul>
               <a 
                 href="/contact" 
