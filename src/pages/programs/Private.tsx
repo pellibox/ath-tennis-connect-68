@@ -31,7 +31,7 @@ const PrivateProgram = () => {
       <main className="flex-grow">
         <div className="relative">
           <Hero 
-            title="Private Training (13+ anni)"
+            title="Private Personal Coaching (13+ anni)"
             subtitle="Lezioni private con maestro e sparring per un'attenzione dedicata e un progresso accelerato"
             imageSrc="https://images.unsplash.com/photo-1588453251771-cd919ff14bee?q=80&w=2070&auto=format&fit=crop"
             vimeoEmbed='<div style="padding:75% 0 0 0;position:relative;"><iframe src="https://player.vimeo.com/video/1068788542?h=698f55b033&autoplay=1&loop=1&background=1&autopause=0&player_id=0&app_id=58479&controls=0" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media" style="position:absolute;top:0;left:0;width:100%;height:100%;" title="Private Lessons"></iframe></div><script src="https://player.vimeo.com/api/player.js"></script>'
@@ -47,7 +47,7 @@ const PrivateProgram = () => {
           <div className="w-full bg-black py-16 relative" style={{ height: '300px' }}>
             <div className="max-w-6xl mx-auto px-6 h-full flex flex-col justify-center">
               <div className="flex items-center mb-2">
-                <h2 className="text-white text-lg font-display mr-3">PRIVATE TRAINING (13+ ANNI):</h2>
+                <h2 className="text-white text-lg font-display mr-3">PRIVATE PERSONAL COACHING (13+ ANNI):</h2>
                 <p className="text-white text-lg font-swiss max-w-3xl">
                   Lezioni private con maestro e sparring per atleti dai 13 anni in su, potenziate da VICKI™
                 </p>
@@ -64,7 +64,7 @@ const PrivateProgram = () => {
           <div className="mb-12">
             <RevealAnimation>
               <div className="flex flex-wrap items-center gap-3 mb-6">
-                <h2 className="text-3xl font-swiss">Private Training (13+ anni)</h2>
+                <h2 className="text-3xl font-swiss">Private Personal Coaching (13+ anni)</h2>
                 <VickiMonitoringBadge level="elite" />
                 <VickiPoweredBadge />
               </div>
@@ -74,7 +74,7 @@ const PrivateProgram = () => {
             </RevealAnimation>
             <RevealAnimation delay={150}>
               <p className="mb-4 font-swiss">
-                Le nostre lezioni di Private Training rappresentano l'esperienza più personalizzata e focalizzata che ATH può offrire, 
+                Le nostre lezioni di Private Personal Coaching rappresentano l'esperienza più personalizzata e focalizzata che ATH può offrire, 
                 combinando l'attenzione individuale di un coach esperto e un partner di allenamento (sparring) con l'analisi precisa della tecnologia VICKI™
                 in modalità Elite o Advanced.
               </p>
@@ -104,7 +104,7 @@ const PrivateProgram = () => {
               <div className="mt-8">
                 <h4 className="text-lg font-semibold mb-3">Monitoraggio e Analisi Avanzata</h4>
                 <p className="mb-4 font-swiss">
-                  Durante ogni sessione di Private Training, VICKI™ monitora oltre 70 parametri tecnici specifici, 
+                  Durante ogni sessione di Private Personal Coaching, VICKI™ monitora oltre 70 parametri tecnici specifici, 
                   generando metriche precise che servono come indicatori concreti del miglioramento durante la lezione
                   e come base per pianificare le fasi successive del percorso di sviluppo.
                 </p>
@@ -123,7 +123,7 @@ const PrivateProgram = () => {
               <div className="mt-8 p-4 bg-amber-50 border-l-4 border-amber-500 rounded-r">
                 <h4 className="text-lg font-semibold mb-2">Prenotazione e Disponibilità</h4>
                 <p className="text-sm">
-                  Il Private Training può essere organizzato esclusivamente su prenotazione ed è soggetto
+                  Il Private Personal Coaching può essere organizzato esclusivamente su prenotazione ed è soggetto
                   alla disponibilità dei maestri e sparring partner. Si consiglia di prenotare con 
                   almeno 48 ore di anticipo per garantire la disponibilità dei professionisti più adatti 
                   alle tue esigenze specifiche.
@@ -138,14 +138,14 @@ const PrivateProgram = () => {
                 <p className="text-sm text-gray-600">per lezione di 1,5 ore</p>
               </div>
               <p className="text-sm text-gray-600 mb-6">
-                Il Private Training include sia il maestro che lo sparring partner, offrendo un'esperienza
+                Il Private Personal Coaching include sia il maestro che lo sparring partner, offrendo un'esperienza
                 di allenamento completa e personalizzata potenziata dalla tecnologia VICKI™ in modalità Elite o Advanced.
               </p>
               
               <div className="bg-ath-clay/10 p-4 rounded-lg mb-6">
                 <h4 className="text-lg font-swiss font-semibold mb-2">Report e Analisi Post-Sessione</h4>
                 <p className="text-sm mb-4">
-                  Ogni sessione di Private Training include:
+                  Ogni sessione di Private Personal Coaching include:
                 </p>
                 <ul className="list-disc list-inside text-sm space-y-1 font-swiss mb-4">
                   <li>Report sintetico della sessione con metriche chiave</li>
@@ -179,7 +179,7 @@ const PrivateProgram = () => {
               
               <div className="mt-6 text-sm text-gray-600">
                 <p className="italic">
-                  Nota: Le sessioni di Private Training sono disponibili solo su prenotazione
+                  Nota: Le sessioni di Private Personal Coaching sono disponibili solo su prenotazione
                   e soggette alla disponibilità dei maestri e sparring partner. Ogni sessione dura 1,5 ore
                   e può essere prenotata una volta alla settimana.
                 </p>
@@ -190,7 +190,7 @@ const PrivateProgram = () => {
         
         <ContactSection 
           title="Vuoi saperne di più?" 
-          subtitle="Contattaci per prenotare una sessione di Private Training"
+          subtitle="Contattaci per prenotare una sessione di Private Personal Coaching"
           address="Via Carlo D'Adda 6/8, 20143 Milano (MI)"
           email="info@advancedtennishub.com"
           phone="+39 02 123 4567"

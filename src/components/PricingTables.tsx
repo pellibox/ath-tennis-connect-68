@@ -96,7 +96,7 @@ const PricingTables = () => {
 
   const personalTrainingPrograms = [
     {
-      title: 'Private Training (13+ anni)',
+      title: 'Private Personal Coaching (13+ anni)',
       subtitle: 'Per atleti dai 13 anni in su (tutto l\'anno)',
       features: [
         'Sessioni di 1,5 ore, una volta alla settimana',
@@ -258,7 +258,7 @@ const PricingTables = () => {
         </RevealAnimation>
 
         <RevealAnimation>
-          <h2 className="text-3xl font-display mb-2 border-l-4 border-ath-clay pl-3">Private Training</h2>
+          <h2 className="text-3xl font-display mb-2 border-l-4 border-ath-clay pl-3">Private Personal Coaching</h2>
           <p className="text-gray-600 mb-8">
             Allenamenti individuali con maestro e sparring dedicati, per lavorare in modo specifico su aspetti tecnici e tattici. Disponibili su prenotazione per atleti dai 13 anni in su.
           </p>
