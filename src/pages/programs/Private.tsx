@@ -76,7 +76,7 @@ const PrivateProgram = () => {
               <p className="mb-4 font-swiss">
                 Le nostre lezioni di Personal Coaching rappresentano l'esperienza più personalizzata e focalizzata che ATH può offrire, 
                 combinando l'attenzione individuale di un coach esperto e un partner di allenamento (sparring) con l'analisi precisa della tecnologia VICKI™
-                in modalità Elite.
+                in modalità Elite o Advanced.
               </p>
             </RevealAnimation>
             <RevealAnimation delay={200}>
@@ -101,6 +101,25 @@ const PrivateProgram = () => {
                 <li>Report dettagliati dopo ogni sessione</li>
               </ul>
               
+              <div className="mt-8">
+                <h4 className="text-lg font-semibold mb-3">Monitoraggio e Analisi Avanzata</h4>
+                <p className="mb-4 font-swiss">
+                  Durante ogni sessione di Personal Coaching, VICKI™ monitora oltre 70 parametri tecnici specifici, 
+                  generando metriche precise che servono come indicatori concreti del miglioramento durante la lezione
+                  e come base per pianificare le fasi successive del percorso di sviluppo.
+                </p>
+                <ul className="list-disc list-inside space-y-2 font-swiss mb-4">
+                  <li>Monitoraggio in tempo reale di parametri tecnici e fisici</li>
+                  <li>Analisi dettagliata dei pattern di movimento e della biomeccanica</li>
+                  <li>Identificazione immediata di aree di miglioramento</li>
+                  <li>Confronto con sessioni precedenti per valutare i progressi</li>
+                </ul>
+                <p className="font-swiss">
+                  Al termine di ogni sessione, viene fornito un report sintetico che riassume i principali dati 
+                  raccolti, evidenzia i miglioramenti ottenuti e suggerisce specifici focus per le sessioni future.
+                </p>
+              </div>
+              
               <div className="mt-8 p-4 bg-amber-50 border-l-4 border-amber-500 rounded-r">
                 <h4 className="text-lg font-semibold mb-2">Prenotazione e Disponibilità</h4>
                 <p className="text-sm">
@@ -122,6 +141,25 @@ const PrivateProgram = () => {
                 Il Personal Coaching include sia il maestro che lo sparring partner, offrendo un'esperienza
                 di allenamento completa e personalizzata potenziata dalla tecnologia VICKI™ in modalità Elite o Advanced.
               </p>
+              
+              <div className="bg-ath-clay/10 p-4 rounded-lg mb-6">
+                <h4 className="text-lg font-swiss font-semibold mb-2">Report e Analisi Post-Sessione</h4>
+                <p className="text-sm mb-4">
+                  Ogni sessione di Personal Coaching include:
+                </p>
+                <ul className="list-disc list-inside text-sm space-y-1 font-swiss mb-4">
+                  <li>Report sintetico della sessione con metriche chiave</li>
+                  <li>Analisi comparativa con le sessioni precedenti</li>
+                  <li>Raccomandazioni personalizzate per il miglioramento</li>
+                  <li>Accesso digitale alle registrazioni video della sessione</li>
+                  <li>Dashboard personale per monitorare i progressi nel tempo</li>
+                </ul>
+                <p className="text-sm italic">
+                  Le metriche prodotte durante la sessione servono da indicazione precisa del miglioramento 
+                  specifico durante la lezione e come guida per le fasi successive del percorso di sviluppo.
+                </p>
+              </div>
+              
               <h3 className="text-lg font-swiss font-semibold mb-2">Benefici</h3>
               <ul className="list-disc list-inside space-y-2 font-swiss mb-6">
                 <li>Progressi accelerati grazie all'attenzione individuale</li>
@@ -130,6 +168,7 @@ const PrivateProgram = () => {
                 <li>Adattamento preciso alle esigenze specifiche del giocatore</li>
                 <li>Monitoraggio avanzato dei parametri tecnici e fisici</li>
                 <li>Analisi dettagliata della prestazione tramite VICKI™</li>
+                <li>Tracciamento oggettivo dei progressi nel tempo</li>
               </ul>
               <a 
                 href="/contact" 
