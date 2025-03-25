@@ -1,3 +1,4 @@
+
 const translations = {
   // Header & Navigation
   "nav.home": "Home",
@@ -28,7 +29,7 @@ const translations = {
   "programs.junior.desc": "Programma completo per giovani atleti che vogliono competere a livello agonistico.",
   "programs.talent": "Scuola Individuazione Talenti (4-10 anni)",
   "programs.talent.desc": "Programma specializzato per l'identificazione precoce dei talenti tennistici e lo sviluppo delle abilità fondamentali.",
-  "programs.young": "Agonisti Performance (6-12 anni)",
+  "programs.young": "Agonisti Performance (13+ anni)",
   "programs.young.desc": "Programma formativo per giovani atleti in fase di sviluppo tecnico e fisico.",
   "programs.elite": "Performance",
   "programs.elite.desc": "Supporto completo per atleti professionisti con analisi avanzata e ottimizzazione della performance.",
