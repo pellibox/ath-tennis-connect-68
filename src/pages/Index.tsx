@@ -1,52 +1,33 @@
-
 import { useEffect, useState, useRef } from 'react';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
-import Hero from '@/components/Hero';
-import ContactSection from '@/components/ContactSection';
-import JoinRevolutionSection from '@/components/JoinRevolutionSection';
-import StatsAndNavSection from '@/components/StatsAndNavSection';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { useProfile } from '@/contexts/ProfileContext';
 import { getVimeoEmbed, getWelcomeMessage } from '@/utils/videoUtils';
 import Logo from '@/components/Logo';
 import { useIsMobile } from '@/hooks/use-mobile';
-import VickiMonitoringBadge, { MonitoringLevel } from '@/components/VickiMonitoringBadge';
-import AboutSection from '@/components/AboutSection';
-import { ArrowRight, Award, Book, Calendar, FileText, LayoutGrid, LineChart, Trophy, Users, Zap } from 'lucide-react';
-import { Card, CardContent } from '@/components/ui/card';
-import ButtonLink from '@/components/ButtonLink';
 
 const HomePage = () => {
-  // Get translation function
   const { t } = useLanguage();
   const isMobile = useIsMobile();
   const { userGender, userType } = useProfile();
   
-  // State for the logo animation
   const [logoYOffset, setLogoYOffset] = useState<number>(0);
   const [logoOpacity, setLogoOpacity] = useState<number>(1);
   const logoRef = useRef<HTMLDivElement>(null);
   
-  // Vimeo embed HTML, now derived from the profile context directly
   const vimeoEmbed = getVimeoEmbed(userGender, userType);
   
-  // Smooth scroll functionality
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }, []);
 
-  // Handle scroll effect for the logo - now for both mobile and desktop
   useEffect(() => {
     const handleScroll = () => {
-      // Get current scroll position
       const scrollY = window.scrollY;
       
-      // Calculate offset to move the logo up as user scrolls down
-      setLogoYOffset(scrollY * 0.2); // Adjust the multiplier to control the speed
+      setLogoYOffset(scrollY * 0.2);
       
-      // Fade out logo as user scrolls down
-      // Start fading at 100px of scroll, completely fade out by 300px
       const fadeThreshold = 100;
       const fadeOutBy = 300;
       
@@ -58,19 +39,14 @@ const HomePage = () => {
       }
     };
 
-    // Add scroll event listener
     window.addEventListener('scroll', handleScroll);
-    
-    // Initial calculation
     handleScroll();
     
-    // Clean up
     return () => {
       window.removeEventListener('scroll', handleScroll);
     };
   }, []);
 
-  // Enhanced stats with more meaningful metrics
   const stats = [
     {
       id: '1',
@@ -97,7 +73,6 @@ const HomePage = () => {
     },
   ];
 
-  // Key features for infographic section
   const keyFeatures = [
     {
       icon: <Trophy className="w-10 h-10 text-ath-clay" />,
@@ -125,7 +100,6 @@ const HomePage = () => {
     }
   ];
 
-  // Advanced training methods
   const trainingMethods = [
     {
       title: "Metodo ATH",
@@ -149,12 +123,11 @@ const HomePage = () => {
 
   return (
     <div className="flex flex-col min-h-screen relative">
-      {/* Centered logo with improved positioning for both mobile and desktop */}
       <div 
         ref={logoRef}
         className="fixed z-50 pointer-events-none transition-opacity duration-300 left-0 right-0 flex justify-center"
         style={{
-          top: isMobile ? '140px' : '180px', // Adjusted position
+          top: isMobile ? '140px' : '180px',
           opacity: logoOpacity
         }}
       >
@@ -163,7 +136,7 @@ const HomePage = () => {
             width: isMobile ? '120px' : '160px',
             transform: `translateY(-${logoYOffset}px)`
           }}
-          className="flex justify-center" // Added to ensure centering
+          className="flex justify-center"
         >
           <Logo 
             onDarkBackground={true} 
@@ -176,9 +149,8 @@ const HomePage = () => {
       <Header />
       
       <main className="flex-grow pt-20">
-        {/* Replaced Hero component with direct Vimeo embed for consistency with Method page */}
         <div className="w-full bg-black min-h-[calc(100vw*9/16)] relative">
-          <div dangerouslySetInnerHTML={{ __html: vimeoEmbed }} />
+          <div dangerouslySetInnerHTML={{ __html: `<iframe src="https://player.vimeo.com/video/1069152110?h=95ee4b44fd&autoplay=1&loop=1&background=1&autopause=0&player_id=0&app_id=58479&controls=0" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media" style="position:absolute;top:0;left:0;width:100%;height:100%;" title="ATH Main Video"></iframe><script src="https://player.vimeo.com/api/player.js"></script>` }} />
         </div>
         
         <div className="w-full bg-black py-10">
@@ -192,7 +164,6 @@ const HomePage = () => {
           </div>
         </div>
         
-        {/* Infographic Key Features Section */}
         <div className="py-12 bg-gradient-to-b from-gray-50 to-white">
           <div className="max-w-6xl mx-auto px-4">
             <h2 className="text-3xl md:text-4xl font-display text-center mb-12">
@@ -228,7 +199,6 @@ const HomePage = () => {
           </div>
         </div>
         
-        {/* Training Methods Section */}
         <div className="py-16 bg-white">
           <div className="max-w-6xl mx-auto px-4">
             <h2 className="text-3xl md:text-4xl font-display text-center mb-12">
