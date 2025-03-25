@@ -4,17 +4,20 @@ import { Monitor, Shield, ShieldCheck, Award } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
 export type MonitoringLevel = 'basic' | 'standard' | 'advanced' | 'elite' | 'pro';
+export type BadgeSize = 'sm' | 'md' | 'lg';
 
 interface VickiMonitoringBadgeProps {
   level: MonitoringLevel;
   className?: string;
   showLabel?: boolean;
+  size?: BadgeSize;
 }
 
 const VickiMonitoringBadge = ({ 
   level, 
   className,
-  showLabel = true 
+  showLabel = true,
+  size = 'md'
 }: VickiMonitoringBadgeProps) => {
   // Define colors and icons based on level
   const getLevelDetails = () => {
@@ -22,31 +25,31 @@ const VickiMonitoringBadge = ({
       case 'basic':
         return {
           color: 'bg-red-50 text-ath-clay border-red-200',
-          icon: <Monitor className="w-4 h-4 mr-2" />,
+          icon: <Monitor className={`${size === 'sm' ? 'w-3 h-3' : size === 'lg' ? 'w-5 h-5' : 'w-4 h-4'} mr-2`} />,
           label: 'Monitoraggio Vicki™ Base'
         };
       case 'standard':
         return {
           color: 'bg-red-100 text-ath-clay border-red-200',
-          icon: <Monitor className="w-4 h-4 mr-2" />,
+          icon: <Monitor className={`${size === 'sm' ? 'w-3 h-3' : size === 'lg' ? 'w-5 h-5' : 'w-4 h-4'} mr-2`} />,
           label: 'Monitoraggio Vicki™ Standard'
         };
       case 'advanced':
         return {
           color: 'bg-red-100 text-ath-clay border-red-200',
-          icon: <ShieldCheck className="w-4 h-4 mr-2" />,
+          icon: <ShieldCheck className={`${size === 'sm' ? 'w-3 h-3' : size === 'lg' ? 'w-5 h-5' : 'w-4 h-4'} mr-2`} />,
           label: 'Monitoraggio Vicki™ Avanzato'
         };
       case 'elite':
         return {
           color: 'bg-red-100 text-ath-clay border-red-200',
-          icon: <Shield className="w-4 h-4 mr-2" />,
+          icon: <Shield className={`${size === 'sm' ? 'w-3 h-3' : size === 'lg' ? 'w-5 h-5' : 'w-4 h-4'} mr-2`} />,
           label: 'Monitoraggio Vicki™ Elite'
         };
       case 'pro':
         return {
           color: 'bg-red-200 text-ath-clay border-red-300',
-          icon: <Award className="w-4 h-4 mr-2" />,
+          icon: <Award className={`${size === 'sm' ? 'w-3 h-3' : size === 'lg' ? 'w-5 h-5' : 'w-4 h-4'} mr-2`} />,
           label: 'Monitoraggio Vicki™ Pro'
         };
     }
@@ -54,9 +57,13 @@ const VickiMonitoringBadge = ({
 
   const details = getLevelDetails();
 
+  // Adjust the font size based on the badge size
+  const textSizeClass = size === 'sm' ? 'text-xs' : size === 'lg' ? 'text-base' : 'text-sm';
+
   return (
     <div className={cn(
-      'inline-flex items-center px-3 py-1 rounded-full border text-sm font-medium',
+      'inline-flex items-center px-3 py-1 rounded-full border font-medium',
+      textSizeClass,
       details.color,
       className
     )}>
