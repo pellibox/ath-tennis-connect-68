@@ -82,6 +82,22 @@ const Programs = () => {
               <p>
                 Ciò che distingue ATH è la nostra integrazione di tecnologia all'avanguardia con competenze di coaching di livello mondiale. Il nostro sistema VICKI™ cattura e analizza oltre 70 parametri delle tue prestazioni tennistiche, consentendo ai nostri coach di fornire un allenamento altamente personalizzato.
               </p>
+              <h3 className="text-xl font-semibold mt-6 mb-2">Sviluppo Tecnico</h3>
+              <p>
+                I nostri coach utilizzano analisi video avanzate e feedback in tempo reale per perfezionare la tua tecnica su tutti i colpi.
+              </p>
+              <h3 className="text-xl font-semibold mt-6 mb-2">Strategia & Tattica</h3>
+              <p>
+                Sviluppiamo il tuo pensiero tattico e la capacità di leggere il gioco dell'avversario, fornendoti gli strumenti per adattare la tua strategia in tempo reale durante la partita.
+              </p>
+              <h3 className="text-xl font-semibold mt-6 mb-2">Preparazione Fisica</h3>
+              <p>
+                Programmi di fitness personalizzati specifici per il tennis, focalizzati su velocità, agilità, forza e resistenza.
+              </p>
+              <h3 className="text-xl font-semibold mt-6 mb-2">Allenamento Mentale</h3>
+              <p>
+                Sviluppa resistenza mentale, concentrazione e pensiero strategico con i nostri metodi di allenamento psicologico specializzati.
+              </p>
               <p>
                 Questo approccio basato sui dati elimina le congetture e garantisce che ogni minuto del tuo allenamento sia ottimizzato per il massimo miglioramento. Che tu sia un principiante o un giocatore d'élite, la nostra metodologia si adatta alle tue esigenze e obiettivi unici.
               </p>
