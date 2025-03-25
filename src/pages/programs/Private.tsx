@@ -99,6 +99,16 @@ const PrivateProgram = () => {
                 <li>Flessibilità di orari e programmazione</li>
                 <li>Report dettagliati dopo ogni sessione</li>
               </ul>
+              
+              <div className="mt-8 p-4 bg-amber-50 border-l-4 border-amber-500 rounded-r">
+                <h4 className="text-lg font-semibold mb-2">Prenotazione e Disponibilità</h4>
+                <p className="text-sm">
+                  Il Personal Coaching può essere organizzato esclusivamente su prenotazione ed è soggetto
+                  alla disponibilità dei maestri e sparring partner. Si consiglia di prenotare con 
+                  almeno 48 ore di anticipo per garantire la disponibilità dei professionisti più adatti 
+                  alle tue esigenze specifiche.
+                </p>
+              </div>
             </RevealAnimation>
             
             <RevealAnimation delay={300} className="bg-gray-50 p-8 rounded-lg">
@@ -125,6 +135,13 @@ const PrivateProgram = () => {
               >
                 Richiedi informazioni
               </a>
+              
+              <div className="mt-6 text-sm text-gray-600">
+                <p className="italic">
+                  Nota: Le sessioni di Personal Coaching sono disponibili solo su prenotazione
+                  e soggette alla disponibilità dei maestri e sparring partner.
+                </p>
+              </div>
             </RevealAnimation>
           </div>
         </div>
