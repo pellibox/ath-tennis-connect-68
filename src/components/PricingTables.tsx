@@ -97,19 +97,24 @@ const PricingTables = () => {
 
   const personalTrainingPrograms = [
     {
-      title: 'Personal Training',
+      title: 'Personal Coaching',
       subtitle: 'under 13–18 (tutto l\'anno)',
       features: [
         '1 sessione tennis da 1 ora a settimana',
+        'Maestro e sparring dedicati',
       ],
-      price: '2.000',
+      price: '120',
       vickiPowered: true,
       link: '/programs/personal'
     },
     {
-      title: 'Private Personal Training',
+      title: 'Private Personal Coaching',
       subtitle: 'Frequenza su richiesta (tutto l\'anno)',
-      features: [],
+      features: [
+        'Maestro e sparring dedicati',
+        'Sessioni su prenotazione',
+        'Soggetto a disponibilità',
+      ],
       price: 'Prezzo personalizzato',
       vickiPowered: true,
       link: '/programs/private'
@@ -250,9 +255,9 @@ const PricingTables = () => {
         </RevealAnimation>
 
         <RevealAnimation>
-          <h2 className="text-3xl font-display mb-2 border-l-4 border-ath-clay pl-3">Personal Training</h2>
+          <h2 className="text-3xl font-display mb-2 border-l-4 border-ath-clay pl-3">Personal Coaching</h2>
           <p className="text-gray-600 mb-8">
-            Allenamenti individuali o su richiesta, per lavorare in modo specifico su aspetti tecnici e tattici. Disponibili tutto l'anno.
+            Allenamenti individuali con maestro e sparring dedicati, per lavorare in modo specifico su aspetti tecnici e tattici. Disponibili su prenotazione.
           </p>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-16">
             {personalTrainingPrograms.map((program, index) => (
