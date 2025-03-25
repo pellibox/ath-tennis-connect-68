@@ -11,6 +11,7 @@ import TargetGroups from './technology/TargetGroups';
 import VickiPower from './technology/VickiPower';
 import SummaryQuote from './technology/SummaryQuote';
 import VickiMonitoringLevels from './technology/VickiMonitoringLevels';
+import { useIsMobile } from '@/hooks/use-mobile';
 
 interface TechnologySectionProps {
   title: string;
@@ -26,6 +27,7 @@ const TechnologySection = ({
   id 
 }: TechnologySectionProps) => {
   const { t } = useLanguage();
+  const isMobile = useIsMobile();
   
   return (
     <section id={id} className={cn('py-20 px-6 lg:px-10', className)}>
@@ -36,7 +38,9 @@ const TechnologySection = ({
         {/* Subtitle if provided */}
         {subtitle && (
           <RevealAnimation delay={100}>
-            <p className="text-lg text-ath-clay max-w-3xl mx-auto text-center mb-12 font-swiss">{subtitle}</p>
+            <p className={`text-ath-clay max-w-3xl mx-auto text-center mb-12 font-swiss ${isMobile ? 'text-sm' : 'text-lg'}`}>
+              {subtitle}
+            </p>
           </RevealAnimation>
         )}
         
