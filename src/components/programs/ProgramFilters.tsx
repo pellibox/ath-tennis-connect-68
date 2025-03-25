@@ -1,5 +1,5 @@
 import { UserType } from '@/components/UserTypeSelector';
-import { ProgramCategory, programCategories, juniorPrograms } from '@/data/programs';
+import { ProgramCategory, programCategories, juniorPrograms, professionalPrograms } from '@/data/programs';
 
 interface ProgramFiltersProps {
   userType: UserType | null;
@@ -35,13 +35,9 @@ const ProgramFilters = ({ userType, showAllPrograms }: ProgramFiltersProps) => {
         });
         break;
       case 'professional':
-        const professionalPrograms = programCategories
-          .find(c => c.id === 'elite-program')?.programs
-          .filter(p => p.id === '3') || [];
-          
         filteredCategories.push({
           id: 'professional-program',
-          title: 'Professional Program',
+          title: 'Professional Players',
           programs: professionalPrograms
         });
         break;

@@ -16,7 +16,7 @@ export const programCategories: ProgramCategory[] = [
   },
   {
     id: 'professional-program',
-    title: 'Professionisti',
+    title: 'Professional Players',
     programs: professionalPrograms
   },
   {
