@@ -1,6 +1,5 @@
-
 import { UserType } from '@/components/UserTypeSelector';
-import { ProgramCategory, programCategories, juniorPrograms } from '@/data/programsData';
+import { ProgramCategory, programCategories, juniorPrograms } from '@/data/programs';
 
 interface ProgramFiltersProps {
   userType: UserType | null;
