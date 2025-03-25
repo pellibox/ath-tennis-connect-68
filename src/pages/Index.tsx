@@ -6,6 +6,12 @@ import { useProfile } from '@/contexts/ProfileContext';
 import { getVimeoEmbed, getWelcomeMessage } from '@/utils/videoUtils';
 import Logo from '@/components/Logo';
 import { useIsMobile } from '@/hooks/use-mobile';
+import ButtonLink from '@/components/ButtonLink';
+import { Card, CardContent } from '@/components/ui/card';
+import { Trophy, LineChart, Users, LayoutGrid, ArrowRight } from 'lucide-react';
+import StatsAndNavSection from '@/components/StatsAndNavSection';
+import JoinRevolutionSection from '@/components/JoinRevolutionSection';
+import ContactSection from '@/components/ContactSection';
 
 const HomePage = () => {
   const { t } = useLanguage();
