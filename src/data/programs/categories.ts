@@ -36,7 +36,7 @@ export const programCategories: ProgramCategory[] = [
   },
   {
     id: 'summer-camps',
-    title: 'Summer Camps',
+    title: 'Clinics & Summer Camps',
     programs: summerCamps
   }
 ];
