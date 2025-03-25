@@ -1,3 +1,4 @@
+
 import { UserType } from '@/components/UserTypeSelector';
 import { ProgramCategory, programCategories, juniorPrograms, professionalPrograms } from '@/data/programs';
 
