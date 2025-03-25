@@ -128,11 +128,16 @@ const ProgramsHeader = ({
             </RevealAnimation>
             
             <RevealAnimation delay={200} className="bg-white p-8 shadow-sm">
+              <h3 className="text-xl font-medium mb-4">Strategia & Tattica</h3>
+              <p className="text-gray-600">Sviluppiamo il tuo pensiero tattico, la capacità di leggere il gioco dell'avversario e di adattare la tua strategia in tempo reale durante la partita.</p>
+            </RevealAnimation>
+            
+            <RevealAnimation delay={250} className="bg-white p-8 shadow-sm">
               <h3 className="text-xl font-medium mb-4">Preparazione Fisica</h3>
               <p className="text-gray-600">Programmi di fitness personalizzati specifici per il tennis, focalizzati su velocità, agilità, forza e resistenza.</p>
             </RevealAnimation>
             
-            <RevealAnimation delay={250} className="bg-white p-8 shadow-sm">
+            <RevealAnimation delay={300} className="bg-white p-8 shadow-sm">
               <h3 className="text-xl font-medium mb-4">Allenamento Mentale</h3>
               <p className="text-gray-600">Sviluppa resistenza mentale, concentrazione e pensiero strategico con i nostri metodi di allenamento psicologico specializzati.</p>
             </RevealAnimation>
@@ -144,3 +149,4 @@ const ProgramsHeader = ({
 };
 
 export default ProgramsHeader;
+
