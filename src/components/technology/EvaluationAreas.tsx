@@ -16,7 +16,7 @@ const EvaluationAreas = ({ className }: EvaluationAreasProps) => {
     },
     {
       icon: <Target className="w-8 h-8 mb-3 text-ath-clay" />,
-      title: "Tattica",
+      title: "Strategia & Tattica",
       description: "Mappatura degli schemi di gioco, gestione dello scambio e analisi delle situazioni chiave."
     },
     {
