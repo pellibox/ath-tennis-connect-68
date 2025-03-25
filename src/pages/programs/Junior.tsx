@@ -77,8 +77,8 @@ const JuniorProgram = () => {
           'Analisi statistiche semplificate con visione d\'insieme dell\'andamento',
           'Supporto pratico per accompagnare il percorso sportivo',
           'Filtraggio dei dati da parte dei coach per comunicazioni non interpretative o fuorvianti',
-          'Supporto da parte di mental coach specializzati',
-          'Programma incluso in tutti i programmi Elite e Junior'
+          'Programma creato da mental coach specializzati con momenti di formazione durante l\'anno',
+          'Incluso in tutti i programmi Elite e Junior'
         ],
         monitoringLevel: 'basic' as MonitoringLevel,
         vickiCustomBadge: 'Vicki™ report and stream'

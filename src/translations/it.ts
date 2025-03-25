@@ -1,3 +1,4 @@
+
 const translations = {
   // Header & Navigation
   "nav.home": "Home",
@@ -37,7 +38,7 @@ const translations = {
   "programs.coach": "Coach / Allenatori / Club",
   "programs.coach.desc": "Formazione avanzata e strumenti per allenatori che vogliono integrare la metodologia ATH e VICKI.",
   "programs.parent": "Genitore/Tutor (Giovani e Junior Agonisti 6-18 anni)",
-  "programs.parent.desc": "Sì, abbiamo un programma anche per te! Per aiutare anche i genitori a supportare correttamente l'atleta nel suo percorso formativo attraverso informazioni e coinvolgimento. Incluso in tutti i programmi Elite e Junior con supporto di professionisti e mental coach specializzati.",
+  "programs.parent.desc": "Sì, abbiamo un programma anche per te! Per aiutare anche i genitori a supportare correttamente l'atleta nel suo percorso formativo attraverso informazioni e coinvolgimento. Incluso in tutti i programmi Elite e Junior, creato da mental coach specializzati con momenti di formazione durante l'anno.",
   "programs.adult": "Adult Training",
   "programs.adult.desc": "Percorsi flessibili per giocatori amatoriali che vogliono migliorare le proprie capacità.",
   "programs.personalCoaching": "Private Training (13+ anni)",

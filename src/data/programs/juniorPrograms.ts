@@ -58,8 +58,8 @@ export const juniorPrograms: Program[] = [
       'Analisi statistiche semplificate con visione d\'insieme dell\'andamento',
       'Supporto pratico per accompagnare il percorso sportivo senza pressioni inutili',
       'Filtraggio automatico dei dati per evitare interpretazioni errate o fuorvianti',
-      'Supporto da parte di mental coach specializzati',
-      'Programma incluso in tutti i programmi Elite e Junior'
+      'Programma creato da mental coach specializzati con momenti di formazione durante l\'anno',
+      'Incluso in tutti i programmi Elite e Junior'
     ],
     vickiCustomBadge: 'Vicki™ report and stream'
   }
