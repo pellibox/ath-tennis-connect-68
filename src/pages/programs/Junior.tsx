@@ -1,4 +1,3 @@
-
 import { useEffect, useState } from 'react';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
@@ -25,7 +24,7 @@ const JuniorProgram = () => {
     
     // Set video based on user type
     if (preferences.type === 'junior') {
-      setVimeoEmbed('<div style="padding:56.25% 0 0 0;position:relative;"><iframe src="https://player.vimeo.com/video/1068596987?h=c9dad61d03&autoplay=1&loop=1&title=0&byline=0&portrait=0&background=1&controls=0" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" style="position:absolute;top:0;left:0;width:100%;height:100%;" title="Junior Video"></iframe></div><script src="https://player.vimeo.com/api/player.js"></script>');
+      setVimeoEmbed('<div style="padding:56.25% 0 0 0;position:relative;"><iframe src="https://player.vimeo.com/video/1068596987?h=c9dad61d03&autoplay=1&loop=1&title=0&byline=0&portrait=0&controls=0" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" style="position:absolute;top:0;left:0;width:100%;height:100%;" title="Junior Video"></iframe></div><script src="https://player.vimeo.com/api/player.js"></script>');
     }
   }, []);
 
@@ -77,7 +76,9 @@ const JuniorProgram = () => {
           'Canali diretti con il coach per ricevere feedback chiari e condividere obiettivi',
           'Analisi statistiche semplificate con visione d\'insieme dell\'andamento',
           'Supporto pratico per accompagnare il percorso sportivo',
-          'Filtraggio dei dati da parte dei coach per comunicazioni non interpretative o fuorvianti'
+          'Filtraggio dei dati da parte dei coach per comunicazioni non interpretative o fuorvianti',
+          'Supporto da parte di mental coach specializzati',
+          'Programma incluso in tutti i programmi Elite e Junior'
         ],
         monitoringLevel: 'basic' as MonitoringLevel,
         vickiCustomBadge: 'Vicki™ report and stream'
@@ -211,4 +212,3 @@ const JuniorProgram = () => {
 };
 
 export default JuniorProgram;
-

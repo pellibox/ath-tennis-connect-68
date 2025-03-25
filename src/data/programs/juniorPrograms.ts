@@ -57,9 +57,10 @@ export const juniorPrograms: Program[] = [
       'Canali diretti con il coach per ricevere feedback chiari e condividere obiettivi',
       'Analisi statistiche semplificate con visione d\'insieme dell\'andamento',
       'Supporto pratico per accompagnare il percorso sportivo senza pressioni inutili',
-      'Filtraggio automatico dei dati per evitare interpretazioni errate o fuorvianti'
+      'Filtraggio automatico dei dati per evitare interpretazioni errate o fuorvianti',
+      'Supporto da parte di mental coach specializzati',
+      'Programma incluso in tutti i programmi Elite e Junior'
     ],
     vickiCustomBadge: 'Vicki™ report and stream'
   }
 ];
-
