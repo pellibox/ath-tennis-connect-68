@@ -1,3 +1,4 @@
+
 import { useEffect, useState } from 'react';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
@@ -65,7 +66,7 @@ const JuniorProgram = () => {
       {
         id: 'parent-support',
         title: 'Genitore/Tutor (Giovani e Junior Agonisti 6-18 anni)',
-        description: 'Supporto informativo e coinvolgimento nel percorso di sviluppo del giovane atleta.',
+        description: 'Sì, abbiamo un programma anche per te! Per aiutare anche i genitori a supportare correttamente l\'atleta nel suo percorso formativo attraverso informazioni e coinvolgimento nello sviluppo del giovane atleta.',
         image: 'https://images.unsplash.com/photo-1515377905703-c4788e51af15?q=80&w=2070&auto=format&fit=crop',
         vimeoEmbed: '<div style="padding:56.25% 0 0 0;position:relative;"><iframe src="https://player.vimeo.com/video/1068621034?h=7b8c99f420&ts=0&autoplay=0&loop=1&title=0&byline=0&portrait=0&controls=0&background=1" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen style="position:absolute;top:0;left:0;width:100%;height:100%;"></iframe></div>',
         link: '#',
@@ -210,3 +211,4 @@ const JuniorProgram = () => {
 };
 
 export default JuniorProgram;
+
