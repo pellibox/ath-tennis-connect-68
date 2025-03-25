@@ -10,6 +10,7 @@ import EvaluationAreas from './technology/EvaluationAreas';
 import TargetGroups from './technology/TargetGroups';
 import VickiPower from './technology/VickiPower';
 import SummaryQuote from './technology/SummaryQuote';
+import VickiMonitoringLevels from './technology/VickiMonitoringLevels';
 
 interface TechnologySectionProps {
   title: string;
@@ -47,6 +48,9 @@ const TechnologySection = ({
         
         {/* VICKI Technology Benefits */}
         <TechBenefits />
+        
+        {/* VICKI Monitoring Levels */}
+        <VickiMonitoringLevels />
         
         {/* VICKI Evaluation Areas */}
         <EvaluationAreas />
