@@ -33,6 +33,8 @@ const translations = {
   "programs.elite.desc": "Intensive training for advanced players with professional aspirations, focusing on technical, tactical, physical, and mental aspects.",
   "programs.adult": "Adult Training",
   "programs.adult.desc": "Programs for players of all levels who want to improve their skills, stay fit, and enjoy the game of tennis.",
+  "programs.personalCoaching": "Private Training (13+ years)",
+  "programs.personalCoaching.desc": "Private lessons with dedicated coach and sparring partner, available by appointment for athletes 13 years and older.",
   "programs.more": "Learn More",
   
   // Camps Section

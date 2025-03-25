@@ -31,10 +31,10 @@ const PersonalCoachingProgram = () => {
       <main className="flex-grow">
         <div className="relative">
           <Hero 
-            title="Personal Coaching (13+ anni)"
-            subtitle="Lezioni personalizzate con maestro e sparring per un'attenzione dedicata e un progresso accelerato"
+            title="Private Training (13+ anni)"
+            subtitle="Lezioni private con maestro e sparring per un'attenzione dedicata e un progresso accelerato"
             imageSrc="https://images.unsplash.com/photo-1572307480813-ceb0e59d8325?q=80&w=2035&auto=format&fit=crop"
-            vimeoEmbed='<div style="padding:75% 0 0 0;position:relative;"><iframe src="https://player.vimeo.com/video/1068788542?h=698f55b033&autoplay=1&loop=1&background=1&autopause=0&player_id=0&app_id=58479&controls=0" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media" style="position:absolute;top:0;left:0;width:100%;height:100%;" title="Personal Coaching"></iframe></div><script src="https://player.vimeo.com/api/player.js"></script>'
+            vimeoEmbed='<div style="padding:75% 0 0 0;position:relative;"><iframe src="https://player.vimeo.com/video/1068788542?h=698f55b033&autoplay=1&loop=1&background=1&autopause=0&player_id=0&app_id=58479&controls=0" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media" style="position:absolute;top:0;left:0;width:100%;height:100%;" title="Private Training"></iframe></div><script src="https://player.vimeo.com/api/player.js"></script>'
             buttons={[
               { text: 'PRENOTA UNA SESSIONE', href: '/contact' },
               { text: 'CONTATTACI', href: '/contact', variant: 'outline' }
@@ -47,9 +47,9 @@ const PersonalCoachingProgram = () => {
           <div className="w-full bg-black py-16 relative" style={{ height: '300px' }}>
             <div className="max-w-6xl mx-auto px-6 h-full flex flex-col justify-center">
               <div className="flex items-center mb-2">
-                <h2 className="text-white text-lg font-display mr-3">PERSONAL COACHING (13+ ANNI):</h2>
+                <h2 className="text-white text-lg font-display mr-3">PRIVATE TRAINING (13+ ANNI):</h2>
                 <p className="text-white text-lg font-swiss max-w-3xl">
-                  Allenamento personalizzato con maestro e sparring per atleti dai 13 anni in su, con monitoraggio avanzato
+                  Lezioni private con maestro e sparring per atleti dai 13 anni in su, con monitoraggio avanzato
                 </p>
               </div>
               <div className="mt-4 flex flex-wrap gap-3">
@@ -64,7 +64,7 @@ const PersonalCoachingProgram = () => {
           <div className="mb-12">
             <RevealAnimation>
               <div className="flex flex-wrap items-center gap-3 mb-6">
-                <h2 className="text-3xl font-swiss">Personal Coaching (13+ anni)</h2>
+                <h2 className="text-3xl font-swiss">Private Training (13+ anni)</h2>
                 <VickiMonitoringBadge level="elite" />
                 <VickiPoweredBadge />
               </div>
@@ -74,7 +74,7 @@ const PersonalCoachingProgram = () => {
             </RevealAnimation>
             <RevealAnimation delay={150}>
               <p className="mb-4 font-swiss">
-                Il programma di Personal Coaching è specificamente progettato per tennisti
+                Il programma di Private Training è specificamente progettato per tennisti
                 dai 13 anni in su che desiderano un allenamento mirato e personalizzato.
                 Questo programma combina l'attenzione individuale di un coach esperto con uno sparring partner di alto livello
                 per massimizzare i risultati.
@@ -106,7 +106,7 @@ const PersonalCoachingProgram = () => {
               <div className="mt-8 p-4 bg-amber-50 border-l-4 border-amber-500 rounded-r">
                 <h4 className="text-lg font-semibold mb-2">Prenotazione e Disponibilità</h4>
                 <p className="text-sm">
-                  Il Personal Coaching può essere organizzato esclusivamente su prenotazione ed è soggetto
+                  Il Private Training può essere organizzato esclusivamente su prenotazione ed è soggetto
                   alla disponibilità dei maestri e sparring partner. Si consiglia di prenotare con 
                   almeno 48 ore di anticipo per garantire la disponibilità dei professionisti più adatti 
                   alle tue esigenze specifiche.
@@ -121,7 +121,7 @@ const PersonalCoachingProgram = () => {
                 <p className="text-sm text-gray-600">per lezione di 1,5 ore</p>
               </div>
               <p className="text-sm text-gray-600 mb-4">
-                Il Personal Coaching include sia il maestro che lo sparring partner, offrendo un'esperienza
+                Il Private Training include sia il maestro che lo sparring partner, offrendo un'esperienza
                 di allenamento completa e personalizzata potenziata dalla tecnologia VICKI™ Elite o Advanced.
               </p>
               <h3 className="text-lg font-swiss font-semibold mb-2">Benefici</h3>
@@ -142,7 +142,7 @@ const PersonalCoachingProgram = () => {
               
               <div className="mt-6 text-sm text-gray-600">
                 <p className="italic">
-                  Nota: Le sessioni di Personal Coaching sono disponibili solo su prenotazione
+                  Nota: Le sessioni di Private Training sono disponibili solo su prenotazione
                   e soggette alla disponibilità dei maestri e sparring partner. Ogni sessione dura 1,5 ore
                   e può essere prenotata una volta alla settimana.
                 </p>
@@ -153,7 +153,7 @@ const PersonalCoachingProgram = () => {
         
         <ContactSection 
           title="Vuoi saperne di più?" 
-          subtitle="Contattaci per una sessione di Personal Coaching"
+          subtitle="Contattaci per una sessione di Private Training"
           address="Via Carlo D'Adda 6/8, 20143 Milano (MI)"
           email="info@advancedtennishub.com"
           phone="+39 02 123 4567"

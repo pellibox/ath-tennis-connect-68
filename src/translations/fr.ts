@@ -1,3 +1,4 @@
+
 const translations = {
   // Header & Navigation
   "nav.home": "Accueil",
@@ -30,6 +31,8 @@ const translations = {
   "programs.elite.desc": "Entraînement intensif pour les joueurs avancés avec des aspirations professionnelles, axé sur les aspects techniques, tactiques, physiques et mentaux.",
   "programs.adult": "Entraînement pour Adultes",
   "programs.adult.desc": "Programmes pour les joueurs de tous niveaux qui souhaitent améliorer leurs compétences, rester en forme et profiter du jeu de tennis.",
+  "programs.personalCoaching": "Entraînement Privé (13+ ans)",
+  "programs.personalCoaching.desc": "Leçons privées avec entraîneur et partenaire d'entraînement dédiés, disponibles sur rendez-vous pour les athlètes de 13 ans et plus.",
   "programs.more": "En Savoir Plus",
   
   // Camps Section

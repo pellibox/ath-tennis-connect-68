@@ -31,6 +31,8 @@ const translations = {
   "programs.elite.desc": "Intensives Training für fortgeschrittene Spieler mit professionellen Aspirationen, mit Fokus auf technische, taktische, physische und mentale Aspekte.",
   "programs.adult": "Erwachsenentraining",
   "programs.adult.desc": "Programme für Spieler aller Niveaus, die ihre Fähigkeiten verbessern, fit bleiben und das Tennisspiel genießen möchten.",
+  "programs.personalCoaching": "Privattraining (13+ Jahre)",
+  "programs.personalCoaching.desc": "Privatstunden mit dediziertem Trainer und Sparringspartner, verfügbar nach Terminvereinbarung für Athleten ab 13 Jahren.",
   "programs.more": "Mehr Erfahren",
   
   // Camps Section
