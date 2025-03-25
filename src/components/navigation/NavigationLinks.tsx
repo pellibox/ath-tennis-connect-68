@@ -1,13 +1,6 @@
-
 import { Link, useLocation } from 'react-router-dom';
 import { HelpCircle, BookOpen, Activity, Zap, Server, Users, Dumbbell } from 'lucide-react';
 import { cn } from '@/lib/utils';
-
-interface NavigationLinkProps {
-  href: string;
-  children: React.ReactNode;
-  className?: string;
-}
 
 export const navigationItems = [
   { 
@@ -26,14 +19,14 @@ export const navigationItems = [
     icon: <Activity size={18} className="mr-2" />
   },
   { 
-    text: 'Padel & Pickleball', 
-    href: '/padel-pickleball',
-    icon: <Dumbbell size={18} className="mr-2" />
-  },
-  { 
     text: 'Tecnologia:VICKI', 
     href: '/technology',
     icon: <Zap size={18} className="mr-2" />
+  },
+  { 
+    text: 'Padel & Pickleball', 
+    href: '/padel-pickleball',
+    icon: <Dumbbell size={18} className="mr-2" />
   },
   { 
     text: 'Strutture', 
@@ -46,6 +39,12 @@ export const navigationItems = [
     icon: <Users size={18} className="mr-2" />
   },
 ];
+
+interface NavigationLinkProps {
+  href: string;
+  children: React.ReactNode;
+  className?: string;
+}
 
 const NavigationLink = ({ href, children, className }: NavigationLinkProps) => {
   const location = useLocation();
