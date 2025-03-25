@@ -50,7 +50,7 @@ const translations = {
   // Camps Section
   "camps.title": "CLINICS",
   "camps.subtitle": "Esperienza intensiva di alta qualità per giocatori di tutte le età durante i periodi estivi e vacanze scolastiche",
-  "camps.summer": "Clinics/Summer Clinics",
+  "camps.summer": "Clinics e Summer Camps",
   "camps.intro": "Esperienza intensiva di alta qualità per giocatori di tutte le età durante i periodi estivi e vacanze scolastiche.",
   "camps.description1": "I nostri Clinics offrono un'immersione completa nel tennis di qualità, combinando allenamento intensivo, divertimento e socializzazione in un ambiente stimolante e professionale.",
   "camps.description2": "Grazie alla tecnologia VICKI™, anche in un formato breve come quello dei clinics, siamo in grado di offrire un'esperienza formativa significativa con feedback preciso e misurabili.",
@@ -144,7 +144,7 @@ const translations = {
   "footer.elite": "Performance",
   "footer.coach": "Per Coach e Club",
   "footer.adult": "Amatori",
-  "footer.camps": "Clinics/Summer Clinics",
+  "footer.camps": "Clinics e Summer Camps",
   "footer.private": "Lezioni Private",
   "footer.links": "Link Rapidi",
   "footer.about": "Chi Siamo",
