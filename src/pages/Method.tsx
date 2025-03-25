@@ -238,7 +238,7 @@ const MethodPage = () => {
                     </div>
                   </div>
                   <h4 className="text-xl font-medium text-center mb-3">Eccellenza Tecnica</h4>
-                  <p className="text-gray-600 text-center">Analisi biomeccanica dettagliata di ogni colpo e movimento, con feedback immediato e indicazioni correttive precise.</p>
+                  <p className="text-gray-600 text-center">Analisi biomeccanica dettagliata di ogni colpo e movimento, con feedback immediato e indicazioni correttive precise. Perfezionamento del contatto con la pallina e controllo superiore delle traiettorie in ogni situazione di gioco.</p>
                 </div>
                 
                 <div className="bg-gradient-to-b from-white to-ath-gray p-6 rounded-lg shadow-md hover:shadow-lg transition-all border border-gray-200">
@@ -248,7 +248,7 @@ const MethodPage = () => {
                     </div>
                   </div>
                   <h4 className="text-xl font-medium text-center mb-3">Preparazione Atletica</h4>
-                  <p className="text-gray-600 text-center">Monitoraggio delle capacità atletiche, programmi di sviluppo personalizzati e prevenzione infortuni basata sui dati.</p>
+                  <p className="text-gray-600 text-center">Monitoraggio delle capacità atletiche, programmi di sviluppo personalizzati e prevenzione infortuni basata sui dati. Ottimizzazione degli spostamenti sul campo e dominanza fisica nelle fasi critiche del match.</p>
                 </div>
                 
                 <div className="bg-gradient-to-b from-white to-ath-gray p-6 rounded-lg shadow-md hover:shadow-lg transition-all border border-gray-200">
@@ -258,7 +258,7 @@ const MethodPage = () => {
                     </div>
                   </div>
                   <h4 className="text-xl font-medium text-center mb-3">Forza Mentale</h4>
-                  <p className="text-gray-600 text-center">Sviluppo delle abilità cognitive, gestione dello stress agonistico e ottimizzazione della concentrazione in partita.</p>
+                  <p className="text-gray-600 text-center">Sviluppo delle abilità cognitive, gestione dello stress agonistico e ottimizzazione della concentrazione in partita. Capacità avanzata di reazione alle situazioni avverse e controllo emotivo sotto pressione.</p>
                 </div>
                 
                 <div className="bg-gradient-to-b from-white to-ath-gray p-6 rounded-lg shadow-md hover:shadow-lg transition-all border border-gray-200">
@@ -268,7 +268,7 @@ const MethodPage = () => {
                     </div>
                   </div>
                   <h4 className="text-xl font-medium text-center mb-3">Strategia Tattica</h4>
-                  <p className="text-gray-600 text-center">Analisi dei pattern di gioco, strategia match-specific e capacità decisionale sotto pressione.</p>
+                  <p className="text-gray-600 text-center">Analisi dei pattern di gioco, strategia match-specific e capacità decisionale sotto pressione. Lettura anticipata del gioco avversario e adattamento strategico superiore nelle diverse situazioni competitive.</p>
                 </div>
               </div>
             </RevealAnimation>
