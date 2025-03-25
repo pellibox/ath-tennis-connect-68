@@ -1,7 +1,6 @@
 
 import { Program } from './types';
 
-// Junior Programs
 export const juniorPrograms: Program[] = [
   {
     id: '11',
@@ -46,9 +45,9 @@ export const juniorPrograms: Program[] = [
   {
     id: '5',
     title: 'Genitore/Tutor (Giovani e Junior Agonisti 6-18 anni)',
-    description: 'Sì, abbiamo un programma anche per te! Per aiutare anche i genitori a supportare correttamente l\'atleta nel suo percorso formativo attraverso informazioni e coinvolgimento nello sviluppo del giovane atleta.',
+    description: 'Programma creato da mental coach specializzati che comprende momenti di formazione durante l\'anno per supportare correttamente l\'atleta nel suo percorso formativo.',
     image: 'https://images.unsplash.com/photo-1515377905703-c4788e51af15?q=80&w=2070&auto=format&fit=crop',
-    vimeoEmbed: '<div style="padding:56.25% 0 0 0;position:relative;"><iframe src="https://player.vimeo.com/video/1068629360?h=46b5c52b31&autoplay=1&loop=1&title=0&byline=0&portrait=0&controls=0" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen style="position:absolute;top:0;left:0;width:100%;height:100%;"></iframe></div>',
+    vimeoEmbed: '<div style="padding:56.25% 0 0 0;position:relative;"><iframe src="https://player.vimeo.com/video/1068629360?h=46b5c52b31&autoplay=0&loop=1&title=0&byline=0&portrait=0&controls=0&background=1" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen style="position:absolute;top:0;left:0;width:100%;height:100%;"></iframe></div>',
     link: '/programs/parent',
     features: [
       'Accesso a report semplici e leggibili, con dati tecnici, fisici e mentali',
@@ -64,3 +63,4 @@ export const juniorPrograms: Program[] = [
     vickiCustomBadge: 'Vicki™ report and stream'
   }
 ];
+
