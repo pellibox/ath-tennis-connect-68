@@ -16,12 +16,11 @@ const SummaryQuote = ({ className }: SummaryQuoteProps) => {
           Vicki™ è un sistema unico, specificamente sviluppato per potenziare le capacità del coach, non per sostituirle.
         </p>
         
-        <ul className="list-disc list-inside mb-4 text-ath-clay font-swiss">
-          <li className="mb-2">L'expertise umana rimane essenziale nel processo di allenamento</li>
-          <li className="mb-2">La tecnologia fornisce dati e analisi in tempo reale che amplificano l'intuizione e l'esperienza dell'allenatore</li>
-          <li className="mb-2">Analisi di oltre 70 parametri tecnici durante ogni sessione</li>
-          <li className="mb-2">Feedback immediato e documentazione dettagliata dei progressi</li>
-        </ul>
+        <p className="text-ath-clay font-swiss mb-4 text-left">
+          L'expertise umana rimane essenziale nel processo di allenamento. La tecnologia fornisce dati e analisi in tempo 
+          reale che amplificano l'intuizione e l'esperienza dell'allenatore. Vicki™ analizza oltre 70 parametri tecnici durante 
+          ogni sessione e offre feedback immediato e documentazione dettagliata dei progressi.
+        </p>
         
         <p className="text-ath-clay font-bold font-swiss mb-4 text-left">
           ATH è oggi L'unico centro tennis al mondo che utilizza la tecnologia Vicki™
