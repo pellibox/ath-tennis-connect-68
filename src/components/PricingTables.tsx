@@ -72,8 +72,8 @@ const PricingTables = () => {
 
   const juniorPrograms = [
     {
-      title: 'SIT – Selezione e Individuazione Talenti',
-      subtitle: 'under 8–10 + over 10 (40 settimane)',
+      title: 'SIT - Scuola Individuazione Talenti (4-10 anni)',
+      subtitle: 'under 8–10 + over 10 (30 settimane)',
       features: [
         '1 sessione tennis da 1 ora a settimana',
         '2 sessioni atletica da 1 ora a settimana',
@@ -84,7 +84,7 @@ const PricingTables = () => {
     },
     {
       title: 'SAT – Propedeutico',
-      subtitle: 'under 4–6, sede di Rodano (40 settimane)',
+      subtitle: 'under 4–6, sede di Rodano (30 settimane)',
       features: [
         '1 sessione tennis da 1 ora a settimana',
         '1 sessione atletica da 30 minuti',
@@ -127,7 +127,7 @@ const PricingTables = () => {
   const adultPrograms = [
     {
       title: 'Adult Training',
-      subtitle: 'Per adulti (40 settimane)',
+      subtitle: 'Per adulti (30 settimane)',
       features: [
         '1 sessione tennis da 1 ora a settimana',
         'Attività in gruppo (4 persone per campo)',
@@ -138,9 +138,9 @@ const PricingTables = () => {
     },
     {
       title: 'Universitari / Scuole Online',
-      subtitle: 'Programma flessibile (40 settimane)',
+      subtitle: 'Programma flessibile (30 settimane)',
       features: [
-        '1 sessione a settimana da 1,5 ore (tennis opzionale)',
+        '1 sessione a settimana da 1,5 ore (sessione di atletica opzionale)',
       ],
       price: '1.000',
       vickiOnRequest: true,
@@ -248,7 +248,7 @@ const PricingTables = () => {
         <RevealAnimation>
           <h2 className="text-3xl font-display mb-2 border-l-4 border-ath-clay pl-3">Junior Program</h2>
           <p className="text-gray-600 mb-8">
-            Percorsi dedicati allo sviluppo motorio e tecnico dai 4 ai 12 anni. Programmi di 40 settimane.
+            Percorsi dedicati allo sviluppo motorio e tecnico dai 4 ai 12 anni. Programmi di 30 settimane.
           </p>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-16">
             {juniorPrograms.map((program, index) => (
@@ -276,7 +276,7 @@ const PricingTables = () => {
         <RevealAnimation>
           <h2 className="text-3xl font-display mb-2 border-l-4 border-ath-clay pl-3">Adulti e Universitari</h2>
           <p className="text-gray-600 mb-8">
-            Programmi per adulti e studenti con esigenze di flessibilità. Programmi di 40 settimane.
+            Programmi per adulti e studenti con esigenze di flessibilità. Programmi di 30 settimane.
           </p>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-16">
             {adultPrograms.map((program, index) => (

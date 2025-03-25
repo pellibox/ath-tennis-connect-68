@@ -31,8 +31,8 @@ const SitProgram = () => {
       <main className="flex-grow">
         <div className="relative">
           <Hero 
-            title="SIT – Selezione e Individuazione Talenti"
-            subtitle="under 8–10 + over 10 (40 settimane)"
+            title="SIT - Scuola Individuazione Talenti (4-10 anni)"
+            subtitle="under 8–10 + over 10 (30 settimane)"
             imageSrc="https://images.unsplash.com/photo-1607278967103-bc928c5b10f4?q=80&w=2070&auto=format&fit=crop"
             vimeoEmbed='<div style="padding:75% 0 0 0;position:relative;"><iframe src="https://player.vimeo.com/video/1068788542?h=698f55b033&autoplay=1&loop=1&background=1&autopause=0&player_id=0&app_id=58479&controls=0" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media" style="position:absolute;top:0;left:0;width:100%;height:100%;" title="Talent Identification"></iframe></div><script src="https://player.vimeo.com/api/player.js"></script>'
             buttons={[
@@ -49,7 +49,7 @@ const SitProgram = () => {
               <div className="flex items-center mb-2">
                 <h2 className="text-white text-lg font-display mr-3">SIT:</h2>
                 <p className="text-white text-lg font-swiss max-w-3xl">
-                  Selezione e Individuazione Talenti per giovani tennisti tra gli 8 e i 10 anni e oltre
+                  Scuola Individuazione Talenti per giovani tennisti tra i 4 e i 10 anni
                 </p>
               </div>
               <div className="mt-4 flex flex-wrap gap-3">
@@ -64,13 +64,13 @@ const SitProgram = () => {
           <div className="mb-12">
             <RevealAnimation>
               <div className="flex flex-wrap items-center gap-3 mb-6">
-                <h2 className="text-3xl font-swiss">SIT – Selezione e Individuazione Talenti</h2>
+                <h2 className="text-3xl font-swiss">SIT - Scuola Individuazione Talenti (4-10 anni)</h2>
                 <VickiMonitoringBadge level="basic" />
                 <VickiPoweredBadge />
               </div>
             </RevealAnimation>
             <RevealAnimation delay={100}>
-              <p className="text-lg mb-6 font-swiss">under 8–10 + over 10, 40 settimane all'anno.</p>
+              <p className="text-lg mb-6 font-swiss">under 8–10 + over 10, 30 settimane all'anno.</p>
             </RevealAnimation>
             <RevealAnimation delay={150}>
               <p className="mb-4 font-swiss">
@@ -110,7 +110,7 @@ const SitProgram = () => {
               <ul className="list-disc list-inside space-y-2 font-swiss">
                 <li>1 sessione tennis da 1 ora a settimana</li>
                 <li>1 sessione atletica da 1 ora a settimana</li>
-                <li>40 settimane di allenamento</li>
+                <li>30 settimane di allenamento</li>
                 <li>Monitoraggio di base con VICKI™</li>
                 <li>Focus sullo sviluppo delle capacità motorie di base</li>
                 <li>Introduzione graduale alle tecniche fondamentali del tennis</li>
@@ -125,7 +125,7 @@ const SitProgram = () => {
               <h3 className="text-xl font-swiss font-semibold mb-4">Prezzo</h3>
               <div className="mb-4">
                 <p className="text-3xl font-bold text-ath-clay">€950</p>
-                <p className="text-sm text-gray-600">per stagione (40 settimane)</p>
+                <p className="text-sm text-gray-600">per stagione (30 settimane)</p>
               </div>
               <div className="mb-4 p-4 bg-ath-clay/10 rounded-lg">
                 <h4 className="text-sm font-semibold mb-2">Analisi Iniziale Inclusa</h4>

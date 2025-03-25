@@ -32,7 +32,7 @@ const SatProgram = () => {
         <div className="relative">
           <Hero 
             title="SAT – Propedeutico"
-            subtitle="under 4–6, sede di Rodano (40 settimane)"
+            subtitle="under 4–6, sede di Rodano (30 settimane)"
             imageSrc="https://images.unsplash.com/photo-1560012057-4372e14c5085?q=80&w=2074&auto=format&fit=crop"
             vimeoEmbed='<div style="padding:75% 0 0 0;position:relative;"><iframe src="https://player.vimeo.com/video/1068788542?h=698f55b033&autoplay=1&loop=1&background=1&autopause=0&player_id=0&app_id=58479&controls=0" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media" style="position:absolute;top:0;left:0;width:100%;height:100%;" title="SAT Program"></iframe></div><script src="https://player.vimeo.com/api/player.js"></script>'
             buttons={[
@@ -70,7 +70,7 @@ const SatProgram = () => {
               </div>
             </RevealAnimation>
             <RevealAnimation delay={100}>
-              <p className="text-lg mb-6 font-swiss">under 4–6, sede di Rodano, 40 settimane all'anno.</p>
+              <p className="text-lg mb-6 font-swiss">under 4–6, sede di Rodano, 30 settimane all'anno.</p>
             </RevealAnimation>
             <RevealAnimation delay={150}>
               <p className="mb-4 font-swiss">
@@ -90,7 +90,7 @@ const SatProgram = () => {
             <RevealAnimation delay={250}>
               <p className="font-swiss mb-4">
                 <strong>Percorso Evolutivo:</strong> I bambini che mostrano particolari attitudini durante il 
-                programma SAT possono accedere al programma SIT (Selezione e Individuazione Talenti) dopo aver 
+                programma SAT possono accedere al programma SIT (Scuola Individuazione Talenti) dopo aver 
                 superato un test di valutazione. Questo permette una progressione naturale nel percorso formativo, 
                 basata sulle effettive capacità e predisposizioni del bambino.
               </p>
@@ -113,7 +113,7 @@ const SatProgram = () => {
               <ul className="list-disc list-inside space-y-2 font-swiss">
                 <li>1 sessione tennis da 1 ora a settimana</li>
                 <li>1 sessione atletica da 1 ora con impronta ludica</li>
-                <li>40 settimane di attività</li>
+                <li>30 settimane di attività</li>
                 <li>Monitoraggio VICKI™ disponibile su richiesta</li>
                 <li>Approccio completamente ludico</li>
                 <li>Sviluppo delle capacità motorie fondamentali</li>
@@ -127,7 +127,7 @@ const SatProgram = () => {
               <h3 className="text-xl font-swiss font-semibold mb-4">Prezzo</h3>
               <div className="mb-4">
                 <p className="text-3xl font-bold text-ath-clay">€500</p>
-                <p className="text-sm text-gray-600">per stagione (40 settimane)</p>
+                <p className="text-sm text-gray-600">per stagione (30 settimane)</p>
               </div>
               <div className="mb-4 p-4 bg-ath-clay/10 rounded-lg">
                 <h4 className="text-sm font-semibold mb-2">Test di Valutazione per SIT</h4>

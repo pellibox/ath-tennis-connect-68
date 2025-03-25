@@ -32,8 +32,8 @@ const AdultTrainingProgram = () => {
         <div className="relative">
           <Hero 
             title="Adult Training"
-            subtitle="Per adulti (40 settimane)"
-            imageSrc="https://images.unsplash.com/photo-1594381898411-846e7d193883?q=80&w=1974&auto=format&fit=crop"
+            subtitle="Per adulti (30 settimane)"
+            imageSrc="https://images.unsplash.com/photo-1622279457486-28f703f58401?q=80&w=2070&auto=format&fit=crop"
             vimeoEmbed='<div style="padding:75% 0 0 0;position:relative;"><iframe src="https://player.vimeo.com/video/1068788542?h=698f55b033&autoplay=1&loop=1&background=1&autopause=0&player_id=0&app_id=58479&controls=0" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media" style="position:absolute;top:0;left:0;width:100%;height:100%;" title="Adult Training"></iframe></div><script src="https://player.vimeo.com/api/player.js"></script>'
             buttons={[
               { text: 'PRENOTA UNA PROVA', href: '/contact' },
@@ -49,7 +49,7 @@ const AdultTrainingProgram = () => {
               <div className="flex items-center mb-2">
                 <h2 className="text-white text-lg font-display mr-3">ADULT TRAINING:</h2>
                 <p className="text-white text-lg font-swiss max-w-3xl">
-                  Allenamento in piccoli gruppi per adulti, combinando miglioramento tecnico e socializzazione
+                  Programma per adulti con sessioni di gruppo e monitoraggio VICKI™
                 </p>
               </div>
               <div className="mt-4 flex flex-wrap gap-3">
@@ -70,20 +70,21 @@ const AdultTrainingProgram = () => {
               </div>
             </RevealAnimation>
             <RevealAnimation delay={100}>
-              <p className="text-lg mb-6 font-swiss">Per adulti, 40 settimane all'anno.</p>
+              <p className="text-lg mb-6 font-swiss">Per adulti, 30 settimane all'anno.</p>
             </RevealAnimation>
             <RevealAnimation delay={150}>
               <p className="mb-4 font-swiss">
-                Il programma Adult Training è pensato per gli adulti che desiderano avvicinarsi al tennis o migliorare
-                il proprio livello di gioco in un ambiente sociale e stimolante. Con una sessione settimanale da un'ora
-                in piccoli gruppi di 4 persone per campo, questo programma combina apprendimento e divertimento.
+                Il programma Adult Training è progettato per tennisti adulti che desiderano migliorare
+                il proprio gioco in un ambiente sociale e stimolante. Con una sessione settimanale di tennis
+                da 1 ora, questo programma ti permette di sviluppare le tue abilità con la guida di maestri esperti.
               </p>
             </RevealAnimation>
             <RevealAnimation delay={200}>
               <p className="font-swiss">
-                La tecnologia VICKI™ supporta il progresso tecnico anche degli adulti, fornendo feedback oggettivi
-                che consentono di visualizzare i miglioramenti e identificare gli aspetti su cui concentrarsi.
-                L'approccio è adattato alle esigenze e agli obiettivi individuali di ciascun partecipante.
+                Il punto di forza di questo programma è l'uso della tecnologia VICKI™ che fornisce
+                analisi oggettive delle tue prestazioni, permettendoti di vedere concretamente i tuoi
+                progressi e le aree di miglioramento. Con un massimo di 4 persone per campo,
+                riceverai attenzione personalizzata durante ogni sessione.
               </p>
             </RevealAnimation>
           </div>
@@ -93,13 +94,13 @@ const AdultTrainingProgram = () => {
               <h3 className="text-xl font-swiss font-semibold mb-4">Caratteristiche del Programma</h3>
               <ul className="list-disc list-inside space-y-2 font-swiss">
                 <li>1 sessione tennis da 1 ora a settimana</li>
+                <li>30 settimane di allenamento</li>
                 <li>Attività in gruppo (4 persone per campo)</li>
-                <li>40 settimane di allenamento</li>
-                <li>Monitoraggio di base con VICKI™</li>
-                <li>Adattamento al livello di ciascun partecipante</li>
-                <li>Focus sia sulla tecnica che sull'aspetto ludico</li>
-                <li>Ambiente sociale e motivante</li>
-                <li>Possibilità di organizzare eventi di gruppo</li>
+                <li>Monitoraggio con VICKI™</li>
+                <li>Analisi tecnica e tattica</li>
+                <li>Feedback dettagliato ogni sessione</li>
+                <li>Atmosfera sociale e divertente</li>
+                <li>Adatto a tutti i livelli di gioco</li>
               </ul>
             </RevealAnimation>
             
@@ -107,10 +108,11 @@ const AdultTrainingProgram = () => {
               <h3 className="text-xl font-swiss font-semibold mb-4">Prezzo</h3>
               <div className="mb-4">
                 <p className="text-3xl font-bold text-ath-clay">€700</p>
-                <p className="text-sm text-gray-600">per stagione (40 settimane)</p>
+                <p className="text-sm text-gray-600">per stagione (30 settimane)</p>
               </div>
               <p className="text-sm text-gray-600 mb-4">
-                Possibilità di pagamento rateizzato. Contattaci per maggiori informazioni.
+                Possibilità di pacchetti personalizzati per sessioni aggiuntive o allenamenti privati.
+                Contattaci per maggiori informazioni.
               </p>
               <a 
                 href="/contact" 
