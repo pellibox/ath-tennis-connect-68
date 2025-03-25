@@ -81,7 +81,7 @@ const SatProgram = () => {
             </RevealAnimation>
             <RevealAnimation delay={200}>
               <p className="mb-4 font-swiss">
-                Una sessione settimanale di tennis da 1 ora, accompagnata da 30 minuti di attività atletica,
+                Una sessione settimanale di tennis da 1 ora, accompagnata da 1 ora di attività atletica con impronta ludica,
                 permette ai più piccoli di coltivare il divertimento verso lo sport e sviluppare
                 le prime abilità di coordinazione. La tecnologia VICKI™ può essere attivata su richiesta
                 per monitorare i progressi dei piccoli atleti.
@@ -112,7 +112,7 @@ const SatProgram = () => {
               <h3 className="text-xl font-swiss font-semibold mb-4">Caratteristiche del Programma</h3>
               <ul className="list-disc list-inside space-y-2 font-swiss">
                 <li>1 sessione tennis da 1 ora a settimana</li>
-                <li>1 sessione atletica da 30 minuti</li>
+                <li>1 sessione atletica da 1 ora con impronta ludica</li>
                 <li>40 settimane di attività</li>
                 <li>Monitoraggio VICKI™ disponibile su richiesta</li>
                 <li>Approccio completamente ludico</li>

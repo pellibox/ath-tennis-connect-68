@@ -1,3 +1,4 @@
+
 const translations = {
   // Header & Navigation
   "nav.home": "Home",
@@ -52,6 +53,7 @@ const translations = {
   "camps.feature4": "Age-appropriate mental training sessions",
   "camps.feature5": "Complementary physical activities and group games",
   "camps.feature6": "Detailed final report with guidance for the future",
+  "camps.feature7": "For competitive players: 1.5 hours of athletic training per session",
   "camps.benefits": "Benefits",
   "camps.benefit1": "Intensive technical improvement in a short time",
   "camps.benefit2": "Immersive and motivating tennis experience",

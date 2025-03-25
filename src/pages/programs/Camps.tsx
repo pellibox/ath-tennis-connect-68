@@ -77,6 +77,7 @@ const CampsProgram = () => {
                 <li>{t('camps.feature4')}</li>
                 <li>{t('camps.feature5')}</li>
                 <li>{t('camps.feature6')}</li>
+                <li>{t('camps.feature7')}</li>
               </ul>
             </RevealAnimation>
             

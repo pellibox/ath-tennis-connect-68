@@ -75,7 +75,7 @@ const SitProgram = () => {
             <RevealAnimation delay={150}>
               <p className="mb-4 font-swiss">
                 Il programma SIT è dedicato all'identificazione e allo sviluppo dei giovani talenti tennistici.
-                Con una sessione settimanale di tennis da 1 ora e due sessioni di preparazione atletica,
+                Con una sessione settimanale di tennis da 1 ora e una sessione di preparazione atletica di 1 ora,
                 questo percorso pone solide basi motorie e tecniche nei giovani atleti.
               </p>
             </RevealAnimation>
@@ -109,7 +109,7 @@ const SitProgram = () => {
               <h3 className="text-xl font-swiss font-semibold mb-4">Caratteristiche del Programma</h3>
               <ul className="list-disc list-inside space-y-2 font-swiss">
                 <li>1 sessione tennis da 1 ora a settimana</li>
-                <li>2 sessioni atletica da 1 ora a settimana</li>
+                <li>1 sessione atletica da 1 ora a settimana</li>
                 <li>40 settimane di allenamento</li>
                 <li>Monitoraggio di base con VICKI™</li>
                 <li>Focus sullo sviluppo delle capacità motorie di base</li>

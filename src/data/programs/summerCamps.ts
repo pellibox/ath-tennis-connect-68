@@ -14,7 +14,8 @@ export const summerCamps: Program[] = [
       'Programmi per diverse fasce d\'età',
       'Allenamento intensivo giornaliero',
       'Attività complementari e team building',
-      'Analisi tecnica con sistema VICKI'
+      'Analisi tecnica con sistema VICKI',
+      'Per gli agonisti: 1,5 ore di atletica per sessione'
     ],
     vickiOnRequest: true,
     vickiMonitoringLevel: 'standard'
