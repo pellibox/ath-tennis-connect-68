@@ -1,4 +1,4 @@
-import { ArrowRight, Play } from 'lucide-react';
+import { ArrowRight, Play, Target } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import RevealAnimation from './RevealAnimation';
 import { cn } from '@/lib/utils';
