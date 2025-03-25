@@ -8,6 +8,7 @@ import RevealAnimation from '@/components/RevealAnimation';
 import Logo from '@/components/Logo';
 import { getVimeoEmbed, getPersonalizedMethodDescription } from '@/utils/videoUtils';
 import { useIsMobile } from '@/hooks/use-mobile';
+import { Activity, Target, Brain, Settings } from 'lucide-react';
 
 const MethodPage = () => {
   const { t } = useLanguage();
@@ -160,7 +161,7 @@ const MethodPage = () => {
                     <div className="space-y-4">
                       <p className="text-lg">
                         Per gli agonisti di alto livello, il Metodo ATH si concentra sul perfezionamento tecnico-tattico e sullo sviluppo delle capacità 
-                        fisiche e mentali necessarie per competire ad alto livello.
+                        fisiche e mentali necessarie per competere ad alto livello.
                       </p>
                       <p className="text-lg">
                         La tecnologia VICKI™ permette di identificare pattern di gioco efficaci e inefficaci, analizzare le prestazioni in partita 
@@ -227,26 +228,47 @@ const MethodPage = () => {
             )}
             
             <RevealAnimation delay={300}>
-              <h3 className="text-2xl font-display mb-4">I quattro pilastri del Metodo ATH</h3>
+              <h3 className="text-2xl font-display mb-6">I quattro pilastri del Metodo ATH</h3>
+              
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
-                <div className="bg-white p-6 shadow-sm">
-                  <h4 className="text-xl font-medium mb-3">1. Tecnica</h4>
-                  <p>Analisi biomeccanica dettagliata di ogni colpo e movimento, con feedback immediato e indicazioni correttive precise.</p>
+                <div className="bg-gradient-to-b from-white to-ath-gray p-6 rounded-lg shadow-md hover:shadow-lg transition-all border border-gray-200">
+                  <div className="flex justify-center mb-4">
+                    <div className="p-3 bg-ath-clay text-white rounded-full">
+                      <Settings className="w-8 h-8" />
+                    </div>
+                  </div>
+                  <h4 className="text-xl font-medium text-center mb-3">Performance Tecnica</h4>
+                  <p className="text-gray-600 text-center">Analisi biomeccanica dettagliata di ogni colpo e movimento, con feedback immediato e indicazioni correttive precise.</p>
                 </div>
                 
-                <div className="bg-white p-6 shadow-sm">
-                  <h4 className="text-xl font-medium mb-3">2. Fisico</h4>
-                  <p>Monitoraggio delle capacità atletiche, programmi di sviluppo personalizzati e prevenzione infortuni basata sui dati.</p>
+                <div className="bg-gradient-to-b from-white to-ath-gray p-6 rounded-lg shadow-md hover:shadow-lg transition-all border border-gray-200">
+                  <div className="flex justify-center mb-4">
+                    <div className="p-3 bg-ath-clay text-white rounded-full">
+                      <Activity className="w-8 h-8" />
+                    </div>
+                  </div>
+                  <h4 className="text-xl font-medium text-center mb-3">Performance Atletica</h4>
+                  <p className="text-gray-600 text-center">Monitoraggio delle capacità fisiche, programmi di sviluppo personalizzati e prevenzione infortuni basata sui dati.</p>
                 </div>
                 
-                <div className="bg-white p-6 shadow-sm">
-                  <h4 className="text-xl font-medium mb-3">3. Mentale</h4>
-                  <p>Sviluppo delle abilità cognitive, gestione dello stress agonistico e ottimizzazione della concentrazione in partita.</p>
+                <div className="bg-gradient-to-b from-white to-ath-gray p-6 rounded-lg shadow-md hover:shadow-lg transition-all border border-gray-200">
+                  <div className="flex justify-center mb-4">
+                    <div className="p-3 bg-ath-clay text-white rounded-full">
+                      <Target className="w-8 h-8" />
+                    </div>
+                  </div>
+                  <h4 className="text-xl font-medium text-center mb-3">Performance Tattica</h4>
+                  <p className="text-gray-600 text-center">Analisi dei pattern di gioco, strategia match-specific e capacità decisionale sotto pressione.</p>
                 </div>
                 
-                <div className="bg-white p-6 shadow-sm">
-                  <h4 className="text-xl font-medium mb-3">4. Tattico</h4>
-                  <p>Analisi dei pattern di gioco, strategia match-specific e capacità decisionale sotto pressione.</p>
+                <div className="bg-gradient-to-b from-white to-ath-gray p-6 rounded-lg shadow-md hover:shadow-lg transition-all border border-gray-200">
+                  <div className="flex justify-center mb-4">
+                    <div className="p-3 bg-ath-clay text-white rounded-full">
+                      <Brain className="w-8 h-8" />
+                    </div>
+                  </div>
+                  <h4 className="text-xl font-medium text-center mb-3">Performance Mentale</h4>
+                  <p className="text-gray-600 text-center">Sviluppo delle abilità cognitive, gestione dello stress agonistico e ottimizzazione della concentrazione in partita.</p>
                 </div>
               </div>
             </RevealAnimation>
