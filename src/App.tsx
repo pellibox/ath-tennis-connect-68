@@ -10,6 +10,7 @@ import TechnologyPage from '@/pages/Technology';
 import FacilitiesPage from '@/pages/Facilities';
 import CoachesPage from '@/pages/Coaches';
 import ProgramsPage from '@/pages/Programs';
+import PadelPickleballPage from '@/pages/PadelPickleball';
 import ContactPage from '@/pages/Contact';
 import NotFoundPage from '@/pages/NotFound';
 import PrivacyPage from '@/pages/Privacy';
@@ -49,6 +50,7 @@ function App() {
             <Route path="/facilities" element={<FacilitiesPage />} />
             <Route path="/coaches" element={<CoachesPage />} />
             <Route path="/programs" element={<ProgramsPage />} />
+            <Route path="/padel-pickleball" element={<PadelPickleballPage />} />
             <Route path="/contact" element={<ContactPage />} />
             <Route path="/privacy" element={<PrivacyPage />} />
             <Route path="/terms" element={<TermsPage />} />

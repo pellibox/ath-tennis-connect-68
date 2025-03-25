@@ -1,6 +1,6 @@
 
 import { Link, useLocation } from 'react-router-dom';
-import { HelpCircle, BookOpen, Activity, Zap, Server, Users } from 'lucide-react';
+import { HelpCircle, BookOpen, Activity, Zap, Server, Users, Dumbbell } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
 interface NavigationLinkProps {
@@ -24,6 +24,11 @@ export const navigationItems = [
     text: 'Programmi', 
     href: '/programs',
     icon: <Activity size={18} className="mr-2" />
+  },
+  { 
+    text: 'Padel & Pickleball', 
+    href: '/padel-pickleball',
+    icon: <Dumbbell size={18} className="mr-2" />
   },
   { 
     text: 'Tecnologia:VICKI', 
