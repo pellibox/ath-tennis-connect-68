@@ -187,12 +187,13 @@ const Hero = ({
         )}
         
         {vimeoEmbed && !vimeoError && (
-          <div className="absolute inset-0 w-full h-full bg-black">
+          <div className="absolute inset-0 w-full h-full bg-black overflow-hidden">
             <div className="w-full h-full">
               <div 
                 ref={vimeoRef}
-                className="w-full h-full vimeo-container" 
+                className="w-full h-full vimeo-container absolute inset-0" 
                 key={`vimeo-container-${vimeoKey}`}
+                style={{ padding: 0 }}
               />
             </div>
             <div className="absolute inset-0 bg-black/30"></div>
