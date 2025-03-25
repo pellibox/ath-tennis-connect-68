@@ -31,7 +31,7 @@ const PersonalCoachingProgram = () => {
       <main className="flex-grow">
         <div className="relative">
           <Hero 
-            title="Personal Coaching"
+            title="Personal Coaching (13+ anni)"
             subtitle="Lezioni personalizzate con maestro e sparring per un'attenzione dedicata e un progresso accelerato"
             imageSrc="https://images.unsplash.com/photo-1572307480813-ceb0e59d8325?q=80&w=2035&auto=format&fit=crop"
             vimeoEmbed='<div style="padding:75% 0 0 0;position:relative;"><iframe src="https://player.vimeo.com/video/1068788542?h=698f55b033&autoplay=1&loop=1&background=1&autopause=0&player_id=0&app_id=58479&controls=0" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media" style="position:absolute;top:0;left:0;width:100%;height:100%;" title="Personal Coaching"></iframe></div><script src="https://player.vimeo.com/api/player.js"></script>'
@@ -47,7 +47,7 @@ const PersonalCoachingProgram = () => {
           <div className="w-full bg-black py-16 relative" style={{ height: '300px' }}>
             <div className="max-w-6xl mx-auto px-6 h-full flex flex-col justify-center">
               <div className="flex items-center mb-2">
-                <h2 className="text-white text-lg font-display mr-3">PERSONAL COACHING:</h2>
+                <h2 className="text-white text-lg font-display mr-3">PERSONAL COACHING (13+ ANNI):</h2>
                 <p className="text-white text-lg font-swiss max-w-3xl">
                   Allenamento personalizzato con maestro e sparring per atleti dai 13 anni in su, con monitoraggio avanzato
                 </p>
@@ -64,13 +64,13 @@ const PersonalCoachingProgram = () => {
           <div className="mb-12">
             <RevealAnimation>
               <div className="flex flex-wrap items-center gap-3 mb-6">
-                <h2 className="text-3xl font-swiss">Personal Coaching</h2>
+                <h2 className="text-3xl font-swiss">Personal Coaching (13+ anni)</h2>
                 <VickiMonitoringBadge level="advanced" />
                 <VickiPoweredBadge />
               </div>
             </RevealAnimation>
             <RevealAnimation delay={100}>
-              <p className="text-lg mb-6 font-swiss">Dai 13 anni in su, disponibile tutto l'anno.</p>
+              <p className="text-lg mb-6 font-swiss">Esclusivamente per atleti dai 13 anni in su, disponibile tutto l'anno.</p>
             </RevealAnimation>
             <RevealAnimation delay={150}>
               <p className="mb-4 font-swiss">
@@ -95,7 +95,7 @@ const PersonalCoachingProgram = () => {
               <ul className="list-disc list-inside space-y-2 font-swiss">
                 <li>Attenzione completa e dedicata del coach</li>
                 <li>Sparring professionale incluso (minimo 2.8 FIT o di categoria pari o superiore all'atleta)</li>
-                <li>Disponibile per atleti dai 13 anni in su</li>
+                <li>Disponibile esclusivamente per atleti dai 13 anni in su</li>
                 <li>Monitoraggio avanzato con VICKI™</li>
                 <li>Focus su aspetti specifici della tecnica e tattica</li>
                 <li>Analisi video dettagliata</li>

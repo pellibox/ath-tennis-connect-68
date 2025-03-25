@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Card } from '@/components/ui/card';
 import VickiPoweredBadge from './VickiPoweredBadge';
@@ -97,8 +96,8 @@ const PricingTables = () => {
 
   const personalTrainingPrograms = [
     {
-      title: 'Personal Coaching',
-      subtitle: 'under 13–18 (tutto l\'anno)',
+      title: 'Personal Coaching (13+ anni)',
+      subtitle: 'Per atleti dai 13 anni in su (tutto l\'anno)',
       features: [
         '1 sessione tennis da 1 ora a settimana',
         'Maestro e sparring dedicati',
@@ -114,6 +113,7 @@ const PricingTables = () => {
         'Maestro e sparring dedicati',
         'Sessioni su prenotazione',
         'Soggetto a disponibilità',
+        'Riservato ad atleti dai 13 anni in su'
       ],
       price: 'Prezzo personalizzato',
       vickiPowered: true,
@@ -255,9 +255,9 @@ const PricingTables = () => {
         </RevealAnimation>
 
         <RevealAnimation>
-          <h2 className="text-3xl font-display mb-2 border-l-4 border-ath-clay pl-3">Personal Coaching</h2>
+          <h2 className="text-3xl font-display mb-2 border-l-4 border-ath-clay pl-3">Personal Coaching (13+ anni)</h2>
           <p className="text-gray-600 mb-8">
-            Allenamenti individuali con maestro e sparring dedicati, per lavorare in modo specifico su aspetti tecnici e tattici. Disponibili su prenotazione.
+            Allenamenti individuali con maestro e sparring dedicati, per lavorare in modo specifico su aspetti tecnici e tattici. Disponibili su prenotazione per atleti dai 13 anni in su.
           </p>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-16">
             {personalTrainingPrograms.map((program, index) => (

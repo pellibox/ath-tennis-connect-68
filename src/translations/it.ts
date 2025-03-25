@@ -1,4 +1,3 @@
-
 const translations = {
   // Header & Navigation
   "nav.home": "Home",
@@ -41,7 +40,7 @@ const translations = {
   "programs.parent.desc": "Supporto informativo e coinvolgimento nel percorso di sviluppo del giovane atleta.",
   "programs.adult": "Adult Training",
   "programs.adult.desc": "Percorsi flessibili per giocatori amatoriali che vogliono migliorare le proprie capacità.",
-  "programs.personalCoaching": "Personal Coaching",
+  "programs.personalCoaching": "Personal Coaching (13+ anni)",
   "programs.personalCoaching.desc": "Lezioni con maestro e sparring dedicati, disponibili su prenotazione per atleti dai 13 anni.",
   "programs.more": "Scopri di Più",
   
