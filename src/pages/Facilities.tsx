@@ -1,3 +1,4 @@
+
 import { useEffect, useState, useRef } from 'react';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
@@ -219,6 +220,11 @@ const FacilitiesPage = () => {
             <h2 className="text-3xl md:text-4xl font-swiss text-center mb-8">Servizi Offerti</h2>
             
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+              <div className="bg-white p-6 rounded-lg shadow-sm">
+                <h3 className="text-xl font-semibold mb-3 font-swiss">Noleggio Campi da Tennis, Padel e Pickleball</h3>
+                <p className="text-gray-700 font-swiss text-base">Prenota i nostri campi tecnologicamente avanzati e a standard internazionale per Tennis, Padel e Pickleball. Tutti i campi sono dotati di attrezzature professionali e possibilità di integrazione con sistema Vicki™ su richiesta.</p>
+              </div>
+              
               <div className="bg-white p-6 rounded-lg shadow-sm">
                 <h3 className="text-xl font-semibold mb-3 font-swiss">Affitti Premium</h3>
                 <p className="text-gray-700 font-swiss text-base">Prenota un campo con sistema Vicki™ integrato per sessioni di allenamento con analisi dati in tempo reale. Ideale per giocatori che vogliono approfondire specifici aspetti tecnici.</p>
