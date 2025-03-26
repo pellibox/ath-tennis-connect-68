@@ -1,3 +1,4 @@
+
 import React, { useEffect, useState, useRef } from 'react';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
@@ -94,7 +95,7 @@ const HomePage = () => {
     },
     {
       icon: <Users className="w-10 h-10 text-ath-clay" />,
-      title: "Team Esperto",
+      title: "Elite Team",
       description: "Coach professionisti con metodologia innovativa",
       link: "/coaches"
     },
