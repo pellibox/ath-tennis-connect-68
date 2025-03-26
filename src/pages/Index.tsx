@@ -1,4 +1,3 @@
-
 import React, { useEffect, useState, useRef } from 'react';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
@@ -127,10 +126,10 @@ const HomePage = () => {
       link: "/programs"
     },
     {
-      title: "Padel & Pickleball",
-      description: "Strutture all'avanguardia per sport emergenti con tecnologia di monitoraggio Vicki™",
+      title: "Strutture All'avanguardia",
+      description: "Centro Vicki powered elite con campi e aree comuni tecnologicamente avanzati",
       image: "/lovable-uploads/c4c120e8-c90d-48a3-933c-d4cce08b5129.png",
-      link: "/padel-pickleball"
+      link: "/facilities"
     }
   ];
 
