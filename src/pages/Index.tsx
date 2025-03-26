@@ -124,6 +124,12 @@ const HomePage = () => {
       description: "Percorsi formativi adattati alle esigenze specifiche di ogni atleta, dal principiante al professionista",
       image: "/lovable-uploads/ef64c04d-055d-4d70-87f4-e67928a3b8e6.png",
       link: "/programs"
+    },
+    {
+      title: "Padel & Pickleball",
+      description: "Strutture all'avanguardia per sport emergenti con tecnologia di monitoraggio Vicki™",
+      image: "/lovable-uploads/c4c120e8-c90d-48a3-933c-d4cce08b5129.png",
+      link: "/padel-pickleball"
     }
   ];
 
