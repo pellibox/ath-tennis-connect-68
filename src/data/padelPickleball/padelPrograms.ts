@@ -3,36 +3,59 @@ import { Program } from './types';
 
 export const padelPrograms: Program[] = [
   {
-    id: 'padel-basic',
-    title: 'Padel Base',
-    description: 'Programma introduttivo per principianti e giocatori occasionali che vogliono imparare le basi del Padel.',
-    image: 'https://images.unsplash.com/photo-1617339860293-ebb29552886d?q=80&w=2070&auto=format&fit=crop',
-    link: '/padel-pickleball#padel-basic',
+    id: "padel-beginners",
+    title: "Padel Principianti",
+    description: "Programma introduttivo al padel per chi si avvicina per la prima volta a questo sport. Impara le basi, la tecnica e le regole fondamentali.",
+    image: "/lovable-uploads/padel-courts.png",
+    link: "/padel-pickleball#padel-beginners",
     features: [
-      'Lezioni in piccoli gruppi (max 4 persone)',
-      'Introduzione alle regole e alla tecnica di base',
-      'Focus sui colpi fondamentali e posizionamento in campo',
-      'Sessioni pratiche con match guidati',
-      'Feedback personalizzato dai coach'
+      "Introduzione alle regole e al campo da gioco",
+      "Tecnica di base: impugnatura, posizione e colpi fondamentali", 
+      "Sessioni di gioco guidate",
+      "Analisi tecnica con sistema Vicki™"
     ],
-    vickiOnRequest: true,
-    vickiMonitoringLevel: 'basic'
+    vickiPowered: true
   },
   {
-    id: 'padel-advanced',
-    title: 'Padel Avanzato',
-    description: 'Programma completo per giocatori di livello intermedio e avanzato che vogliono migliorare le proprie capacità tecniche e tattiche.',
-    image: 'https://images.unsplash.com/photo-1627231335228-400a6c957979?q=80&w=2070&auto=format&fit=crop',
-    link: '/padel-pickleball#padel-advanced',
+    id: "padel-intermediate",
+    title: "Padel Intermedio",
+    description: "Perfeziona la tua tecnica e sviluppa strategie di gioco più avanzate. Ideale per chi ha già esperienza base nel padel.",
+    image: "/lovable-uploads/padel-courts.png",
+    link: "/padel-pickleball#padel-intermediate",
     features: [
-      'Lezioni in piccoli gruppi (max 3 persone)',
-      'Analisi video avanzata con tecnologia VICKI™',
-      'Strategie di gioco avanzate e tattiche di coppia',
-      'Tecniche per sfruttare le pareti in modo efficace',
-      'Preparazione fisica specifica per il Padel',
-      'Sessioni di match con analisi post-partita'
+      "Perfezionamento dei colpi speciali: bandeja, vibora e chiquita",
+      "Strategie di posizionamento in coppia",
+      "Tattica offensiva e difensiva",
+      "Allenamento specifico con focus sulla risposta al servizio"
     ],
-    vickiPowered: true,
-    vickiMonitoringLevel: 'advanced'
+    vickiPowered: true
+  },
+  {
+    id: "padel-advanced",
+    title: "Padel Avanzato",
+    description: "Programma intensivo per giocatori esperti che vogliono portare il loro gioco a livello competitivo con analisi avanzata delle performance.",
+    image: "/lovable-uploads/padel-courts.png",
+    link: "/padel-pickleball#padel-advanced",
+    features: [
+      "Analisi biomeccanica dei colpi con tecnologia Vicki™",
+      "Perfezionamento delle tecniche avanzate",
+      "Preparazione fisica specifica per il padel",
+      "Strategie di gioco per competizioni"
+    ],
+    vickiMonitoringLevel: "advanced"
+  },
+  {
+    id: "padel-private",
+    title: "Padel Coaching Privato",
+    description: "Sessioni individuali o in coppia con coach specializzati e analisi completa delle performance con sistema Vicki™.",
+    image: "/lovable-uploads/padel-courts.png",
+    link: "/padel-pickleball#padel-private",
+    features: [
+      "Programma personalizzato in base agli obiettivi specifici",
+      "Analisi video e feedback in tempo reale",
+      "Report dettagliato delle performance",
+      "Pianificazione del percorso di miglioramento"
+    ],
+    vickiMonitoringLevel: "elite"
   }
 ];

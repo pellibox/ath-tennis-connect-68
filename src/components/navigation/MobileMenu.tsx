@@ -24,7 +24,7 @@ const MobileMenu = ({ isOpen }: MobileMenuProps) => {
   return (
     <div
       className={cn(
-        'fixed inset-0 bg-white pt-24 px-8 flex-col lg:hidden transition-transform duration-300 ease-in-out',
+        'fixed inset-0 bg-white pt-24 px-8 flex-col lg:hidden transition-transform duration-300 ease-in-out z-50',
         isOpen ? 'translate-x-0 flex' : 'translate-x-full hidden'
       )}
     >

@@ -1,6 +1,7 @@
 
 import { UserType } from '@/components/UserTypeSelector';
-import { ProgramCategory, programCategories, juniorPrograms, professionalPrograms } from '@/data/programs';
+import { programCategories } from '@/data/programs';
+import { ProgramCategory } from '@/data/programs/types';
 
 interface ProgramFiltersProps {
   userType: UserType | null;
@@ -8,99 +9,96 @@ interface ProgramFiltersProps {
 }
 
 const ProgramFilters = ({ userType, showAllPrograms }: ProgramFiltersProps) => {
-  
-  const getFilteredProgramCategories = (): ProgramCategory[] => {
+  // Filter categories based on user type
+  const filteredCategories = (): ProgramCategory[] => {
     if (!userType || showAllPrograms) {
       return programCategories;
     }
 
-    const filteredCategories: ProgramCategory[] = [];
+    let relevantCategories = [...programCategories];
 
-    switch (userType) {
+    switch(userType) {
       case 'junior':
-        filteredCategories.push({
-          id: 'junior-program',
-          title: 'Junior Program',
-          programs: juniorPrograms
-        });
-        break;
+        return relevantCategories.filter(cat => 
+          ['junior-program', 'summer-camps'].includes(cat.id)
+        );
       case 'performance':
-        const performancePrograms = programCategories
-          .find(c => c.id === 'elite-program')?.programs
-          .filter(p => p.id === '2') || [];
-          
-        filteredCategories.push({
-          id: 'performance-program',
-          title: 'Performance Program',
-          programs: performancePrograms
-        });
-        break;
+        return relevantCategories.filter(cat => 
+          ['elite-program', 'junior-program', 'coach-private'].includes(cat.id)
+        );
       case 'professional':
-        filteredCategories.push({
-          id: 'professional-program',
-          title: 'Professional Players',
-          programs: professionalPrograms
-        });
-        break;
+        return relevantCategories.filter(cat => 
+          ['elite-program', 'professional-program', 'coach-private'].includes(cat.id)
+        );
       case 'coach':
-        const coachPrograms = programCategories
-          .find(c => c.id === 'coach-private')?.programs
-          .filter(p => p.id === '4') || [];
-          
-        filteredCategories.push({
-          id: 'coach-program',
-          title: 'Coach Program',
-          programs: coachPrograms
-        });
-        break;
+        return relevantCategories.filter(cat => 
+          ['coach-private', 'professional-program'].includes(cat.id)
+        );
+      case 'adult':
+        return relevantCategories.filter(cat => 
+          ['adult-training', 'coach-private', 'summer-camps'].includes(cat.id)
+        );
       case 'parent':
-        const parentPrograms = programCategories
-          .find(c => c.id === 'junior-program')?.programs
-          .filter(p => p.id === '5') || [];
-          
-        filteredCategories.push({
-          id: 'parent-program',
-          title: 'Genitore/Tutor Program',
-          programs: parentPrograms
-        });
-        break;
+        return relevantCategories.filter(cat => 
+          ['junior-program', 'summer-camps'].includes(cat.id)
+        );
+      default:
+        return relevantCategories;
     }
-
-    return filteredCategories;
   };
 
-  const getProgramTitle = () => {
-    if (!userType || showAllPrograms) {
+  // Dynamic title based on user type
+  const getTitle = (): string => {
+    if (!userType) {
       return "Programmi ATH";
     }
-    
-    return `Programmi per ${
-      userType === 'coach' ? 'Coach' : 
-      userType === 'parent' ? 'Genitori/Tutor' : 
-      userType === 'professional' ? 'Professionisti' : 
-      userType === 'performance' ? 'Agonisti Performance' : 
-      'Junior'
-    }`;
+
+    switch(userType) {
+      case 'junior':
+        return "Programmi per Giovani Tennisti";
+      case 'performance':
+        return "Programmi Performance";
+      case 'professional':
+        return "Programmi Elite per Professionisti";
+      case 'coach':
+        return "Programmi per Coach";
+      case 'adult':
+        return "Programmi per Adulti";
+      case 'parent':
+        return "Programmi per Giovani Atleti";
+      default:
+        return "Programmi ATH";
+    }
   };
 
-  const getProgramSubtitle = () => {
-    if (!userType || showAllPrograms) {
-      return "Percorsi metodologici personalizzati in base alle tue esigenze specifiche";
+  // Dynamic subtitle based on user type
+  const getSubtitle = (): string => {
+    if (!userType) {
+      return "Esplora la nostra gamma completa di programmi di allenamento basati sul metodo ATH";
     }
-    
-    return `Soluzioni specifiche per ${
-      userType === 'coach' ? 'allenatori' : 
-      userType === 'parent' ? 'genitori e tutor' : 
-      userType === 'professional' ? 'tennisti professionisti' : 
-      userType === 'performance' ? 'agonisti di alto livello' : 
-      'giovani tennisti'
-    }`;
+
+    switch(userType) {
+      case 'junior':
+        return "Programmi specializzati progettati per sviluppare giovani tennisti";
+      case 'performance':
+        return "Programmi avanzati per tennisti agonisti che cercano di raggiungere il massimo potenziale";
+      case 'professional':
+        return "Programmi di altissimo livello progettati per tennisti professionisti";
+      case 'coach':
+        return "Programmi e risorse dedicati agli allenatori per perfezionare le loro competenze e metodologie";
+      case 'adult':
+        return "Programmi adattati per tennisti adulti di tutti i livelli";
+      case 'parent':
+        return "Programmi ideali per supportare i giovani atleti nel loro percorso di crescita";
+      default:
+        return "Esplora la nostra gamma completa di programmi di allenamento basati sul metodo ATH";
+    }
   };
 
   return {
-    filteredCategories: getFilteredProgramCategories(),
-    title: getProgramTitle(),
-    subtitle: getProgramSubtitle()
+    filteredCategories: filteredCategories(),
+    title: getTitle(),
+    subtitle: getSubtitle()
   };
 };
 

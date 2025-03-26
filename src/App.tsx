@@ -49,13 +49,11 @@ function App() {
             <Route path="/technology" element={<TechnologyPage />} />
             <Route path="/facilities" element={<FacilitiesPage />} />
             <Route path="/coaches" element={<CoachesPage />} />
+            
+            {/* Programs routes */}
             <Route path="/programs" element={<ProgramsPage />} />
             <Route path="/padel-pickleball" element={<PadelPickleballPage />} />
-            <Route path="/contact" element={<ContactPage />} />
-            <Route path="/privacy" element={<PrivacyPage />} />
-            <Route path="/terms" element={<TermsPage />} />
             
-            {/* Program routes */}
             <Route path="/programs/elite" element={<EliteProgram />} />
             <Route path="/programs/junior" element={<JuniorProgram />} />
             <Route path="/programs/adult" element={<AdultProgram />} />
@@ -75,6 +73,10 @@ function App() {
             <Route path="/programs/university" element={<UniversityProgram />} />
             <Route path="/programs/coach" element={<CoachProgram />} />
             <Route path="/programs/club" element={<ClubProgram />} />
+            
+            <Route path="/contact" element={<ContactPage />} />
+            <Route path="/privacy" element={<PrivacyPage />} />
+            <Route path="/terms" element={<TermsPage />} />
             
             <Route path="*" element={<NotFoundPage />} />
           </Routes>

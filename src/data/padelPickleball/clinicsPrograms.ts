@@ -3,35 +3,45 @@ import { Program } from './types';
 
 export const clinicsPrograms: Program[] = [
   {
-    id: 'padel-clinics',
-    title: 'Clinics di Padel',
-    description: 'Sessioni intensive di allenamento di 1-2 giorni focalizzate su aspetti specifici del gioco del Padel.',
-    image: 'https://images.unsplash.com/photo-1620211129334-32fab5a13a81?q=80&w=2070&auto=format&fit=crop',
-    link: '/padel-pickleball#padel-clinics',
+    id: "padel-clinics",
+    title: "Padel Clinics",
+    description: "Sessioni intensive di gruppo focalizzate su aspetti specifici del gioco del padel, guidate da coach di alto livello.",
+    image: "/lovable-uploads/padel-courts.png",
+    link: "/padel-pickleball#padel-clinics",
     features: [
-      'Workshop tematici (es. gioco di parete, volée, smash)',
-      'Sessioni intensive con coach specializzati',
-      'Analisi video con feedback immediato',
-      'Gruppi di massimo 6 partecipanti',
-      'Materiale didattico incluso'
+      "Workshop tematici su colpi specifici",
+      "Sessioni intensive di 2-3 ore",
+      "Gruppi omogenei per livello",
+      "Analisi tecnica con sistema Vicki™"
     ],
-    vickiPowered: true,
-    vickiMonitoringLevel: 'standard'
+    vickiPowered: true
   },
   {
-    id: 'pickleball-clinics',
-    title: 'Clinics di Pickleball',
-    description: 'Workshop intensivi dedicati a migliorare specifici aspetti del gioco del Pickleball in breve tempo.',
-    image: 'https://images.unsplash.com/photo-1612194562948-7b222fb4104e?q=80&w=2070&auto=format&fit=crop',
-    link: '/padel-pickleball#pickleball-clinics',
+    id: "pickleball-clinics",
+    title: "Pickleball Clinics",
+    description: "Workshop specifici per migliorare rapidamente aspetti tecnici e tattici del pickleball in sessioni concentrate.",
+    image: "/lovable-uploads/c4c120e8-c90d-48a3-933c-d4cce08b5129.png",
+    link: "/padel-pickleball#pickleball-clinics",
     features: [
-      'Focus su tecniche specifiche (serve, dink, terzo colpo)',
-      'Strategie di gioco avanzate',
-      'Sessioni pratiche con rotazione dei partner',
-      'Analisi e correzione in tempo reale',
-      'Gruppi di massimo 8 partecipanti'
+      "Focus su elementi specifici del gioco",
+      "Sessioni di 2 ore con coach dedicato",
+      "Gruppi ridotti di massimo 4-6 persone",
+      "Analisi video delle performance"
     ],
-    vickiOnRequest: true,
-    vickiMonitoringLevel: 'basic'
+    vickiOnRequest: true
+  },
+  {
+    id: "racquet-sports-camp",
+    title: "Camp Multi-Sport con Racchetta",
+    description: "Esperienza immersiva che combina tennis, padel e pickleball per migliorare le abilità generali negli sport con racchetta.",
+    image: "/lovable-uploads/ef64c04d-055d-4d70-87f4-e67928a3b8e6.png",
+    link: "/padel-pickleball#racquet-sports-camp",
+    features: [
+      "Programma intensivo di 3-5 giorni",
+      "Allenamento nei tre sport con approccio integrato",
+      "Preparazione fisica specifica",
+      "Analisi comparata della tecnica nei diversi sport"
+    ],
+    vickiCustomBadge: "Multi-Sport Vicki™"
   }
 ];

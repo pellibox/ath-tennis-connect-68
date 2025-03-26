@@ -1,8 +1,25 @@
-import { Link, useLocation } from 'react-router-dom';
-import { HelpCircle, BookOpen, Activity, Zap, Server, Users, Dumbbell } from 'lucide-react';
-import { cn } from '@/lib/utils';
 
-export const navigationItems = [
+import { Link, useLocation } from 'react-router-dom';
+import { HelpCircle, BookOpen, Activity, Zap, Server, Users, Dumbbell, ChevronDown } from 'lucide-react';
+import { cn } from '@/lib/utils';
+import { useState } from 'react';
+import {
+  NavigationMenu,
+  NavigationMenuContent,
+  NavigationMenuItem,
+  NavigationMenuLink,
+  NavigationMenuList,
+  NavigationMenuTrigger,
+} from "@/components/ui/navigation-menu";
+
+export interface NavigationItem {
+  text: string;
+  href: string;
+  icon: React.ReactNode;
+  submenu?: NavigationItem[];
+}
+
+export const navigationItems: NavigationItem[] = [
   { 
     text: "Perché ATH", 
     href: '/about',
@@ -16,7 +33,19 @@ export const navigationItems = [
   { 
     text: 'Programmi', 
     href: '/programs',
-    icon: <Activity size={18} className="mr-2" />
+    icon: <Activity size={18} className="mr-2" />,
+    submenu: [
+      {
+        text: 'Tennis',
+        href: '/programs',
+        icon: <Activity size={18} className="mr-2" />
+      },
+      {
+        text: 'Padel & Pickleball',
+        href: '/padel-pickleball',
+        icon: <Dumbbell size={18} className="mr-2" />
+      }
+    ]
   },
   { 
     text: 'Tecnologia:VICKI', 
@@ -32,12 +61,7 @@ export const navigationItems = [
     text: 'Coach', 
     href: '/coaches',
     icon: <Users size={18} className="mr-2" />
-  },
-  { 
-    text: 'Padel & Pickleball', 
-    href: '/padel-pickleball',
-    icon: <Dumbbell size={18} className="mr-2" />
-  },
+  }
 ];
 
 interface NavigationLinkProps {
@@ -79,23 +103,130 @@ interface NavigationLinksProps {
 }
 
 const NavigationLinks = ({ className, textColorClass, isMobile = false }: NavigationLinksProps) => {
-  return (
-    <nav className={cn("flex", isMobile ? "flex-col space-y-6" : "items-center space-x-6", className)}>
-      {navigationItems.map((item, index) => (
-        <NavigationLink
-          key={index}
-          href={item.href}
-          className={cn(
-            "flex items-center text-sm font-swiss transition-colors hover:text-ath-clay",
-            textColorClass
-          )}
-        >
-          {item.icon}
-          {item.text}
-        </NavigationLink>
-      ))}
-    </nav>
-  );
+  const location = useLocation();
+  const [openSubmenu, setOpenSubmenu] = useState<string | null>(null);
+
+  // Toggle submenu state
+  const toggleSubmenu = (text: string) => {
+    setOpenSubmenu(openSubmenu === text ? null : text);
+  };
+
+  const renderMobileNavigation = () => {
+    return (
+      <nav className={cn("flex flex-col space-y-6", className)}>
+        {navigationItems.map((item, index) => (
+          <div key={index} className="flex flex-col">
+            {item.submenu ? (
+              <>
+                <button
+                  onClick={() => toggleSubmenu(item.text)}
+                  className={cn(
+                    "flex items-center text-sm font-swiss transition-colors hover:text-ath-clay mb-2",
+                    textColorClass
+                  )}
+                >
+                  {item.icon}
+                  {item.text}
+                  <ChevronDown 
+                    size={16} 
+                    className={cn(
+                      "ml-1 transition-transform", 
+                      openSubmenu === item.text ? "rotate-180" : ""
+                    )} 
+                  />
+                </button>
+                {openSubmenu === item.text && (
+                  <div className="ml-6 flex flex-col space-y-4 mt-2">
+                    {item.submenu.map((subItem, subIndex) => (
+                      <NavigationLink
+                        key={subIndex}
+                        href={subItem.href}
+                        className={cn(
+                          "flex items-center text-sm font-swiss transition-colors hover:text-ath-clay",
+                          textColorClass
+                        )}
+                      >
+                        {subItem.icon}
+                        {subItem.text}
+                      </NavigationLink>
+                    ))}
+                  </div>
+                )}
+              </>
+            ) : (
+              <NavigationLink
+                href={item.href}
+                className={cn(
+                  "flex items-center text-sm font-swiss transition-colors hover:text-ath-clay",
+                  textColorClass
+                )}
+              >
+                {item.icon}
+                {item.text}
+              </NavigationLink>
+            )}
+          </div>
+        ))}
+      </nav>
+    );
+  };
+
+  const renderDesktopNavigation = () => {
+    return (
+      <nav className={cn("flex items-center space-x-6", className)}>
+        {navigationItems.map((item, index) => (
+          item.submenu ? (
+            <NavigationMenu key={index}>
+              <NavigationMenuList>
+                <NavigationMenuItem>
+                  <NavigationMenuTrigger 
+                    className={cn(
+                      "flex items-center text-sm font-swiss transition-colors hover:text-ath-clay bg-transparent",
+                      textColorClass
+                    )}
+                  >
+                    {item.icon}
+                    {item.text}
+                  </NavigationMenuTrigger>
+                  <NavigationMenuContent>
+                    <ul className="grid w-[200px] gap-2 p-4">
+                      {item.submenu.map((subItem, subIndex) => (
+                        <li key={subIndex}>
+                          <NavigationMenuLink asChild>
+                            <Link 
+                              to={subItem.href}
+                              className="flex items-center p-2 hover:bg-gray-100 rounded-md"
+                            >
+                              {subItem.icon}
+                              <span>{subItem.text}</span>
+                            </Link>
+                          </NavigationMenuLink>
+                        </li>
+                      ))}
+                    </ul>
+                  </NavigationMenuContent>
+                </NavigationMenuItem>
+              </NavigationMenuList>
+            </NavigationMenu>
+          ) : (
+            <NavigationLink
+              key={index}
+              href={item.href}
+              className={cn(
+                "flex items-center text-sm font-swiss transition-colors hover:text-ath-clay",
+                textColorClass
+              )}
+            >
+              {item.icon}
+              {item.text}
+            </NavigationLink>
+          )
+        ))}
+      </nav>
+    );
+  };
+
+  return isMobile ? renderMobileNavigation() : renderDesktopNavigation();
 };
 
 export default NavigationLinks;
