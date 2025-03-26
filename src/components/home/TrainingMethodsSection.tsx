@@ -1,3 +1,4 @@
+
 import React from 'react';
 import ButtonLink from '@/components/ButtonLink';
 
@@ -23,7 +24,7 @@ const TrainingMethodsSection = () => {
     },
     {
       title: "Strutture All'avanguardia",
-      description: "Centro Vicki powered elite con 6 campi completamente equipaggiati con tecnologia Vicki™",
+      description: "Vicki powered elite; campi e aree comuni tecnologicamente avanzate",
       image: "/lovable-uploads/c4c120e8-c90d-48a3-933c-d4cce08b5129.png",
       link: "/facilities"
     }
