@@ -19,7 +19,7 @@ const coaches = [
   },
   {
     id: "coach-2",
-    name: "Giulia Bianchi",
+    name: "F.G.",
     title: "Coach | Specialista Tattica & Strategia",
     image: "https://images.unsplash.com/photo-1594381898411-846e7d193883?q=80&w=1974",
     bio: "Focalizzata sull'ottimizzazione delle strategie di gioco attraverso l'analisi dei pattern e delle analisi tattiche avanzate"
