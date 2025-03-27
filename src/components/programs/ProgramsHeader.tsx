@@ -128,7 +128,7 @@ const ProgramsHeader = ({
             </RevealAnimation>
             
             <RevealAnimation delay={200} className="bg-white p-8 shadow-sm">
-              <h3 className="text-xl font-medium mb-4">Strategia & Tattica</h3>
+              <h3 className="text-xl font-medium mb-4">Tattica & Strategia</h3>
               <p className="text-gray-600">Sviluppiamo il tuo pensiero tattico, la capacità di leggere il gioco dell'avversario e di adattare la tua strategia in tempo reale durante la partita.</p>
             </RevealAnimation>
             
@@ -149,4 +149,3 @@ const ProgramsHeader = ({
 };
 
 export default ProgramsHeader;
-
