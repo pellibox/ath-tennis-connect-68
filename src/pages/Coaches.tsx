@@ -1,3 +1,4 @@
+
 import { useEffect } from 'react';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
@@ -11,7 +12,7 @@ import Hero from '@/components/Hero';
 const coaches = [
   {
     id: "coach-1",
-    name: "Marco Rossi",
+    name: "S.G",
     title: "Head Coach | Specialista Tecnica",
     image: "https://images.unsplash.com/photo-1599586120429-48281b6f0ece?q=80&w=2070",
     bio: "Esperto nell'integrazione tra metodologia tradizionale e analisi dati avanzata"
