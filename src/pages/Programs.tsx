@@ -86,7 +86,7 @@ const Programs = () => {
               <p>
                 I nostri coach utilizzano analisi video avanzate e feedback in tempo reale per perfezionare la tua tecnica su tutti i colpi.
               </p>
-              <h3 className="text-xl font-semibold mt-6 mb-2">Strategia & Tattica</h3>
+              <h3 className="text-xl font-semibold mt-6 mb-2">Tattica & Strategia</h3>
               <p>
                 Sviluppiamo il tuo pensiero tattico e la capacità di leggere il gioco dell'avversario, fornendoti gli strumenti per adattare la tua strategia in tempo reale durante la partita.
               </p>

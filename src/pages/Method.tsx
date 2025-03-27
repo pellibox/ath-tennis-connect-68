@@ -267,7 +267,7 @@ const MethodPage = () => {
                       <Target className="w-8 h-8" />
                     </div>
                   </div>
-                  <h4 className="text-xl font-medium text-center mb-3">Strategia & Tattica</h4>
+                  <h4 className="text-xl font-medium text-center mb-3">Tattica & Strategia</h4>
                   <p className="text-gray-600 text-center">Analisi dei pattern di gioco, strategia match-specific e capacità decisionale sotto pressione. Lettura anticipata del gioco avversario e adattamento strategico superiore nelle diverse situazioni competitive.</p>
                 </div>
               </div>
