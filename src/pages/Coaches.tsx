@@ -14,7 +14,7 @@ const coaches = [
     name: "S.G",
     title: "Head Coach | Specialista Tecnica",
     image: "https://images.unsplash.com/photo-1599586120429-48281b6f0ece?q=80&w=2070",
-    bio: "Esperto nell'integrazione tra metodologia tradizionale e analisi dati avanzata"
+    bio: "Esperto nell'integrazione tra metodologia tradizionale e analisi dati avanzata, grande esperienza con junior emergenti e professionisti"
   },
   {
     id: "coach-2",
