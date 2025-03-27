@@ -1,4 +1,3 @@
-
 import { useEffect } from 'react';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
@@ -22,7 +21,7 @@ const coaches = [
     name: "F.G.",
     title: "Coach | Specialista Tattica & Strategia",
     image: "https://images.unsplash.com/photo-1594381898411-846e7d193883?q=80&w=1974",
-    bio: "Focalizzata sull'ottimizzazione delle strategie di gioco attraverso l'analisi dei pattern e delle analisi tattiche avanzate"
+    bio: "Direttore tecnico del centro, il lavoro fi F. è Focalizzato sull'ottimizzazione delle strategie di gioco attraverso l'analisi dei pattern e delle analisi tattiche avanzate"
   },
   {
     id: "coach-3",
