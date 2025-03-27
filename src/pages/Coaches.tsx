@@ -14,7 +14,7 @@ const coaches = [
     id: "coach-2",
     name: "F.G.",
     title: "Coach | Specialista Tattica & Strategia",
-    image: "https://images.unsplash.com/photo-1617575521317-d2974f3b56d2?q=80&w=1974",
+    image: "/lovable-uploads/bc8181c1-457e-4029-bccc-16128b332b0d.png",
     bio: "Direttore tecnico del centro, il lavoro di F. è Focalizzato sull'ottimizzazione delle strategie di gioco attraverso l'analisi dei pattern e delle analisi tattiche avanzate"
   },
   {
