@@ -2,15 +2,17 @@
 import { Link } from 'react-router-dom';
 import { cn } from '@/lib/utils';
 import React from 'react';
+import { ArrowRight } from 'lucide-react';
 
 interface ButtonLinkProps {
   href: string;
   children: React.ReactNode;
-  variant?: 'primary' | 'secondary' | 'outline';
+  variant?: 'primary' | 'secondary' | 'outline' | 'athOutline';
   size?: 'sm' | 'md' | 'lg';
   className?: string;
   external?: boolean;
   style?: React.CSSProperties;
+  showArrow?: boolean;
 }
 
 const ButtonLink = ({
@@ -21,13 +23,15 @@ const ButtonLink = ({
   className,
   external = false,
   style,
+  showArrow = false,
 }: ButtonLinkProps) => {
-  const baseClasses = "inline-block text-center transition-all duration-300 rounded-md font-swiss";
+  const baseClasses = "inline-flex items-center justify-center text-center transition-all duration-300 rounded-md font-swiss";
   
   const variantClasses = {
     primary: "bg-ath-clay text-white hover:bg-opacity-90 shadow-md",
     secondary: "bg-black text-white hover:bg-gray-800 shadow-md",
     outline: "bg-transparent text-ath-clay border-2 border-ath-clay hover:bg-ath-clay hover:text-white",
+    athOutline: "bg-white text-ath-clay border border-ath-clay hover:bg-gray-50",
   };
   
   const sizeClasses = {
@@ -43,6 +47,13 @@ const ButtonLink = ({
     className
   );
   
+  const content = (
+    <>
+      {children}
+      {showArrow && <ArrowRight size={16} className="ml-2" />}
+    </>
+  );
+  
   if (external) {
     return (
       <a 
@@ -52,14 +63,14 @@ const ButtonLink = ({
         rel="noopener noreferrer"
         style={style}
       >
-        {children}
+        {content}
       </a>
     );
   }
   
   return (
     <Link to={href} className={buttonClasses} style={style}>
-      {children}
+      {content}
     </Link>
   );
 };

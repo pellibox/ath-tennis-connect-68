@@ -1,4 +1,3 @@
-
 import { Link, useLocation } from 'react-router-dom';
 import { HelpCircle, BookOpen, Activity, Zap, Server, Users, Dumbbell, ChevronDown } from 'lucide-react';
 import { cn } from '@/lib/utils';
@@ -35,11 +34,6 @@ export const navigationItems: NavigationItem[] = [
     href: '/programs',
     icon: <Activity size={18} className="mr-2" />,
     submenu: [
-      {
-        text: 'Tutti i Programmi',
-        href: '/programs/overview',
-        icon: <Activity size={18} className="mr-2" />
-      },
       {
         text: 'Tennis',
         href: '/programs',
@@ -111,7 +105,6 @@ const NavigationLinks = ({ className, textColorClass, isMobile = false }: Naviga
   const location = useLocation();
   const [openSubmenu, setOpenSubmenu] = useState<string | null>(null);
 
-  // Toggle submenu state
   const toggleSubmenu = (text: string) => {
     setOpenSubmenu(openSubmenu === text ? null : text);
   };

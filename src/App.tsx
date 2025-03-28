@@ -1,3 +1,4 @@
+
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { Toaster } from "@/components/ui/sonner";
 import { LanguageProvider } from './contexts/LanguageContext';
@@ -36,6 +37,10 @@ import AdultTrainingProgram from '@/pages/programs/AdultTraining';
 import UniversityProgram from '@/pages/programs/University';
 import CoachProgram from '@/pages/programs/Coach';
 import ClubProgram from '@/pages/programs/Club';
+import YoungAthletesProgram from '@/pages/programs/YoungAthletes';
+import ParentTutorProgram from '@/pages/programs/ParentTutor';
+import ProfessionalsProgram from '@/pages/programs/Professionals';
+import PerformanceAnalysisProgram from '@/pages/programs/PerformanceAnalysis';
 
 function App() {
   return (
@@ -73,6 +78,12 @@ function App() {
             <Route path="/programs/university" element={<UniversityProgram />} />
             <Route path="/programs/coach" element={<CoachProgram />} />
             <Route path="/programs/club" element={<ClubProgram />} />
+            
+            {/* New special program routes */}
+            <Route path="/programs/young-athletes" element={<YoungAthletesProgram />} />
+            <Route path="/programs/parent-tutor" element={<ParentTutorProgram />} />
+            <Route path="/programs/professionals" element={<ProfessionalsProgram />} />
+            <Route path="/programs/performance-analysis" element={<PerformanceAnalysisProgram />} />
             
             <Route path="/contact" element={<ContactPage />} />
             <Route path="/privacy" element={<PrivacyPage />} />
