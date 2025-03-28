@@ -1,3 +1,4 @@
+
 import { useState, useEffect } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { Menu, X, ChevronLeft } from 'lucide-react';
@@ -79,7 +80,7 @@ const Header = ({ useVickiLogo = false }: HeaderProps) => {
       )}
     >
       <div className="container mx-auto px-6 flex items-center justify-between relative">
-        <div className={cn("flex items-center z-50")}>
+        <div className={cn("flex items-center z-50", showBackButton ? "pl-0" : "pl-0")}>
           {showBackButton && (
             <Button 
               variant="ghost" 
@@ -98,6 +99,7 @@ const Header = ({ useVickiLogo = false }: HeaderProps) => {
             resetProfile={false}
             useVickiLogo={useVickiLogo}
             isInMenu={true}
+            className="ml-0"
           />
         </div>
         
