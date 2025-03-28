@@ -63,4 +63,3 @@ export const juniorPrograms: Program[] = [
     vickiCustomBadge: 'Vicki™ report and stream'
   }
 ];
-

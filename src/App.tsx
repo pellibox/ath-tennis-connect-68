@@ -79,6 +79,7 @@ function App() {
             <Route path="/programs/coach" element={<CoachProgram />} />
             <Route path="/programs/club" element={<ClubProgram />} />
             <Route path="/programs/young-athletes" element={<YoungAthletesProgram />} />
+            <Route path="/programs/parent" element={<ParentTutorProgram />} /> {/* Ensure this route is correct */}
             <Route path="/programs/parent-tutor" element={<ParentTutorProgram />} />
             <Route path="/programs/professionals" element={<ProfessionalsProgram />} />
             <Route path="/programs/performance-analysis" element={<PerformanceAnalysisProgram />} />
