@@ -11,10 +11,11 @@ import { useProfile } from '@/contexts/ProfileContext';
 import { getVimeoEmbed } from '@/utils/videoUtils';
 import ProgramsHeader from '@/components/programs/ProgramsHeader';
 import ProgramFilters from '@/components/programs/ProgramFilters';
+import { programCategories } from '@/data/programs';
 
 const Programs = () => {
   const { t } = useLanguage();
-  const [showAllPrograms, setShowAllPrograms] = useState(false);
+  const [showAllPrograms, setShowAllPrograms] = useState(true); // Set to true by default
   const [logoYOffset, setLogoYOffset] = useState<number>(0);
   const [logoOpacity, setLogoOpacity] = useState<number>(1);
   const { userGender, userType } = useProfile();
@@ -71,8 +72,9 @@ const Programs = () => {
         <ProgramsSection 
           title={title}
           subtitle={subtitle}
-          categories={filteredCategories}
+          categories={showAllPrograms ? programCategories : filteredCategories}
           className="bg-ath-gray"
+          showPopularBadge={true}
         />
         
         <AboutSection 
