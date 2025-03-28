@@ -36,7 +36,7 @@ const YoungAthletesProgram = () => {
         <div className="relative">
           <Hero 
             title="Performance 4"
-            subtitle="4 giorni a settimana (48 settimane)"
+            subtitle="4 giorni a settimana (40 settimane)"
             imageSrc="https://images.unsplash.com/photo-1595435934349-5c8a53b567d0?q=80&w=2070&auto=format&fit=crop"
             vimeoEmbed='<div style="padding:75% 0 0 0;position:relative;"><iframe src="https://player.vimeo.com/video/1068788542?h=698f55b033&autoplay=1&loop=1&background=1&autopause=0&player_id=0&app_id=58479&controls=0" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media" style="position:absolute;top:0;left:0;width:100%;height:100%;" title="Performance 4"></iframe></div><script src="https://player.vimeo.com/api/player.js"></script>'
             buttons={[
@@ -57,9 +57,6 @@ const YoungAthletesProgram = () => {
               <div className="mt-4 flex flex-wrap gap-3">
                 <VickiMonitoringBadge level="advanced" className="bg-opacity-20 border-opacity-30 text-white" />
                 <VickiPoweredBadge className="bg-opacity-20 border-opacity-30 text-white" />
-                <Badge variant="ath" className="bg-yellow-500 text-black border-yellow-600">
-                  <Star className="w-3 h-3 mr-1 fill-black" /> Scelta Popolare
-                </Badge>
               </div>
             </div>
           </div>
@@ -72,13 +69,10 @@ const YoungAthletesProgram = () => {
                 <h2 className="text-3xl font-swiss">Performance 4</h2>
                 <VickiMonitoringBadge level="advanced" />
                 <VickiPoweredBadge />
-                <Badge variant="ath" className="bg-yellow-500 text-black border-yellow-600">
-                  <Star className="w-3 h-3 mr-1 fill-black" /> Scelta Popolare
-                </Badge>
               </div>
             </RevealAnimation>
             <RevealAnimation delay={100}>
-              <p className="text-lg mb-6 font-swiss">4 giorni a settimana, 48 settimane all'anno.</p>
+              <p className="text-lg mb-6 font-swiss">4 giorni a settimana, 40 settimane all'anno.</p>
             </RevealAnimation>
             <RevealAnimation delay={150}>
               <p className="mb-4 font-swiss">
@@ -103,7 +97,7 @@ const YoungAthletesProgram = () => {
                 <li>4 sessioni tennis da 1,5 ore (6 ore settimanali)</li>
                 <li>4 sessioni atletica da 1,5 ore (6 ore settimanali)</li>
                 <li>Massimo 2 atleti per campo</li>
-                <li>48 settimane di allenamento</li>
+                <li>40 settimane di allenamento</li>
                 <li>Monitoraggio avanzato con VICKI™</li>
                 <li>Analisi video e feedback dettagliati</li>
                 <li>Preparazione specifica per tornei</li>
@@ -114,7 +108,7 @@ const YoungAthletesProgram = () => {
               <h3 className="text-xl font-swiss font-semibold mb-4">Prezzo</h3>
               <div className="mb-4">
                 <p className="text-3xl font-bold text-ath-clay">€6.500</p>
-                <p className="text-sm text-gray-600">per stagione (48 settimane)</p>
+                <p className="text-sm text-gray-600">per stagione (40 settimane)</p>
               </div>
               <p className="text-sm text-gray-600 mb-4">
                 Possibilità di pagamento rateizzato. Contattaci per maggiori informazioni.
@@ -131,7 +125,7 @@ const YoungAthletesProgram = () => {
           <RevealAnimation delay={350}>
             <div className="bg-ath-clay/5 border border-ath-clay/20 p-8 rounded-lg mb-12">
               <h3 className="text-2xl font-display mb-4 text-ath-clay">Perché scegliere Performance 4?</h3>
-              <p className="mb-4">Il programma Performance 4 è la <strong>scelta più popolare</strong> tra le nostre offerte per agonisti perché rappresenta l'equilibrio ideale tra intensità di allenamento e impegno settimanale. Consente agli atleti di ottenere risultati significativi pur mantenendo tempo per studio o altre attività.</p>
+              <p className="mb-4">Il programma Performance 4 rappresenta l'equilibrio ideale tra intensità di allenamento e impegno settimanale. Consente agli atleti di ottenere risultati significativi pur mantenendo tempo per studio o altre attività.</p>
               <ul className="list-disc list-inside space-y-2 mb-6">
                 <li>Equilibrio perfetto tra intensità e recupero</li>
                 <li>Attenzione personalizzata con massimo 2 atleti per campo</li>
