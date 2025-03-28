@@ -9,8 +9,10 @@ import { UserGender, UserType, loadUserPreferences } from '@/components/UserType
 import VickiMonitoringBadge from '@/components/VickiMonitoringBadge';
 import VickiPoweredBadge from '@/components/VickiPoweredBadge';
 import ContactSection from '@/components/ContactSection';
-import { ArrowRight } from 'lucide-react';
+import { ArrowRight, Star } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import ButtonLink from '@/components/ButtonLink';
+import { Badge } from '@/components/ui/badge';
 
 const YoungAthletesProgram = () => {
   const { t } = useLanguage();
@@ -33,10 +35,10 @@ const YoungAthletesProgram = () => {
       <main className="flex-grow">
         <div className="relative">
           <Hero 
-            title="Agonista Performance (13+ anni)"
-            subtitle="Programma completo per giovani atleti che vogliono competere a livello agonistico"
-            imageSrc="/lovable-uploads/ef64c04d-055d-4d70-87f4-e67928a3b8e6.png"
-            vimeoEmbed='<div style="padding:56.25% 0 0 0;position:relative;"><iframe src="https://player.vimeo.com/video/1068596935?h=222acb69b2&autoplay=1&loop=1&background=1&autopause=0&player_id=0&app_id=58479&controls=0" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media" style="position:absolute;top:0;left:0;width:100%;height:100%;" title="Agonista Performance"></iframe></div><script src="https://player.vimeo.com/api/player.js"></script>'
+            title="Performance 4"
+            subtitle="4 giorni a settimana (48 settimane)"
+            imageSrc="https://images.unsplash.com/photo-1595435934349-5c8a53b567d0?q=80&w=2070&auto=format&fit=crop"
+            vimeoEmbed='<div style="padding:75% 0 0 0;position:relative;"><iframe src="https://player.vimeo.com/video/1068788542?h=698f55b033&autoplay=1&loop=1&background=1&autopause=0&player_id=0&app_id=58479&controls=0" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media" style="position:absolute;top:0;left:0;width:100%;height:100%;" title="Performance 4"></iframe></div><script src="https://player.vimeo.com/api/player.js"></script>'
             buttons={[
               { text: 'PRENOTA UNA PROVA', href: '/contact' },
               { text: 'CONTATTACI', href: '/contact', variant: 'outline' }
@@ -49,14 +51,17 @@ const YoungAthletesProgram = () => {
           <div className="w-full bg-black py-16 relative" style={{ height: '300px' }}>
             <div className="max-w-6xl mx-auto px-6 h-full flex flex-col justify-center">
               <div className="flex items-center mb-2">
-                <h2 className="text-white text-lg font-display mr-3">AGONISTA PERFORMANCE:</h2>
+                <h2 className="text-white text-lg font-display mr-3">PERFORMANCE 4:</h2>
                 <p className="text-white text-lg font-swiss max-w-3xl">
-                  Programma completo per giovani atleti che vogliono competere a livello agonistico
+                  Programma intensivo di 4 giorni a settimana per atleti determinati, con focus sulla competizione
                 </p>
               </div>
               <div className="mt-4 flex flex-wrap gap-3">
                 <VickiMonitoringBadge level="advanced" className="bg-opacity-20 border-opacity-30 text-white" />
                 <VickiPoweredBadge className="bg-opacity-20 border-opacity-30 text-white" />
+                <Badge variant="ath" className="bg-yellow-500 text-black border-yellow-600">
+                  <Star className="w-3 h-3 mr-1 fill-black" /> Scelta Popolare
+                </Badge>
               </div>
             </div>
           </div>
@@ -66,28 +71,29 @@ const YoungAthletesProgram = () => {
           <div className="mb-12">
             <RevealAnimation>
               <div className="flex flex-wrap items-center gap-3 mb-6">
-                <h2 className="text-3xl font-swiss">Agonista Performance (13+ anni)</h2>
+                <h2 className="text-3xl font-swiss">Performance 4</h2>
                 <VickiMonitoringBadge level="advanced" />
                 <VickiPoweredBadge />
+                <Badge variant="ath" className="bg-yellow-500 text-black border-yellow-600">
+                  <Star className="w-3 h-3 mr-1 fill-black" /> Scelta Popolare
+                </Badge>
               </div>
             </RevealAnimation>
             <RevealAnimation delay={100}>
-              <p className="text-lg mb-6 font-swiss">Programma completo per giovani atleti che vogliono competere a livello agonistico</p>
+              <p className="text-lg mb-6 font-swiss">4 giorni a settimana, 48 settimane all'anno.</p>
             </RevealAnimation>
             <RevealAnimation delay={150}>
               <p className="mb-4 font-swiss">
-                Il programma Agonista Performance è pensato per giovani atleti dai 13 anni in su che sono in fase 
-                di sviluppo tecnico e fisico, pronti per affrontare competizioni di livello sempre più elevato. 
-                Attraverso un approccio strutturato e personalizzato, aiutiamo i giocatori a sviluppare le proprie capacità 
-                tecniche, tattiche, fisiche e mentali, preparandoli per una carriera agonistica di successo.
+                Il programma Performance 4 è dedicato agli atleti che cercano un impegno consistente e strutturato,
+                con 4 giorni settimanali di allenamento intensivo, combinando sessioni di tennis e preparazione atletica
+                per un totale di 12 ore settimanali di allenamento professionale.
               </p>
             </RevealAnimation>
             <RevealAnimation delay={200}>
               <p className="font-swiss">
-                Grazie alla tecnologia VICKI™, ogni sessione viene analizzata in tempo reale fornendo feedback immediati 
-                sui parametri tecnici, tattici, fisici e mentali. Il sistema monitora costantemente i progressi, 
-                consentendo di ottimizzare il carico di lavoro e prevenire potenziali infortuni attraverso 
-                l'identificazione automatica delle aree critiche.
+                Con massimo 2 atleti per campo, questo programma garantisce un'attenzione altamente personalizzata,
+                permettendo uno sviluppo accelerato delle competenze tennistiche e atletiche.
+                Il sistema VICKI™ monitora ogni dettaglio per ottimizzare la crescita dell'atleta.
               </p>
             </RevealAnimation>
           </div>
@@ -96,53 +102,49 @@ const YoungAthletesProgram = () => {
             <RevealAnimation delay={250} className="bg-gray-50 p-8 rounded-lg">
               <h3 className="text-xl font-swiss font-semibold mb-4">Caratteristiche del Programma</h3>
               <ul className="list-disc list-inside space-y-2 font-swiss">
-                <li>Analisi in tempo reale di tecnica, tattica, parametri mentali e fisici</li>
-                <li>Feedback continuo (durante e dopo la sessione)</li>
-                <li>Database personale per pianificare il calendario tornei</li>
-                <li>Monitoraggio carico di lavoro e progressi</li>
-                <li>Prevenzione infortuni grazie all'identificazione automatica delle aree critiche</li>
-                <li>Percorsi personalizzati in base allo sviluppo fisico, biotipo e stile di gioco</li>
-                <li>Integrazione tra valutazioni tecniche, fisiche, mediche e mentali</li>
-                <li>Coordinamento tra coach, preparatore, mental coach, medico</li>
+                <li>4 sessioni tennis da 1,5 ore (6 ore settimanali)</li>
+                <li>4 sessioni atletica da 1,5 ore (6 ore settimanali)</li>
+                <li>Massimo 2 atleti per campo</li>
+                <li>48 settimane di allenamento</li>
+                <li>Monitoraggio avanzato con VICKI™</li>
+                <li>Analisi video e feedback dettagliati</li>
+                <li>Preparazione specifica per tornei</li>
               </ul>
             </RevealAnimation>
             
             <RevealAnimation delay={300} className="bg-gray-50 p-8 rounded-lg">
-              <h3 className="text-xl font-swiss font-semibold mb-4">Benefici</h3>
-              <ul className="list-disc list-inside space-y-2 font-swiss">
-                <li>Perfezionamento tecnico avanzato con feedback precisi</li>
-                <li>Sviluppo di uno stile di gioco personale basato su punti di forza</li>
-                <li>Potenziamento della resistenza e della forza con programmi mirati</li>
-                <li>Miglioramento del ranking competitivo</li>
-                <li>Costruzione della fiducia e resilienza mentale</li>
-                <li>Preparazione metodica per competizioni nazionali e internazionali</li>
-                <li>Monitoraggio obiettivo dei progressi con dati concreti</li>
-                <li>Riduzione del rischio di infortuni attraverso analisi preventiva</li>
-              </ul>
+              <h3 className="text-xl font-swiss font-semibold mb-4">Prezzo</h3>
+              <div className="mb-4">
+                <p className="text-3xl font-bold text-ath-clay">€6.500</p>
+                <p className="text-sm text-gray-600">per stagione (48 settimane)</p>
+              </div>
+              <p className="text-sm text-gray-600 mb-4">
+                Possibilità di pagamento rateizzato. Contattaci per maggiori informazioni.
+              </p>
+              <ButtonLink 
+                href="/contact" 
+                showArrow={true}
+              >
+                Richiedi informazioni
+              </ButtonLink>
             </RevealAnimation>
           </div>
           
           <RevealAnimation delay={350}>
             <div className="bg-ath-clay/5 border border-ath-clay/20 p-8 rounded-lg mb-12">
-              <h3 className="text-2xl font-display mb-4 text-ath-clay">Investimento</h3>
-              <p className="text-3xl font-bold text-ath-clay mb-2">€ 5.500</p>
-              <p className="text-gray-600 mb-6">Programma completo (40 settimane)</p>
-              <div className="space-y-2 mb-6">
-                <p><strong>Cosa include:</strong></p>
-                <ul className="list-disc list-inside space-y-1">
-                  <li>Allenamenti intensivi con coach specializzati</li>
-                  <li>Pianificazione personalizzata delle competizioni</li>
-                  <li>Analisi tecnica con tecnologia VICKI™</li>
-                  <li>Preparazione fisica specifica per il tennis</li>
-                  <li>Supporto per la gestione mentale delle competizioni</li>
-                  <li>Feedback dettagliati e piani di miglioramento continui</li>
-                </ul>
-              </div>
+              <h3 className="text-2xl font-display mb-4 text-ath-clay">Perché scegliere Performance 4?</h3>
+              <p className="mb-4">Il programma Performance 4 è la <strong>scelta più popolare</strong> per gli atleti che vogliono conciliare impegno sportivo di alto livello e altri impegni personali o scolastici.</p>
+              <ul className="list-disc list-inside space-y-2 mb-6">
+                <li>Equilibrio perfetto tra intensità e recupero</li>
+                <li>Attenzione personalizzata con massimo 2 atleti per campo</li>
+                <li>Monitoraggio completo con tecnologia VICKI™</li>
+                <li>Rapporto ottimale qualità/prezzo</li>
+              </ul>
               <Link 
                 to="/contact" 
                 className="inline-flex items-center bg-ath-clay text-white py-2 px-6 rounded hover:bg-ath-clay/90 transition-colors"
               >
-                Richiedi Informazioni <ArrowRight size={16} className="ml-2" />
+                Prenota una prova gratuita <ArrowRight size={16} className="ml-2" />
               </Link>
             </div>
           </RevealAnimation>
@@ -150,15 +152,10 @@ const YoungAthletesProgram = () => {
           <RevealAnimation delay={400}>
             <div className="text-center">
               <h3 className="text-2xl font-display mb-6">Programmi Correlati</h3>
-              <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                 <Link to="/programs/performance-3" className="block p-6 border border-gray-200 rounded-lg hover:border-ath-clay hover:shadow-sm transition-all">
                   <h4 className="text-lg font-medium mb-2">Performance 3</h4>
                   <p className="text-gray-600 mb-3">3 giorni a settimana per un'intensità maggiore</p>
-                  <span className="inline-flex items-center text-ath-clay">Scopri <ArrowRight size={14} className="ml-1" /></span>
-                </Link>
-                <Link to="/programs/performance-4" className="block p-6 border border-gray-200 rounded-lg hover:border-ath-clay hover:shadow-sm transition-all">
-                  <h4 className="text-lg font-medium mb-2">Performance 4</h4>
-                  <p className="text-gray-600 mb-3">4 giorni a settimana per atleti più dedicati</p>
                   <span className="inline-flex items-center text-ath-clay">Scopri <ArrowRight size={14} className="ml-1" /></span>
                 </Link>
                 <Link to="/programs/elite-performance" className="block p-6 border border-gray-200 rounded-lg hover:border-ath-clay hover:shadow-sm transition-all">
