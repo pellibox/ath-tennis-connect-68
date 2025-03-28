@@ -55,11 +55,11 @@ const ProgramsOverview = () => {
           <Breadcrumb className="mb-6">
             <BreadcrumbList>
               <BreadcrumbItem>
-                <BreadcrumbLink as={Link} to="/">Home</BreadcrumbLink>
+                <Link to="/" className="text-gray-600 hover:text-ath-clay">Home</Link>
               </BreadcrumbItem>
               <BreadcrumbSeparator />
               <BreadcrumbItem>
-                <BreadcrumbLink as={Link} to="/programs">Programmi</BreadcrumbLink>
+                <Link to="/programs" className="text-gray-600 hover:text-ath-clay">Programmi</Link>
               </BreadcrumbItem>
               <BreadcrumbSeparator />
               <BreadcrumbItem>
