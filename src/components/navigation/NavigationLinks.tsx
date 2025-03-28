@@ -36,6 +36,11 @@ export const navigationItems: NavigationItem[] = [
     icon: <Activity size={18} className="mr-2" />,
     submenu: [
       {
+        text: 'Tutti i Programmi',
+        href: '/programs/overview',
+        icon: <Activity size={18} className="mr-2" />
+      },
+      {
         text: 'Tennis',
         href: '/programs',
         icon: <Activity size={18} className="mr-2" />
