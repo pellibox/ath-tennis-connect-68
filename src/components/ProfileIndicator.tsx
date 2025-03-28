@@ -3,7 +3,7 @@ import React from 'react';
 import { UserGender, UserType } from './UserTypeSelector';
 import { SportType } from '@/contexts/ProfileContext';
 import { Button } from "@/components/ui/button";
-import { User, GraduationCap, Target, Briefcase, UserCog, Users, Edit, X, RotateCcw, TennisBall } from 'lucide-react';
+import { User, GraduationCap, Target, Briefcase, UserCog, Users, Edit, X, RotateCcw, CircleDot } from 'lucide-react';
 import {
   HoverCard,
   HoverCardContent,
@@ -146,7 +146,7 @@ const ProfileIndicator: React.FC<ProfileIndicatorProps> = ({
           </div>
           <div className="flex items-center gap-2">
             <div className="p-1.5 rounded-full bg-green-100">
-              <TennisBall size={18} className="text-green-500" />
+              <CircleDot size={18} className="text-green-500" />
             </div>
             <span className="text-sm">{getSportDescription()}</span>
           </div>

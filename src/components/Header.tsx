@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { Menu, X, ChevronLeft } from 'lucide-react';
@@ -24,7 +23,7 @@ const Header = ({ useVickiLogo = false }: HeaderProps) => {
   const navigate = useNavigate();
   const { t } = useLanguage();
   const isMobile = useIsMobile();
-  const { userGender, userType, updateProfile, resetProfile, deleteProfile } = useProfile();
+  const { userGender, userType, sport, updateProfile, resetProfile, deleteProfile } = useProfile();
   
   const [dialogOpen, setDialogOpen] = useState(false);
   
@@ -66,8 +65,6 @@ const Header = ({ useVickiLogo = false }: HeaderProps) => {
     };
   }, [isMenuOpen]);
 
-  // Determine if this page should show a back button
-  // Only show back button when not on the homepage
   const showBackButton = location.pathname !== '/';
 
   const headerBgClass = isMenuOpen ? "bg-white" : (isScrolled ? "bg-white shadow-md" : "bg-white");
@@ -82,7 +79,6 @@ const Header = ({ useVickiLogo = false }: HeaderProps) => {
       )}
     >
       <div className="container mx-auto px-6 flex items-center justify-between relative">
-        {/* Left menu logo - always visible */}
         <div className={cn("flex items-center z-50")}>
           {showBackButton && (
             <Button 
@@ -105,18 +101,17 @@ const Header = ({ useVickiLogo = false }: HeaderProps) => {
           />
         </div>
         
-        {/* Desktop navigation */}
         <div className="hidden lg:flex items-center ml-auto justify-center flex-1">
           <NavigationLinks textColorClass={textColorClass} />
         </div>
         
-        {/* Right side elements (profile, language switcher, menu toggle) */}
         <div className="flex items-center z-50 ml-auto lg:ml-0">
           <ProfileDialog 
             open={dialogOpen}
             setOpen={setDialogOpen}
             userGender={userGender}
             userType={userType}
+            sport={sport}
             updateProfile={updateProfile}
             resetProfile={resetProfile}
             deleteProfile={deleteProfile}
@@ -139,7 +134,6 @@ const Header = ({ useVickiLogo = false }: HeaderProps) => {
           </button>
         </div>
 
-        {/* Mobile menu */}
         <MobileMenu isOpen={isMenuOpen} />
       </div>
     </header>

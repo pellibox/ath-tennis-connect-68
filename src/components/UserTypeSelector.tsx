@@ -1,8 +1,7 @@
-
 import React, { useState, useEffect } from 'react';
 import { Button } from "@/components/ui/button";
 import { useLanguage } from '@/contexts/LanguageContext';
-import { User, GraduationCap, Target, Briefcase, UserCog, Users, Mail, Trash, ArrowRight, Tennis, TennisBall } from 'lucide-react';
+import { User, GraduationCap, Target, Briefcase, UserCog, Users, Mail, Trash, ArrowRight, CircleDot } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import {
   AlertDialog,
@@ -271,7 +270,7 @@ const UserTypeSelector: React.FC<UserTypeSelectorProps> = ({
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
         <SportButton
           sport="tennis"
-          icon={<TennisBall size={24} />}
+          icon={<CircleDot size={24} />}
           label="Tennis"
           selected={selectedSport === 'tennis'}
           onClick={() => handleSportSelect('tennis')}
@@ -280,7 +279,7 @@ const UserTypeSelector: React.FC<UserTypeSelectorProps> = ({
         
         <SportButton
           sport="padel"
-          icon={<TennisBall size={24} />}
+          icon={<CircleDot size={24} />}
           label="Padel"
           selected={selectedSport === 'padel'}
           onClick={() => handleSportSelect('padel')}
@@ -289,7 +288,7 @@ const UserTypeSelector: React.FC<UserTypeSelectorProps> = ({
         
         <SportButton
           sport="pickleball"
-          icon={<TennisBall size={24} />}
+          icon={<CircleDot size={24} />}
           label="Pickleball"
           selected={selectedSport === 'pickleball'}
           onClick={() => handleSportSelect('pickleball')}
@@ -298,7 +297,7 @@ const UserTypeSelector: React.FC<UserTypeSelectorProps> = ({
         
         <SportButton
           sport="touchtennis"
-          icon={<TennisBall size={24} />}
+          icon={<CircleDot size={24} />}
           label="TouchTennis"
           selected={selectedSport === 'touchtennis'}
           onClick={() => handleSportSelect('touchtennis')}
