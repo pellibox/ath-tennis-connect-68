@@ -1,3 +1,4 @@
+
 import { Link, useLocation } from 'react-router-dom';
 import { HelpCircle, BookOpen, Activity, Zap, Server, Users, Dumbbell, ChevronDown } from 'lucide-react';
 import { cn } from '@/lib/utils';
@@ -71,6 +72,7 @@ interface NavigationLinkProps {
 
 const NavigationLink = ({ href, children, className }: NavigationLinkProps) => {
   const location = useLocation();
+  const isActive = location.pathname.startsWith(href) && href !== '/';
   
   const handleClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
     if (href.includes('#')) {
@@ -89,7 +91,14 @@ const NavigationLink = ({ href, children, className }: NavigationLinkProps) => {
   };
 
   return (
-    <Link to={href} onClick={handleClick} className={className}>
+    <Link 
+      to={href} 
+      onClick={handleClick} 
+      className={cn(
+        className,
+        isActive ? "text-ath-clay" : ""
+      )}
+    >
       {children}
     </Link>
   );
@@ -109,6 +118,10 @@ const NavigationLinks = ({ className, textColorClass, isMobile = false }: Naviga
     setOpenSubmenu(openSubmenu === text ? null : text);
   };
 
+  const isActive = (href: string) => {
+    return location.pathname.startsWith(href) && href !== '/';
+  };
+
   const renderMobileNavigation = () => {
     return (
       <nav className={cn("flex flex-col space-y-6", className)}>
@@ -120,7 +133,8 @@ const NavigationLinks = ({ className, textColorClass, isMobile = false }: Naviga
                   onClick={() => toggleSubmenu(item.text)}
                   className={cn(
                     "flex items-center text-sm font-swiss transition-colors hover:text-ath-clay mb-2",
-                    textColorClass
+                    textColorClass,
+                    isActive(item.href) ? "text-ath-clay" : ""
                   )}
                 >
                   {item.icon}
@@ -179,8 +193,9 @@ const NavigationLinks = ({ className, textColorClass, isMobile = false }: Naviga
                 <NavigationMenuItem>
                   <NavigationMenuTrigger 
                     className={cn(
-                      "flex items-center text-sm font-swiss transition-colors hover:text-ath-clay bg-transparent",
-                      textColorClass
+                      "flex items-center text-sm font-swiss transition-colors hover:text-ath-clay bg-transparent data-[state=open]:bg-transparent",
+                      textColorClass,
+                      isActive(item.href) ? "text-ath-clay" : ""
                     )}
                   >
                     {item.icon}
@@ -193,7 +208,10 @@ const NavigationLinks = ({ className, textColorClass, isMobile = false }: Naviga
                           <NavigationMenuLink asChild>
                             <Link 
                               to={subItem.href}
-                              className="flex items-center p-2 hover:bg-gray-100 rounded-md"
+                              className={cn(
+                                "flex items-center p-2 hover:bg-gray-100 rounded-md",
+                                isActive(subItem.href) ? "text-ath-clay" : ""
+                              )}
                             >
                               {subItem.icon}
                               <span>{subItem.text}</span>
