@@ -1,6 +1,7 @@
 
 import { UserGender, UserType } from '../UserTypeSelector';
 import UserTypeSelector from '../UserTypeSelector';
+import { SportType } from '@/contexts/ProfileContext';
 import {
   Dialog,
   DialogContent,
@@ -17,7 +18,8 @@ interface ProfileDialogProps {
   setOpen: (open: boolean) => void;
   userGender: UserGender | null;
   userType: UserType | null;
-  updateProfile: (gender: UserGender, type: UserType) => void;
+  sport: SportType | null;
+  updateProfile: (gender: UserGender, type: UserType, sport: SportType) => void;
   resetProfile: () => void;
   deleteProfile: () => void;
 }
@@ -26,14 +28,15 @@ const ProfileDialog = ({
   open, 
   setOpen,
   userGender, 
-  userType, 
+  userType,
+  sport,
   updateProfile,
   resetProfile,
   deleteProfile
 }: ProfileDialogProps) => {
   
-  const handleProfileComplete = (gender: UserGender, type: UserType) => {
-    updateProfile(gender, type);
+  const handleProfileComplete = (gender: UserGender, type: UserType, selectedSport: SportType = 'tennis') => {
+    updateProfile(gender, type, selectedSport);
     setOpen(false);
     
     toast.success(`Benvenuto! Contenuto personalizzato per ${type}`, {
@@ -58,7 +61,8 @@ const ProfileDialog = ({
           {userGender && userType ? (
             <ProfileIndicator 
               gender={userGender as UserGender} 
-              type={userType as UserType} 
+              type={userType as UserType}
+              sport={sport as SportType}
               onEditClick={() => setOpen(true)}
               onDeleteProfile={deleteProfile}
               onResetProfile={handleProfileReset}
@@ -81,6 +85,7 @@ const ProfileDialog = ({
           onSelectionComplete={handleProfileComplete}
           initialGender={userGender || undefined}
           initialType={userType || undefined}
+          initialSport={sport || undefined}
         />
       </DialogContent>
     </Dialog>

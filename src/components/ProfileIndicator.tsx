@@ -1,8 +1,9 @@
 
 import React from 'react';
 import { UserGender, UserType } from './UserTypeSelector';
+import { SportType } from '@/contexts/ProfileContext';
 import { Button } from "@/components/ui/button";
-import { User, GraduationCap, Target, Briefcase, UserCog, Users, Edit, X, RotateCcw } from 'lucide-react';
+import { User, GraduationCap, Target, Briefcase, UserCog, Users, Edit, X, RotateCcw, TennisBall } from 'lucide-react';
 import {
   HoverCard,
   HoverCardContent,
@@ -23,6 +24,7 @@ import {
 interface ProfileIndicatorProps {
   gender: UserGender;
   type: UserType;
+  sport?: SportType;
   onEditClick: () => void;
   onDeleteProfile?: () => void;
   onResetProfile?: () => void;
@@ -30,7 +32,8 @@ interface ProfileIndicatorProps {
 
 const ProfileIndicator: React.FC<ProfileIndicatorProps> = ({ 
   gender, 
-  type, 
+  type,
+  sport = 'tennis',
   onEditClick,
   onDeleteProfile,
   onResetProfile
@@ -75,13 +78,25 @@ const ProfileIndicator: React.FC<ProfileIndicatorProps> = ({
   const getGenderDescription = () => {
     return gender === 'male' ? 'Uomo' : 'Donna';
   };
+
+  // Get sport description
+  const getSportDescription = () => {
+    switch (sport) {
+      case 'tennis':
+        return "Tennis";
+      case 'padel':
+        return "Padel";
+      case 'pickleball':
+        return "Pickleball";
+      case 'touchtennis':
+        return "TouchTennis";
+      default:
+        return "Tennis";
+    }
+  };
   
   // Handle profile deletion
   const handleDeleteProfile = () => {
-    // Clear user profile from localStorage
-    localStorage.removeItem('ath_user_gender');
-    localStorage.removeItem('ath_user_type');
-    
     // If callback provided, call it
     if (onDeleteProfile) {
       onDeleteProfile();
@@ -128,6 +143,12 @@ const ProfileIndicator: React.FC<ProfileIndicatorProps> = ({
               {getTypeIcon()}
             </div>
             <span className="text-sm">{getTypeDescription()}</span>
+          </div>
+          <div className="flex items-center gap-2">
+            <div className="p-1.5 rounded-full bg-green-100">
+              <TennisBall size={18} className="text-green-500" />
+            </div>
+            <span className="text-sm">{getSportDescription()}</span>
           </div>
           <p className="text-xs text-gray-500 mt-2">
             Contenuti personalizzati in base al tuo profilo

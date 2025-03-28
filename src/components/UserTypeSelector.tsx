@@ -1,7 +1,8 @@
+
 import React, { useState, useEffect } from 'react';
 import { Button } from "@/components/ui/button";
 import { useLanguage } from '@/contexts/LanguageContext';
-import { User, GraduationCap, Target, Briefcase, UserCog, Users, Mail, Trash, ArrowRight } from 'lucide-react';
+import { User, GraduationCap, Target, Briefcase, UserCog, Users, Mail, Trash, ArrowRight, Tennis, TennisBall } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import {
   AlertDialog,
@@ -14,16 +15,24 @@ import {
   AlertDialogTitle,
   AlertDialogTrigger,
 } from "@/components/ui/alert-dialog";
-import { useProfile } from '@/contexts/ProfileContext';
+import { useProfile, SportType } from '@/contexts/ProfileContext';
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 
 // Define types for user selections
 export type UserGender = 'male' | 'female';
 export type UserType = 'junior' | 'performance' | 'professional' | 'coach' | 'parent' | 'adult' | 'camps';
 
 interface UserTypeSelectorProps {
-  onSelectionComplete: (gender: UserGender, type: UserType) => void;
+  onSelectionComplete: (gender: UserGender, type: UserType, sport?: SportType) => void;
   initialGender?: UserGender;
   initialType?: UserType;
+  initialSport?: SportType;
 }
 
 // Functions to save/load user preferences
@@ -41,15 +50,17 @@ export const loadUserPreferences = () => {
 const UserTypeSelector: React.FC<UserTypeSelectorProps> = ({ 
   onSelectionComplete,
   initialGender,
-  initialType 
+  initialType,
+  initialSport
 }) => {
   const { t } = useLanguage();
   const { deleteProfile } = useProfile();
   
-  // State for the two steps of the selection process
+  // State for the selection process
   const [selectedGender, setSelectedGender] = useState<UserGender | null>(initialGender || null);
   const [selectedType, setSelectedType] = useState<UserType | null>(initialType || null);
-  const [step, setStep] = useState<1 | 2>(1);
+  const [selectedSport, setSelectedSport] = useState<SportType>(initialSport || 'tennis');
+  const [step, setStep] = useState<1 | 2 | 3>(1);
   
   // Effect to initialize from existing preferences
   useEffect(() => {
@@ -60,11 +71,17 @@ const UserTypeSelector: React.FC<UserTypeSelectorProps> = ({
     if (initialType) {
       setSelectedType(initialType);
     }
+
+    if (initialSport) {
+      setSelectedSport(initialSport);
+    }
     
     if (initialGender && !initialType) {
       setStep(2);
+    } else if (initialGender && initialType && !initialSport) {
+      setStep(3);
     }
-  }, [initialGender, initialType]);
+  }, [initialGender, initialType, initialSport]);
   
   // Handle gender selection
   const handleGenderSelect = (gender: UserGender) => {
@@ -75,25 +92,35 @@ const UserTypeSelector: React.FC<UserTypeSelectorProps> = ({
   // Handle type selection
   const handleTypeSelect = (type: UserType) => {
     setSelectedType(type);
+    setStep(3);
+  };
+
+  // Handle sport selection
+  const handleSportSelect = (sport: SportType) => {
+    setSelectedSport(sport);
     
-    // If we have both selections, call the completion handler
-    if (selectedGender) {
-      onSelectionComplete(selectedGender, type);
+    // If we have all selections, call the completion handler
+    if (selectedGender && selectedType) {
+      onSelectionComplete(selectedGender, selectedType, sport);
     }
   };
   
   // Handle back button
   const handleBack = () => {
-    setStep(1);
+    if (step === 3) {
+      setStep(2);
+    } else if (step === 2) {
+      setStep(1);
+    }
   };
 
   // Handle profile deletion
   const handleDeleteProfile = () => {
     deleteProfile();
-    // Close dialog or other UI actions might be needed here
-    // For demonstration, we'll just reset the form
+    // Reset the form
     setSelectedGender(null);
     setSelectedType(null);
+    setSelectedSport('tennis');
     setStep(1);
     
     // Reload the page to reset the UI
@@ -208,7 +235,7 @@ const UserTypeSelector: React.FC<UserTypeSelectorProps> = ({
           type="adult" 
           icon={<Mail size={24} />} 
           label="Adulto" 
-          description="Adulto di atleta"
+          description="Adulto"
           selected={selectedType === 'adult'} 
           onClick={() => handleTypeSelect('adult')} 
           genderColor={selectedGender === 'male' ? 'blue' : 'pink'}
@@ -226,11 +253,66 @@ const UserTypeSelector: React.FC<UserTypeSelectorProps> = ({
       </div>
     </div>
   );
+
+  // Sport selection UI
+  const renderSportSelection = () => (
+    <div className="space-y-4">
+      <div className="flex justify-between items-center mb-6">
+        <button 
+          onClick={handleBack}
+          className="text-sm text-gray-500 hover:text-gray-700"
+        >
+          ← Indietro
+        </button>
+        <h3 className="text-xl font-medium font-swiss text-center">Seleziona lo sport</h3>
+        <div className="w-16"></div> {/* Spacer for centering */}
+      </div>
+
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        <SportButton
+          sport="tennis"
+          icon={<TennisBall size={24} />}
+          label="Tennis"
+          selected={selectedSport === 'tennis'}
+          onClick={() => handleSportSelect('tennis')}
+          genderColor={selectedGender === 'male' ? 'blue' : 'pink'}
+        />
+        
+        <SportButton
+          sport="padel"
+          icon={<TennisBall size={24} />}
+          label="Padel"
+          selected={selectedSport === 'padel'}
+          onClick={() => handleSportSelect('padel')}
+          genderColor={selectedGender === 'male' ? 'blue' : 'pink'}
+        />
+        
+        <SportButton
+          sport="pickleball"
+          icon={<TennisBall size={24} />}
+          label="Pickleball"
+          selected={selectedSport === 'pickleball'}
+          onClick={() => handleSportSelect('pickleball')}
+          genderColor={selectedGender === 'male' ? 'blue' : 'pink'}
+        />
+        
+        <SportButton
+          sport="touchtennis"
+          icon={<TennisBall size={24} />}
+          label="TouchTennis"
+          selected={selectedSport === 'touchtennis'}
+          onClick={() => handleSportSelect('touchtennis')}
+          genderColor={selectedGender === 'male' ? 'blue' : 'pink'}
+        />
+      </div>
+    </div>
+  );
   
   return (
     <div className="p-2 sm:p-4">
       {step === 1 && renderGenderSelection()}
       {step === 2 && renderTypeSelection()}
+      {step === 3 && renderSportSelection()}
       
       {/* Aggiungi il pulsante per eliminare il profilo */}
       {(initialGender || initialType) && (
@@ -305,6 +387,52 @@ const TypeButton: React.FC<TypeButtonProps> = ({
       <div className="text-left">
         <div className="font-medium font-swiss">{label}</div>
         <div className="text-sm text-gray-500 font-swiss">{description}</div>
+      </div>
+      {selected && (
+        <div className="ml-auto">
+          <ArrowRight className={`text-${genderColor}-500 h-5 w-5`} />
+        </div>
+      )}
+    </button>
+  );
+};
+
+// Component for the sport buttons
+interface SportButtonProps {
+  sport: SportType;
+  icon: React.ReactNode;
+  label: string;
+  selected: boolean;
+  onClick: () => void;
+  genderColor: 'blue' | 'pink';
+}
+
+const SportButton: React.FC<SportButtonProps> = ({
+  icon,
+  label,
+  selected,
+  onClick,
+  genderColor
+}) => {
+  const baseClasses = "flex items-center p-4 rounded-lg transition-all border-2";
+  const selectedClasses = `bg-${genderColor}-50 border-${genderColor}-500`;
+  const unselectedClasses = `bg-white border-gray-200 hover:border-${genderColor}-300`;
+  
+  return (
+    <button
+      onClick={onClick}
+      className={cn(
+        baseClasses,
+        selected ? selectedClasses : unselectedClasses
+      )}
+    >
+      <div className={`bg-${genderColor}-100 p-2 rounded-full mr-4`}>
+        <div className={`text-${genderColor}-500`}>
+          {icon}
+        </div>
+      </div>
+      <div className="text-left">
+        <div className="font-medium font-swiss">{label}</div>
       </div>
       {selected && (
         <div className="ml-auto">
