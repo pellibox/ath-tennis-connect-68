@@ -50,12 +50,10 @@ const YoungAthletesProgram = () => {
           {/* Black banner with claim text */}
           <div className="w-full bg-black py-16 relative" style={{ height: '300px' }}>
             <div className="max-w-6xl mx-auto px-6 h-full flex flex-col justify-center">
-              <div className="flex items-center mb-2">
-                <h2 className="text-white text-lg font-display mr-3">PERFORMANCE 4:</h2>
-                <p className="text-white text-lg font-swiss max-w-3xl">
-                  Programma intensivo di 4 giorni a settimana per atleti determinati, con focus sulla competizione
-                </p>
-              </div>
+              <h2 className="text-white text-lg font-display mb-4">PROGRAMMI PERFORMANCE:</h2>
+              <p className="text-white text-lg font-swiss max-w-3xl">
+                I nostri programmi Performance sono dedicati agli atleti agonisti che cercano un percorso strutturato di allenamento di alto livello. Con opzioni da 3 a 5 giorni settimanali, questi programmi integrano tennis, preparazione atletica e supporto mentale, tutti potenziati dalla tecnologia VICKI™ per un'analisi dettagliata della performance.
+              </p>
               <div className="mt-4 flex flex-wrap gap-3">
                 <VickiMonitoringBadge level="advanced" className="bg-opacity-20 border-opacity-30 text-white" />
                 <VickiPoweredBadge className="bg-opacity-20 border-opacity-30 text-white" />
@@ -133,7 +131,7 @@ const YoungAthletesProgram = () => {
           <RevealAnimation delay={350}>
             <div className="bg-ath-clay/5 border border-ath-clay/20 p-8 rounded-lg mb-12">
               <h3 className="text-2xl font-display mb-4 text-ath-clay">Perché scegliere Performance 4?</h3>
-              <p className="mb-4">Il programma Performance 4 è la <strong>scelta più popolare</strong> per gli atleti che vogliono conciliare impegno sportivo di alto livello e altri impegni personali o scolastici.</p>
+              <p className="mb-4">Il programma Performance 4 è la <strong>scelta più popolare</strong> tra le nostre offerte per agonisti perché rappresenta l'equilibrio ideale tra intensità di allenamento e impegno settimanale. Consente agli atleti di ottenere risultati significativi pur mantenendo tempo per studio o altre attività.</p>
               <ul className="list-disc list-inside space-y-2 mb-6">
                 <li>Equilibrio perfetto tra intensità e recupero</li>
                 <li>Attenzione personalizzata con massimo 2 atleti per campo</li>
@@ -155,17 +153,17 @@ const YoungAthletesProgram = () => {
               <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                 <Link to="/programs/performance-3" className="block p-6 border border-gray-200 rounded-lg hover:border-ath-clay hover:shadow-sm transition-all">
                   <h4 className="text-lg font-medium mb-2">Performance 3</h4>
-                  <p className="text-gray-600 mb-3">3 giorni a settimana per un'intensità maggiore</p>
+                  <p className="text-gray-600 mb-3">3 giorni a settimana per un'intensità bilanciata, ideale per chi ha altri impegni ma vuole risultati concreti.</p>
                   <span className="inline-flex items-center text-ath-clay">Scopri <ArrowRight size={14} className="ml-1" /></span>
                 </Link>
                 <Link to="/programs/elite-performance" className="block p-6 border border-gray-200 rounded-lg hover:border-ath-clay hover:shadow-sm transition-all">
                   <h4 className="text-lg font-medium mb-2">Elite Performance</h4>
-                  <p className="text-gray-600 mb-3">5 giorni a settimana di allenamento intensivo</p>
+                  <p className="text-gray-600 mb-3">5 giorni a settimana di allenamento intensivo per atleti che puntano all'eccellenza e competizioni di alto livello.</p>
                   <span className="inline-flex items-center text-ath-clay">Scopri <ArrowRight size={14} className="ml-1" /></span>
                 </Link>
                 <Link to="/programs/elite-full" className="block p-6 border border-gray-200 rounded-lg hover:border-ath-clay hover:shadow-sm transition-all">
                   <h4 className="text-lg font-medium mb-2">Elite Performance Full</h4>
-                  <p className="text-gray-600 mb-3">Programma completo e immersivo per atleti di alto livello</p>
+                  <p className="text-gray-600 mb-3">Programma completo e immersivo per atleti di alto livello con allenamento giornaliero e supporto totale.</p>
                   <span className="inline-flex items-center text-ath-clay">Scopri <ArrowRight size={14} className="ml-1" /></span>
                 </Link>
               </div>
