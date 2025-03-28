@@ -1,9 +1,9 @@
-
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { Toaster } from "@/components/ui/sonner";
 import { LanguageProvider } from './contexts/LanguageContext';
 import { ProfileProvider } from './contexts/ProfileContext';
 import HomePage from '@/pages/Index';
+import ProgramsOverview from '@/pages/programs/Overview';
 import AboutPage from '@/pages/About';
 import MethodPage from '@/pages/Method';
 import TechnologyPage from '@/pages/Technology';
@@ -78,6 +78,7 @@ function App() {
             <Route path="/privacy" element={<PrivacyPage />} />
             <Route path="/terms" element={<TermsPage />} />
             
+            <Route path="/programs/overview" element={<ProgramsOverview />} />
             <Route path="*" element={<NotFoundPage />} />
           </Routes>
           <Toaster position="bottom-right" />

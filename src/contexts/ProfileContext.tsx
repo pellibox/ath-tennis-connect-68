@@ -29,7 +29,7 @@ export function ProfileProvider({ children }: { children: React.ReactNode }) {
     
     setUserGender(gender);
     setUserType(type);
-    setSport(savedSport);
+    setSport(savedSport || 'tennis');
   }, []);
 
   const updateProfile = (gender: UserGender, type: UserType, sportType: SportType = 'tennis') => {
