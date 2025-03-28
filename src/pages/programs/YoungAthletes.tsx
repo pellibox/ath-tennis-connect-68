@@ -150,7 +150,7 @@ const YoungAthletesProgram = () => {
           <RevealAnimation delay={400}>
             <div className="text-center">
               <h3 className="text-2xl font-display mb-6">Programmi Correlati</h3>
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+              <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
                 <Link to="/programs/performance-3" className="block p-6 border border-gray-200 rounded-lg hover:border-ath-clay hover:shadow-sm transition-all">
                   <h4 className="text-lg font-medium mb-2">Performance 3</h4>
                   <p className="text-gray-600 mb-3">3 giorni a settimana per un'intensità maggiore</p>
@@ -163,7 +163,12 @@ const YoungAthletesProgram = () => {
                 </Link>
                 <Link to="/programs/elite-performance" className="block p-6 border border-gray-200 rounded-lg hover:border-ath-clay hover:shadow-sm transition-all">
                   <h4 className="text-lg font-medium mb-2">Elite Performance</h4>
-                  <p className="text-gray-600 mb-3">Programma intensivo per atleti di alto livello</p>
+                  <p className="text-gray-600 mb-3">5 giorni a settimana di allenamento intensivo</p>
+                  <span className="inline-flex items-center text-ath-clay">Scopri <ArrowRight size={14} className="ml-1" /></span>
+                </Link>
+                <Link to="/programs/elite-full" className="block p-6 border border-gray-200 rounded-lg hover:border-ath-clay hover:shadow-sm transition-all">
+                  <h4 className="text-lg font-medium mb-2">Elite Performance Full</h4>
+                  <p className="text-gray-600 mb-3">Programma completo e immersivo per atleti di alto livello</p>
                   <span className="inline-flex items-center text-ath-clay">Scopri <ArrowRight size={14} className="ml-1" /></span>
                 </Link>
               </div>
