@@ -78,8 +78,6 @@ function App() {
             <Route path="/programs/university" element={<UniversityProgram />} />
             <Route path="/programs/coach" element={<CoachProgram />} />
             <Route path="/programs/club" element={<ClubProgram />} />
-            
-            {/* New special program routes */}
             <Route path="/programs/young-athletes" element={<YoungAthletesProgram />} />
             <Route path="/programs/parent-tutor" element={<ParentTutorProgram />} />
             <Route path="/programs/professionals" element={<ProfessionalsProgram />} />
