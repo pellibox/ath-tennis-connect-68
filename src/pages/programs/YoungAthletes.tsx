@@ -1,3 +1,4 @@
+
 import { useEffect, useState } from 'react';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
@@ -8,9 +9,10 @@ import { UserGender, UserType, loadUserPreferences } from '@/components/UserType
 import VickiMonitoringBadge from '@/components/VickiMonitoringBadge';
 import VickiPoweredBadge from '@/components/VickiPoweredBadge';
 import ContactSection from '@/components/ContactSection';
-import { ArrowRight } from 'lucide-react';
+import { ArrowRight, Star } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import ButtonLink from '@/components/ButtonLink';
+import { Badge } from '@/components/ui/badge';
 
 const YoungAthletesProgram = () => {
   const { t } = useLanguage();
@@ -65,6 +67,10 @@ const YoungAthletesProgram = () => {
             <RevealAnimation>
               <div className="flex flex-wrap items-center gap-3 mb-6">
                 <h2 className="text-3xl font-swiss">Performance 4</h2>
+                <Badge variant="ath" className="flex items-center gap-1">
+                  <Star className="w-3.5 h-3.5" />
+                  <span>Popular Choice</span>
+                </Badge>
                 <VickiMonitoringBadge level="advanced" />
                 <VickiPoweredBadge />
               </div>
