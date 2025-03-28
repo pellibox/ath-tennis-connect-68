@@ -1,6 +1,6 @@
 
 import { Link } from 'react-router-dom';
-import { Instagram, Facebook, Twitter, Mail, Phone, MapPin, Shield } from 'lucide-react';
+import { Instagram, Facebook, Twitter, Mail, Phone, MapPin } from 'lucide-react';
 import Logo from './Logo';
 import { useLanguage } from '@/contexts/LanguageContext';
 
@@ -79,9 +79,6 @@ const Footer = () => {
             <Link to="/privacy" className="text-gray-500 hover:text-white text-sm transition-colors font-swiss">{t('footer.privacy')}</Link>
             <Link to="/terms" className="text-gray-500 hover:text-white text-sm transition-colors font-swiss">{t('footer.terms')}</Link>
             <Link to="/contact" className="text-gray-500 hover:text-white text-sm transition-colors font-swiss">{t('footer.contact')}</Link>
-            <Link to="/staff-setup" className="text-gray-500 hover:text-white text-sm transition-colors font-swiss flex items-center">
-              <Shield size={12} className="mr-1" /> Staff
-            </Link>
           </div>
         </div>
       </div>
