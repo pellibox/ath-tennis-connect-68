@@ -1,9 +1,10 @@
+
 import StandardHeroVideo from '@/components/StandardHeroVideo';
 
 const AnimatedLogo = () => {
-  // This component is now obsolete since we're using StandardHeroVideo
-  // We'll keep it as a wrapper around StandardHeroVideo for backward compatibility
-  return <StandardHeroVideo vimeoEmbed="" />;
+  // This component is now a proper wrapper that just returns StandardHeroVideo
+  // We're not passing a vimeoEmbed because the Facilities page will handle that
+  return <StandardHeroVideo vimeoEmbed="" showLogo={false} />;
 };
 
 export default AnimatedLogo;

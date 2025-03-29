@@ -5,11 +5,9 @@ import Footer from '@/components/Footer';
 import FacilitiesSection from '@/components/FacilitiesSection';
 import AboutSection from '@/components/AboutSection';
 import JoinRevolutionSection from '@/components/JoinRevolutionSection';
-import AnimatedLogo from '@/components/facilities/AnimatedLogo';
-import FacilitiesHero from '@/components/facilities/FacilitiesHero';
-import FacilitiesHeroTitle from '@/components/facilities/FacilitiesHeroTitle';
 import FacilitiesIntro from '@/components/facilities/FacilitiesIntro';
 import ServicesSection from '@/components/facilities/ServicesSection';
+import StandardHeroVideo from '@/components/StandardHeroVideo';
 
 const facilities = [
   {
@@ -148,14 +146,14 @@ const FacilitiesPage = () => {
 
   return (
     <div className="flex flex-col min-h-screen relative overflow-hidden">
-      <AnimatedLogo />
-      
       <Header />
       
-      <main className="flex-grow font-swiss relative" style={{ marginTop: '80px' }}>
-        <FacilitiesHero vimeoEmbed={facilitiesVimeoEmbed} />
-        
-        <FacilitiesHeroTitle />
+      <main className="flex-grow font-swiss relative">
+        <StandardHeroVideo 
+          vimeoEmbed={facilitiesVimeoEmbed}
+          title="LE STRUTTURE:"
+          subtitle="Impianti all'avanguardia di tennis, padel e pickleball dotati di tecnologia Vicki™"
+        />
         
         <FacilitiesIntro />
         

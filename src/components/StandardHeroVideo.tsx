@@ -7,9 +7,15 @@ interface StandardHeroVideoProps {
   vimeoEmbed: string;
   subtitle?: string;
   title?: string;
+  showLogo?: boolean;
 }
 
-const StandardHeroVideo = ({ vimeoEmbed, subtitle, title }: StandardHeroVideoProps) => {
+const StandardHeroVideo = ({ 
+  vimeoEmbed, 
+  subtitle, 
+  title, 
+  showLogo = true 
+}: StandardHeroVideoProps) => {
   const isMobile = useIsMobile();
   const [logoYOffset, setLogoYOffset] = useState<number>(0);
   const [logoOpacity, setLogoOpacity] = useState<number>(1);
@@ -41,27 +47,29 @@ const StandardHeroVideo = ({ vimeoEmbed, subtitle, title }: StandardHeroVideoPro
   
   return (
     <>
-      <div 
-        className="fixed z-50 pointer-events-none transition-opacity duration-300 left-0 right-0 flex justify-center"
-        style={{
-          top: isMobile ? '140px' : '180px',
-          opacity: logoOpacity
-        }}
-      >
+      {showLogo && (
         <div 
+          className="fixed z-50 pointer-events-none transition-opacity duration-300 left-0 right-0 flex justify-center"
           style={{
-            width: isMobile ? '240px' : '320px',
-            transform: `translateY(-${logoYOffset}px)`
+            top: isMobile ? '140px' : '180px',
+            opacity: logoOpacity
           }}
-          className="flex justify-center"
         >
-          <Logo 
-            onDarkBackground={true} 
-            className="w-full h-auto"
-            isCentered={true}
-          />
+          <div 
+            style={{
+              width: isMobile ? '240px' : '320px',
+              transform: `translateY(-${logoYOffset}px)`
+            }}
+            className="flex justify-center"
+          >
+            <Logo 
+              onDarkBackground={true} 
+              className="w-full h-auto"
+              isCentered={true}
+            />
+          </div>
         </div>
-      </div>
+      )}
       
       <div className="w-full bg-black min-h-[calc(100vw*9/16)] relative">
         <div dangerouslySetInnerHTML={{ __html: vimeoEmbed }} />
