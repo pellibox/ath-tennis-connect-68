@@ -1,25 +1,21 @@
-
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import RevealAnimation from '@/components/RevealAnimation';
-import Logo from '@/components/Logo';
 import { useIsMobile, useBreakpoint } from '@/hooks/use-mobile';
 import { UserType } from '@/components/UserTypeSelector';
+import StandardHeroVideo from '@/components/StandardHeroVideo';
+import { getVimeoEmbed } from '@/utils/videoUtils';
 
 interface ProgramsHeaderProps {
   userType: UserType | null;
   showAllPrograms: boolean;
   setShowAllPrograms: (show: boolean) => void;
-  logoYOffset: number;
-  logoOpacity: number;
 }
 
 const ProgramsHeader = ({ 
   userType, 
   showAllPrograms, 
-  setShowAllPrograms, 
-  logoYOffset, 
-  logoOpacity 
+  setShowAllPrograms 
 }: ProgramsHeaderProps) => {
   const isMobile = useIsMobile();
   const breakpoint = useBreakpoint();
@@ -48,39 +44,6 @@ const ProgramsHeader = ({
   
   return (
     <>
-      <div 
-        className="fixed z-50 pointer-events-none transition-opacity duration-300 left-0 right-0 flex justify-center"
-        style={{
-          top: isMobile ? '140px' : '180px',
-          opacity: logoOpacity
-        }}
-      >
-        <div 
-          style={{
-            width: isMobile ? '240px' : '320px',
-            transform: `translateY(-${logoYOffset}px)`
-          }}
-          className="flex justify-center"
-        >
-          <Logo 
-            onDarkBackground={true} 
-            className="w-full h-auto"
-            isCentered={true}
-          />
-        </div>
-      </div>
-      
-      <div className="w-full bg-black py-10 md:py-16">
-        <div className="max-w-3xl mx-auto text-center px-4">
-          <h2 className="text-white text-lg md:text-2xl font-swiss uppercase mb-2">
-            PROGRAMMI:
-          </h2>
-          <p className="text-white text-base md:text-2xl opacity-90 font-swiss drop-shadow-md px-2">
-            {getPersonalizedSubtitle()}
-          </p>
-        </div>
-      </div>
-      
       <section className="py-8 md:py-16 px-4 md:px-6 lg:px-10">
         <div className="max-w-7xl mx-auto">
           <RevealAnimation>

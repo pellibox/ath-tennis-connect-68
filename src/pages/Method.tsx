@@ -1,95 +1,35 @@
-
-import { useEffect, useState, useRef } from 'react';
+import { useEffect, useState } from 'react';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { useProfile } from '@/contexts/ProfileContext';
 import RevealAnimation from '@/components/RevealAnimation';
-import Logo from '@/components/Logo';
 import { getVimeoEmbed, getPersonalizedMethodDescription } from '@/utils/videoUtils';
 import { useIsMobile } from '@/hooks/use-mobile';
 import { Activity, Target, Brain, Settings } from 'lucide-react';
+import StandardHeroVideo from '@/components/StandardHeroVideo';
 
 const MethodPage = () => {
   const { t } = useLanguage();
   const { userGender, userType } = useProfile();
   const isMobile = useIsMobile();
   
-  const [logoYOffset, setLogoYOffset] = useState<number>(0);
-  const [logoOpacity, setLogoOpacity] = useState<number>(1);
-  
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
-  }, []);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      const scrollY = window.scrollY;
-      
-      setLogoYOffset(scrollY * 0.2);
-      
-      const fadeThreshold = 100;
-      const fadeOutBy = 300;
-      
-      if (scrollY > fadeThreshold) {
-        const opacity = Math.max(0, 1 - (scrollY - fadeThreshold) / (fadeOutBy - fadeThreshold));
-        setLogoOpacity(opacity);
-      } else {
-        setLogoOpacity(1);
-      }
-    };
-
-    window.addEventListener('scroll', handleScroll);
-    handleScroll();
-    
-    return () => {
-      window.removeEventListener('scroll', handleScroll);
-    };
   }, []);
 
   const vimeoEmbed = getVimeoEmbed(userGender, userType, false);
 
   return (
     <div className="flex flex-col min-h-screen relative">
-      <div 
-        className="fixed z-50 pointer-events-none transition-opacity duration-300 left-0 right-0 flex justify-center"
-        style={{
-          top: isMobile ? '140px' : '180px',
-          opacity: logoOpacity
-        }}
-      >
-        <div 
-          style={{
-            width: isMobile ? '240px' : '320px',
-            transform: `translateY(-${logoYOffset}px)`
-          }}
-          className="flex justify-center"
-        >
-          <Logo 
-            onDarkBackground={true} 
-            className="w-full h-auto"
-            isCentered={true}
-          />
-        </div>
-      </div>
-      
       <Header />
       
       <main className="flex-grow pt-20">
-        <div className="w-full bg-black min-h-[calc(100vw*9/16)] relative">
-          <div dangerouslySetInnerHTML={{ __html: vimeoEmbed }} />
-        </div>
-        
-        <div className="w-full bg-black py-16">
-          <div className="max-w-3xl mx-auto text-center">
-            <h2 className="text-white text-xl md:text-2xl font-swiss uppercase mb-2">
-              IL METODO:
-            </h2>
-            <p className="text-white text-xl md:text-2xl opacity-90 font-swiss drop-shadow-md">
-              Tecnologia e competenza umana al servizio dell'eccellenza tennistica
-            </p>
-          </div>
-        </div>
+        <StandardHeroVideo 
+          vimeoEmbed={vimeoEmbed}
+          title="IL METODO:"
+          subtitle="Tecnologia e competenza umana al servizio dell'eccellenza tennistica"
+        />
         
         <section className="py-16 px-6 lg:px-10">
           <div className="max-w-7xl mx-auto">

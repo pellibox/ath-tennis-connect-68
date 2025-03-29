@@ -3,6 +3,7 @@ import React from 'react';
 import Hero from '@/components/Hero';
 import VickiMonitoringBadge from '@/components/VickiMonitoringBadge';
 import VickiPoweredBadge from '@/components/VickiPoweredBadge';
+import StandardHeroVideo from '@/components/StandardHeroVideo';
 
 const PrivateProgramHeader = () => {
   return (

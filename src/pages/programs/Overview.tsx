@@ -1,5 +1,4 @@
-
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect } from 'react';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import ProgramsSection from '@/components/ProgramsSection';
@@ -22,7 +21,7 @@ import { useIsMobile } from '@/hooks/use-mobile';
 import { getVimeoEmbed } from '@/utils/videoUtils';
 import RevealAnimation from '@/components/RevealAnimation';
 import MultisportExplanation from '@/components/programs/MultisportExplanation';
-import Logo from '@/components/Logo';
+import StandardHeroVideo from '@/components/StandardHeroVideo';
 
 const ProgramsOverview = () => {
   const { userType, userGender, sport, updateSport } = useProfile();
@@ -38,36 +37,6 @@ const ProgramsOverview = () => {
   const isMobile = useIsMobile();
   const vimeoEmbed = getVimeoEmbed(userGender, userType);
 
-  // Add state for logo animation
-  const [logoYOffset, setLogoYOffset] = useState<number>(0);
-  const [logoOpacity, setLogoOpacity] = useState<number>(1);
-
-  // Add scroll effect
-  useEffect(() => {
-    const handleScroll = () => {
-      const scrollY = window.scrollY;
-      
-      setLogoYOffset(scrollY * 0.2);
-      
-      const fadeThreshold = 100;
-      const fadeOutBy = 300;
-      
-      if (scrollY > fadeThreshold) {
-        const opacity = Math.max(0, 1 - (scrollY - fadeThreshold) / (fadeOutBy - fadeThreshold));
-        setLogoOpacity(opacity);
-      } else {
-        setLogoOpacity(1);
-      }
-    };
-
-    window.addEventListener('scroll', handleScroll);
-    handleScroll(); // Initialize values
-    
-    return () => {
-      window.removeEventListener('scroll', handleScroll);
-    };
-  }, []);
-
   const handleTabChange = (value: string) => {
     setActiveTab(value as 'tennis' | 'padel' | 'pickleball' | 'touchtennis');
     
@@ -81,32 +50,9 @@ const ProgramsOverview = () => {
     <div className="flex flex-col min-h-screen">
       <Header />
       <main className="flex-grow">
-        {/* Standardized floating logo with consistent sizing */}
-        <div 
-          className="fixed z-50 pointer-events-none transition-opacity duration-300 left-0 right-0 flex justify-center"
-          style={{
-            top: isMobile ? '140px' : '180px',
-            opacity: logoOpacity
-          }}
-        >
-          <div 
-            style={{
-              width: isMobile ? '240px' : '320px',
-              transform: `translateY(-${logoYOffset}px)`
-            }}
-            className="flex justify-center"
-          >
-            <Logo 
-              onDarkBackground={true} 
-              className="w-full h-auto"
-              isCentered={true}
-            />
-          </div>
-        </div>
-        
-        <div className="w-full bg-black min-h-[calc(100vw*9/16)] relative">
-          <div dangerouslySetInnerHTML={{ __html: vimeoEmbed }} />
-        </div>
+        <StandardHeroVideo 
+          vimeoEmbed={vimeoEmbed}
+        />
         
         <div className="container mx-auto px-4 py-12">
           <Breadcrumb className="mb-6">
