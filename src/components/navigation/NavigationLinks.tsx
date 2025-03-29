@@ -1,6 +1,5 @@
-
 import { Link, useLocation, useNavigate } from 'react-router-dom';
-import { HelpCircle, BookOpen, Activity, Zap, Server, Users, Dumbbell, ChevronDown, CircleDot, Racquet } from 'lucide-react';
+import { HelpCircle, BookOpen, Activity, Zap, Server, Users, Dumbbell, ChevronDown, CircleDot } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { useState } from 'react';
 import { useProfile } from '@/contexts/ProfileContext';
