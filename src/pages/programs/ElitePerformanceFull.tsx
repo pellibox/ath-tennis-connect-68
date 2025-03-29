@@ -9,6 +9,9 @@ import { UserGender, UserType, loadUserPreferences } from '@/components/UserType
 import VickiMonitoringBadge from '@/components/VickiMonitoringBadge';
 import VickiPoweredBadge from '@/components/VickiPoweredBadge';
 import ContactSection from '@/components/ContactSection';
+import { ArrowRight, Users } from 'lucide-react';
+import { Link } from 'react-router-dom';
+import { Badge } from '@/components/ui/badge';
 
 const ElitePerformanceFullProgram = () => {
   const { t } = useLanguage();
@@ -43,15 +46,33 @@ const ElitePerformanceFullProgram = () => {
             overlayOpacity="medium"
           />
           
-          {/* Black banner with claim text */}
-          <div className="w-full bg-black py-16 relative" style={{ height: '300px' }}>
-            <div className="max-w-6xl mx-auto px-6 h-full flex flex-col justify-center">
-              <div className="flex items-center mb-2">
-                <h2 className="text-white text-lg font-display mr-3">ELITE PERFORMANCE FULL:</h2>
-                <p className="text-white text-lg font-swiss max-w-3xl">
-                  Programma completo e immersivo per atleti di alto livello con aspirazioni professionali
-                </p>
-              </div>
+          <div className="w-full bg-black py-16 relative" style={{ height: 'auto', minHeight: '400px' }}>
+            <div className="max-w-6xl mx-auto px-6 h-full flex flex-col justify-center py-8">
+              <h2 className="text-white text-lg font-display mb-4">ELITE PERFORMANCE FULL:</h2>
+              <p className="text-white text-lg font-swiss max-w-3xl mb-6">
+                Offre la preparazione completa e collaudata che ha già portato numerosi nostri atleti al successo nei circuiti nazionali e internazionali.
+              </p>
+              <ul className="text-white space-y-3 font-swiss max-w-3xl">
+                <li className="flex">
+                  <span className="mr-2">•</span>
+                  <span><strong>Eccellenza Tecnica:</strong> Analisi biomeccanica dettagliata di ogni colpo e movimento, con feedback immediato e perfezionamento del controllo delle traiettorie in ogni situazione di gioco.</span>
+                </li>
+                <li className="flex">
+                  <span className="mr-2">•</span>
+                  <span><strong>Preparazione Atletica:</strong> Programmi personalizzati con monitoraggio costante, ottimizzazione degli spostamenti e dominanza fisica nelle fasi critiche del match.</span>
+                </li>
+                <li className="flex">
+                  <span className="mr-2">•</span>
+                  <span><strong>Forza Mentale:</strong> Sviluppo delle abilità cognitive, gestione dello stress agonistico e capacità di reazione alle situazioni avverse sotto pressione.</span>
+                </li>
+                <li className="flex">
+                  <span className="mr-2">•</span>
+                  <span><strong>Tattica & Strategia:</strong> Analisi del gioco avversario, sviluppo di piani di partita personalizzati e adattamento tattico durante i match.</span>
+                </li>
+              </ul>
+              <p className="text-white mt-6 font-swiss max-w-3xl">
+                Tutto potenziato dalla tecnologia VICKI™ per un'analisi dettagliata della performance.
+              </p>
               <div className="mt-4 flex flex-wrap gap-3">
                 <VickiMonitoringBadge level="pro" className="bg-opacity-20 border-opacity-30 text-white" />
                 <VickiPoweredBadge className="bg-opacity-20 border-opacity-30 text-white" />
@@ -65,6 +86,10 @@ const ElitePerformanceFullProgram = () => {
             <RevealAnimation>
               <div className="flex flex-wrap items-center gap-3 mb-6">
                 <h2 className="text-3xl font-swiss">Elite Performance Full</h2>
+                <Badge variant="ath" className="flex items-center gap-1">
+                  <Users className="w-3.5 h-3.5" />
+                  <span>Percorso Professionistico</span>
+                </Badge>
                 <VickiMonitoringBadge level="pro" />
                 <VickiPoweredBadge />
               </div>
@@ -96,7 +121,7 @@ const ElitePerformanceFullProgram = () => {
             </RevealAnimation>
           </div>
           
-          <div className="grid md:grid-cols-2 gap-10">
+          <div className="grid md:grid-cols-2 gap-10 mb-12">
             <RevealAnimation delay={300} className="bg-gray-50 p-8 rounded-lg">
               <h3 className="text-xl font-swiss font-semibold mb-4">Caratteristiche del Programma</h3>
               <ul className="list-disc list-inside space-y-2 font-swiss">
@@ -135,6 +160,47 @@ const ElitePerformanceFullProgram = () => {
                 Richiedi informazioni
               </a>
             </RevealAnimation>
+          </div>
+          
+          <RevealAnimation delay={400}>
+            <div className="bg-ath-clay/5 border border-ath-clay/20 p-8 rounded-lg mb-12">
+              <h3 className="text-2xl font-display mb-4 text-ath-clay">Perché scegliere Elite Performance Full?</h3>
+              <p className="mb-4">Il programma Elite Performance Full rappresenta la soluzione definitiva per gli atleti agonisti che mirano a costruire una carriera tennistica professionale. È strutturato seguendo metodologie utilizzate nel circuito professionistico e adattate alle esigenze di sviluppo di ogni atleta.</p>
+              <ul className="list-disc list-inside space-y-2 mb-6">
+                <li>Approccio professionale identico a quello utilizzato dai top players internazionali</li>
+                <li>Attenzione altamente personalizzata con massimo 2 atleti per campo</li>
+                <li>Monitoraggio avanzato con tecnologia VICKI™ di livello professionistico</li>
+                <li>Team multidisciplinare dedicato alla crescita dell'atleta</li>
+                <li>Percorso collaudato con storici di successo dimostrabili</li>
+              </ul>
+              <Link 
+                to="/contact" 
+                className="inline-flex items-center bg-ath-clay text-white py-2 px-6 rounded hover:bg-ath-clay/90 transition-colors"
+              >
+                Prenota una valutazione <ArrowRight size={16} className="ml-2" />
+              </Link>
+            </div>
+          </RevealAnimation>
+          
+          <div className="text-center">
+            <h3 className="text-2xl font-display mb-6">Programmi Correlati</h3>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+              <Link to="/programs/elite-performance" className="block p-6 border border-gray-200 rounded-lg hover:border-ath-clay hover:shadow-sm transition-all">
+                <h4 className="text-lg font-medium mb-2">Elite Performance</h4>
+                <p className="text-gray-600 mb-3">5 giorni a settimana, ideale per atleti agonisti di alto livello che non possono ancora accedere a un percorso full-time.</p>
+                <span className="inline-flex items-center text-ath-clay">Scopri <ArrowRight size={14} className="ml-1" /></span>
+              </Link>
+              <Link to="/programs/performance-4" className="block p-6 border border-gray-200 rounded-lg hover:border-ath-clay hover:shadow-sm transition-all">
+                <h4 className="text-lg font-medium mb-2">Performance 4</h4>
+                <p className="text-gray-600 mb-3">4 giorni a settimana, ideale per chi ha altri impegni ma vuole risultati concreti nel percorso agonistico.</p>
+                <span className="inline-flex items-center text-ath-clay">Scopri <ArrowRight size={14} className="ml-1" /></span>
+              </Link>
+              <Link to="/programs/performance-3" className="block p-6 border border-gray-200 rounded-lg hover:border-ath-clay hover:shadow-sm transition-all">
+                <h4 className="text-lg font-medium mb-2">Performance 3</h4>
+                <p className="text-gray-600 mb-3">3 giorni a settimana per un'intensità bilanciata, ideale per chi vuole risultati competitivi mantenendo altri impegni.</p>
+                <span className="inline-flex items-center text-ath-clay">Scopri <ArrowRight size={14} className="ml-1" /></span>
+              </Link>
+            </div>
           </div>
         </div>
         
