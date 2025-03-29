@@ -23,6 +23,7 @@ import { getVimeoEmbed } from '@/utils/videoUtils';
 import { GiTennisRacket } from "react-icons/gi";
 import { MdSportsTennis } from "react-icons/md";
 import RevealAnimation from '@/components/RevealAnimation';
+import MultisportExplanation from '@/components/programs/MultisportExplanation';
 
 const ProgramsOverview = () => {
   const { userType, userGender, sport, updateSport } = useProfile();
@@ -82,6 +83,9 @@ const ProgramsOverview = () => {
               </p>
             </div>
           </RevealAnimation>
+          
+          {/* Add the MultisportExplanation component here */}
+          <MultisportExplanation />
           
           <RevealAnimation delay={100}>
             <div className="mb-12">
