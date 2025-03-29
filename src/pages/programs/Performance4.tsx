@@ -35,6 +35,11 @@ const Performance4Program = () => {
       title: "Elite Performance Full",
       description: "Programma completo e immersivo per atleti di alto livello con allenamento giornaliero e supporto totale.",
       link: "/programs/elite-full"
+    },
+    {
+      title: "Genitore/Tutor",
+      description: "Programma di supporto per genitori e tutor di atleti tra i 6 e i 18 anni. Incluso nel programma Performance 4.",
+      link: "/programs/parent"
     }
   ];
   

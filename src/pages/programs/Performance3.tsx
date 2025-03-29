@@ -53,7 +53,6 @@ const Performance3Program = () => {
             overlayOpacity="medium"
           />
           
-          {/* Black banner with claim text */}
           <div className="w-full bg-black py-16 relative" style={{ height: 'auto', minHeight: '400px' }}>
             <div className="max-w-6xl mx-auto px-6 h-full flex flex-col justify-center py-8">
               <h2 className="text-white text-lg font-display mb-4">PROGRAMMA PERFORMANCE 3:</h2>
@@ -153,7 +152,6 @@ const Performance3Program = () => {
           </div>
         </div>
         
-        {/* Detailed Related Programs Section */}
         <div className="bg-gray-50 py-16">
           <div className="max-w-6xl mx-auto px-6">
             <RevealAnimation>
@@ -179,7 +177,16 @@ const Performance3Program = () => {
               </div>
             </RevealAnimation>
             
-            {/* Also keep the original ProgramsSection for visual consistency */}
+            <RevealAnimation delay={150}>
+              <div className="mt-6">
+                <Link to="/programs/parent" className="block p-6 border border-gray-200 bg-white rounded-lg hover:border-ath-clay hover:shadow-sm transition-all">
+                  <h4 className="text-lg font-medium mb-2">Genitore/Tutor</h4>
+                  <p className="text-gray-600 mb-3">Programma di supporto per genitori e tutor di atleti tra i 6 e i 18 anni. Disponibile per il programma Performance 3 a €150.</p>
+                  <span className="inline-flex items-center text-ath-clay">Scopri <ArrowRight size={14} className="ml-1" /></span>
+                </Link>
+              </div>
+            </RevealAnimation>
+            
             <ProgramsSection 
               title=""
               programs={relatedPrograms}
