@@ -1,6 +1,7 @@
 
 import { ArrowRight } from "lucide-react";
 import { Link } from "react-router-dom";
+import RevealAnimation from "@/components/RevealAnimation";
 
 interface RelatedProgram {
   title: string;
@@ -22,7 +23,7 @@ const RelatedPrograms = ({ title, programs }: RelatedProgramsProps) => {
           <Link 
             key={index}
             to={program.link} 
-            className="block p-6 border border-gray-200 rounded-lg hover:border-ath-clay hover:shadow-sm transition-all"
+            className="block p-6 border border-gray-200 rounded-lg hover:border-ath-clay hover:shadow-sm transition-all bg-white"
           >
             <h4 className="text-lg font-medium mb-2">{program.title}</h4>
             <p className="text-gray-600 mb-3">{program.description}</p>
