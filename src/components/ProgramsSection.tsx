@@ -7,7 +7,6 @@ import { HoverCard, HoverCardTrigger, HoverCardContent } from '@/components/ui/h
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from '@/components/ui/collapsible';
 import VickiMonitoringBadge, { MonitoringLevel } from './VickiMonitoringBadge';
 import VickiPoweredBadge from './VickiPoweredBadge';
-import { useIsMobile } from '@/hooks/use-mobile';
 
 interface Program {
   id: string;
@@ -58,7 +57,6 @@ const ProgramsSection = ({
   const [blackOverlay, setBlackOverlay] = useState<Record<string, boolean>>({});
   const [openCategories, setOpenCategories] = useState<Record<string, boolean>>({});
   const videoRefs = useRef<Record<string, HTMLVideoElement | null>>({});
-  const isMobile = useIsMobile();
 
   const getFallbackImage = (program: Program) => {
     return `https://source.unsplash.com/featured/800x600/?tennis,${encodeURIComponent(program.title.toLowerCase())}`;
@@ -191,22 +189,18 @@ const ProgramsSection = ({
       <div 
         className="group h-full flex flex-col border border-gray-200 bg-white transition-all hover:shadow-sm overflow-hidden"
         onMouseEnter={() => {
-          if (!isMobile) {
-            console.log(`Hovering on program: ${program.id} - ${program.title}`);
-            if (program.videoSrc) {
-              handleMouseEnter(program.id);
-            } else if (program.vimeoEmbed) {
-              setHoveredCard(program.id);
-            }
+          console.log(`Hovering on program: ${program.id} - ${program.title}`);
+          if (program.videoSrc) {
+            handleMouseEnter(program.id);
+          } else if (program.vimeoEmbed) {
+            setHoveredCard(program.id);
           }
         }}
         onMouseLeave={() => {
-          if (!isMobile) {
-            if (program.videoSrc) {
-              handleMouseLeave(program.id);
-            } else if (program.vimeoEmbed) {
-              setHoveredCard(null);
-            }
+          if (program.videoSrc) {
+            handleMouseLeave(program.id);
+          } else if (program.vimeoEmbed) {
+            setHoveredCard(null);
           }
         }}
       >
@@ -267,9 +261,9 @@ const ProgramsSection = ({
             />
           )}
         </div>
-        <div className="flex flex-col flex-grow p-4 md:p-6">
+        <div className="flex flex-col flex-grow p-6">
           <div className="flex flex-wrap items-start justify-between mb-3 gap-2">
-            <h3 className={cn("font-medium text-ath-clay", isMobile ? "text-lg" : "text-xl")}>{program.title}</h3>
+            <h3 className="text-xl font-medium text-ath-clay">{program.title}</h3>
             <div className="flex flex-wrap gap-2">
               {program.monitoringLevel && (
                 <VickiMonitoringBadge level={program.monitoringLevel} showLabel={false} className="mt-1" />
@@ -285,10 +279,10 @@ const ProgramsSection = ({
               )}
             </div>
           </div>
-          <p className={cn("text-gray-600 mb-4 flex-grow", isMobile && "text-sm")}>{program.description}</p>
+          <p className="text-gray-600 mb-4 flex-grow">{program.description}</p>
           
           {program.features && program.features.length > 0 && (
-            <ul className={cn("text-gray-600 mb-5 space-y-2", isMobile ? "text-xs" : "text-sm")}>
+            <ul className="text-sm text-gray-600 mb-5 space-y-2">
               {program.features.map((feature, idx) => (
                 <li key={idx} className="flex items-start space-x-2">
                   <span className="text-ath-clay text-xs mt-1">●</span>
@@ -300,12 +294,9 @@ const ProgramsSection = ({
           
           <Link 
             to={program.link} 
-            className={cn(
-              "inline-flex items-center font-medium animated-line pb-1 w-fit text-ath-clay mt-auto",
-              isMobile ? "text-xs" : "text-sm"
-            )}
+            className="inline-flex items-center text-sm font-medium animated-line pb-1 w-fit text-ath-clay mt-auto"
           >
-            Dettagli <ArrowRight size={isMobile ? 14 : 16} className="ml-2" />
+            Dettagli <ArrowRight size={16} className="ml-2" />
           </Link>
         </div>
       </div>
@@ -313,32 +304,32 @@ const ProgramsSection = ({
   );
 
   return (
-    <section id="programs" className={cn('py-8 md:py-16 px-4 md:px-6 lg:px-10', className)}>
+    <section id="programs" className={cn('py-16 px-6 lg:px-10', className)}>
       <div className="max-w-7xl mx-auto">
         <RevealAnimation>
-          <h2 className={cn("font-display mb-4", isMobile ? "text-2xl" : "text-3xl md:text-4xl")}>{title}</h2>
+          <h2 className="text-3xl md:text-4xl font-display mb-4">{title}</h2>
         </RevealAnimation>
         
         {subtitle && (
           <RevealAnimation delay={100}>
-            <p className={cn("text-gray-600 max-w-3xl mb-6 md:mb-12", isMobile ? "text-base" : "text-lg")}>{subtitle}</p>
+            <p className="text-lg text-gray-600 max-w-3xl mb-12">{subtitle}</p>
           </RevealAnimation>
         )}
         
         {categories && categories.length > 0 ? (
-          <div className="space-y-8 md:space-y-16">
+          <div className="space-y-16">
             {categories.map((category, categoryIndex) => (
-              <div key={category.id} className="mb-4 md:mb-8">
+              <div key={category.id} className="mb-8">
                 {categoryCollapsible ? (
                   <Collapsible 
                     open={openCategories[category.id]}
                     onOpenChange={() => toggleCategory(category.id)}
                     className="w-full"
                   >
-                    <div className="mb-4 md:mb-6">
+                    <div className="mb-6">
                       <CollapsibleTrigger className="w-full">
-                        <div className="flex items-center justify-between bg-white p-3 md:p-4 shadow-sm cursor-pointer hover:bg-gray-50">
-                          <h3 className={cn("font-medium", isMobile ? "text-lg" : "text-2xl")}>{category.title}</h3>
+                        <div className="flex items-center justify-between bg-white p-4 shadow-sm cursor-pointer hover:bg-gray-50">
+                          <h3 className="text-2xl font-medium">{category.title}</h3>
                           <div className={`transform transition-transform ${openCategories[category.id] ? 'rotate-180' : ''}`}>
                             ▼
                           </div>
@@ -348,7 +339,7 @@ const ProgramsSection = ({
                     
                     <CollapsibleContent>
                       <div className={cn(
-                        "grid gap-4 md:gap-8",
+                        "grid gap-8",
                         gridLayout === 'dense' 
                           ? "grid-cols-1 sm:grid-cols-2 lg:grid-cols-3" 
                           : compact 
@@ -364,11 +355,11 @@ const ProgramsSection = ({
                 ) : (
                   <>
                     <RevealAnimation delay={categoryIndex * 100}>
-                      <h3 className={cn("font-medium mb-4 md:mb-6 border-b pb-2", isMobile ? "text-lg" : "text-2xl")}>{category.title}</h3>
+                      <h3 className="text-2xl font-medium mb-6 border-b pb-2">{category.title}</h3>
                     </RevealAnimation>
                     
                     <div className={cn(
-                      "grid gap-4 md:gap-8",
+                      "grid gap-8",
                       gridLayout === 'dense' 
                         ? "grid-cols-1 sm:grid-cols-2 lg:grid-cols-3" 
                         : compact 
@@ -386,7 +377,7 @@ const ProgramsSection = ({
           </div>
         ) : (
           <div className={cn(
-            "grid gap-4 md:gap-8",
+            "grid gap-8",
             gridLayout === 'dense' 
               ? "grid-cols-1 sm:grid-cols-2 lg:grid-cols-3" 
               : compact 

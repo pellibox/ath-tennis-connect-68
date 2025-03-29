@@ -1,8 +1,8 @@
+
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { Toaster } from "@/components/ui/sonner";
 import { LanguageProvider } from './contexts/LanguageContext';
 import { ProfileProvider } from './contexts/ProfileContext';
-import { useIsMobile } from './hooks/use-mobile';
 import HomePage from '@/pages/Index';
 import ProgramsOverview from '@/pages/programs/Overview';
 import AboutPage from '@/pages/About';
@@ -47,64 +47,54 @@ function App() {
     <LanguageProvider>
       <ProfileProvider>
         <Router>
-          <AppContent />
+          <Routes>
+            <Route path="/" element={<HomePage />} />
+            <Route path="/about" element={<AboutPage />} />
+            <Route path="/method" element={<MethodPage />} />
+            <Route path="/technology" element={<TechnologyPage />} />
+            <Route path="/facilities" element={<FacilitiesPage />} />
+            <Route path="/coaches" element={<CoachesPage />} />
+            
+            {/* Programs routes */}
+            <Route path="/programs" element={<ProgramsPage />} />
+            <Route path="/padel-pickleball" element={<PadelPickleballPage />} />
+            
+            <Route path="/programs/elite" element={<EliteProgram />} />
+            <Route path="/programs/junior" element={<JuniorProgram />} />
+            <Route path="/programs/adult" element={<AdultProgram />} />
+            <Route path="/programs/private" element={<PrivateProgram />} />
+            <Route path="/programs/camps" element={<CampsProgram />} />
+            
+            {/* New program detail routes */}
+            <Route path="/programs/performance-2" element={<Performance2Program />} />
+            <Route path="/programs/performance-3" element={<Performance3Program />} />
+            <Route path="/programs/performance-4" element={<Performance4Program />} />
+            <Route path="/programs/elite-performance" element={<ElitePerformanceProgram />} />
+            <Route path="/programs/elite-full" element={<ElitePerformanceFullProgram />} />
+            <Route path="/programs/talent-identification" element={<SitProgram />} />
+            <Route path="/programs/sat" element={<SatProgram />} />
+            <Route path="/programs/personal" element={<PersonalCoachingProgram />} />
+            <Route path="/programs/adult-training" element={<AdultTrainingProgram />} />
+            <Route path="/programs/university" element={<UniversityProgram />} />
+            <Route path="/programs/coach" element={<CoachProgram />} />
+            <Route path="/programs/club" element={<ClubProgram />} />
+            <Route path="/programs/young-athletes" element={<YoungAthletesProgram />} />
+            <Route path="/programs/parent" element={<ParentTutorProgram />} /> {/* Ensure this route is correct */}
+            <Route path="/programs/parent-tutor" element={<ParentTutorProgram />} />
+            <Route path="/programs/professionals" element={<ProfessionalsProgram />} />
+            <Route path="/programs/performance-analysis" element={<PerformanceAnalysisProgram />} />
+            
+            <Route path="/contact" element={<ContactPage />} />
+            <Route path="/privacy" element={<PrivacyPage />} />
+            <Route path="/terms" element={<TermsPage />} />
+            
+            <Route path="/programs/overview" element={<ProgramsOverview />} />
+            <Route path="*" element={<NotFoundPage />} />
+          </Routes>
+          <Toaster position="bottom-right" />
         </Router>
       </ProfileProvider>
     </LanguageProvider>
-  );
-}
-
-function AppContent() {
-  const isMobile = useIsMobile();
-  
-  return (
-    <div className={isMobile ? "pb-14" : ""}>
-      <Routes>
-        <Route path="/" element={<HomePage />} />
-        <Route path="/about" element={<AboutPage />} />
-        <Route path="/method" element={<MethodPage />} />
-        <Route path="/technology" element={<TechnologyPage />} />
-        <Route path="/facilities" element={<FacilitiesPage />} />
-        <Route path="/coaches" element={<CoachesPage />} />
-        
-        {/* Programs routes */}
-        <Route path="/programs" element={<ProgramsPage />} />
-        <Route path="/padel-pickleball" element={<PadelPickleballPage />} />
-        
-        <Route path="/programs/elite" element={<EliteProgram />} />
-        <Route path="/programs/junior" element={<JuniorProgram />} />
-        <Route path="/programs/adult" element={<AdultProgram />} />
-        <Route path="/programs/private" element={<PrivateProgram />} />
-        <Route path="/programs/camps" element={<CampsProgram />} />
-        
-        {/* New program detail routes */}
-        <Route path="/programs/performance-2" element={<Performance2Program />} />
-        <Route path="/programs/performance-3" element={<Performance3Program />} />
-        <Route path="/programs/performance-4" element={<Performance4Program />} />
-        <Route path="/programs/elite-performance" element={<ElitePerformanceProgram />} />
-        <Route path="/programs/elite-full" element={<ElitePerformanceFullProgram />} />
-        <Route path="/programs/talent-identification" element={<SitProgram />} />
-        <Route path="/programs/sat" element={<SatProgram />} />
-        <Route path="/programs/personal" element={<PersonalCoachingProgram />} />
-        <Route path="/programs/adult-training" element={<AdultTrainingProgram />} />
-        <Route path="/programs/university" element={<UniversityProgram />} />
-        <Route path="/programs/coach" element={<CoachProgram />} />
-        <Route path="/programs/club" element={<ClubProgram />} />
-        <Route path="/programs/young-athletes" element={<YoungAthletesProgram />} />
-        <Route path="/programs/parent" element={<ParentTutorProgram />} />
-        <Route path="/programs/parent-tutor" element={<ParentTutorProgram />} />
-        <Route path="/programs/professionals" element={<ProfessionalsProgram />} />
-        <Route path="/programs/performance-analysis" element={<PerformanceAnalysisProgram />} />
-        
-        <Route path="/contact" element={<ContactPage />} />
-        <Route path="/privacy" element={<PrivacyPage />} />
-        <Route path="/terms" element={<TermsPage />} />
-        
-        <Route path="/programs/overview" element={<ProgramsOverview />} />
-        <Route path="*" element={<NotFoundPage />} />
-      </Routes>
-      <Toaster position="bottom-right" />
-    </div>
   );
 }
 

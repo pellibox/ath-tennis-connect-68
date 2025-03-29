@@ -31,31 +31,27 @@ const Logo = ({
   // Logo paths
   let logoSrc;
   
-  // Uploaded image URL
-  const whiteLogoPath = "/lovable-uploads/b8c96883-7ba3-4f6d-b9a5-be4eae709cf1.png";
-  
   if (isInMenu) {
-    // Always use the white logo when in menu
-    logoSrc = whiteLogoPath;
+    // Always use the new menu logo when in menu
+    logoSrc = "/lovable-uploads/ca310445-f2b9-49bb-8499-59608b361de5.png";
   } else if (useVickiLogo) {
     logoSrc = onDarkBackground 
       ? "/lovable-uploads/dc679c8d-60cd-4841-a42c-0907926b7ef5.png" // Vicki logo bianco
       : "/lovable-uploads/8f2b30a1-cb65-453e-ba82-d9721a192426.png"; // Vicki logo nero
   } else {
-    // Use the appropriate logo based on background
     logoSrc = onDarkBackground 
-      ? whiteLogoPath // Use white logo for dark background
-      : "/lovable-uploads/47943c06-a504-40f7-a152-59c4a5d22896.png"; // Black ATH logo
+      ? "/lovable-uploads/ebada5d3-6c5e-43a0-ab7d-a5850900d950.png" // Logo bianco per sfondi scuri (ATH_W)
+      : "/lovable-uploads/fa0d6412-fbae-4d76-98c8-1d7a6cb96b19.png"; // Logo nero per sfondi chiari (ATH_B)
   }
   
   // Size classes based on logo type
   const sizeClasses = isFooter 
     ? 'h-28' 
     : (isInMenu 
-        ? 'w-24 h-auto' // Increased mobile logo size from w-10 to w-24
+        ? 'w-14 sm:w-16 h-auto' // Smaller menu logo
         : (isMobile 
-            ? 'w-24 h-auto' // Increased mobile logo size from w-20 to w-24
-            : 'w-40 sm:w-44 h-auto')); // Desktop size stays the same
+            ? 'w-20 h-auto' // Smaller logo on mobile for center logo
+            : 'w-40 sm:w-44 h-auto')); // Increased size on desktop (was w-24 sm:w-32)
   
   // Function to handle logo click
   const handleLogoClick = (e: React.MouseEvent) => {
@@ -73,16 +69,13 @@ const Logo = ({
     }
   };
   
-  // Add mx-auto class when logo should be centered
-  const centeringClass = isCentered ? 'mx-auto' : '';
-  
   return (
-    <div className={`${className} ${isCentered ? 'text-center' : ''}`}>
+    <div className={`${className}`}>
       <Link to="/" onClick={handleLogoClick}>
         <img 
           src={logoSrc} 
           alt={useVickiLogo || isInMenu ? "Vicki™" : "ATH - Advanced Tennis Hub"} 
-          className={`${sizeClasses} ${centeringClass} object-contain`}
+          className={`${sizeClasses} object-contain`}
         />
       </Link>
     </div>

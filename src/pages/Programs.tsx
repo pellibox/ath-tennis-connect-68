@@ -11,17 +11,13 @@ import { useProfile } from '@/contexts/ProfileContext';
 import { getVimeoEmbed } from '@/utils/videoUtils';
 import ProgramsHeader from '@/components/programs/ProgramsHeader';
 import ProgramFilters from '@/components/programs/ProgramFilters';
-import { Tabs, TabsList, TabsTrigger, TabsContent } from '@/components/ui/tabs';
-import { programCategories } from '@/data/programs';
-import { programCategories as padelPickleballCategories } from '@/data/padelPickleball';
 
 const Programs = () => {
   const { t } = useLanguage();
   const [showAllPrograms, setShowAllPrograms] = useState(false);
   const [logoYOffset, setLogoYOffset] = useState<number>(0);
   const [logoOpacity, setLogoOpacity] = useState<number>(1);
-  const { userGender, userType, sport, updateProfile } = useProfile();
-  const [activeTab, setActiveTab] = useState<'tennis' | 'padel-pickleball'>(sport === 'padel' || sport === 'pickleball' ? 'padel-pickleball' : 'tennis');
+  const { userGender, userType } = useProfile();
   
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -52,39 +48,14 @@ const Programs = () => {
     };
   }, []);
 
-  // When tab changes, update sport in profile if needed
-  useEffect(() => {
-    if (activeTab === 'tennis' && sport !== 'tennis') {
-      // Fix: Need to pass all required parameters to updateProfile
-      // The function expects (gender, type, sport) based on the ProfileContext definition
-      updateProfile(userGender || 'male', userType || 'adult', 'tennis');
-    } else if (activeTab === 'padel-pickleball' && sport !== 'padel' && sport !== 'pickleball') {
-      // Fix: Need to pass all required parameters to updateProfile
-      updateProfile(userGender || 'male', userType || 'adult', 'padel');
-    }
-  }, [activeTab, sport, updateProfile, userGender, userType]);
-  
   const vimeoEmbed = getVimeoEmbed(userGender, userType);
-  const { filteredCategories, title, subtitle } = ProgramFilters({ 
-    userType, 
-    showAllPrograms,
-    sport: activeTab === 'tennis' ? 'tennis' : (sport === 'pickleball' ? 'pickleball' : 'padel')
-  });
-
-  const handleTabChange = (value: string) => {
-    setActiveTab(value as 'tennis' | 'padel-pickleball');
-    // When switching tabs, reset scroll position to show the programs
-    const programsElement = document.getElementById('programs-section');
-    if (programsElement) {
-      programsElement.scrollIntoView({ behavior: 'smooth' });
-    }
-  };
+  const { filteredCategories, title, subtitle } = ProgramFilters({ userType, showAllPrograms });
 
   return (
     <div className="flex flex-col min-h-screen relative">
       <Header />
       
-      <main className="flex-grow pt-0"> {/* Removed pt-20 to eliminate white space */}
+      <main className="flex-grow pt-20">
         <div className="w-full bg-black min-h-[calc(100vw*9/16)] relative">
           <div dangerouslySetInnerHTML={{ __html: vimeoEmbed }} />
         </div>
@@ -97,44 +68,12 @@ const Programs = () => {
           logoOpacity={logoOpacity}
         />
         
-        <div id="programs-section" className="bg-ath-gray py-12">
-          <div className="container mx-auto px-4">
-            <Tabs value={activeTab} onValueChange={handleTabChange} className="w-full">
-              <TabsList className="w-full mb-8 bg-white border border-gray-200 rounded-full p-1 flex justify-center">
-                <TabsTrigger 
-                  value="tennis" 
-                  className="flex-1 rounded-full data-[state=active]:bg-ath-clay data-[state=active]:text-white px-8 py-2"
-                >
-                  Tennis
-                </TabsTrigger>
-                <TabsTrigger 
-                  value="padel-pickleball" 
-                  className="flex-1 rounded-full data-[state=active]:bg-ath-clay data-[state=active]:text-white px-8 py-2"
-                >
-                  Padel & Pickleball
-                </TabsTrigger>
-              </TabsList>
-              
-              <TabsContent value="tennis" className="mt-0">
-                <ProgramsSection 
-                  title={title}
-                  subtitle={subtitle}
-                  categories={filteredCategories}
-                  className=""
-                />
-              </TabsContent>
-              
-              <TabsContent value="padel-pickleball" className="mt-0">
-                <ProgramsSection 
-                  title="Programmi Padel & Pickleball"
-                  subtitle="Esplora i nostri programmi dedicati al Padel e al Pickleball per giocatori di tutti i livelli"
-                  categories={padelPickleballCategories}
-                  className=""
-                />
-              </TabsContent>
-            </Tabs>
-          </div>
-        </div>
+        <ProgramsSection 
+          title={title}
+          subtitle={subtitle}
+          categories={filteredCategories}
+          className="bg-ath-gray"
+        />
         
         <AboutSection 
           title="Il Vantaggio ATH"
