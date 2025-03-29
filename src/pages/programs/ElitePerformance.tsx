@@ -1,4 +1,3 @@
-
 import { useEffect, useState } from 'react';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
@@ -21,7 +20,6 @@ const ElitePerformanceProgram = () => {
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
     
-    // Load user preferences
     const { gender, type } = loadUserPreferences();
     if (gender) setUserGender(gender);
     if (type) setUserType(type);
@@ -46,12 +44,11 @@ const ElitePerformanceProgram = () => {
             overlayOpacity="medium"
           />
           
-          {/* Black banner with claim text */}
           <div className="w-full bg-black py-16 relative" style={{ height: 'auto', minHeight: '400px' }}>
             <div className="max-w-6xl mx-auto px-6 h-full flex flex-col justify-center py-8">
               <h2 className="text-white text-lg font-display mb-4">PROGRAMMA ELITE PERFORMANCE:</h2>
               <p className="text-white text-lg font-swiss max-w-3xl mb-6">
-                Programma avanzato per tennisti agonisti con ambizioni competitive elevate, caratterizzato da un approccio professionale basato su quattro pilastri fondamentali:
+                Offre la preparazione completa e gli strumenti necessari per competere ai massimi livelli nei circuiti nazionali e internazionali, costruendo le fondamenta su cui il tuo impegno e la tua determinazione potranno edificare il successo.
               </p>
               <ul className="text-white space-y-3 font-swiss max-w-3xl">
                 <li className="flex">
@@ -168,28 +165,26 @@ const ElitePerformanceProgram = () => {
             </div>
           </RevealAnimation>
           
-          <RevealAnimation delay={400}>
-            <div className="text-center">
-              <h3 className="text-2xl font-display mb-6">Programmi Correlati</h3>
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                <Link to="/programs/performance-4" className="block p-6 border border-gray-200 rounded-lg hover:border-ath-clay hover:shadow-sm transition-all">
-                  <h4 className="text-lg font-medium mb-2">Performance 4</h4>
-                  <p className="text-gray-600 mb-3">4 giorni a settimana per un approccio intensivo bilanciato, ideale per atleti determinati che cercano un percorso strutturato.</p>
-                  <span className="inline-flex items-center text-ath-clay">Scopri <ArrowRight size={14} className="ml-1" /></span>
-                </Link>
-                <Link to="/programs/performance-3" className="block p-6 border border-gray-200 rounded-lg hover:border-ath-clay hover:shadow-sm transition-all">
-                  <h4 className="text-lg font-medium mb-2">Performance 3</h4>
-                  <p className="text-gray-600 mb-3">3 giorni a settimana per un'intensità bilanciata, ideale per chi vuole risultati concreti mantenendo altri impegni.</p>
-                  <span className="inline-flex items-center text-ath-clay">Scopri <ArrowRight size={14} className="ml-1" /></span>
-                </Link>
-                <Link to="/programs/elite-full" className="block p-6 border border-gray-200 rounded-lg hover:border-ath-clay hover:shadow-sm transition-all">
-                  <h4 className="text-lg font-medium mb-2">Elite Performance Full</h4>
-                  <p className="text-gray-600 mb-3">Programma completo e immersivo per atleti di alto livello con allenamento giornaliero e supporto totale.</p>
-                  <span className="inline-flex items-center text-ath-clay">Scopri <ArrowRight size={14} className="ml-1" /></span>
-                </Link>
-              </div>
+          <div className="text-center">
+            <h3 className="text-2xl font-display mb-6">Programmi Correlati</h3>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+              <Link to="/programs/performance-4" className="block p-6 border border-gray-200 rounded-lg hover:border-ath-clay hover:shadow-sm transition-all">
+                <h4 className="text-lg font-medium mb-2">Performance 4</h4>
+                <p className="text-gray-600 mb-3">4 giorni a settimana, ideale per chi ha altri impegni ma vuole risultati concreti.</p>
+                <span className="inline-flex items-center text-ath-clay">Scopri <ArrowRight size={14} className="ml-1" /></span>
+              </Link>
+              <Link to="/programs/performance-3" className="block p-6 border border-gray-200 rounded-lg hover:border-ath-clay hover:shadow-sm transition-all">
+                <h4 className="text-lg font-medium mb-2">Performance 3</h4>
+                <p className="text-gray-600 mb-3">3 giorni a settimana per un'intensità bilanciata, ideale per chi vuole risultati concreti mantenendo altri impegni.</p>
+                <span className="inline-flex items-center text-ath-clay">Scopri <ArrowRight size={14} className="ml-1" /></span>
+              </Link>
+              <Link to="/programs/elite-full" className="block p-6 border border-gray-200 rounded-lg hover:border-ath-clay hover:shadow-sm transition-all">
+                <h4 className="text-lg font-medium mb-2">Elite Performance Full</h4>
+                <p className="text-gray-600 mb-3">Programma completo e immersivo per atleti di alto livello con allenamento giornaliero e supporto totale.</p>
+                <span className="inline-flex items-center text-ath-clay">Scopri <ArrowRight size={14} className="ml-1" /></span>
+              </Link>
             </div>
-          </RevealAnimation>
+          </div>
         </div>
         
         <ContactSection 
