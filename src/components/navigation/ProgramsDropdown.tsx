@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { ChevronDown } from 'lucide-react';
@@ -99,6 +98,10 @@ const ProgramsDropdown = ({ textColorClass }: ProgramsDropdownProps) => {
             src="/lovable-uploads/pickleball-icon.png" 
             alt="Pickleball racket" 
             className="w-[18px] h-[18px] mr-2 transition-all duration-300 ease-in-out group-hover:scale-110" 
+            onError={(e) => {
+              console.error('Pickleball icon failed to load', e);
+              e.currentTarget.src = "/lovable-uploads/ffc6588c-879e-4103-a3cc-f48ee9573e63.png";
+            }}
           />
         );
       case 'touchtennis':

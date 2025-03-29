@@ -119,7 +119,11 @@ const ProgramsOverview = () => {
                     <img 
                       src="/lovable-uploads/pickleball-icon.png" 
                       alt="Pickleball" 
-                      className="w-[16px] h-[16px] mr-2" 
+                      className="w-[16px] h-[16px] mr-2"
+                      onError={(e) => {
+                        console.error('Pickleball icon failed to load', e);
+                        e.currentTarget.src = "/lovable-uploads/ffc6588c-879e-4103-a3cc-f48ee9573e63.png";
+                      }}
                     />
                     Pickleball
                   </TabsTrigger>
