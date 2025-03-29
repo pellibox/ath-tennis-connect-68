@@ -72,6 +72,40 @@ const ProgramsDropdown = ({ textColorClass }: ProgramsDropdownProps) => {
                            location.pathname.includes('touchtennis') || 
                            location.pathname.includes('padel-pickleball');
 
+  // Function to get the correct icon based on the active sport
+  const getActiveIcon = () => {
+    switch (activeSport) {
+      case 'tennis':
+        return <GiTennisRacket size={18} className="mr-2 transition-all duration-300 ease-in-out group-hover:scale-110" />;
+      case 'padel':
+        return (
+          <img 
+            src="/lovable-uploads/d5868d98-0391-4dd3-8467-4ff2a245339e.png" 
+            alt="Padel racket" 
+            className="w-[18px] h-[18px] mr-2 transition-all duration-300 ease-in-out group-hover:scale-110" 
+          />
+        );
+      case 'pickleball':
+        return (
+          <img 
+            src="/lovable-uploads/e0ce28ab-308e-4ebc-afaa-ca4042757796.png" 
+            alt="Pickleball racket" 
+            className="w-[18px] h-[18px] mr-2 transition-all duration-300 ease-in-out group-hover:scale-110" 
+          />
+        );
+      case 'touchtennis':
+        return <MdSportsTennis size={18} className="mr-2 transition-all duration-300 ease-in-out group-hover:scale-110" />;
+      default:
+        return (
+          <img 
+            src="/lovable-uploads/ffc6588c-879e-4103-a3cc-f48ee9573e63.png" 
+            alt="Programs list" 
+            className="w-[18px] h-[18px] mr-2 transition-all duration-300 ease-in-out group-hover:scale-110" 
+          />
+        );
+    }
+  };
+
   return (
     <DropdownMenu open={openDropdown} onOpenChange={setOpenDropdown}>
       <DropdownMenuTrigger asChild>
@@ -82,14 +116,7 @@ const ProgramsDropdown = ({ textColorClass }: ProgramsDropdownProps) => {
             isOnProgramsPage ? "text-ath-clay" : ""
           )}
         >
-          <img 
-            src="/lovable-uploads/ffc6588c-879e-4103-a3cc-f48ee9573e63.png" 
-            alt="Programs list" 
-            className={cn(
-              "w-[18px] h-[18px] mr-2 transition-all duration-300 ease-in-out group-hover:scale-110", 
-              isOnProgramsPage ? "text-ath-clay" : ""
-            )} 
-          />
+          {getActiveIcon()}
           Programmi
           <ChevronDown 
             size={16} 
