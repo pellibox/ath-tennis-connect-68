@@ -55,11 +55,14 @@ const Programs = () => {
   // When tab changes, update sport in profile if needed
   useEffect(() => {
     if (activeTab === 'tennis' && sport !== 'tennis') {
-      updateProfile({ sport: 'tennis' });
+      // Fix: Need to pass all required parameters to updateProfile
+      // The function expects (gender, type, sport) based on the ProfileContext definition
+      updateProfile(userGender || 'male', userType || 'adult', 'tennis');
     } else if (activeTab === 'padel-pickleball' && sport !== 'padel' && sport !== 'pickleball') {
-      updateProfile({ sport: 'padel' });
+      // Fix: Need to pass all required parameters to updateProfile
+      updateProfile(userGender || 'male', userType || 'adult', 'padel');
     }
-  }, [activeTab, sport, updateProfile]);
+  }, [activeTab, sport, updateProfile, userGender, userType]);
   
   const vimeoEmbed = getVimeoEmbed(userGender, userType);
   const { filteredCategories, title, subtitle } = ProgramFilters({ 
