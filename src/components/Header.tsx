@@ -1,7 +1,7 @@
 
-import { useState, useEffect } from 'react';
-import { useLocation, useNavigate } from 'react-router-dom';
-import { Menu, X, ChevronLeft } from 'lucide-react';
+import { useState } from 'react';
+import { useNavigate, useLocation } from 'react-router-dom';
+import { ChevronLeft } from 'lucide-react';
 import Logo from './Logo';
 import { cn } from '@/lib/utils';
 import LanguageSwitcher from './LanguageSwitcher';
@@ -9,7 +9,7 @@ import { useLanguage } from '@/contexts/LanguageContext';
 import { useProfile } from '@/contexts/ProfileContext';
 import { useIsMobile } from '@/hooks/use-mobile';
 import NavigationLinks from './navigation/NavigationLinks';
-import MobileMenu from './navigation/MobileMenu';
+import BottomNavigation from './navigation/BottomNavigation';
 import ProfileDialog from './profile/ProfileDialog';
 import { Button } from './ui/button';
 
@@ -18,127 +18,93 @@ interface HeaderProps {
 }
 
 const Header = ({ useVickiLogo = false }: HeaderProps) => {
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [isScrolled, setIsScrolled] = useState(false);
   const location = useLocation();
   const navigate = useNavigate();
   const { t } = useLanguage();
   const isMobile = useIsMobile();
   const { userGender, userType, sport, updateProfile, resetProfile, deleteProfile } = useProfile();
-  
   const [dialogOpen, setDialogOpen] = useState(false);
-  
-  const toggleMenu = () => {
-    setIsMenuOpen(!isMenuOpen);
-  };
 
   const handleGoBack = () => {
     navigate(-1);
   };
 
-  useEffect(() => {
-    const handleScroll = () => {
-      const offset = window.scrollY;
-      setIsScrolled(offset > 50);
-    };
-
-    window.addEventListener('scroll', handleScroll);
-    handleScroll();
-
-    return () => {
-      window.removeEventListener('scroll', handleScroll);
-    };
-  }, []);
-
-  useEffect(() => {
-    setIsMenuOpen(false);
-  }, [location.pathname]);
-
-  useEffect(() => {
-    if (isMenuOpen) {
-      document.body.classList.add('overflow-hidden');
-    } else {
-      document.body.classList.remove('overflow-hidden');
-    }
-
-    return () => {
-      document.body.classList.remove('overflow-hidden');
-    };
-  }, [isMenuOpen]);
-
+  // Show back button only when not on homepage
   const showBackButton = location.pathname !== '/';
 
-  const headerBgClass = isMenuOpen ? "bg-white" : (isScrolled ? "bg-white shadow-md" : "bg-white");
+  const headerBgClass = "bg-white";
   const textColorClass = "text-black";
-
+  
   return (
-    <header 
-      className={cn(
-        'fixed top-0 left-0 w-full z-50 transition-all duration-300',
-        headerBgClass,
-        'py-3'
-      )}
-    >
-      <div className="container mx-auto px-6 flex items-center justify-between relative">
-        <div className={cn("flex items-center z-50", showBackButton ? "pl-0" : "pl-0")}>
-          {showBackButton && (
-            <Button 
-              variant="ghost" 
-              size="icon" 
-              onClick={handleGoBack} 
-              className="mr-2" 
-              aria-label="Go back"
-            >
-              <ChevronLeft size={24} />
-            </Button>
-          )}
-          <Logo 
-            variant="default" 
-            onDarkBackground={false}
-            preserveUserProfile={true}
-            resetProfile={false}
-            useVickiLogo={useVickiLogo}
-            isInMenu={true}
-            className="ml-0"
-          />
-        </div>
-        
-        <div className="hidden lg:flex items-center ml-auto justify-center flex-1">
-          <NavigationLinks textColorClass={textColorClass} />
-        </div>
-        
-        <div className="flex items-center z-50 ml-auto lg:ml-0">
-          <ProfileDialog 
-            open={dialogOpen}
-            setOpen={setDialogOpen}
-            userGender={userGender}
-            userType={userType}
-            sport={sport}
-            updateProfile={updateProfile}
-            resetProfile={resetProfile}
-            deleteProfile={deleteProfile}
-          />
-          
-          <div className={cn("hidden lg:block", textColorClass)}>
-            <LanguageSwitcher />
+    <>
+      <header 
+        className={cn(
+          'fixed top-0 left-0 w-full z-50 transition-all duration-300 shadow-sm',
+          headerBgClass,
+          isMobile ? 'py-2' : 'py-3'
+        )}
+      >
+        <div className="container mx-auto px-4 flex items-center justify-between relative">
+          <div className={cn(
+            "flex items-center z-50", 
+            isMobile ? "mx-auto" : (showBackButton ? "pl-0" : "pl-0")
+          )}>
+            {showBackButton && !isMobile && (
+              <Button 
+                variant="ghost" 
+                size="icon" 
+                onClick={handleGoBack} 
+                className="mr-2" 
+                aria-label="Go back"
+              >
+                <ChevronLeft size={24} />
+              </Button>
+            )}
+            <Logo 
+              variant="default" 
+              onDarkBackground={false}
+              preserveUserProfile={true}
+              resetProfile={false}
+              useVickiLogo={useVickiLogo}
+              isInMenu={isMobile}
+              isCentered={isMobile}
+              className={isMobile ? "mx-auto" : "ml-0"}
+            />
           </div>
           
-          <button
-            className={cn(
-              "lg:hidden flex items-center",
-              textColorClass
-            )}
-            onClick={toggleMenu}
-            aria-expanded={isMenuOpen}
-            aria-label="Toggle menu"
-          >
-            {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
-          </button>
+          {!isMobile && (
+            <div className="hidden lg:flex items-center ml-auto justify-center flex-1">
+              <NavigationLinks textColorClass={textColorClass} />
+            </div>
+          )}
+          
+          {!isMobile && (
+            <div className="flex items-center z-50 ml-auto lg:ml-0">
+              <ProfileDialog 
+                open={dialogOpen}
+                setOpen={setDialogOpen}
+                userGender={userGender}
+                userType={userType}
+                sport={sport}
+                updateProfile={updateProfile}
+                resetProfile={resetProfile}
+                deleteProfile={deleteProfile}
+              />
+              
+              <div className={cn("hidden lg:block", textColorClass)}>
+                <LanguageSwitcher />
+              </div>
+            </div>
+          )}
         </div>
-
-        <MobileMenu isOpen={isMenuOpen} />
-      </div>
-    </header>
+      </header>
+      
+      {/* Bottom Navigation for Mobile */}
+      {isMobile && <BottomNavigation />}
+      
+      {/* Add padding to bottom of page on mobile to account for bottom navigation */}
+      {isMobile && <div className="h-14"></div>}
+    </>
   );
 };
 
