@@ -41,8 +41,11 @@ export function ProfileProvider({ children }: { children: React.ReactNode }) {
   };
 
   const updateSport = (sportType: SportType) => {
-    localStorage.setItem('ath_user_sport', sportType);
-    setSport(sportType);
+    // Only update sport if the user already has a profile
+    if (userGender && userType) {
+      localStorage.setItem('ath_user_sport', sportType);
+      setSport(sportType);
+    }
   };
 
   const resetProfile = () => {

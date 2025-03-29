@@ -1,4 +1,3 @@
-
 import { useEffect, useState } from 'react';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
@@ -20,7 +19,7 @@ const Programs = () => {
   const [showAllPrograms, setShowAllPrograms] = useState(false);
   const [logoYOffset, setLogoYOffset] = useState<number>(0);
   const [logoOpacity, setLogoOpacity] = useState<number>(1);
-  const { userGender, userType, sport, updateProfile } = useProfile();
+  const { userGender, userType, sport, updateSport } = useProfile();
   const [activeTab, setActiveTab] = useState<'tennis' | 'padel-pickleball'>(sport === 'padel' || sport === 'pickleball' ? 'padel-pickleball' : 'tennis');
   
   useEffect(() => {
@@ -52,17 +51,16 @@ const Programs = () => {
     };
   }, []);
 
-  // When tab changes, update sport in profile if needed
+  // Update sport in the UI without creating a profile
   useEffect(() => {
-    if (activeTab === 'tennis' && sport !== 'tennis') {
-      // Fix: Need to pass all required parameters to updateProfile
-      // The function expects (gender, type, sport) based on the ProfileContext definition
-      updateProfile(userGender || 'male', userType || 'adult', 'tennis');
-    } else if (activeTab === 'padel-pickleball' && sport !== 'padel' && sport !== 'pickleball') {
-      // Fix: Need to pass all required parameters to updateProfile
-      updateProfile(userGender || 'male', userType || 'adult', 'padel');
+    if (userType && userGender) { // Only update profile if user already has a profile
+      if (activeTab === 'tennis' && sport !== 'tennis') {
+        updateSport('tennis');
+      } else if (activeTab === 'padel-pickleball' && sport !== 'padel' && sport !== 'pickleball') {
+        updateSport('padel');
+      }
     }
-  }, [activeTab, sport, updateProfile, userGender, userType]);
+  }, [activeTab, sport, userType, userGender, updateSport]);
   
   const vimeoEmbed = getVimeoEmbed(userGender, userType);
   const { filteredCategories, title, subtitle } = ProgramFilters({ 
