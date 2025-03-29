@@ -19,23 +19,23 @@ const HeroVideoSection = ({ logoYOffset, logoOpacity, logoRef }: HeroVideoSectio
     <>
       <div 
         ref={logoRef}
-        className="fixed z-50 pointer-events-none transition-opacity duration-300 left-0"
+        className="fixed z-50 pointer-events-none transition-opacity duration-300 left-0 right-0 flex justify-center"
         style={{
           top: isMobile ? '140px' : '180px',
-          opacity: logoOpacity,
-          paddingLeft: isMobile ? '24px' : '48px'
+          opacity: logoOpacity
         }}
       >
         <div 
           style={{
-            width: isMobile ? '95px' : '500px', // Increased desktop logo size from 335px to 500px
+            width: isMobile ? '95px' : '500px', 
             transform: `translateY(-${logoYOffset}px)`
           }}
+          className="flex justify-center"
         >
           <Logo 
             onDarkBackground={true} 
             className="w-full h-auto"
-            isCentered={false}
+            isCentered={true}
           />
         </div>
       </div>

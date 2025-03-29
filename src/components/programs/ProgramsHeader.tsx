@@ -51,13 +51,13 @@ const ProgramsHeader = ({
       <div 
         className="fixed z-50 pointer-events-none transition-opacity duration-300 left-0 right-0 flex justify-center"
         style={{
-          top: isMobile ? '120px' : '180px',
+          top: isMobile ? '140px' : '180px',
           opacity: logoOpacity
         }}
       >
         <div 
           style={{
-            width: isMobile ? '120px' : '280px',
+            width: isMobile ? '120px' : '500px',
             transform: `translateY(-${logoYOffset}px)`
           }}
           className="flex justify-center"
