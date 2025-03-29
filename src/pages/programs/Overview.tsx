@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
@@ -84,7 +83,6 @@ const ProgramsOverview = () => {
             </div>
           </RevealAnimation>
           
-          {/* Add the MultisportExplanation component here */}
           <MultisportExplanation />
           
           <RevealAnimation delay={100}>
@@ -119,7 +117,7 @@ const ProgramsOverview = () => {
                     className="flex items-center rounded-full data-[state=active]:bg-ath-clay data-[state=active]:text-white px-8 py-3"
                   >
                     <img 
-                      src="/lovable-uploads/c4c120e8-c90d-48a3-933c-d4cce08b5129.png" 
+                      src="/lovable-uploads/pickleball-icon.png" 
                       alt="Pickleball" 
                       className="w-[16px] h-[16px] mr-2" 
                     />

@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { ChevronDown } from 'lucide-react';
 import { GiTennisRacket } from "react-icons/gi";
@@ -22,22 +22,19 @@ const ProgramsDropdown = ({ textColorClass }: ProgramsDropdownProps) => {
   const [openDropdown, setOpenDropdown] = useState(false);
   const { sport, updateSport, userGender, userType } = useProfile();
   
-  // Determine active sport based on current route
   const [activeSport, setActiveSport] = useState<SportType | null>(null);
   const [hasExplicitSelection, setHasExplicitSelection] = useState(false);
   
   useEffect(() => {
-    // Set active sport based on current route
     const path = location.pathname;
     
     if (path.includes('touchtennis')) {
       setActiveSport('touchtennis');
     } else if (path.includes('padel-pickleball')) {
-      // Determine if it's padel or pickleball based on user's last selection
       if (sport === 'padel' || sport === 'pickleball') {
         setActiveSport(sport);
       } else {
-        setActiveSport('padel'); // Default to padel if no selection
+        setActiveSport('padel');
       }
     } else if (path.includes('programs')) {
       setActiveSport('tennis');
@@ -69,15 +66,11 @@ const ProgramsDropdown = ({ textColorClass }: ProgramsDropdownProps) => {
     setOpenDropdown(false);
   };
 
-  // Check if we're on a programs-related page
   const isOnProgramsPage = location.pathname.includes('programs') || 
                            location.pathname.includes('touchtennis') || 
                            location.pathname.includes('padel-pickleball');
 
-  // Function to get the correct icon based on the active sport
   const getActiveIcon = () => {
-    // If there's been no explicit selection yet and the page just loaded,
-    // show the default icon regardless of the active route
     if (!hasExplicitSelection && !sessionStorage.getItem('sport_selected')) {
       return (
         <img 
@@ -88,7 +81,6 @@ const ProgramsDropdown = ({ textColorClass }: ProgramsDropdownProps) => {
       );
     }
     
-    // Otherwise, show the icon based on the active sport
     switch (activeSport) {
       case 'tennis':
         return <GiTennisRacket size={18} className="mr-2 transition-all duration-300 ease-in-out group-hover:scale-110" />;
@@ -103,7 +95,7 @@ const ProgramsDropdown = ({ textColorClass }: ProgramsDropdownProps) => {
       case 'pickleball':
         return (
           <img 
-            src="/lovable-uploads/e0ce28ab-308e-4ebc-afaa-ca4042757796.png" 
+            src="/lovable-uploads/pickleball-icon.png" 
             alt="Pickleball racket" 
             className="w-[18px] h-[18px] mr-2 transition-all duration-300 ease-in-out group-hover:scale-110" 
           />
@@ -121,7 +113,6 @@ const ProgramsDropdown = ({ textColorClass }: ProgramsDropdownProps) => {
     }
   };
 
-  // Set flag in session storage to track if a sport has been selected during this session
   useEffect(() => {
     if (hasExplicitSelection) {
       sessionStorage.setItem('sport_selected', 'true');
@@ -175,7 +166,7 @@ const ProgramsDropdown = ({ textColorClass }: ProgramsDropdownProps) => {
           currentSport={activeSport} 
           icon={
             <img 
-              src="/lovable-uploads/e0ce28ab-308e-4ebc-afaa-ca4042757796.png" 
+              src="/lovable-uploads/pickleball-icon.png" 
               alt="Pickleball racket" 
               className="w-[18px] h-[18px] mr-2" 
             />
