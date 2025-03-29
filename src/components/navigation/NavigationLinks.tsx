@@ -1,7 +1,7 @@
-
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { HelpCircle, BookOpen, Zap, Server, Users, Dumbbell, ChevronDown, CircleDot } from 'lucide-react';
 import { GiTennisRacket } from "react-icons/gi";
+import { MdSportsTennis } from "react-icons/md";
 import { cn } from '@/lib/utils';
 import { useState } from 'react';
 import { useProfile } from '@/contexts/ProfileContext';
@@ -50,12 +50,16 @@ export const navigationItems: NavigationItem[] = [
       {
         text: 'Padel & Pickleball',
         href: '/padel-pickleball',
-        icon: <CircleDot size={18} className="mr-2" />
+        icon: <img 
+          src="/lovable-uploads/615f7b66-897f-4866-87ed-547ab78c47d7.png" 
+          alt="Padel racket" 
+          className="w-[18px] h-[18px] mr-2" 
+        />
       },
       {
         text: 'TouchTennis',
         href: '/touchtennis',
-        icon: <Dumbbell size={18} className="mr-2" />
+        icon: <MdSportsTennis size={18} className="mr-2" />
       }
     ]
   },
@@ -290,7 +294,7 @@ const NavigationLinks = ({ className, textColorClass, isMobile = false }: Naviga
                           sport === 'touchtennis' ? "text-ath-clay" : ""
                         )}
                       >
-                        <Dumbbell size={18} className="mr-2" />
+                        <MdSportsTennis size={18} className="mr-2" />
                         <span>TouchTennis</span>
                       </button>
                     </DropdownMenuItem>
