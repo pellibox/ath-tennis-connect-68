@@ -12,6 +12,7 @@ interface LogoProps {
   useVickiLogo?: boolean;
   isInMenu?: boolean;
   isCentered?: boolean;
+  useBlackLogoOnWhite?: boolean;
 }
 
 const Logo = ({ 
@@ -22,7 +23,8 @@ const Logo = ({
   resetProfile = false,
   useVickiLogo = false,
   isInMenu = false,
-  isCentered = false
+  isCentered = false,
+  useBlackLogoOnWhite = false
 }: LogoProps) => {
   const isFooter = variant === 'footer';
   const location = useLocation();
@@ -31,7 +33,10 @@ const Logo = ({
   // Logo paths
   let logoSrc;
   
-  if (isInMenu) {
+  if (useBlackLogoOnWhite) {
+    // Use the uploaded black logo image for white header
+    logoSrc = "/lovable-uploads/0a250ed5-11e7-485c-a8f5-d41ebaa7083f.png";
+  } else if (isInMenu) {
     // Always use the new menu logo when in menu
     logoSrc = "/lovable-uploads/ca310445-f2b9-49bb-8499-59608b361de5.png";
   } else if (useVickiLogo) {

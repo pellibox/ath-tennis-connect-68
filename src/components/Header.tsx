@@ -66,9 +66,10 @@ const Header = ({ useVickiLogo = false }: HeaderProps) => {
               preserveUserProfile={true}
               resetProfile={false}
               useVickiLogo={useVickiLogo}
-              isInMenu={isMobile}
+              isInMenu={false}
               isCentered={true}
               className={isMobile ? "mx-auto" : "ml-0"}
+              useBlackLogoOnWhite={true}
             />
           </div>
           
