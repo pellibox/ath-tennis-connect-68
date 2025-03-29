@@ -4,54 +4,60 @@ import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import ProgramsSection from '@/components/ProgramsSection';
 import { useProfile } from '@/contexts/ProfileContext';
-import { programCategories } from '@/data/programs/categories';
+import { programCategories } from '@/data/programs';
+import { programCategories as padelPickleballCategories } from '@/data/padelPickleball';
+import { touchTennisCategories } from '@/data/touchtennis';
 import { 
   Breadcrumb, 
   BreadcrumbItem, 
-  BreadcrumbLink, 
   BreadcrumbList, 
-  BreadcrumbPage, 
-  BreadcrumbSeparator 
+  BreadcrumbSeparator, 
+  BreadcrumbPage 
 } from "@/components/ui/breadcrumb";
 import { Link } from 'react-router-dom';
+import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
 import { Badge } from '@/components/ui/badge';
 import { SportType } from '@/contexts/ProfileContext';
-import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group";
+import { useIsMobile } from '@/hooks/use-mobile';
+import { getVimeoEmbed } from '@/utils/videoUtils';
+import { GiTennisRacket } from "react-icons/gi";
+import { MdSportsTennis } from "react-icons/md";
+import RevealAnimation from '@/components/RevealAnimation';
 
 const ProgramsOverview = () => {
-  const { userType, sport, updateSport } = useProfile();
-  const [showAllUserTypes, setShowAllUserTypes] = useState(false);
+  const { userType, userGender, sport, updateSport } = useProfile();
+  const [activeTab, setActiveTab] = useState<'tennis' | 'padel-pickleball' | 'touchtennis'>(
+    sport === 'padel' || sport === 'pickleball' 
+      ? 'padel-pickleball' 
+      : sport === 'touchtennis' 
+        ? 'touchtennis' 
+        : 'tennis'
+  );
+  const isMobile = useIsMobile();
+  const vimeoEmbed = getVimeoEmbed(userGender, userType);
 
-  const handleSportChange = (value: string) => {
-    if (value) {
-      updateSport(value as SportType);
+  const handleTabChange = (value: string) => {
+    setActiveTab(value as 'tennis' | 'padel-pickleball' | 'touchtennis');
+    
+    // Update sport in profile context
+    if (value === 'tennis') {
+      updateSport('tennis');
+    } else if (value === 'padel-pickleball') {
+      updateSport('padel');
+    } else if (value === 'touchtennis') {
+      updateSport('touchtennis');
     }
   };
-
-  const filterProgramsBySport = (categories) => {
-    return categories.map(category => ({
-      ...category,
-      programs: category.programs.filter(program => 
-        program.sports ? program.sports.includes(sport) : true
-      )
-    })).filter(category => category.programs.length > 0);
-  };
-
-  const filteredCategories = showAllUserTypes || !userType
-    ? programCategories
-    : programCategories.filter(category => 
-        category.applicableUserTypes ? 
-        category.applicableUserTypes.includes(userType) : 
-        true
-      );
-
-  const sportFiltered = filterProgramsBySport(filteredCategories);
 
   return (
     <div className="flex flex-col min-h-screen">
       <Header />
-      <main className="flex-grow pt-20">
-        <div className="container mx-auto px-4 py-8">
+      <main className="flex-grow">
+        <div className="w-full bg-black min-h-[calc(100vw*9/16)] relative">
+          <div dangerouslySetInnerHTML={{ __html: vimeoEmbed }} />
+        </div>
+        
+        <div className="container mx-auto px-4 py-12">
           <Breadcrumb className="mb-6">
             <BreadcrumbList>
               <BreadcrumbItem>
@@ -59,73 +65,169 @@ const ProgramsOverview = () => {
               </BreadcrumbItem>
               <BreadcrumbSeparator />
               <BreadcrumbItem>
-                <Link to="/programs" className="text-gray-600 hover:text-ath-clay">Programmi</Link>
-              </BreadcrumbItem>
-              <BreadcrumbSeparator />
-              <BreadcrumbItem>
-                <BreadcrumbPage>Panoramica</BreadcrumbPage>
+                <BreadcrumbPage>Programmi</BreadcrumbPage>
               </BreadcrumbItem>
             </BreadcrumbList>
           </Breadcrumb>
           
-          <div className="flex flex-col md:flex-row md:items-center justify-between mb-8 gap-4">
-            <div>
-              <h1 className="text-3xl font-bold mb-2">
-                {userType ? `Programmi per ${userType}` : 'Tutti i Programmi'}
-              </h1>
-              <p className="text-gray-600">Esplora i programmi ATH filtrati per le tue preferenze</p>
+          <RevealAnimation>
+            <h1 className="text-4xl font-bold mb-6">Programmi ATH</h1>
+            <div className="max-w-4xl mb-12 space-y-4 text-gray-700">
+              <p className="text-lg">
+                ATH offre programmi di allenamento avanzati basati su un approccio integrato che combina tecnologia all'avanguardia e competenze professionali di alto livello.
+              </p>
+              <p>
+                Il nostro metodo si concentra sullo sviluppo completo dell'atleta, considerando tutti gli aspetti fondamentali: tecnica, tattica, preparazione fisica e mentale, analisi dettagliata delle performance e supporto personalizzato.
+              </p>
+              <p>
+                Il <strong>Tennis</strong> rappresenta il cuore della nostra attività, con programmi altamente specializzati per tutte le età e livelli. Abbiamo inoltre sviluppato programmi dedicati per altri sport di racchetta come <strong>Padel</strong>, <strong>Pickleball</strong> e <strong>TouchTennis</strong>, applicando la stessa metodologia avanzata.
+              </p>
             </div>
-            
-            <div className="flex flex-col gap-4">
-              <div className="flex items-center gap-2">
-                <span className="text-sm font-medium">Sport:</span>
-                <ToggleGroup 
-                  type="single" 
-                  value={sport || 'tennis'} 
-                  onValueChange={handleSportChange} 
-                  className="border rounded-md"
-                >
-                  <ToggleGroupItem value="tennis" aria-label="Tennis">
+          </RevealAnimation>
+          
+          <RevealAnimation delay={100}>
+            <div className="mb-12">
+              <h2 className="text-2xl font-bold mb-4">Seleziona uno sport</h2>
+              <p className="text-gray-700 mb-6">
+                Esplora i nostri programmi specializzati per ciascuna disciplina
+              </p>
+              
+              <Tabs value={activeTab} onValueChange={handleTabChange} className="w-full">
+                <TabsList className="w-full mb-8 bg-white border border-gray-200 rounded-full p-1 flex justify-between">
+                  <TabsTrigger 
+                    value="tennis" 
+                    className="flex items-center rounded-full data-[state=active]:bg-ath-clay data-[state=active]:text-white px-8 py-3"
+                  >
+                    <GiTennisRacket size={16} className="mr-2" />
                     Tennis
-                  </ToggleGroupItem>
-                  <ToggleGroupItem value="padel" aria-label="Padel">
-                    Padel
-                  </ToggleGroupItem>
-                  <ToggleGroupItem value="pickleball" aria-label="Pickleball">
-                    Pickleball
-                  </ToggleGroupItem>
-                </ToggleGroup>
+                  </TabsTrigger>
+                  <TabsTrigger 
+                    value="padel-pickleball" 
+                    className="flex items-center rounded-full data-[state=active]:bg-ath-clay data-[state=active]:text-white px-8 py-3"
+                  >
+                    <img 
+                      src="/lovable-uploads/d5868d98-0391-4dd3-8467-4ff2a245339e.png" 
+                      alt="Padel & Pickleball" 
+                      className="w-[16px] h-[16px] mr-2" 
+                    />
+                    Padel & Pickleball
+                  </TabsTrigger>
+                  <TabsTrigger 
+                    value="touchtennis" 
+                    className="flex items-center rounded-full data-[state=active]:bg-ath-clay data-[state=active]:text-white px-8 py-3"
+                  >
+                    <MdSportsTennis size={16} className="mr-2" />
+                    TouchTennis
+                  </TabsTrigger>
+                </TabsList>
+                
+                <div className="mt-8">
+                  <TabsContent value="tennis" className="mt-0">
+                    <div className="bg-gray-50 p-6 rounded-lg mb-8">
+                      <h3 className="text-xl font-bold mb-3">Tennis</h3>
+                      <p className="mb-4">
+                        Il nostro programma di punta, con soluzioni personalizzate per ogni livello: dai principianti ai professionisti. Utilizzando la nostra tecnologia VICKI™, offriamo un'esperienza di allenamento senza precedenti.
+                      </p>
+                      <Link 
+                        to="/programs" 
+                        className="inline-flex items-center text-ath-clay font-medium hover:underline"
+                      >
+                        Esplora tutti i programmi Tennis →
+                      </Link>
+                    </div>
+                    
+                    <ProgramsSection 
+                      title="Programmi Tennis"
+                      subtitle="I nostri programmi di punta, sviluppati con anni di esperienza"
+                      categories={programCategories}
+                      categoryCollapsible={true}
+                    />
+                  </TabsContent>
+                  
+                  <TabsContent value="padel-pickleball" className="mt-0">
+                    <div className="bg-gray-50 p-6 rounded-lg mb-8">
+                      <h3 className="text-xl font-bold mb-3">Padel & Pickleball</h3>
+                      <p className="mb-4">
+                        Abbiamo adattato la nostra metodologia avanzata per questi sport in rapida crescita, offrendo programmi specifici che sfruttano la nostra tecnologia VICKI™ per migliorare rapidamente il tuo gioco.
+                      </p>
+                      <Link 
+                        to="/padel-pickleball" 
+                        className="inline-flex items-center text-ath-clay font-medium hover:underline"
+                      >
+                        Esplora tutti i programmi Padel & Pickleball →
+                      </Link>
+                    </div>
+                    
+                    <ProgramsSection 
+                      title="Programmi Padel & Pickleball"
+                      subtitle="I nostri programmi specializzati per gli sport emergenti"
+                      categories={padelPickleballCategories}
+                      categoryCollapsible={true}
+                    />
+                  </TabsContent>
+                  
+                  <TabsContent value="touchtennis" className="mt-0">
+                    <div className="bg-gray-50 p-6 rounded-lg mb-8">
+                      <h3 className="text-xl font-bold mb-3">TouchTennis</h3>
+                      <p className="mb-4">
+                        Un formato innovativo che rende il tennis accessibile a tutti. I nostri programmi di TouchTennis sono perfetti per chi vuole divertirsi e migliorare le proprie abilità in uno spazio ridotto.
+                      </p>
+                      <Link 
+                        to="/touchtennis" 
+                        className="inline-flex items-center text-ath-clay font-medium hover:underline"
+                      >
+                        Esplora tutti i programmi TouchTennis →
+                      </Link>
+                    </div>
+                    
+                    <ProgramsSection 
+                      title="Programmi TouchTennis"
+                      subtitle="Tennis in formato ridotto, divertimento senza limiti"
+                      categories={touchTennisCategories}
+                      categoryCollapsible={true}
+                    />
+                  </TabsContent>
+                </div>
+              </Tabs>
+            </div>
+          </RevealAnimation>
+          
+          <RevealAnimation delay={200}>
+            <div className="bg-white p-6 border border-gray-200 rounded-lg shadow-sm mb-12">
+              <h2 className="text-2xl font-bold mb-4">Perché scegliere i programmi ATH?</h2>
+              
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mt-8">
+                <div className="bg-gray-50 p-4 rounded-lg">
+                  <h3 className="text-lg font-semibold mb-2">Tecnologia avanzata</h3>
+                  <p className="text-gray-700">Il sistema VICKI™ analizza oltre 70 parametri della tua performance in tempo reale</p>
+                </div>
+                
+                <div className="bg-gray-50 p-4 rounded-lg">
+                  <h3 className="text-lg font-semibold mb-2">Esperti qualificati</h3>
+                  <p className="text-gray-700">Coach di alto livello con esperienza internazionale</p>
+                </div>
+                
+                <div className="bg-gray-50 p-4 rounded-lg">
+                  <h3 className="text-lg font-semibold mb-2">Approccio integrato</h3>
+                  <p className="text-gray-700">Sviluppo tecnico, tattico, fisico e mentale in un unico programma</p>
+                </div>
+                
+                <div className="bg-gray-50 p-4 rounded-lg">
+                  <h3 className="text-lg font-semibold mb-2">Personalizzazione</h3>
+                  <p className="text-gray-700">Programmi su misura in base al tuo profilo, obiettivi e necessità</p>
+                </div>
               </div>
               
-              {userType && (
-                <button 
-                  onClick={() => setShowAllUserTypes(!showAllUserTypes)}
-                  className="text-sm text-ath-clay hover:underline"
+              <div className="mt-8 text-center">
+                <Link 
+                  to="/contact" 
+                  className="inline-flex items-center bg-ath-clay text-white px-6 py-3 rounded-full font-medium transition-colors hover:bg-ath-clay/90"
                 >
-                  {showAllUserTypes ? 'Mostra solo programmi rilevanti' : 'Mostra tutti i programmi'}
-                </button>
-              )}
+                  Richiedi informazioni sui programmi
+                </Link>
+              </div>
             </div>
-          </div>
-          
-          {userType && (
-            <div className="mb-6 flex items-center gap-2">
-              <span className="text-sm text-gray-600">Filtra per profilo:</span>
-              <Badge variant="outline" className="capitalize">
-                {userType}
-              </Badge>
-              {showAllUserTypes && (
-                <span className="text-xs text-gray-500">(filtro disabilitato)</span>
-              )}
-            </div>
-          )}
-
-          <ProgramsSection 
-            categories={sportFiltered}
-            title="Programmi ATH"
-            subtitle="Scopri i nostri programmi personalizzati"
-            categoryCollapsible={true}
-          />
+          </RevealAnimation>
         </div>
       </main>
       <Footer />

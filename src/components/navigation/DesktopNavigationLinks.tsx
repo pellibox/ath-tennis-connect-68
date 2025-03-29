@@ -2,7 +2,6 @@
 import { cn } from '@/lib/utils';
 import NavigationLink from './NavigationLink';
 import { navigationItems } from './navigationItems';
-import ProgramsDropdown from './ProgramsDropdown';
 import RegularDropdownItem from './RegularDropdownItem';
 
 interface DesktopNavigationLinksProps {
@@ -14,9 +13,7 @@ const DesktopNavigationLinks = ({ className, textColorClass }: DesktopNavigation
   return (
     <nav className={cn("flex items-center space-x-6", className)}>
       {navigationItems.map((item, index) => (
-        item.text === 'Programmi' ? (
-          <ProgramsDropdown key={index} textColorClass={textColorClass} />
-        ) : item.submenu ? (
+        item.submenu ? (
           <RegularDropdownItem key={index} item={item} textColorClass={textColorClass} />
         ) : (
           <NavigationLink
