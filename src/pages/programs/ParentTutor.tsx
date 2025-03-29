@@ -9,7 +9,7 @@ import { UserGender, UserType, loadUserPreferences } from '@/components/UserType
 import VickiMonitoringBadge from '@/components/VickiMonitoringBadge';
 import VickiPoweredBadge from '@/components/VickiPoweredBadge';
 import ContactSection from '@/components/ContactSection';
-import { ArrowRight } from 'lucide-react';
+import { ArrowRight, FileDown } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -154,12 +154,23 @@ const ParentTutorProgram = () => {
               <p className="text-sm text-gray-600 mb-4">
                 Per i non iscritti ai programmi Elite, Performance e Junior, è disponibile un pacchetto separato. Contattaci per maggiori informazioni.
               </p>
-              <ButtonLink 
-                href="/contact" 
-                showArrow={true}
-              >
-                Richiedi informazioni
-              </ButtonLink>
+              <div className="space-y-4">
+                <ButtonLink 
+                  href="/contact" 
+                  showArrow={true}
+                >
+                  Richiedi informazioni
+                </ButtonLink>
+                
+                <a 
+                  href="/documents/programma-genitore-tutor.pdf" 
+                  className="inline-flex items-center gap-2 bg-white text-ath-clay border border-ath-clay py-2 px-6 rounded hover:bg-ath-clay/5 transition-colors"
+                  download
+                >
+                  <FileDown size={16} />
+                  Scarica il programma
+                </a>
+              </div>
             </RevealAnimation>
           </div>
           
