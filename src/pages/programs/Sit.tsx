@@ -31,7 +31,7 @@ const SitProgram = () => {
       <main className="flex-grow">
         <div className="relative">
           <Hero 
-            title="SIT - Scuola Individuazione Talenti (4-10 anni)"
+            title="SIT - Scuola Individuazione Talenti (6-10+ anni)"
             subtitle="under 8–10 + over 10 (30 settimane)"
             imageSrc="https://images.unsplash.com/photo-1607278967103-bc928c5b10f4?q=80&w=2070&auto=format&fit=crop"
             vimeoEmbed='<div style="padding:75% 0 0 0;position:relative;"><iframe src="https://player.vimeo.com/video/1068788542?h=698f55b033&autoplay=1&loop=1&background=1&autopause=0&player_id=0&app_id=58479&controls=0" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media" style="position:absolute;top:0;left:0;width:100%;height:100%;" title="Talent Identification"></iframe></div><script src="https://player.vimeo.com/api/player.js"></script>'
@@ -49,9 +49,12 @@ const SitProgram = () => {
               <div className="flex items-center mb-2">
                 <h2 className="text-white text-lg font-display mr-3">SIT:</h2>
                 <p className="text-white text-lg font-swiss max-w-3xl">
-                  Scuola Individuazione Talenti per giovani tennisti tra i 4 e i 10 anni
+                  Scuola Individuazione Talenti per giovani tennisti tra i 6 e i 10+ anni
                 </p>
               </div>
+              <p className="text-white text-sm font-swiss max-w-3xl mt-2">
+                Il nostro programma SIT trasforma l'apprendimento del tennis in un'avventura divertente che, giocando, prepara i piccoli campioni alle sfide di domani — sul campo e nella vita.
+              </p>
               <div className="mt-4 flex flex-wrap gap-3">
                 <VickiMonitoringBadge level="basic" className="bg-opacity-20 border-opacity-30 text-white" />
                 <VickiPoweredBadge className="bg-opacity-20 border-opacity-30 text-white" />
@@ -64,7 +67,7 @@ const SitProgram = () => {
           <div className="mb-12">
             <RevealAnimation>
               <div className="flex flex-wrap items-center gap-3 mb-6">
-                <h2 className="text-3xl font-swiss">SIT - Scuola Individuazione Talenti (4-10 anni)</h2>
+                <h2 className="text-3xl font-swiss">SIT - Scuola Individuazione Talenti (6-10+ anni)</h2>
                 <VickiMonitoringBadge level="basic" />
                 <VickiPoweredBadge />
               </div>
@@ -81,13 +84,21 @@ const SitProgram = () => {
             </RevealAnimation>
             <RevealAnimation delay={200}>
               <p className="mb-4 font-swiss">
+                Il nostro programma SIT trasforma l'apprendimento del tennis in un'avventura divertente che, giocando, 
+                prepara i piccoli campioni alle sfide di domani — sul campo e nella vita. Con una combinazione di gioco 
+                e metodologia scientifica, costruiamo fondamenta solide per il futuro agonistico mentre i bambini si 
+                divertono a scoprire le proprie potenzialità.
+              </p>
+            </RevealAnimation>
+            <RevealAnimation delay={250}>
+              <p className="mb-4 font-swiss">
                 Grazie alla tecnologia VICKI™, ogni bambino viene monitorato in modo oggettivo,
                 permettendo di identificare precocemente potenziali talenti e predisposizioni particolari.
                 L'approccio scientifico consente di guidare lo sviluppo di ciascun giovane atleta
                 in modo mirato e personalizzato.
               </p>
             </RevealAnimation>
-            <RevealAnimation delay={250}>
+            <RevealAnimation delay={300}>
               <p className="mb-4 font-swiss">
                 <strong>Analisi Iniziale Inclusa:</strong> Il programma SIT include una valutazione iniziale completa 
                 che analizza le capacità motorie, coordinative e attitudinali del giovane atleta. Questa analisi 
@@ -95,7 +106,7 @@ const SitProgram = () => {
                 del percorso formativo.
               </p>
             </RevealAnimation>
-            <RevealAnimation delay={300}>
+            <RevealAnimation delay={350}>
               <p className="font-swiss">
                 I bambini provenienti dal programma SAT possono accedere al programma SIT dopo aver superato 
                 una valutazione specifica che ne attesti la predisposizione e il potenziale. Questo permette 
@@ -104,8 +115,74 @@ const SitProgram = () => {
             </RevealAnimation>
           </div>
           
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-10 mb-16">
+            <RevealAnimation delay={400}>
+              <div className="bg-white p-8 rounded-lg shadow-sm">
+                <h3 className="text-xl font-swiss font-semibold mb-6 text-ath-clay">Eccellenza Tecnica</h3>
+                <ul className="space-y-4 font-swiss">
+                  <li className="flex">
+                    <span className="text-ath-clay mr-2">•</span>
+                    <p>Trasformiamo i fondamentali in giochi coinvolgenti, dove l'analisi biomeccanica diventa un'avventura di scoperta del proprio corpo in movimento.</p>
+                  </li>
+                  <li className="flex">
+                    <span className="text-ath-clay mr-2">•</span>
+                    <p>I bambini imparano a "fare amicizia con la pallina" attraverso sfide ludiche che sviluppano un controllo naturale e intuitivo delle traiettorie.</p>
+                  </li>
+                </ul>
+              </div>
+            </RevealAnimation>
+            
+            <RevealAnimation delay={450}>
+              <div className="bg-white p-8 rounded-lg shadow-sm">
+                <h3 className="text-xl font-swiss font-semibold mb-6 text-ath-clay">Preparazione Atletica</h3>
+                <ul className="space-y-4 font-swiss">
+                  <li className="flex">
+                    <span className="text-ath-clay mr-2">•</span>
+                    <p>Percorsi motori divertenti che, mentre fanno sorridere, costruiscono le capacità atletiche fondamentali monitorate attraverso "missioni" da completare.</p>
+                  </li>
+                  <li className="flex">
+                    <span className="text-ath-clay mr-2">•</span>
+                    <p>Giochi di velocità e agilità che, tra risate e competizioni amichevoli, preparano il corpo alle future sfide agonistiche.</p>
+                  </li>
+                </ul>
+              </div>
+            </RevealAnimation>
+            
+            <RevealAnimation delay={500}>
+              <div className="bg-white p-8 rounded-lg shadow-sm">
+                <h3 className="text-xl font-swiss font-semibold mb-6 text-ath-clay">Forza Mentale</h3>
+                <ul className="space-y-4 font-swiss">
+                  <li className="flex">
+                    <span className="text-ath-clay mr-2">•</span>
+                    <p>Attività ludiche di problem-solving che allenano la mente a mantenere la calma e trovare soluzioni creative nelle situazioni di pressione.</p>
+                  </li>
+                  <li className="flex">
+                    <span className="text-ath-clay mr-2">•</span>
+                    <p>Sfide di concentrazione presentate come avventure dove imparare a gestire le emozioni diventa parte del gioco.</p>
+                  </li>
+                </ul>
+              </div>
+            </RevealAnimation>
+            
+            <RevealAnimation delay={550}>
+              <div className="bg-white p-8 rounded-lg shadow-sm">
+                <h3 className="text-xl font-swiss font-semibold mb-6 text-ath-clay">Tattica & Strategia</h3>
+                <ul className="space-y-4 font-swiss">
+                  <li className="flex">
+                    <span className="text-ath-clay mr-2">•</span>
+                    <p>Giochi di ruolo dove i bambini sperimentano diverse strategie di gioco divertendosi a "pensare come campioni".</p>
+                  </li>
+                  <li className="flex">
+                    <span className="text-ath-clay mr-2">•</span>
+                    <p>Mini-tornei tematici dove sviluppano intuizione tattica e spirito di adattamento in un ambiente positivo e stimolante.</p>
+                  </li>
+                </ul>
+              </div>
+            </RevealAnimation>
+          </div>
+          
           <div className="grid md:grid-cols-2 gap-10">
-            <RevealAnimation delay={350} className="bg-gray-50 p-8 rounded-lg">
+            <RevealAnimation delay={600} className="bg-gray-50 p-8 rounded-lg">
               <h3 className="text-xl font-swiss font-semibold mb-4">Caratteristiche del Programma</h3>
               <ul className="list-disc list-inside space-y-2 font-swiss">
                 <li>1 sessione tennis da 1 ora a settimana</li>
@@ -121,7 +198,7 @@ const SitProgram = () => {
               </ul>
             </RevealAnimation>
             
-            <RevealAnimation delay={400} className="bg-gray-50 p-8 rounded-lg">
+            <RevealAnimation delay={650} className="bg-gray-50 p-8 rounded-lg">
               <h3 className="text-xl font-swiss font-semibold mb-4">Prezzo</h3>
               <div className="mb-4">
                 <p className="text-3xl font-bold text-ath-clay">€950</p>
