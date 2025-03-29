@@ -1,3 +1,4 @@
+
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { HelpCircle, BookOpen, Zap, Server, Users, Dumbbell, ChevronDown, CircleDot } from 'lucide-react';
 import { GiTennisRacket } from "react-icons/gi";
@@ -261,7 +262,11 @@ const NavigationLinks = ({ className, textColorClass, isMobile = false }: Naviga
                           sport === 'padel' ? "text-ath-clay" : ""
                         )}
                       >
-                        <CircleDot size={18} className="mr-2" />
+                        <img 
+                          src="/lovable-uploads/615f7b66-897f-4866-87ed-547ab78c47d7.png" 
+                          alt="Padel racket" 
+                          className="w-[18px] h-[18px] mr-2" 
+                        />
                         <span>Padel</span>
                       </button>
                     </DropdownMenuItem>
