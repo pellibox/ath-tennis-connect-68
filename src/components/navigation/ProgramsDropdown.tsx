@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { ChevronDown } from 'lucide-react';
@@ -95,7 +96,7 @@ const ProgramsDropdown = ({ textColorClass }: ProgramsDropdownProps) => {
       case 'pickleball':
         return (
           <img 
-            src="/lovable-uploads/pickleball-icon.png" 
+            src="/lovable-uploads/6cde43cd-dd0f-4e27-a927-41f7dc60b68b.png" 
             alt="Pickleball racket" 
             className="w-[18px] h-[18px] mr-2 transition-all duration-300 ease-in-out group-hover:scale-110" 
             onError={(e) => {
@@ -170,7 +171,7 @@ const ProgramsDropdown = ({ textColorClass }: ProgramsDropdownProps) => {
           currentSport={activeSport} 
           icon={
             <img 
-              src="/lovable-uploads/pickleball-icon.png" 
+              src="/lovable-uploads/6cde43cd-dd0f-4e27-a927-41f7dc60b68b.png" 
               alt="Pickleball racket" 
               className="w-[18px] h-[18px] mr-2" 
             />

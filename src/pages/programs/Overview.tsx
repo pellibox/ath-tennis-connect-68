@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
@@ -117,7 +118,7 @@ const ProgramsOverview = () => {
                     className="flex items-center rounded-full data-[state=active]:bg-ath-clay data-[state=active]:text-white px-8 py-3"
                   >
                     <img 
-                      src="/lovable-uploads/pickleball-icon.png" 
+                      src="/lovable-uploads/6cde43cd-dd0f-4e27-a927-41f7dc60b68b.png" 
                       alt="Pickleball" 
                       className="w-[16px] h-[16px] mr-2"
                       onError={(e) => {
