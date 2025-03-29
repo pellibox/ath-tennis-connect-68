@@ -25,22 +25,22 @@ export const juniorPrograms: Program[] = [
   },
   {
     id: '1',
-    title: 'SAT - Agonista Junior (6-12 anni)',
-    description: 'Programma formativo per giovani atleti in fase di sviluppo tecnico e fisico.',
+    title: 'SAT - Scuola Avviamento al Tennis (4-10+ anni)',
+    description: 'Un viaggio entusiasmante alla scoperta del tennis, dove ogni bambino può esprimersi attraverso il gioco e il movimento.',
     image: 'https://images.unsplash.com/photo-1612458225454-41c3991c0c49?q=80&w=1973&auto=format&fit=crop',
     vimeoEmbed: '<div style="padding:56.25% 0 0 0;position:relative;"><iframe src="https://player.vimeo.com/video/1068596987?h=c9dad61d03&autoplay=1&loop=1&title=0&byline=0&portrait=0&controls=0" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen style="position:absolute;top:0;left:0;width:100%;height:100%;"></iframe></div>',
-    link: '/programs/junior-competitive',
+    link: '/programs/sat',
     features: [
-      'Valutazioni tecniche, fisiche, mentali e tattiche costanti',
-      'Analisi biomeccanica in campo',
-      'Monitoraggio crescita per evitare sovraccarichi (medico e biochimico)',
-      'Programmi adattati all\'età e all\'evoluzione motoria',
-      'AI dedicata per tracciare la coordinazione',
-      'Equilibrio tra miglioramento tecnico e componente ludica',
-      'Coinvolgimento attivo dei genitori attraverso report visivi e aggiornamenti chiari'
+      'Approccio ludico e inclusivo per introdurre i bambini al tennis',
+      'Circuiti avventurosi che stimolano la coordinazione attraverso sfide adatte all\'età',
+      'Giochi colorati e dinamici che introducono i movimenti fondamentali in modo naturale',
+      'Ambiente positivo che promuove divertimento e socializzazione',
+      'Tecnologia VICKI™ per un monitoraggio personalizzato dei progressi',
+      'Giochi-test per adattare le attività alle caratteristiche di ciascun bambino',
+      'Possibilità di upgrade al programma SIT dopo valutazione specifica'
     ],
     vickiPowered: true,
-    vickiMonitoringLevel: 'standard'
+    vickiMonitoringLevel: 'basic'
   },
   {
     id: '5',

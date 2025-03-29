@@ -1,3 +1,4 @@
+
 const translations = {
   // Header & Navigation
   "nav.home": "Home",
@@ -26,7 +27,7 @@ const translations = {
   "programs.subtitle": "Allenamento di tennis personalizzato per ogni età e livello di abilità",
   "programs.junior": "Junior Program",
   "programs.junior.desc": "Programma completo per giovani atleti che vogliono competere a livello agonistico.",
-  "programs.talent": "SIT - Scuola Individuazione Talenti (4-10 anni)",
+  "programs.talent": "SIT - Scuola Individuazione Talenti (6-10+ anni)",
   "programs.talent.desc": "Programma specializzato per l'identificazione precoce dei talenti tennistici e lo sviluppo delle abilità fondamentali.",
   "programs.young": "Performance 3 & 4 (13+ anni)",
   "programs.young.desc": "Programmi completi per giovani atleti tra 13 e 18 anni che vogliono sviluppare un percorso agonistico strutturato.",
