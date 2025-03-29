@@ -11,11 +11,19 @@ import VickiPoweredBadge from '@/components/VickiPoweredBadge';
 import ContactSection from '@/components/ContactSection';
 import { Badge } from '@/components/ui/badge';
 import { Users } from 'lucide-react';
+import ProgramsSection from '@/components/ProgramsSection';
+import { juniorPrograms } from '@/data/programs';
 
 const Performance3Program = () => {
   const { t } = useLanguage();
   const [userGender, setUserGender] = useState<UserGender | null>(null);
   const [userType, setUserType] = useState<UserType | null>(null);
+  
+  // Filter related programs - Programs similar to Performance3
+  const relatedPrograms = juniorPrograms.filter(program => 
+    program.id !== 'performance-3' && 
+    ['performance-2', 'performance-4', 'elite-performance', 'talent-identification'].includes(program.id)
+  ).slice(0, 3);
   
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -142,6 +150,23 @@ const Performance3Program = () => {
                 Richiedi informazioni
               </a>
             </RevealAnimation>
+          </div>
+        </div>
+        
+        {/* Related Programs Section */}
+        <div className="bg-gray-50 py-16">
+          <div className="max-w-6xl mx-auto px-6">
+            <RevealAnimation>
+              <h2 className="text-3xl font-swiss mb-12">Programmi correlati</h2>
+            </RevealAnimation>
+            
+            <ProgramsSection 
+              title=""
+              programs={relatedPrograms}
+              compact={true}
+              gridLayout="dense"
+              className="pt-0"
+            />
           </div>
         </div>
         
