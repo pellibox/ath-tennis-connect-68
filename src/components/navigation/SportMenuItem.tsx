@@ -19,7 +19,9 @@ const SportMenuItem = ({
   label, 
   onClick 
 }: SportMenuItemProps) => {
-  const isSelected = currentSport === sportType || (!currentSport && sportType === 'tennis');
+  // Consider tennis as selected by default on programs page if no sport is selected
+  const isSelected = currentSport === sportType || 
+    (!currentSport && sportType === 'tennis');
   
   return (
     <DropdownMenuItem asChild>
@@ -29,7 +31,7 @@ const SportMenuItem = ({
           "flex items-center w-full p-2 rounded-md transition-all duration-300 group",
           isSelected 
             ? "bg-ath-clay/10 border-l-4 border-ath-clay" 
-            : "hover:bg-gray-100",
+            : "hover:bg-gray-100 border-l-4 border-transparent",
           isSelected ? "text-ath-clay" : "text-foreground"
         )}
       >

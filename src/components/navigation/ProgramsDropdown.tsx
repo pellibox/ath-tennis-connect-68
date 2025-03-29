@@ -1,6 +1,6 @@
 
-import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useState, useEffect } from 'react';
+import { useNavigate, useLocation } from 'react-router-dom';
 import { ChevronDown } from 'lucide-react';
 import { GiTennisRacket } from "react-icons/gi";
 import { MdSportsTennis } from "react-icons/md";
@@ -19,8 +19,32 @@ interface ProgramsDropdownProps {
 
 const ProgramsDropdown = ({ textColorClass }: ProgramsDropdownProps) => {
   const navigate = useNavigate();
+  const location = useLocation();
   const [openDropdown, setOpenDropdown] = useState(false);
   const { sport, updateSport, userGender, userType } = useProfile();
+  
+  // Determine active sport based on current route
+  const [activeSport, setActiveSport] = useState<SportType | null>(sport);
+  
+  useEffect(() => {
+    // Set active sport based on current route
+    const path = location.pathname;
+    
+    if (path.includes('touchtennis')) {
+      setActiveSport('touchtennis');
+    } else if (path.includes('padel-pickleball')) {
+      // Determine if it's padel or pickleball based on user's last selection
+      if (sport === 'padel' || sport === 'pickleball') {
+        setActiveSport(sport);
+      } else {
+        setActiveSport('padel'); // Default to padel if no selection
+      }
+    } else if (path.includes('programs')) {
+      setActiveSport('tennis');
+    } else {
+      setActiveSport(sport);
+    }
+  }, [location.pathname, sport]);
   
   const handleSportSelect = (sportType: SportType) => {
     if (userGender && userType) {
@@ -43,6 +67,11 @@ const ProgramsDropdown = ({ textColorClass }: ProgramsDropdownProps) => {
     setOpenDropdown(false);
   };
 
+  // Check if we're on a programs-related page
+  const isOnProgramsPage = location.pathname.includes('programs') || 
+                           location.pathname.includes('touchtennis') || 
+                           location.pathname.includes('padel-pickleball');
+
   return (
     <DropdownMenu open={openDropdown} onOpenChange={setOpenDropdown}>
       <DropdownMenuTrigger asChild>
@@ -50,7 +79,7 @@ const ProgramsDropdown = ({ textColorClass }: ProgramsDropdownProps) => {
           className={cn(
             "flex items-center text-sm font-swiss transition-colors hover:text-ath-clay bg-transparent px-4 py-2 rounded-md",
             textColorClass,
-            sport ? "text-ath-clay" : ""
+            isOnProgramsPage ? "text-ath-clay" : ""
           )}
         >
           <img 
@@ -58,7 +87,7 @@ const ProgramsDropdown = ({ textColorClass }: ProgramsDropdownProps) => {
             alt="Programs list" 
             className={cn(
               "w-5 h-5 mr-2", 
-              sport ? "text-ath-clay" : ""
+              isOnProgramsPage ? "text-ath-clay" : ""
             )} 
           />
           Programmi
@@ -74,14 +103,14 @@ const ProgramsDropdown = ({ textColorClass }: ProgramsDropdownProps) => {
       <DropdownMenuContent align="center" className="bg-popover w-[200px] p-2">
         <SportMenuItem 
           sportType="tennis" 
-          currentSport={sport} 
+          currentSport={activeSport} 
           icon={<GiTennisRacket size={18} className="mr-2" />} 
           label="Tennis" 
           onClick={handleSportSelect} 
         />
         <SportMenuItem 
           sportType="padel" 
-          currentSport={sport} 
+          currentSport={activeSport} 
           icon={
             <img 
               src="/lovable-uploads/d5868d98-0391-4dd3-8467-4ff2a245339e.png" 
@@ -94,7 +123,7 @@ const ProgramsDropdown = ({ textColorClass }: ProgramsDropdownProps) => {
         />
         <SportMenuItem 
           sportType="pickleball" 
-          currentSport={sport} 
+          currentSport={activeSport} 
           icon={
             <img 
               src="/lovable-uploads/e0ce28ab-308e-4ebc-afaa-ca4042757796.png" 
@@ -107,7 +136,7 @@ const ProgramsDropdown = ({ textColorClass }: ProgramsDropdownProps) => {
         />
         <SportMenuItem 
           sportType="touchtennis" 
-          currentSport={sport} 
+          currentSport={activeSport} 
           icon={<MdSportsTennis size={18} className="mr-2" />} 
           label="TouchTennis" 
           onClick={handleSportSelect} 
