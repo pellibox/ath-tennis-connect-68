@@ -33,7 +33,7 @@ const Logo = ({
   
   if (isInMenu) {
     // Always use the new menu logo when in menu
-    logoSrc = "/lovable-uploads/ca310445-f2b9-49bb-8499-59608b361de5.png";
+    logoSrc = "/lovable-uploads/233f2e81-7b29-4423-9984-c0c470d27a30.png";
   } else if (useVickiLogo) {
     logoSrc = onDarkBackground 
       ? "/lovable-uploads/dc679c8d-60cd-4841-a42c-0907926b7ef5.png" // Vicki logo bianco
@@ -41,8 +41,8 @@ const Logo = ({
   } else {
     // Use the new logo files based on background
     logoSrc = onDarkBackground 
-      ? "/lovable-uploads/38147937-4cd3-4caa-9a19-c801e8255f36.png" // New white logo (ATH with text)
-      : "/lovable-uploads/67883085-3eed-4f22-8828-cbbde8355e70.png"; // New black logo (ATH with text)
+      ? "/lovable-uploads/233f2e81-7b29-4423-9984-c0c470d27a30.png" // White ATH logo
+      : "/lovable-uploads/47943c06-a504-40f7-a152-59c4a5d22896.png"; // Black ATH logo
   }
   
   // Size classes based on logo type
