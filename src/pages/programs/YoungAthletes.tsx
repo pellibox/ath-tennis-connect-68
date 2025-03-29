@@ -1,4 +1,4 @@
-
+import React from 'react';
 import { useEffect, useState } from 'react';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
@@ -9,7 +9,7 @@ import { UserGender, UserType, loadUserPreferences } from '@/components/UserType
 import VickiMonitoringBadge from '@/components/VickiMonitoringBadge';
 import VickiPoweredBadge from '@/components/VickiPoweredBadge';
 import ContactSection from '@/components/ContactSection';
-import { ArrowRight, Star } from 'lucide-react';
+import { ArrowRight, Users } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import ButtonLink from '@/components/ButtonLink';
 import { Badge } from '@/components/ui/badge';
@@ -47,7 +47,6 @@ const YoungAthletesProgram = () => {
             overlayOpacity="medium"
           />
           
-          {/* Black banner with claim text */}
           <div className="w-full bg-black py-16 relative" style={{ height: 'auto', minHeight: '400px' }}>
             <div className="max-w-6xl mx-auto px-6 h-full flex flex-col justify-center py-8">
               <h2 className="text-white text-lg font-display mb-4">PROGRAMMI PERFORMANCE:</h2>
@@ -77,8 +76,8 @@ const YoungAthletesProgram = () => {
               <div className="flex flex-wrap items-center gap-3 mb-6">
                 <h2 className="text-3xl font-swiss">Performance 4</h2>
                 <Badge variant="ath" className="flex items-center gap-1">
-                  <Star className="w-3.5 h-3.5" />
-                  <span>Popular Choice</span>
+                  <Users className="w-3.5 h-3.5" />
+                  <span>Suggerimento del Team</span>
                 </Badge>
                 <VickiMonitoringBadge level="advanced" />
                 <VickiPoweredBadge />
