@@ -1,5 +1,6 @@
 
 import { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import ProgramsSection from '@/components/ProgramsSection';
@@ -10,25 +11,18 @@ import { useLanguage } from '@/contexts/LanguageContext';
 import { useProfile } from '@/contexts/ProfileContext';
 import { getVimeoEmbed } from '@/utils/videoUtils';
 import ProgramFilters from '@/components/programs/ProgramFilters';
-import { Tabs, TabsList, TabsTrigger, TabsContent } from '@/components/ui/tabs';
+import { Tabs, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { programCategories } from '@/data/programs';
-import { programCategories as padelPickleballCategories } from '@/data/padelPickleball';
-import { touchTennisCategories } from '@/data/touchtennis';
 import { useIsMobile } from '@/hooks/use-mobile';
 import StandardHeroVideo from '@/components/StandardHeroVideo';
 
 const Programs = () => {
   const { t } = useLanguage();
+  const navigate = useNavigate();
   const isMobile = useIsMobile();
   const [showAllPrograms, setShowAllPrograms] = useState(false);
   const { userGender, userType, sport, updateSport } = useProfile();
-  const [activeTab, setActiveTab] = useState<'tennis' | 'padel-pickleball' | 'touchtennis'>(
-    sport === 'padel' || sport === 'pickleball' 
-      ? 'padel-pickleball' 
-      : sport === 'touchtennis' 
-        ? 'touchtennis' 
-        : 'tennis'
-  );
+  const [activeTab, setActiveTab] = useState<'tennis' | 'padel' | 'pickleball' | 'touchtennis'>('tennis');
   
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -36,41 +30,36 @@ const Programs = () => {
 
   useEffect(() => {
     if (userType && userGender) { // Only update profile if user already has a profile
-      if (activeTab === 'tennis' && sport !== 'tennis') {
+      if (sport !== 'tennis') {
         updateSport('tennis');
-      } else if (activeTab === 'padel-pickleball' && sport !== 'padel' && sport !== 'pickleball') {
-        updateSport('padel');
-      } else if (activeTab === 'touchtennis' && sport !== 'touchtennis') {
-        updateSport('touchtennis');
       }
     }
-  }, [activeTab, sport, userType, userGender, updateSport]);
+  }, [sport, userType, userGender, updateSport]);
   
   const vimeoEmbed = getVimeoEmbed(userGender, userType);
   
-  const { filteredCategories, title, subtitle } = (() => {
-    if (activeTab === 'tennis') {
-      return ProgramFilters({ userType, showAllPrograms, sport: 'tennis' });
-    } else if (activeTab === 'touchtennis') {
-      return { 
-        filteredCategories: touchTennisCategories, 
-        title: "Programmi TouchTennis", 
-        subtitle: "Esplora i nostri programmi dedicati al TouchTennis per giocatori di tutti i livelli" 
-      };
-    } else {
-      return { 
-        filteredCategories: padelPickleballCategories, 
-        title: "Programmi Padel & Pickleball", 
-        subtitle: "Esplora i nostri programmi dedicati al Padel e al Pickleball per giocatori di tutti i livelli" 
-      };
-    }
-  })();
+  const { filteredCategories, title, subtitle } = ProgramFilters({ 
+    userType, 
+    showAllPrograms, 
+    sport: 'tennis' 
+  });
 
   const handleTabChange = (value: string) => {
-    setActiveTab(value as 'tennis' | 'padel-pickleball' | 'touchtennis');
-    const programsElement = document.getElementById('programs-section');
-    if (programsElement) {
-      programsElement.scrollIntoView({ behavior: 'smooth' });
+    setActiveTab(value as 'tennis' | 'padel' | 'pickleball' | 'touchtennis');
+    
+    switch (value) {
+      case 'tennis':
+        navigate('/programs');
+        break;
+      case 'padel':
+        navigate('/padel');
+        break;
+      case 'pickleball':
+        navigate('/pickleball');
+        break;
+      case 'touchtennis':
+        navigate('/touchtennis');
+        break;
     }
   };
 
@@ -175,8 +164,9 @@ const Programs = () => {
         <div id="programs-section" className="bg-ath-gray py-12">
           <div className="container mx-auto px-4">
             {isMobile ? (
-              <Tabs value={activeTab} onValueChange={handleTabChange} className="w-full">
-                <div className="mb-8">
+              <div className="mb-8">
+                <h2 className="text-2xl font-display mb-6">Seleziona lo Sport</h2>
+                <Tabs value={activeTab} onValueChange={handleTabChange} className="w-full">
                   <TabsList className="w-full mb-2 bg-white border border-gray-200 rounded-full p-1 flex justify-between">
                     <TabsTrigger 
                       value="tennis" 
@@ -185,13 +175,19 @@ const Programs = () => {
                       Tennis
                     </TabsTrigger>
                     <TabsTrigger 
-                      value="padel-pickleball" 
+                      value="padel" 
                       className="flex-1 rounded-full data-[state=active]:bg-ath-clay data-[state=active]:text-white px-4 py-2"
                     >
-                      Padel & Pickleball
+                      Padel
                     </TabsTrigger>
                   </TabsList>
                   <TabsList className="w-full bg-white border border-gray-200 rounded-full p-1 flex justify-between">
+                    <TabsTrigger 
+                      value="pickleball" 
+                      className="flex-1 rounded-full data-[state=active]:bg-ath-clay data-[state=active]:text-white px-4 py-2"
+                    >
+                      Pickleball
+                    </TabsTrigger>
                     <TabsTrigger 
                       value="touchtennis" 
                       className="flex-1 rounded-full data-[state=active]:bg-ath-clay data-[state=active]:text-white px-4 py-2"
@@ -199,43 +195,16 @@ const Programs = () => {
                       TouchTennis
                     </TabsTrigger>
                   </TabsList>
-                </div>
-                
-                <TabsContent value="tennis" className="mt-0">
-                  <ProgramsSection 
-                    title={title}
-                    subtitle={subtitle}
-                    categories={filteredCategories}
-                    className=""
-                  />
-                </TabsContent>
-                
-                <TabsContent value="padel-pickleball" className="mt-0">
-                  <ProgramsSection 
-                    title="Programmi Padel & Pickleball"
-                    subtitle="Esplora i nostri programmi dedicati al Padel e al Pickleball per giocatori di tutti i livelli"
-                    categories={padelPickleballCategories}
-                    className=""
-                  />
-                </TabsContent>
-
-                <TabsContent value="touchtennis" className="mt-0">
-                  <ProgramsSection 
-                    title="Programmi TouchTennis"
-                    subtitle="Esplora i nostri programmi dedicati al TouchTennis per giocatori di tutti i livelli"
-                    categories={touchTennisCategories}
-                    className=""
-                  />
-                </TabsContent>
-              </Tabs>
-            ) : (
-              <ProgramsSection 
-                title={title}
-                subtitle={subtitle}
-                categories={filteredCategories}
-                className=""
-              />
-            )}
+                </Tabs>
+              </div>
+            ) : null}
+            
+            <ProgramsSection 
+              title={title}
+              subtitle={subtitle}
+              categories={filteredCategories}
+              className=""
+            />
           </div>
         </div>
         
