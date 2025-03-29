@@ -60,10 +60,10 @@ const MethodPage = () => {
       >
         <div 
           style={{
-            width: isMobile ? '120px' : '160px',
+            width: isMobile ? '120px' : '500px',
             transform: `translateY(-${logoYOffset}px)`
           }}
-          className="flex justify-center" // Added to ensure centering
+          className="flex justify-center"
         >
           <Logo 
             onDarkBackground={true} 
