@@ -23,12 +23,12 @@ const HeroVideoSection = ({ logoYOffset, logoOpacity, logoRef }: HeroVideoSectio
         style={{
           top: isMobile ? '140px' : '180px',
           opacity: logoOpacity,
-          paddingLeft: isMobile ? '24px' : '48px' // Add padding to position logo from the left edge
+          paddingLeft: isMobile ? '24px' : '48px'
         }}
       >
         <div 
           style={{
-            width: isMobile ? '95px' : '335px', // Decreased by 1/3 from previous size (140px and 500px)
+            width: isMobile ? '95px' : '500px', // Increased desktop logo size from 335px to 500px
             transform: `translateY(-${logoYOffset}px)`
           }}
         >
