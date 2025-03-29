@@ -1,4 +1,5 @@
 
+import React from 'react';
 import { cn } from '@/lib/utils';
 import { DropdownMenuItem } from "@/components/ui/dropdown-menu";
 import { SportType } from '@/contexts/ProfileContext';
