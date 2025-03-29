@@ -39,9 +39,10 @@ const Logo = ({
       ? "/lovable-uploads/dc679c8d-60cd-4841-a42c-0907926b7ef5.png" // Vicki logo bianco
       : "/lovable-uploads/8f2b30a1-cb65-453e-ba82-d9721a192426.png"; // Vicki logo nero
   } else {
+    // Use the new logo files based on background
     logoSrc = onDarkBackground 
-      ? "/lovable-uploads/ebada5d3-6c5e-43a0-ab7d-a5850900d950.png" // Logo bianco per sfondi scuri (ATH_W)
-      : "/lovable-uploads/fa0d6412-fbae-4d76-98c8-1d7a6cb96b19.png"; // Logo nero per sfondi chiari (ATH_B)
+      ? "/lovable-uploads/38147937-4cd3-4caa-9a19-c801e8255f36.png" // New white logo (ATH with text)
+      : "/lovable-uploads/67883085-3eed-4f22-8828-cbbde8355e70.png"; // New black logo (ATH with text)
   }
   
   // Size classes based on logo type
@@ -69,13 +70,16 @@ const Logo = ({
     }
   };
   
+  // Add mx-auto class when logo should be centered
+  const centeringClass = isCentered ? 'mx-auto' : '';
+  
   return (
     <div className={`${className} ${isCentered ? 'text-center' : ''}`}>
       <Link to="/" onClick={handleLogoClick}>
         <img 
           src={logoSrc} 
           alt={useVickiLogo || isInMenu ? "Vicki™" : "ATH - Advanced Tennis Hub"} 
-          className={`${sizeClasses} object-contain`}
+          className={`${sizeClasses} ${centeringClass} object-contain`}
         />
       </Link>
     </div>
