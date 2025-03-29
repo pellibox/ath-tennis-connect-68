@@ -1,4 +1,3 @@
-
 import { useEffect, useState } from 'react';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
@@ -14,6 +13,7 @@ import ProgramFilters from '@/components/programs/ProgramFilters';
 import { Tabs, TabsList, TabsTrigger, TabsContent } from '@/components/ui/tabs';
 import { programCategories } from '@/data/programs';
 import { programCategories as padelPickleballCategories } from '@/data/padelPickleball';
+import { touchTennisCategories } from '@/data/touchtennis';
 import { useIsMobile } from '@/hooks/use-mobile';
 
 const Programs = () => {
@@ -23,7 +23,13 @@ const Programs = () => {
   const [logoYOffset, setLogoYOffset] = useState<number>(0);
   const [logoOpacity, setLogoOpacity] = useState<number>(1);
   const { userGender, userType, sport, updateSport } = useProfile();
-  const [activeTab, setActiveTab] = useState<'tennis' | 'padel-pickleball'>(sport === 'padel' || sport === 'pickleball' ? 'padel-pickleball' : 'tennis');
+  const [activeTab, setActiveTab] = useState<'tennis' | 'padel-pickleball' | 'touchtennis'>(
+    sport === 'padel' || sport === 'pickleball' 
+      ? 'padel-pickleball' 
+      : sport === 'touchtennis' 
+        ? 'touchtennis' 
+        : 'tennis'
+  );
   
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -54,31 +60,40 @@ const Programs = () => {
     };
   }, []);
 
-  // Update sport in the UI without creating a profile
   useEffect(() => {
     if (userType && userGender) { // Only update profile if user already has a profile
       if (activeTab === 'tennis' && sport !== 'tennis') {
         updateSport('tennis');
       } else if (activeTab === 'padel-pickleball' && sport !== 'padel' && sport !== 'pickleball') {
         updateSport('padel');
+      } else if (activeTab === 'touchtennis' && sport !== 'touchtennis') {
+        updateSport('touchtennis');
       }
     }
   }, [activeTab, sport, userType, userGender, updateSport]);
   
   const vimeoEmbed = getVimeoEmbed(userGender, userType);
   
-  // Choose which content to display based on the active tab
-  const { filteredCategories, title, subtitle } = activeTab === 'tennis' 
-    ? ProgramFilters({ userType, showAllPrograms, sport: 'tennis' })
-    : { 
+  const { filteredCategories, title, subtitle } = (() => {
+    if (activeTab === 'tennis') {
+      return ProgramFilters({ userType, showAllPrograms, sport: 'tennis' });
+    } else if (activeTab === 'touchtennis') {
+      return { 
+        filteredCategories: touchTennisCategories, 
+        title: "Programmi TouchTennis", 
+        subtitle: "Esplora i nostri programmi dedicati al TouchTennis per giocatori di tutti i livelli" 
+      };
+    } else {
+      return { 
         filteredCategories: padelPickleballCategories, 
         title: "Programmi Padel & Pickleball", 
         subtitle: "Esplora i nostri programmi dedicati al Padel e al Pickleball per giocatori di tutti i livelli" 
       };
+    }
+  })();
 
   const handleTabChange = (value: string) => {
-    setActiveTab(value as 'tennis' | 'padel-pickleball');
-    // When switching tabs, reset scroll position to show the programs
+    setActiveTab(value as 'tennis' | 'padel-pickleball' | 'touchtennis');
     const programsElement = document.getElementById('programs-section');
     if (programsElement) {
       programsElement.scrollIntoView({ behavior: 'smooth' });
@@ -89,7 +104,7 @@ const Programs = () => {
     <div className="flex flex-col min-h-screen relative">
       <Header />
       
-      <main className="flex-grow pt-0"> {/* Removed pt-20 to eliminate white space */}
+      <main className="flex-grow pt-0">
         <div className="w-full bg-black min-h-[calc(100vw*9/16)] relative">
           <div dangerouslySetInnerHTML={{ __html: vimeoEmbed }} />
         </div>
@@ -105,7 +120,6 @@ const Programs = () => {
         <div id="programs-section" className="bg-ath-gray py-12">
           <div className="container mx-auto px-4">
             {isMobile ? (
-              // Show tabs only on mobile
               <Tabs value={activeTab} onValueChange={handleTabChange} className="w-full">
                 <TabsList className="w-full mb-8 bg-white border border-gray-200 rounded-full p-1 flex justify-center">
                   <TabsTrigger 
@@ -119,6 +133,12 @@ const Programs = () => {
                     className="flex-1 rounded-full data-[state=active]:bg-ath-clay data-[state=active]:text-white px-8 py-2"
                   >
                     Padel & Pickleball
+                  </TabsTrigger>
+                  <TabsTrigger 
+                    value="touchtennis" 
+                    className="flex-1 rounded-full data-[state=active]:bg-ath-clay data-[state=active]:text-white px-8 py-2"
+                  >
+                    TouchTennis
                   </TabsTrigger>
                 </TabsList>
                 
@@ -139,9 +159,17 @@ const Programs = () => {
                     className=""
                   />
                 </TabsContent>
+
+                <TabsContent value="touchtennis" className="mt-0">
+                  <ProgramsSection 
+                    title="Programmi TouchTennis"
+                    subtitle="Esplora i nostri programmi dedicati al TouchTennis per giocatori di tutti i livelli"
+                    categories={touchTennisCategories}
+                    className=""
+                  />
+                </TabsContent>
               </Tabs>
             ) : (
-              // On desktop, just show the content based on activeTab without tabs UI
               <ProgramsSection 
                 title={title}
                 subtitle={subtitle}

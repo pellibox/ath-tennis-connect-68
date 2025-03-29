@@ -12,6 +12,7 @@ import FacilitiesPage from '@/pages/Facilities';
 import CoachesPage from '@/pages/Coaches';
 import ProgramsPage from '@/pages/Programs';
 import PadelPickleballPage from '@/pages/PadelPickleball';
+import TouchTennisPage from '@/pages/TouchTennis';
 import ContactPage from '@/pages/Contact';
 import NotFoundPage from '@/pages/NotFound';
 import PrivacyPage from '@/pages/Privacy';
@@ -70,6 +71,7 @@ function AppContent() {
         {/* Programs routes */}
         <Route path="/programs" element={<ProgramsPage />} />
         <Route path="/padel-pickleball" element={<PadelPickleballPage />} />
+        <Route path="/touchtennis" element={<TouchTennisPage />} />
         
         <Route path="/programs/elite" element={<EliteProgram />} />
         <Route path="/programs/junior" element={<JuniorProgram />} />
