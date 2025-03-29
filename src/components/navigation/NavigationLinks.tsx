@@ -1,5 +1,6 @@
+
 import { Link, useLocation, useNavigate } from 'react-router-dom';
-import { HelpCircle, BookOpen, Activity, Zap, Server, Users, Dumbbell, ChevronDown, TennisBall, Racket } from 'lucide-react';
+import { HelpCircle, BookOpen, Activity, Zap, Server, Users, Dumbbell, ChevronDown, CircleDot, Racquet } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { useState } from 'react';
 import { useProfile } from '@/contexts/ProfileContext';
@@ -48,12 +49,12 @@ export const navigationItems: NavigationItem[] = [
       {
         text: 'Padel & Pickleball',
         href: '/padel-pickleball',
-        icon: <TennisBall size={18} className="mr-2" />
+        icon: <CircleDot size={18} className="mr-2" />
       },
       {
         text: 'TouchTennis',
         href: '/touchtennis',
-        icon: <Racket size={18} className="mr-2" />
+        icon: <Dumbbell size={18} className="mr-2" />
       }
     ]
   },
@@ -260,7 +261,7 @@ const NavigationLinks = ({ className, textColorClass, isMobile = false }: Naviga
                           sport === 'padel' ? "text-ath-clay" : ""
                         )}
                       >
-                        <Dumbbell size={18} className="mr-2" />
+                        <CircleDot size={18} className="mr-2" />
                         <span>Padel</span>
                       </button>
                     </DropdownMenuItem>
@@ -272,7 +273,7 @@ const NavigationLinks = ({ className, textColorClass, isMobile = false }: Naviga
                           sport === 'pickleball' ? "text-ath-clay" : ""
                         )}
                       >
-                        <Dumbbell size={18} className="mr-2" />
+                        <CircleDot size={18} className="mr-2" />
                         <span>Pickleball</span>
                       </button>
                     </DropdownMenuItem>
@@ -284,7 +285,7 @@ const NavigationLinks = ({ className, textColorClass, isMobile = false }: Naviga
                           sport === 'touchtennis' ? "text-ath-clay" : ""
                         )}
                       >
-                        <Activity size={18} className="mr-2" />
+                        <Dumbbell size={18} className="mr-2" />
                         <span>TouchTennis</span>
                       </button>
                     </DropdownMenuItem>
