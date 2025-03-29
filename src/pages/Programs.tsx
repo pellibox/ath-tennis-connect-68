@@ -84,7 +84,7 @@ const Programs = () => {
     <div className="flex flex-col min-h-screen relative">
       <Header />
       
-      <main className="flex-grow pt-20">
+      <main className="flex-grow pt-0"> {/* Removed pt-20 to eliminate white space */}
         <div className="w-full bg-black min-h-[calc(100vw*9/16)] relative">
           <div dangerouslySetInnerHTML={{ __html: vimeoEmbed }} />
         </div>
