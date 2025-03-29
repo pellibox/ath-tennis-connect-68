@@ -1,5 +1,5 @@
 import { Link, useLocation, useNavigate } from 'react-router-dom';
-import { HelpCircle, BookOpen, Activity, Zap, Server, Users, Dumbbell, ChevronDown } from 'lucide-react';
+import { HelpCircle, BookOpen, Activity, Zap, Server, Users, Dumbbell, ChevronDown, TennisBall, Racket } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { useState } from 'react';
 import { useProfile } from '@/contexts/ProfileContext';
@@ -48,7 +48,12 @@ export const navigationItems: NavigationItem[] = [
       {
         text: 'Padel & Pickleball',
         href: '/padel-pickleball',
-        icon: <Dumbbell size={18} className="mr-2" />
+        icon: <TennisBall size={18} className="mr-2" />
+      },
+      {
+        text: 'TouchTennis',
+        href: '/touchtennis',
+        icon: <Racket size={18} className="mr-2" />
       }
     ]
   },
