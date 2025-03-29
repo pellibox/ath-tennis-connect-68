@@ -7,10 +7,15 @@ import {
   NavigationMenu,
   NavigationMenuContent,
   NavigationMenuItem,
-  NavigationMenuLink,
   NavigationMenuList,
   NavigationMenuTrigger,
 } from "@/components/ui/navigation-menu";
+import {
+  DropdownMenu,
+  DropdownMenuTrigger,
+  DropdownMenuContent,
+  DropdownMenuItem,
+} from "@/components/ui/dropdown-menu";
 
 export interface NavigationItem {
   text: string;
@@ -113,6 +118,7 @@ interface NavigationLinksProps {
 const NavigationLinks = ({ className, textColorClass, isMobile = false }: NavigationLinksProps) => {
   const location = useLocation();
   const [openSubmenu, setOpenSubmenu] = useState<string | null>(null);
+  const [openDropdown, setOpenDropdown] = useState(false);
 
   const toggleSubmenu = (text: string) => {
     setOpenSubmenu(openSubmenu === text ? null : text);
@@ -188,42 +194,43 @@ const NavigationLinks = ({ className, textColorClass, isMobile = false }: Naviga
       <nav className={cn("flex items-center space-x-6", className)}>
         {navigationItems.map((item, index) => (
           item.submenu ? (
-            <NavigationMenu key={index}>
-              <NavigationMenuList>
-                <NavigationMenuItem>
-                  <NavigationMenuTrigger 
+            <DropdownMenu key={index} open={item.text === 'Programmi' ? openDropdown : undefined} onOpenChange={item.text === 'Programmi' ? setOpenDropdown : undefined}>
+              <DropdownMenuTrigger asChild>
+                <button 
+                  className={cn(
+                    "flex items-center text-sm font-swiss transition-colors hover:text-ath-clay bg-transparent px-4 py-2 rounded-md",
+                    textColorClass,
+                    isActive(item.href) ? "text-ath-clay" : ""
+                  )}
+                >
+                  {item.icon}
+                  {item.text}
+                  <ChevronDown 
+                    size={16} 
                     className={cn(
-                      "flex items-center text-sm font-swiss transition-colors hover:text-ath-clay bg-transparent data-[state=open]:bg-transparent",
-                      textColorClass,
-                      isActive(item.href) ? "text-ath-clay" : ""
-                    )}
-                  >
-                    {item.icon}
-                    {item.text}
-                  </NavigationMenuTrigger>
-                  <NavigationMenuContent>
-                    <ul className="grid w-[200px] gap-2 p-4">
-                      {item.submenu.map((subItem, subIndex) => (
-                        <li key={subIndex}>
-                          <NavigationMenuLink asChild>
-                            <Link 
-                              to={subItem.href}
-                              className={cn(
-                                "flex items-center p-2 hover:bg-gray-100 rounded-md",
-                                isActive(subItem.href) ? "text-ath-clay" : ""
-                              )}
-                            >
-                              {subItem.icon}
-                              <span>{subItem.text}</span>
-                            </Link>
-                          </NavigationMenuLink>
-                        </li>
-                      ))}
-                    </ul>
-                  </NavigationMenuContent>
-                </NavigationMenuItem>
-              </NavigationMenuList>
-            </NavigationMenu>
+                      "ml-1 transition-transform", 
+                      openDropdown && item.text === 'Programmi' ? "rotate-180" : ""
+                    )} 
+                  />
+                </button>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent align="center" className="bg-popover w-[200px] p-2">
+                {item.submenu.map((subItem, subIndex) => (
+                  <DropdownMenuItem key={subIndex} asChild>
+                    <Link 
+                      to={subItem.href}
+                      className={cn(
+                        "flex items-center p-2 hover:bg-gray-100 rounded-md",
+                        isActive(subItem.href) ? "text-ath-clay" : ""
+                      )}
+                    >
+                      {subItem.icon}
+                      <span>{subItem.text}</span>
+                    </Link>
+                  </DropdownMenuItem>
+                ))}
+              </DropdownMenuContent>
+            </DropdownMenu>
           ) : (
             <NavigationLink
               key={index}
