@@ -1,3 +1,4 @@
+
 import { useEffect, useState } from 'react';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
@@ -13,9 +14,11 @@ import ProgramFilters from '@/components/programs/ProgramFilters';
 import { Tabs, TabsList, TabsTrigger, TabsContent } from '@/components/ui/tabs';
 import { programCategories } from '@/data/programs';
 import { programCategories as padelPickleballCategories } from '@/data/padelPickleball';
+import { useIsMobile } from '@/hooks/use-mobile';
 
 const Programs = () => {
   const { t } = useLanguage();
+  const isMobile = useIsMobile();
   const [showAllPrograms, setShowAllPrograms] = useState(false);
   const [logoYOffset, setLogoYOffset] = useState<number>(0);
   const [logoOpacity, setLogoOpacity] = useState<number>(1);
@@ -63,11 +66,15 @@ const Programs = () => {
   }, [activeTab, sport, userType, userGender, updateSport]);
   
   const vimeoEmbed = getVimeoEmbed(userGender, userType);
-  const { filteredCategories, title, subtitle } = ProgramFilters({ 
-    userType, 
-    showAllPrograms,
-    sport: activeTab === 'tennis' ? 'tennis' : (sport === 'pickleball' ? 'pickleball' : 'padel')
-  });
+  
+  // Choose which content to display based on the active tab
+  const { filteredCategories, title, subtitle } = activeTab === 'tennis' 
+    ? ProgramFilters({ userType, showAllPrograms, sport: 'tennis' })
+    : { 
+        filteredCategories: padelPickleballCategories, 
+        title: "Programmi Padel & Pickleball", 
+        subtitle: "Esplora i nostri programmi dedicati al Padel e al Pickleball per giocatori di tutti i livelli" 
+      };
 
   const handleTabChange = (value: string) => {
     setActiveTab(value as 'tennis' | 'padel-pickleball');
@@ -97,40 +104,51 @@ const Programs = () => {
         
         <div id="programs-section" className="bg-ath-gray py-12">
           <div className="container mx-auto px-4">
-            <Tabs value={activeTab} onValueChange={handleTabChange} className="w-full">
-              <TabsList className="w-full mb-8 bg-white border border-gray-200 rounded-full p-1 flex justify-center">
-                <TabsTrigger 
-                  value="tennis" 
-                  className="flex-1 rounded-full data-[state=active]:bg-ath-clay data-[state=active]:text-white px-8 py-2"
-                >
-                  Tennis
-                </TabsTrigger>
-                <TabsTrigger 
-                  value="padel-pickleball" 
-                  className="flex-1 rounded-full data-[state=active]:bg-ath-clay data-[state=active]:text-white px-8 py-2"
-                >
-                  Padel & Pickleball
-                </TabsTrigger>
-              </TabsList>
-              
-              <TabsContent value="tennis" className="mt-0">
-                <ProgramsSection 
-                  title={title}
-                  subtitle={subtitle}
-                  categories={filteredCategories}
-                  className=""
-                />
-              </TabsContent>
-              
-              <TabsContent value="padel-pickleball" className="mt-0">
-                <ProgramsSection 
-                  title="Programmi Padel & Pickleball"
-                  subtitle="Esplora i nostri programmi dedicati al Padel e al Pickleball per giocatori di tutti i livelli"
-                  categories={padelPickleballCategories}
-                  className=""
-                />
-              </TabsContent>
-            </Tabs>
+            {isMobile ? (
+              // Show tabs only on mobile
+              <Tabs value={activeTab} onValueChange={handleTabChange} className="w-full">
+                <TabsList className="w-full mb-8 bg-white border border-gray-200 rounded-full p-1 flex justify-center">
+                  <TabsTrigger 
+                    value="tennis" 
+                    className="flex-1 rounded-full data-[state=active]:bg-ath-clay data-[state=active]:text-white px-8 py-2"
+                  >
+                    Tennis
+                  </TabsTrigger>
+                  <TabsTrigger 
+                    value="padel-pickleball" 
+                    className="flex-1 rounded-full data-[state=active]:bg-ath-clay data-[state=active]:text-white px-8 py-2"
+                  >
+                    Padel & Pickleball
+                  </TabsTrigger>
+                </TabsList>
+                
+                <TabsContent value="tennis" className="mt-0">
+                  <ProgramsSection 
+                    title={title}
+                    subtitle={subtitle}
+                    categories={filteredCategories}
+                    className=""
+                  />
+                </TabsContent>
+                
+                <TabsContent value="padel-pickleball" className="mt-0">
+                  <ProgramsSection 
+                    title="Programmi Padel & Pickleball"
+                    subtitle="Esplora i nostri programmi dedicati al Padel e al Pickleball per giocatori di tutti i livelli"
+                    categories={padelPickleballCategories}
+                    className=""
+                  />
+                </TabsContent>
+              </Tabs>
+            ) : (
+              // On desktop, just show the content based on activeTab without tabs UI
+              <ProgramsSection 
+                title={title}
+                subtitle={subtitle}
+                categories={filteredCategories}
+                className=""
+              />
+            )}
           </div>
         </div>
         

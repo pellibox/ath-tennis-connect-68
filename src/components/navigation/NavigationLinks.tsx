@@ -1,8 +1,9 @@
 
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { HelpCircle, BookOpen, Activity, Zap, Server, Users, Dumbbell, ChevronDown } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { useState } from 'react';
+import { useProfile } from '@/contexts/ProfileContext';
 import {
   NavigationMenu,
   NavigationMenuContent,
@@ -117,8 +118,10 @@ interface NavigationLinksProps {
 
 const NavigationLinks = ({ className, textColorClass, isMobile = false }: NavigationLinksProps) => {
   const location = useLocation();
+  const navigate = useNavigate();
   const [openSubmenu, setOpenSubmenu] = useState<string | null>(null);
   const [openDropdown, setOpenDropdown] = useState(false);
+  const { sport, updateSport, userGender, userType } = useProfile();
 
   const toggleSubmenu = (text: string) => {
     setOpenSubmenu(openSubmenu === text ? null : text);
@@ -126,6 +129,24 @@ const NavigationLinks = ({ className, textColorClass, isMobile = false }: Naviga
 
   const isActive = (href: string) => {
     return location.pathname.startsWith(href) && href !== '/';
+  };
+
+  // Handle sport selection through navigation menu
+  const handleSportSelect = (sportType: 'tennis' | 'padel' | 'pickleball') => {
+    if (userGender && userType) {
+      // Only update sport if user has a profile
+      updateSport(sportType);
+    }
+    
+    // Navigate to the appropriate page
+    if (sportType === 'tennis') {
+      navigate('/programs');
+    } else {
+      navigate('/padel-pickleball');
+    }
+    
+    // Close dropdown after selection
+    setOpenDropdown(false);
   };
 
   const renderMobileNavigation = () => {
@@ -215,20 +236,63 @@ const NavigationLinks = ({ className, textColorClass, isMobile = false }: Naviga
                 </button>
               </DropdownMenuTrigger>
               <DropdownMenuContent align="center" className="bg-popover w-[200px] p-2">
-                {item.submenu.map((subItem, subIndex) => (
-                  <DropdownMenuItem key={subIndex} asChild>
-                    <Link 
-                      to={subItem.href}
-                      className={cn(
-                        "flex items-center p-2 hover:bg-gray-100 rounded-md",
-                        isActive(subItem.href) ? "text-ath-clay" : ""
-                      )}
-                    >
-                      {subItem.icon}
-                      <span>{subItem.text}</span>
-                    </Link>
-                  </DropdownMenuItem>
-                ))}
+                {item.text === 'Programmi' ? (
+                  // Enhanced programs dropdown with active state indicators
+                  <>
+                    <DropdownMenuItem asChild>
+                      <button 
+                        onClick={() => handleSportSelect('tennis')}
+                        className={cn(
+                          "flex items-center w-full p-2 hover:bg-gray-100 rounded-md",
+                          sport === 'tennis' || !sport ? "text-ath-clay" : ""
+                        )}
+                      >
+                        <Activity size={18} className="mr-2" />
+                        <span>Tennis</span>
+                      </button>
+                    </DropdownMenuItem>
+                    <DropdownMenuItem asChild>
+                      <button 
+                        onClick={() => handleSportSelect('padel')}
+                        className={cn(
+                          "flex items-center w-full p-2 hover:bg-gray-100 rounded-md",
+                          sport === 'padel' ? "text-ath-clay" : ""
+                        )}
+                      >
+                        <Dumbbell size={18} className="mr-2" />
+                        <span>Padel</span>
+                      </button>
+                    </DropdownMenuItem>
+                    <DropdownMenuItem asChild>
+                      <button 
+                        onClick={() => handleSportSelect('pickleball')}
+                        className={cn(
+                          "flex items-center w-full p-2 hover:bg-gray-100 rounded-md",
+                          sport === 'pickleball' ? "text-ath-clay" : ""
+                        )}
+                      >
+                        <Dumbbell size={18} className="mr-2" />
+                        <span>Pickleball</span>
+                      </button>
+                    </DropdownMenuItem>
+                  </>
+                ) : (
+                  // Standard submenu items
+                  item.submenu.map((subItem, subIndex) => (
+                    <DropdownMenuItem key={subIndex} asChild>
+                      <Link 
+                        to={subItem.href}
+                        className={cn(
+                          "flex items-center p-2 hover:bg-gray-100 rounded-md",
+                          isActive(subItem.href) ? "text-ath-clay" : ""
+                        )}
+                      >
+                        {subItem.icon}
+                        <span>{subItem.text}</span>
+                      </Link>
+                    </DropdownMenuItem>
+                  ))
+                )}
               </DropdownMenuContent>
             </DropdownMenu>
           ) : (
