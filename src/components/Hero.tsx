@@ -3,7 +3,6 @@ import { useEffect, useRef, useState } from 'react';
 import ButtonLink from './ButtonLink';
 import { cn } from '@/lib/utils';
 import { toast } from 'sonner';
-import { useIsMobile } from '@/hooks/use-mobile';
 
 interface HeroProps {
   title: string;
@@ -40,7 +39,6 @@ const Hero = ({
   contentVerticalPosition = 'center',
   subtitlePosition = 'withTitle',
 }: HeroProps) => {
-  const isMobile = useIsMobile();
   const titleRef = useRef<HTMLHeadingElement>(null);
   const videoRef = useRef<HTMLVideoElement>(null);
   const vimeoRef = useRef<HTMLDivElement>(null);
@@ -126,9 +124,9 @@ const Hero = ({
   };
 
   const verticalPositionClasses = {
-    top: 'justify-start pt-20 md:pt-32',
+    top: 'justify-start pt-32',
     center: 'justify-center',
-    bottom: 'justify-end pb-20 md:pb-32',
+    bottom: 'justify-end pb-32',
   };
 
   const overlayClasses = {
@@ -146,7 +144,7 @@ const Hero = ({
     <div 
       className={cn(
         'relative w-full flex items-center justify-center overflow-hidden',
-        fullHeight ? 'min-h-[60vh] md:min-h-screen' : 'min-h-[40vh] md:min-h-[50vh]',
+        fullHeight ? 'min-h-screen' : 'min-h-[50vh]',
         className
       )}
     >
@@ -196,7 +194,6 @@ const Hero = ({
               className="absolute inset-0 w-full h-full" 
               key={`vimeo-container-${vimeoKey}`}
               style={{ padding: 0 }}
-              dangerouslySetInnerHTML={{ __html: vimeoEmbed }}
             />
             <div className="absolute inset-0 bg-black/30"></div>
           </div>
@@ -204,29 +201,26 @@ const Hero = ({
       </div>
       
       <div className={cn(
-        'relative z-10 max-w-3xl px-4 sm:px-6 py-16 md:py-24 flex flex-col w-full h-full',
+        'relative z-10 max-w-3xl px-6 py-24 flex flex-col w-full h-full',
         positionClasses[contentPosition],
         verticalPositionClasses[contentVerticalPosition]
       )}>
         <h1 
           ref={titleRef}
-          className={cn(
-            "text-animate text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-display font-bold text-white leading-tight mb-4 md:mb-8 drop-shadow-lg",
-            isMobile && "!text-3xl"
-          )}
+          className="text-animate text-5xl md:text-6xl lg:text-7xl font-display font-bold text-white leading-tight mb-8 drop-shadow-lg"
         >
           {title}
         </h1>
         
         {subtitle && subtitlePosition === 'withTitle' && (
-          <p className="text-white text-base sm:text-lg md:text-xl opacity-90 mb-6 md:mb-10 animate-fade-in drop-shadow-md font-swiss" style={{ animationDelay: '0.4s' }}>
+          <p className="text-white text-xl md:text-2xl opacity-90 mb-10 animate-fade-in drop-shadow-md font-swiss" style={{ animationDelay: '0.4s' }}>
             {subtitle}
           </p>
         )}
         
         {buttons.length > 0 && subtitlePosition === 'withTitle' && (
           <div className={cn(
-            'flex flex-wrap gap-3 justify-center mt-4 md:mt-8',
+            'flex flex-wrap gap-3 justify-center mt-6 md:mt-8',
             positionClasses[contentPosition].includes('items-start') ? 'justify-start' : (positionClasses[contentPosition].includes('items-end') ? 'justify-end' : 'justify-center')
           )}>
             {buttons.map((button, index) => (
@@ -235,9 +229,8 @@ const Hero = ({
                 href={button.href}
                 variant={button.variant || (index === 0 ? 'primary' : 'outline')}
                 className={cn(
-                  'text-xs sm:text-sm px-4 py-2 font-swiss', 
-                  index === 0 ? 'animate-fade-in' : 'animate-fade-in',
-                  isMobile && "w-full flex justify-center mt-2"
+                  'text-sm px-4 py-2 font-swiss', 
+                  index === 0 ? 'animate-fade-in' : 'animate-fade-in'
                 )}
                 size="sm"
                 style={{ animationDelay: `${0.6 + index * 0.1}s` }}
@@ -250,15 +243,14 @@ const Hero = ({
       </div>
       
       {subtitle && subtitlePosition === 'bottom' && (
-        <div className="absolute bottom-0 left-0 right-0 z-10 p-4 bg-gradient-to-t from-black/80 to-transparent pt-16">
-          <p className="text-white text-sm sm:text-base md:text-lg opacity-90 max-w-3xl mx-auto text-center drop-shadow-md font-swiss">
+        <div className="absolute bottom-0 left-0 right-0 z-10 p-4 bg-gradient-to-t from-black/80 to-transparent h-[100px] flex flex-col justify-end">
+          <p className="text-white text-base md:text-lg opacity-90 max-w-3xl mx-auto text-center drop-shadow-md font-swiss">
             {subtitle}
           </p>
           
           {buttons.length > 0 && (
             <div className={cn(
               'flex flex-wrap gap-3 justify-center mt-3',
-              isMobile && "flex-col"
             )}>
               {buttons.map((button, index) => (
                 <ButtonLink
@@ -266,9 +258,8 @@ const Hero = ({
                   href={button.href}
                   variant={button.variant || (index === 0 ? 'primary' : 'outline')}
                   className={cn(
-                    'text-xs sm:text-sm px-4 py-2 font-swiss', 
-                    index === 0 ? 'animate-fade-in' : 'animate-fade-in',
-                    isMobile && "w-full flex justify-center"
+                    'text-sm px-4 py-2 font-swiss', 
+                    index === 0 ? 'animate-fade-in' : 'animate-fade-in'
                   )}
                   size="sm"
                   style={{ animationDelay: `${0.6 + index * 0.1}s` }}
