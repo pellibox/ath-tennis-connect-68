@@ -9,6 +9,8 @@ import { UserGender, UserType, loadUserPreferences } from '@/components/UserType
 import VickiMonitoringBadge from '@/components/VickiMonitoringBadge';
 import VickiPoweredBadge from '@/components/VickiPoweredBadge';
 import ContactSection from '@/components/ContactSection';
+import { Badge } from '@/components/ui/badge';
+import { Users } from 'lucide-react';
 
 const Performance3Program = () => {
   const { t } = useLanguage();
@@ -44,15 +46,31 @@ const Performance3Program = () => {
           />
           
           {/* Black banner with claim text */}
-          <div className="w-full bg-black py-16 relative" style={{ height: '300px' }}>
-            <div className="max-w-6xl mx-auto px-6 h-full flex flex-col justify-center">
-              <div className="flex items-center mb-2">
-                <h2 className="text-white text-lg font-display mr-3">PERFORMANCE 3:</h2>
-                <p className="text-white text-lg font-swiss max-w-3xl">
-                  Programma completo di 3 giorni a settimana per atleti ambiziosi, personalizzato e supportato da VICKI™
-                </p>
-              </div>
-              <div className="mt-4 flex flex-wrap gap-3">
+          <div className="w-full bg-black py-16 relative" style={{ height: 'auto', minHeight: '400px' }}>
+            <div className="max-w-6xl mx-auto px-6 h-full flex flex-col justify-center py-8">
+              <h2 className="text-white text-lg font-display mb-4">PROGRAMMA PERFORMANCE 3:</h2>
+              <p className="text-white text-lg font-swiss max-w-3xl mb-6">
+                Percorso ideale per l'introduzione all'agonismo e lo sviluppo graduale delle capacità competitive, supportato dalla tecnologia VICKI™.
+              </p>
+              <ul className="text-white space-y-3 font-swiss max-w-3xl">
+                <li className="flex">
+                  <span className="mr-2">•</span>
+                  <span><strong>Sviluppo Tecnico Graduale:</strong> Consolidamento dei fondamentali e introduzione progressiva delle biomeccaniche avanzate, con feedback personalizzato per costruire una solida base tecnica.</span>
+                </li>
+                <li className="flex">
+                  <span className="mr-2">•</span>
+                  <span><strong>Preparazione Atletica Accessibile:</strong> Programmi adattati all'età e al livello di sviluppo, con focus sulla coordinazione, velocità e resistenza per creare una base atletica equilibrata.</span>
+                </li>
+                <li className="flex">
+                  <span className="mr-2">•</span>
+                  <span><strong>Avviamento Mentale:</strong> Prima introduzione alla gestione emotiva, concentrazione e costruzione della fiducia in un ambiente positivo e stimolante.</span>
+                </li>
+                <li className="flex">
+                  <span className="mr-2">•</span>
+                  <span><strong>Introduzione Tattica:</strong> Apprendimento dei principi tattici di base e delle strategie fondamentali per affrontare le prime competizioni con sicurezza.</span>
+                </li>
+              </ul>
+              <div className="mt-6 flex flex-wrap gap-3">
                 <VickiMonitoringBadge level="advanced" className="bg-opacity-20 border-opacity-30 text-white" />
                 <VickiPoweredBadge className="bg-opacity-20 border-opacity-30 text-white" />
               </div>
@@ -65,6 +83,10 @@ const Performance3Program = () => {
             <RevealAnimation>
               <div className="flex flex-wrap items-center gap-3 mb-6">
                 <h2 className="text-3xl font-swiss">Performance 3</h2>
+                <Badge variant="ath" className="flex items-center gap-1">
+                  <Users className="w-3.5 h-3.5" />
+                  <span>Ideale per Giovani Agonisti</span>
+                </Badge>
                 <VickiMonitoringBadge level="advanced" />
                 <VickiPoweredBadge />
               </div>
@@ -74,16 +96,17 @@ const Performance3Program = () => {
             </RevealAnimation>
             <RevealAnimation delay={150}>
               <p className="mb-4 font-swiss">
-                Il programma Performance 3 è pensato per atleti che vogliono un impegno significativo ma bilanciato,
-                con 3 giorni settimanali di allenamento intensivo, combinando sessioni di tennis e preparazione atletica
-                per un totale di 9 ore settimanali di allenamento strutturato.
+                Il programma Performance 3 è pensato per giovani atleti che iniziano il loro percorso agonistico,
+                offrendo un approccio graduale e sistematico con 3 giorni settimanali di allenamento,
+                combinando sessioni di tennis e preparazione atletica per un totale di 9 ore settimanali.
               </p>
             </RevealAnimation>
             <RevealAnimation delay={200}>
               <p className="font-swiss">
-                Questo programma permette di sviluppare solidamente i fondamentali tecnici e fisici,
-                mantenendo tempo per altri impegni scolastici o personali. La tecnologia VICKI™
-                garantisce un monitoraggio costante e preciso dei progressi.
+                Questo programma equilibrato consente di sviluppare le fondamenta tecniche e fisiche necessarie
+                per il tennis agonistico, mantenendo il giusto spazio per impegni scolastici e crescita personale.
+                La tecnologia VICKI™ monitora i progressi in modo preciso, guidando lo sviluppo dell'atleta
+                con un ritmo adeguato alla sua crescita.
               </p>
             </RevealAnimation>
           </div>
@@ -97,7 +120,9 @@ const Performance3Program = () => {
                 <li>Massimo 3 atleti per campo</li>
                 <li>40 settimane di allenamento</li>
                 <li>Monitoraggio completo con VICKI™</li>
-                <li>Piano personalizzato di sviluppo tecnico e atletico</li>
+                <li>Piano personalizzato adatto ai giovani agonisti</li>
+                <li>Introduzione graduale all'ambiente competitivo</li>
+                <li>Supporto completo per le prime competizioni</li>
               </ul>
             </RevealAnimation>
             
