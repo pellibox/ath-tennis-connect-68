@@ -56,7 +56,7 @@ const Logo = ({
         ? 'w-24 h-auto' // Increased mobile logo size from w-10 to w-24
         : (isMobile 
             ? 'w-24 h-auto' // Increased mobile logo size from w-20 to w-24
-            : 'w-26 sm:w-28 h-auto')); // Reduced desktop size to approximately 2/3 of original (was w-40 sm:w-44)
+            : 'w-28 sm:w-32 h-auto')); // Adjusted desktop size for header (not affecting floating logos)
   
   // Function to handle logo click
   const handleLogoClick = (e: React.MouseEvent) => {
