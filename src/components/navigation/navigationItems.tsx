@@ -25,7 +25,11 @@ export const navigationItems: NavigationItem[] = [
   { 
     text: 'Programmi', 
     href: '/programs',
-    icon: <GiTennisRacket size={18} className="mr-2" />,
+    icon: <img 
+      src="/lovable-uploads/ffc6588c-879e-4103-a3cc-f48ee9573e63.png" 
+      alt="Programs list" 
+      className="w-[18px] h-[18px] mr-2 transition-all duration-300 ease-in-out group-hover:scale-110" 
+    />,
     submenu: [
       {
         text: 'Tennis',

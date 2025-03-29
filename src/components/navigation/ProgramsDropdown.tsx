@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { ChevronDown } from 'lucide-react';
@@ -24,7 +23,8 @@ const ProgramsDropdown = ({ textColorClass }: ProgramsDropdownProps) => {
   const { sport, updateSport, userGender, userType } = useProfile();
   
   // Determine active sport based on current route
-  const [activeSport, setActiveSport] = useState<SportType | null>(sport);
+  const [activeSport, setActiveSport] = useState<SportType | null>(null);
+  const [hasExplicitSelection, setHasExplicitSelection] = useState(false);
   
   useEffect(() => {
     // Set active sport based on current route
@@ -51,6 +51,8 @@ const ProgramsDropdown = ({ textColorClass }: ProgramsDropdownProps) => {
       updateSport(sportType);
     }
     
+    setHasExplicitSelection(true);
+    
     switch (sportType) {
       case 'tennis':
         navigate('/programs');
@@ -74,6 +76,19 @@ const ProgramsDropdown = ({ textColorClass }: ProgramsDropdownProps) => {
 
   // Function to get the correct icon based on the active sport
   const getActiveIcon = () => {
+    // If there's been no explicit selection yet and the page just loaded,
+    // show the default icon regardless of the active route
+    if (!hasExplicitSelection && !sessionStorage.getItem('sport_selected')) {
+      return (
+        <img 
+          src="/lovable-uploads/ffc6588c-879e-4103-a3cc-f48ee9573e63.png" 
+          alt="Programs list" 
+          className="w-[18px] h-[18px] mr-2 transition-all duration-300 ease-in-out group-hover:scale-110" 
+        />
+      );
+    }
+    
+    // Otherwise, show the icon based on the active sport
     switch (activeSport) {
       case 'tennis':
         return <GiTennisRacket size={18} className="mr-2 transition-all duration-300 ease-in-out group-hover:scale-110" />;
@@ -105,6 +120,13 @@ const ProgramsDropdown = ({ textColorClass }: ProgramsDropdownProps) => {
         );
     }
   };
+
+  // Set flag in session storage to track if a sport has been selected during this session
+  useEffect(() => {
+    if (hasExplicitSelection) {
+      sessionStorage.setItem('sport_selected', 'true');
+    }
+  }, [hasExplicitSelection]);
 
   return (
     <DropdownMenu open={openDropdown} onOpenChange={setOpenDropdown}>
