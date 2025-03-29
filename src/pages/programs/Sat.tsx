@@ -1,4 +1,3 @@
-
 import { useEffect, useState } from 'react';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
@@ -24,11 +23,6 @@ const SatProgram = () => {
       title: "SIT - Scuola Individuazione Talenti",
       description: "Programma specializzato per l'identificazione precoce dei talenti tennistici tramite il sistema Vicki™ per bambini dai 6 ai 10+ anni.",
       link: "/programs/talent-identification"
-    },
-    {
-      title: "Performance 4",
-      description: "Programma intensivo per giovani atleti agonisti con monitoraggio avanzato e pianificazione personalizzata.",
-      link: "/programs/performance-4"
     },
     {
       title: "Genitore/Tutor",
@@ -65,7 +59,6 @@ const SatProgram = () => {
             overlayOpacity="medium"
           />
           
-          {/* Black banner with claim text */}
           <div className="w-full bg-black py-16 relative" style={{ height: '300px' }}>
             <div className="max-w-6xl mx-auto px-6 h-full flex flex-col justify-center">
               <h2 className="text-white text-lg font-display mb-4">PROGRAMMA SAT:</h2>
