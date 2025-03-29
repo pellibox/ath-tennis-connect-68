@@ -27,7 +27,7 @@ const HeroVideoSection = ({ logoYOffset, logoOpacity, logoRef }: HeroVideoSectio
       >
         <div 
           style={{
-            width: isMobile ? '140px' : '187px', // Reduced from 280px to about 2/3 (approximately 187px)
+            width: isMobile ? '140px' : '250px', // Increased from 187px to 250px (approximately 1/3 larger)
             transform: `translateY(-${logoYOffset}px)`
           }}
           className="flex justify-center"
