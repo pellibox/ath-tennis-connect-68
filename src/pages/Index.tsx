@@ -1,5 +1,5 @@
 
-import React, { useEffect, useState, useRef } from 'react';
+import React, { useEffect } from 'react';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import { useIsMobile } from '@/hooks/use-mobile';
@@ -13,37 +13,8 @@ import TrainingMethodsSection from '@/components/home/TrainingMethodsSection';
 const HomePage = () => {
   const isMobile = useIsMobile();
   
-  const [logoYOffset, setLogoYOffset] = useState<number>(0);
-  const [logoOpacity, setLogoOpacity] = useState<number>(1);
-  const logoRef = useRef<HTMLDivElement>(null);
-  
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
-  }, []);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      const scrollY = window.scrollY;
-      
-      setLogoYOffset(scrollY * 0.2);
-      
-      const fadeThreshold = 100;
-      const fadeOutBy = 300;
-      
-      if (scrollY > fadeThreshold) {
-        const opacity = Math.max(0, 1 - (scrollY - fadeThreshold) / (fadeOutBy - fadeThreshold));
-        setLogoOpacity(opacity);
-      } else {
-        setLogoOpacity(1);
-      }
-    };
-
-    window.addEventListener('scroll', handleScroll);
-    handleScroll();
-    
-    return () => {
-      window.removeEventListener('scroll', handleScroll);
-    };
   }, []);
 
   const stats = [
@@ -77,11 +48,7 @@ const HomePage = () => {
       <Header />
       
       <main className="flex-grow pt-20">
-        <HeroVideoSection 
-          logoYOffset={logoYOffset} 
-          logoOpacity={logoOpacity} 
-          logoRef={logoRef} 
-        />
+        <HeroVideoSection />
         
         <KeyFeaturesSection />
         

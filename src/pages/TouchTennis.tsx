@@ -4,20 +4,19 @@ import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import ProgramsSection from '@/components/ProgramsSection';
 import AboutSection from '@/components/AboutSection';
-import RevealAnimation from '@/components/RevealAnimation';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { useProfile } from '@/contexts/ProfileContext';
 import { getVimeoEmbed } from '@/utils/videoUtils';
 import ProgramsHeader from '@/components/programs/ProgramsHeader';
 import { touchTennisCategories } from '@/data/touchtennis';
 import { useIsMobile } from '@/hooks/use-mobile';
+import StandardHeroVideo from '@/components/StandardHeroVideo';
 
 const TouchTennis = () => {
   const { t } = useLanguage();
   const isMobile = useIsMobile();
-  const [logoYOffset, setLogoYOffset] = useState<number>(0);
-  const [logoOpacity, setLogoOpacity] = useState<number>(1);
   const { userGender, userType, sport, updateSport } = useProfile();
+  const [showAllPrograms, setShowAllPrograms] = useState(true);
   
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -27,31 +26,6 @@ const TouchTennis = () => {
       updateSport('touchtennis');
     }
   }, []);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      const scrollY = window.scrollY;
-      
-      setLogoYOffset(scrollY * 0.2);
-      
-      const fadeThreshold = 100;
-      const fadeOutBy = 300;
-      
-      if (scrollY > fadeThreshold) {
-        const opacity = Math.max(0, 1 - (scrollY - fadeThreshold) / (fadeOutBy - fadeThreshold));
-        setLogoOpacity(opacity);
-      } else {
-        setLogoOpacity(1);
-      }
-    };
-
-    window.addEventListener('scroll', handleScroll);
-    handleScroll();
-    
-    return () => {
-      window.removeEventListener('scroll', handleScroll);
-    };
-  }, []);
   
   const vimeoEmbed = getVimeoEmbed(userGender, userType);
   
@@ -60,16 +34,16 @@ const TouchTennis = () => {
       <Header />
       
       <main className="flex-grow pt-0">
-        <div className="w-full bg-black min-h-[calc(100vw*9/16)] relative">
-          <div dangerouslySetInnerHTML={{ __html: vimeoEmbed }} />
-        </div>
+        <StandardHeroVideo 
+          vimeoEmbed={vimeoEmbed}
+          title="TOUCHTENNIS:"
+          subtitle="Approccio metodologico unico per il touchtennis a tutti i livelli"
+        />
         
         <ProgramsHeader 
           userType={userType}
-          showAllPrograms={true}
-          setShowAllPrograms={() => {}}
-          logoYOffset={logoYOffset}
-          logoOpacity={logoOpacity}
+          showAllPrograms={showAllPrograms}
+          setShowAllPrograms={setShowAllPrograms}
         />
         
         <div id="programs-section" className="bg-ath-gray py-12">
