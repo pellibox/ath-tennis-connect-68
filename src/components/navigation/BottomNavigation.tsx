@@ -1,8 +1,7 @@
 
 import { Link, useLocation } from 'react-router-dom';
-import { HelpCircle, BookOpen, Activity, Zap, Server, Users } from 'lucide-react';
+import { HelpCircle, BookOpen, Activity, Zap, Server } from 'lucide-react';
 import { cn } from '@/lib/utils';
-import { navigationItems } from './NavigationLinks';
 import { useProfile } from '@/contexts/ProfileContext';
 
 const BottomNavigation = () => {

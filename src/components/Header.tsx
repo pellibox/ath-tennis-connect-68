@@ -41,13 +41,13 @@ const Header = ({ useVickiLogo = false }: HeaderProps) => {
         className={cn(
           'fixed top-0 left-0 w-full z-50 transition-all duration-300 shadow-sm',
           headerBgClass,
-          isMobile ? 'py-2' : 'py-3'
+          isMobile ? 'py-1' : 'py-3' // Reduced padding on mobile
         )}
       >
-        <div className="container mx-auto px-4 flex items-center justify-between relative">
+        <div className="container mx-auto px-4 flex items-center justify-center relative">
           <div className={cn(
             "flex items-center z-50", 
-            isMobile ? "mx-auto" : (showBackButton ? "pl-0" : "pl-0")
+            isMobile ? "w-full justify-center" : (showBackButton ? "pl-0" : "pl-0")
           )}>
             {showBackButton && !isMobile && (
               <Button 
@@ -67,7 +67,7 @@ const Header = ({ useVickiLogo = false }: HeaderProps) => {
               resetProfile={false}
               useVickiLogo={useVickiLogo}
               isInMenu={isMobile}
-              isCentered={isMobile}
+              isCentered={true}
               className={isMobile ? "mx-auto" : "ml-0"}
             />
           </div>
