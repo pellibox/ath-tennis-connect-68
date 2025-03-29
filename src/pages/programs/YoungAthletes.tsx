@@ -48,12 +48,21 @@ const YoungAthletesProgram = () => {
           />
           
           {/* Black banner with claim text */}
-          <div className="w-full bg-black py-16 relative" style={{ height: '300px' }}>
-            <div className="max-w-6xl mx-auto px-6 h-full flex flex-col justify-center">
+          <div className="w-full bg-black py-16 relative" style={{ height: 'auto', minHeight: '400px' }}>
+            <div className="max-w-6xl mx-auto px-6 h-full flex flex-col justify-center py-8">
               <h2 className="text-white text-lg font-display mb-4">PROGRAMMI PERFORMANCE:</h2>
-              <p className="text-white text-lg font-swiss max-w-3xl">
-                I nostri programmi Performance sono dedicati agli atleti agonisti che cercano un percorso strutturato di allenamento di alto livello. Con opzioni da 3 a 5 giorni settimanali, questi programmi affrontano in maniera integrata tutti gli aspetti del tennis moderno: dalla tecnica alla preparazione atletica, dal supporto mentale alla tattica & strategia, tutti potenziati dalla tecnologia rivoluzionaria VICKI™ per un'analisi dettagliata e personalizzata della performance.
-              </p>
+              <div className="text-white text-lg font-swiss max-w-3xl">
+                <p className="mb-4">
+                  I nostri programmi Performance sono dedicati agli atleti agonisti che cercano un percorso strutturato di allenamento di alto livello. Con opzioni da 3 a 5 giorni settimanali, questi programmi integrano quattro pilastri fondamentali:
+                </p>
+                <ul className="list-disc pl-6 space-y-2 mb-4">
+                  <li><span className="font-semibold">Eccellenza Tecnica:</span> Analisi biomeccanica dettagliata di ogni colpo e movimento, con feedback immediato e perfezionamento del controllo delle traiettorie in ogni situazione di gioco.</li>
+                  <li><span className="font-semibold">Preparazione Atletica:</span> Programmi personalizzati con monitoraggio costante, ottimizzazione degli spostamenti e dominanza fisica nelle fasi critiche del match.</li>
+                  <li><span className="font-semibold">Forza Mentale:</span> Sviluppo delle abilità cognitive, gestione dello stress agonistico e capacità di reazione alle situazioni avverse sotto pressione.</li>
+                  <li><span className="font-semibold">Tattica & Strategia:</span> Analisi del gioco avversario, sviluppo di piani di partita personalizzati e adattamento tattico durante i match.</li>
+                </ul>
+                <p>Tutto potenziato dalla tecnologia VICKI™ per un'analisi dettagliata della performance.</p>
+              </div>
               <div className="mt-4 flex flex-wrap gap-3">
                 <VickiMonitoringBadge level="advanced" className="bg-opacity-20 border-opacity-30 text-white" />
                 <VickiPoweredBadge className="bg-opacity-20 border-opacity-30 text-white" />
