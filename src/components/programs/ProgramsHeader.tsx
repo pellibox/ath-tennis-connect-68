@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import RevealAnimation from '@/components/RevealAnimation';
 import Logo from '@/components/Logo';
-import { useIsMobile } from '@/hooks/use-mobile';
+import { useIsMobile, useBreakpoint } from '@/hooks/use-mobile';
 import { UserType } from '@/components/UserTypeSelector';
 
 interface ProgramsHeaderProps {
@@ -22,6 +22,8 @@ const ProgramsHeader = ({
   logoOpacity 
 }: ProgramsHeaderProps) => {
   const isMobile = useIsMobile();
+  const breakpoint = useBreakpoint();
+  const isExtraSmall = breakpoint === "xs";
 
   const getPersonalizedSubtitle = () => {
     if (!userType) {
@@ -49,13 +51,13 @@ const ProgramsHeader = ({
       <div 
         className="fixed z-50 pointer-events-none transition-opacity duration-300 left-0 right-0 flex justify-center"
         style={{
-          top: isMobile ? '140px' : '180px',
+          top: isMobile ? '120px' : '180px',
           opacity: logoOpacity
         }}
       >
         <div 
           style={{
-            width: isMobile ? '140px' : '280px', // Increased from 160px to 280px for desktop
+            width: isMobile ? '120px' : '280px',
             transform: `translateY(-${logoYOffset}px)`
           }}
           className="flex justify-center"
@@ -68,22 +70,22 @@ const ProgramsHeader = ({
         </div>
       </div>
       
-      <div className="w-full bg-black py-16">
-        <div className="max-w-3xl mx-auto text-center">
-          <h2 className="text-white text-xl md:text-2xl font-swiss uppercase mb-2">
+      <div className="w-full bg-black py-10 md:py-16">
+        <div className="max-w-3xl mx-auto text-center px-4">
+          <h2 className="text-white text-lg md:text-2xl font-swiss uppercase mb-2">
             PROGRAMMI:
           </h2>
-          <p className="text-white text-xl md:text-2xl opacity-90 font-swiss drop-shadow-md">
+          <p className="text-white text-base md:text-2xl opacity-90 font-swiss drop-shadow-md px-2">
             {getPersonalizedSubtitle()}
           </p>
         </div>
       </div>
       
-      <section className="py-16 px-6 lg:px-10">
+      <section className="py-8 md:py-16 px-4 md:px-6 lg:px-10">
         <div className="max-w-7xl mx-auto">
           <RevealAnimation>
-            <div className="flex justify-between items-center mb-4">
-              <h2 className="text-3xl md:text-4xl font-display">Programmi basati sul Metodo ATH</h2>
+            <div className="flex flex-col md:flex-row md:justify-between md:items-center mb-4">
+              <h2 className={`text-2xl md:text-4xl font-display ${isMobile ? "mb-4" : ""}`}>Programmi basati sul Metodo ATH</h2>
               
               {userType && (
                 <button 
@@ -97,7 +99,7 @@ const ProgramsHeader = ({
           </RevealAnimation>
           
           <RevealAnimation delay={100}>
-            <div className="text-lg text-gray-600 max-w-3xl mb-6 space-y-4">
+            <div className="text-base md:text-lg text-gray-600 max-w-3xl mb-6 space-y-4">
               <p>
                 Tutti i nostri programmi si basano sul metodo ATH, un sistema innovativo che integra tecnologia avanzata con coaching esperto. 
                 Il nostro approccio garantisce che ogni atleta, indipendentemente dal livello o dall'età, riceva un allenamento personalizzato 
@@ -113,33 +115,33 @@ const ProgramsHeader = ({
                 </button>
               )}
               
-              <div className="mt-6">
-                <Link to="/method" className="inline-flex items-center text-ath-clay font-medium hover:underline">
+              <div className="mt-4 md:mt-6">
+                <Link to="/method" className="inline-flex items-center text-ath-clay font-medium hover:underline text-sm md:text-base">
                   Scopri di più sul Metodo ATH e il sistema VICKI™ →
                 </Link>
               </div>
             </div>
           </RevealAnimation>
           
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
-            <RevealAnimation delay={150} className="bg-white p-8 shadow-sm">
-              <h3 className="text-xl font-medium mb-4">Sviluppo Tecnico</h3>
-              <p className="text-gray-600">I nostri coach utilizzano analisi video avanzate e feedback in tempo reale per perfezionare la tua tecnica su tutti i colpi.</p>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-8 mb-8 md:mb-12">
+            <RevealAnimation delay={150} className="bg-white p-4 md:p-8 shadow-sm">
+              <h3 className={`${isMobile ? "text-lg" : "text-xl"} font-medium mb-2 md:mb-4`}>Sviluppo Tecnico</h3>
+              <p className={`text-gray-600 ${isMobile ? "text-sm" : ""}`}>I nostri coach utilizzano analisi video avanzate e feedback in tempo reale per perfezionare la tua tecnica su tutti i colpi.</p>
             </RevealAnimation>
             
-            <RevealAnimation delay={200} className="bg-white p-8 shadow-sm">
-              <h3 className="text-xl font-medium mb-4">Tattica & Strategia</h3>
-              <p className="text-gray-600">Sviluppiamo il tuo pensiero tattico, la capacità di leggere il gioco dell'avversario e di adattare la tua strategia in tempo reale durante la partita.</p>
+            <RevealAnimation delay={200} className="bg-white p-4 md:p-8 shadow-sm">
+              <h3 className={`${isMobile ? "text-lg" : "text-xl"} font-medium mb-2 md:mb-4`}>Tattica & Strategia</h3>
+              <p className={`text-gray-600 ${isMobile ? "text-sm" : ""}`}>Sviluppiamo il tuo pensiero tattico, la capacità di leggere il gioco dell'avversario e di adattare la tua strategia in tempo reale durante la partita.</p>
             </RevealAnimation>
             
-            <RevealAnimation delay={250} className="bg-white p-8 shadow-sm">
-              <h3 className="text-xl font-medium mb-4">Preparazione Fisica</h3>
-              <p className="text-gray-600">Programmi di fitness personalizzati specifici per il tennis, focalizzati su velocità, agilità, forza e resistenza.</p>
+            <RevealAnimation delay={250} className="bg-white p-4 md:p-8 shadow-sm">
+              <h3 className={`${isMobile ? "text-lg" : "text-xl"} font-medium mb-2 md:mb-4`}>Preparazione Fisica</h3>
+              <p className={`text-gray-600 ${isMobile ? "text-sm" : ""}`}>Programmi di fitness personalizzati specifici per il tennis, focalizzati su velocità, agilità, forza e resistenza.</p>
             </RevealAnimation>
             
-            <RevealAnimation delay={300} className="bg-white p-8 shadow-sm">
-              <h3 className="text-xl font-medium mb-4">Allenamento Mentale</h3>
-              <p className="text-gray-600">Sviluppa resistenza mentale, concentrazione e pensiero strategico con i nostri metodi di allenamento psicologico specializzati.</p>
+            <RevealAnimation delay={300} className="bg-white p-4 md:p-8 shadow-sm">
+              <h3 className={`${isMobile ? "text-lg" : "text-xl"} font-medium mb-2 md:mb-4`}>Allenamento Mentale</h3>
+              <p className={`text-gray-600 ${isMobile ? "text-sm" : ""}`}>Sviluppa resistenza mentale, concentrazione e pensiero strategico con i nostri metodi di allenamento psicologico specializzati.</p>
             </RevealAnimation>
           </div>
         </div>

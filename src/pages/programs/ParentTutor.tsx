@@ -13,11 +13,13 @@ import ProgramOffers from '@/components/programs/parent-tutor/ProgramOffers';
 import ProgramPricing from '@/components/programs/parent-tutor/ProgramPricing';
 import ProgramBenefits from '@/components/programs/parent-tutor/ProgramBenefits';
 import TechnologySupport from '@/components/programs/parent-tutor/TechnologySupport';
+import { useIsMobile } from '@/hooks/use-mobile';
 
 const ParentTutorProgram = () => {
   const { t } = useLanguage();
   const [userGender, setUserGender] = useState<UserGender | null>(null);
   const [userType, setUserType] = useState<UserType | null>(null);
+  const isMobile = useIsMobile();
   
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -118,10 +120,10 @@ const ParentTutorProgram = () => {
             overlayOpacity="medium"
           />
           
-          <div className="w-full bg-black py-16 relative" style={{ height: '300px' }}>
-            <div className="max-w-6xl mx-auto px-6 h-full flex flex-col justify-center">
-              <h2 className="text-white text-lg font-display mb-4">PROGRAMMA GENITORE/TUTOR:</h2>
-              <p className="text-white text-lg font-swiss max-w-3xl">
+          <div className="w-full bg-black py-10 md:py-16 px-4">
+            <div className="max-w-6xl mx-auto h-full flex flex-col justify-center">
+              <h2 className="text-white text-lg font-display mb-2 md:mb-4">PROGRAMMA GENITORE/TUTOR:</h2>
+              <p className="text-white text-base md:text-lg font-swiss max-w-3xl">
                 Un programma innovativo creato da mental coach specializzati per supportare i genitori e tutori di giovani tennisti nel loro ruolo fondamentale di accompagnamento sportivo.
               </p>
               <div className="mt-4 flex flex-wrap gap-3">
@@ -131,31 +133,31 @@ const ParentTutorProgram = () => {
           </div>
         </div>
         
-        <div className="max-w-6xl mx-auto px-6 py-16">
-          <div className="mb-12">
+        <div className="max-w-6xl mx-auto px-4 md:px-6 py-8 md:py-16">
+          <div className="mb-8 md:mb-12">
             <RevealAnimation>
-              <div className="flex flex-wrap items-center gap-3 mb-6">
-                <h2 className="text-3xl font-swiss">Genitore/Tutor (Giovani e Junior Agonisti 6-18 anni)</h2>
+              <div className="flex flex-wrap items-center gap-3 mb-4 md:mb-6">
+                <h2 className={`${isMobile ? "text-xl" : "text-3xl"} font-swiss`}>Genitore/Tutor (Giovani e Junior Agonisti 6-18 anni)</h2>
                 <Badge variant="ath" className="text-white">Vicki™ report and stream</Badge>
               </div>
             </RevealAnimation>
             <RevealAnimation delay={100}>
-              <p className="text-lg mb-6 font-swiss">Programma creato da mental coach specializzati per supportare correttamente l'atleta nel suo percorso formativo.</p>
+              <p className={`${isMobile ? "text-base" : "text-lg"} mb-4 md:mb-6 font-swiss`}>Programma creato da mental coach specializzati per supportare correttamente l'atleta nel suo percorso formativo.</p>
             </RevealAnimation>
             <RevealAnimation delay={150}>
-              <p className="mb-4 font-swiss">
+              <p className="mb-3 md:mb-4 font-swiss text-sm md:text-base">
                 Il programma combina tecnologia avanzata e supporto psicopedagogico per creare un ambiente positivo che bilanci ambizioni sportive e benessere psicofisico dei giovani atleti. 
                 Attraverso la tecnologia VICKI™, i genitori hanno accesso a report semplificati e comprensibili che illustrano i progressi tecnici, fisici e mentali dei ragazzi.
               </p>
             </RevealAnimation>
             <RevealAnimation delay={200}>
-              <p className="mb-4 font-swiss">
+              <p className="mb-3 md:mb-4 font-swiss text-sm md:text-base">
                 Questo programma riconosce l'importanza della sinergia tra famiglia e staff tecnico, fornendo ai genitori tutti gli strumenti necessari per accompagnare efficacemente i giovani 
                 nel loro percorso tennistico, creando un ambiente stimolante e bilanciato che favorisce sia la crescita sportiva che personale.
               </p>
             </RevealAnimation>
             <RevealAnimation delay={250}>
-              <p className="font-swiss mb-4">
+              <p className="font-swiss mb-3 md:mb-4 text-sm md:text-base">
                 Incluso nei percorsi Elite Performance e Elite Performance Full, e disponibile come opzione a pagamento per gli altri programmi,
                 questo programma rappresenta un elemento fondamentale dell'approccio olistico di ATH allo sviluppo dei giovani tennisti,
                 riconoscendo il ruolo cruciale dei genitori nel percorso sportivo dei ragazzi.
@@ -163,7 +165,7 @@ const ParentTutorProgram = () => {
             </RevealAnimation>
           </div>
           
-          <div className="grid md:grid-cols-2 gap-10 mb-12">
+          <div className="grid md:grid-cols-2 gap-6 md:gap-10 mb-8 md:mb-12">
             <ProgramOffers offers={programOffers} />
             
             <ProgramPricing 
