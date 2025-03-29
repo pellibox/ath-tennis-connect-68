@@ -282,7 +282,11 @@ const NavigationLinks = ({ className, textColorClass, isMobile = false }: Naviga
                           sport === 'pickleball' ? "text-ath-clay" : ""
                         )}
                       >
-                        <CircleDot size={18} className="mr-2" />
+                        <img 
+                          src="/lovable-uploads/e0ce28ab-308e-4ebc-afaa-ca4042757796.png" 
+                          alt="Pickleball racket" 
+                          className="w-[18px] h-[18px] mr-2" 
+                        />
                         <span>Pickleball</span>
                       </button>
                     </DropdownMenuItem>
