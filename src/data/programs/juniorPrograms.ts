@@ -51,14 +51,13 @@ export const juniorPrograms: Program[] = [
     link: '/programs/parent',
     features: [
       'Supporto tecnologico: Report intuitivi, streaming di allenamenti e partite, analisi statistiche semplificate',
-      'Formazione continua: Workshop periodici, incontri individuali e materiali formativi',
+      'Formazione continua: 4 workshop formativi durante l\'anno e 2 incontri di gruppo con il mental coach',
       'Strumenti pratici: Guide alla comunicazione efficace, checklist pre-torneo, diario di bordo',
       'Competenze specifiche: Gestione delle emozioni legate alle competizioni, comunicazione costruttiva',
       'Comunità di supporto: Rete di genitori con esperienze simili, moderata da esperti del settore',
-      'Accesso a report semplici e leggibili, con dati tecnici, fisici e mentali',
-      'Possibilità di seguire in streaming allenamenti e partite',
-      'Programma creato da mental coach specializzati con momenti di formazione durante l\'anno',
-      'Incluso in tutti i programmi Elite, Performance e Junior'
+      'Accesso alla piattaforma Vicki™ per genitori con report e streaming',
+      'Materiali educativi e risorse dedicate',
+      'Incluso nei programmi Elite Performance e Elite Performance Full, €150/anno per tutti gli altri programmi'
     ],
     vickiCustomBadge: 'Vicki™ report and stream'
   }

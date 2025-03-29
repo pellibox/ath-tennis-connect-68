@@ -1,104 +1,69 @@
 
-import { UserType } from '@/components/UserTypeSelector';
 import { programCategories } from '@/data/programs';
 import { ProgramCategory } from '@/data/programs/types';
 
 interface ProgramFiltersProps {
-  userType: UserType | null;
+  userType: string | null;
   showAllPrograms: boolean;
+  sport?: string;
 }
 
-const ProgramFilters = ({ userType, showAllPrograms }: ProgramFiltersProps) => {
-  // Filter categories based on user type
-  const filteredCategories = (): ProgramCategory[] => {
-    if (!userType || showAllPrograms) {
-      return programCategories;
-    }
+interface ProgramFiltersResult {
+  filteredCategories: ProgramCategory[];
+  title: string;
+  subtitle: string;
+}
 
-    let relevantCategories = [...programCategories];
+const ProgramFilters = ({ userType, showAllPrograms, sport = 'tennis' }: ProgramFiltersProps): ProgramFiltersResult => {
+  let filteredCategories = programCategories;
+  let title = "Tutti i Programmi";
+  let subtitle = "Esplora l'intera gamma di programmi ATH per tutte le fasce d'età e livelli di abilità";
 
-    switch(userType) {
+  // First filter by sport
+  if (sport) {
+    filteredCategories = filteredCategories.filter(category => 
+      !category.sports || category.sports.includes(sport)
+    );
+  }
+
+  // Then filter by user type if not showing all programs
+  if (!showAllPrograms && userType) {
+    // Filter categories based on applicableUserTypes
+    filteredCategories = filteredCategories.filter(category => 
+      !category.applicableUserTypes || category.applicableUserTypes.includes(userType)
+    );
+    
+    // Set title and subtitle based on user type
+    switch (userType) {
       case 'junior':
-        return relevantCategories.filter(cat => 
-          ['junior-program', 'summer-camps'].includes(cat.id)
-        );
-      case 'performance':
-        return relevantCategories.filter(cat => 
-          ['elite-program', 'junior-program', 'coach-private'].includes(cat.id)
-        );
-      case 'professional':
-        return relevantCategories.filter(cat => 
-          ['elite-program', 'professional-program', 'coach-private'].includes(cat.id)
-        );
-      case 'coach':
-        return relevantCategories.filter(cat => 
-          ['coach-private', 'professional-program'].includes(cat.id)
-        );
+        title = "Programmi Junior";
+        subtitle = "Programmi per giovani atleti che vogliono sviluppare le loro abilità tennistiche";
+        break;
       case 'adult':
-        return relevantCategories.filter(cat => 
-          ['adult-training', 'coach-private', 'summer-camps'].includes(cat.id)
-        );
-      case 'parent':
-        return relevantCategories.filter(cat => 
-          ['junior-program', 'summer-camps'].includes(cat.id)
-        );
-      default:
-        return relevantCategories;
-    }
-  };
-
-  // Dynamic title based on user type
-  const getTitle = (): string => {
-    if (!userType) {
-      return "Programmi ATH";
-    }
-
-    switch(userType) {
-      case 'junior':
-        return "Programmi per Giovani Tennisti";
-      case 'performance':
-        return "Programmi Performance";
+        title = "Programmi Adulti";
+        subtitle = "Programmi per giocatori adulti di tutti i livelli";
+        break;
       case 'professional':
-        return "Programmi Elite per Professionisti";
+        title = "Programmi Elite & Professionisti";
+        subtitle = "Programmi intensivi per atleti di livello professionale";
+        break;
       case 'coach':
-        return "Programmi per Coach";
-      case 'adult':
-        return "Programmi per Adulti";
-      case 'parent':
-        return "Programmi per Giovani Atleti";
-      default:
-        return "Programmi ATH";
-    }
-  };
-
-  // Dynamic subtitle based on user type
-  const getSubtitle = (): string => {
-    if (!userType) {
-      return "Esplora la nostra gamma completa di programmi di allenamento basati sul metodo ATH";
-    }
-
-    switch(userType) {
-      case 'junior':
-        return "Programmi specializzati progettati per sviluppare giovani tennisti";
+        title = "Programmi per Coach";
+        subtitle = "Risorse e formazione per allenatori di tennis";
+        break;
       case 'performance':
-        return "Programmi avanzati per tennisti agonisti che cercano di raggiungere il massimo potenziale";
-      case 'professional':
-        return "Programmi di altissimo livello progettati per tennisti professionisti";
-      case 'coach':
-        return "Programmi e risorse dedicati agli allenatori per perfezionare le loro competenze e metodologie";
-      case 'adult':
-        return "Programmi adattati per tennisti adulti di tutti i livelli";
-      case 'parent':
-        return "Programmi ideali per supportare i giovani atleti nel loro percorso di crescita";
+        title = "Programmi Performance";
+        subtitle = "Programmi avanzati per atleti agonisti con obiettivi competitivi";
+        break;
       default:
-        return "Esplora la nostra gamma completa di programmi di allenamento basati sul metodo ATH";
+        break;
     }
-  };
+  }
 
   return {
-    filteredCategories: filteredCategories(),
-    title: getTitle(),
-    subtitle: getSubtitle()
+    filteredCategories,
+    title,
+    subtitle
   };
 };
 

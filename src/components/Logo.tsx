@@ -48,10 +48,10 @@ const Logo = ({
   const sizeClasses = isFooter 
     ? 'h-28' 
     : (isInMenu 
-        ? 'w-14 sm:w-16 h-auto' // Smaller menu logo
+        ? 'w-24 h-auto' // Increased mobile logo size from w-10 to w-24
         : (isMobile 
-            ? 'w-20 h-auto' // Smaller logo on mobile for center logo
-            : 'w-40 sm:w-44 h-auto')); // Increased size on desktop (was w-24 sm:w-32)
+            ? 'w-24 h-auto' // Increased mobile logo size from w-20 to w-24
+            : 'w-40 sm:w-44 h-auto')); // Desktop size stays the same
   
   // Function to handle logo click
   const handleLogoClick = (e: React.MouseEvent) => {
@@ -70,7 +70,7 @@ const Logo = ({
   };
   
   return (
-    <div className={`${className}`}>
+    <div className={`${className} ${isCentered ? 'text-center' : ''}`}>
       <Link to="/" onClick={handleLogoClick}>
         <img 
           src={logoSrc} 
