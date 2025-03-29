@@ -1,3 +1,4 @@
+
 import { useEffect } from 'react';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
@@ -35,6 +36,7 @@ const Performance2Program = () => {
             overlayOpacity="medium"
           />
           
+          {/* Black banner with claim text - matching Method page style */}
           <div className="w-full bg-black py-16 relative" style={{ height: '300px' }}>
             <div className="max-w-6xl mx-auto px-6 h-full flex flex-col justify-center">
               <div className="flex items-center mb-2">
@@ -144,13 +146,6 @@ const Performance2Program = () => {
                 <Link to="/programs/elite" className="block p-6 border border-gray-200 rounded-lg hover:border-ath-clay hover:shadow-sm transition-all">
                   <h4 className="text-lg font-medium mb-2">Elite Performance</h4>
                   <p className="text-gray-600 mb-3">Programma intensivo per atleti di alto livello</p>
-                  <span className="inline-flex items-center text-ath-clay">Scopri <ArrowRight size={14} className="ml-1" /></span>
-                </Link>
-              </div>
-              <div className="mt-6">
-                <Link to="/programs/parent" className="block p-6 border border-gray-200 rounded-lg hover:border-ath-clay hover:shadow-sm transition-all">
-                  <h4 className="text-lg font-medium mb-2">Genitore/Tutor</h4>
-                  <p className="text-gray-600 mb-3">Programma di supporto per genitori e tutor di giovani atleti tra i 6 e i 18 anni. Disponibile come opzione separata.</p>
                   <span className="inline-flex items-center text-ath-clay">Scopri <ArrowRight size={14} className="ml-1" /></span>
                 </Link>
               </div>

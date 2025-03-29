@@ -184,13 +184,6 @@ const ElitePerformanceProgram = () => {
                 <span className="inline-flex items-center text-ath-clay">Scopri <ArrowRight size={14} className="ml-1" /></span>
               </Link>
             </div>
-            <div className="mt-6">
-              <Link to="/programs/parent" className="block p-6 border border-gray-200 rounded-lg hover:border-ath-clay hover:shadow-sm transition-all">
-                <h4 className="text-lg font-medium mb-2">Genitore/Tutor</h4>
-                <p className="text-gray-600 mb-3">Programma di supporto per genitori e tutor di atleti tra i 6 e i 18 anni. Incluso nel programma Elite Performance.</p>
-                <span className="inline-flex items-center text-ath-clay">Scopri <ArrowRight size={14} className="ml-1" /></span>
-              </Link>
-            </div>
           </div>
         </div>
         

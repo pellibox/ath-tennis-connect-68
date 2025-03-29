@@ -91,11 +91,6 @@ const ElitePerformanceFullProgram = () => {
         title: "Performance 3",
         description: "3 giorni a settimana per un'intensità bilanciata, ideale per chi vuole risultati competitivi mantenendo altri impegni.",
         link: "/programs/performance-3"
-      },
-      {
-        title: "Genitore/Tutor",
-        description: "Programma di supporto per genitori e tutor di atleti tra i 6 e i 18 anni. Incluso nel programma Elite Performance Full.",
-        link: "/programs/parent"
       }
     ]
   };

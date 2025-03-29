@@ -1,4 +1,3 @@
-
 import { useEffect, useState } from 'react';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
@@ -10,8 +9,6 @@ import Hero from '@/components/Hero';
 import VickiMonitoringBadge, { MonitoringLevel } from '@/components/VickiMonitoringBadge';
 import VickiPoweredBadge from '@/components/VickiPoweredBadge';
 import PricingTables from '@/components/PricingTables';
-import { Link } from 'react-router-dom';
-import { ArrowRight } from 'lucide-react';
 
 const JuniorProgram = () => {
   const { t } = useLanguage();
@@ -204,17 +201,6 @@ const JuniorProgram = () => {
                 programs={getJuniorPrograms()}
                 gridLayout="dense"
               />
-            </div>
-          </RevealAnimation>
-          
-          <RevealAnimation delay={150}>
-            <div className="mt-16">
-              <h3 className="text-2xl font-display mb-6">Programmi Correlati</h3>
-              <Link to="/programs/parent" className="block p-6 border border-gray-200 bg-white rounded-lg hover:border-ath-clay hover:shadow-sm transition-all">
-                <h4 className="text-lg font-medium mb-2">Genitore/Tutor</h4>
-                <p className="text-gray-600 mb-3">Programma di supporto per genitori e tutor di atleti tra i 6 e i 18 anni. Disponibile per i programmi Junior a €150.</p>
-                <span className="inline-flex items-center text-ath-clay">Scopri <ArrowRight size={14} className="ml-1" /></span>
-              </Link>
             </div>
           </RevealAnimation>
         </div>

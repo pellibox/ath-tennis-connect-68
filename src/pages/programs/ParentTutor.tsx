@@ -15,7 +15,6 @@ import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle }
 import { Badge } from "@/components/ui/badge";
 import ButtonLink from '@/components/ButtonLink';
 import VickiHeader from '@/components/technology/VickiHeader';
-import RelatedPrograms from '@/components/programs/RelatedPrograms';
 
 const ParentTutorProgram = () => {
   const { t } = useLanguage();
@@ -30,24 +29,6 @@ const ParentTutorProgram = () => {
     if (gender) setUserGender(gender);
     if (type) setUserType(type);
   }, []);
-
-  const relatedPrograms = [
-    {
-      title: "SAT - Scuola Avviamento al Tennis",
-      description: "Un viaggio entusiasmante alla scoperta del tennis, per bambini dai 4 ai 10+ anni.",
-      link: "/programs/sat"
-    },
-    {
-      title: "SIT - Scuola Individuazione Talenti",
-      description: "Programma specializzato per l'identificazione precoce dei talenti tennistici (6-10+ anni).",
-      link: "/programs/talent-identification"
-    },
-    {
-      title: "Performance 4",
-      description: "Programma intensivo con 4 giorni di allenamento settimanale per giovani atleti agonisti.",
-      link: "/programs/performance-4"
-    }
-  ];
 
   return (
     <div className="flex flex-col min-h-screen">
@@ -107,8 +88,7 @@ const ParentTutorProgram = () => {
             </RevealAnimation>
             <RevealAnimation delay={250}>
               <p className="font-swiss mb-4">
-                Incluso nei percorsi Elite Performance, Performance 4 e Elite Performance Full, e disponibile come opzione a pagamento per i programmi Junior e Performance 3,
-                questo programma rappresenta un elemento fondamentale dell'approccio olistico di ATH allo sviluppo dei giovani tennisti,
+                Incluso in tutti i percorsi Elite, Performance e Junior, questo programma rappresenta un elemento fondamentale dell'approccio olistico di ATH allo sviluppo dei giovani tennisti,
                 riconoscendo il ruolo cruciale dei genitori nel percorso sportivo dei ragazzi.
               </p>
             </RevealAnimation>
@@ -159,24 +139,20 @@ const ParentTutorProgram = () => {
             <RevealAnimation delay={350} className="bg-gray-50 p-8 rounded-lg">
               <h3 className="text-xl font-swiss font-semibold mb-4">Prezzo</h3>
               <div className="mb-4">
-                <p className="text-3xl font-bold text-ath-clay">€150</p>
-                <p className="text-sm text-gray-600">per programmi Junior e Performance 3</p>
-              </div>
-              <div className="mb-4">
                 <p className="text-3xl font-bold text-ath-clay">Incluso</p>
-                <p className="text-sm text-gray-600">nei programmi Elite Performance, Performance 4 e Elite Performance Full</p>
+                <p className="text-sm text-gray-600">nei programmi Elite, Performance e Junior</p>
               </div>
               <div className="mb-4 p-4 bg-ath-clay/10 rounded-lg">
                 <h4 className="text-sm font-semibold mb-2">Il programma include:</h4>
                 <ul className="text-sm text-gray-600 list-disc list-inside space-y-1">
                   <li>4 workshop formativi durante l'anno</li>
-                  <li>2 incontri di gruppo con il mental coach</li>
+                  <li>2 incontri individuali con il mental coach</li>
                   <li>Accesso alla piattaforma Vicki™ per genitori</li>
                   <li>Materiali educativi e risorse dedicate</li>
                 </ul>
               </div>
               <p className="text-sm text-gray-600 mb-4">
-                Per i non iscritti ai programmi, è disponibile un pacchetto separato. Contattaci per maggiori informazioni.
+                Per i non iscritti ai programmi Elite, Performance e Junior, è disponibile un pacchetto separato. Contattaci per maggiori informazioni.
               </p>
               <div className="space-y-4">
                 <ButtonLink 
@@ -220,10 +196,26 @@ const ParentTutorProgram = () => {
           </RevealAnimation>
           
           <RevealAnimation delay={450}>
-            <RelatedPrograms 
-              title="Programmi Correlati"
-              programs={relatedPrograms}
-            />
+            <div className="text-center">
+              <h3 className="text-2xl font-display mb-6">Programmi Correlati</h3>
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <Link to="/programs/sat" className="block p-6 border border-gray-200 rounded-lg hover:border-ath-clay hover:shadow-sm transition-all">
+                  <h4 className="text-lg font-medium mb-2">SAT - Scuola Avviamento al Tennis</h4>
+                  <p className="text-gray-600 mb-3">Un viaggio entusiasmante alla scoperta del tennis, per bambini dai 4 ai 10+ anni.</p>
+                  <span className="inline-flex items-center text-ath-clay">Scopri <ArrowRight size={14} className="ml-1" /></span>
+                </Link>
+                <Link to="/programs/talent-identification" className="block p-6 border border-gray-200 rounded-lg hover:border-ath-clay hover:shadow-sm transition-all">
+                  <h4 className="text-lg font-medium mb-2">SIT - Scuola Individuazione Talenti</h4>
+                  <p className="text-gray-600 mb-3">Programma specializzato per l'identificazione precoce dei talenti tennistici (6-10+ anni).</p>
+                  <span className="inline-flex items-center text-ath-clay">Scopri <ArrowRight size={14} className="ml-1" /></span>
+                </Link>
+                <Link to="/programs/performance-4" className="block p-6 border border-gray-200 rounded-lg hover:border-ath-clay hover:shadow-sm transition-all">
+                  <h4 className="text-lg font-medium mb-2">Performance 4</h4>
+                  <p className="text-gray-600 mb-3">Programma intensivo con 4 giorni di allenamento settimanale per giovani atleti agonisti.</p>
+                  <span className="inline-flex items-center text-ath-clay">Scopri <ArrowRight size={14} className="ml-1" /></span>
+                </Link>
+              </div>
+            </div>
           </RevealAnimation>
         </div>
         
