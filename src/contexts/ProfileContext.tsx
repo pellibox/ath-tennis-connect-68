@@ -15,6 +15,9 @@ interface ProfileContextType {
   resetProfile: () => void;
   showAllPrograms: boolean;
   setShowAllPrograms: (show: boolean) => void;
+  // Add missing methods
+  updateProfile: (gender: UserGender, type: UserType, sport: SportType) => void;
+  deleteProfile: () => void;
 }
 
 const ProfileContext = createContext<ProfileContextType | undefined>(undefined);
@@ -84,6 +87,18 @@ export const ProfileProvider: React.FC<{ children: ReactNode }> = ({ children })
     sessionStorage.removeItem('sport');
   };
   
+  // Add the missing updateProfile method
+  const updateProfile = (gender: UserGender, type: UserType, selectedSport: SportType) => {
+    setUserGender(gender);
+    setUserType(type);
+    setSport(selectedSport);
+  };
+  
+  // Add the missing deleteProfile method (same implementation as resetProfile for now)
+  const deleteProfile = () => {
+    resetProfile();
+  };
+  
   return (
     <ProfileContext.Provider value={{ 
       userType, 
@@ -94,7 +109,10 @@ export const ProfileProvider: React.FC<{ children: ReactNode }> = ({ children })
       updateSport,
       resetProfile,
       showAllPrograms,
-      setShowAllPrograms
+      setShowAllPrograms,
+      // Add the new methods to the context value
+      updateProfile,
+      deleteProfile
     }}>
       {children}
     </ProfileContext.Provider>
