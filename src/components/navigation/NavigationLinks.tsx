@@ -1,5 +1,6 @@
 import { Link, useLocation, useNavigate } from 'react-router-dom';
-import { HelpCircle, BookOpen, Activity, Zap, Server, Users, Dumbbell, ChevronDown, CircleDot } from 'lucide-react';
+import { HelpCircle, BookOpen, Zap, Server, Users, Dumbbell, ChevronDown, CircleDot } from 'lucide-react';
+import { GiTennisRacket } from "react-icons/gi";
 import { cn } from '@/lib/utils';
 import { useState } from 'react';
 import { useProfile } from '@/contexts/ProfileContext';
@@ -38,12 +39,12 @@ export const navigationItems: NavigationItem[] = [
   { 
     text: 'Programmi', 
     href: '/programs',
-    icon: <Activity size={18} className="mr-2" />,
+    icon: <GiTennisRacket size={18} className="mr-2" />,
     submenu: [
       {
         text: 'Tennis',
         href: '/programs',
-        icon: <Activity size={18} className="mr-2" />
+        icon: <GiTennisRacket size={18} className="mr-2" />
       },
       {
         text: 'Padel & Pickleball',
@@ -248,7 +249,7 @@ const NavigationLinks = ({ className, textColorClass, isMobile = false }: Naviga
                           sport === 'tennis' || !sport ? "text-ath-clay" : ""
                         )}
                       >
-                        <Activity size={18} className="mr-2" />
+                        <GiTennisRacket size={18} className="mr-2" />
                         <span>Tennis</span>
                       </button>
                     </DropdownMenuItem>
