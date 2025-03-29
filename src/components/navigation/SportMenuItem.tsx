@@ -26,17 +26,21 @@ const SportMenuItem = ({
       <button 
         onClick={() => onClick(sportType)}
         className={cn(
-          "flex items-center w-full p-2 hover:bg-gray-100 rounded-md",
+          "flex items-center w-full p-2 rounded-md transition-all duration-300 group",
+          isSelected 
+            ? "bg-ath-clay/10 border-l-4 border-ath-clay" 
+            : "hover:bg-gray-100",
           isSelected ? "text-ath-clay" : "text-foreground"
         )}
       >
         {React.cloneElement(icon as React.ReactElement, {
           className: cn(
             (icon as React.ReactElement).props.className,
+            "group-hover:scale-110 transition-transform",
             isSelected ? "text-ath-clay" : ""
           )
         })}
-        <span>{label}</span>
+        <span className="ml-2">{label}</span>
       </button>
     </DropdownMenuItem>
   );
