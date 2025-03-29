@@ -53,10 +53,11 @@ const ProgramsDropdown = ({ textColorClass }: ProgramsDropdownProps) => {
             sport ? "text-ath-clay" : ""
           )}
         >
-          <GiTennisRacket 
-            size={18} 
+          <img 
+            src="/lovable-uploads/3f34e143-e913-40f9-8348-a34381b0eac6.png" 
+            alt="Programs list" 
             className={cn(
-              "mr-2", 
+              "w-5 h-5 mr-2", 
               sport ? "text-ath-clay" : ""
             )} 
           />
