@@ -31,21 +31,21 @@ const Logo = ({
   // Logo paths
   let logoSrc;
   
-  // Use the new logo for mobile top and desktop left positions
-  const newLogoPath = "/lovable-uploads/2089c659-12cb-4d8c-9317-640e00beaa73.png";
+  // Uploaded image URL
+  const whiteLogoPath = "/lovable-uploads/b8c96883-7ba3-4f6d-b9a5-be4eae709cf1.png";
   
   if (isInMenu) {
-    // Always use the new menu logo when in menu
-    logoSrc = newLogoPath;
+    // Always use the white logo when in menu
+    logoSrc = whiteLogoPath;
   } else if (useVickiLogo) {
     logoSrc = onDarkBackground 
       ? "/lovable-uploads/dc679c8d-60cd-4841-a42c-0907926b7ef5.png" // Vicki logo bianco
       : "/lovable-uploads/8f2b30a1-cb65-453e-ba82-d9721a192426.png"; // Vicki logo nero
   } else {
-    // Use the new logo files based on background
+    // Use the appropriate logo based on background
     logoSrc = onDarkBackground 
-      ? newLogoPath // Use new logo for white version on dark background
-      : "/lovable-uploads/47943c06-a504-40f7-a152-59c4a5d22896.png"; // Keep black ATH logo
+      ? whiteLogoPath // Use white logo for dark background
+      : "/lovable-uploads/47943c06-a504-40f7-a152-59c4a5d22896.png"; // Black ATH logo
   }
   
   // Size classes based on logo type
