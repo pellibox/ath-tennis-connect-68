@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from 'react';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
@@ -92,32 +93,65 @@ const ProgramsOverview = () => {
               </p>
               
               <Tabs value={activeTab} onValueChange={handleTabChange} className="w-full">
-                <TabsList className="w-full mb-8 bg-white border border-gray-200 rounded-full p-1 flex justify-between">
-                  <TabsTrigger 
-                    value="tennis" 
-                    className="flex items-center rounded-full data-[state=active]:bg-ath-clay data-[state=active]:text-white px-8 py-3"
-                  >
-                    Tennis
-                  </TabsTrigger>
-                  <TabsTrigger 
-                    value="padel" 
-                    className="flex items-center rounded-full data-[state=active]:bg-ath-clay data-[state=active]:text-white px-8 py-3"
-                  >
-                    Padel
-                  </TabsTrigger>
-                  <TabsTrigger 
-                    value="pickleball" 
-                    className="flex items-center rounded-full data-[state=active]:bg-ath-clay data-[state=active]:text-white px-8 py-3"
-                  >
-                    Pickleball
-                  </TabsTrigger>
-                  <TabsTrigger 
-                    value="touchtennis" 
-                    className="flex items-center rounded-full data-[state=active]:bg-ath-clay data-[state=active]:text-white px-8 py-3"
-                  >
-                    TouchTennis
-                  </TabsTrigger>
-                </TabsList>
+                {isMobile ? (
+                  <div className="mb-8">
+                    <TabsList className="w-full mb-2 bg-white border border-gray-200 rounded-full p-1 flex justify-between">
+                      <TabsTrigger 
+                        value="tennis" 
+                        className="flex-1 rounded-full data-[state=active]:bg-ath-clay data-[state=active]:text-white px-4 py-3"
+                      >
+                        Tennis
+                      </TabsTrigger>
+                      <TabsTrigger 
+                        value="padel" 
+                        className="flex-1 rounded-full data-[state=active]:bg-ath-clay data-[state=active]:text-white px-4 py-3"
+                      >
+                        Padel
+                      </TabsTrigger>
+                    </TabsList>
+                    <TabsList className="w-full bg-white border border-gray-200 rounded-full p-1 flex justify-between">
+                      <TabsTrigger 
+                        value="pickleball" 
+                        className="flex-1 rounded-full data-[state=active]:bg-ath-clay data-[state=active]:text-white px-4 py-3"
+                      >
+                        Pickleball
+                      </TabsTrigger>
+                      <TabsTrigger 
+                        value="touchtennis" 
+                        className="flex-1 rounded-full data-[state=active]:bg-ath-clay data-[state=active]:text-white px-4 py-3"
+                      >
+                        TouchTennis
+                      </TabsTrigger>
+                    </TabsList>
+                  </div>
+                ) : (
+                  <TabsList className="w-full mb-8 bg-white border border-gray-200 rounded-full p-1 flex justify-between">
+                    <TabsTrigger 
+                      value="tennis" 
+                      className="flex items-center rounded-full data-[state=active]:bg-ath-clay data-[state=active]:text-white px-8 py-3"
+                    >
+                      Tennis
+                    </TabsTrigger>
+                    <TabsTrigger 
+                      value="padel" 
+                      className="flex items-center rounded-full data-[state=active]:bg-ath-clay data-[state=active]:text-white px-8 py-3"
+                    >
+                      Padel
+                    </TabsTrigger>
+                    <TabsTrigger 
+                      value="pickleball" 
+                      className="flex items-center rounded-full data-[state=active]:bg-ath-clay data-[state=active]:text-white px-8 py-3"
+                    >
+                      Pickleball
+                    </TabsTrigger>
+                    <TabsTrigger 
+                      value="touchtennis" 
+                      className="flex items-center rounded-full data-[state=active]:bg-ath-clay data-[state=active]:text-white px-8 py-3"
+                    >
+                      TouchTennis
+                    </TabsTrigger>
+                  </TabsList>
+                )}
                 
                 <div className="mt-8">
                   <TabsContent value="tennis" className="mt-0">
