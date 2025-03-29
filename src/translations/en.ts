@@ -1,4 +1,3 @@
-
 const translations = {
   // Header & Navigation
   "nav.home": "Home",
@@ -29,7 +28,7 @@ const translations = {
   "programs.talent": "Talent Identification School (4-10 years)",
   "programs.talent.desc": "Specialized program for early identification of tennis talents and development of fundamental skills.",
   "programs.junior.desc": "Comprehensive training program for players aged 8-18 who want to develop their skills and compete at a high level.",
-  "programs.elite": "Elite Program",
+  "programs.elite": "Elite & Performance Programs",
   "programs.elite.desc": "Intensive training for advanced players with professional aspirations, focusing on technical, tactical, physical, and mental aspects.",
   "programs.adult": "Adult Training",
   "programs.adult.desc": "Programs for players of all levels who want to improve their skills, stay fit, and enjoy the game of tennis.",

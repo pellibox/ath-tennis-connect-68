@@ -1,4 +1,3 @@
-
 const translations = {
   // Header & Navigation
   "nav.home": "Home",
@@ -31,7 +30,7 @@ const translations = {
   "programs.talent.desc": "Programma specializzato per l'identificazione precoce dei talenti tennistici e lo sviluppo delle abilità fondamentali.",
   "programs.young": "Agonisti Performance (13+ anni)",
   "programs.young.desc": "Programma formativo per giovani atleti in fase di sviluppo tecnico e fisico.",
-  "programs.elite": "Performance",
+  "programs.elite": "Elite & Performance Programs",
   "programs.elite.desc": "Supporto completo per atleti professionisti con analisi avanzata e ottimizzazione della performance.",
   "programs.elite5": "Agonisti Elite (5 sessioni)",
   "programs.elite5.desc": "Programma intensivo per agonisti di alto livello con 5 sessioni settimanali e tecnologia Vicki™.",

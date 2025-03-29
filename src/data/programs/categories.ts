@@ -1,4 +1,3 @@
-
 import { ProgramCategory } from './types';
 import { elitePrograms } from './elitePrograms';
 import { juniorPrograms } from './juniorPrograms';
@@ -7,11 +6,10 @@ import { adultPrograms } from './adultPrograms';
 import { summerCamps } from './summerCamps';
 import { professionalPrograms } from './professionalPrograms';
 
-// Program Categories with additional metadata
 export const programCategories: ProgramCategory[] = [
   {
     id: 'elite-program',
-    title: 'Elite Program',
+    title: 'Elite & Performance Programs',
     programs: elitePrograms,
     applicableUserTypes: ['performance', 'professional'],
     sports: ['tennis']
