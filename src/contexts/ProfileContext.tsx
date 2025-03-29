@@ -1,88 +1,110 @@
 
-import React, { createContext, useContext, useState, useEffect } from 'react';
-import { UserGender, UserType, loadUserPreferences, saveUserPreferences } from '@/components/UserTypeSelector';
+import React, { createContext, useState, useContext, useEffect, ReactNode } from 'react';
 
-// Add sport type
-export type SportType = 'tennis' | 'padel' | 'pickleball' | 'touchtennis';
+export type UserType = 'junior' | 'adult' | 'professional' | 'coach' | 'parent' | 'performance' | null;
+export type UserGender = 'male' | 'female' | null;
+export type SportType = 'tennis' | 'padel' | 'pickleball' | 'touchtennis' | null;
 
-type ProfileContextType = {
-  userGender: UserGender | null;
-  userType: UserType | null;
-  sport: SportType | null;
-  updateProfile: (gender: UserGender, type: UserType, sportType?: SportType) => void;
-  resetProfile: () => void;
-  deleteProfile: () => void;
+interface ProfileContextType {
+  userType: UserType;
+  userGender: UserGender;
+  sport: SportType;
+  updateUserType: (type: UserType) => void;
+  updateUserGender: (gender: UserGender) => void;
   updateSport: (sport: SportType) => void;
-};
+  resetProfile: () => void;
+  showAllPrograms: boolean;
+  setShowAllPrograms: (show: boolean) => void;
+}
 
 const ProfileContext = createContext<ProfileContextType | undefined>(undefined);
 
-export function ProfileProvider({ children }: { children: React.ReactNode }) {
-  const [userGender, setUserGender] = useState<UserGender | null>(null);
-  const [userType, setUserType] = useState<UserType | null>(null);
-  const [sport, setSport] = useState<SportType | null>(null);
-
-  // Load user preferences on mount
+export const ProfileProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
+  // Get initial values from localStorage or sessionStorage if available
+  const [userType, setUserType] = useState<UserType>(() => {
+    const saved = localStorage.getItem('userType');
+    return saved ? (saved as UserType) : null;
+  });
+  
+  const [userGender, setUserGender] = useState<UserGender>(() => {
+    const saved = localStorage.getItem('userGender');
+    return saved ? (saved as UserGender) : null;
+  });
+  
+  const [sport, setSport] = useState<SportType>(() => {
+    const saved = sessionStorage.getItem('sport');
+    return saved ? (saved as SportType) : 'tennis';
+  });
+  
+  const [showAllPrograms, setShowAllPrograms] = useState<boolean>(true);
+  
+  // Update localStorage when values change
   useEffect(() => {
-    const { gender, type } = loadUserPreferences();
-    const savedSport = localStorage.getItem('ath_user_sport') as SportType | null;
-    
-    setUserGender(gender);
-    setUserType(type);
-    setSport(savedSport || 'tennis');
-  }, []);
-
-  const updateProfile = (gender: UserGender, type: UserType, sportType: SportType = 'tennis') => {
-    saveUserPreferences(gender, type);
-    localStorage.setItem('ath_user_sport', sportType);
-    setUserGender(gender);
-    setUserType(type);
-    setSport(sportType);
-  };
-
-  const updateSport = (sportType: SportType) => {
-    // Only update sport if the user already has a profile
-    if (userGender && userType) {
-      localStorage.setItem('ath_user_sport', sportType);
-      setSport(sportType);
+    if (userType) {
+      localStorage.setItem('userType', userType);
+    } else {
+      localStorage.removeItem('userType');
     }
+  }, [userType]);
+  
+  useEffect(() => {
+    if (userGender) {
+      localStorage.setItem('userGender', userGender);
+    } else {
+      localStorage.removeItem('userGender');
+    }
+  }, [userGender]);
+  
+  useEffect(() => {
+    if (sport) {
+      sessionStorage.setItem('sport', sport);
+    } else {
+      sessionStorage.removeItem('sport');
+    }
+  }, [sport]);
+  
+  const updateUserType = (type: UserType) => {
+    setUserType(type);
   };
-
+  
+  const updateUserGender = (gender: UserGender) => {
+    setUserGender(gender);
+  };
+  
+  const updateSport = (newSport: SportType) => {
+    setSport(newSport);
+  };
+  
   const resetProfile = () => {
-    // This function will be used to reset the profile selection UI
-    // but doesn't actually clear the profile data
-  };
-
-  const deleteProfile = () => {
-    localStorage.removeItem('ath_user_gender');
-    localStorage.removeItem('ath_user_type');
-    localStorage.removeItem('ath_user_sport');
-    setUserGender(null);
     setUserType(null);
-    setSport(null);
+    setUserGender(null);
+    setSport('tennis');
+    localStorage.removeItem('userType');
+    localStorage.removeItem('userGender');
+    sessionStorage.removeItem('sport');
   };
-
+  
   return (
-    <ProfileContext.Provider
-      value={{
-        userGender,
-        userType,
-        sport,
-        updateProfile,
-        resetProfile,
-        deleteProfile,
-        updateSport
-      }}
-    >
+    <ProfileContext.Provider value={{ 
+      userType, 
+      userGender, 
+      sport,
+      updateUserType, 
+      updateUserGender, 
+      updateSport,
+      resetProfile,
+      showAllPrograms,
+      setShowAllPrograms
+    }}>
       {children}
     </ProfileContext.Provider>
   );
-}
+};
 
-export function useProfile() {
+export const useProfile = (): ProfileContextType => {
   const context = useContext(ProfileContext);
   if (context === undefined) {
     throw new Error('useProfile must be used within a ProfileProvider');
   }
   return context;
-}
+};

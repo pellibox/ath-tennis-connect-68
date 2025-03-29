@@ -1,3 +1,4 @@
+
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { Toaster } from "@/components/ui/sonner";
 import { LanguageProvider } from './contexts/LanguageContext';
@@ -11,7 +12,8 @@ import TechnologyPage from '@/pages/Technology';
 import FacilitiesPage from '@/pages/Facilities';
 import CoachesPage from '@/pages/Coaches';
 import ProgramsPage from '@/pages/Programs';
-import PadelPickleballPage from '@/pages/PadelPickleball';
+import PadelPage from '@/pages/Padel';
+import PickleballPage from '@/pages/Pickleball';
 import TouchTennisPage from '@/pages/TouchTennis';
 import ContactPage from '@/pages/Contact';
 import NotFoundPage from '@/pages/NotFound';
@@ -70,7 +72,8 @@ function AppContent() {
         
         {/* Programs routes */}
         <Route path="/programs" element={<ProgramsPage />} />
-        <Route path="/padel-pickleball" element={<PadelPickleballPage />} />
+        <Route path="/padel" element={<PadelPage />} />
+        <Route path="/pickleball" element={<PickleballPage />} />
         <Route path="/touchtennis" element={<TouchTennisPage />} />
         
         <Route path="/programs/elite" element={<EliteProgram />} />

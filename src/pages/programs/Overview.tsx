@@ -5,7 +5,8 @@ import Footer from '@/components/Footer';
 import ProgramsSection from '@/components/ProgramsSection';
 import { useProfile } from '@/contexts/ProfileContext';
 import { programCategories } from '@/data/programs';
-import { programCategories as padelPickleballCategories } from '@/data/padelPickleball';
+import { programCategories as padelCategories } from '@/data/padel';
+import { programCategories as pickleballCategories } from '@/data/pickleball';
 import { touchTennisCategories } from '@/data/touchtennis';
 import { 
   Breadcrumb, 
@@ -16,7 +17,6 @@ import {
 } from "@/components/ui/breadcrumb";
 import { Link } from 'react-router-dom';
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
-import { Badge } from '@/components/ui/badge';
 import { SportType } from '@/contexts/ProfileContext';
 import { useIsMobile } from '@/hooks/use-mobile';
 import { getVimeoEmbed } from '@/utils/videoUtils';
@@ -26,26 +26,24 @@ import RevealAnimation from '@/components/RevealAnimation';
 
 const ProgramsOverview = () => {
   const { userType, userGender, sport, updateSport } = useProfile();
-  const [activeTab, setActiveTab] = useState<'tennis' | 'padel-pickleball' | 'touchtennis'>(
-    sport === 'padel' || sport === 'pickleball' 
-      ? 'padel-pickleball' 
-      : sport === 'touchtennis' 
-        ? 'touchtennis' 
-        : 'tennis'
+  const [activeTab, setActiveTab] = useState<'tennis' | 'padel' | 'pickleball' | 'touchtennis'>(
+    sport === 'padel' 
+      ? 'padel' 
+      : sport === 'pickleball' 
+        ? 'pickleball' 
+        : sport === 'touchtennis' 
+          ? 'touchtennis' 
+          : 'tennis'
   );
   const isMobile = useIsMobile();
   const vimeoEmbed = getVimeoEmbed(userGender, userType);
 
   const handleTabChange = (value: string) => {
-    setActiveTab(value as 'tennis' | 'padel-pickleball' | 'touchtennis');
+    setActiveTab(value as 'tennis' | 'padel' | 'pickleball' | 'touchtennis');
     
     // Update sport in profile context
-    if (value === 'tennis') {
-      updateSport('tennis');
-    } else if (value === 'padel-pickleball') {
-      updateSport('padel');
-    } else if (value === 'touchtennis') {
-      updateSport('touchtennis');
+    if (value === 'tennis' || value === 'padel' || value === 'pickleball' || value === 'touchtennis') {
+      updateSport(value as SportType);
     }
   };
 
@@ -102,15 +100,26 @@ const ProgramsOverview = () => {
                     Tennis
                   </TabsTrigger>
                   <TabsTrigger 
-                    value="padel-pickleball" 
+                    value="padel" 
                     className="flex items-center rounded-full data-[state=active]:bg-ath-clay data-[state=active]:text-white px-8 py-3"
                   >
                     <img 
                       src="/lovable-uploads/d5868d98-0391-4dd3-8467-4ff2a245339e.png" 
-                      alt="Padel & Pickleball" 
+                      alt="Padel" 
                       className="w-[16px] h-[16px] mr-2" 
                     />
-                    Padel & Pickleball
+                    Padel
+                  </TabsTrigger>
+                  <TabsTrigger 
+                    value="pickleball" 
+                    className="flex items-center rounded-full data-[state=active]:bg-ath-clay data-[state=active]:text-white px-8 py-3"
+                  >
+                    <img 
+                      src="/lovable-uploads/c4c120e8-c90d-48a3-933c-d4cce08b5129.png" 
+                      alt="Pickleball" 
+                      className="w-[16px] h-[16px] mr-2" 
+                    />
+                    Pickleball
                   </TabsTrigger>
                   <TabsTrigger 
                     value="touchtennis" 
@@ -144,24 +153,46 @@ const ProgramsOverview = () => {
                     />
                   </TabsContent>
                   
-                  <TabsContent value="padel-pickleball" className="mt-0">
+                  <TabsContent value="padel" className="mt-0">
                     <div className="bg-gray-50 p-6 rounded-lg mb-8">
-                      <h3 className="text-xl font-bold mb-3">Padel & Pickleball</h3>
+                      <h3 className="text-xl font-bold mb-3">Padel</h3>
                       <p className="mb-4">
-                        Abbiamo adattato la nostra metodologia avanzata per questi sport in rapida crescita, offrendo programmi specifici che sfruttano la nostra tecnologia VICKI™ per migliorare rapidamente il tuo gioco.
+                        Abbiamo adattato la nostra metodologia avanzata per questo sport in rapida crescita, offrendo programmi specifici che sfruttano la nostra tecnologia VICKI™ per migliorare rapidamente il tuo gioco.
                       </p>
                       <Link 
-                        to="/padel-pickleball" 
+                        to="/padel" 
                         className="inline-flex items-center text-ath-clay font-medium hover:underline"
                       >
-                        Esplora tutti i programmi Padel & Pickleball →
+                        Esplora tutti i programmi Padel →
                       </Link>
                     </div>
                     
                     <ProgramsSection 
-                      title="Programmi Padel & Pickleball"
-                      subtitle="I nostri programmi specializzati per gli sport emergenti"
-                      categories={padelPickleballCategories}
+                      title="Programmi Padel"
+                      subtitle="I nostri programmi specializzati per il Padel"
+                      categories={padelCategories}
+                      categoryCollapsible={true}
+                    />
+                  </TabsContent>
+                  
+                  <TabsContent value="pickleball" className="mt-0">
+                    <div className="bg-gray-50 p-6 rounded-lg mb-8">
+                      <h3 className="text-xl font-bold mb-3">Pickleball</h3>
+                      <p className="mb-4">
+                        Programmi dedicati per questo sport emergente, con focus su tecnica, strategia e divertimento. Scopri come la nostra metodologia ATH può migliorare il tuo gioco di Pickleball.
+                      </p>
+                      <Link 
+                        to="/pickleball" 
+                        className="inline-flex items-center text-ath-clay font-medium hover:underline"
+                      >
+                        Esplora tutti i programmi Pickleball →
+                      </Link>
+                    </div>
+                    
+                    <ProgramsSection 
+                      title="Programmi Pickleball"
+                      subtitle="I nostri programmi specializzati per il Pickleball"
+                      categories={pickleballCategories}
                       categoryCollapsible={true}
                     />
                   </TabsContent>
