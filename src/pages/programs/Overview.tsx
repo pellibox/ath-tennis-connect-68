@@ -81,7 +81,7 @@ const ProgramsOverview = () => {
     <div className="flex flex-col min-h-screen">
       <Header />
       <main className="flex-grow">
-        {/* Add the floating logo */}
+        {/* Standardized floating logo with consistent sizing */}
         <div 
           className="fixed z-50 pointer-events-none transition-opacity duration-300 left-0 right-0 flex justify-center"
           style={{
@@ -91,7 +91,7 @@ const ProgramsOverview = () => {
         >
           <div 
             style={{
-              width: isMobile ? '120px' : '500px',
+              width: isMobile ? '240px' : '320px',
               transform: `translateY(-${logoYOffset}px)`
             }}
             className="flex justify-center"
