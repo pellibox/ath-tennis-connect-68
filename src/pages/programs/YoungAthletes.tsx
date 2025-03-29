@@ -52,7 +52,7 @@ const YoungAthletesProgram = () => {
             <div className="max-w-6xl mx-auto px-6 h-full flex flex-col justify-center">
               <h2 className="text-white text-lg font-display mb-4">PROGRAMMI PERFORMANCE:</h2>
               <p className="text-white text-lg font-swiss max-w-3xl">
-                I nostri programmi Performance sono dedicati agli atleti agonisti che cercano un percorso strutturato di allenamento di alto livello. Con opzioni da 3 a 5 giorni settimanali, questi programmi integrano tennis, preparazione atletica e supporto mentale, tutti potenziati dalla tecnologia VICKI™ per un'analisi dettagliata della performance.
+                I nostri programmi Performance sono dedicati agli atleti agonisti che cercano un percorso strutturato di allenamento di alto livello. Con opzioni da 3 a 5 giorni settimanali, questi programmi affrontano in maniera integrata tutti gli aspetti del tennis moderno: dalla tecnica alla preparazione atletica, dal supporto mentale alla tattica & strategia, tutti potenziati dalla tecnologia rivoluzionaria VICKI™ per un'analisi dettagliata e personalizzata della performance.
               </p>
               <div className="mt-4 flex flex-wrap gap-3">
                 <VickiMonitoringBadge level="advanced" className="bg-opacity-20 border-opacity-30 text-white" />
