@@ -1,6 +1,6 @@
 
 import { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { ChevronDown } from 'lucide-react';
 import { GiTennisRacket } from "react-icons/gi";
 import { MdSportsTennis } from "react-icons/md";
@@ -10,7 +10,6 @@ import {
   DropdownMenu,
   DropdownMenuTrigger,
   DropdownMenuContent,
-  DropdownMenuItem,
 } from "@/components/ui/dropdown-menu";
 import SportMenuItem from './SportMenuItem';
 
@@ -28,19 +27,20 @@ const ProgramsDropdown = ({ textColorClass }: ProgramsDropdownProps) => {
       updateSport(sportType);
     }
     
-    if (sportType === 'tennis') {
-      navigate('/programs');
-    } else if (sportType === 'touchtennis') {
-      navigate('/touchtennis');
-    } else {
-      navigate('/padel-pickleball');
+    switch (sportType) {
+      case 'tennis':
+        navigate('/programs');
+        break;
+      case 'touchtennis':
+        navigate('/touchtennis');
+        break;
+      case 'padel':
+      case 'pickleball':
+        navigate('/padel-pickleball');
+        break;
     }
     
     setOpenDropdown(false);
-  };
-
-  const isActive = (href: string) => {
-    return location.pathname.startsWith(href) && href !== '/';
   };
 
   return (
@@ -50,10 +50,16 @@ const ProgramsDropdown = ({ textColorClass }: ProgramsDropdownProps) => {
           className={cn(
             "flex items-center text-sm font-swiss transition-colors hover:text-ath-clay bg-transparent px-4 py-2 rounded-md",
             textColorClass,
-            isActive('/programs') ? "text-ath-clay" : ""
+            sport ? "text-ath-clay" : ""
           )}
         >
-          <GiTennisRacket size={18} className="mr-2" />
+          <GiTennisRacket 
+            size={18} 
+            className={cn(
+              "mr-2", 
+              sport ? "text-ath-clay" : ""
+            )} 
+          />
           Programmi
           <ChevronDown 
             size={16} 

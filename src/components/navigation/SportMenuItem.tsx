@@ -18,16 +18,23 @@ const SportMenuItem = ({
   label, 
   onClick 
 }: SportMenuItemProps) => {
+  const isSelected = currentSport === sportType || (!currentSport && sportType === 'tennis');
+  
   return (
     <DropdownMenuItem asChild>
       <button 
         onClick={() => onClick(sportType)}
         className={cn(
           "flex items-center w-full p-2 hover:bg-gray-100 rounded-md",
-          currentSport === sportType || (!currentSport && sportType === 'tennis') ? "text-ath-clay" : ""
+          isSelected ? "text-ath-clay" : "text-foreground"
         )}
       >
-        {icon}
+        {React.cloneElement(icon as React.ReactElement, {
+          className: cn(
+            (icon as React.ReactElement).props.className,
+            isSelected ? "text-ath-clay" : ""
+          )
+        })}
         <span>{label}</span>
       </button>
     </DropdownMenuItem>
