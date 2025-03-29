@@ -45,20 +45,20 @@ export const juniorPrograms: Program[] = [
   {
     id: '5',
     title: 'Genitore/Tutor (Giovani e Junior Agonisti 6-18 anni)',
-    description: 'Programma creato da mental coach specializzati che comprende momenti di formazione durante l\'anno per supportare correttamente l\'atleta nel suo percorso formativo.',
+    description: 'Un programma innovativo creato da mental coach specializzati per supportare i genitori e tutori di giovani tennisti nel loro ruolo fondamentale di accompagnamento sportivo.',
     image: 'https://images.unsplash.com/photo-1515377905703-c4788e51af15?q=80&w=2070&auto=format&fit=crop',
     vimeoEmbed: '<div style="padding:56.25% 0 0 0;position:relative;"><iframe src="https://player.vimeo.com/video/1068629360?h=46b5c52b31&autoplay=0&loop=1&title=0&byline=0&portrait=0&controls=0&background=1" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen style="position:absolute;top:0;left:0;width:100%;height:100%;"></iframe></div>',
     link: '/programs/parent',
     features: [
+      'Supporto tecnologico: Report intuitivi, streaming di allenamenti e partite, analisi statistiche semplificate',
+      'Formazione continua: Workshop periodici, incontri individuali e materiali formativi',
+      'Strumenti pratici: Guide alla comunicazione efficace, checklist pre-torneo, diario di bordo',
+      'Competenze specifiche: Gestione delle emozioni legate alle competizioni, comunicazione costruttiva',
+      'Comunità di supporto: Rete di genitori con esperienze simili, moderata da esperti del settore',
       'Accesso a report semplici e leggibili, con dati tecnici, fisici e mentali',
       'Possibilità di seguire in streaming allenamenti e partite',
-      'Aggiornamenti regolari sull\'evoluzione tecnica e psico-fisica del ragazzo/a',
-      'Canali diretti con il coach per ricevere feedback chiari e condividere obiettivi',
-      'Analisi statistiche semplificate con visione d\'insieme dell\'andamento',
-      'Supporto pratico per accompagnare il percorso sportivo senza pressioni inutili',
-      'Filtraggio automatico dei dati per evitare interpretazioni errate o fuorvianti',
       'Programma creato da mental coach specializzati con momenti di formazione durante l\'anno',
-      'Incluso in tutti i programmi Elite e Junior'
+      'Incluso in tutti i programmi Elite, Performance e Junior'
     ],
     vickiCustomBadge: 'Vicki™ report and stream'
   }

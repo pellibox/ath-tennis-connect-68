@@ -54,7 +54,7 @@ const ParentTutorProgram = () => {
             <div className="max-w-6xl mx-auto px-6 h-full flex flex-col justify-center">
               <h2 className="text-white text-lg font-display mb-4">PROGRAMMA GENITORE/TUTOR:</h2>
               <p className="text-white text-lg font-swiss max-w-3xl">
-                Un percorso formativo specifico per supportare i genitori e i tutor nel delicato compito di accompagnare il giovane atleta nel suo sviluppo sportivo e personale, con strumenti e strategie basate sulla psicologia dello sport.
+                Un programma innovativo creato da mental coach specializzati per supportare i genitori e tutori di giovani tennisti nel loro ruolo fondamentale di accompagnamento sportivo.
               </p>
               <div className="mt-4 flex flex-wrap gap-3">
                 <Badge variant="ath" className="text-white">Vicki™ report and stream</Badge>
@@ -76,41 +76,63 @@ const ParentTutorProgram = () => {
             </RevealAnimation>
             <RevealAnimation delay={150}>
               <p className="mb-4 font-swiss">
-                Il ruolo dei genitori e dei tutor nello sviluppo sportivo dei giovani atleti è fondamentale. Questo programma
-                è stato progettato per fornire agli adulti di riferimento tutti gli strumenti necessari per supportare i ragazzi
-                nel loro percorso tennistico, creando un ambiente positivo e stimolante che bilanci ambizioni sportive e benessere psicofisico.
+                Il programma combina tecnologia avanzata e supporto psicopedagogico per creare un ambiente positivo che bilanci ambizioni sportive e benessere psicofisico dei giovani atleti. 
+                Attraverso la tecnologia VICKI™, i genitori hanno accesso a report semplificati e comprensibili che illustrano i progressi tecnici, fisici e mentali dei ragazzi.
               </p>
             </RevealAnimation>
             <RevealAnimation delay={200}>
               <p className="mb-4 font-swiss">
-                Attraverso workshop periodici, incontri individuali e materiali formativi, i genitori e i tutor imparano 
-                a gestire efficacemente le emozioni legate alle competizioni, a comunicare in modo costruttivo con i coach e,
-                soprattutto, a mantenere un dialogo sano ed equilibrato con i giovani atleti. Il programma è incluso in tutti i
-                percorsi Elite e Junior, riconoscendo l'importanza della sinergia tra famiglia e staff tecnico.
+                Questo programma riconosce l'importanza della sinergia tra famiglia e staff tecnico, fornendo ai genitori tutti gli strumenti necessari per accompagnare efficacemente i giovani 
+                nel loro percorso tennistico, creando un ambiente stimolante e bilanciato che favorisce sia la crescita sportiva che personale.
               </p>
             </RevealAnimation>
             <RevealAnimation delay={250}>
               <p className="font-swiss mb-4">
-                Grazie alla tecnologia VICKI™, i genitori hanno accesso a report semplificati e comprensibili che illustrano
-                i progressi tecnici, fisici e mentali dei ragazzi. Questo approccio trasparente facilita la comunicazione e
-                la collaborazione tra tutte le figure coinvolte nel percorso di crescita dell'atleta.
+                Incluso in tutti i percorsi Elite, Performance e Junior, questo programma rappresenta un elemento fondamentale dell'approccio olistico di ATH allo sviluppo dei giovani tennisti,
+                riconoscendo il ruolo cruciale dei genitori nel percorso sportivo dei ragazzi.
               </p>
             </RevealAnimation>
           </div>
           
           <div className="grid md:grid-cols-2 gap-10 mb-12">
             <RevealAnimation delay={300} className="bg-gray-50 p-8 rounded-lg">
-              <h3 className="text-xl font-swiss font-semibold mb-4">Caratteristiche del Programma</h3>
-              <ul className="list-disc list-inside space-y-2 font-swiss">
-                <li>Accesso a report semplici e leggibili con dati tecnici, fisici e mentali</li>
-                <li>Possibilità di seguire in streaming allenamenti e partite</li>
-                <li>Aggiornamenti regolari sull'evoluzione tecnica e psico-fisica dell'atleta</li>
-                <li>Canali diretti con il coach per ricevere feedback e condividere obiettivi</li>
-                <li>Analisi statistiche semplificate con visione d'insieme dell'andamento</li>
-                <li>Supporto pratico per accompagnare il percorso sportivo senza pressioni</li>
-                <li>Filtraggio automatico dei dati per evitare interpretazioni errate</li>
-                <li>Workshop periodici con specialisti del settore</li>
-                <li>Comunità di supporto tra genitori con esperienze simili</li>
+              <h3 className="text-xl font-swiss font-semibold mb-4">Il Programma Offre</h3>
+              <ul className="space-y-4 font-swiss">
+                <li className="flex">
+                  <span className="text-ath-clay mr-2">•</span>
+                  <div>
+                    <strong>Supporto tecnologico:</strong>
+                    <p>Report intuitivi, streaming di allenamenti e partite, analisi statistiche semplificate</p>
+                  </div>
+                </li>
+                <li className="flex">
+                  <span className="text-ath-clay mr-2">•</span>
+                  <div>
+                    <strong>Formazione continua:</strong>
+                    <p>Workshop periodici, incontri individuali e materiali formativi</p>
+                  </div>
+                </li>
+                <li className="flex">
+                  <span className="text-ath-clay mr-2">•</span>
+                  <div>
+                    <strong>Strumenti pratici:</strong>
+                    <p>Guide alla comunicazione efficace, checklist pre-torneo, diario di bordo</p>
+                  </div>
+                </li>
+                <li className="flex">
+                  <span className="text-ath-clay mr-2">•</span>
+                  <div>
+                    <strong>Competenze specifiche:</strong>
+                    <p>Gestione delle emozioni legate alle competizioni, comunicazione costruttiva con coach e atleti</p>
+                  </div>
+                </li>
+                <li className="flex">
+                  <span className="text-ath-clay mr-2">•</span>
+                  <div>
+                    <strong>Comunità di supporto:</strong>
+                    <p>Rete di genitori con esperienze simili, moderata da esperti del settore</p>
+                  </div>
+                </li>
               </ul>
             </RevealAnimation>
             
@@ -118,7 +140,7 @@ const ParentTutorProgram = () => {
               <h3 className="text-xl font-swiss font-semibold mb-4">Prezzo</h3>
               <div className="mb-4">
                 <p className="text-3xl font-bold text-ath-clay">Incluso</p>
-                <p className="text-sm text-gray-600">nei programmi Elite e Junior</p>
+                <p className="text-sm text-gray-600">nei programmi Elite, Performance e Junior</p>
               </div>
               <div className="mb-4 p-4 bg-ath-clay/10 rounded-lg">
                 <h4 className="text-sm font-semibold mb-2">Il programma include:</h4>
@@ -130,7 +152,7 @@ const ParentTutorProgram = () => {
                 </ul>
               </div>
               <p className="text-sm text-gray-600 mb-4">
-                Per i non iscritti ai programmi Elite e Junior, è disponibile un pacchetto separato. Contattaci per maggiori informazioni.
+                Per i non iscritti ai programmi Elite, Performance e Junior, è disponibile un pacchetto separato. Contattaci per maggiori informazioni.
               </p>
               <ButtonLink 
                 href="/contact" 
@@ -167,18 +189,18 @@ const ParentTutorProgram = () => {
               <h3 className="text-2xl font-display mb-6">Programmi Correlati</h3>
               <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                 <Link to="/programs/sat" className="block p-6 border border-gray-200 rounded-lg hover:border-ath-clay hover:shadow-sm transition-all">
-                  <h4 className="text-lg font-medium mb-2">SAT - Agonista Junior</h4>
-                  <p className="text-gray-600 mb-3">Programma formativo per giovani atleti in fase di sviluppo tecnico e fisico (6-12 anni).</p>
-                  <span className="inline-flex items-center text-ath-clay">Scopri <ArrowRight size={14} className="ml-1" /></span>
-                </Link>
-                <Link to="/programs/young-athletes" className="block p-6 border border-gray-200 rounded-lg hover:border-ath-clay hover:shadow-sm transition-all">
-                  <h4 className="text-lg font-medium mb-2">Performance 4</h4>
-                  <p className="text-gray-600 mb-3">Programma intensivo con 4 giorni di allenamento settimanale per giovani atleti agonisti.</p>
+                  <h4 className="text-lg font-medium mb-2">SAT - Scuola Avviamento al Tennis</h4>
+                  <p className="text-gray-600 mb-3">Un viaggio entusiasmante alla scoperta del tennis, per bambini dai 4 ai 10+ anni.</p>
                   <span className="inline-flex items-center text-ath-clay">Scopri <ArrowRight size={14} className="ml-1" /></span>
                 </Link>
                 <Link to="/programs/talent-identification" className="block p-6 border border-gray-200 rounded-lg hover:border-ath-clay hover:shadow-sm transition-all">
                   <h4 className="text-lg font-medium mb-2">SIT - Scuola Individuazione Talenti</h4>
-                  <p className="text-gray-600 mb-3">Programma specializzato per l'identificazione precoce dei talenti tennistici (4-10 anni).</p>
+                  <p className="text-gray-600 mb-3">Programma specializzato per l'identificazione precoce dei talenti tennistici (6-10+ anni).</p>
+                  <span className="inline-flex items-center text-ath-clay">Scopri <ArrowRight size={14} className="ml-1" /></span>
+                </Link>
+                <Link to="/programs/performance-4" className="block p-6 border border-gray-200 rounded-lg hover:border-ath-clay hover:shadow-sm transition-all">
+                  <h4 className="text-lg font-medium mb-2">Performance 4</h4>
+                  <p className="text-gray-600 mb-3">Programma intensivo con 4 giorni di allenamento settimanale per giovani atleti agonisti.</p>
                   <span className="inline-flex items-center text-ath-clay">Scopri <ArrowRight size={14} className="ml-1" /></span>
                 </Link>
               </div>
