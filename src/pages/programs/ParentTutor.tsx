@@ -1,4 +1,3 @@
-
 import { useEffect, useState } from 'react';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
@@ -25,7 +24,6 @@ const ParentTutorProgram = () => {
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
     
-    // Load user preferences
     const { gender, type } = loadUserPreferences();
     if (gender) setUserGender(gender);
     if (type) setUserType(type);
@@ -68,7 +66,6 @@ const ParentTutorProgram = () => {
             overlayOpacity="medium"
           />
           
-          {/* Black banner with claim text */}
           <div className="w-full bg-black py-16 relative" style={{ height: '300px' }}>
             <div className="max-w-6xl mx-auto px-6 h-full flex flex-col justify-center">
               <h2 className="text-white text-lg font-display mb-4">PROGRAMMA GENITORE/TUTOR:</h2>
@@ -159,12 +156,8 @@ const ParentTutorProgram = () => {
             <RevealAnimation delay={350} className="bg-gray-50 p-8 rounded-lg">
               <h3 className="text-xl font-swiss font-semibold mb-4">Prezzo</h3>
               <div className="mb-4">
-                <p className="text-3xl font-bold text-ath-clay">€150</p>
-                <p className="text-sm text-gray-600">per programmi Junior e Performance 3</p>
-              </div>
-              <div className="mb-4">
-                <p className="text-3xl font-bold text-ath-clay">Incluso</p>
-                <p className="text-sm text-gray-600">nei programmi Elite Performance, Performance 4 e Elite Performance Full</p>
+                <p className="text-3xl font-bold text-ath-clay">€150/anno</p>
+                <p className="text-sm text-gray-600">Per Elite Performance e Elite Performance Full</p>
               </div>
               <div className="mb-4 p-4 bg-ath-clay/10 rounded-lg">
                 <h4 className="text-sm font-semibold mb-2">Il programma include:</h4>
@@ -176,7 +169,7 @@ const ParentTutorProgram = () => {
                 </ul>
               </div>
               <p className="text-sm text-gray-600 mb-4">
-                Per i non iscritti ai programmi, è disponibile un pacchetto separato. Contattaci per maggiori informazioni.
+                Per altri programmi, il pacchetto Genitore/Tutor è disponibile a pagamento. Contattaci per maggiori informazioni.
               </p>
               <div className="space-y-4">
                 <ButtonLink 
