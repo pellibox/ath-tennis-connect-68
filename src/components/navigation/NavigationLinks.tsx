@@ -51,7 +51,7 @@ export const navigationItems: NavigationItem[] = [
         text: 'Padel & Pickleball',
         href: '/padel-pickleball',
         icon: <img 
-          src="/lovable-uploads/615f7b66-897f-4866-87ed-547ab78c47d7.png" 
+          src="/lovable-uploads/83d814ad-6dab-442b-b7ac-3cb3b1c01055.png" 
           alt="Padel racket" 
           className="w-[18px] h-[18px] mr-2" 
         />
@@ -267,7 +267,7 @@ const NavigationLinks = ({ className, textColorClass, isMobile = false }: Naviga
                         )}
                       >
                         <img 
-                          src="/lovable-uploads/615f7b66-897f-4866-87ed-547ab78c47d7.png" 
+                          src="/lovable-uploads/83d814ad-6dab-442b-b7ac-3cb3b1c01055.png" 
                           alt="Padel racket" 
                           className="w-[18px] h-[18px] mr-2" 
                         />
