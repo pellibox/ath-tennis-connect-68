@@ -31,9 +31,12 @@ const Logo = ({
   // Logo paths
   let logoSrc;
   
+  // Use the new logo for mobile top and desktop left positions
+  const newLogoPath = "/lovable-uploads/2089c659-12cb-4d8c-9317-640e00beaa73.png";
+  
   if (isInMenu) {
     // Always use the new menu logo when in menu
-    logoSrc = "/lovable-uploads/233f2e81-7b29-4423-9984-c0c470d27a30.png";
+    logoSrc = newLogoPath;
   } else if (useVickiLogo) {
     logoSrc = onDarkBackground 
       ? "/lovable-uploads/dc679c8d-60cd-4841-a42c-0907926b7ef5.png" // Vicki logo bianco
@@ -41,8 +44,8 @@ const Logo = ({
   } else {
     // Use the new logo files based on background
     logoSrc = onDarkBackground 
-      ? "/lovable-uploads/233f2e81-7b29-4423-9984-c0c470d27a30.png" // White ATH logo
-      : "/lovable-uploads/47943c06-a504-40f7-a152-59c4a5d22896.png"; // Black ATH logo
+      ? newLogoPath // Use new logo for white version on dark background
+      : "/lovable-uploads/47943c06-a504-40f7-a152-59c4a5d22896.png"; // Keep black ATH logo
   }
   
   // Size classes based on logo type
