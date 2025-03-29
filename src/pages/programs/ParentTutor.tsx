@@ -156,11 +156,26 @@ const ParentTutorProgram = () => {
             
             <RevealAnimation delay={350} className="bg-gray-50 p-8 rounded-lg">
               <h3 className="text-xl font-swiss font-semibold mb-4">Prezzo</h3>
-              <div className="mb-4">
-                <p className="text-3xl font-bold text-ath-clay">Incluso</p>
-                <p className="text-sm text-gray-600">Nei programmi Elite Performance e Elite Performance Full</p>
+              <div className="bg-ath-clay/10 p-4 rounded-lg mb-6">
+                <ul className="space-y-3">
+                  <li className="flex items-start">
+                    <span className="text-ath-clay font-bold mr-2">•</span>
+                    <div>
+                      <p className="font-bold">Incluso</p>
+                      <p className="text-sm">Nei programmi Elite Performance e Elite Performance Full</p>
+                    </div>
+                  </li>
+                  <li className="flex items-start">
+                    <span className="text-ath-clay font-bold mr-2">•</span>
+                    <div>
+                      <p className="font-bold">€150/anno</p>
+                      <p className="text-sm">Per tutti gli altri programmi</p>
+                    </div>
+                  </li>
+                </ul>
               </div>
-              <div className="mb-4 p-4 bg-ath-clay/10 rounded-lg">
+              
+              <div className="p-4 bg-gray-100 rounded-lg mb-5">
                 <h4 className="text-sm font-semibold mb-2">Il programma include:</h4>
                 <ul className="text-sm text-gray-600 list-disc list-inside space-y-1">
                   <li>4 workshop formativi durante l'anno</li>
@@ -169,9 +184,7 @@ const ParentTutorProgram = () => {
                   <li>Materiali educativi e risorse dedicate</li>
                 </ul>
               </div>
-              <p className="text-sm text-gray-600 mb-4">
-                Per altri programmi, il pacchetto Genitore/Tutor è disponibile a €150.
-              </p>
+              
               <div className="space-y-4">
                 <ButtonLink 
                   href="/contact" 

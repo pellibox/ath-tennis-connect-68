@@ -57,7 +57,7 @@ export const juniorPrograms: Program[] = [
       'Comunità di supporto: Rete di genitori con esperienze simili, moderata da esperti del settore',
       'Accesso alla piattaforma Vicki™ per genitori con report e streaming',
       'Materiali educativi e risorse dedicate',
-      'Incluso nei programmi Elite Performance e Elite Performance Full, disponibile a €150 per gli altri programmi'
+      'Incluso nei programmi Elite Performance e Elite Performance Full, €150/anno per tutti gli altri programmi'
     ],
     vickiCustomBadge: 'Vicki™ report and stream'
   }
