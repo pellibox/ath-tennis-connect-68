@@ -35,14 +35,7 @@ const SportMenuItem = ({
           isSelected ? "text-ath-clay" : "text-foreground"
         )}
       >
-        {icon && React.cloneElement(icon as React.ReactElement, {
-          className: cn(
-            (icon as React.ReactElement).props.className,
-            "group-hover:scale-110 transition-transform",
-            isSelected ? "text-ath-clay" : ""
-          )
-        })}
-        <span className={cn(!icon ? "ml-2" : "")}>{label}</span>
+        <span>{label}</span>
       </button>
     </DropdownMenuItem>
   );

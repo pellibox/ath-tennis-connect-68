@@ -1,8 +1,7 @@
+
 import React, { useState, useEffect } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { ChevronDown } from 'lucide-react';
-import { GiTennisRacket } from "react-icons/gi";
-import { MdSportsTennis } from "react-icons/md";
 import { cn } from '@/lib/utils';
 import { useProfile, SportType } from '@/contexts/ProfileContext';
 import { useIsMobile } from '@/hooks/use-mobile';
@@ -72,63 +71,6 @@ const ProgramsDropdown = ({ textColorClass }: ProgramsDropdownProps) => {
                            location.pathname.includes('touchtennis') || 
                            location.pathname.includes('padel-pickleball');
 
-  const getActiveIcon = () => {
-    if (isMobile) {
-      return null;
-    }
-    
-    if (!hasExplicitSelection && !sessionStorage.getItem('sport_selected')) {
-      return (
-        <img 
-          src="/lovable-uploads/ffc6588c-879e-4103-a3cc-f48ee9573e63.png" 
-          alt="Programs list" 
-          className="w-[18px] h-[18px] mr-2 transition-all duration-300 ease-in-out group-hover:scale-110" 
-        />
-      );
-    }
-    
-    switch (activeSport) {
-      case 'tennis':
-        return <GiTennisRacket size={18} className="mr-2 transition-all duration-300 ease-in-out group-hover:scale-110" />;
-      case 'padel':
-        return (
-          <img 
-            src="/lovable-uploads/d5868d98-0391-4dd3-8467-4ff2a245339e.png" 
-            alt="Padel racket" 
-            className="w-[18px] h-[18px] mr-2 transition-all duration-300 ease-in-out group-hover:scale-110" 
-          />
-        );
-      case 'pickleball':
-        return (
-          <img 
-            src="/lovable-uploads/6cde43cd-dd0f-4e27-a927-41f7dc60b68b.png" 
-            alt="Pickleball racket" 
-            className="w-[18px] h-[18px] mr-2 transition-all duration-300 ease-in-out group-hover:scale-110" 
-            onError={(e) => {
-              console.error('Pickleball icon failed to load', e);
-              e.currentTarget.src = "/lovable-uploads/ffc6588c-879e-4103-a3cc-f48ee9573e63.png";
-            }}
-          />
-        );
-      case 'touchtennis':
-        return <MdSportsTennis size={18} className="mr-2 transition-all duration-300 ease-in-out group-hover:scale-110" />;
-      default:
-        return (
-          <img 
-            src="/lovable-uploads/ffc6588c-879e-4103-a3cc-f48ee9573e63.png" 
-            alt="Programs list" 
-            className="w-[18px] h-[18px] mr-2 transition-all duration-300 ease-in-out group-hover:scale-110" 
-          />
-        );
-    }
-  };
-
-  useEffect(() => {
-    if (hasExplicitSelection) {
-      sessionStorage.setItem('sport_selected', 'true');
-    }
-  }, [hasExplicitSelection]);
-
   return (
     <DropdownMenu open={openDropdown} onOpenChange={setOpenDropdown}>
       <DropdownMenuTrigger asChild>
@@ -139,7 +81,6 @@ const ProgramsDropdown = ({ textColorClass }: ProgramsDropdownProps) => {
             isOnProgramsPage ? "text-ath-clay" : ""
           )}
         >
-          {getActiveIcon()}
           Programmi
           <ChevronDown 
             size={16} 
@@ -154,40 +95,28 @@ const ProgramsDropdown = ({ textColorClass }: ProgramsDropdownProps) => {
         <SportMenuItem 
           sportType="tennis" 
           currentSport={activeSport} 
-          icon={!isMobile ? <GiTennisRacket size={18} className="mr-2" /> : null} 
+          icon={null} 
           label="Tennis" 
           onClick={handleSportSelect} 
         />
         <SportMenuItem 
           sportType="padel" 
           currentSport={activeSport} 
-          icon={!isMobile ? (
-            <img 
-              src="/lovable-uploads/d5868d98-0391-4dd3-8467-4ff2a245339e.png" 
-              alt="Padel racket" 
-              className="w-[18px] h-[18px] mr-2" 
-            />
-          ) : null} 
+          icon={null} 
           label="Padel" 
           onClick={handleSportSelect} 
         />
         <SportMenuItem 
           sportType="pickleball" 
           currentSport={activeSport} 
-          icon={!isMobile ? (
-            <img 
-              src="/lovable-uploads/6cde43cd-dd0f-4e27-a927-41f7dc60b68b.png" 
-              alt="Pickleball racket" 
-              className="w-[18px] h-[18px] mr-2" 
-            />
-          ) : null} 
+          icon={null} 
           label="Pickleball" 
           onClick={handleSportSelect} 
         />
         <SportMenuItem 
           sportType="touchtennis" 
           currentSport={activeSport} 
-          icon={!isMobile ? <MdSportsTennis size={18} className="mr-2" /> : null} 
+          icon={null} 
           label="TouchTennis" 
           onClick={handleSportSelect} 
         />

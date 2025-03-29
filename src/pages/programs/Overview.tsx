@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
@@ -20,8 +19,6 @@ import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
 import { SportType } from '@/contexts/ProfileContext';
 import { useIsMobile } from '@/hooks/use-mobile';
 import { getVimeoEmbed } from '@/utils/videoUtils';
-import { GiTennisRacket } from "react-icons/gi";
-import { MdSportsTennis } from "react-icons/md";
 import RevealAnimation from '@/components/RevealAnimation';
 import MultisportExplanation from '@/components/programs/MultisportExplanation';
 
@@ -99,44 +96,24 @@ const ProgramsOverview = () => {
                     value="tennis" 
                     className="flex items-center rounded-full data-[state=active]:bg-ath-clay data-[state=active]:text-white px-8 py-3"
                   >
-                    {!isMobile && <GiTennisRacket size={16} className="mr-2" />}
                     Tennis
                   </TabsTrigger>
                   <TabsTrigger 
                     value="padel" 
                     className="flex items-center rounded-full data-[state=active]:bg-ath-clay data-[state=active]:text-white px-8 py-3"
                   >
-                    {!isMobile && (
-                      <img 
-                        src="/lovable-uploads/d5868d98-0391-4dd3-8467-4ff2a245339e.png" 
-                        alt="Padel" 
-                        className="w-[16px] h-[16px] mr-2" 
-                      />
-                    )}
                     Padel
                   </TabsTrigger>
                   <TabsTrigger 
                     value="pickleball" 
                     className="flex items-center rounded-full data-[state=active]:bg-ath-clay data-[state=active]:text-white px-8 py-3"
                   >
-                    {!isMobile && (
-                      <img 
-                        src="/lovable-uploads/6cde43cd-dd0f-4e27-a927-41f7dc60b68b.png" 
-                        alt="Pickleball" 
-                        className="w-[16px] h-[16px] mr-2"
-                        onError={(e) => {
-                          console.error('Pickleball icon failed to load', e);
-                          e.currentTarget.src = "/lovable-uploads/ffc6588c-879e-4103-a3cc-f48ee9573e63.png";
-                        }}
-                      />
-                    )}
                     Pickleball
                   </TabsTrigger>
                   <TabsTrigger 
                     value="touchtennis" 
                     className="flex items-center rounded-full data-[state=active]:bg-ath-clay data-[state=active]:text-white px-8 py-3"
                   >
-                    {!isMobile && <MdSportsTennis size={16} className="mr-2" />}
                     TouchTennis
                   </TabsTrigger>
                 </TabsList>
