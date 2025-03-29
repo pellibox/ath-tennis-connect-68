@@ -86,7 +86,7 @@ const ProgramsDropdown = ({ textColorClass }: ProgramsDropdownProps) => {
             src="/lovable-uploads/ffc6588c-879e-4103-a3cc-f48ee9573e63.png" 
             alt="Programs list" 
             className={cn(
-              "w-5 h-5 mr-2", 
+              "w-[18px] h-[18px] mr-2 transition-all duration-300 ease-in-out group-hover:scale-110", 
               isOnProgramsPage ? "text-ath-clay" : ""
             )} 
           />
