@@ -24,8 +24,10 @@ const StandardHeroVideo = ({
     const handleScroll = () => {
       const scrollY = window.scrollY;
       
+      // Apply parallax effect to logo
       setLogoYOffset(scrollY * 0.2);
       
+      // Fade out logo as user scrolls down
       const fadeThreshold = 100;
       const fadeOutBy = 300;
       
