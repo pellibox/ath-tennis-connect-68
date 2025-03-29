@@ -31,10 +31,12 @@ const ProgramsDropdown = ({ textColorClass }: ProgramsDropdownProps) => {
     
     if (path.includes('touchtennis')) {
       setActiveSport('touchtennis');
-    } else if (path.includes('padel')) {
-      setActiveSport('padel');
-    } else if (path.includes('pickleball')) {
-      setActiveSport('pickleball');
+    } else if (path.includes('padel-pickleball')) {
+      if (sport === 'padel' || sport === 'pickleball') {
+        setActiveSport(sport);
+      } else {
+        setActiveSport('padel');
+      }
     } else if (path.includes('programs')) {
       setActiveSport('tennis');
     } else {
@@ -57,10 +59,8 @@ const ProgramsDropdown = ({ textColorClass }: ProgramsDropdownProps) => {
         navigate('/touchtennis');
         break;
       case 'padel':
-        navigate('/padel');
-        break;
       case 'pickleball':
-        navigate('/pickleball');
+        navigate('/padel-pickleball');
         break;
     }
     
@@ -69,8 +69,7 @@ const ProgramsDropdown = ({ textColorClass }: ProgramsDropdownProps) => {
 
   const isOnProgramsPage = location.pathname.includes('programs') || 
                            location.pathname.includes('touchtennis') || 
-                           location.pathname.includes('padel') || 
-                           location.pathname.includes('pickleball');
+                           location.pathname.includes('padel-pickleball');
 
   return (
     <DropdownMenu open={openDropdown} onOpenChange={setOpenDropdown}>
