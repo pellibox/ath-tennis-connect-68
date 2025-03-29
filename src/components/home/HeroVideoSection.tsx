@@ -27,10 +27,10 @@ const HeroVideoSection = ({ logoYOffset, logoOpacity, logoRef }: HeroVideoSectio
       >
         <div 
           style={{
-            width: isMobile ? '140px' : '300px', // Increased from 250px to 300px
+            width: isMobile ? '140px' : '500px', // Increased to 500px (2/3 larger than previous 300px)
             transform: `translateY(-${logoYOffset}px)`
           }}
-          className="flex justify-center"
+          className="flex justify-center" // Ensures perfect horizontal centering
         >
           <Logo 
             onDarkBackground={true} 
