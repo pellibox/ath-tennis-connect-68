@@ -1,4 +1,3 @@
-
 import { useEffect, useState } from 'react';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
@@ -9,11 +8,30 @@ import { UserGender, UserType, loadUserPreferences } from '@/components/UserType
 import VickiMonitoringBadge from '@/components/VickiMonitoringBadge';
 import VickiPoweredBadge from '@/components/VickiPoweredBadge';
 import ContactSection from '@/components/ContactSection';
+import RelatedPrograms from '@/components/programs/RelatedPrograms';
 
 const SitProgram = () => {
   const { t } = useLanguage();
   const [userGender, setUserGender] = useState<UserGender | null>(null);
   const [userType, setUserType] = useState<UserType | null>(null);
+  
+  const relatedPrograms = [
+    {
+      title: "SAT - Propedeutico",
+      description: "Programma introduttivo per bambini dai 4 ai 6 anni che sviluppa le prime capacità motorie tennistiche attraverso il gioco e la scoperta.",
+      link: "/programs/sat"
+    },
+    {
+      title: "SAT - Agonista Junior",
+      description: "Programma formativo per giovani atleti dai 6 ai 12 anni in fase di sviluppo tecnico e fisico, con monitoraggio costante della crescita.",
+      link: "/programs/junior-competitive"
+    },
+    {
+      title: "Genitore/Tutor",
+      description: "Supporto specifico per i genitori di giovani atleti con report dettagliati e consigli su come accompagnare il percorso del bambino.",
+      link: "/programs/parent"
+    }
+  ];
   
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -220,6 +238,17 @@ const SitProgram = () => {
               >
                 Richiedi informazioni
               </a>
+            </RevealAnimation>
+          </div>
+        </div>
+        
+        <div className="bg-gray-50 py-16 mt-16">
+          <div className="max-w-6xl mx-auto px-6">
+            <RevealAnimation delay={100}>
+              <RelatedPrograms 
+                title="Programmi Correlati" 
+                programs={relatedPrograms}
+              />
             </RevealAnimation>
           </div>
         </div>
