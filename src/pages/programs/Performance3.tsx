@@ -1,4 +1,3 @@
-
 import { useEffect, useState } from 'react';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
@@ -10,9 +9,10 @@ import VickiMonitoringBadge from '@/components/VickiMonitoringBadge';
 import VickiPoweredBadge from '@/components/VickiPoweredBadge';
 import ContactSection from '@/components/ContactSection';
 import { Badge } from '@/components/ui/badge';
-import { Users } from 'lucide-react';
+import { ArrowRight, Users } from 'lucide-react';
 import ProgramsSection from '@/components/ProgramsSection';
 import { juniorPrograms } from '@/data/programs';
+import { Link } from 'react-router-dom';
 
 const Performance3Program = () => {
   const { t } = useLanguage();
@@ -153,13 +153,33 @@ const Performance3Program = () => {
           </div>
         </div>
         
-        {/* Related Programs Section */}
+        {/* Detailed Related Programs Section */}
         <div className="bg-gray-50 py-16">
           <div className="max-w-6xl mx-auto px-6">
             <RevealAnimation>
-              <h2 className="text-3xl font-swiss mb-12">Programmi correlati</h2>
+              <h3 className="text-2xl font-display mb-6">Programmi Correlati</h3>
+            </RevealAnimation>
+            <RevealAnimation delay={100}>
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+                <Link to="/programs/performance-4" className="block p-6 border border-gray-200 bg-white rounded-lg hover:border-ath-clay hover:shadow-sm transition-all">
+                  <h4 className="text-lg font-medium mb-2">Performance 4</h4>
+                  <p className="text-gray-600 mb-3">4 giorni a settimana per un'intensità maggiore, ideale per atleti più determinati che cercano un allenamento più strutturato.</p>
+                  <span className="inline-flex items-center text-ath-clay">Scopri <ArrowRight size={14} className="ml-1" /></span>
+                </Link>
+                <Link to="/programs/elite-performance" className="block p-6 border border-gray-200 bg-white rounded-lg hover:border-ath-clay hover:shadow-sm transition-all">
+                  <h4 className="text-lg font-medium mb-2">Elite Performance</h4>
+                  <p className="text-gray-600 mb-3">5 giorni a settimana di allenamento intensivo per atleti che puntano all'eccellenza e competizioni di alto livello.</p>
+                  <span className="inline-flex items-center text-ath-clay">Scopri <ArrowRight size={14} className="ml-1" /></span>
+                </Link>
+                <Link to="/programs/elite-full" className="block p-6 border border-gray-200 bg-white rounded-lg hover:border-ath-clay hover:shadow-sm transition-all">
+                  <h4 className="text-lg font-medium mb-2">Elite Performance Full</h4>
+                  <p className="text-gray-600 mb-3">Programma completo e immersivo per atleti di alto livello con allenamento giornaliero e supporto totale.</p>
+                  <span className="inline-flex items-center text-ath-clay">Scopri <ArrowRight size={14} className="ml-1" /></span>
+                </Link>
+              </div>
             </RevealAnimation>
             
+            {/* Also keep the original ProgramsSection for visual consistency */}
             <ProgramsSection 
               title=""
               programs={relatedPrograms}
