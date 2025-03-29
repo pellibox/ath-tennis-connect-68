@@ -7,7 +7,7 @@ import { SportType } from '@/contexts/ProfileContext';
 interface SportMenuItemProps {
   sportType: SportType;
   currentSport: SportType | null;
-  icon: React.ReactNode;
+  icon: React.ReactNode | null;
   label: string;
   onClick: (sportType: SportType) => void;
 }
@@ -35,14 +35,14 @@ const SportMenuItem = ({
           isSelected ? "text-ath-clay" : "text-foreground"
         )}
       >
-        {React.cloneElement(icon as React.ReactElement, {
+        {icon && React.cloneElement(icon as React.ReactElement, {
           className: cn(
             (icon as React.ReactElement).props.className,
             "group-hover:scale-110 transition-transform",
             isSelected ? "text-ath-clay" : ""
           )
         })}
-        <span className="ml-2">{label}</span>
+        <span className={cn(!icon ? "ml-2" : "")}>{label}</span>
       </button>
     </DropdownMenuItem>
   );

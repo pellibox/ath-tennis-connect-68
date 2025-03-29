@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { ChevronDown } from 'lucide-react';
@@ -6,6 +5,7 @@ import { GiTennisRacket } from "react-icons/gi";
 import { MdSportsTennis } from "react-icons/md";
 import { cn } from '@/lib/utils';
 import { useProfile, SportType } from '@/contexts/ProfileContext';
+import { useIsMobile } from '@/hooks/use-mobile';
 import {
   DropdownMenu,
   DropdownMenuTrigger,
@@ -22,6 +22,7 @@ const ProgramsDropdown = ({ textColorClass }: ProgramsDropdownProps) => {
   const location = useLocation();
   const [openDropdown, setOpenDropdown] = useState(false);
   const { sport, updateSport, userGender, userType } = useProfile();
+  const isMobile = useIsMobile();
   
   const [activeSport, setActiveSport] = useState<SportType | null>(null);
   const [hasExplicitSelection, setHasExplicitSelection] = useState(false);
@@ -72,6 +73,10 @@ const ProgramsDropdown = ({ textColorClass }: ProgramsDropdownProps) => {
                            location.pathname.includes('padel-pickleball');
 
   const getActiveIcon = () => {
+    if (isMobile) {
+      return null;
+    }
+    
     if (!hasExplicitSelection && !sessionStorage.getItem('sport_selected')) {
       return (
         <img 
@@ -149,40 +154,40 @@ const ProgramsDropdown = ({ textColorClass }: ProgramsDropdownProps) => {
         <SportMenuItem 
           sportType="tennis" 
           currentSport={activeSport} 
-          icon={<GiTennisRacket size={18} className="mr-2" />} 
+          icon={!isMobile ? <GiTennisRacket size={18} className="mr-2" /> : null} 
           label="Tennis" 
           onClick={handleSportSelect} 
         />
         <SportMenuItem 
           sportType="padel" 
           currentSport={activeSport} 
-          icon={
+          icon={!isMobile ? (
             <img 
               src="/lovable-uploads/d5868d98-0391-4dd3-8467-4ff2a245339e.png" 
               alt="Padel racket" 
               className="w-[18px] h-[18px] mr-2" 
             />
-          } 
+          ) : null} 
           label="Padel" 
           onClick={handleSportSelect} 
         />
         <SportMenuItem 
           sportType="pickleball" 
           currentSport={activeSport} 
-          icon={
+          icon={!isMobile ? (
             <img 
               src="/lovable-uploads/6cde43cd-dd0f-4e27-a927-41f7dc60b68b.png" 
               alt="Pickleball racket" 
               className="w-[18px] h-[18px] mr-2" 
             />
-          } 
+          ) : null} 
           label="Pickleball" 
           onClick={handleSportSelect} 
         />
         <SportMenuItem 
           sportType="touchtennis" 
           currentSport={activeSport} 
-          icon={<MdSportsTennis size={18} className="mr-2" />} 
+          icon={!isMobile ? <MdSportsTennis size={18} className="mr-2" /> : null} 
           label="TouchTennis" 
           onClick={handleSportSelect} 
         />

@@ -99,40 +99,44 @@ const ProgramsOverview = () => {
                     value="tennis" 
                     className="flex items-center rounded-full data-[state=active]:bg-ath-clay data-[state=active]:text-white px-8 py-3"
                   >
-                    <GiTennisRacket size={16} className="mr-2" />
+                    {!isMobile && <GiTennisRacket size={16} className="mr-2" />}
                     Tennis
                   </TabsTrigger>
                   <TabsTrigger 
                     value="padel" 
                     className="flex items-center rounded-full data-[state=active]:bg-ath-clay data-[state=active]:text-white px-8 py-3"
                   >
-                    <img 
-                      src="/lovable-uploads/d5868d98-0391-4dd3-8467-4ff2a245339e.png" 
-                      alt="Padel" 
-                      className="w-[16px] h-[16px] mr-2" 
-                    />
+                    {!isMobile && (
+                      <img 
+                        src="/lovable-uploads/d5868d98-0391-4dd3-8467-4ff2a245339e.png" 
+                        alt="Padel" 
+                        className="w-[16px] h-[16px] mr-2" 
+                      />
+                    )}
                     Padel
                   </TabsTrigger>
                   <TabsTrigger 
                     value="pickleball" 
                     className="flex items-center rounded-full data-[state=active]:bg-ath-clay data-[state=active]:text-white px-8 py-3"
                   >
-                    <img 
-                      src="/lovable-uploads/6cde43cd-dd0f-4e27-a927-41f7dc60b68b.png" 
-                      alt="Pickleball" 
-                      className="w-[16px] h-[16px] mr-2"
-                      onError={(e) => {
-                        console.error('Pickleball icon failed to load', e);
-                        e.currentTarget.src = "/lovable-uploads/ffc6588c-879e-4103-a3cc-f48ee9573e63.png";
-                      }}
-                    />
+                    {!isMobile && (
+                      <img 
+                        src="/lovable-uploads/6cde43cd-dd0f-4e27-a927-41f7dc60b68b.png" 
+                        alt="Pickleball" 
+                        className="w-[16px] h-[16px] mr-2"
+                        onError={(e) => {
+                          console.error('Pickleball icon failed to load', e);
+                          e.currentTarget.src = "/lovable-uploads/ffc6588c-879e-4103-a3cc-f48ee9573e63.png";
+                        }}
+                      />
+                    )}
                     Pickleball
                   </TabsTrigger>
                   <TabsTrigger 
                     value="touchtennis" 
                     className="flex items-center rounded-full data-[state=active]:bg-ath-clay data-[state=active]:text-white px-8 py-3"
                   >
-                    <MdSportsTennis size={16} className="mr-2" />
+                    {!isMobile && <MdSportsTennis size={16} className="mr-2" />}
                     TouchTennis
                   </TabsTrigger>
                 </TabsList>
