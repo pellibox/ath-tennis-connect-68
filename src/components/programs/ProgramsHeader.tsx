@@ -57,7 +57,7 @@ const ProgramsHeader = ({
       >
         <div 
           style={{
-            width: isMobile ? '120px' : '500px',
+            width: isMobile ? '240px' : '320px',
             transform: `translateY(-${logoYOffset}px)`
           }}
           className="flex justify-center"
