@@ -13,6 +13,7 @@ import {
 import ProfileIndicator from '../ProfileIndicator';
 import { toast } from "sonner";
 import { useLanguage } from '@/contexts/LanguageContext';
+import { useIsMobile } from '@/hooks/use-mobile';
 
 interface ProfileDialogProps {
   open: boolean;
@@ -36,6 +37,7 @@ const ProfileDialog = ({
   deleteProfile
 }: ProfileDialogProps) => {
   const { t } = useLanguage();
+  const isMobile = useIsMobile();
   
   const handleProfileComplete = (gender: UserGender, type: UserType, selectedSport: SportType = 'tennis') => {
     updateProfile(gender, type, selectedSport);
@@ -55,6 +57,11 @@ const ProfileDialog = ({
       duration: 3000
     });
   };
+
+  // If mobile, don't render the button in the header
+  if (isMobile) {
+    return null;
+  }
 
   return (
     <Dialog open={open} onOpenChange={setOpen}>
@@ -95,3 +102,4 @@ const ProfileDialog = ({
 };
 
 export default ProfileDialog;
+
