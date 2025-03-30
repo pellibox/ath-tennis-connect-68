@@ -45,6 +45,12 @@ import ParentTutorProgram from '@/pages/programs/ParentTutor';
 import ProfessionalsProgram from '@/pages/programs/Professionals';
 import PerformanceAnalysisProgram from '@/pages/programs/PerformanceAnalysis';
 
+// Padel dedicated program pages
+import PadelKidsProgram from '@/pages/programs/PadelKids';
+import PadelAdultProgram from '@/pages/programs/PadelAdult';
+import PadelAdvancedProgram from '@/pages/programs/PadelAdvanced';
+import PadelPrivateProgram from '@/pages/programs/PadelPrivate';
+
 function App() {
   return (
     <LanguageProvider>
@@ -100,6 +106,12 @@ function AppContent() {
         <Route path="/programs/parent-tutor" element={<ParentTutorProgram />} />
         <Route path="/programs/professionals" element={<ProfessionalsProgram />} />
         <Route path="/programs/performance-analysis" element={<PerformanceAnalysisProgram />} />
+        
+        {/* Padel dedicated program routes */}
+        <Route path="/programs/padel-kids" element={<PadelKidsProgram />} />
+        <Route path="/programs/padel-adult" element={<PadelAdultProgram />} />
+        <Route path="/programs/padel-advanced" element={<PadelAdvancedProgram />} />
+        <Route path="/programs/padel-private" element={<PadelPrivateProgram />} />
         
         <Route path="/contact" element={<ContactPage />} />
         <Route path="/privacy" element={<PrivacyPage />} />

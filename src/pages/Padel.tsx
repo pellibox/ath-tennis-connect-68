@@ -6,6 +6,8 @@ import RevealAnimation from '@/components/RevealAnimation';
 import AboutSection from '@/components/AboutSection';
 import ProgramsSection from '@/components/ProgramsSection';
 import { programCategories } from '@/data/padel/categories';
+import { Link } from 'react-router-dom';
+import ButtonLink from '@/components/ButtonLink';
 
 const Padel = () => {
   useEffect(() => {
@@ -116,9 +118,9 @@ const Padel = () => {
                       <span>Sviluppo coordinazione</span>
                     </li>
                   </ul>
-                  <button className="mt-auto w-full bg-ath-clay text-white py-3 rounded-md hover:bg-opacity-90 transition-colors">
-                    Prenota Ora
-                  </button>
+                  <Link to="/programs/padel-kids" className="mt-auto w-full bg-ath-clay text-white py-3 rounded-md hover:bg-opacity-90 transition-colors text-center">
+                    Scopri di Più
+                  </Link>
                 </div>
               </RevealAnimation>
               
@@ -159,9 +161,9 @@ const Padel = () => {
                       <span>Per principianti e intermedi</span>
                     </li>
                   </ul>
-                  <button className="mt-auto w-full bg-ath-clay text-white py-3 rounded-md hover:bg-opacity-90 transition-colors">
-                    Prenota Ora
-                  </button>
+                  <Link to="/programs/padel-adult" className="mt-auto w-full bg-ath-clay text-white py-3 rounded-md hover:bg-opacity-90 transition-colors text-center">
+                    Scopri di Più
+                  </Link>
                 </div>
               </RevealAnimation>
               
@@ -209,9 +211,9 @@ const Padel = () => {
                       <span>Analisi VICKI™ Advanced</span>
                     </li>
                   </ul>
-                  <button className="mt-auto w-full bg-ath-clay text-white py-3 rounded-md hover:bg-opacity-90 transition-colors">
-                    Prenota Ora
-                  </button>
+                  <Link to="/programs/padel-advanced" className="mt-auto w-full bg-ath-clay text-white py-3 rounded-md hover:bg-opacity-90 transition-colors text-center">
+                    Scopri di Più
+                  </Link>
                 </div>
               </RevealAnimation>
               
@@ -252,18 +254,18 @@ const Padel = () => {
                       <span>Accesso esclusivo alle strutture</span>
                     </li>
                   </ul>
-                  <button className="mt-auto w-full bg-ath-clay text-white py-3 rounded-md hover:bg-opacity-90 transition-colors">
-                    Prenota Ora
-                  </button>
+                  <Link to="/programs/padel-private" className="mt-auto w-full bg-ath-clay text-white py-3 rounded-md hover:bg-opacity-90 transition-colors text-center">
+                    Scopri di Più
+                  </Link>
                 </div>
               </RevealAnimation>
             </div>
             
             <div className="mt-12 text-center">
               <p className="text-gray-600 mb-4">Pacchetti personalizzati disponibili su richiesta</p>
-              <a href="/contact" className="inline-flex items-center text-ath-clay font-medium animated-line pb-1">
+              <ButtonLink href="/contact" className="inline-flex items-center text-ath-clay font-medium">
                 Contattaci per maggiori informazioni
-              </a>
+              </ButtonLink>
             </div>
           </div>
         </section>

@@ -7,7 +7,7 @@ export const padelPrograms: Program[] = [
     title: "Padel Bambini e Teen",
     description: "Programma dedicato ai giovani giocatori di padel, con un approccio divertente e formativo per imparare le basi e sviluppare la passione per questo sport.",
     image: "/lovable-uploads/padel-courts.png",
-    link: "/padel#padel-junior",
+    link: "/programs/padel-kids",
     features: [
       "Approccio ludico e inclusivo adatto all'età",
       "Tecnica di base: impugnatura, posizione e colpi fondamentali", 
@@ -25,7 +25,7 @@ export const padelPrograms: Program[] = [
     title: "Padel Adulti",
     description: "Programma per adulti dai 16 anni in su che vogliono imparare o migliorare nel padel con un'ora di attività per sessione.",
     image: "/lovable-uploads/padel-courts.png",
-    link: "/padel#padel-adult",
+    link: "/programs/padel-adult",
     features: [
       "Lezioni in piccoli gruppi (max 4 persone)",
       "Tecnica completa dal livello principiante all'intermedio",
@@ -43,7 +43,7 @@ export const padelPrograms: Program[] = [
     title: "Padel Agonisti",
     description: "Programma intensivo per giocatori competitivi che vogliono portare il loro gioco a livello agonistico con analisi avanzata delle performance.",
     image: "/lovable-uploads/padel-courts.png",
-    link: "/padel#padel-advanced",
+    link: "/programs/padel-advanced",
     features: [
       "Analisi biomeccanica dei colpi con tecnologia Vicki™",
       "Perfezionamento delle tecniche avanzate",
@@ -61,7 +61,7 @@ export const padelPrograms: Program[] = [
     title: "Padel Coaching Privato",
     description: "Sessioni individuali o in coppia con coach specializzati e analisi completa delle performance con sistema Vicki™.",
     image: "/lovable-uploads/padel-courts.png",
-    link: "/padel#padel-private",
+    link: "/programs/padel-private",
     features: [
       "Programma personalizzato in base agli obiettivi specifici",
       "Analisi video e feedback in tempo reale",
