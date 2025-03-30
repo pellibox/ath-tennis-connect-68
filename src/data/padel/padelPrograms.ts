@@ -1,4 +1,3 @@
-
 import { Program } from './types';
 
 export const padelPrograms: Program[] = [
@@ -44,6 +43,7 @@ export const padelPrograms: Program[] = [
     title: "Padel Agonisti",
     description: "Programma intensivo per giocatori competitivi che vogliono portare il loro gioco a livello agonistico con analisi avanzata delle performance.",
     image: "/lovable-uploads/3911c0fe-e4c8-4455-8529-387eec1efde3.png",
+    vimeoEmbed: '<div style="padding:56.25% 0 0 0;position:relative;"><iframe src="https://player.vimeo.com/video/1070762124?h=81c3b348f2&autoplay=1&loop=1&title=0&byline=0&portrait=0&controls=0" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen style="position:absolute;top:0;left:0;width:100%;height:100%;"></iframe></div><script src="https://player.vimeo.com/api/player.js"></script>',
     link: "/programs/padel-advanced",
     features: [
       "Analisi biomeccanica dei colpi con tecnologia Vicki™",
