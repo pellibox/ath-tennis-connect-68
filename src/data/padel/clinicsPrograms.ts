@@ -6,7 +6,7 @@ export const clinicsPrograms: Program[] = [
     id: "padel-clinics",
     title: "Padel Clinics",
     description: "Sessioni intensive di gruppo focalizzate su aspetti specifici del gioco del padel, guidate da coach di alto livello.",
-    image: "/lovable-uploads/padel-courts.png",
+    image: "/lovable-uploads/a0219ce4-c446-4249-b8b6-07f6f074c431.png", // Updated image
     link: "/padel#padel-clinics",
     features: [
       "Workshop tematici su colpi specifici",
