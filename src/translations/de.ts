@@ -1,3 +1,4 @@
+
 const translations = {
   // Header & Navigation
   "nav.home": "Startseite",
@@ -91,8 +92,7 @@ const translations = {
   "camps.benefit5": "Einblick in die professionelle ATH-Methodik",
   "camps.benefit6": "Spaß und Leidenschaft für Tennis in einer positiven Umgebung",
   
-  // Technology Section
-  "tech.subtitle": "Unser innovatives Technologiesystem integriert fortschrittliche Analytik und KI, um das Tennistraining zu revolutionieren",
+  // Technology Section Additional Keys
   "tech.exclusive": "EXKLUSIVE TECHNOLOGIE",
   "tech.vicki.subtitle": "Die Lösung für die Herausforderungen des modernen Tennis",
   "tech.data.title": "Fortschrittliche Datenerfassung",
@@ -164,13 +164,6 @@ const translations = {
   "footer.privacy": "Datenschutzrichtlinie",
   "footer.terms": "Nutzungsbedingungen",
   "footer.sitemap": "Seitenübersicht",
-  
-  // Language switcher
-  "language": "Sprache",
-  "language.en": "Englisch",
-  "language.it": "Italienisch",
-  "language.fr": "Französisch",
-  "language.de": "Deutsch",
   
   // Method section
   "method.title": "ATH-Methode",

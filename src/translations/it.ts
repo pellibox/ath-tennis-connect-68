@@ -1,3 +1,4 @@
+
 const translations = {
   // Header & Navigation
   "nav.home": "Home",
@@ -41,6 +42,26 @@ const translations = {
   "tech.title": "Il Vantaggio Tecnologico ATH",
   "tech.title.short": "Tech",
   "tech.subtitle": "Sistema di analisi con visione artificiale, AI e tracciamento 3D che analizza oltre 70 parametri in tempo reale",
+  "tech.exclusive": "TECNOLOGIA ESCLUSIVA",
+  "tech.vicki.subtitle": "La Soluzione alle Sfide del Tennis Moderno",
+  "tech.data.title": "Raccolta Dati Avanzata",
+  "tech.data.desc": "Il nostro sofisticato sistema Vicki™ monitora e analizza oltre 70 parametri specifici della performance tennistica in tempo reale durante ogni sessione.",
+  "tech.analysis.title": "Analisi in Tempo Reale",
+  "tech.analysis.desc": "Telecamere ad alta velocità e sensori catturano ogni movimento, colpo e decisione tattica, fornendo approfondimenti immediati per regolazioni sul posto.",
+  "tech.ai.title": "Approfondimenti Basati su IA",
+  "tech.ai.desc": "L'intelligenza artificiale di Vicki™ analizza ogni aspetto della performance, identificando modelli e opportunità di miglioramento che potrebbero sfuggire anche all'osservazione esperta.",
+  "tech.personal.title": "Sviluppo Personalizzato",
+  "tech.personal.desc": "Il sistema di apprendimento automatico si evolve con ogni sessione, perfezionando continuamente analisi e raccomandazioni per il tuo stile di gioco e i tuoi obiettivi unici.",
+  "tech.excellence.title": "Eccellenza Democratizzata",
+  "tech.excellence.desc": "Accesso a metodologie di coaching di alto livello precedentemente riservate solo all'élite.",
+  "tech.continuous.title": "Sviluppo Continuo",
+  "tech.continuous.desc": "Eliminazione delle discontinuità nell'approccio tecnico con un metodo codificato e coerente.",
+  "tech.global.title": "Comunità Globale di Eccellenza",
+  "tech.global.desc": "Accesso a una rete internazionale di competenze e best practice da tutto il mondo.",
+  "tech.comm.title": "Comunicazione Avanzata",
+  "tech.comm.desc": "Condivisione efficace delle informazioni tra tutti i professionisti del team con documentazione precisa.",
+  "tech.quote": "Vicki™ è un sistema unico, specificamente sviluppato per potenziare le capacità del coach, non per sostituirle. L'expertise umana rimane essenziale nel processo di allenamento, mentre la tecnologia fornisce dati e analisi che amplificano l'intuizione e l'esperienza dell'allenatore.",
+  "tech.only": "L'unico centro tennis al mondo che utilizza la tecnologia Vicki™",
   
   // Hero Section
   "hero.title": "Eccellenza ad Ogni Livello",
@@ -102,30 +123,6 @@ const translations = {
   "camps.benefit4": "Scoperta dei propri punti di forza e aree di miglioramento",
   "camps.benefit5": "Esposizione alla metodologia professionale ATH",
   "camps.benefit6": "Divertimento e passione per il tennis in un ambiente positivo",
-  
-  // Technology Section
-  "tech.title": "Il Vantaggio Tecnologico ATH",
-  "tech.subtitle": "Sistema di analisi con visione artificiale, AI e tracciamento 3D che analizza oltre 70 parametri in tempo reale",
-  "tech.exclusive": "TECNOLOGIA ESCLUSIVA",
-  "tech.vicki.subtitle": "La Soluzione alle Sfide del Tennis Moderno",
-  "tech.data.title": "Raccolta Dati Avanzata",
-  "tech.data.desc": "Il nostro sofisticato sistema Vicki™ monitora e analizza oltre 70 parametri specifici della performance tennistica in tempo reale durante ogni sessione.",
-  "tech.analysis.title": "Analisi in Tempo Reale",
-  "tech.analysis.desc": "Telecamere ad alta velocità e sensori catturano ogni movimento, colpo e decisione tattica, fornendo approfondimenti immediati per regolazioni sul posto.",
-  "tech.ai.title": "Approfondimenti Basati su IA",
-  "tech.ai.desc": "L'intelligenza artificiale di Vicki™ analizza ogni aspetto della performance, identificando modelli e opportunità di miglioramento che potrebbero sfuggire anche all'osservazione esperta.",
-  "tech.personal.title": "Sviluppo Personalizzato",
-  "tech.personal.desc": "Il sistema di apprendimento automatico si evolve con ogni sessione, perfezionando continuamente analisi e raccomandazioni per il tuo stile di gioco e i tuoi obiettivi unici.",
-  "tech.excellence.title": "Eccellenza Democratizzata",
-  "tech.excellence.desc": "Accesso a metodologie di coaching di alto livello precedentemente riservate solo all'élite.",
-  "tech.continuous.title": "Sviluppo Continuo",
-  "tech.continuous.desc": "Eliminazione delle discontinuità nell'approccio tecnico con un metodo codificato e coerente.",
-  "tech.global.title": "Comunità Globale di Eccellenza",
-  "tech.global.desc": "Accesso a una rete internazionale di competenze e best practice da tutto il mondo.",
-  "tech.comm.title": "Comunicazione Avanzata",
-  "tech.comm.desc": "Condivisione efficace delle informazioni tra tutti i professionisti del team con documentazione precisa.",
-  "tech.quote": "Vicki™ è un sistema unico, specificamente sviluppato per potenziare le capacità del coach, non per sostituirle. L'expertise umana rimane essenziale nel processo di allenamento, mentre la tecnologia fornisce dati e analisi che amplificano l'intuizione e l'esperienza dell'allenatore.",
-  "tech.only": "L'unico centro tennis al mondo che utilizza la tecnologia Vicki™",
   
   // SIT & SAT Programs
   "sit.analysis.title": "Analisi Iniziale Inclusa",
@@ -191,13 +188,6 @@ const translations = {
   "footer.privacy": "Informativa sulla Privacy",
   "footer.terms": "Termini di Servizio",
   "footer.sitemap": "Mappa del Sito",
-  
-  // Language switcher
-  "language": "Lingua",
-  "language.en": "Inglese",
-  "language.it": "Italiano",
-  "language.fr": "Francese",
-  "language.de": "Tedesco",
   
   // Method section
   "method.title": "Metodo ATH",
