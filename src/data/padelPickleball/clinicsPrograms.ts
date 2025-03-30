@@ -1,47 +1,39 @@
 
 import { Program } from './types';
+import { 
+  PROGRAM_IDS, 
+  PROGRAM_TITLES, 
+  PROGRAM_DESCRIPTIONS, 
+  PROGRAM_IMAGES, 
+  PROGRAM_FEATURES 
+} from '../shared/clinicsConstants';
 
 export const clinicsPrograms: Program[] = [
   {
-    id: "padel-clinics",
-    title: "Padel Clinics",
-    description: "Sessioni intensive di gruppo focalizzate su aspetti specifici del gioco del padel, guidate da coach di alto livello.",
-    image: "/lovable-uploads/padel-courts.png",
+    id: PROGRAM_IDS.PADEL_CLINICS,
+    title: PROGRAM_TITLES.PADEL_CLINICS,
+    description: PROGRAM_DESCRIPTIONS.PADEL_CLINICS,
+    image: PROGRAM_IMAGES.PADEL_CLINICS,
     link: "/padel-pickleball#padel-clinics",
-    features: [
-      "Workshop tematici su colpi specifici",
-      "Sessioni intensive di 2-3 ore",
-      "Gruppi omogenei per livello",
-      "Analisi tecnica con sistema Vicki™"
-    ],
+    features: PROGRAM_FEATURES.PADEL_CLINICS,
     vickiPowered: true
   },
   {
-    id: "pickleball-clinics",
-    title: "Pickleball Clinics",
-    description: "Workshop specifici per migliorare rapidamente aspetti tecnici e tattici del pickleball in sessioni concentrate.",
-    image: "/lovable-uploads/c4c120e8-c90d-48a3-933c-d4cce08b5129.png",
+    id: PROGRAM_IDS.PICKLEBALL_CLINICS,
+    title: PROGRAM_TITLES.PICKLEBALL_CLINICS,
+    description: PROGRAM_DESCRIPTIONS.PICKLEBALL_CLINICS,
+    image: PROGRAM_IMAGES.PICKLEBALL_CLINICS,
     link: "/padel-pickleball#pickleball-clinics",
-    features: [
-      "Focus su elementi specifici del gioco",
-      "Sessioni di 2 ore con coach dedicato",
-      "Gruppi ridotti di massimo 4-6 persone",
-      "Analisi video delle performance"
-    ],
+    features: PROGRAM_FEATURES.PICKLEBALL_CLINICS,
     vickiOnRequest: true
   },
   {
-    id: "racquet-sports-camp",
-    title: "Camp Multi-Sport con Racchetta",
-    description: "Esperienza immersiva che combina tennis, padel e pickleball per migliorare le abilità generali negli sport con racchetta.",
-    image: "/lovable-uploads/f0450714-c612-44b3-b474-41565f8d9336.png",
+    id: PROGRAM_IDS.RACQUET_SPORTS_CAMP,
+    title: PROGRAM_TITLES.RACQUET_SPORTS_CAMP,
+    description: PROGRAM_DESCRIPTIONS.RACQUET_SPORTS_CAMP,
+    image: PROGRAM_IMAGES.RACQUET_SPORTS_CAMP,
     link: "/padel-pickleball#racquet-sports-camp",
-    features: [
-      "Programma intensivo di 3-5 giorni",
-      "Allenamento nei tre sport con approccio integrato",
-      "Preparazione fisica specifica",
-      "Analisi comparata della tecnica nei diversi sport"
-    ],
+    features: PROGRAM_FEATURES.RACQUET_SPORTS_CAMP,
     vickiCustomBadge: "Multi-Sport Vicki™"
   }
 ];
