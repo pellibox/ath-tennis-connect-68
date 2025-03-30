@@ -5,7 +5,7 @@ import { getWelcomeMessage } from '@/utils/videoUtils';
 import StandardHeroVideo from '@/components/StandardHeroVideo';
 
 const HeroVideoSection = () => {
-  const { userType } = useProfile();
+  const { userType, sport } = useProfile();
   
   return (
     <StandardHeroVideo 

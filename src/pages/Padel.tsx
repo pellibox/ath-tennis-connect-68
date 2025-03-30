@@ -8,20 +8,30 @@ import ProgramsSection from '@/components/ProgramsSection';
 import { programCategories } from '@/data/padel/categories';
 import { Link } from 'react-router-dom';
 import ButtonLink from '@/components/ButtonLink';
+import { useProfile } from '@/contexts/ProfileContext';
+import { getVimeoEmbed } from '@/utils/videoUtils';
+import StandardHeroVideo from '@/components/StandardHeroVideo';
 
 const Padel = () => {
+  const { userGender, userType } = useProfile();
+  
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }, []);
+
+  // Use the getVimeoEmbed function with padel sport parameter
+  const vimeoEmbed = getVimeoEmbed(userGender, userType, true, false, 'padel');
 
   return (
     <div className="flex flex-col min-h-screen relative">
       <Header />
       
       <main className="flex-grow pt-20">
-        <div className="w-full bg-black min-h-[calc(100vw*9/16)] relative">
-          <div dangerouslySetInnerHTML={{ __html: '<div style="padding:56.25% 0 0 0;position:relative;"><iframe src="https://player.vimeo.com/video/1068835737?h=f0a05fef01&autoplay=1&loop=1&title=0&byline=0&portrait=0&controls=0" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen style="position:absolute;top:0;left:0;width:100%;height:100%;"></iframe></div><script src="https://player.vimeo.com/api/player.js"></script>' }} />
-        </div>
+        <StandardHeroVideo 
+          vimeoEmbed={vimeoEmbed}
+          title="PADEL"
+          subtitle="Scopri i nostri programmi di allenamento esclusivi per Padel, progettati con la metodologia innovativa ATH."
+        />
         
         <RevealAnimation>
           <div className="container mx-auto px-6 py-16">

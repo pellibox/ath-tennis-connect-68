@@ -32,7 +32,7 @@ const Programs = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }, []);
 
-  const vimeoEmbed = getVimeoEmbed(userGender, userType);
+  const vimeoEmbed = getVimeoEmbed(userGender, userType, true, false, sport);
   
   const { filteredCategories, title, subtitle } = ProgramFilters({ 
     userType, 
