@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
@@ -8,13 +7,7 @@ import { programCategories } from '@/data/programs';
 import { programCategories as padelCategories } from '@/data/padel';
 import { programCategories as pickleballCategories } from '@/data/pickleball';
 import { touchTennisCategories } from '@/data/touchtennis';
-import { 
-  Breadcrumb, 
-  BreadcrumbItem, 
-  BreadcrumbList, 
-  BreadcrumbSeparator, 
-  BreadcrumbPage 
-} from "@/components/ui/breadcrumb";
+import { Breadcrumb, BreadcrumbItem, BreadcrumbList, BreadcrumbSeparator, BreadcrumbPage } from "@/components/ui/breadcrumb";
 import { Link } from 'react-router-dom';
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
 import { SportType } from '@/contexts/ProfileContext';
@@ -23,51 +16,34 @@ import { getVimeoEmbed } from '@/utils/videoUtils';
 import RevealAnimation from '@/components/RevealAnimation';
 import MultisportExplanation from '@/components/programs/MultisportExplanation';
 import StandardHeroVideo from '@/components/StandardHeroVideo';
-
 const ProgramsOverview = () => {
-  const { userType, userGender, sport, updateSport } = useProfile();
-  const [activeTab, setActiveTab] = useState<'tennis' | 'padel' | 'pickleball' | 'touchtennis'>(
-    sport === 'padel' 
-      ? 'padel' 
-      : sport === 'pickleball' 
-        ? 'pickleball' 
-        : sport === 'touchtennis' 
-          ? 'touchtennis' 
-          : 'tennis'
-  );
+  const {
+    userType,
+    userGender,
+    sport,
+    updateSport
+  } = useProfile();
+  const [activeTab, setActiveTab] = useState<'tennis' | 'padel' | 'pickleball' | 'touchtennis'>(sport === 'padel' ? 'padel' : sport === 'pickleball' ? 'pickleball' : sport === 'touchtennis' ? 'touchtennis' : 'tennis');
   const isMobile = useIsMobile();
   const vimeoEmbed = getVimeoEmbed(userGender, userType);
-
   const handleTabChange = (value: string) => {
     setActiveTab(value as 'tennis' | 'padel' | 'pickleball' | 'touchtennis');
-    
+
     // Update sport in profile context
     if (value === 'tennis' || value === 'padel' || value === 'pickleball' || value === 'touchtennis') {
       updateSport(value as SportType);
     }
   };
-
-  return (
-    <div className="flex flex-col min-h-screen">
+  return <div className="flex flex-col min-h-screen">
       <Header />
       <main className="flex-grow">
         <div className="container mx-auto px-4 pt-4">
           <Breadcrumb>
-            <BreadcrumbList>
-              <BreadcrumbItem>
-                <Link to="/" className="text-gray-600 hover:text-ath-clay">Home</Link>
-              </BreadcrumbItem>
-              <BreadcrumbSeparator />
-              <BreadcrumbItem>
-                <BreadcrumbPage>Programmi</BreadcrumbPage>
-              </BreadcrumbItem>
-            </BreadcrumbList>
+            
           </Breadcrumb>
         </div>
         
-        <StandardHeroVideo 
-          vimeoEmbed={vimeoEmbed}
-        />
+        <StandardHeroVideo vimeoEmbed={vimeoEmbed} />
         
         <div className="container mx-auto px-4 py-12">
           <RevealAnimation>
@@ -95,65 +71,37 @@ const ProgramsOverview = () => {
               </p>
               
               <Tabs value={activeTab} onValueChange={handleTabChange} className="w-full">
-                {isMobile ? (
-                  <div className="mb-8">
+                {isMobile ? <div className="mb-8">
                     <TabsList className="w-full mb-2 bg-white border border-gray-200 rounded-full p-1 flex justify-between">
-                      <TabsTrigger 
-                        value="tennis" 
-                        className="flex-1 rounded-full data-[state=active]:bg-ath-clay data-[state=active]:text-white px-4 py-3"
-                      >
+                      <TabsTrigger value="tennis" className="flex-1 rounded-full data-[state=active]:bg-ath-clay data-[state=active]:text-white px-4 py-3">
                         Tennis
                       </TabsTrigger>
-                      <TabsTrigger 
-                        value="padel" 
-                        className="flex-1 rounded-full data-[state=active]:bg-ath-clay data-[state=active]:text-white px-4 py-3"
-                      >
+                      <TabsTrigger value="padel" className="flex-1 rounded-full data-[state=active]:bg-ath-clay data-[state=active]:text-white px-4 py-3">
                         Padel
                       </TabsTrigger>
                     </TabsList>
                     <TabsList className="w-full bg-white border border-gray-200 rounded-full p-1 flex justify-between">
-                      <TabsTrigger 
-                        value="pickleball" 
-                        className="flex-1 rounded-full data-[state=active]:bg-ath-clay data-[state=active]:text-white px-4 py-3"
-                      >
+                      <TabsTrigger value="pickleball" className="flex-1 rounded-full data-[state=active]:bg-ath-clay data-[state=active]:text-white px-4 py-3">
                         Pickleball
                       </TabsTrigger>
-                      <TabsTrigger 
-                        value="touchtennis" 
-                        className="flex-1 rounded-full data-[state=active]:bg-ath-clay data-[state=active]:text-white px-4 py-3"
-                      >
+                      <TabsTrigger value="touchtennis" className="flex-1 rounded-full data-[state=active]:bg-ath-clay data-[state=active]:text-white px-4 py-3">
                         TouchTennis
                       </TabsTrigger>
                     </TabsList>
-                  </div>
-                ) : (
-                  <TabsList className="w-full mb-8 bg-white border border-gray-200 rounded-full p-1 flex justify-between">
-                    <TabsTrigger 
-                      value="tennis" 
-                      className="flex items-center rounded-full data-[state=active]:bg-ath-clay data-[state=active]:text-white px-8 py-3"
-                    >
+                  </div> : <TabsList className="w-full mb-8 bg-white border border-gray-200 rounded-full p-1 flex justify-between">
+                    <TabsTrigger value="tennis" className="flex items-center rounded-full data-[state=active]:bg-ath-clay data-[state=active]:text-white px-8 py-3">
                       Tennis
                     </TabsTrigger>
-                    <TabsTrigger 
-                      value="padel" 
-                      className="flex items-center rounded-full data-[state=active]:bg-ath-clay data-[state=active]:text-white px-8 py-3"
-                    >
+                    <TabsTrigger value="padel" className="flex items-center rounded-full data-[state=active]:bg-ath-clay data-[state=active]:text-white px-8 py-3">
                       Padel
                     </TabsTrigger>
-                    <TabsTrigger 
-                      value="pickleball" 
-                      className="flex items-center rounded-full data-[state=active]:bg-ath-clay data-[state=active]:text-white px-8 py-3"
-                    >
+                    <TabsTrigger value="pickleball" className="flex items-center rounded-full data-[state=active]:bg-ath-clay data-[state=active]:text-white px-8 py-3">
                       Pickleball
                     </TabsTrigger>
-                    <TabsTrigger 
-                      value="touchtennis" 
-                      className="flex items-center rounded-full data-[state=active]:bg-ath-clay data-[state=active]:text-white px-8 py-3"
-                    >
+                    <TabsTrigger value="touchtennis" className="flex items-center rounded-full data-[state=active]:bg-ath-clay data-[state=active]:text-white px-8 py-3">
                       TouchTennis
                     </TabsTrigger>
-                  </TabsList>
-                )}
+                  </TabsList>}
                 
                 <div className="mt-8">
                   <TabsContent value="tennis" className="mt-0">
@@ -162,20 +110,12 @@ const ProgramsOverview = () => {
                       <p className="mb-4">
                         Il nostro programma di punta, con soluzioni personalizzate per ogni livello: dai principianti ai professionisti. Utilizzando la nostra tecnologia VICKI™, offriamo un'esperienza di allenamento senza precedenti.
                       </p>
-                      <Link 
-                        to="/programs" 
-                        className="inline-flex items-center text-ath-clay font-medium hover:underline"
-                      >
+                      <Link to="/programs" className="inline-flex items-center text-ath-clay font-medium hover:underline">
                         Esplora tutti i programmi Tennis →
                       </Link>
                     </div>
                     
-                    <ProgramsSection 
-                      title="Programmi Tennis"
-                      subtitle="I nostri programmi di punta, sviluppati con anni di esperienza"
-                      categories={programCategories}
-                      categoryCollapsible={true}
-                    />
+                    <ProgramsSection title="Programmi Tennis" subtitle="I nostri programmi di punta, sviluppati con anni di esperienza" categories={programCategories} categoryCollapsible={true} />
                   </TabsContent>
                   
                   <TabsContent value="padel" className="mt-0">
@@ -184,20 +124,12 @@ const ProgramsOverview = () => {
                       <p className="mb-4">
                         Abbiamo adattato la nostra metodologia avanzata per questo sport in rapida crescita, offrendo programmi specifici che sfruttano la nostra tecnologia VICKI™ per migliorare rapidamente il tuo gioco.
                       </p>
-                      <Link 
-                        to="/padel" 
-                        className="inline-flex items-center text-ath-clay font-medium hover:underline"
-                      >
+                      <Link to="/padel" className="inline-flex items-center text-ath-clay font-medium hover:underline">
                         Esplora tutti i programmi Padel →
                       </Link>
                     </div>
                     
-                    <ProgramsSection 
-                      title="Programmi Padel"
-                      subtitle="I nostri programmi specializzati per il Padel"
-                      categories={padelCategories}
-                      categoryCollapsible={true}
-                    />
+                    <ProgramsSection title="Programmi Padel" subtitle="I nostri programmi specializzati per il Padel" categories={padelCategories} categoryCollapsible={true} />
                   </TabsContent>
                   
                   <TabsContent value="pickleball" className="mt-0">
@@ -206,20 +138,12 @@ const ProgramsOverview = () => {
                       <p className="mb-4">
                         Programmi dedicati per questo sport emergente, con focus su tecnica, strategia e divertimento. Scopri come la nostra metodologia ATH può migliorare il tuo gioco di Pickleball.
                       </p>
-                      <Link 
-                        to="/pickleball" 
-                        className="inline-flex items-center text-ath-clay font-medium hover:underline"
-                      >
+                      <Link to="/pickleball" className="inline-flex items-center text-ath-clay font-medium hover:underline">
                         Esplora tutti i programmi Pickleball →
                       </Link>
                     </div>
                     
-                    <ProgramsSection 
-                      title="Programmi Pickleball"
-                      subtitle="I nostri programmi specializzati per il Pickleball"
-                      categories={pickleballCategories}
-                      categoryCollapsible={true}
-                    />
+                    <ProgramsSection title="Programmi Pickleball" subtitle="I nostri programmi specializzati per il Pickleball" categories={pickleballCategories} categoryCollapsible={true} />
                   </TabsContent>
                   
                   <TabsContent value="touchtennis" className="mt-0">
@@ -228,20 +152,12 @@ const ProgramsOverview = () => {
                       <p className="mb-4">
                         Un formato innovativo che rende il tennis accessibile a tutti. I nostri programmi di TouchTennis sono perfetti per chi vuole divertirsi e migliorare le proprie abilità in uno spazio ridotto.
                       </p>
-                      <Link 
-                        to="/touchtennis" 
-                        className="inline-flex items-center text-ath-clay font-medium hover:underline"
-                      >
+                      <Link to="/touchtennis" className="inline-flex items-center text-ath-clay font-medium hover:underline">
                         Esplora tutti i programmi TouchTennis →
                       </Link>
                     </div>
                     
-                    <ProgramsSection 
-                      title="Programmi TouchTennis"
-                      subtitle="Tennis in formato ridotto, divertimento senza limiti"
-                      categories={touchTennisCategories}
-                      categoryCollapsible={true}
-                    />
+                    <ProgramsSection title="Programmi TouchTennis" subtitle="Tennis in formato ridotto, divertimento senza limiti" categories={touchTennisCategories} categoryCollapsible={true} />
                   </TabsContent>
                 </div>
               </Tabs>
@@ -275,10 +191,7 @@ const ProgramsOverview = () => {
               </div>
               
               <div className="mt-8 text-center">
-                <Link 
-                  to="/contact" 
-                  className="inline-flex items-center bg-ath-clay text-white px-6 py-3 rounded-full font-medium transition-colors hover:bg-ath-clay/90"
-                >
+                <Link to="/contact" className="inline-flex items-center bg-ath-clay text-white px-6 py-3 rounded-full font-medium transition-colors hover:bg-ath-clay/90">
                   Richiedi informazioni sui programmi
                 </Link>
               </div>
@@ -287,8 +200,6 @@ const ProgramsOverview = () => {
         </div>
       </main>
       <Footer />
-    </div>
-  );
+    </div>;
 };
-
 export default ProgramsOverview;
