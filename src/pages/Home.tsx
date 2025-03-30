@@ -1,3 +1,4 @@
+
 import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import Header from '@/components/Header';
@@ -68,7 +69,11 @@ const Home = () => {
             <RevealAnimation>
               <h2 className="text-3xl font-display text-center mb-8">{t('home.programs')}</h2>
             </RevealAnimation>
-            <ProgramsSection categories={programCategories} categoryCollapsible={true} />
+            <ProgramsSection 
+              title={t('home.programs')}
+              categories={programCategories} 
+              categoryCollapsible={true} 
+            />
             <div className="text-center mt-8">
               <Link to="/programs" className="text-ath-clay font-medium hover:underline">
                 {t('home.allPrograms')} →

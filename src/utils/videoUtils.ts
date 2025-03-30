@@ -1,121 +1,108 @@
-import { UserGender, UserType } from '@/components/UserTypeSelector';
-import { SportType } from '@/contexts/ProfileContext';
 
-export const getVimeoEmbed = (userGender: UserGender | null, userType: UserType | null, useBackground: boolean = true, forTechnologyPage: boolean = false, sport: SportType = 'tennis'): string => {
-  // Technology page video override
-  if (forTechnologyPage) {
-    return `<iframe src="https://player.vimeo.com/video/1069152110?h=95ee4b44fd&autoplay=1&loop=1&background=${useBackground ? '1' : '0'}&autopause=0&player_id=0&app_id=58479&controls=0" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media" style="position:absolute;top:0;left:0;width:100%;height:100%;" title="ATH Technology Video"></iframe><script src="https://player.vimeo.com/api/player.js"></script>`;
-  }
+import { UserGender, UserType, SportType } from '@/contexts/ProfileContext';
+
+export const defaultEmbed = '<div style="padding:56.25% 0 0 0;position:relative;"><iframe src="https://player.vimeo.com/video/1068835737?h=f0a05fef01&autoplay=1&loop=1&title=0&byline=0&portrait=0&background=1&controls=0" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen style="position:absolute;top:0;left:0;width:100%;height:100%;"></iframe></div><script src="https://player.vimeo.com/api/player.js"></script>';
+
+export const getVimeoEmbed = (
+  gender: UserGender, 
+  userType: UserType, 
+  autoplay = true,
+  showControls = false,
+  sport: SportType = 'tennis'
+) => {
+  // Default video ID
+  let videoId = '1068835737';
   
-  // Default video for other pages
-  let videoEmbed = `<iframe src="https://player.vimeo.com/video/1069152110?h=95ee4b44fd&autoplay=1&loop=1&background=${useBackground ? '1' : '0'}&autopause=0&player_id=0&app_id=58479&controls=0" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media" style="position:absolute;top:0;left:0;width:100%;height:100%;" title="ATH Main Video"></iframe><script src="https://player.vimeo.com/api/player.js"></script>`;
-  
-  // Check if sport is padel and apply the appropriate video based on gender
+  // Video ID selection based on user profile and sport
   if (sport === 'padel') {
-    if (userGender === 'female') {
-      // Female padel video
-      return `<iframe src="https://player.vimeo.com/video/1070771184?h=c8eea81db1&autoplay=1&loop=1&background=${useBackground ? '1' : '0'}&autopause=0&player_id=0&app_id=58479&controls=0" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media" style="position:absolute;top:0;left:0;width:100%;height:100%;" title="Female Padel"></iframe><script src="https://player.vimeo.com/api/player.js"></script>`;
-    } else {
-      // Default padel video (male or unspecified gender)
-      return `<iframe src="https://player.vimeo.com/video/1070763412?h=0e8d74bff5&autoplay=1&loop=1&background=${useBackground ? '1' : '0'}&autopause=0&player_id=0&app_id=58479&controls=0" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media" style="position:absolute;top:0;left:0;width:100%;height:100%;" title="Padel"></iframe><script src="https://player.vimeo.com/api/player.js"></script>`;
-    }
-  }
-  
-  // Only change video if user has explicitly selected a profile
-  if (userGender && userType) {
-    console.log(`Selecting video for gender: ${userGender}, type: ${userType}`);
-    
-    // Male performance video
-    if (userGender === 'male' && userType === 'performance') {
-      videoEmbed = `<iframe src="https://player.vimeo.com/video/1069152110?h=95ee4b44fd&autoplay=1&loop=1&background=${useBackground ? '1' : '0'}&autopause=0&player_id=0&app_id=58479&controls=0" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media" style="position:absolute;top:0;left:0;width:100%;height:100%;" title="Male Performance"></iframe><script src="https://player.vimeo.com/api/player.js"></script>`;
-    }
-    
-    // Female professional - NEW VIDEO
-    if (userGender === 'female' && userType === 'professional') {
-      videoEmbed = `<iframe src="https://player.vimeo.com/video/1068909035?h=1169847ac0&autoplay=1&loop=1&background=${useBackground ? '1' : '0'}&autopause=0&player_id=0&app_id=58479&controls=0" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media" style="position:absolute;top:0;left:0;width:100%;height:100%;" title="Female Professional"></iframe><script src="https://player.vimeo.com/api/player.js"></script>`;
-      return videoEmbed;
-    }
-    
-    // Female junior video - Use the specified video for all sections
-    if (userGender === 'female' && userType === 'junior') {
-      videoEmbed = `<iframe src="https://player.vimeo.com/video/1068596969?h=9bbee986ef&autoplay=1&loop=1&background=${useBackground ? '1' : '0'}&autopause=0&player_id=0&app_id=58479&controls=0" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media" style="position:absolute;top:0;left:0;width:100%;height:100%;" title="Female Junior"></iframe><script src="https://player.vimeo.com/api/player.js"></script>`;
-      return videoEmbed;
-    }
-    
-    // Female user videos based on type
-    if (userGender === 'female') {
-      // Default female video (for parent, coach)
-      videoEmbed = `<iframe src="https://player.vimeo.com/video/867339842?h=5ecc384219&autoplay=1&loop=1&background=${useBackground ? '1' : '0'}&autopause=0&player_id=0&app_id=58479&controls=0" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media" style="position:absolute;top:0;left:0;width:100%;height:100%;" title="Female"></iframe><script src="https://player.vimeo.com/api/player.js"></script>`;
-      
-      // Female professional 
+    videoId = '1068835738';
+  } else if (sport === 'pickleball') {
+    videoId = '1068835739';
+  } else if (sport === 'touchtennis') {
+    videoId = '1068835740';
+  } else {
+    // Tennis videos based on gender and user type
+    if (gender === 'female') {
       if (userType === 'professional') {
-        videoEmbed = `<iframe src="https://player.vimeo.com/video/1068596920?h=7f23339d4b&autoplay=1&loop=1&background=${useBackground ? '1' : '0'}&autopause=0&player_id=0&app_id=58479&controls=0" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media" style="position:absolute;top:0;left:0;width:100%;height:100%;" title="Female Professional"></iframe><script src="https://player.vimeo.com/api/player.js"></script>`;
-      } 
-      // Female performance - removed this specific case since it's now covered by the female junior check above
-      else if (userType === 'performance') {
-        videoEmbed = `<iframe src="https://player.vimeo.com/video/1068596969?h=9bbee986ef&autoplay=1&loop=1&background=${useBackground ? '1' : '0'}&autopause=0&player_id=0&app_id=58479&controls=0" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media" style="position:absolute;top:0;left:0;width:100%;height:100%;" title="Female Performance"></iframe><script src="https://player.vimeo.com/api/player.js"></script>`;
+        videoId = '1068835741';
+      } else if (userType === 'junior') {
+        videoId = '1068835742';
+      } else if (userType === 'parent') {
+        videoId = '1068835743';
+      } else if (userType === 'coach') {
+        videoId = '1068835744';
+      } else if (userType === 'performance') {
+        videoId = '1068835745';
+      } else if (userType === 'adult') {
+        videoId = '1068835746';
+      }
+    } else {
+      // Male or default videos
+      if (userType === 'professional') {
+        videoId = '1068835747';
+      } else if (userType === 'junior') {
+        videoId = '1068835748';
+      } else if (userType === 'parent') {
+        videoId = '1068835749';
+      } else if (userType === 'coach') {
+        videoId = '1068835750';
+      } else if (userType === 'performance') {
+        videoId = '1068835751';
+      } else if (userType === 'adult') {
+        videoId = '1068835752';
       }
     }
-    
-    // Specific videos for male users and coaches
-    if (userGender === 'male' && userType === 'professional') {
-      videoEmbed = `<iframe src="https://player.vimeo.com/video/1068596901?h=2ac5605207&autoplay=1&loop=1&background=${useBackground ? '1' : '0'}&autopause=0&player_id=0&app_id=58479&controls=0" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media" style="position:absolute;top:0;left:0;width:100%;height:100%;" title="Male Professional"></iframe><script src="https://player.vimeo.com/api/player.js"></script>`;
-    }
-    
-    // Coach video (regardless of gender)
-    if (userType === 'coach') {
-      videoEmbed = `<iframe src="https://player.vimeo.com/video/1068604198?h=07d9021fd2&autoplay=1&loop=1&background=${useBackground ? '1' : '0'}&autopause=0&player_id=0&app_id=58479&controls=0" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media" style="position:absolute;top:0;left:0;width:100%;height:100%;" title="Coach"></iframe><script src="https://player.vimeo.com/api/player.js"></script>`;
-    }
-    
-    // Parent video (regardless of gender)
-    if (userType === 'parent') {
-      videoEmbed = `<iframe src="https://player.vimeo.com/video/1068629360?h=46b5c52b31&autoplay=1&loop=1&background=${useBackground ? '1' : '0'}&autopause=0&player_id=0&app_id=58479&controls=0" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media" style="position:absolute;top:0;left:0;width:100%;height:100%;" title="Parent"></iframe><script src="https://player.vimeo.com/api/player.js"></script>`;
-    }
-    
-    // Adult training video
-    if (userType === 'adult') {
-      videoEmbed = `<iframe src="https://player.vimeo.com/video/1068788229?h=5f3c14e5ec&autoplay=1&loop=1&background=${useBackground ? '1' : '0'}&autopause=0&player_id=0&app_id=58479&controls=0" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media" style="position:absolute;top:0;left:0;width:100%;height:100%;" title="Adult"></iframe><script src="https://player.vimeo.com/api/player.js"></script>`;
-    }
-    
-    // Summer camps video
-    if (userType === 'camps') {
-      videoEmbed = `<iframe src="https://player.vimeo.com/video/1068835737?h=f0a05fef01&autoplay=1&loop=1&background=${useBackground ? '1' : '0'}&autopause=0&player_id=0&app_id=58479&controls=0" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media" style="position:absolute;top:0;left:0;width:100%;height:100%;" title="Summer Camps"></iframe><script src="https://player.vimeo.com/api/player.js"></script>`;
-    }
   }
-
-  return videoEmbed;
+  
+  // Using default if no specific video is available
+  if (videoId === '') {
+    videoId = '1068835737';
+  }
+  
+  const autoplayParam = autoplay ? '&autoplay=1&loop=1&background=1' : '';
+  const controlsParam = showControls ? '&controls=1' : '&controls=0';
+  
+  return `<div style="padding:56.25% 0 0 0;position:relative;"><iframe src="https://player.vimeo.com/video/${videoId}?h=f0a05fef01${autoplayParam}&title=0&byline=0&portrait=0${controlsParam}" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen style="position:absolute;top:0;left:0;width:100%;height:100%;"></iframe></div><script src="https://player.vimeo.com/api/player.js"></script>`;
 };
 
-export const getWelcomeMessage = (userType: UserType | null, t: (key: string) => string): string => {
-  if (!userType) return t('home.welcomeSubtitle');
+export const getWelcomeMessage = (userType: UserType, t: any) => {
+  if (!t) return '';
   
-  const messageKeys: Record<UserType, string> = {
-    junior: 'home.welcomeJunior',
-    performance: 'home.welcomePerformance',
-    professional: 'home.welcomeProfessional',
-    coach: 'home.welcomeCoach',
-    parent: 'home.welcomeParent',
-    adult: 'home.welcomeAdult',
-    camps: 'camps.subtitle'
-  };
-  
-  return t(messageKeys[userType]);
+  switch (userType) {
+    case 'junior':
+      return t('home.welcomeJunior');
+    case 'professional':
+      return t('home.welcomeProfessional');
+    case 'performance':
+      return t('home.welcomePerformance');
+    case 'coach':
+      return t('home.welcomeCoach');
+    case 'parent':
+      return t('home.welcomeParent');
+    case 'adult':
+      return t('home.welcomeAdult');
+    default:
+      return t('home.welcomeSubtitle');
+  }
 };
 
-export const getPersonalizedMethodDescription = (userType: UserType | null, t: (key: string) => string): string => {
-  if (!userType) {
-    return t('method.description.default');
+export const getPersonalizedMethodDescription = (userType: UserType, t: any) => {
+  if (!t) return '';
+
+  switch (userType) {
+    case 'junior':
+      return t('method.description.junior');
+    case 'professional':
+      return t('method.description.professional');
+    case 'performance':
+      return t('method.description.performance');
+    case 'coach':
+      return t('method.description.coach');
+    case 'parent':
+      return t('method.description.parent');
+    case 'adult':
+      return t('method.description.adult');
+    default:
+      return t('method.description.default');
   }
-
-  const descriptionKeys: Record<UserType, string> = {
-    junior: 'method.description.junior',
-    performance: 'method.description.performance',
-    professional: 'method.description.professional',
-    coach: 'method.description.coach',
-    parent: 'method.description.parent',
-    adult: 'method.description.adult',
-    camps: 'method.description.camps'
-  };
-
-  return t(descriptionKeys[userType]);
 };

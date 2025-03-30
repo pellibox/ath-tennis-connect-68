@@ -1,3 +1,4 @@
+
 export const it = {
   nav: {
     home: "Home",
@@ -45,6 +46,7 @@ export const it = {
     coachButton: "Incontra i Coach",
     programDescription: "Offriamo una vasta gamma di programmi per giocatori di tutti i livelli e età.",
     programButton: "Scopri i Programmi",
+    button: "IL NOSTRO METODO"
   },
   about: {
     challenges: "Le Sfide del Tennis Moderno",
@@ -262,6 +264,7 @@ export const it = {
     contactForm: "Modulo di Contatto",
     contactInformation: "Informazioni di Contatto",
     contactMap: "Mappa",
+    submit: "Invia Messaggio"
   },
   footer: {
     copyright: "Copyright © 2024 ATH. Tutti i diritti riservati.",
@@ -472,66 +475,7 @@ export const it = {
     padel: "Programmi Padel",
     pickleball: "Programmi Pickleball",
     touchTennis: "Programmi Touch Tennis",
-  },
-  programs: {
-    ath: {
-      title: "Programmi ATH",
-      subtitle: "Scopri il nostro approccio unico all'allenamento sportivo"
-    },
-    intro: "I Programmi ATH integrano tecnologia avanzata, coaching esperto e metodologia personalizzata per massimizzare il potenziale di ogni atleta.",
-    methodology: "La nostra metodologia unica è basata su dati obiettivi e analisi parametrica, garantendo un percorso di sviluppo ottimale per giocatori di qualsiasi livello ed età.",
-    sport: {
-      description: "Offriamo programmi specializzati per vari sport con racchetta, applicando la metodologia ATH a ciascuna disciplina con adattamenti specifici."
-    },
-    select: {
-      sport: "Seleziona uno Sport"
-    },
-    explore: {
-      programs: "Esplora i nostri programmi per ciascuno sport racchetta",
-      tennis: "Esplora tutti i programmi Tennis →",
-      padel: "Esplora tutti i programmi Padel →",
-      pickleball: "Esplora tutti i programmi Pickleball →",
-      touchtennis: "Esplora tutti i programmi Touch Tennis →"
-    },
-    tennis: "Tennis",
-    padel: "Padel",
-    pickleball: "Pickleball",
-    touchtennis: "Touch Tennis",
-    tennis: {
-      description: "La nostra offerta principale con programmi completi per tutti i livelli, dall'iniziazione al professionismo."
-    },
-    padel: {
-      description: "Programmi innovativi per il padel con analisi tecnica avanzata e sviluppo strategico."
-    },
-    pickleball: {
-      description: "Metodologia specializzata per questo sport in rapida crescita, con focus su tecnica e strategia di gioco."
-    },
-    touchtennis: {
-      description: "Allenamento specifico per touch tennis con enfasi su precisione e controllo."
-    },
-    why: {
-      ath: "Perché Scegliere ATH"
-    },
-    feature: {
-      tech: "Tecnologia Avanzata",
-      tech: {
-        desc: "Monitoraggio parametrico completo con il sistema VICKI™"
-      },
-      experts: "Coach Esperti",
-      experts: {
-        desc: "Professionisti certificati con esperienza internazionale"
-      },
-      integrated: "Metodologia Integrata",
-      integrated: {
-        desc: "Approccio che combina tecnica, tattica, fisico e mentale"
-      },
-      personalization: "Personalizzazione",
-      personalization: {
-        desc: "Programmi adattati alle caratteristiche uniche di ogni atleta"
-      }
-    },
-    request: {
-      info: "Richiedi Informazioni"
-    }
-  },
+  }
 };
+
+export { it as default };
