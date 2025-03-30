@@ -14,7 +14,7 @@ const CollapsibleContent = React.forwardRef<
 >(({ forceMount, ...props }, ref) => (
   <CollapsiblePrimitive.Content 
     ref={ref}
-    forceMount={forceMount}
+    forceMount={forceMount ? true : undefined}
     {...props} 
   />
 ))

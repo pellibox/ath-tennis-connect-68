@@ -50,7 +50,7 @@ const TabsContent = React.forwardRef<
         className
       )}
       {...props}
-      forceMount={alwaysRender}
+      forceMount={alwaysRender ? true : undefined}
     />
   )
 })

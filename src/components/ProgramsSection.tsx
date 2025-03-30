@@ -1,3 +1,4 @@
+
 import { ArrowRight, Play, Target } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import RevealAnimation from './RevealAnimation';
@@ -369,7 +370,7 @@ const ProgramsSection = ({
                       </CollapsibleTrigger>
                     </div>
                     
-                    <CollapsibleContent forceMount={initiallyOpen}>
+                    <CollapsibleContent forceMount={initiallyOpen ? true : undefined}>
                       <div className={cn(
                         "grid gap-4 md:gap-8",
                         gridLayout === 'dense' 
