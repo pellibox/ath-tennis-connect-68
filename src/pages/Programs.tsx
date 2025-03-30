@@ -1,3 +1,4 @@
+
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Header from '@/components/Header';
@@ -162,48 +163,47 @@ const Programs = () => {
         
         <div id="programs-section" className="bg-ath-gray py-12">
           {isMobile ? (
-              <div className="mb-8">
-                <h2 className="text-2xl font-display mb-6">Seleziona lo Sport</h2>
-                <Tabs value={activeTab} onValueChange={handleTabChange} className="w-full">
-                  <TabsList className="w-full mb-2 bg-white border border-gray-200 rounded-full p-1 flex justify-between">
-                    <TabsTrigger 
-                      value="tennis" 
-                      className="flex-1 rounded-full data-[state=active]:bg-ath-clay data-[state=active]:text-white px-4 py-2"
-                    >
-                      Tennis
-                    </TabsTrigger>
-                    <TabsTrigger 
-                      value="padel" 
-                      className="flex-1 rounded-full data-[state=active]:bg-ath-clay data-[state=active]:text-white px-4 py-2"
-                    >
-                      Padel
-                    </TabsTrigger>
-                  </TabsList>
-                  <TabsList className="w-full bg-white border border-gray-200 rounded-full p-1 flex justify-between">
-                    <TabsTrigger 
-                      value="pickleball" 
-                      className="flex-1 rounded-full data-[state=active]:bg-ath-clay data-[state=active]:text-white px-4 py-2"
-                    >
-                      Pickleball
-                    </TabsTrigger>
-                    <TabsTrigger 
-                      value="touchtennis" 
-                      className="flex-1 rounded-full data-[state=active]:bg-ath-clay data-[state=active]:text-white px-4 py-2"
-                    >
-                      TouchTennis
-                    </TabsTrigger>
-                  </TabsList>
-                </Tabs>
-              </div>
-            ) : null}
-            
-            <ProgramsSection 
-              title={title}
-              subtitle={subtitle}
-              categories={filteredCategories}
-              className=""
-            />
-          </div>
+            <div className="mb-8">
+              <h2 className="text-2xl font-display mb-6">Seleziona lo Sport</h2>
+              <Tabs value={activeTab} onValueChange={handleTabChange} className="w-full">
+                <TabsList className="w-full mb-2 bg-white border border-gray-200 rounded-full p-1 flex justify-between">
+                  <TabsTrigger 
+                    value="tennis" 
+                    className="flex-1 rounded-full data-[state=active]:bg-ath-clay data-[state=active]:text-white px-4 py-2"
+                  >
+                    Tennis
+                  </TabsTrigger>
+                  <TabsTrigger 
+                    value="padel" 
+                    className="flex-1 rounded-full data-[state=active]:bg-ath-clay data-[state=active]:text-white px-4 py-2"
+                  >
+                    Padel
+                  </TabsTrigger>
+                </TabsList>
+                <TabsList className="w-full bg-white border border-gray-200 rounded-full p-1 flex justify-between">
+                  <TabsTrigger 
+                    value="pickleball" 
+                    className="flex-1 rounded-full data-[state=active]:bg-ath-clay data-[state=active]:text-white px-4 py-2"
+                  >
+                    Pickleball
+                  </TabsTrigger>
+                  <TabsTrigger 
+                    value="touchtennis" 
+                    className="flex-1 rounded-full data-[state=active]:bg-ath-clay data-[state=active]:text-white px-4 py-2"
+                  >
+                    TouchTennis
+                  </TabsTrigger>
+                </TabsList>
+              </Tabs>
+            </div>
+          ) : null}
+          
+          <ProgramsSection 
+            title={title}
+            subtitle={subtitle}
+            categories={filteredCategories}
+            className=""
+          />
         </div>
         
         <AboutSection 
