@@ -13,6 +13,7 @@ import BottomNavigation from './navigation/BottomNavigation';
 import { Button } from './ui/button';
 import MobileMenu from './navigation/MobileMenu';
 import ProgramsDropdown from './navigation/ProgramsDropdown';
+import ProfileDialog from './profile/ProfileDialog';
 
 interface HeaderProps {
   useVickiLogo?: boolean;
@@ -23,7 +24,8 @@ const Header = ({ useVickiLogo = false }: HeaderProps) => {
   const navigate = useNavigate();
   const { t } = useLanguage();
   const isMobile = useIsMobile();
-  const { userGender, userType, sport } = useProfile();
+  const { userGender, userType, sport, updateProfile, resetProfile, deleteProfile } = useProfile();
+  const [profileDialogOpen, setProfileDialogOpen] = useState(false);
   
   const handleGoBack = () => {
     navigate(-1);
@@ -92,7 +94,19 @@ const Header = ({ useVickiLogo = false }: HeaderProps) => {
           )}
           
           {!isMobile && (
-            <div className="flex items-center z-50 ml-auto lg:ml-0">
+            <div className="flex items-center z-50 ml-auto lg:ml-0 gap-4">
+              <div className={cn("hidden lg:block", textColorClass)}>
+                <ProfileDialog 
+                  open={profileDialogOpen}
+                  setOpen={setProfileDialogOpen}
+                  userGender={userGender}
+                  userType={userType}
+                  sport={sport}
+                  updateProfile={updateProfile}
+                  resetProfile={resetProfile}
+                  deleteProfile={deleteProfile}
+                />
+              </div>
               <div className={cn("hidden lg:block", textColorClass)}>
                 <LanguageSwitcher />
               </div>
