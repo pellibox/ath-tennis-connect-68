@@ -59,7 +59,7 @@ const StandardHeroVideo = ({
         >
           <div 
             style={{
-              width: isMobile ? '240px' : '320px',
+              width: isMobile ? '120px' : '160px',
               transform: `translateY(-${logoYOffset}px)`
             }}
             className="flex justify-center"
