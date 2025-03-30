@@ -51,12 +51,8 @@ const ProgramsOverview = () => {
     <div className="flex flex-col min-h-screen">
       <Header />
       <main className="flex-grow">
-        <StandardHeroVideo 
-          vimeoEmbed={vimeoEmbed}
-        />
-        
-        <div className="container mx-auto px-4 py-12">
-          <Breadcrumb className="mb-6">
+        <div className="container mx-auto px-4 pt-4">
+          <Breadcrumb>
             <BreadcrumbList>
               <BreadcrumbItem>
                 <Link to="/" className="text-gray-600 hover:text-ath-clay">Home</Link>
@@ -67,7 +63,13 @@ const ProgramsOverview = () => {
               </BreadcrumbItem>
             </BreadcrumbList>
           </Breadcrumb>
-          
+        </div>
+        
+        <StandardHeroVideo 
+          vimeoEmbed={vimeoEmbed}
+        />
+        
+        <div className="container mx-auto px-4 py-12">
           <RevealAnimation>
             <h1 className="text-4xl font-bold mb-6">Programmi ATH</h1>
             <div className="max-w-4xl mb-12 space-y-4 text-gray-700">
