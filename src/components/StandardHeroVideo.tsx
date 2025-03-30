@@ -53,7 +53,7 @@ const StandardHeroVideo = ({
         <div 
           className="fixed z-50 pointer-events-none transition-opacity duration-300 left-0 right-0 flex justify-center"
           style={{
-            top: isMobile ? '140px' : '180px', // Adjusted to match programs page
+            top: isMobile ? '140px' : '180px', 
             opacity: logoOpacity
           }}
         >
@@ -62,7 +62,7 @@ const StandardHeroVideo = ({
               width: isMobile ? '120px' : '160px',
               transform: `translateY(-${logoYOffset}px)`
             }}
-            className="flex justify-center"
+            className="flex justify-center w-full" // Added w-full to ensure perfect centering
           >
             <Logo 
               onDarkBackground={true} 
