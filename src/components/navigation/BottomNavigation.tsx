@@ -2,7 +2,7 @@
 import { Link, useLocation } from 'react-router-dom';
 import { HelpCircle, BookOpen, Zap, Server } from 'lucide-react';
 import { FaList } from "react-icons/fa6";
-import { CgProfile } from "react-icons/cg";
+import { CgProfile } from "react-icons/cg";  // Corrected import
 import { cn } from '@/lib/utils';
 import { useProfile } from '@/contexts/ProfileContext';
 import { useLanguage } from '@/contexts/LanguageContext';

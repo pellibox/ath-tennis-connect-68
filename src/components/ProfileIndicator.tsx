@@ -2,25 +2,9 @@ import React, { useState } from 'react';
 import { UserGender, UserType } from './UserTypeSelector';
 import { SportType } from '@/contexts/ProfileContext';
 import { Button } from "@/components/ui/button";
-import { GraduationCap, Target, Briefcase, UserCog, Users, Edit, X, RotateCcw, CircleDot, Globe, CgProfile } from 'lucide-react';
+import { GraduationCap, Target, Briefcase, UserCog, Users, Edit, X, RotateCcw, CircleDot, Globe } from 'lucide-react';
+import { CgProfile } from "react-icons/cg";
 import { useLanguage } from '@/contexts/LanguageContext';
-import {
-  HoverCard,
-  HoverCardContent,
-  HoverCardTrigger,
-} from "@/components/ui/hover-card";
-import {
-  AlertDialog,
-  AlertDialogAction,
-  AlertDialogCancel,
-  AlertDialogContent,
-  AlertDialogDescription,
-  AlertDialogFooter,
-  AlertDialogHeader,
-  AlertDialogTitle,
-  AlertDialogTrigger,
-} from "@/components/ui/alert-dialog";
-import LanguageSwitcher from './LanguageSwitcher';
 import { useIsMobile } from '@/hooks/use-mobile';
 
 interface ProfileIndicatorProps {

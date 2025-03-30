@@ -1,15 +1,15 @@
 
 import { UserGender, UserType } from '../UserTypeSelector';
 import UserTypeSelector from '../UserTypeSelector';
-import { CgProfile } from "react-icons/cg";
+import { CgProfile } from "react-icons/cg";  // Corrected import
 import { SportType } from '@/contexts/ProfileContext';
-import {
-  Dialog,
-  DialogContent,
-  DialogHeader,
-  DialogTitle,
-  DialogDescription,
-  DialogTrigger,
+import { 
+  Dialog, 
+  DialogContent, 
+  DialogHeader, 
+  DialogTitle, 
+  DialogDescription, 
+  DialogTrigger 
 } from "@/components/ui/dialog";
 import ProfileIndicator from '../ProfileIndicator';
 import { toast } from "sonner";
