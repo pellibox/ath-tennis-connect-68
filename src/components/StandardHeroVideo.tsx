@@ -74,8 +74,23 @@ const StandardHeroVideo = ({
         </div>
       )}
       
-      <div className="w-full bg-black min-h-[calc(100vw*9/16)] relative">
-        <div dangerouslySetInnerHTML={{ __html: vimeoEmbed }} />
+      <div className="w-full bg-black min-h-[calc(100vw*9/16)] relative overflow-hidden">
+        <div 
+          className="w-full h-full" 
+          style={{ 
+            position: 'relative', 
+            paddingBottom: '56.25%', /* 16:9 Aspect Ratio */
+            overflow: 'hidden'
+          }}
+        >
+          <div 
+            dangerouslySetInnerHTML={{ __html: vimeoEmbed }} 
+            className="absolute top-0 left-0 w-full h-full"
+            style={{
+              transform: 'scale(1.01)', /* Slightly scale up to avoid any gap */
+            }}
+          />
+        </div>
       </div>
       
       {(title || subtitle) && (
