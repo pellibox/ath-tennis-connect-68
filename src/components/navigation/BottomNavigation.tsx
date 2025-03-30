@@ -1,7 +1,7 @@
 
 import { Link, useLocation } from 'react-router-dom';
-import { HelpCircle, BookOpen, Zap, Server, User } from 'lucide-react';
 import { FaList } from "react-icons/fa6";
+import { Zap, Server, User } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { useProfile } from '@/contexts/ProfileContext';
 import { useLanguage } from '@/contexts/LanguageContext';
@@ -14,17 +14,28 @@ const BottomNavigation = () => {
   const { userType, userGender, sport, updateProfile, resetProfile, deleteProfile } = useProfile();
   const [dialogOpen, setDialogOpen] = useState(false);
   
-  // Simplified navigation items for bottom nav
+  // Removed the "about" navigation item
   const bottomNavItems = [
-    { text: t("nav.about"), href: '/about', icon: <HelpCircle size={20} /> },
-    { text: t("nav.method"), href: '/method', icon: <BookOpen size={20} /> },
+    { 
+      text: t("nav.method"), 
+      href: '/method', 
+      icon: <BookOpen size={20} /> 
+    },
     { 
       text: t("nav.programs"), 
       href: '/programs/overview', 
       icon: <FaList size={20} /> 
     },
-    { text: t("tech.title.short"), href: '/technology', icon: <Zap size={20} /> },
-    { text: t("nav.facilities"), href: '/facilities', icon: <Server size={20} /> }
+    { 
+      text: t("tech.title.short"), 
+      href: '/technology', 
+      icon: <Zap size={20} /> 
+    },
+    { 
+      text: t("nav.facilities"), 
+      href: '/facilities', 
+      icon: <Server size={20} /> 
+    }
   ];
 
   const isActive = (href: string) => {
