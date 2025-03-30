@@ -38,7 +38,7 @@ const BottomNavigation = () => {
             key={index}
             to={item.href}
             className={cn(
-              "flex flex-col items-center justify-center px-1 py-2 text-[10px]",
+              "flex flex-col items-center justify-center px-1 py-2 text-[10px] font-swiss",
               isActive(item.href) 
                 ? "text-ath-clay" 
                 : "text-gray-600"
