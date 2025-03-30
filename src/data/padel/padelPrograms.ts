@@ -3,37 +3,45 @@ import { Program } from './types';
 
 export const padelPrograms: Program[] = [
   {
-    id: "padel-beginners",
-    title: "Padel Principianti",
-    description: "Programma introduttivo al padel per chi si avvicina per la prima volta a questo sport. Impara le basi, la tecnica e le regole fondamentali.",
+    id: "padel-junior",
+    title: "Padel Bambini e Teen",
+    description: "Programma dedicato ai giovani giocatori di padel, con un approccio divertente e formativo per imparare le basi e sviluppare la passione per questo sport.",
     image: "/lovable-uploads/padel-courts.png",
-    link: "/padel#padel-beginners",
+    link: "/padel#padel-junior",
     features: [
-      "Introduzione alle regole e al campo da gioco",
+      "Approccio ludico e inclusivo adatto all'età",
       "Tecnica di base: impugnatura, posizione e colpi fondamentali", 
-      "Sessioni di gioco guidate",
-      "Analisi tecnica con sistema Vicki™"
+      "Sessioni di gioco guidate in gruppi ridotti",
+      "Sviluppo della coordinazione e delle capacità motorie"
+    ],
+    pricing: [
+      "Monosettimanale annuale: €1040",
+      "Bisettimanale annuale: €2080"
     ],
     vickiPowered: true
   },
   {
-    id: "padel-intermediate",
-    title: "Padel Intermedio",
-    description: "Perfeziona la tua tecnica e sviluppa strategie di gioco più avanzate. Ideale per chi ha già esperienza base nel padel.",
+    id: "padel-adult",
+    title: "Padel Adulti",
+    description: "Programma per adulti dai 16 anni in su che vogliono imparare o migliorare nel padel con un'ora di attività per sessione.",
     image: "/lovable-uploads/padel-courts.png",
-    link: "/padel#padel-intermediate",
+    link: "/padel#padel-adult",
     features: [
-      "Perfezionamento dei colpi speciali: bandeja, vibora e chiquita",
-      "Strategie di posizionamento in coppia",
-      "Tattica offensiva e difensiva",
-      "Allenamento specifico con focus sulla risposta al servizio"
+      "Lezioni in piccoli gruppi (max 4 persone)",
+      "Tecnica completa dal livello principiante all'intermedio",
+      "Analisi video e feedback personalizzato",
+      "Focus sul gioco in coppia e sul posizionamento"
+    ],
+    pricing: [
+      "Monosettimanale annuale: €1040",
+      "Bisettimanale annuale: €2080"
     ],
     vickiPowered: true
   },
   {
     id: "padel-advanced",
-    title: "Padel Avanzato",
-    description: "Programma intensivo per giocatori esperti che vogliono portare il loro gioco a livello competitivo con analisi avanzata delle performance.",
+    title: "Padel Agonisti",
+    description: "Programma intensivo per giocatori competitivi che vogliono portare il loro gioco a livello agonistico con analisi avanzata delle performance.",
     image: "/lovable-uploads/padel-courts.png",
     link: "/padel#padel-advanced",
     features: [
@@ -41,6 +49,10 @@ export const padelPrograms: Program[] = [
       "Perfezionamento delle tecniche avanzate",
       "Preparazione fisica specifica per il padel",
       "Strategie di gioco per competizioni"
+    ],
+    pricing: [
+      "Monosettimanale annuale: €1400",
+      "Bisettimanale annuale: €2480"
     ],
     vickiMonitoringLevel: "advanced"
   },

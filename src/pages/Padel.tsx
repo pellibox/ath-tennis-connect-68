@@ -78,33 +78,42 @@ const Padel = () => {
               <h2 className="text-3xl md:text-4xl font-display mb-12 text-center">Prezzi dei Nostri Programmi</h2>
             </RevealAnimation>
             
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
               <RevealAnimation delay={100}>
                 <div className="bg-white p-8 rounded-lg border border-gray-200 shadow-sm hover:shadow-md transition-shadow h-full flex flex-col">
                   <div className="mb-6">
-                    <h3 className="text-2xl font-medium text-center mb-2">Padel Base</h3>
-                    <p className="text-center text-gray-600">Per principianti e giocatori occasionali</p>
+                    <h3 className="text-2xl font-medium text-center mb-2">Bambini e Teen</h3>
+                    <p className="text-center text-gray-600">Per giovani appassionati di padel</p>
                   </div>
-                  <div className="text-center mb-6">
-                    <span className="text-4xl font-bold">€35</span>
-                    <span className="text-gray-600">/ora</span>
+                  <div className="text-center mb-4">
+                    <div className="flex flex-col space-y-2">
+                      <span className="inline-flex justify-between">
+                        <span>Monosettimanale:</span>
+                        <span className="font-bold">€1040</span>
+                      </span>
+                      <span className="inline-flex justify-between">
+                        <span>Bisettimanale:</span>
+                        <span className="font-bold">€2080</span>
+                      </span>
+                      <span className="text-xs text-gray-500">all'anno</span>
+                    </div>
                   </div>
                   <ul className="mb-8 space-y-3 flex-grow">
                     <li className="flex items-start">
                       <span className="text-green-500 mr-2">✓</span>
-                      <span>Lezioni in piccoli gruppi (max 4 persone)</span>
+                      <span>Approccio ludico e inclusivo</span>
                     </li>
                     <li className="flex items-start">
                       <span className="text-green-500 mr-2">✓</span>
-                      <span>Analisi tecnica di base</span>
+                      <span>Tecnica di base del padel</span>
                     </li>
                     <li className="flex items-start">
                       <span className="text-green-500 mr-2">✓</span>
-                      <span>Fondamentali del gioco</span>
+                      <span>Sessioni in piccoli gruppi</span>
                     </li>
                     <li className="flex items-start">
                       <span className="text-green-500 mr-2">✓</span>
-                      <span>Accesso alle strutture per 1 ora</span>
+                      <span>Sviluppo coordinazione</span>
                     </li>
                   </ul>
                   <button className="mt-auto w-full bg-ath-clay text-white py-3 rounded-md hover:bg-opacity-90 transition-colors">
@@ -114,38 +123,40 @@ const Padel = () => {
               </RevealAnimation>
               
               <RevealAnimation delay={200}>
-                <div className="bg-white p-8 rounded-lg border-2 border-ath-clay shadow-md hover:shadow-lg transition-shadow h-full flex flex-col relative">
-                  <div className="absolute -top-4 left-1/2 transform -translate-x-1/2 bg-ath-clay text-white px-4 py-1 rounded-full text-sm font-medium">
-                    Più Popolare
-                  </div>
+                <div className="bg-white p-8 rounded-lg border border-gray-200 shadow-sm hover:shadow-md transition-shadow h-full flex flex-col">
                   <div className="mb-6">
-                    <h3 className="text-2xl font-medium text-center mb-2">Padel Avanzato</h3>
-                    <p className="text-center text-gray-600">Per giocatori intermedi e avanzati</p>
+                    <h3 className="text-2xl font-medium text-center mb-2">Adulti</h3>
+                    <p className="text-center text-gray-600">Dai 16 anni - 1h di attività</p>
                   </div>
-                  <div className="text-center mb-6">
-                    <span className="text-4xl font-bold">€45</span>
-                    <span className="text-gray-600">/ora</span>
+                  <div className="text-center mb-4">
+                    <div className="flex flex-col space-y-2">
+                      <span className="inline-flex justify-between">
+                        <span>Monosettimanale:</span>
+                        <span className="font-bold">€1040</span>
+                      </span>
+                      <span className="inline-flex justify-between">
+                        <span>Bisettimanale:</span>
+                        <span className="font-bold">€2080</span>
+                      </span>
+                      <span className="text-xs text-gray-500">all'anno</span>
+                    </div>
                   </div>
                   <ul className="mb-8 space-y-3 flex-grow">
                     <li className="flex items-start">
                       <span className="text-green-500 mr-2">✓</span>
-                      <span>Lezioni in piccoli gruppi (max 3 persone)</span>
+                      <span>Lezioni in piccoli gruppi (max 4)</span>
                     </li>
                     <li className="flex items-start">
                       <span className="text-green-500 mr-2">✓</span>
-                      <span>Analisi video avanzata con VICKI™</span>
+                      <span>Analisi tecnica personalizzata</span>
                     </li>
                     <li className="flex items-start">
                       <span className="text-green-500 mr-2">✓</span>
-                      <span>Strategie di gioco avanzate</span>
+                      <span>Focus sul gioco in coppia</span>
                     </li>
                     <li className="flex items-start">
                       <span className="text-green-500 mr-2">✓</span>
-                      <span>Preparazione fisica specifica</span>
-                    </li>
-                    <li className="flex items-start">
-                      <span className="text-green-500 mr-2">✓</span>
-                      <span>Accesso alle strutture per 1.5 ore</span>
+                      <span>Per principianti e intermedi</span>
                     </li>
                   </ul>
                   <button className="mt-auto w-full bg-ath-clay text-white py-3 rounded-md hover:bg-opacity-90 transition-colors">
@@ -155,14 +166,69 @@ const Padel = () => {
               </RevealAnimation>
               
               <RevealAnimation delay={300}>
+                <div className="bg-white p-8 rounded-lg border-2 border-ath-clay shadow-md hover:shadow-lg transition-shadow h-full flex flex-col relative">
+                  <div className="absolute -top-4 left-1/2 transform -translate-x-1/2 bg-ath-clay text-white px-4 py-1 rounded-full text-sm font-medium">
+                    Più Popolare
+                  </div>
+                  <div className="mb-6">
+                    <h3 className="text-2xl font-medium text-center mb-2">Agonisti</h3>
+                    <p className="text-center text-gray-600">Programma competitivo avanzato</p>
+                  </div>
+                  <div className="text-center mb-4">
+                    <div className="flex flex-col space-y-2">
+                      <span className="inline-flex justify-between">
+                        <span>Monosettimanale:</span>
+                        <span className="font-bold">€1400</span>
+                      </span>
+                      <span className="inline-flex justify-between">
+                        <span>Bisettimanale:</span>
+                        <span className="font-bold">€2480</span>
+                      </span>
+                      <span className="text-xs text-gray-500">all'anno</span>
+                    </div>
+                  </div>
+                  <ul className="mb-8 space-y-3 flex-grow">
+                    <li className="flex items-start">
+                      <span className="text-green-500 mr-2">✓</span>
+                      <span>Analisi biomeccanica avanzata</span>
+                    </li>
+                    <li className="flex items-start">
+                      <span className="text-green-500 mr-2">✓</span>
+                      <span>Tecniche di gioco avanzate</span>
+                    </li>
+                    <li className="flex items-start">
+                      <span className="text-green-500 mr-2">✓</span>
+                      <span>Preparazione fisica specifica</span>
+                    </li>
+                    <li className="flex items-start">
+                      <span className="text-green-500 mr-2">✓</span>
+                      <span>Strategie per competizioni</span>
+                    </li>
+                    <li className="flex items-start">
+                      <span className="text-green-500 mr-2">✓</span>
+                      <span>Analisi VICKI™ Advanced</span>
+                    </li>
+                  </ul>
+                  <button className="mt-auto w-full bg-ath-clay text-white py-3 rounded-md hover:bg-opacity-90 transition-colors">
+                    Prenota Ora
+                  </button>
+                </div>
+              </RevealAnimation>
+              
+              <RevealAnimation delay={400}>
                 <div className="bg-white p-8 rounded-lg border border-gray-200 shadow-sm hover:shadow-md transition-shadow h-full flex flex-col">
                   <div className="mb-6">
                     <h3 className="text-2xl font-medium text-center mb-2">Coaching Privato</h3>
                     <p className="text-center text-gray-600">Sessioni personalizzate</p>
                   </div>
-                  <div className="text-center mb-6">
-                    <span className="text-4xl font-bold">€60</span>
-                    <span className="text-gray-600">/ora</span>
+                  <div className="text-center mb-4">
+                    <div className="flex flex-col space-y-2">
+                      <span className="inline-flex justify-between">
+                        <span>Prezzo:</span>
+                        <span className="font-bold">Su richiesta</span>
+                      </span>
+                      <span className="text-xs text-gray-500">Personalizzato in base alle esigenze</span>
+                    </div>
                   </div>
                   <ul className="mb-8 space-y-3 flex-grow">
                     <li className="flex items-start">

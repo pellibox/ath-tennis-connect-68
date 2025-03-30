@@ -18,6 +18,7 @@ interface Program {
   vimeoEmbed?: string;
   link: string;
   features?: string[];
+  pricing?: string[];
   monitoringLevel?: MonitoringLevel;
   vickiPowered?: boolean;
   vickiOnRequest?: boolean;
@@ -286,6 +287,19 @@ const ProgramsSection = ({
             </div>
           </div>
           <p className={cn("text-gray-600 mb-4 flex-grow", isMobile && "text-sm")}>{program.description}</p>
+          
+          {program.pricing && program.pricing.length > 0 && (
+            <div className="mb-4 bg-ath-clay/5 p-3 rounded-md">
+              <h4 className="text-sm font-semibold mb-1">Prezzi:</h4>
+              <ul className="space-y-1">
+                {program.pricing.map((price, idx) => (
+                  <li key={idx} className="text-sm flex justify-between">
+                    <span>{price}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
           
           {program.features && program.features.length > 0 && (
             <ul className={cn("text-gray-600 mb-5 space-y-2", isMobile ? "text-xs" : "text-sm")}>
