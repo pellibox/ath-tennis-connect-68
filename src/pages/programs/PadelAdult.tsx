@@ -18,15 +18,9 @@ const PadelAdult = () => {
       <Header />
       
       <main className="flex-grow">
-        <Hero
-          title="Padel Adulti"
-          subtitle="Programma per adulti dai 16 anni in su che vogliono imparare o migliorare nel padel."
-          imageSrc="/lovable-uploads/padel-courts.png"
-          buttons={[
-            { text: 'PRENOTA UNA PROVA', href: '/contact' }
-          ]}
-          fullHeight={false}
-        />
+        <div className="w-full bg-black relative aspect-video">
+          <div dangerouslySetInnerHTML={{ __html: '<div style="padding:56.25% 0 0 0;position:relative;"><iframe src="https://player.vimeo.com/video/1070761575?h=010aa2084b&autoplay=1&loop=1&title=0&byline=0&portrait=0&controls=0" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen style="position:absolute;top:0;left:0;width:100%;height:100%;"></iframe></div><script src="https://player.vimeo.com/api/player.js"></script>' }} />
+        </div>
         
         <div className="container mx-auto px-4 py-16">
           <ProgramDetails
