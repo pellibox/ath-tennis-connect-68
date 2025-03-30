@@ -1,3 +1,4 @@
+
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Header from '@/components/Header';
@@ -28,9 +29,20 @@ const Programs = () => {
     sport === 'touchtennis' ? 'touchtennis' : 
     'tennis'
   );
+  const [contentReady, setContentReady] = useState(false);
   
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
+    
+    // Set content as ready after a small delay to ensure rendering
+    const timer = setTimeout(() => {
+      setContentReady(true);
+      console.log("Programs page: Content marked as ready");
+    }, 100);
+    
+    console.log("Programs page initialized with sport:", sport, "activeTab:", activeTab);
+    
+    return () => clearTimeout(timer);
   }, []);
 
   const vimeoEmbed = getVimeoEmbed(userGender, userType, true, false, sport);
@@ -136,13 +148,21 @@ const Programs = () => {
             </div>
           ) : null}
           
-          <ProgramsSection 
-            title={title}
-            subtitle={subtitle}
-            categories={filteredCategories}
-            initiallyOpen={true}
-            className=""
-          />
+          {!contentReady && (
+            <div className="container mx-auto px-4 py-8 text-center">
+              <p className="text-gray-500">Caricamento programmi...</p>
+            </div>
+          )}
+          
+          <RevealAnimation immediate={true}>
+            <ProgramsSection 
+              title={title}
+              subtitle={subtitle}
+              categories={filteredCategories}
+              initiallyOpen={true}
+              className=""
+            />
+          </RevealAnimation>
         </div>
         
         <AboutSection 

@@ -1,5 +1,5 @@
 
-import { ArrowRight, Play, Target } from 'lucide-react';
+import { ArrowRight, Play, Target, ChevronDown, ChevronUp } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import RevealAnimation from './RevealAnimation';
 import { cn } from '@/lib/utils';
@@ -61,6 +61,7 @@ const ProgramsSection = ({
   const [videosPlaying, setVideosPlaying] = useState<Record<string, boolean>>({});
   const [blackOverlay, setBlackOverlay] = useState<Record<string, boolean>>({});
   const [openCategories, setOpenCategories] = useState<Record<string, boolean>>({});
+  const [contentInitialized, setContentInitialized] = useState(false);
   const videoRefs = useRef<Record<string, HTMLVideoElement | null>>({});
   const isMobile = useIsMobile();
   const sectionRef = useRef<HTMLElement>(null);
@@ -82,6 +83,14 @@ const ProgramsSection = ({
         initialOpenStates[category.id] = initiallyOpen;
       });
       setOpenCategories(initialOpenStates);
+      
+      // Mark content as initialized
+      const timer = setTimeout(() => {
+        setContentInitialized(true);
+        console.log('ProgramsSection: Content has been initialized');
+      }, 100);
+      
+      return () => clearTimeout(timer);
     }
   }, [categories, initiallyOpen]);
 
@@ -90,19 +99,20 @@ const ProgramsSection = ({
       title,
       categoriesCount: categories?.length,
       programsCount: programs?.length,
-      openCategoriesState: openCategories
+      openCategoriesState: openCategories,
+      initiallyOpen
     });
     
     if (categories) {
       categories.forEach(category => {
         category.programs.forEach(program => {
           if (program.vimeoEmbed) {
-            console.log(`Program ${program.id} in category ${category.id} has Vimeo embed: ${program.vimeoEmbed.substring(0, 100)}...`);
+            console.log(`Program ${program.id} in category ${category.id} has Vimeo embed: ${program.vimeoEmbed.substring(0, 50)}...`);
           }
         });
       });
     }
-  }, [title, categories, programs, openCategories]);
+  }, [title, categories, programs, openCategories, initiallyOpen]);
 
   const handleMouseEnter = (id: string) => {
     console.log(`Mouse enter for program ID: ${id}`);
@@ -192,13 +202,13 @@ const ProgramsSection = ({
         newSrc += (newSrc.includes('?') ? '&' : '?') + 'controls=0';
       }
       processedEmbed = processedEmbed.replace(originalSrc, newSrc);
-      console.log(`Processed Vimeo embed for hover=${isHovered}: ${newSrc.substring(0, 100)}...`);
+      console.log(`Processed Vimeo embed for hover=${isHovered}: ${newSrc.substring(0, 50)}...`);
     }
     return processedEmbed;
   };
 
   const renderProgramCard = (program: Program, index: number) => (
-    <RevealAnimation key={program.id} delay={index * 50} className="h-full">
+    <RevealAnimation key={program.id} delay={isMobile ? Math.min(index * 30, 150) : index * 50} className="h-full" immediate={isMobile}>
       <div 
         className="group h-full flex flex-col border border-gray-200 bg-white transition-all hover:shadow-sm overflow-hidden"
         onMouseEnter={() => {
@@ -336,15 +346,34 @@ const ProgramsSection = ({
     </RevealAnimation>
   );
 
+  // If not initialized yet on mobile and we need to show a loading state
+  if (isMobile && !contentInitialized && categories && categories.length > 0) {
+    return (
+      <section id="programs" ref={sectionRef} className={cn('py-8 md:py-16 px-4 md:px-6 lg:px-10', className)}>
+        <div className="max-w-7xl mx-auto">
+          <h2 className={cn("font-display mb-4", isMobile ? "text-2xl" : "text-3xl md:text-4xl")}>{title}</h2>
+          
+          {subtitle && (
+            <p className={cn("text-gray-600 max-w-3xl mb-6 md:mb-12", isMobile ? "text-base" : "text-lg")}>{subtitle}</p>
+          )}
+          
+          <div className="py-8 text-center">
+            <p className="text-gray-500">Caricamento programmi...</p>
+          </div>
+        </div>
+      </section>
+    );
+  }
+
   return (
     <section id="programs" ref={sectionRef} className={cn('py-8 md:py-16 px-4 md:px-6 lg:px-10', className)}>
       <div className="max-w-7xl mx-auto">
-        <RevealAnimation>
+        <RevealAnimation immediate={isMobile}>
           <h2 className={cn("font-display mb-4", isMobile ? "text-2xl" : "text-3xl md:text-4xl")}>{title}</h2>
         </RevealAnimation>
         
         {subtitle && (
-          <RevealAnimation delay={100}>
+          <RevealAnimation delay={100} immediate={isMobile}>
             <p className={cn("text-gray-600 max-w-3xl mb-6 md:mb-12", isMobile ? "text-base" : "text-lg")}>{subtitle}</p>
           </RevealAnimation>
         )}
@@ -363,8 +392,12 @@ const ProgramsSection = ({
                       <CollapsibleTrigger className="w-full">
                         <div className="flex items-center justify-between bg-white p-3 md:p-4 shadow-sm cursor-pointer hover:bg-gray-50">
                           <h3 className={cn("font-medium", isMobile ? "text-lg" : "text-2xl")}>{category.title}</h3>
-                          <div className={`transform transition-transform ${openCategories[category.id] ? 'rotate-180' : ''}`}>
-                            ▼
+                          <div className="flex items-center">
+                            {openCategories[category.id] ? (
+                              <ChevronUp className="h-5 w-5" />
+                            ) : (
+                              <ChevronDown className="h-5 w-5" />
+                            )}
                           </div>
                         </div>
                       </CollapsibleTrigger>
@@ -387,7 +420,7 @@ const ProgramsSection = ({
                   </Collapsible>
                 ) : (
                   <>
-                    <RevealAnimation delay={categoryIndex * 100}>
+                    <RevealAnimation delay={categoryIndex * 100} immediate={isMobile}>
                       <h3 className={cn("font-medium mb-4 md:mb-6 border-b pb-2", isMobile ? "text-lg" : "text-2xl")}>{category.title}</h3>
                     </RevealAnimation>
                     

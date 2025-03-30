@@ -1,5 +1,5 @@
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import ProgramsSection from '@/components/ProgramsSection';
@@ -35,6 +35,7 @@ const ProgramsOverview = () => {
   
   // Initialize open categories state
   const [initialRender, setInitialRender] = useState(true);
+  const [contentLoaded, setContentLoaded] = useState(false);
   
   useEffect(() => {
     if (sport) {
@@ -44,7 +45,10 @@ const ProgramsOverview = () => {
     // Mark that initial render is complete after a short delay
     const timer = setTimeout(() => {
       setInitialRender(false);
+      setContentLoaded(true);
     }, 100);
+    
+    console.log("ProgramsOverview initialized with sport:", sport, "activeTab:", activeTab);
     
     return () => clearTimeout(timer);
   }, [sport]);
@@ -140,8 +144,14 @@ const ProgramsOverview = () => {
                 }
                 
                 <div className="mt-8">
-                  {/* Use alwaysRender for tennis tab to ensure it's always in the DOM */}
-                  <TabsContent value="tennis" className="mt-0" alwaysRender={initialRender || activeTab === 'tennis'}>
+                  {!contentLoaded && (
+                    <div className="py-12 text-center">
+                      <p className="text-gray-500">Caricamento programmi...</p>
+                    </div>
+                  )}
+                  
+                  {/* Always render the tennis tab content with forceMount=true */}
+                  <TabsContent value="tennis" className="mt-0" alwaysRender={true}>
                     <div className="bg-gray-50 p-6 rounded-lg mb-8">
                       <h3 className="text-xl font-bold mb-3">Tennis</h3>
                       <p className="mb-4">
@@ -157,11 +167,11 @@ const ProgramsOverview = () => {
                       subtitle="I nostri programmi di punta, sviluppati con anni di esperienza" 
                       categories={programCategories} 
                       categoryCollapsible={true} 
-                      initiallyOpen={true} // Make sure categories are open by default
+                      initiallyOpen={true} 
                     />
                   </TabsContent>
                   
-                  <TabsContent value="padel" className="mt-0">
+                  <TabsContent value="padel" className="mt-0" alwaysRender={activeTab === 'padel'}>
                     <div className="bg-gray-50 p-6 rounded-lg mb-8">
                       <h3 className="text-xl font-bold mb-3">Padel</h3>
                       <p className="mb-4">
@@ -177,10 +187,11 @@ const ProgramsOverview = () => {
                       subtitle="I nostri programmi specializzati per il Padel" 
                       categories={padelCategories} 
                       categoryCollapsible={true} 
+                      initiallyOpen={true}
                     />
                   </TabsContent>
                   
-                  <TabsContent value="pickleball" className="mt-0">
+                  <TabsContent value="pickleball" className="mt-0" alwaysRender={activeTab === 'pickleball'}>
                     <div className="bg-gray-50 p-6 rounded-lg mb-8">
                       <h3 className="text-xl font-bold mb-3">Pickleball</h3>
                       <p className="mb-4">
@@ -196,10 +207,11 @@ const ProgramsOverview = () => {
                       subtitle="I nostri programmi specializzati per il Pickleball" 
                       categories={pickleballCategories} 
                       categoryCollapsible={true} 
+                      initiallyOpen={true}
                     />
                   </TabsContent>
                   
-                  <TabsContent value="touchtennis" className="mt-0">
+                  <TabsContent value="touchtennis" className="mt-0" alwaysRender={activeTab === 'touchtennis'}>
                     <div className="bg-gray-50 p-6 rounded-lg mb-8">
                       <h3 className="text-xl font-bold mb-3">TouchTennis</h3>
                       <p className="mb-4">
@@ -215,6 +227,7 @@ const ProgramsOverview = () => {
                       subtitle="Tennis in formato ridotto, divertimento senza limiti" 
                       categories={touchTennisCategories} 
                       categoryCollapsible={true} 
+                      initiallyOpen={true}
                     />
                   </TabsContent>
                 </div>
