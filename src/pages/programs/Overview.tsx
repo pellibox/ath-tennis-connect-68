@@ -16,6 +16,7 @@ import { getVimeoEmbed } from '@/utils/videoUtils';
 import RevealAnimation from '@/components/RevealAnimation';
 import MultisportExplanation from '@/components/programs/MultisportExplanation';
 import StandardHeroVideo from '@/components/StandardHeroVideo';
+
 const ProgramsOverview = () => {
   const {
     userType,
@@ -23,17 +24,31 @@ const ProgramsOverview = () => {
     sport,
     updateSport
   } = useProfile();
-  const [activeTab, setActiveTab] = useState<'tennis' | 'padel' | 'pickleball' | 'touchtennis'>(sport === 'padel' ? 'padel' : sport === 'pickleball' ? 'pickleball' : sport === 'touchtennis' ? 'touchtennis' : 'tennis');
+  
+  const [activeTab, setActiveTab] = useState<'tennis' | 'padel' | 'pickleball' | 'touchtennis'>(
+    sport === 'padel' ? 'padel' : 
+    sport === 'pickleball' ? 'pickleball' : 
+    sport === 'touchtennis' ? 'touchtennis' : 
+    'tennis'
+  );
+  
+  useEffect(() => {
+    if (sport) {
+      setActiveTab(sport as 'tennis' | 'padel' | 'pickleball' | 'touchtennis');
+    }
+  }, [sport]);
+  
   const isMobile = useIsMobile();
   const vimeoEmbed = getVimeoEmbed(userGender, userType);
+  
   const handleTabChange = (value: string) => {
     setActiveTab(value as 'tennis' | 'padel' | 'pickleball' | 'touchtennis');
 
-    // Update sport in profile context
     if (value === 'tennis' || value === 'padel' || value === 'pickleball' || value === 'touchtennis') {
       updateSport(value as SportType);
     }
   };
+  
   return <div className="flex flex-col min-h-screen">
       <Header />
       <main className="flex-grow">
@@ -202,4 +217,5 @@ const ProgramsOverview = () => {
       <Footer />
     </div>;
 };
+
 export default ProgramsOverview;

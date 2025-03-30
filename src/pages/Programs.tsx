@@ -1,4 +1,3 @@
-
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Header from '@/components/Header';
@@ -22,20 +21,17 @@ const Programs = () => {
   const isMobile = useIsMobile();
   const [showAllPrograms, setShowAllPrograms] = useState(false);
   const { userGender, userType, sport, updateSport } = useProfile();
-  const [activeTab, setActiveTab] = useState<'tennis' | 'padel' | 'pickleball' | 'touchtennis'>('tennis');
+  const [activeTab, setActiveTab] = useState<'tennis' | 'padel' | 'pickleball' | 'touchtennis'>(
+    sport === 'padel' ? 'padel' : 
+    sport === 'pickleball' ? 'pickleball' : 
+    sport === 'touchtennis' ? 'touchtennis' : 
+    'tennis'
+  );
   
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }, []);
 
-  useEffect(() => {
-    if (userType && userGender) { // Only update profile if user already has a profile
-      if (sport !== 'tennis') {
-        updateSport('tennis');
-      }
-    }
-  }, [sport, userType, userGender, updateSport]);
-  
   const vimeoEmbed = getVimeoEmbed(userGender, userType);
   
   const { filteredCategories, title, subtitle } = ProgramFilters({ 

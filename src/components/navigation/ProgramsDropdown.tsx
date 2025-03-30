@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { ChevronDown } from 'lucide-react';
@@ -23,7 +22,7 @@ const ProgramsDropdown = ({ textColorClass }: ProgramsDropdownProps) => {
   const { sport, updateSport, userGender, userType } = useProfile();
   const isMobile = useIsMobile();
   
-  const [activeSport, setActiveSport] = useState<SportType | null>(null);
+  const [activeSport, setActiveSport] = useState<SportType | null>(sport);
   const [hasExplicitSelection, setHasExplicitSelection] = useState(false);
   
   useEffect(() => {
@@ -31,22 +30,42 @@ const ProgramsDropdown = ({ textColorClass }: ProgramsDropdownProps) => {
     
     if (path.includes('touchtennis')) {
       setActiveSport('touchtennis');
+      if (!hasExplicitSelection) {
+        updateSport('touchtennis');
+      }
     } else if (path.includes('padel')) {
       setActiveSport('padel');
+      if (!hasExplicitSelection) {
+        updateSport('padel');
+      }
     } else if (path.includes('pickleball')) {
       setActiveSport('pickleball');
+      if (!hasExplicitSelection) {
+        updateSport('pickleball');
+      }
     } else if (path.includes('programs')) {
-      setActiveSport('tennis');
+      if (path === '/programs' || path === '/programs/') {
+        setActiveSport('tennis');
+        if (!hasExplicitSelection) {
+          updateSport('tennis');
+        }
+      } else {
+        setActiveSport(sport);
+      }
     } else {
       setActiveSport(sport);
     }
-  }, [location.pathname, sport]);
+  }, [location.pathname, sport, hasExplicitSelection, updateSport]);
+  
+  useEffect(() => {
+    if (sport && sport !== activeSport) {
+      setActiveSport(sport);
+    }
+  }, [sport, activeSport]);
   
   const handleSportSelect = (sportType: SportType) => {
-    if (userGender && userType) {
-      updateSport(sportType);
-    }
-    
+    updateSport(sportType);
+    setActiveSport(sportType);
     setHasExplicitSelection(true);
     
     switch (sportType) {
