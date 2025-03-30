@@ -2,7 +2,7 @@
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import { Toaster } from "@/components/ui/sonner";
 import { LanguageProvider } from './contexts/LanguageContext';
-import { ProfileProvider } from './contexts/ProfileProvider';
+import { ProfileProvider } from './contexts/ProfileContext';
 import { useIsMobile } from './hooks/use-mobile';
 import HomePage from '@/pages/Index';
 import ProgramsOverview from '@/pages/programs/Overview';

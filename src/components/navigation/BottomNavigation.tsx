@@ -1,7 +1,7 @@
 
 import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { User, Home, Info, Phone, Racket } from 'lucide-react';
+import { User, Home, Info, Phone, Tennis } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import ProfileDialog from '@/components/profile/ProfileDialog';
 import { useProfile } from '@/contexts/ProfileContext';
@@ -59,7 +59,7 @@ const BottomNavigation = () => {
             isActive('/programs') || isActive('/padel') || isActive('/pickleball') || isActive('/touchtennis') ? "text-ath-clay" : "text-gray-500"
           )}
         >
-          <Racket size={20} />
+          <Tennis size={20} />
           <span className="mt-0.5 text-[10px]">Programmi</span>
         </Link>
         
