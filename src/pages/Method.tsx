@@ -24,7 +24,7 @@ const MethodPage = () => {
     <div className="flex flex-col min-h-screen relative">
       <Header />
       
-      <main className="flex-grow pt-20">
+      <main className="flex-grow">
         <StandardHeroVideo 
           vimeoEmbed={vimeoEmbed}
           title="IL METODO:"
