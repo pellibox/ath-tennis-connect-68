@@ -1,6 +1,7 @@
+
 import { useState } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
-import { ChevronLeft, Menu, X } from 'lucide-react';
+import { ChevronLeft } from 'lucide-react';
 import Logo from './Logo';
 import { cn } from '@/lib/utils';
 import LanguageSwitcher from './LanguageSwitcher';
@@ -9,7 +10,7 @@ import { useProfile } from '@/contexts/ProfileContext';
 import { useIsMobile } from '@/hooks/use-mobile';
 import NavigationLinks from './navigation/NavigationLinks';
 import BottomNavigation from './navigation/BottomNavigation';
-import ProfileDialog from './profile/ProfileDialog';
+import PrivacyPage from '@/pages/Privacy';
 import { Button } from './ui/button';
 import MobileMenu from './navigation/MobileMenu';
 
@@ -22,12 +23,8 @@ const Header = ({ useVickiLogo = false }: HeaderProps) => {
   const navigate = useNavigate();
   const { t } = useLanguage();
   const isMobile = useIsMobile();
-  const { userGender, userType, sport, updateProfile, resetProfile, deleteProfile } = useProfile();
-  const [dialogOpen, setDialogOpen] = useState(false);
+  const { userGender, userType, sport } = useProfile();
   
-  // We're removing the hamburger menu toggle functionality
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-
   const handleGoBack = () => {
     navigate(-1);
   };
@@ -48,8 +45,6 @@ const Header = ({ useVickiLogo = false }: HeaderProps) => {
         )}
       >
         <div className="container mx-auto px-4 flex items-center justify-between relative">
-          {/* Removed hamburger menu button for mobile */}
-
           <div className={cn(
             "flex items-center z-50", 
             isMobile ? "w-auto mx-auto" : (showBackButton ? "pl-0" : "pl-0")
@@ -86,17 +81,6 @@ const Header = ({ useVickiLogo = false }: HeaderProps) => {
           
           {!isMobile && (
             <div className="flex items-center z-50 ml-auto lg:ml-0">
-              <ProfileDialog 
-                open={dialogOpen}
-                setOpen={setDialogOpen}
-                userGender={userGender}
-                userType={userType}
-                sport={sport}
-                updateProfile={updateProfile}
-                resetProfile={resetProfile}
-                deleteProfile={deleteProfile}
-              />
-              
               <div className={cn("hidden lg:block", textColorClass)}>
                 <LanguageSwitcher />
               </div>
@@ -105,8 +89,7 @@ const Header = ({ useVickiLogo = false }: HeaderProps) => {
         </div>
       </header>
 
-      {/* We'll keep MobileMenu but it won't be triggered by the hamburger icon anymore */}
-      <MobileMenu isOpen={mobileMenuOpen} />
+      <MobileMenu isOpen={false} />
       
       {/* Bottom Navigation for Mobile */}
       {isMobile && <BottomNavigation />}
