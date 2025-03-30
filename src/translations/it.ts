@@ -1,4 +1,3 @@
-
 const translations = {
   // Header & Navigation
   "nav.home": "Home",
@@ -62,6 +61,105 @@ const translations = {
   "tech.comm.desc": "Condivisione efficace delle informazioni tra tutti i professionisti del team con documentazione precisa.",
   "tech.quote": "Vicki™ è un sistema unico, specificamente sviluppato per potenziare le capacità del coach, non per sostituirle. L'expertise umana rimane essenziale nel processo di allenamento, mentre la tecnologia fornisce dati e analisi che amplificano l'intuizione e l'esperienza dell'allenatore.",
   "tech.only": "L'unico centro tennis al mondo che utilizza la tecnologia Vicki™",
+  
+  // Facilities
+  "facilities.main.title": "Strutture ATH",
+  "facilities.main.lead": "L'Advanced Tennis Hub di Rodano è un centro di eccellenza progettato specificamente per ottimizzare l'utilizzo del metodo ATH e della tecnologia Vicki™.",
+  "facilities.main.description": "Le nostre strutture combinano campi da tennis, padel e pickleball tecnologicamente avanzati, aree di analisi dati e spazi per la preparazione atletica, creando un ambiente integrato che supporta ogni aspetto dello sviluppo del giocatore negli sport di racchetta.",
+  
+  "facilities.hero.title": "LE STRUTTURE:",
+  "facilities.hero.subtitle": "Impianti all'avanguardia di tennis, padel e pickleball dotati di tecnologia Vicki™",
+  
+  "facilities.section.title": "Impianti",
+  "facilities.section.subtitle": "Strutture progettate per massimizzare l'efficacia del metodo ATH e della tecnologia Vicki™",
+  
+  "facilities.courts.atp.title": "Campo Centrale ATP",
+  "facilities.courts.atp.description": "Campo principale con tribuna spettatori e standard ATP per tornei internazionali.",
+  "facilities.courts.atp.feature1": "Dimensioni ATP standard",
+  "facilities.courts.atp.feature2": "Illuminazione LED ad alta efficienza",
+  
+  "facilities.courts.synthetic.title": "Campi in Superficie Veloce",
+  "facilities.courts.synthetic.description": "Due campi in superficie sintetica con coefficiente di attrito standardizzato e sistema di tracciamento Vicki™ integrato.",
+  "facilities.courts.synthetic.feature1": "N1 campo coperto tutto l'anno",
+  "facilities.courts.synthetic.feature2": "N1 campo con copetura rimuovibile",
+  "facilities.courts.synthetic.feature3": "Illuminazione led per sessioni serali",
+  "facilities.courts.synthetic.feature4": "Vicki™Powered court",
+  
+  "facilities.courts.clay.title": "Campi in Terra Rossa",
+  "facilities.courts.clay.description": "Quattro campi in terra rossa calibrata, con manutenzione quotidiana e rilevamento parametrico Vicki™ completo.",
+  "facilities.courts.clay.feature1": "Manutenzione quotidiana professionale",
+  "facilities.courts.clay.feature2": "Calibrazione personalizzata della superficie",
+  "facilities.courts.clay.feature3": "Vicki™ powered Court",
+  
+  "facilities.courts.padel.title": "Campi Padel ATH",
+  "facilities.courts.padel.description": "Due campi da padel di ultima generazione con pareti in cristallo, sistema di tracciamento Vicki™ e illuminazione LED studiata per performance ottimali.",
+  "facilities.courts.padel.feature1": "N2 campi con standard internazionali WPT",
+  "facilities.courts.padel.feature2": "Pareti in cristallo temperato di alta qualità",
+  "facilities.courts.padel.feature3": "Sistema di tracciamento Vicki™ integrato",
+  "facilities.courts.padel.feature4": "Illuminazione LED dinamica e regolabile",
+  "facilities.courts.padel.feature5": "Area dedicata per analisi tecnica e tattica",
+  "facilities.courts.padel.feature6": "Zona riscaldamento e preparazione atletica specifica per padel",
+  
+  "facilities.courts.pickleball.title": "Campo Pickleball",
+  "facilities.courts.pickleball.description": "Campo da pickleball professionale con superficie di gioco premium e tecnologia di tracciamento integrata.",
+  "facilities.courts.pickleball.feature1": "Superficie professionale certificata",
+  "facilities.courts.pickleball.feature2": "Dimensioni regolamentari ufficiali",
+  "facilities.courts.pickleball.feature3": "Sistema di tracciamento Vicki™",
+  "facilities.courts.pickleball.feature4": "Illuminazione ottimizzata",
+  
+  "facilities.courts.touch.title": "Campo Touch Tennis",
+  "facilities.courts.touch.description": "Campo specializzato per touch tennis, ideale per allenamento tecnico di precisione e sviluppo delle abilità di tocco.",
+  "facilities.courts.touch.feature1": "Superficie studiata per gioco di precisione",
+  "facilities.courts.touch.feature2": "Dimensioni ottimizzate per sviluppo tecnico",
+  "facilities.courts.touch.feature3": "Ideale per allenamento di controllo e tocco",
+  "facilities.courts.touch.feature4": "Analisi tecnica con sistema Vicki™",
+  
+  "facilities.center.performance.title": "Centro Performance",
+  "facilities.center.performance.description": "Area dedicata all'analisi dati e preparazione fisica, con strumentazione per valutazioni biomeccaniche e recupero.",
+  "facilities.center.performance.feature1": "Attrezzature biomeccaniche avanzate",
+  "facilities.center.performance.feature2": "Zona training funzionale",
+  "facilities.center.performance.feature3": "Analisi e monitoraggio in tempo reale",
+  "facilities.center.performance.feature4": "Spazio per sessioni di coaching individuali",
+  "facilities.center.performance.feature5": "Design minimalista ed efficiente",
+  
+  "facilities.center.lounge.title": "Players Lounge",
+  "facilities.center.lounge.description": "Area esclusiva di relax per atleti con monitor per analisi dati, connessione al sistema Vicki™ e ambiente premium.",
+  "facilities.center.lounge.feature1": "Postazioni video per streaming on court con analisi dati",
+  "facilities.center.lounge.feature2": "Area relax ergonomica",
+  "facilities.center.lounge.feature3": "Connessione diretta al sistema di analisi",
+  "facilities.center.lounge.feature4": "Reception e assistenza dedicata",
+  
+  "facilities.center.headquarters.title": "Headquarters",
+  "facilities.center.headquarters.description": "Edificio principale con architettura contemporanea, reception, uffici amministrativi e sale riunioni per il team tecnico.",
+  "facilities.center.headquarters.feature1": "Design architettonico all'avanguardia",
+  "facilities.center.headquarters.feature2": "Spazi amministrativi e direzionali con sistemi di visualizzazione dei campi",
+  "facilities.center.headquarters.feature3": "Video analisi con Vicki™ in stanze dedicate",
+  "facilities.center.headquarters.feature4": "Spogliatoi e aree recovery con ice bath, sauna e bagno turco",
+  "facilities.center.headquarters.feature5": "Ristorante con dehor e vista su campo centrale",
+  "facilities.center.headquarters.feature6": "Aree direzionali, locali medici e proshop",
+  
+  "facilities.services.title": "Servizi Offerti",
+  "facilities.services.courts.title": "Noleggio Campi da Tennis, Padel e Pickleball",
+  "facilities.services.courts.description": "Prenota i nostri campi tecnologicamente avanzati e a standard internazionale per Tennis, Padel e Pickleball. Tutti i campi sono dotati di attrezzature professionali e possibilità di integrazione con sistema Vicki™ su richiesta.",
+  
+  "facilities.services.premium.title": "Affitti Premium",
+  "facilities.services.premium.description": "Prenota un campo con sistema Vicki™ integrato per sessioni di allenamento con analisi dati in tempo reale. Ideale per giocatori che vogliono approfondire specifici aspetti tecnici.",
+  
+  "facilities.services.clinics.title": "Clinics Tematici",
+  "facilities.services.clinics.description": "Sessioni specializzate su aspetti specifici del gioco, con analisi dettagliate e feedback personalizzati basati sui dati raccolti.",
+  
+  "facilities.services.evaluation.title": "Percorsi Valutativi",
+  "facilities.services.evaluation.description": "Valutazioni complete delle performance tecniche, fisiche e tattiche, con report dettagliati e suggerimenti personalizzati per il miglioramento.",
+  
+  "facilities.services.events.title": "Eventi e Tornei",
+  "facilities.services.events.description": "Competizioni con analisi avanzata delle performance, ideali per testare in ambiente competitivo i progressi ottenuti durante gli allenamenti.",
+  
+  "facilities.services.courses.title": "Corsi Specialistici",
+  "facilities.services.courses.description": "Programmi formativi dedicati ad aspetti specifici del tennis come servizio, risposta, gioco di rete o tattica. Ogni corso utilizza l'analisi Vicki™ per personalizzare l'apprendimento.",
+  
+  "facilities.about.title": "Tecnologia e Ambiente",
+  "facilities.about.description": "ATH combina innovazione tecnologica e attenzione all'ambiente, utilizzando soluzioni sostenibili per l'illuminazione, il riscaldamento e la gestione delle risorse. I nostri campi da tennis sono integrati armoniosamente con l'ambiente naturale circostante.",
+  "facilities.about.cta": "Prenota ora",
   
   // Hero Section
   "hero.title": "Eccellenza ad Ogni Livello",

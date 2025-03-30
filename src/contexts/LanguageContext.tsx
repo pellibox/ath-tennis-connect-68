@@ -39,7 +39,6 @@ export const LanguageProvider: React.FC<{ children: React.ReactNode }> = ({ chil
   // Load translations when language changes
   useEffect(() => {
     console.log('Language changed to:', language);
-    console.log('Loading translations for:', language);
     
     // Force immediate update of translations
     setTranslations({...translationsMap[language]});
@@ -52,9 +51,18 @@ export const LanguageProvider: React.FC<{ children: React.ReactNode }> = ({ chil
     
   }, [language]);
 
-  // Translation function
+  // Translation function with better error handling
   const t = (key: string): string => {
-    return translations[key] || key;
+    if (!key) return '';
+    if (!translations[key]) {
+      console.warn(`Translation key not found: "${key}" for language ${language}`);
+      // Try to find it in English as fallback
+      if (language !== 'en' && translationsMap.en[key]) {
+        return translationsMap.en[key];
+      }
+      return key;
+    }
+    return translations[key];
   };
 
   const contextValue = {
