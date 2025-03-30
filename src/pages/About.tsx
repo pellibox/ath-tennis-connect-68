@@ -1,5 +1,5 @@
 
-import { useEffect, useState, useRef } from 'react';
+import { useEffect, useState } from 'react';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import AboutSection from '@/components/AboutSection';
@@ -71,8 +71,9 @@ const AboutPage = () => {
       <div 
         className="fixed z-50 pointer-events-none transition-opacity duration-300 left-0 right-0 flex justify-center"
         style={{
-          top: isMobile ? '140px' : '180px', // Adjusted position
-          opacity: logoOpacity
+          top: isMobile ? '140px' : '180px', 
+          opacity: logoOpacity,
+          transform: 'translateX(10px)' // Added 10px horizontal offset
         }}
       >
         <div 
@@ -80,7 +81,7 @@ const AboutPage = () => {
             width: isMobile ? '120px' : '160px',
             transform: `translateY(-${logoYOffset}px)` 
           }}
-          className="flex justify-center" // Added to ensure centering
+          className="flex justify-center w-full" // Ensure full width for perfect centering
         >
           <Logo 
             onDarkBackground={true}
