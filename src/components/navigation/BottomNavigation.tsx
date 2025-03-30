@@ -6,27 +6,29 @@ import { CgProfile } from "react-icons/cg";
 import { cn } from '@/lib/utils';
 import { useProfile } from '@/contexts/ProfileContext';
 import { useLanguage } from '@/contexts/LanguageContext';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import ProfileDialog from '../profile/ProfileDialog';
 
 const BottomNavigation = () => {
   const location = useLocation();
-  const { t } = useLanguage();
+  const { t, language, isLoading } = useLanguage();
   const { userType, userGender, sport, updateProfile, resetProfile, deleteProfile } = useProfile();
   const [dialogOpen, setDialogOpen] = useState(false);
+  const [navItems, setNavItems] = useState<Array<{text: string, href: string, icon: JSX.Element}>>();
   
-  // Simplified navigation items for bottom nav
-  const bottomNavItems = [
-    { text: "ATH", href: '/about', icon: <HelpCircle size={20} /> },
-    { text: t("nav.method"), href: '/method', icon: <BookOpen size={20} /> },
-    { 
-      text: t("nav.programs"), 
-      href: '/programs/overview', 
-      icon: <FaList size={20} /> 
-    },
-    { text: t("tech.title.short"), href: '/technology', icon: <Zap size={20} /> },
-    { text: t("nav.facilities"), href: '/facilities', icon: <Server size={20} /> }
-  ];
+  // Update navigation items when language changes
+  useEffect(() => {
+    // Wait for translations to be loaded
+    if (!isLoading) {
+      setNavItems([
+        { text: "ATH", href: '/about', icon: <HelpCircle size={20} /> },
+        { text: t("nav.method"), href: '/method', icon: <BookOpen size={20} /> },
+        { text: t("nav.programs"), href: '/programs/overview', icon: <FaList size={20} /> },
+        { text: t("tech.title.short"), href: '/technology', icon: <Zap size={20} /> },
+        { text: t("nav.facilities"), href: '/facilities', icon: <Server size={20} /> }
+      ]);
+    }
+  }, [t, isLoading, language]);
 
   const isActive = (href: string) => {
     return location.pathname === href || 
@@ -50,7 +52,7 @@ const BottomNavigation = () => {
       
       <div className="fixed bottom-0 left-0 right-0 bg-white shadow-[0_-2px_10px_rgba(0,0,0,0.05)] z-40 lg:hidden">
         <div className="grid grid-cols-6 h-14">
-          {bottomNavItems.map((item, index) => (
+          {navItems && navItems.map((item, index) => (
             <Link
               key={index}
               to={item.href}

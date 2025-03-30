@@ -7,10 +7,23 @@ import { toast } from '@/components/ui/use-toast';
 import { useIsMobile } from '@/hooks/use-mobile';
 
 const LanguageSwitcher = () => {
-  const { language, setLanguage, t } = useLanguage();
+  const { language, setLanguage, t, isLoading } = useLanguage();
   const [isOpen, setIsOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
   const isMobile = useIsMobile();
+  const [languageNames, setLanguageNames] = useState<Record<string, string>>({});
+
+  // Update language names when language changes
+  useEffect(() => {
+    if (!isLoading) {
+      setLanguageNames({
+        en: t('language.en'),
+        it: t('language.it'),
+        fr: t('language.fr'),
+        de: t('language.de')
+      });
+    }
+  }, [t, isLoading, language]);
 
   // Close dropdown when clicking outside
   useEffect(() => {
@@ -25,14 +38,6 @@ const LanguageSwitcher = () => {
       document.removeEventListener('mousedown', handleClickOutside);
     };
   }, []);
-
-  // Map language code to display name
-  const languageNames: Record<string, string> = {
-    en: t('language.en'),
-    it: t('language.it'),
-    fr: t('language.fr'),
-    de: t('language.de')
-  };
 
   const handleLanguageChange = (newLanguage: 'en' | 'it' | 'fr' | 'de') => {
     console.log('Changing language to:', newLanguage);
@@ -53,7 +58,9 @@ const LanguageSwitcher = () => {
         aria-haspopup="true"
       >
         <Globe size={16} className="mr-1" />
-        <span className={isMobile ? "" : "hidden md:inline-block"}>{languageNames[language]}</span>
+        <span className={isMobile ? "" : "hidden md:inline-block"}>
+          {!isLoading && languageNames[language] ? languageNames[language] : language.toUpperCase()}
+        </span>
       </button>
       
       {isOpen && (
@@ -73,7 +80,7 @@ const LanguageSwitcher = () => {
                 language === lang ? "font-medium text-purple-600 bg-purple-50" : "text-gray-700"
               )}
             >
-              {languageNames[lang]}
+              {!isLoading && languageNames[lang] ? languageNames[lang] : lang.toUpperCase()}
             </button>
           ))}
         </div>

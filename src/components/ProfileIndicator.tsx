@@ -1,5 +1,5 @@
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { UserGender, UserType } from './UserTypeSelector';
 import { SportType } from '@/contexts/ProfileContext';
 import { Button } from "@/components/ui/button";
@@ -42,10 +42,37 @@ const ProfileIndicator: React.FC<ProfileIndicatorProps> = ({
   onDeleteProfile,
   onResetProfile
 }) => {
-  const { t } = useLanguage();
+  const { t, language, isLoading } = useLanguage();
   const isMobile = useIsMobile();
-  const [languageOpen, setLanguageOpen] = useState(false);
+  const [translatedLabels, setTranslatedLabels] = useState({
+    edit: 'Edit Profile',
+    delete: 'Delete Profile',
+    reset: 'Reset',
+    profile: 'Your Profile',
+    custom: 'Personalized content based on your profile',
+    confirmDelete: 'Delete profile?',
+    deleteDesc: 'Do you really want to delete your profile preferences?',
+    cancelAction: 'Cancel',
+    deleteAction: 'Delete'
+  });
   
+  // Update translated labels when language changes
+  useEffect(() => {
+    if (!isLoading) {
+      setTranslatedLabels({
+        edit: t("profile.edit"),
+        delete: t("profile.delete"),
+        reset: t("profile.reset"),
+        profile: t("profile.yourProfile"),
+        custom: t("profile.customContent"),
+        confirmDelete: t("profile.deleteConfirm"),
+        deleteDesc: t("profile.deleteDesc"),
+        cancelAction: t("profile.cancelAction"),
+        deleteAction: t("profile.deleteAction")
+      });
+    }
+  }, [t, isLoading, language]);
+
   const getTypeIcon = () => {
     switch (type) {
       case 'junior':
@@ -81,7 +108,8 @@ const ProfileIndicator: React.FC<ProfileIndicatorProps> = ({
   };
 
   const getGenderDescription = () => {
-    return gender === 'male' ? t('profile.gender.male') : t('profile.gender.female');
+    return !isLoading ? (gender === 'male' ? t('profile.gender.male') : t('profile.gender.female')) : 
+           (gender === 'male' ? 'Male' : 'Female');
   };
 
   const getSportDescription = () => {
@@ -124,13 +152,13 @@ const ProfileIndicator: React.FC<ProfileIndicatorProps> = ({
             <div className="p-1 rounded-full bg-ath-clay/10">
               {getTypeIcon()}
             </div>
-            <span className="text-xs font-medium">{t("profile.edit")}</span>
+            <span className="text-xs font-medium">{translatedLabels.edit}</span>
           </div>
         </div>
       </HoverCardTrigger>
       <HoverCardContent className="w-64 p-4 bg-white/95 backdrop-blur-sm border border-ath-clay/20 shadow-lg">
         <div className="space-y-2">
-          <h4 className="font-medium text-ath-clay">{t("profile.yourProfile")}</h4>
+          <h4 className="font-medium text-ath-clay">{translatedLabels.profile}</h4>
           <div className="flex items-center gap-2">
             <div className={`p-1.5 rounded-full ${gender === 'male' ? 'bg-blue-100' : 'bg-pink-100'}`}>
               <CgProfile size={18} className={gender === 'male' ? 'text-blue-500' : 'text-pink-500'} />
@@ -155,7 +183,7 @@ const ProfileIndicator: React.FC<ProfileIndicatorProps> = ({
               <div className="flex items-center justify-between mb-2">
                 <div className="font-medium text-sm flex items-center gap-2">
                   <Globe size={16} />
-                  {t("language")}
+                  {!isLoading ? t("language") : "Language"}
                 </div>
                 <LanguageSwitcher />
               </div>
@@ -163,7 +191,7 @@ const ProfileIndicator: React.FC<ProfileIndicatorProps> = ({
           )}
           
           <p className="text-xs text-gray-500 mt-2">
-            {t("profile.customContent")}
+            {translatedLabels.custom}
           </p>
           
           <div className="flex gap-2 mt-4">
@@ -174,30 +202,30 @@ const ProfileIndicator: React.FC<ProfileIndicatorProps> = ({
               onClick={handleResetProfile}
             >
               <RotateCcw size={14} />
-              <span>{t("profile.reset")}</span>
+              <span>{translatedLabels.reset}</span>
             </Button>
             
             <AlertDialog>
               <AlertDialogTrigger asChild>
                 <Button variant="outline" size="sm" className="flex-1 text-red-500 border-red-200 hover:bg-red-50 flex items-center justify-center gap-2">
                   <X size={14} />
-                  <span>{t("profile.delete")}</span>
+                  <span>{translatedLabels.delete}</span>
                 </Button>
               </AlertDialogTrigger>
               <AlertDialogContent>
                 <AlertDialogHeader>
-                  <AlertDialogTitle>{t("profile.deleteConfirm")}</AlertDialogTitle>
+                  <AlertDialogTitle>{translatedLabels.confirmDelete}</AlertDialogTitle>
                   <AlertDialogDescription>
-                    {t("profile.deleteDesc")}
+                    {translatedLabels.deleteDesc}
                   </AlertDialogDescription>
                 </AlertDialogHeader>
                 <AlertDialogFooter>
-                  <AlertDialogCancel>{t("profile.cancelAction")}</AlertDialogCancel>
+                  <AlertDialogCancel>{translatedLabels.cancelAction}</AlertDialogCancel>
                   <AlertDialogAction 
                     onClick={handleDeleteProfile}
                     className="bg-red-500 hover:bg-red-600"
                   >
-                    {t("profile.deleteAction")}
+                    {translatedLabels.deleteAction}
                   </AlertDialogAction>
                 </AlertDialogFooter>
               </AlertDialogContent>
