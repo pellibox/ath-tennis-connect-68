@@ -21,7 +21,7 @@ const PadelKids = () => {
         <Hero
           title="Padel Bambini e Teen"
           subtitle="Programma dedicato ai giovani giocatori di padel, con un approccio divertente e formativo."
-          imageSrc="/lovable-uploads/padel-courts.png"
+          imageSrc="/lovable-uploads/f1e4d977-925c-4b7d-aa04-145e4c5c56fd.png"
           buttons={[
             { text: 'PRENOTA UNA PROVA', href: '/contact' }
           ]}

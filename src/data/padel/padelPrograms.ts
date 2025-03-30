@@ -6,7 +6,7 @@ export const padelPrograms: Program[] = [
     id: "padel-junior",
     title: "Padel Bambini e Teen",
     description: "Programma dedicato ai giovani giocatori di padel, con un approccio divertente e formativo per imparare le basi e sviluppare la passione per questo sport.",
-    image: "/lovable-uploads/padel-courts.png",
+    image: "/lovable-uploads/f1e4d977-925c-4b7d-aa04-145e4c5c56fd.png",
     link: "/programs/padel-kids",
     features: [
       "Approccio ludico e inclusivo adatto all'età",
