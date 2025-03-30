@@ -3,12 +3,13 @@ import { useEffect, useState } from 'react';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import { useLanguage } from '@/contexts/LanguageContext';
-import Hero from '@/components/Hero';
 import RevealAnimation from '@/components/RevealAnimation';
 import { UserGender, UserType, loadUserPreferences } from '@/components/UserTypeSelector';
 import VickiMonitoringBadge from '@/components/VickiMonitoringBadge';
 import VickiPoweredBadge from '@/components/VickiPoweredBadge';
 import ContactSection from '@/components/ContactSection';
+import StandardHeroVideo from '@/components/StandardHeroVideo';
+import PrivateProgramDescription from '@/components/programs/PrivateProgramDescription';
 
 const PersonalCoachingProgram = () => {
   const { t } = useLanguage();
@@ -28,65 +29,15 @@ const PersonalCoachingProgram = () => {
     <div className="flex flex-col min-h-screen">
       <Header />
       
-      <main className="flex-grow">
-        <div className="relative">
-          <Hero 
-            title="Lezioni Private"
-            subtitle="Lezioni individuali o di gruppo (max 2 allievi) con maestro certificato"
-            imageSrc="https://images.unsplash.com/photo-1572307480813-ceb0e59d8325?q=80&w=2035&auto=format&fit=crop"
-            vimeoEmbed='<div style="padding:75% 0 0 0;position:relative;"><iframe src="https://player.vimeo.com/video/1068788542?h=698f55b033&autoplay=1&loop=1&background=1&autopause=0&player_id=0&app_id=58479&controls=0" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media" style="position:absolute;top:0;left:0;width:100%;height:100%;" title="Private Lessons"></iframe></div><script src="https://player.vimeo.com/api/player.js"></script>'
-            buttons={[
-              { text: 'PRENOTA UNA SESSIONE', href: '/contact' },
-              { text: 'CONTATTACI', href: '/contact', variant: 'outline' }
-            ]}
-            contentPosition="left"
-            overlayOpacity="medium"
-          />
-          
-          {/* Black banner with claim text */}
-          <div className="w-full bg-black py-16 relative" style={{ height: '300px' }}>
-            <div className="max-w-6xl mx-auto px-6 h-full flex flex-col justify-center">
-              <div className="flex items-center mb-2">
-                <h2 className="text-white text-lg font-display mr-3">LEZIONI PRIVATE:</h2>
-                <p className="text-white text-lg font-swiss max-w-3xl">
-                  Lezioni individuali o in piccoli gruppi (max 2 allievi) con un maestro certificato
-                </p>
-              </div>
-              <div className="mt-4 flex flex-wrap gap-3">
-                <VickiMonitoringBadge level="standard" className="bg-opacity-20 border-opacity-30 text-white" />
-                <VickiPoweredBadge onRequest className="bg-opacity-20 border-opacity-30 text-white" />
-              </div>
-            </div>
-          </div>
-        </div>
+      <main className="flex-grow pt-0">
+        <StandardHeroVideo 
+          vimeoEmbed='<iframe src="https://player.vimeo.com/video/1068788542?h=698f55b033&autoplay=1&loop=1&background=1&autopause=0&player_id=0&app_id=58479&controls=0" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media" style="position:absolute;top:0;left:0;width:100%;height:100%;" title="Private Lessons"></iframe><script src="https://player.vimeo.com/api/player.js"></script>'
+          title="LEZIONI PRIVATE:"
+          subtitle="Lezioni individuali o in piccoli gruppi (max 2 allievi) con un maestro certificato"
+        />
         
         <div className="max-w-6xl mx-auto px-6 py-16">
-          <div className="mb-12">
-            <RevealAnimation>
-              <div className="flex flex-wrap items-center gap-3 mb-6">
-                <h2 className="text-3xl font-swiss">Lezioni Private</h2>
-                <VickiMonitoringBadge level="standard" />
-                <VickiPoweredBadge onRequest />
-              </div>
-            </RevealAnimation>
-            <RevealAnimation delay={100}>
-              <p className="text-lg mb-6 font-swiss">Lezioni individuali o in piccoli gruppi (max 2 allievi), disponibili tutto l'anno.</p>
-            </RevealAnimation>
-            <RevealAnimation delay={150}>
-              <p className="mb-4 font-swiss">
-                Le Lezioni Private offrono un'esperienza di apprendimento personalizzata con un maestro certificato
-                che si concentra sulle tue esigenze specifiche. Questo formato è ideale per lavorare
-                su aspetti particolari del tuo gioco e accelerare il tuo progresso tennistico.
-              </p>
-            </RevealAnimation>
-            <RevealAnimation delay={200}>
-              <p className="font-swiss">
-                Con la possibilità di avere lezioni individuali o in coppia (massimo 2 allievi),
-                puoi scegliere il formato che meglio si adatta alle tue preferenze. L'analisi con tecnologia
-                VICKI™ è disponibile su richiesta per un'esperienza di allenamento ancora più approfondita.
-              </p>
-            </RevealAnimation>
-          </div>
+          <PrivateProgramDescription />
           
           <div className="grid md:grid-cols-2 gap-10">
             <RevealAnimation delay={250} className="bg-gray-50 p-8 rounded-lg">
