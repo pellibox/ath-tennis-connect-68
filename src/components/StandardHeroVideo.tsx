@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { useIsMobile } from '@/hooks/use-mobile';
 import Logo from '@/components/Logo';
@@ -54,7 +53,8 @@ const StandardHeroVideo = ({
           className="fixed z-50 pointer-events-none transition-opacity duration-300 left-0 right-0 flex justify-center"
           style={{
             top: isMobile ? '140px' : '180px', 
-            opacity: logoOpacity
+            opacity: logoOpacity,
+            transform: 'translateX(10px)'
           }}
         >
           <div 
@@ -62,7 +62,7 @@ const StandardHeroVideo = ({
               width: isMobile ? '120px' : '160px',
               transform: `translateY(-${logoYOffset}px)`
             }}
-            className="flex justify-center w-full" // Added w-full to ensure perfect centering
+            className="flex justify-center w-full"
           >
             <Logo 
               onDarkBackground={true} 
