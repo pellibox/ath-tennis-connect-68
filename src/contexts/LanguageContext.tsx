@@ -1,24 +1,11 @@
 
 import React, { createContext, useContext, useState, useEffect } from 'react';
-import { en } from '../translations/en';
-import { it } from '../translations/it';
-import { fr } from '../translations/fr';
-import { de } from '../translations/de';
+import enTranslations from '../translations/en';
+import itTranslations from '../translations/it';
+import frTranslations from '../translations/fr';
+import deTranslations from '../translations/de';
 
 type Language = 'en' | 'it' | 'fr' | 'de';
-
-// Updated type definitions to handle deeply nested translation objects (up to 4 levels deep)
-interface TranslationValue {
-  [key: string]: string | TranslationObject;
-}
-
-interface TranslationObject {
-  [key: string]: string | TranslationValue;
-}
-
-interface TranslationsObject {
-  [key: string]: string | TranslationObject;
-}
 
 interface LanguageContextType {
   language: Language;
@@ -26,11 +13,11 @@ interface LanguageContextType {
   t: (key: string) => string;
 }
 
-const translationsMap: Record<Language, TranslationsObject> = {
-  en,
-  it,
-  fr,
-  de
+const translationsMap: Record<Language, Record<string, string>> = {
+  en: enTranslations,
+  it: itTranslations,
+  fr: frTranslations,
+  de: deTranslations
 };
 
 // Create the context with a default value to avoid the undefined check
@@ -47,7 +34,7 @@ export const LanguageProvider: React.FC<{ children: React.ReactNode }> = ({ chil
     return savedLanguage && ['en', 'it', 'fr', 'de'].includes(savedLanguage) ? savedLanguage : 'it';
   });
   
-  const [translations, setTranslations] = useState<TranslationsObject>(translationsMap[language] || translationsMap.it);
+  const [translations, setTranslations] = useState<Record<string, string>>(translationsMap[language] || translationsMap.it);
 
   // Load translations when language changes
   useEffect(() => {
@@ -65,21 +52,9 @@ export const LanguageProvider: React.FC<{ children: React.ReactNode }> = ({ chil
     
   }, [language]);
 
-  // Updated translation function to handle deeply nested objects
+  // Translation function
   const t = (key: string): string => {
-    const keys = key.split('.');
-    let result: any = translations;
-    
-    // Navigate through the nested object
-    for (const k of keys) {
-      if (result && typeof result === 'object' && k in result) {
-        result = result[k];
-      } else {
-        return key; // Return the key if translation not found
-      }
-    }
-    
-    return typeof result === 'string' ? result : key;
+    return translations[key] || key;
   };
 
   const contextValue = {

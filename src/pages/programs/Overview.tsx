@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
@@ -17,7 +16,6 @@ import { getVimeoEmbed } from '@/utils/videoUtils';
 import RevealAnimation from '@/components/RevealAnimation';
 import MultisportExplanation from '@/components/programs/MultisportExplanation';
 import StandardHeroVideo from '@/components/StandardHeroVideo';
-import { useLanguage } from '@/contexts/LanguageContext';
 
 const ProgramsOverview = () => {
   const {
@@ -26,8 +24,6 @@ const ProgramsOverview = () => {
     sport,
     updateSport
   } = useProfile();
-  
-  const { t } = useLanguage();
   
   const [activeTab, setActiveTab] = useState<'tennis' | 'padel' | 'pickleball' | 'touchtennis'>(
     sport === 'padel' ? 'padel' : 
@@ -62,24 +58,20 @@ const ProgramsOverview = () => {
           </Breadcrumb>
         </div>
         
-        <StandardHeroVideo 
-          vimeoEmbed={vimeoEmbed} 
-          titleKey="programs.ath.title" 
-          subtitleKey="programs.ath.subtitle"
-        />
+        <StandardHeroVideo vimeoEmbed={vimeoEmbed} />
         
         <div className="container mx-auto px-4 py-12">
           <RevealAnimation>
-            <h1 className="text-4xl font-bold mb-6">{t("programs.ath.title")}</h1>
+            <h1 className="text-4xl font-bold mb-6">Programmi ATH</h1>
             <div className="max-w-4xl mb-12 space-y-4 text-gray-700">
               <p className="text-lg">
-                {t("programs.intro")}
+                ATH offre programmi di allenamento avanzati basati su un approccio integrato che combina tecnologia all'avanguardia e competenze professionali di alto livello.
               </p>
               <p>
-                {t("programs.methodology")}
+                Il nostro metodo si concentra sullo sviluppo completo dell'atleta, considerando tutti gli aspetti fondamentali: tecnica, tattica, preparazione fisica e mentale, analisi dettagliata delle performance e supporto personalizzato.
               </p>
               <p>
-                {t("programs.sport.description")}
+                Il <strong>Tennis</strong> rappresenta il cuore della nostra attività, con programmi altamente specializzati per tutte le età e livelli. Abbiamo inoltre sviluppato programmi dedicati per altri sport di racchetta come <strong>Padel</strong>, <strong>Pickleball</strong> e <strong>TouchTennis</strong>, applicando la stessa metodologia avanzata.
               </p>
             </div>
           </RevealAnimation>
@@ -88,119 +80,99 @@ const ProgramsOverview = () => {
           
           <RevealAnimation delay={100}>
             <div className="mb-12">
-              <h2 className="text-2xl font-bold mb-4">{t("programs.select.sport")}</h2>
+              <h2 className="text-2xl font-bold mb-4">Seleziona uno sport</h2>
               <p className="text-gray-700 mb-6">
-                {t("programs.explore.programs")}
+                Esplora i nostri programmi specializzati per ciascuna disciplina
               </p>
               
               <Tabs value={activeTab} onValueChange={handleTabChange} className="w-full">
                 {isMobile ? <div className="mb-8">
                     <TabsList className="w-full mb-2 bg-white border border-gray-200 rounded-full p-1 flex justify-between">
                       <TabsTrigger value="tennis" className="flex-1 rounded-full data-[state=active]:bg-ath-clay data-[state=active]:text-white px-4 py-3">
-                        {t("programs.tennis")}
+                        Tennis
                       </TabsTrigger>
                       <TabsTrigger value="padel" className="flex-1 rounded-full data-[state=active]:bg-ath-clay data-[state=active]:text-white px-4 py-3">
-                        {t("programs.padel")}
+                        Padel
                       </TabsTrigger>
                     </TabsList>
                     <TabsList className="w-full bg-white border border-gray-200 rounded-full p-1 flex justify-between">
                       <TabsTrigger value="pickleball" className="flex-1 rounded-full data-[state=active]:bg-ath-clay data-[state=active]:text-white px-4 py-3">
-                        {t("programs.pickleball")}
+                        Pickleball
                       </TabsTrigger>
                       <TabsTrigger value="touchtennis" className="flex-1 rounded-full data-[state=active]:bg-ath-clay data-[state=active]:text-white px-4 py-3">
-                        {t("programs.touchtennis")}
+                        TouchTennis
                       </TabsTrigger>
                     </TabsList>
                   </div> : <TabsList className="w-full mb-8 bg-white border border-gray-200 rounded-full p-1 flex justify-between">
                     <TabsTrigger value="tennis" className="flex items-center rounded-full data-[state=active]:bg-ath-clay data-[state=active]:text-white px-8 py-3">
-                      {t("programs.tennis")}
+                      Tennis
                     </TabsTrigger>
                     <TabsTrigger value="padel" className="flex items-center rounded-full data-[state=active]:bg-ath-clay data-[state=active]:text-white px-8 py-3">
-                      {t("programs.padel")}
+                      Padel
                     </TabsTrigger>
                     <TabsTrigger value="pickleball" className="flex items-center rounded-full data-[state=active]:bg-ath-clay data-[state=active]:text-white px-8 py-3">
-                      {t("programs.pickleball")}
+                      Pickleball
                     </TabsTrigger>
                     <TabsTrigger value="touchtennis" className="flex items-center rounded-full data-[state=active]:bg-ath-clay data-[state=active]:text-white px-8 py-3">
-                      {t("programs.touchtennis")}
+                      TouchTennis
                     </TabsTrigger>
                   </TabsList>}
                 
                 <div className="mt-8">
                   <TabsContent value="tennis" className="mt-0">
                     <div className="bg-gray-50 p-6 rounded-lg mb-8">
-                      <h3 className="text-xl font-bold mb-3">{t("programs.tennis")}</h3>
+                      <h3 className="text-xl font-bold mb-3">Tennis</h3>
                       <p className="mb-4">
-                        {t("programs.tennis.description")}
+                        Il nostro programma di punta, con soluzioni personalizzate per ogni livello: dai principianti ai professionisti. Utilizzando la nostra tecnologia VICKI™, offriamo un'esperienza di allenamento senza precedenti.
                       </p>
                       <Link to="/programs" className="inline-flex items-center text-ath-clay font-medium hover:underline">
-                        {t("programs.explore.tennis")}
+                        Esplora tutti i programmi Tennis →
                       </Link>
                     </div>
                     
-                    <ProgramsSection 
-                      title={t("programs.tennis")} 
-                      subtitle={t("programs.tennis.description")} 
-                      categories={programCategories} 
-                      categoryCollapsible={true} 
-                    />
+                    <ProgramsSection title="Programmi Tennis" subtitle="I nostri programmi di punta, sviluppati con anni di esperienza" categories={programCategories} categoryCollapsible={true} />
                   </TabsContent>
                   
                   <TabsContent value="padel" className="mt-0">
                     <div className="bg-gray-50 p-6 rounded-lg mb-8">
-                      <h3 className="text-xl font-bold mb-3">{t("programs.padel")}</h3>
+                      <h3 className="text-xl font-bold mb-3">Padel</h3>
                       <p className="mb-4">
-                        {t("programs.padel.description")}
+                        Abbiamo adattato la nostra metodologia avanzata per questo sport in rapida crescita, offrendo programmi specifici che sfruttano la nostra tecnologia VICKI™ per migliorare rapidamente il tuo gioco.
                       </p>
                       <Link to="/padel" className="inline-flex items-center text-ath-clay font-medium hover:underline">
-                        {t("programs.explore.padel")}
+                        Esplora tutti i programmi Padel →
                       </Link>
                     </div>
                     
-                    <ProgramsSection 
-                      title={t("programs.padel")} 
-                      subtitle={t("programs.padel.description")} 
-                      categories={padelCategories} 
-                      categoryCollapsible={true} 
-                    />
+                    <ProgramsSection title="Programmi Padel" subtitle="I nostri programmi specializzati per il Padel" categories={padelCategories} categoryCollapsible={true} />
                   </TabsContent>
                   
                   <TabsContent value="pickleball" className="mt-0">
                     <div className="bg-gray-50 p-6 rounded-lg mb-8">
-                      <h3 className="text-xl font-bold mb-3">{t("programs.pickleball")}</h3>
+                      <h3 className="text-xl font-bold mb-3">Pickleball</h3>
                       <p className="mb-4">
-                        {t("programs.pickleball.description")}
+                        Programmi dedicati per questo sport emergente, con focus su tecnica, strategia e divertimento. Scopri come la nostra metodologia ATH può migliorare il tuo gioco di Pickleball.
                       </p>
                       <Link to="/pickleball" className="inline-flex items-center text-ath-clay font-medium hover:underline">
-                        {t("programs.explore.pickleball")}
+                        Esplora tutti i programmi Pickleball →
                       </Link>
                     </div>
                     
-                    <ProgramsSection 
-                      title={t("programs.pickleball")} 
-                      subtitle={t("programs.pickleball.description")} 
-                      categories={pickleballCategories} 
-                      categoryCollapsible={true} 
-                    />
+                    <ProgramsSection title="Programmi Pickleball" subtitle="I nostri programmi specializzati per il Pickleball" categories={pickleballCategories} categoryCollapsible={true} />
                   </TabsContent>
                   
                   <TabsContent value="touchtennis" className="mt-0">
                     <div className="bg-gray-50 p-6 rounded-lg mb-8">
-                      <h3 className="text-xl font-bold mb-3">{t("programs.touchtennis")}</h3>
+                      <h3 className="text-xl font-bold mb-3">TouchTennis</h3>
                       <p className="mb-4">
-                        {t("programs.touchtennis.description")}
+                        Un formato innovativo che rende il tennis accessibile a tutti. I nostri programmi di TouchTennis sono perfetti per chi vuole divertirsi e migliorare le proprie abilità in uno spazio ridotto.
                       </p>
                       <Link to="/touchtennis" className="inline-flex items-center text-ath-clay font-medium hover:underline">
-                        {t("programs.explore.touchtennis")}
+                        Esplora tutti i programmi TouchTennis →
                       </Link>
                     </div>
                     
-                    <ProgramsSection 
-                      title={t("programs.touchtennis")} 
-                      subtitle={t("programs.touchtennis.description")} 
-                      categories={touchTennisCategories} 
-                      categoryCollapsible={true} 
-                    />
+                    <ProgramsSection title="Programmi TouchTennis" subtitle="Tennis in formato ridotto, divertimento senza limiti" categories={touchTennisCategories} categoryCollapsible={true} />
                   </TabsContent>
                 </div>
               </Tabs>
@@ -209,33 +181,33 @@ const ProgramsOverview = () => {
           
           <RevealAnimation delay={200}>
             <div className="bg-white p-6 border border-gray-200 rounded-lg shadow-sm mb-12">
-              <h2 className="text-2xl font-bold mb-4">{t("programs.why.ath")}</h2>
+              <h2 className="text-2xl font-bold mb-4">Perché scegliere i programmi ATH?</h2>
               
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mt-8">
                 <div className="bg-gray-50 p-4 rounded-lg">
-                  <h3 className="text-lg font-semibold mb-2">{t("programs.feature.tech")}</h3>
-                  <p className="text-gray-700">{t("programs.feature.tech.desc")}</p>
+                  <h3 className="text-lg font-semibold mb-2">Tecnologia avanzata</h3>
+                  <p className="text-gray-700">Il sistema VICKI™ analizza oltre 70 parametri della tua performance in tempo reale</p>
                 </div>
                 
                 <div className="bg-gray-50 p-4 rounded-lg">
-                  <h3 className="text-lg font-semibold mb-2">{t("programs.feature.experts")}</h3>
-                  <p className="text-gray-700">{t("programs.feature.experts.desc")}</p>
+                  <h3 className="text-lg font-semibold mb-2">Esperti qualificati</h3>
+                  <p className="text-gray-700">Coach di alto livello con esperienza internazionale</p>
                 </div>
                 
                 <div className="bg-gray-50 p-4 rounded-lg">
-                  <h3 className="text-lg font-semibold mb-2">{t("programs.feature.integrated")}</h3>
-                  <p className="text-gray-700">{t("programs.feature.integrated.desc")}</p>
+                  <h3 className="text-lg font-semibold mb-2">Approccio integrato</h3>
+                  <p className="text-gray-700">Sviluppo tecnico, tattico, fisico e mentale in un unico programma</p>
                 </div>
                 
                 <div className="bg-gray-50 p-4 rounded-lg">
-                  <h3 className="text-lg font-semibold mb-2">{t("programs.feature.personalization")}</h3>
-                  <p className="text-gray-700">{t("programs.feature.personalization.desc")}</p>
+                  <h3 className="text-lg font-semibold mb-2">Personalizzazione</h3>
+                  <p className="text-gray-700">Programmi su misura in base al tuo profilo, obiettivi e necessità</p>
                 </div>
               </div>
               
               <div className="mt-8 text-center">
                 <Link to="/contact" className="inline-flex items-center bg-ath-clay text-white px-6 py-3 rounded-full font-medium transition-colors hover:bg-ath-clay/90">
-                  {t("programs.request.info")}
+                  Richiedi informazioni sui programmi
                 </Link>
               </div>
             </div>

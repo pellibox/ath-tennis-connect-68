@@ -3,7 +3,6 @@ import { cn } from '@/lib/utils';
 import NavigationLink from './NavigationLink';
 import { navigationItems } from './navigationItems';
 import RegularDropdownItem from './RegularDropdownItem';
-import { useLanguage } from '@/contexts/LanguageContext';
 
 interface DesktopNavigationLinksProps {
   className?: string;
@@ -11,8 +10,6 @@ interface DesktopNavigationLinksProps {
 }
 
 const DesktopNavigationLinks = ({ className, textColorClass }: DesktopNavigationLinksProps) => {
-  const { t } = useLanguage();
-  
   return (
     <nav className={cn("flex items-center space-x-6", className)}>
       {navigationItems.map((item, index) => (
@@ -28,7 +25,7 @@ const DesktopNavigationLinks = ({ className, textColorClass }: DesktopNavigation
             )}
           >
             {item.icon}
-            {t(item.translationKey)}
+            {item.text}
           </NavigationLink>
         )
       ))}

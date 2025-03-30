@@ -1,42 +1,36 @@
 
-export const fr = {
+const translations = {
   // Header & Navigation
-  nav: {
-    home: "Accueil",
-    programs: "Programmes",
-    facilities: "Installations",
-    coaches: "Entraîneurs",
-    about: "À Propos",
-    contact: "Contact",
-    method: "Méthode",
-    back: "Retour",
-    menu: "Menu",
-    close: "Fermer",
-  },
+  "nav.home": "Accueil",
+  "nav.programs": "Programmes",
+  "nav.facilities": "Installations",
+  "nav.coaches": "Entraîneurs",
+  "nav.about": "À Propos",
+  "nav.contact": "Contact",
+  "nav.method": "Méthode",
+  "nav.back": "Retour",
+  "nav.menu": "Menu",
+  "nav.close": "Fermer",
   
   // Profile
-  profile: {
-    title: "Profil",
-    edit: "Modifier Profil",
-    delete: "Supprimer Profil",
-    reset: "Réinitialiser",
-    select: "Sélectionner Profil",
-    customize: "Personnalisez votre expérience sur ATH",
-    gender: {
-      male: "Homme",
-      female: "Femme",
-    },
-    yourProfile: "Votre profil",
-    customContent: "Contenu personnalisé selon votre profil",
-    deleteConfirm: "Supprimer le profil?",
-    deleteDesc: "Voulez-vous vraiment supprimer vos préférences de profil? Vous reviendrez à la navigation standard sans contenu personnalisé.",
-    deleteAction: "Supprimer",
-    cancelAction: "Annuler",
-    welcome: "Bienvenue! Contenu personnalisé pour",
-  },
+  "profile.title": "Profil",
+  "profile.edit": "Modifier Profil",
+  "profile.delete": "Supprimer Profil",
+  "profile.reset": "Réinitialiser",
+  "profile.select": "Sélectionner Profil",
+  "profile.customize": "Personnalisez votre expérience sur ATH",
+  "profile.gender.male": "Homme",
+  "profile.gender.female": "Femme",
+  "profile.yourProfile": "Votre profil",
+  "profile.customContent": "Contenu personnalisé selon votre profil",
+  "profile.deleteConfirm": "Supprimer le profil?",
+  "profile.deleteDesc": "Voulez-vous vraiment supprimer vos préférences de profil? Vous reviendrez à la navigation standard sans contenu personnalisé.",
+  "profile.deleteAction": "Supprimer",
+  "profile.cancelAction": "Annuler",
+  "profile.welcome": "Bienvenue! Contenu personnalisé pour",
   
   // Language
-  language: "Langue",
+  "language": "Langue",
   "language.en": "Anglais",
   "language.it": "Italien",
   "language.fr": "Français",
@@ -44,219 +38,134 @@ export const fr = {
   "language.changed": "Langue modifiée",
   "language.updated": "La langue de la page a été mise à jour.",
   
+  // Technology
+  "tech.title": "L'Avantage Technologique ATH",
+  "tech.title.short": "Tech",
+  "tech.subtitle": "Notre système technologique innovant intègre des analyses avancées et l'IA pour révolutionner l'entraînement au tennis",
+  "tech.exclusive": "TECHNOLOGIE EXCLUSIVE",
+  "tech.vicki.subtitle": "La Solution aux Défis du Tennis Moderne",
+  "tech.data.title": "Collecte de Données Avancée",
+  "tech.data.desc": "Notre système sophistiqué Vicki™ surveille et analyse plus de 70 paramètres spécifiques de performance tennistique en temps réel pendant chaque session.",
+  "tech.analysis.title": "Analyse en Temps Réel",
+  "tech.analysis.desc": "Des caméras haute vitesse et des capteurs capturent chaque mouvement, coup et décision tactique, fournissant des aperçus immédiats pour des ajustements sur place.",
+  "tech.ai.title": "Insights Alimentés par l'IA",
+  "tech.ai.desc": "L'intelligence artificielle de Vicki™ analyse chaque aspect de la performance, identifiant des modèles et des opportunités d'amélioration qui pourraient échapper même à l'observation experte.",
+  "tech.personal.title": "Développement Personnalisé",
+  "tech.personal.desc": "Le système d'apprentissage automatique évolue avec chaque session, affinant continuellement les analyses et les recommandations pour votre style de jeu unique et vos objectifs.",
+  "tech.excellence.title": "Excellence Démocratisée",
+  "tech.excellence.desc": "Accès à des méthodologies d'entraînement de haut niveau auparavant réservées uniquement à l'élite.",
+  "tech.continuous.title": "Développement Continu",
+  "tech.continuous.desc": "Élimination des discontinuités dans l'approche technique avec une méthode codifiée et cohérente.",
+  "tech.global.title": "Communauté Mondiale d'Excellence",
+  "tech.global.desc": "Accès à un réseau international d'expertise et de meilleures pratiques du monde entier.",
+  "tech.comm.title": "Communication Avancée",
+  "tech.comm.desc": "Partage efficace d'informations entre tous les professionnels de l'équipe avec une documentation précise.",
+  "tech.quote": "Vicki™ intègre la technologie avancée et l'expertise humaine pour débloquer le potentiel caché de chaque athlète, redéfinissant les normes du développement du tennis moderne.",
+  "tech.only": "Le seul centre de tennis au monde utilisant la technologie Vicki™",
+  
+  // Hero Section
+  "hero.title": "Exceller à Tous les Niveaux",
+  "hero.subtitle": "Entraînement de tennis de classe mondiale pour joueurs de tous âges et niveaux",
+  "hero.programs": "NOS PROGRAMMES",
+  "hero.book": "RÉSERVER UN ESSAI",
+  
+  // About Section
+  "about.title": "À Propos d'ATH Tennis Hub",
+  "about.subtitle": "NOTRE HISTOIRE",
+  "about.p1": "ATH Advanced Tennis Hub a été fondé avec une mission simple : créer l'environnement parfait pour que les joueurs de tennis atteignent leur plein potentiel, indépendamment de leur point de départ ou de leurs objectifs ultimes.",
+  "about.p2": "Ce qui nous distingue est notre approche individualisée. Nous reconnaissons que chaque joueur est unique, avec différentes forces, faiblesses et aspirations. Notre méthodologie s'adapte au profil de chaque joueur, assurant un développement et une progression optimaux.",
+  "about.p3": "Avec des installations de classe mondiale et une équipe d'entraîneurs d'élite, nous offrons un programme complet qui aborde tous les aspects du jeu moderne : technique, tactique, physique et mental.",
+  "about.learn": "EN SAVOIR PLUS",
+  
+  // Programs Section
+  "programs.title": "Nos Programmes",
+  "programs.subtitle": "Entraînement de tennis adapté à chaque âge et niveau de compétence",
+  "programs.junior": "Académie Junior",
+  "programs.junior.desc": "Programme d'entraînement complet pour les joueurs âgés de 8 à 18 ans qui souhaitent développer leurs compétences et concourir à haut niveau.",
+  "programs.elite": "Programme Élite",
+  "programs.elite.desc": "Entraînement intensif pour les joueurs avancés avec des aspirations professionnelles, axé sur les aspects techniques, tactiques, physiques et mentaux.",
+  "programs.adult": "Entraînement pour Adultes",
+  "programs.adult.desc": "Programmes pour les joueurs de tous niveaux qui souhaitent améliorer leurs compétences, rester en forme et profiter du jeu de tennis.",
+  "programs.personalCoaching": "Entraînement Privé (13+ ans)",
+  "programs.personalCoaching.desc": "Leçons privées avec entraîneur et partenaire d'entraînement dédiés, disponibles sur rendez-vous pour les athlètes de 13 ans et plus.",
+  "programs.more": "En Savoir Plus",
+  
+  // Camps Section
+  "camps.title": "CLINICS",
+  "camps.subtitle": "Expérience immersive de haute qualité pour joueurs de tous âges pendant les vacances d'été et scolaires",
+  "camps.summer": "Clinics/Clinics d'Été",
+  "camps.intro": "Expérience immersive de haute qualité pour joueurs de tous âges pendant les vacances d'été et scolaires.",
+  "camps.description1": "Nos Clinics offrent une immersion complète dans le tennis de qualité, combinant entraînement intensif, plaisir et socialisation dans un environnement stimulant et professionnel.",
+  "camps.description2": "Grâce à la technologie VICKI™, même dans un format court comme celui des clinics, nous sommes en mesure d'offrir une expérience de formation significative avec des retours précis et mesurables.",
+  "camps.features": "Caractéristiques du Programme",
+  "camps.feature1": "Sessions techniques matinales avec analyse vidéo",
+  "camps.feature2": "Activités tactiques et pratique de match l'après-midi",
+  "camps.feature3": "Mini-tournois et compétitions organisées",
+  "camps.feature4": "Sessions d'entraînement mental adaptées à l'âge",
+  "camps.feature5": "Activités physiques complémentaires et jeux de groupe",
+  "camps.feature6": "Rapport final détaillé avec des indications pour l'avenir",
+  "camps.benefits": "Avantages",
+  "camps.benefit1": "Amélioration technique intensive en peu de temps",
+  "camps.benefit2": "Expérience de tennis immersive et motivante",
+  "camps.benefit3": "Socialisation avec d'autres joueurs et développement d'amitiés",
+  "camps.benefit4": "Découverte de vos points forts et domaines d'amélioration",
+  "camps.benefit5": "Exposition à la méthodologie professionnelle ATH",
+  "camps.benefit6": "Plaisir et passion pour le tennis dans un environnement positif",
+  
+  // Facilities, Coaches, Contact and other sections
+  "facilities.title": "Installations de Classe Mondiale",
+  "facilities.subtitle": "Expérimentez l'environnement parfait pour l'excellence du tennis",
+  
+  "coaches.title": "Équipe d'Entraîneurs Experts",
+  "coaches.subtitle": "Apprenez des meilleurs esprits du tennis",
+  
+  "testimonials.title": "Histoires de Réussite",
+  "testimonials.subtitle": "Écoutez nos joueurs et parents",
+  
+  "join.title": "Rejoignez Notre Communauté de Tennis d'Élite",
+  "join.desc": "Faites le premier pas vers l'excellence du tennis. Rejoignez ATH Advanced Tennis Hub et expérimentez la différence que nos installations de classe mondiale, notre coaching expert et notre approche personnalisée peuvent apporter à votre jeu.",
+  "join.cta": "COMMENCEZ VOTRE PARCOURS",
+  
+  "contact.title": "Contactez-Nous",
+  "contact.subtitle": "Nous aimerions avoir de vos nouvelles. Contactez-nous pour toute question ou pour planifier une visite.",
+  "contact.send": "Envoyez-Nous un Message",
+  "contact.info": "Informations de Contact",
+  "contact.name": "Nom Complet",
+  "contact.email": "Adresse Email",
+  "contact.phone": "Numéro de Téléphone",
+  "contact.message": "Message",
+  "contact.submit": "Envoyer le Message",
+  "contact.success": "Votre message a été envoyé avec succès. Nous vous répondrons bientôt!",
+  "contact.error": "Une erreur s'est produite lors de l'envoi de votre message. Veuillez réessayer.",
+  "contact.address": "Adresse",
+  "contact.hours": "Heures d'Ouverture",
+  "contact.mon-fri": "Lundi - Vendredi",
+  "contact.saturday": "Samedi",
+  "contact.sunday": "Dimanche",
+  
+  // Footer
+  "footer.description": "Élever l'excellence du tennis grâce à des programmes d'entraînement innovants, des installations de classe mondiale et un coaching personnalisé.",
+  "footer.programs": "Programmes",
+  "footer.junior": "Académie Junior",
+  "footer.elite": "Programme Élite",
+  "footer.adult": "Entraînement pour Adultes",
+  "footer.camps": "Clinics/Clinics d'Été",
+  "footer.private": "Leçons Privées",
+  "footer.links": "Liens Rapides",
+  "footer.about": "À Propos de Nous",
+  "footer.facilities": "Nos Installations",
+  "footer.coaches": "Équipe d'Entraîneurs",
+  "footer.testimonials": "Histoires de Réussite",
+  "footer.news": "Actualités et Événements",
+  "footer.contact": "Contactez-Nous",
+  "footer.rights": "Tous droits réservés.",
+  "footer.privacy": "Politique de Confidentialité",
+  "footer.terms": "Conditions d'Utilisation",
+  "footer.sitemap": "Plan du Site",
+  
   // Method section
-  method: {
-    title: "LA MÉTHODE:",
-    tagline: "Une approche intégrée à l'excellence du tennis",
-    dataApproach: {
-      title: "Approche basée sur les données",
-      desc1: "Notre méthode utilise des analyses de données avancées pour suivre plus de 70 paramètres spécifiques de performance de tennis pendant chaque séance d'entraînement.",
-      desc2: "L'analyse en temps réel permet des ajustements immédiats tandis que le système d'IA identifie des modèles et des opportunités d'amélioration qui pourraient échapper même à l'observation experte."
-    },
-    coaching: {
-      title: "Coaching expert",
-      desc1: "La technologie améliore mais ne remplace jamais l'expertise humaine. Nos professionnels utilisent les données collectées comme une boussole pour naviguer dans le parcours de développement de chaque athlète.",
-      desc2: "Chaque programme d'entraînement devient hautement personnalisé, adapté aux caractéristiques uniques du joueur, à ses objectifs et à son style de jeu."
-    },
-    pillars: {
-      title: "Les quatre piliers de la Méthode ATH",
-      technical: {
-        title: "Excellence technique",
-        desc: "Analyse biomécanique détaillée de chaque coup et mouvement, avec feedback immédiat et guidage correctif précis. Contrôle supérieur du contact avec la balle et des trajectoires dans chaque situation de jeu."
-      },
-      physical: {
-        title: "Préparation athlétique",
-        desc: "Suivi des capacités athlétiques, programmes de développement personnalisés et prévention des blessures basée sur les données. Optimisation des mouvements sur le court et dominance physique dans les phases critiques du match."
-      },
-      mental: {
-        title: "Force mentale",
-        desc: "Développement des capacités cognitives, gestion du stress compétitif et optimisation de la concentration en match. Capacité de réaction avancée aux situations adverses et contrôle émotionnel sous pression."
-      },
-      tactical: {
-        title: "Tactique & Stratégie",
-        desc: "Analyse des schémas de jeu, stratégie spécifique au match et prise de décision sous pression. Lecture anticipée du jeu de l'adversaire et adaptation stratégique supérieure dans différentes situations compétitives."
-      }
-    },
-    integration: {
-      title: "Intégration complète",
-      desc1: "La véritable unicité de la Méthode ATH réside dans l'intégration parfaite de ces quatre piliers, soutenue par la technologie VICKI™ et l'expertise de nos professionnels.",
-      desc2: "Cette approche holistique garantit que chaque aspect de l'entraînement au tennis est traité avec la plus grande attention, créant un chemin de développement cohérent, efficace et personnalisé."
-    },
-    forCoaches: "Pour les Entraîneurs",
-    forParents: "Pour les Parents",
-    forProfessionals: "Pour les Joueurs Professionnels",
-    forPerformance: "Pour les Athlètes de Performance",
-    forJuniors: "Pour les Jeunes Joueurs de Tennis",
-    professional: {
-      desc1: "La Méthode ATH pour les joueurs de tennis professionnels se concentre sur l'optimisation complète des performances, intégrant l'analyse technique, la préparation physique, l'entraînement mental et l'analyse tactique dans un système cohérent.",
-      desc2: "Chaque détail est surveillé et analysé pour identifier même les marges d'amélioration minimales qui, au niveau professionnel, peuvent faire la différence entre la victoire et la défaite.",
-      desc3: "Notre approche avec les professionnels comprend également la gestion des cycles de charge et de récupération, le suivi biochimique et la planification stratégique de la saison compétitive."
-    },
-    performance: {
-      desc1: "Pour les compétiteurs de haut niveau, la Méthode ATH se concentre sur le raffinement technico-tactique et le développement des capacités physiques et mentales nécessaires pour concourir à un haut niveau.",
-      desc2: "La technologie VICKI™ permet d'identifier les schémas de jeu efficaces et inefficaces, d'analyser les performances de match et de surveiller l'évolution de la charge de travail pour prévenir les blessures.",
-      desc3: "La méthode comprend également la préparation spécifique au tournoi, avec des simulations de match et l'analyse des adversaires."
-    },
-    junior: {
-      desc1: "Pour les jeunes joueurs de tennis, la Méthode ATH équilibre le développement technique avec la composante ludique, en surveillant attentivement la croissance physique et le développement des compétences de coordination.",
-      desc2: "Le système VICKI™ identifie tôt les qualités et les talents, permettant la personnalisation du parcours de formation basé sur les caractéristiques individuelles du jeune athlète.",
-      desc3: "Une grande attention est accordée au développement harmonieux, en évitant les spécialisations précoces et en favorisant les approches multidisciplinaires et le développement moteur approprié."
-    },
-    coach: {
-      desc1: "Pour les entraîneurs, la Méthode ATH fournit des outils d'analyse et de suivi avancés, vous permettant de codifier votre méthodologie au sein du système et de suivre l'évolution de vos athlètes.",
-      desc2: "La plateforme facilite la collaboration avec d'autres professionnels (entraîneurs, coachs mentaux, médecins) et vous permet de créer des programmes personnalisés basés sur des données objectives.",
-      desc3: "Les entraîneurs peuvent accéder à des tableaux de bord personnalisables, des rapports détaillés et des outils d'analyse avancés pour optimiser leur travail et maximiser les résultats de leurs athlètes."
-    },
-    parent: {
-      desc1: "Pour les parents, la Méthode ATH garantit la transparence et l'implication dans le parcours de développement du jeune athlète, avec des rapports clairs et compréhensibles sur les progrès et les objectifs.",
-      desc2: "Le système fournit des conseils pratiques sur la meilleure façon de soutenir le parcours sportif de l'enfant, sans pression excessive et avec une attention constante au bien-être psycho-physique.",
-      desc3: "La communication avec l'équipe technique est facilitée par des canaux directs et des mises à jour régulières, créant un environnement collaboratif qui favorise la croissance sereine du jeune joueur de tennis."
-    },
-    description: {
-      default: "La Méthode ATH est un système intégré qui combine technologie avancée et coaching expert",
-      junior: "La Méthode ATH pour les jeunes joueurs de tennis combine plaisir et apprentissage technique avec un suivi du développement",
-      performance: "La Méthode ATH pour les compétiteurs offre une analyse avancée et une optimisation des performances pour les compétitions de haut niveau",
-      professional: "La Méthode ATH pour les professionnels assure une analyse complète et l'intégration de tous les aspects de la performance",
-      coach: "La Méthode ATH pour les entraîneurs fournit des outils d'analyse et de support avancés pour développer une méthodologie efficace",
-      parent: "La Méthode ATH pour les parents offre soutien et transparence dans le parcours de développement du jeune athlète",
-      adult: "La Méthode ATH pour les amateurs offre des programmes flexibles mais complets pour améliorer votre tennis à tout âge",
-      camps: "La Méthode ATH pour les camps d'été fournit une expérience de développement immersive avec un suivi continu"
-    }
-  },
-  
-  // Programs section
-  programs: {
-    ath: {
-      title: "ADVANCED TENNIS HUB",
-      subtitle: "Approche méthodologique unique et personnalisée pour chaque profil de joueur"
-    },
-    title: "PROGRAMMES",
-    defaultSubtitle: "Approche méthodologique unique et personnalisée pour chaque profil de joueur",
-    juniorSubtitle: "Programmes spécialisés pour les jeunes joueurs de tennis en développement",
-    performanceSubtitle: "Programmes avancés pour les joueurs de tennis performance compétitifs",
-    professionalSubtitle: "Programmes d'élite pour les professionnels recherchant des performances maximales",
-    coachSubtitle: "Programmes et outils avancés pour les entraîneurs",
-    parentSubtitle: "Soutien et implication pour les parents de jeunes athlètes",
-    adultSubtitle: "Programmes flexibles pour les joueurs récréatifs de tous niveaux",
-    methodBased: "Programmes basés sur la Méthode ATH",
-    methodDescription: "Tous nos programmes sont basés sur la méthode ATH, un système innovant qui intègre une technologie avancée avec un coaching expert. Notre approche garantit que chaque athlète, quels que soient son niveau ou son âge, reçoit un entraînement personnalisé basé sur des données objectives et soutenu par des professionnels hautement qualifiés.",
-    showRelevant: "Afficher uniquement les programmes pertinents",
-    showAll: "Voir tous les programmes",
-    learnMoreMethod: "En savoir plus sur la Méthode ATH et le système VICKI™ →",
-    technicalDevelopment: "Développement Technique",
-    technicalDescription: "Nos entraîneurs utilisent l'analyse vidéo avancée et le feedback en temps réel pour affiner votre technique sur tous les coups.",
-    tacticalStrategy: "Tactique & Stratégie",
-    tacticalDescription: "Nous développons votre réflexion tactique et votre capacité à lire le jeu de votre adversaire, vous fournissant les outils pour adapter votre stratégie en temps réel pendant le match.",
-    physicalPreparation: "Préparation Physique",
-    physicalDescription: "Programmes de fitness personnalisés spécifiques au tennis axés sur la vitesse, l'agilité, la force et l'endurance.",
-    mentalTraining: "Entraînement Mental",
-    mentalDescription: "Développez la résistance mentale, la concentration et la pensée stratégique avec nos méthodes d'entraînement psychologique spécialisées.",
-    athAdvantage: "L'Avantage ATH",
-    advantageDescription: "Ce qui distingue ATH est notre intégration de technologies de pointe avec une expertise de coaching de classe mondiale. Notre système VICKI™ capture et analyse plus de 70 paramètres de votre performance tennistique, permettant à nos entraîneurs de fournir un entraînement hautement personnalisé.",
-    dataApproachDescription: "Cette approche basée sur les données élimine les conjectures et garantit que chaque minute de votre entraînement est optimisée pour une amélioration maximale. Que vous soyez débutant ou joueur d'élite, notre méthodologie s'adapte à vos besoins et objectifs uniques.",
-    joinRevolutionDescription: "Rejoignez la révolution dans l'entraînement du tennis et expérimentez les résultats qui ont fait d'ATH le choix des joueurs récréatifs et des champions.",
-    bookTrial: "RÉSERVER UN ESSAI",
-    intro: "Nos programmes intègrent technologie avancée et expertise de coaching pour un développement tennistique optimal.",
-    methodology: "La méthodologie ATH combine analyse de données, coaching personnalisé et une approche intégrée pour maximiser votre potentiel.",
-    "sport.description": "Choisissez parmi nos programmes spécialisés adaptés à différents sports de raquette.",
-    "select.sport": "Sélectionnez votre sport",
-    "explore.programs": "Explorez nos programmes spécialisés pour chaque sport de raquette",
-    tennis: "Tennis",
-    padel: "Padel",
-    pickleball: "Pickleball",
-    touchtennis: "Touch Tennis",
-    "tennis.description": "Programmes d'entraînement complets utilisant notre méthodologie avancée et la technologie VICKI™.",
-    "padel.description": "Programmes spécialisés pour développer vos compétences en padel avec une approche basée sur les données.",
-    "pickleball.description": "Développez votre jeu de pickleball avec nos programmes personnalisés pour tous les niveaux.",
-    "touchtennis.description": "Améliorez votre technique et votre stratégie de touch tennis avec notre approche innovante.",
-    "explore.tennis": "Explorer les programmes de tennis →",
-    "explore.padel": "Explorer les programmes de padel →",
-    "explore.pickleball": "Explorer les programmes de pickleball →",
-    "explore.touchtennis": "Explorer les programmes de touch tennis →",
-    "why.ath": "Pourquoi choisir ATH?",
-    "feature.tech": "Technologie avancée",
-    "feature.tech.desc": "Notre système VICKI™ analyse plus de 70 paramètres de performance pour un coaching précis et personnalisé.",
-    "feature.experts": "Experts qualifiés",
-    "feature.experts.desc": "Notre équipe de coachs professionnels combine expertise technique et pédagogique de haut niveau.",
-    "feature.integrated": "Approche intégrée",
-    "feature.integrated.desc": "Nous intégrons aspects techniques, tactiques, physiques et mentaux pour un développement complet.",
-    "feature.personalization": "Personnalisation complète",
-    "feature.personalization.desc": "Chaque programme est adapté à vos caractéristiques individuelles, objectifs et style de jeu.",
-    "request.info": "Demander plus d'informations"
-  },
-  
-  // Camps section
-  camps: {
-    title: "CAMPS D'ÉTÉ",
-    subtitle: "Programmes intensifs d'entraînement de tennis pour jeunes joueurs de tous niveaux",
-    intro: "Nos camps d'été offrent une expérience tennistique immersive combinant coaching professionnel, technologie de suivi avancée et un environnement amusant et encourageant.",
-    summer: "Programme des Camps d'Été",
-    description1: "Les Camps d'Été ATH sont conçus pour offrir une expérience tennistique complète qui combine un entraînement intensif avec les dernières technologies de suivi des performances. Les joueurs de tous niveaux bénéficieront de notre programme structuré qui se concentre sur le développement technique, la conscience tactique, le conditionnement physique et l'approche mentale.",
-    description2: "Chaque participant reçoit une attention personnalisée avec une analyse détaillée des performances utilisant notre système VICKI, permettant aux entraîneurs d'adapter les feedbacks et les plans de développement aux besoins individuels.",
-    features: "Caractéristiques du Programme",
-    feature1: "Sessions quotidiennes d'entraînement technique et tactique",
-    feature2: "Analyse des performances avec la technologie VICKI™",
-    feature3: "Conditionnement physique spécifique au tennis",
-    feature4: "Ateliers de développement des compétences mentales",
-    feature5: "Jeu compétitif et simulations de tournoi",
-    feature6: "Analyse vidéo et sessions de feedback",
-    feature7: "Plans de développement personnalisés",
-    benefits: "Avantages pour les Joueurs",
-    benefit1: "Développement rapide des compétences grâce à un entraînement ciblé",
-    benefit2: "Compréhension complète du style de jeu personnel",
-    benefit3: "Amélioration des performances en match et de l'état d'esprit compétitif",
-    benefit4: "Capacités physiques améliorées spécifiques au tennis",
-    benefit5: "Développement d'habitudes d'entraînement durables",
-    benefit6: "Accès à des analyses de performance avancées"
-  },
-  
-  // Testimonials section
-  testimonials: {
-    title: "TÉMOIGNAGES",
-    subtitle: "Ce que nos athlètes disent à propos de leur expérience avec ATH",
-    quote1: "ATH a complètement transformé mon approche du tennis. La technologie VICKI™ a identifié des modèles dans mon jeu que je n'aurais jamais remarqués. En seulement trois mois, j'ai considérablement amélioré mon revers et ma stratégie sur le court.",
-    author1: "Marc Dubois",
-    role1: "Joueur Compétitif",
-    quote2: "En tant que parent, j'apprécie énormément la transparence et les retours détaillés qu'ATH fournit sur les progrès de ma fille. Son coach peut me montrer exactement sur quoi ils travaillent et pourquoi, rendant tout le processus beaucoup plus clair.",
-    author2: "Laura Martin",
-    role2: "Parent de Junior",
-    quote3: "La différence avec l'entraînement traditionnel est impressionnante. Chaque séance est précisément calibrée pour mes besoins, et je peux voir des améliorations mesurables semaine après semaine. Cette approche basée sur les données est révolutionnaire.",
-    author3: "Jean Petit",
-    role3: "Joueur Amateur"
-  },
-  
-  // Home page translations
-  home: {
-    welcome: "BIENVENUE À ATH",
-    button: "NOTRE MÉTHODE",
-    programs: "NOS PROGRAMMES",
-    testimonials: "TÉMOIGNAGES",
-    contactUs: "CONTACTEZ-NOUS",
-    allPrograms: "Voir tous les programmes"
-  },
-  
-  // Contact section
-  contact: {
-    title: "Contactez-nous",
-    description: "Contactez-nous pour plus d'informations sur nos programmes et services.",
-    name: "Nom",
-    email: "Email",
-    message: "Message",
-    phone: "Téléphone",
-    send: "Envoyer",
-    submit: "Envoyer",
-    success: "Message envoyé avec succès !",
-    error: "Une erreur est survenue lors de l'envoi de votre message. Veuillez réessayer plus tard."
-  },
-  
-  programsOverview: {
-    title: "Aperçu des Programmes",
-    all: "Tous les Programmes",
-    tennis: "Programmes de Tennis",
-    padel: "Programmes de Padel",
-    pickleball: "Programmes de Pickleball",
-    touchTennis: "Programmes de Touch Tennis",
-  }
+  "method.title": "Méthode ATH",
+  "method.subtitle": "Une approche innovante de l'excellence en tennis"
 };
 
-export { fr as default };
+export default translations;

@@ -15,10 +15,9 @@ interface ProfileContextType {
   resetProfile: () => void;
   showAllPrograms: boolean;
   setShowAllPrograms: (show: boolean) => void;
+  // Add missing methods
   updateProfile: (gender: UserGender, type: UserType, sport: SportType) => void;
   deleteProfile: () => void;
-  // Added for backward compatibility
-  loadingPreferences?: boolean;
 }
 
 const ProfileContext = createContext<ProfileContextType | undefined>(undefined);
@@ -41,7 +40,6 @@ export const ProfileProvider: React.FC<{ children: ReactNode }> = ({ children })
   });
   
   const [showAllPrograms, setShowAllPrograms] = useState<boolean>(true);
-  const [loadingPreferences, setLoadingPreferences] = useState<boolean>(false);
   
   // Update localStorage when values change
   useEffect(() => {
@@ -112,9 +110,9 @@ export const ProfileProvider: React.FC<{ children: ReactNode }> = ({ children })
       resetProfile,
       showAllPrograms,
       setShowAllPrograms,
+      // Add the new methods to the context value
       updateProfile,
-      deleteProfile,
-      loadingPreferences
+      deleteProfile
     }}>
       {children}
     </ProfileContext.Provider>

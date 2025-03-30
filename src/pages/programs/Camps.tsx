@@ -1,4 +1,3 @@
-
 import { useEffect, useState } from 'react';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
@@ -33,7 +32,7 @@ const CampsProgram = () => {
         <div className="w-full bg-black py-16">
           <div className="max-w-3xl mx-auto text-center">
             <h2 className="text-white text-xl md:text-2xl font-swiss uppercase mb-2">
-              {t('camps.title')}
+              {t('camps.title')}:
             </h2>
             <p className="text-white text-xl md:text-2xl opacity-90 font-swiss max-w-3xl drop-shadow-md">
               {t('camps.subtitle')}

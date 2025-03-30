@@ -15,7 +15,7 @@ const Footer = () => {
             <Logo variant="footer" onDarkBackground={true} />
           </div>
           <p className="text-gray-400 text-sm mb-6 font-swiss">
-            {t('footer.description')}
+            Elevare l'eccellenza del tennis attraverso programmi di allenamento innovativi, strutture di livello internazionale e coaching personalizzato.
           </p>
           <div className="flex space-x-4 mb-4">
             <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className="hover:text-gray-400 transition-colors" aria-label="Instagram">
@@ -33,12 +33,12 @@ const Footer = () => {
         <div>
           <h3 className="text-lg font-medium mb-6">{t('footer.programs')}</h3>
           <ul className="space-y-3">
-            <li><Link to="/programs/overview" className="text-gray-400 hover:text-white text-sm transition-colors font-swiss">{t('nav.programs')}</Link></li>
+            <li><Link to="/programs/overview" className="text-gray-400 hover:text-white text-sm transition-colors font-swiss">Tutti i Programmi</Link></li>
             <li><Link to="/programs/junior" className="text-gray-400 hover:text-white text-sm transition-colors font-swiss">{t('footer.junior')}</Link></li>
-            <li><Link to="/programs/performance-3" className="text-gray-400 hover:text-white text-sm transition-colors font-swiss">{t('footer.elite')}</Link></li>
-            <li><Link to="/programs/adult-training" className="text-gray-400 hover:text-white text-sm transition-colors font-swiss">{t('footer.adult')}</Link></li>
-            <li><Link to="/programs/camps" className="text-gray-400 hover:text-white text-sm transition-colors font-swiss">{t('footer.camps')}</Link></li>
-            <li><Link to="/programs/personal" className="text-gray-400 hover:text-white text-sm transition-colors font-swiss">{t('footer.private')}</Link></li>
+            <li><Link to="/programs/performance-3" className="text-gray-400 hover:text-white text-sm transition-colors font-swiss">Performance</Link></li>
+            <li><Link to="/programs/adult-training" className="text-gray-400 hover:text-white text-sm transition-colors font-swiss">Amatori</Link></li>
+            <li><Link to="/programs/camps" className="text-gray-400 hover:text-white text-sm transition-colors font-swiss">Camp Estivi</Link></li>
+            <li><Link to="/programs/personal" className="text-gray-400 hover:text-white text-sm transition-colors font-swiss">Lezioni Private</Link></li>
           </ul>
         </div>
 
@@ -48,7 +48,7 @@ const Footer = () => {
             <li><Link to="/about" className="text-gray-400 hover:text-white text-sm transition-colors font-swiss">{t('footer.about')}</Link></li>
             <li><Link to="/facilities" className="text-gray-400 hover:text-white text-sm transition-colors font-swiss">{t('footer.facilities')}</Link></li>
             <li><Link to="/coaches" className="text-gray-400 hover:text-white text-sm transition-colors font-swiss">{t('footer.coaches')}</Link></li>
-            <li><Link to="/method" className="text-gray-400 hover:text-white text-sm transition-colors font-swiss">{t('nav.method')}</Link></li>
+            <li><Link to="/method" className="text-gray-400 hover:text-white text-sm transition-colors font-swiss">{t('footer.method')}</Link></li>
             <li><Link to="/technology" className="text-gray-400 hover:text-white text-sm transition-colors font-swiss">{t('footer.technology')}</Link></li>
           </ul>
         </div>
@@ -58,7 +58,7 @@ const Footer = () => {
           <ul className="space-y-4">
             <li className="flex items-start">
               <MapPin size={18} className="mr-3 mt-0.5 text-gray-400" />
-              <span className="text-gray-400 text-sm font-swiss">{t('contact.address')}</span>
+              <span className="text-gray-400 text-sm font-swiss">Via F. Turati, 9, 20090 Rodano MI, Italia</span>
             </li>
             <li className="flex items-center">
               <Phone size={18} className="mr-3 text-gray-400" />

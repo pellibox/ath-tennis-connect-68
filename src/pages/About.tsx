@@ -12,7 +12,6 @@ import Logo from '@/components/Logo';
 import { useIsMobile } from '@/hooks/use-mobile';
 import { useProfile } from '@/contexts/ProfileContext';
 import { getVimeoEmbed } from '@/utils/videoUtils';
-import StandardHeroVideo from '@/components/StandardHeroVideo';
 
 const AboutPage = () => {
   const { t } = useLanguage();
@@ -96,19 +95,30 @@ const AboutPage = () => {
       
       <main className="flex-grow">
         {/* Video background - using personalized video based on user profile */}
-        <StandardHeroVideo 
-          vimeoEmbed={vimeoEmbed} 
-          titleKey="nav.about"
-          subtitle="La rivoluzione nell'allenamento del tennis moderno"
-        />
+        <div className="w-full bg-black min-h-[calc(100vw*9/16)] relative">
+          <div dangerouslySetInnerHTML={{ __html: vimeoEmbed }} />
+        </div>
+        
+        {/* Black frame with claim */}
+        <div className="w-full bg-black py-16">
+          <div className="max-w-3xl mx-auto text-center">
+            <h2 className="text-white text-xl md:text-2xl font-swiss uppercase mb-2">
+              PERCHÉ ATH:
+            </h2>
+            <p className="text-white text-xl md:text-2xl opacity-90 font-swiss drop-shadow-md">
+              La rivoluzione nell'allenamento del tennis moderno
+            </p>
+          </div>
+        </div>
         
         <div className="bg-gradient-to-r from-ath-clay/5 to-white py-16 px-6">
           <div className="max-w-7xl mx-auto">
             <div className="max-w-4xl mx-auto text-center">
               <RevealAnimation>
-                <h2 className="text-3xl md:text-4xl font-display mb-6 text-ath-clay">{t("about.challenges")}</h2>
+                <h2 className="text-3xl md:text-4xl font-display mb-6 text-ath-clay">Le Sfide del Tennis Moderno e le Soluzioni di ATH</h2>
                 <p className="text-gray-600 leading-relaxed mb-8">
-                  {t("about.challenges.subtitle")}
+                  Il tennis contemporaneo affronta diverse sfide che ne limitano l'evoluzione e l'accessibilità. 
+                  ATH ha sviluppato soluzioni specifiche per superarle.
                 </p>
               </RevealAnimation>
             </div>
@@ -116,14 +126,14 @@ const AboutPage = () => {
         </div>
         
         <AboutSection 
-          title={t("about.challenge1.title")}
+          title="Accesso Limitato alle Competenze"
           subtitle="Sfida #1"
           description={
             <div className="space-y-4">
-              <p className="font-medium text-ath-clay">{t("about.challenge1.title")}:</p>
-              <p>{t("about.challenge1.desc")}</p>
-              <p className="font-medium text-ath-clay">{t("about.solution1.title")}:</p>
-              <p>{t("about.solution1.desc")}</p>
+              <p className="font-medium text-ath-clay">La Sfida:</p>
+              <p>Solo un'élite di giocatori ha accesso a programmi e coaching di alto livello. L'esperienza dei coach di primo piano non è equamente distribuita e risulta difficile seguire molti atleti senza perdere qualità.</p>
+              <p className="font-medium text-ath-clay">La Soluzione ATH:</p>
+              <p>Per ampliare l'accesso all'allenamento d'élite, ATH utilizza strumenti digitali che raccolgono dati su tecnica, tattica, stato fisico, approccio mentale, oltre a parametri medici e biochimici. Gli head coach possono così fornire un supporto estremamente personalizzato, ottimizzando i tempi e le risorse a vantaggio di ogni atleta.</p>
             </div>
           }
           icon={
@@ -136,14 +146,14 @@ const AboutPage = () => {
         />
         
         <AboutSection 
-          title={t("about.challenge2.title")}
+          title="Inconsistenza nell'Insegnamento"
           subtitle="Sfida #2"
           description={
             <div className="space-y-4">
-              <p className="font-medium text-ath-clay">{t("about.challenge2.title")}:</p>
-              <p>{t("about.challenge2.desc")}</p>
-              <p className="font-medium text-ath-clay">{t("about.solution2.title")}:</p>
-              <p>{t("about.solution2.desc")}</p>
+              <p className="font-medium text-ath-clay">La Sfida:</p>
+              <p>Per compensare i limiti dei coach principali, si formano altri coach che però creano discontinuità nell'allenamento. Questo genera incoerenza e ostacola la crescita dell'atleta.</p>
+              <p className="font-medium text-ath-clay">La Soluzione ATH:</p>
+              <p>Utilizziamo dati concreti da sistemi di tracking, analisi video, test atletici, valutazioni mentali e parametri medici. Organizziamo riunioni continue, supportate dall'AI, per adeguare le linee di allenamento alle esigenze reali di ogni atleta. Questo garantisce istruzioni coerenti e dettagliate, come avviene nell'ambito professionistico, con analisi delle performance, personalizzazione degli allenamenti e pianificazione agonistica.</p>
             </div>
           }
           icon={
@@ -158,14 +168,14 @@ const AboutPage = () => {
         />
         
         <AboutSection 
-          title={t("about.challenge3.title")}
+          title="Analisi Insufficiente"
           subtitle="Sfida #3"
           description={
             <div className="space-y-4">
-              <p className="font-medium text-ath-clay">{t("about.challenge3.title")}:</p>
-              <p>{t("about.challenge3.desc")}</p>
-              <p className="font-medium text-ath-clay">{t("about.solution3.title")}:</p>
-              <p>{t("about.solution3.desc")}</p>
+              <p className="font-medium text-ath-clay">La Sfida:</p>
+              <p>Un coach, per quanto esperto, non può monitorare costantemente un atleta se non lo segue a tempo pieno. Le sue decisioni si fondano quindi su informazioni frammentarie e riportate, riducendo l'accuratezza dell'analisi.</p>
+              <p className="font-medium text-ath-clay">La Soluzione ATH:</p>
+              <p>La nostra tecnologia in tempo reale cattura ogni dettaglio, compresi gli aspetti tecnici, fisici, mentali, medici e biochimici. I coach ricevono feedback immediato e certo, favorendo miglioramenti continui e misurabili.</p>
             </div>
           }
           icon={
@@ -178,14 +188,14 @@ const AboutPage = () => {
         />
         
         <AboutSection 
-          title={t("about.challenge4.title")}
+          title="Personalizzazione Limitata"
           subtitle="Sfida #4"
           description={
             <div className="space-y-4">
-              <p className="font-medium text-ath-clay">{t("about.challenge4.title")}:</p>
-              <p>{t("about.challenge4.desc")}</p>
-              <p className="font-medium text-ath-clay">{t("about.solution4.title")}:</p>
-              <p>{t("about.solution4.desc")}</p>
+              <p className="font-medium text-ath-clay">La Sfida:</p>
+              <p>Le soluzioni "commerciali" spesso propongono un metodo unico, ignorando le esigenze individuali. Chi non è seguito direttamente dal coach principale dispone di scarse opportunità di personalizzare il proprio percorso.</p>
+              <p className="font-medium text-ath-clay">La Soluzione ATH:</p>
+              <p>Con un mix di AI e competenze professionali, progettiamo piani di allenamento su misura. Consideriamo età, sviluppo fisico e mentale, biotipo, stile di apprendimento, obiettivi e parametri di salute. In questo modo, il piano si evolve con i progressi dell'atleta, sia fisici sia mentali.</p>
             </div>
           }
           icon={
@@ -200,14 +210,14 @@ const AboutPage = () => {
         />
         
         <AboutSection 
-          title={t("about.challenge5.title")}
+          title="Sviluppo Frammentato"
           subtitle="Sfida #5"
           description={
             <div className="space-y-4">
-              <p className="font-medium text-ath-clay">{t("about.challenge5.title")}:</p>
-              <p>{t("about.challenge5.desc")}</p>
-              <p className="font-medium text-ath-clay">{t("about.solution5.title")}:</p>
-              <p>{t("about.solution5.desc")}</p>
+              <p className="font-medium text-ath-clay">La Sfida:</p>
+              <p>Tecnica, tattica, forma fisica, preparazione mentale, analisi medica e biochimica sono raramente coordinate in un programma unico.</p>
+              <p className="font-medium text-ath-clay">La Soluzione ATH:</p>
+              <p>ATH integra questi aspetti in un sistema sinergico. Coach, preparatori atletici, mental coach, specialisti medici e nutrizionisti collaborano su dati concreti, elaborando una strategia condivisa allineata ai tuoi obiettivi.</p>
             </div>
           }
           icon={
@@ -223,13 +233,13 @@ const AboutPage = () => {
           <div className="max-w-7xl mx-auto">
             <div className="max-w-4xl mx-auto text-center">
               <RevealAnimation>
-                <h2 className="text-3xl md:text-4xl font-display mb-8">{t("about.approach.title")}</h2>
+                <h2 className="text-3xl md:text-4xl font-display mb-8">Il Nostro Approccio</h2>
                 <p className="text-white/90 leading-relaxed text-lg mb-10">
-                  {t("about.approach.desc")}
+                  Immagina un ambiente in cui ogni dettaglio del tuo gioco è monitorato e ottimizzato. ATH non è solo un centro di allenamento, ma un modo nuovo di insegnare e vivere il tennis. Ogni elemento del nostro sistema risponde alle criticità del tennis moderno, offrendo un'esperienza completa in cui ogni aspetto lavora in sinergia.
                 </p>
                 <div className="flex justify-center">
                   <ButtonLink href="/method" variant="secondary">
-                    {t("about.discover.button")}
+                    Scopri il Metodo ATH
                   </ButtonLink>
                 </div>
               </RevealAnimation>

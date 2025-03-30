@@ -1,4 +1,3 @@
-
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Header from '@/components/Header';
@@ -9,7 +8,7 @@ import RevealAnimation from '@/components/RevealAnimation';
 import PricingTables from '@/components/PricingTables';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { useProfile } from '@/contexts/ProfileContext';
-import { getVimeoEmbed, getPersonalizedMethodDescription } from '@/utils/videoUtils';
+import { getVimeoEmbed } from '@/utils/videoUtils';
 import ProgramFilters from '@/components/programs/ProgramFilters';
 import { Tabs, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { programCategories } from '@/data/programs';
@@ -62,19 +61,23 @@ const Programs = () => {
 
   const getPersonalizedSubtitle = () => {
     if (!userType) {
-      return t('programs.defaultSubtitle');
+      return "Approccio metodologico unico e personalizzato per ogni profilo di giocatore";
     }
 
-    const subtitleKeys: Record<string, string> = {
-      junior: 'programs.juniorSubtitle',
-      performance: 'programs.performanceSubtitle',
-      professional: 'programs.professionalSubtitle',
-      coach: 'programs.coachSubtitle',
-      parent: 'programs.parentSubtitle',
-      adult: 'programs.adultSubtitle'
-    };
-
-    return t(subtitleKeys[userType] || 'programs.defaultSubtitle');
+    switch (userType) {
+      case 'junior':
+        return "Programmi specializzati per giovani tennisti in fase di sviluppo";
+      case 'performance':
+        return "Programmi avanzati per tennisti agonisti performance";
+      case 'professional':
+        return "Programmi elite per professionisti che cercano il massimo delle prestazioni";
+      case 'coach':
+        return "Programmi e strumenti avanzati per allenatori";
+      case 'parent':
+        return "Supporto e coinvolgimento per genitori di giovani atleti";
+      default:
+        return "Approccio metodologico unico e personalizzato per ogni profilo di giocatore";
+    }
   };
 
   return (
@@ -84,7 +87,7 @@ const Programs = () => {
       <main className="flex-grow pt-0">
         <StandardHeroVideo 
           vimeoEmbed={vimeoEmbed}
-          title={t('programs.title')}
+          title="PROGRAMMI:"
           subtitle={getPersonalizedSubtitle()}
         />
         
@@ -92,14 +95,14 @@ const Programs = () => {
           <div className="max-w-7xl mx-auto">
             <RevealAnimation>
               <div className="flex flex-col md:flex-row md:justify-between md:items-center mb-4">
-                <h2 className={`text-2xl md:text-4xl font-display ${isMobile ? "mb-4" : ""}`}>{t('programs.methodBased')}</h2>
+                <h2 className={`text-2xl md:text-4xl font-display ${isMobile ? "mb-4" : ""}`}>Programmi basati sul Metodo ATH</h2>
                 
                 {userType && (
                   <button 
                     onClick={() => setShowAllPrograms(!showAllPrograms)}
                     className="hidden md:block px-4 py-2 border border-gray-300 rounded-md hover:bg-gray-50"
                   >
-                    {showAllPrograms ? t('programs.showRelevant') : t('programs.showAll')}
+                    {showAllPrograms ? 'Mostra solo programmi rilevanti' : 'Vedi tutti i programmi'}
                   </button>
                 )}
               </div>
@@ -108,7 +111,9 @@ const Programs = () => {
             <RevealAnimation delay={100}>
               <div className="text-base md:text-lg text-gray-600 max-w-3xl mb-6 space-y-4">
                 <p>
-                  {t('programs.methodDescription')}
+                  Tutti i nostri programmi si basano sul metodo ATH, un sistema innovativo che integra tecnologia avanzata con coaching esperto. 
+                  Il nostro approccio garantisce che ogni atleta, indipendentemente dal livello o dall'età, riceva un allenamento personalizzato 
+                  basato su dati oggettivi e supportato da professionisti altamente qualificati.
                 </p>
                 
                 {userType && (
@@ -116,13 +121,13 @@ const Programs = () => {
                     onClick={() => setShowAllPrograms(!showAllPrograms)}
                     className="md:hidden w-full mt-4 px-4 py-2 border border-gray-300 rounded-md hover:bg-gray-50"
                   >
-                    {showAllPrograms ? t('programs.showRelevant') : t('programs.showAll')}
+                    {showAllPrograms ? 'Mostra solo programmi rilevanti' : 'Vedi tutti i programmi'}
                   </button>
                 )}
                 
                 <div className="mt-4 md:mt-6">
                   <a href="/method" className="inline-flex items-center text-ath-clay font-medium hover:underline text-sm md:text-base">
-                    {t('programs.learnMoreMethod')}
+                    Scopri di più sul Metodo ATH e il sistema VICKI™ →
                   </a>
                 </div>
               </div>
@@ -130,23 +135,23 @@ const Programs = () => {
             
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-8 mb-8 md:mb-12">
               <RevealAnimation delay={150} className="bg-white p-4 md:p-8 shadow-sm">
-                <h3 className={`${isMobile ? "text-lg" : "text-xl"} font-medium mb-2 md:mb-4`}>{t('programs.technicalDevelopment')}</h3>
-                <p className={`text-gray-600 ${isMobile ? "text-sm" : ""}`}>{t('programs.technicalDescription')}</p>
+                <h3 className={`${isMobile ? "text-lg" : "text-xl"} font-medium mb-2 md:mb-4`}>Sviluppo Tecnico</h3>
+                <p className={`text-gray-600 ${isMobile ? "text-sm" : ""}`}>I nostri coach utilizzano analisi video avanzate e feedback in tempo reale per perfezionare la tua tecnica su tutti i colpi.</p>
               </RevealAnimation>
               
               <RevealAnimation delay={200} className="bg-white p-4 md:p-8 shadow-sm">
-                <h3 className={`${isMobile ? "text-lg" : "text-xl"} font-medium mb-2 md:mb-4`}>{t('programs.tacticalStrategy')}</h3>
-                <p className={`text-gray-600 ${isMobile ? "text-sm" : ""}`}>{t('programs.tacticalDescription')}</p>
+                <h3 className={`${isMobile ? "text-lg" : "text-xl"} font-medium mb-2 md:mb-4`}>Tattica & Strategia</h3>
+                <p className={`text-gray-600 ${isMobile ? "text-sm" : ""}`}>Sviluppiamo il tuo pensiero tattico, la capacità di leggere il gioco dell'avversario e di adattare la tua strategia in tempo reale durante la partita.</p>
               </RevealAnimation>
               
               <RevealAnimation delay={250} className="bg-white p-4 md:p-8 shadow-sm">
-                <h3 className={`${isMobile ? "text-lg" : "text-xl"} font-medium mb-2 md:mb-4`}>{t('programs.physicalPreparation')}</h3>
-                <p className={`text-gray-600 ${isMobile ? "text-sm" : ""}`}>{t('programs.physicalDescription')}</p>
+                <h3 className={`${isMobile ? "text-lg" : "text-xl"} font-medium mb-2 md:mb-4`}>Preparazione Fisica</h3>
+                <p className={`text-gray-600 ${isMobile ? "text-sm" : ""}`}>Programmi di fitness personalizzati specifici per il tennis, focalizzati su velocità, agilità, forza e resistenza.</p>
               </RevealAnimation>
               
               <RevealAnimation delay={300} className="bg-white p-4 md:p-8 shadow-sm">
-                <h3 className={`${isMobile ? "text-lg" : "text-xl"} font-medium mb-2 md:mb-4`}>{t('programs.mentalTraining')}</h3>
-                <p className={`text-gray-600 ${isMobile ? "text-sm" : ""}`}>{t('programs.mentalDescription')}</p>
+                <h3 className={`${isMobile ? "text-lg" : "text-xl"} font-medium mb-2 md:mb-4`}>Allenamento Mentale</h3>
+                <p className={`text-gray-600 ${isMobile ? "text-sm" : ""}`}>Sviluppa resistenza mentale, concentrazione e pensiero strategico con i nostri metodi di allenamento psicologico specializzati.</p>
               </RevealAnimation>
             </div>
           </div>
@@ -155,20 +160,20 @@ const Programs = () => {
         <div id="programs-section" className="bg-ath-gray py-12">
           {isMobile ? (
             <div className="mb-8">
-              <h2 className="text-2xl font-display mb-6">{t('programs.select.sport')}</h2>
+              <h2 className="text-2xl font-display mb-6">Seleziona lo Sport</h2>
               <Tabs value={activeTab} onValueChange={handleTabChange} className="w-full">
                 <TabsList className="w-full mb-2 bg-white border border-gray-200 rounded-full p-1 flex justify-between">
                   <TabsTrigger 
                     value="tennis" 
                     className="flex-1 rounded-full data-[state=active]:bg-ath-clay data-[state=active]:text-white px-4 py-2"
                   >
-                    {t('nav.tennis')}
+                    Tennis
                   </TabsTrigger>
                   <TabsTrigger 
                     value="padel" 
                     className="flex-1 rounded-full data-[state=active]:bg-ath-clay data-[state=active]:text-white px-4 py-2"
                   >
-                    {t('nav.padel')}
+                    Padel
                   </TabsTrigger>
                 </TabsList>
                 <TabsList className="w-full bg-white border border-gray-200 rounded-full p-1 flex justify-between">
@@ -176,13 +181,13 @@ const Programs = () => {
                     value="pickleball" 
                     className="flex-1 rounded-full data-[state=active]:bg-ath-clay data-[state=active]:text-white px-4 py-2"
                   >
-                    {t('nav.pickleball')}
+                    Pickleball
                   </TabsTrigger>
                   <TabsTrigger 
                     value="touchtennis" 
                     className="flex-1 rounded-full data-[state=active]:bg-ath-clay data-[state=active]:text-white px-4 py-2"
                   >
-                    {t('nav.touchtennis')}
+                    TouchTennis
                   </TabsTrigger>
                 </TabsList>
               </Tabs>
@@ -198,39 +203,39 @@ const Programs = () => {
         </div>
         
         <AboutSection 
-          title={t('programs.athAdvantage')}
+          title="Il Vantaggio ATH"
           description={
             <div className="space-y-4">
               <p>
-                {t('programs.advantageDescription')}
+                Ciò che distingue ATH è la nostra integrazione di tecnologia all'avanguardia con competenze di coaching di livello mondiale. Il nostro sistema VICKI™ cattura e analizza oltre 70 parametri delle tue prestazioni tennistiche, consentendo ai nostri coach di fornire un allenamento altamente personalizzato.
               </p>
-              <h3 className="text-xl font-semibold mt-6 mb-2">{t('programs.technicalDevelopment')}</h3>
+              <h3 className="text-xl font-semibold mt-6 mb-2">Sviluppo Tecnico</h3>
               <p>
-                {t('programs.technicalDescription')}
+                I nostri coach utilizzano analisi video avanzate e feedback in tempo reale per perfezionare la tua tecnica su tutti i colpi.
               </p>
-              <h3 className="text-xl font-semibold mt-6 mb-2">{t('programs.tacticalStrategy')}</h3>
+              <h3 className="text-xl font-semibold mt-6 mb-2">Tattica & Strategia</h3>
               <p>
-                {t('programs.tacticalDescription')}
+                Sviluppiamo il tuo pensiero tattico e la capacità di leggere il gioco dell'avversario, fornendoti gli strumenti per adattare la tua strategia in tempo reale durante la partita.
               </p>
-              <h3 className="text-xl font-semibold mt-6 mb-2">{t('programs.physicalPreparation')}</h3>
+              <h3 className="text-xl font-semibold mt-6 mb-2">Preparazione Fisica</h3>
               <p>
-                {t('programs.physicalDescription')}
+                Programmi di fitness personalizzati specifici per il tennis, focalizzati su velocità, agilità, forza e resistenza.
               </p>
-              <h3 className="text-xl font-semibold mt-6 mb-2">{t('programs.mentalTraining')}</h3>
+              <h3 className="text-xl font-semibold mt-6 mb-2">Allenamento Mentale</h3>
               <p>
-                {t('programs.mentalDescription')}
-              </p>
-              <p>
-                {t('programs.dataApproachDescription')}
+                Sviluppa resistenza mentale, concentrazione e pensiero strategico con i nostri metodi di allenamento psicologico specializzati.
               </p>
               <p>
-                {t('programs.joinRevolutionDescription')}
+                Questo approccio basato sui dati elimina le congetture e garantisce che ogni minuto del tuo allenamento sia ottimizzato per il massimo miglioramento. Che tu sia un principiante o un giocatore d'élite, la nostra metodologia si adatta alle tue esigenze e obiettivi unici.
+              </p>
+              <p>
+                Unisciti alla rivoluzione nell'allenamento tennistico e sperimenta i risultati che hanno reso ATH la scelta di giocatori ricreativi e campioni.
               </p>
             </div>
           }
           image="https://images.unsplash.com/photo-1531315396756-905d68d21b56"
           buttons={[
-            { text: t('programs.bookTrial'), href: '/contact' }
+            { text: 'PRENOTA UNA PROVA', href: '/contact' }
           ]}
           reversed={true}
         />
