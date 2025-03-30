@@ -58,7 +58,11 @@ const ProgramsOverview = () => {
           </Breadcrumb>
         </div>
         
-        <StandardHeroVideo vimeoEmbed={vimeoEmbed} />
+        <StandardHeroVideo 
+          vimeoEmbed={vimeoEmbed} 
+          title="PROGRAMMI ATH" 
+          subtitle="Programmi personalizzati per ogni livello di gioco"
+        />
         
         <div className="container mx-auto px-4 py-12">
           <RevealAnimation>

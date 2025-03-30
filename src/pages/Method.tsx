@@ -7,6 +7,7 @@ import RevealAnimation from '@/components/RevealAnimation';
 import { getVimeoEmbed, getPersonalizedMethodDescription } from '@/utils/videoUtils';
 import { useIsMobile } from '@/hooks/use-mobile';
 import StandardHeroVideo from '@/components/StandardHeroVideo';
+import { Settings, Target, Activity, Brain } from 'lucide-react';
 
 const MethodPage = () => {
   const { t } = useLanguage();
