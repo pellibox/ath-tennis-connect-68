@@ -10,9 +10,9 @@ import { useProfile } from '@/contexts/ProfileContext';
 import { useIsMobile } from '@/hooks/use-mobile';
 import NavigationLinks from './navigation/NavigationLinks';
 import BottomNavigation from './navigation/BottomNavigation';
-import PrivacyPage from '@/pages/Privacy';
 import { Button } from './ui/button';
 import MobileMenu from './navigation/MobileMenu';
+import ProgramsDropdown from './navigation/ProgramsDropdown';
 
 interface HeaderProps {
   useVickiLogo?: boolean;
@@ -34,6 +34,12 @@ const Header = ({ useVickiLogo = false }: HeaderProps) => {
 
   const headerBgClass = "bg-white";
   const textColorClass = "text-black";
+  
+  // Check if we're on a programs-related page
+  const isOnProgramsPage = location.pathname.includes('programs') || 
+                           location.pathname.includes('touchtennis') || 
+                           location.pathname.includes('padel') ||
+                           location.pathname.includes('pickleball');
   
   return (
     <>
@@ -76,6 +82,12 @@ const Header = ({ useVickiLogo = false }: HeaderProps) => {
           {!isMobile && (
             <div className="hidden lg:flex items-center ml-auto justify-center flex-1">
               <NavigationLinks textColorClass={textColorClass} />
+            </div>
+          )}
+          
+          {isOnProgramsPage && isMobile && (
+            <div className="absolute right-4">
+              <ProgramsDropdown textColorClass={textColorClass} />
             </div>
           )}
           

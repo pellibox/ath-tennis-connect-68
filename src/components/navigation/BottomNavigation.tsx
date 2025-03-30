@@ -1,44 +1,105 @@
 
+import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { HelpCircle, BookOpen, Zap, Server } from 'lucide-react';
-import { FaList } from "react-icons/fa6";
-import { CgProfile } from "react-icons/cg";
+import { User, Home, Info, Phone, Racket } from 'lucide-react';
 import { cn } from '@/lib/utils';
+import ProfileDialog from '@/components/profile/ProfileDialog';
 import { useProfile } from '@/contexts/ProfileContext';
 import { useLanguage } from '@/contexts/LanguageContext';
-import { useState } from 'react';
-import ProfileDialog from '../profile/ProfileDialog';
+import ProgramsDropdown from './ProgramsDropdown';
 
 const BottomNavigation = () => {
   const location = useLocation();
+  const [profileDialogOpen, setProfileDialogOpen] = useState(false);
+  const { 
+    userGender, 
+    userType, 
+    sport, 
+    updateProfile, 
+    resetProfile, 
+    deleteProfile 
+  } = useProfile();
   const { t } = useLanguage();
-  const { userType, userGender, sport, updateProfile, resetProfile, deleteProfile } = useProfile();
-  const [dialogOpen, setDialogOpen] = useState(false);
   
-  // Simplified navigation items for bottom nav
-  const bottomNavItems = [
-    { text: "ATH", href: '/about', icon: <HelpCircle size={20} /> },
-    { text: t("nav.method"), href: '/method', icon: <BookOpen size={20} /> },
-    { 
-      text: t("nav.programs"), 
-      href: '/programs/overview', 
-      icon: <FaList size={20} /> 
-    },
-    { text: t("tech.title.short"), href: '/technology', icon: <Zap size={20} /> },
-    { text: t("nav.facilities"), href: '/facilities', icon: <Server size={20} /> }
-  ];
-
-  const isActive = (href: string) => {
-    return location.pathname === href || 
-           (href !== '/' && location.pathname.startsWith(href));
+  const isActive = (path: string) => {
+    if (path === '/') {
+      return location.pathname === path;
+    }
+    return location.pathname.startsWith(path);
   };
 
+  const handleProfileClick = () => {
+    setProfileDialogOpen(true);
+  };
+  
+  // Determine if we're on a programs-related page
+  const isOnProgramsPage = location.pathname.includes('programs') || 
+                         location.pathname.includes('touchtennis') || 
+                         location.pathname.includes('padel') ||
+                         location.pathname.includes('pickleball');
+  
   return (
     <>
-      {/* Make sure the dialog is properly shown when opened */}
+      <div className="fixed bottom-0 left-0 right-0 h-14 bg-white shadow-[0_-2px_10px_rgba(0,0,0,0.1)] z-50 flex justify-around items-center">
+        <Link 
+          to="/" 
+          className={cn(
+            "flex flex-col items-center justify-center w-1/5 text-xs py-1 transition-colors",
+            isActive('/') ? "text-ath-clay" : "text-gray-500"
+          )}
+        >
+          <Home size={20} />
+          <span className="mt-0.5 text-[10px]">Home</span>
+        </Link>
+        
+        <Link 
+          to="/programs" 
+          className={cn(
+            "flex flex-col items-center justify-center w-1/5 text-xs py-1 transition-colors",
+            isActive('/programs') || isActive('/padel') || isActive('/pickleball') || isActive('/touchtennis') ? "text-ath-clay" : "text-gray-500"
+          )}
+        >
+          <Racket size={20} />
+          <span className="mt-0.5 text-[10px]">Programmi</span>
+        </Link>
+        
+        <Link 
+          to="/about" 
+          className={cn(
+            "flex flex-col items-center justify-center w-1/5 text-xs py-1 transition-colors",
+            isActive('/about') ? "text-ath-clay" : "text-gray-500"
+          )}
+        >
+          <Info size={20} />
+          <span className="mt-0.5 text-[10px]">Chi Siamo</span>
+        </Link>
+        
+        <Link 
+          to="/contact" 
+          className={cn(
+            "flex flex-col items-center justify-center w-1/5 text-xs py-1 transition-colors",
+            isActive('/contact') ? "text-ath-clay" : "text-gray-500"
+          )}
+        >
+          <Phone size={20} />
+          <span className="mt-0.5 text-[10px]">Contatti</span>
+        </Link>
+        
+        <button
+          onClick={handleProfileClick}
+          className={cn(
+            "flex flex-col items-center justify-center w-1/5 text-xs py-1 transition-colors border-0 bg-transparent",
+            profileDialogOpen ? "text-ath-clay" : "text-gray-500"
+          )}
+        >
+          <User size={20} />
+          <span className="mt-0.5 text-[10px]">Profilo</span>
+        </button>
+      </div>
+      
       <ProfileDialog 
-        open={dialogOpen}
-        setOpen={setDialogOpen}
+        open={profileDialogOpen}
+        setOpen={setProfileDialogOpen}
         userGender={userGender}
         userType={userType}
         sport={sport}
@@ -46,36 +107,6 @@ const BottomNavigation = () => {
         resetProfile={resetProfile}
         deleteProfile={deleteProfile}
       />
-      
-      <div className="fixed bottom-0 left-0 right-0 bg-white shadow-[0_-2px_10px_rgba(0,0,0,0.05)] z-40 lg:hidden">
-        <div className="grid grid-cols-6 h-14">
-          {bottomNavItems.map((item, index) => (
-            <Link
-              key={index}
-              to={item.href}
-              className={cn(
-                "flex flex-col items-center justify-center px-1 py-2 text-[10px] font-swiss",
-                isActive(item.href) 
-                  ? "text-ath-clay" 
-                  : "text-gray-600"
-              )}
-            >
-              {item.icon}
-              <span className="mt-1">{item.text}</span>
-            </Link>
-          ))}
-          
-          {/* Fixed profile button - making sure it's clickable */}
-          <button
-            onClick={() => setDialogOpen(true)}
-            className="flex flex-col items-center justify-center px-1 py-2 text-[10px] font-swiss text-gray-600"
-            aria-label={t("profile.title")}
-          >
-            <CgProfile size={20} />
-            <span className="mt-1">{t("profile.title")}</span>
-          </button>
-        </div>
-      </div>
     </>
   );
 };
