@@ -12,6 +12,7 @@ import Logo from '@/components/Logo';
 import { useIsMobile } from '@/hooks/use-mobile';
 import { useProfile } from '@/contexts/ProfileContext';
 import { getVimeoEmbed } from '@/utils/videoUtils';
+import StandardHeroVideo from '@/components/StandardHeroVideo';
 
 const AboutPage = () => {
   const { t } = useLanguage();
@@ -95,21 +96,11 @@ const AboutPage = () => {
       
       <main className="flex-grow">
         {/* Video background - using personalized video based on user profile */}
-        <div className="w-full bg-black min-h-[calc(100vw*9/16)] relative">
-          <div dangerouslySetInnerHTML={{ __html: vimeoEmbed }} />
-        </div>
-        
-        {/* Black frame with claim */}
-        <div className="w-full bg-black py-16">
-          <div className="max-w-3xl mx-auto text-center">
-            <h2 className="text-white text-xl md:text-2xl font-swiss uppercase mb-2">
-              {t("nav.about")}:
-            </h2>
-            <p className="text-white text-xl md:text-2xl opacity-90 font-swiss drop-shadow-md">
-              La rivoluzione nell'allenamento del tennis moderno
-            </p>
-          </div>
-        </div>
+        <StandardHeroVideo 
+          vimeoEmbed={vimeoEmbed} 
+          titleKey="nav.about"
+          subtitle="La rivoluzione nell'allenamento del tennis moderno"
+        />
         
         <div className="bg-gradient-to-r from-ath-clay/5 to-white py-16 px-6">
           <div className="max-w-7xl mx-auto">
