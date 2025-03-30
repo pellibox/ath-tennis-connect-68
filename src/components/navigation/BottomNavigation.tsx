@@ -35,7 +35,7 @@ const BottomNavigation = () => {
 
   return (
     <>
-      {/* Make sure the dialog is properly shown when opened */}
+      {/* Make sure the dialog is properly shown when opened but hide the trigger */}
       <ProfileDialog 
         open={dialogOpen}
         setOpen={setDialogOpen}
@@ -45,6 +45,7 @@ const BottomNavigation = () => {
         updateProfile={updateProfile}
         resetProfile={resetProfile}
         deleteProfile={deleteProfile}
+        showTrigger={false}
       />
       
       <div className="fixed bottom-0 left-0 right-0 bg-white shadow-[0_-2px_10px_rgba(0,0,0,0.05)] z-40 lg:hidden">

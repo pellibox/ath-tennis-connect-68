@@ -95,6 +95,7 @@ const Header = ({ useVickiLogo = false }: HeaderProps) => {
                 updateProfile={updateProfile}
                 resetProfile={resetProfile}
                 deleteProfile={deleteProfile}
+                showTrigger={true}
               />
               
               <div className={cn("hidden lg:block", textColorClass)}>

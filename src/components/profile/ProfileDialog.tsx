@@ -25,6 +25,7 @@ interface ProfileDialogProps {
   updateProfile: (gender: UserGender, type: UserType, sport: SportType) => void;
   resetProfile: () => void;
   deleteProfile: () => void;
+  showTrigger?: boolean;
 }
 
 const ProfileDialog = ({ 
@@ -35,7 +36,8 @@ const ProfileDialog = ({
   sport,
   updateProfile,
   resetProfile,
-  deleteProfile
+  deleteProfile,
+  showTrigger = true
 }: ProfileDialogProps) => {
   const { t } = useLanguage();
   const isMobile = useIsMobile();
@@ -59,28 +61,29 @@ const ProfileDialog = ({
     });
   };
 
-  // Remove the mobile check for rendering
   return (
     <Dialog open={open} onOpenChange={setOpen}>
-      <DialogTrigger asChild>
-        <div className="mr-4 cursor-pointer relative">
-          {userGender && userType ? (
-            <ProfileIndicator 
-              gender={userGender as UserGender} 
-              type={userType as UserType}
-              sport={sport as SportType}
-              onEditClick={() => setOpen(true)}
-              onDeleteProfile={deleteProfile}
-              onResetProfile={handleProfileReset}
-            />
-          ) : (
-            <button className="mr-4 text-sm px-3 py-1 rounded-md bg-ath-clay text-white font-swiss flex items-center gap-1">
-              <CgProfile size={16} />
-              <span>{t("profile.title")}</span>
-            </button>
-          )}
-        </div>
-      </DialogTrigger>
+      {showTrigger && (
+        <DialogTrigger asChild>
+          <div className="mr-4 cursor-pointer relative">
+            {userGender && userType ? (
+              <ProfileIndicator 
+                gender={userGender as UserGender} 
+                type={userType as UserType}
+                sport={sport as SportType}
+                onEditClick={() => setOpen(true)}
+                onDeleteProfile={deleteProfile}
+                onResetProfile={handleProfileReset}
+              />
+            ) : (
+              <button className="mr-4 text-sm px-3 py-1 rounded-md bg-ath-clay text-white font-swiss flex items-center gap-1">
+                <CgProfile size={16} />
+                <span>{t("profile.title")}</span>
+              </button>
+            )}
+          </div>
+        </DialogTrigger>
+      )}
       <DialogContent className="sm:max-w-md">
         <DialogHeader>
           <DialogTitle className="font-swiss">{t("profile.select")}</DialogTitle>
