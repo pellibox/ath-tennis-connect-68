@@ -15,15 +15,11 @@ const BottomNavigation = () => {
   const { userType, userGender, sport, updateProfile, resetProfile, deleteProfile } = useProfile();
   const [dialogOpen, setDialogOpen] = useState(false);
   
-  // Simplified navigation items for bottom nav
+  // Use navigation items with translations
   const bottomNavItems = [
-    { text: "ATH", href: '/about', icon: <HelpCircle size={20} /> },
+    { text: t("nav.about"), href: '/about', icon: <HelpCircle size={20} /> },
     { text: t("nav.method"), href: '/method', icon: <BookOpen size={20} /> },
-    { 
-      text: t("nav.programs"), 
-      href: '/programs/overview', 
-      icon: <FaList size={20} /> 
-    },
+    { text: t("nav.programs"), href: '/programs/overview', icon: <FaList size={20} /> },
     { text: t("tech.title.short"), href: '/technology', icon: <Zap size={20} /> },
     { text: t("nav.facilities"), href: '/facilities', icon: <Server size={20} /> }
   ];

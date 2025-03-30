@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import { useLanguage } from '@/contexts/LanguageContext';
@@ -6,13 +6,11 @@ import { useProfile } from '@/contexts/ProfileContext';
 import RevealAnimation from '@/components/RevealAnimation';
 import { getVimeoEmbed, getPersonalizedMethodDescription } from '@/utils/videoUtils';
 import { useIsMobile } from '@/hooks/use-mobile';
-import { Activity, Target, Brain, Settings } from 'lucide-react';
 import StandardHeroVideo from '@/components/StandardHeroVideo';
 
 const MethodPage = () => {
   const { t } = useLanguage();
   const { userGender, userType } = useProfile();
-  const isMobile = useIsMobile();
   
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -28,7 +26,7 @@ const MethodPage = () => {
         <StandardHeroVideo 
           vimeoEmbed={vimeoEmbed}
           title="IL METODO:"
-          subtitle="Tecnologia e competenza umana al servizio dell'eccellenza tennistica"
+          subtitle={t("method.tagline")}
         />
         
         <section className="py-16 px-6 lg:px-10">
@@ -42,28 +40,24 @@ const MethodPage = () => {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-16 mb-16">
               <RevealAnimation delay={100}>
                 <div>
-                  <h3 className="text-2xl font-display mb-4 text-center md:text-left">Approccio basato sui dati</h3>
+                  <h3 className="text-2xl font-display mb-4 text-center md:text-left">{t("method.dataApproach.title")}</h3>
                   <p className="text-lg text-gray-600 mb-4 text-center md:text-left">
-                    Il Metodo ATH utilizza analisi avanzata e tecnologia per fornire feedback oggettivi e misurazioni precise della performance.
-                    Ogni sessione di allenamento genera dati che vengono utilizzati per personalizzare il percorso dell'atleta.
+                    {t("method.dataApproach.desc1")}
                   </p>
                   <p className="text-lg text-gray-600 text-center md:text-left">
-                    Attraverso il sistema VICKI™, monitoriamo oltre 70 parametri che coprono tutti gli aspetti del gioco, dalla tecnica alla tattica, 
-                    dalla preparazione fisica alle componenti mentali.
+                    {t("method.dataApproach.desc2")}
                   </p>
                 </div>
               </RevealAnimation>
               
               <RevealAnimation delay={200}>
                 <div>
-                  <h3 className="text-2xl font-display mb-4 text-center md:text-left">Coaching personalizzato</h3>
+                  <h3 className="text-2xl font-display mb-4 text-center md:text-left">{t("method.coaching.title")}</h3>
                   <p className="text-lg text-gray-600 mb-4 text-center md:text-left">
-                    I nostri coach utilizzano i dati raccolti per creare programmi di allenamento su misura per ogni atleta, tenendo conto 
-                    delle caratteristiche individuali, degli obiettivi specifici e dello stile di gioco.
+                    {t("method.coaching.desc1")}
                   </p>
                   <p className="text-lg text-gray-600 text-center md:text-left">
-                    Questo approccio garantisce che ogni minuto di allenamento sia ottimizzato per il massimo miglioramento, eliminando 
-                    congetture e metodologie standardizzate.
+                    {t("method.coaching.desc2")}
                   </p>
                 </div>
               </RevealAnimation>

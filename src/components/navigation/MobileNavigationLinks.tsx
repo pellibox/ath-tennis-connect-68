@@ -4,6 +4,7 @@ import { ChevronDown } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import NavigationLink from './NavigationLink';
 import { navigationItems } from './navigationItems';
+import { useLanguage } from '@/contexts/LanguageContext';
 
 interface MobileNavigationLinksProps {
   className?: string;
@@ -12,6 +13,7 @@ interface MobileNavigationLinksProps {
 
 const MobileNavigationLinks = ({ className, textColorClass }: MobileNavigationLinksProps) => {
   const [openSubmenu, setOpenSubmenu] = useState<string | null>(null);
+  const { t } = useLanguage();
 
   const toggleSubmenu = (text: string) => {
     setOpenSubmenu(openSubmenu === text ? null : text);
@@ -36,7 +38,7 @@ const MobileNavigationLinks = ({ className, textColorClass }: MobileNavigationLi
                 )}
               >
                 {item.icon}
-                {item.text}
+                {t(item.translationKey)}
                 <ChevronDown 
                   size={16} 
                   className={cn(
@@ -57,7 +59,7 @@ const MobileNavigationLinks = ({ className, textColorClass }: MobileNavigationLi
                       )}
                     >
                       {subItem.icon}
-                      {subItem.text}
+                      {t(subItem.translationKey)}
                     </NavigationLink>
                   ))}
                 </div>
@@ -72,7 +74,7 @@ const MobileNavigationLinks = ({ className, textColorClass }: MobileNavigationLi
               )}
             >
               {item.icon}
-              {item.text}
+              {t(item.translationKey)}
             </NavigationLink>
           )}
         </div>
