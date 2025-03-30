@@ -1,7 +1,7 @@
 
 import { Link, useLocation } from 'react-router-dom';
 import { FaList } from "react-icons/fa6";
-import { Zap, Server, User } from 'lucide-react';
+import { BookOpen, Zap, Server, User } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { useProfile } from '@/contexts/ProfileContext';
 import { useLanguage } from '@/contexts/LanguageContext';
