@@ -1,5 +1,5 @@
 
-import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { Toaster } from "@/components/ui/sonner";
 import { LanguageProvider } from './contexts/LanguageContext';
 import { ProfileProvider } from './contexts/ProfileContext';
@@ -117,8 +117,7 @@ function AppContent() {
         <Route path="/privacy" element={<PrivacyPage />} />
         <Route path="/terms" element={<TermsPage />} />
         
-        {/* Redirect from /programs/overview to /programs */}
-        <Route path="/programs/overview" element={<Navigate to="/programs" replace />} />
+        <Route path="/programs/overview" element={<ProgramsOverview />} />
         <Route path="*" element={<NotFoundPage />} />
       </Routes>
       <Toaster position="bottom-right" />

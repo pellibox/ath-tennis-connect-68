@@ -1,7 +1,6 @@
-
 import { useState } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
-import { ChevronLeft } from 'lucide-react';
+import { ChevronLeft, Menu, X } from 'lucide-react';
 import Logo from './Logo';
 import { cn } from '@/lib/utils';
 import LanguageSwitcher from './LanguageSwitcher';
@@ -10,10 +9,9 @@ import { useProfile } from '@/contexts/ProfileContext';
 import { useIsMobile } from '@/hooks/use-mobile';
 import NavigationLinks from './navigation/NavigationLinks';
 import BottomNavigation from './navigation/BottomNavigation';
+import ProfileDialog from './profile/ProfileDialog';
 import { Button } from './ui/button';
 import MobileMenu from './navigation/MobileMenu';
-import ProgramsDropdown from './navigation/ProgramsDropdown';
-import ProfileDialog from './profile/ProfileDialog';
 
 interface HeaderProps {
   useVickiLogo?: boolean;
@@ -25,8 +23,11 @@ const Header = ({ useVickiLogo = false }: HeaderProps) => {
   const { t } = useLanguage();
   const isMobile = useIsMobile();
   const { userGender, userType, sport, updateProfile, resetProfile, deleteProfile } = useProfile();
-  const [profileDialogOpen, setProfileDialogOpen] = useState(false);
+  const [dialogOpen, setDialogOpen] = useState(false);
   
+  // We're removing the hamburger menu toggle functionality
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+
   const handleGoBack = () => {
     navigate(-1);
   };
@@ -36,12 +37,6 @@ const Header = ({ useVickiLogo = false }: HeaderProps) => {
 
   const headerBgClass = "bg-white";
   const textColorClass = "text-black";
-  
-  // Check if we're on a programs-related page
-  const isOnProgramsPage = location.pathname.includes('programs') || 
-                           location.pathname.includes('touchtennis') || 
-                           location.pathname.includes('padel') ||
-                           location.pathname.includes('pickleball');
   
   return (
     <>
@@ -53,6 +48,8 @@ const Header = ({ useVickiLogo = false }: HeaderProps) => {
         )}
       >
         <div className="container mx-auto px-4 flex items-center justify-between relative">
+          {/* Removed hamburger menu button for mobile */}
+
           <div className={cn(
             "flex items-center z-50", 
             isMobile ? "w-auto mx-auto" : (showBackButton ? "pl-0" : "pl-0")
@@ -87,26 +84,19 @@ const Header = ({ useVickiLogo = false }: HeaderProps) => {
             </div>
           )}
           
-          {isOnProgramsPage && isMobile && (
-            <div className="absolute right-4">
-              <ProgramsDropdown textColorClass={textColorClass} />
-            </div>
-          )}
-          
           {!isMobile && (
-            <div className="flex items-center z-50 ml-auto lg:ml-0 gap-4">
-              <div className={cn("hidden lg:block", textColorClass)}>
-                <ProfileDialog 
-                  open={profileDialogOpen}
-                  setOpen={setProfileDialogOpen}
-                  userGender={userGender}
-                  userType={userType}
-                  sport={sport}
-                  updateProfile={updateProfile}
-                  resetProfile={resetProfile}
-                  deleteProfile={deleteProfile}
-                />
-              </div>
+            <div className="flex items-center z-50 ml-auto lg:ml-0">
+              <ProfileDialog 
+                open={dialogOpen}
+                setOpen={setDialogOpen}
+                userGender={userGender}
+                userType={userType}
+                sport={sport}
+                updateProfile={updateProfile}
+                resetProfile={resetProfile}
+                deleteProfile={deleteProfile}
+              />
+              
               <div className={cn("hidden lg:block", textColorClass)}>
                 <LanguageSwitcher />
               </div>
@@ -115,7 +105,8 @@ const Header = ({ useVickiLogo = false }: HeaderProps) => {
         </div>
       </header>
 
-      <MobileMenu isOpen={false} />
+      {/* We'll keep MobileMenu but it won't be triggered by the hamburger icon anymore */}
+      <MobileMenu isOpen={mobileMenuOpen} />
       
       {/* Bottom Navigation for Mobile */}
       {isMobile && <BottomNavigation />}

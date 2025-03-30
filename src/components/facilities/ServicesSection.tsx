@@ -1,6 +1,5 @@
 
 import RevealAnimation from '../RevealAnimation';
-import { useLanguage } from '@/contexts/LanguageContext';
 
 interface ServiceItemProps {
   title: string;
@@ -17,32 +16,30 @@ const ServiceItem = ({ title, description }: ServiceItemProps) => {
 };
 
 const ServicesSection = () => {
-  const { t } = useLanguage();
-  
   const services = [
     {
-      title: t("facilities.services.courts.title"),
-      description: t("facilities.services.courts.description")
+      title: "Noleggio Campi da Tennis, Padel e Pickleball",
+      description: "Prenota i nostri campi tecnologicamente avanzati e a standard internazionale per Tennis, Padel e Pickleball. Tutti i campi sono dotati di attrezzature professionali e possibilità di integrazione con sistema Vicki™ su richiesta."
     },
     {
-      title: t("facilities.services.premium.title"),
-      description: t("facilities.services.premium.description")
+      title: "Affitti Premium",
+      description: "Prenota un campo con sistema Vicki™ integrato per sessioni di allenamento con analisi dati in tempo reale. Ideale per giocatori che vogliono approfondire specifici aspetti tecnici."
     },
     {
-      title: t("facilities.services.clinics.title"),
-      description: t("facilities.services.clinics.description")
+      title: "Clinics Tematici",
+      description: "Sessioni specializzate su aspetti specifici del gioco, con analisi dettagliate e feedback personalizzati basati sui dati raccolti."
     },
     {
-      title: t("facilities.services.evaluation.title"),
-      description: t("facilities.services.evaluation.description")
+      title: "Percorsi Valutativi",
+      description: "Valutazioni complete delle performance tecniche, fisiche e tattiche, con report dettagliati e suggerimenti personalizzati per il miglioramento."
     },
     {
-      title: t("facilities.services.events.title"),
-      description: t("facilities.services.events.description")
+      title: "Eventi e Tornei",
+      description: "Competizioni con analisi avanzata delle performance, ideali per testare in ambiente competitivo i progressi ottenuti durante gli allenamenti."
     },
     {
-      title: t("facilities.services.courses.title"),
-      description: t("facilities.services.courses.description")
+      title: "Corsi Specialistici",
+      description: "Programmi formativi dedicati ad aspetti specifici del tennis come servizio, risposta, gioco di rete o tattica. Ogni corso utilizza l'analisi Vicki™ per personalizzare l'apprendimento."
     }
   ];
 
@@ -50,7 +47,7 @@ const ServicesSection = () => {
     <section className="py-12 px-6 lg:px-10 bg-gray-50 relative z-10">
       <div className="max-w-7xl mx-auto">
         <RevealAnimation>
-          <h2 className="text-3xl md:text-4xl font-swiss text-center mb-8">{t("facilities.services.title")}</h2>
+          <h2 className="text-3xl md:text-4xl font-swiss text-center mb-8">Servizi Offerti</h2>
         </RevealAnimation>
         
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
