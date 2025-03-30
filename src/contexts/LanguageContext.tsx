@@ -2,10 +2,13 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
 import { en } from '../translations/en';
 import { it } from '../translations/it';
-import { fr } from '../translations/fr';
-import { de } from '../translations/de';
+import { default as fr } from '../translations/fr';
+import { default as de } from '../translations/de';
 
 type Language = 'en' | 'it' | 'fr' | 'de';
+
+// Changed type to handle nested translation objects
+type TranslationsObject = Record<string, string | Record<string, string | Record<string, string>>>;
 
 interface LanguageContextType {
   language: Language;
@@ -13,11 +16,11 @@ interface LanguageContextType {
   t: (key: string) => string;
 }
 
-const translationsMap: Record<Language, Record<string, string>> = {
-  en: en,
-  it: it,
-  fr: fr,
-  de: de
+const translationsMap: Record<Language, TranslationsObject> = {
+  en,
+  it,
+  fr,
+  de
 };
 
 // Create the context with a default value to avoid the undefined check
@@ -34,7 +37,7 @@ export const LanguageProvider: React.FC<{ children: React.ReactNode }> = ({ chil
     return savedLanguage && ['en', 'it', 'fr', 'de'].includes(savedLanguage) ? savedLanguage : 'it';
   });
   
-  const [translations, setTranslations] = useState<Record<string, string>>(translationsMap[language] || translationsMap.it);
+  const [translations, setTranslations] = useState<TranslationsObject>(translationsMap[language] || translationsMap.it);
 
   // Load translations when language changes
   useEffect(() => {
@@ -52,9 +55,21 @@ export const LanguageProvider: React.FC<{ children: React.ReactNode }> = ({ chil
     
   }, [language]);
 
-  // Translation function
+  // Updated translation function to handle nested objects
   const t = (key: string): string => {
-    return translations[key] || key;
+    const keys = key.split('.');
+    let result: any = translations;
+    
+    // Navigate through the nested object
+    for (const k of keys) {
+      if (result && typeof result === 'object' && k in result) {
+        result = result[k];
+      } else {
+        return key; // Return the key if translation not found
+      }
+    }
+    
+    return typeof result === 'string' ? result : key;
   };
 
   const contextValue = {

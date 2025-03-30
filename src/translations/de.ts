@@ -1,5 +1,4 @@
-
-const translations = {
+export const de = {
   // Header & Navigation
   "nav.home": "Startseite",
   "nav.programs": "Programme",
@@ -170,4 +169,4 @@ const translations = {
   "method.subtitle": "Ein innovativer Ansatz für Tennis-Exzellenz"
 };
 
-export default translations;
+export default de;
