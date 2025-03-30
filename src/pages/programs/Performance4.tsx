@@ -22,8 +22,13 @@ const Performance4Program = () => {
   
   const relatedPrograms = [
     {
+      title: "Performance 2",
+      description: "2 giorni a settimana per un percorso verso l'eccellenza tennistica, ideale per chi ha molti altri impegni.",
+      link: "/programs/performance-2"
+    },
+    {
       title: "Performance 3",
-      description: "3 giorni a settimana per un allenamento meno intensivo, ideale per atleti che desiderano bilanciare sport e studio.",
+      description: "3 giorni a settimana per un allenamento bilanciato, ideale per atleti che desiderano equilibrare sport e studio.",
       link: "/programs/performance-3"
     },
     {

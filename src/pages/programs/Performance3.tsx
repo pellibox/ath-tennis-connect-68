@@ -57,24 +57,24 @@ const Performance3Program = () => {
             <div className="max-w-6xl mx-auto px-6 h-full flex flex-col justify-center py-8">
               <h2 className="text-white text-lg font-display mb-4">PROGRAMMA PERFORMANCE 3:</h2>
               <p className="text-white text-lg font-swiss max-w-3xl mb-6">
-                Percorso ideale per l'introduzione all'agonismo e lo sviluppo graduale delle capacità competitive, supportato dalla tecnologia VICKI™.
+                Percorso intermedio di sviluppo tennistico che bilancia impegno e professionalità, supportato dalla tecnologia VICKI™.
               </p>
               <ul className="text-white space-y-3 font-swiss max-w-3xl">
                 <li className="flex">
                   <span className="mr-2">•</span>
-                  <span><strong>Sviluppo Tecnico Graduale:</strong> Consolidamento dei fondamentali e introduzione progressiva delle biomeccaniche avanzate, con feedback personalizzato per costruire una solida base tecnica.</span>
+                  <span><strong>Tecnica Avanzata:</strong> Perfezionamento dei fondamentali e introduzione alle biomeccaniche intermedie con analisi video periodica per correzioni tecniche mirate e personalizzate.</span>
                 </li>
                 <li className="flex">
                   <span className="mr-2">•</span>
-                  <span><strong>Preparazione Atletica Accessibile:</strong> Programmi adattati all'età e al livello di sviluppo, con focus sulla coordinazione, velocità e resistenza per creare una base atletica equilibrata.</span>
+                  <span><strong>Preparazione Fisica Strutturata:</strong> Programmi settimanali focalizzati sull'incremento della resistenza specifica, potenza controllata e agilità negli spostamenti laterali, adattati all'età e al potenziale individuale.</span>
                 </li>
                 <li className="flex">
                   <span className="mr-2">•</span>
-                  <span><strong>Avviamento Mentale:</strong> Prima introduzione alla gestione emotiva, concentrazione e costruzione della fiducia in un ambiente positivo e stimolante.</span>
+                  <span><strong>Sviluppo Mentale Progressivo:</strong> Tecniche di concentrazione, routine pre-partita e gestione delle emozioni durante situazioni di punteggio sfidanti, con sessioni dedicate al rafforzamento della resilienza.</span>
                 </li>
                 <li className="flex">
                   <span className="mr-2">•</span>
-                  <span><strong>Introduzione Tattica:</strong> Apprendimento dei principi tattici di base e delle strategie fondamentali per affrontare le prime competizioni con sicurezza.</span>
+                  <span><strong>Approfondimento Tattico:</strong> Costruzione di schemi di gioco personalizzati, analisi delle partite e sviluppo della capacità decisionale in campo, con simulazioni di match per applicare le strategie apprese.</span>
                 </li>
               </ul>
               <div className="mt-6 flex flex-wrap gap-3">
@@ -103,17 +103,17 @@ const Performance3Program = () => {
             </RevealAnimation>
             <RevealAnimation delay={150}>
               <p className="mb-4 font-swiss">
-                Il programma Performance 3 è pensato per giovani atleti che iniziano il loro percorso agonistico,
-                offrendo un approccio graduale e sistematico con 3 giorni settimanali di allenamento,
-                combinando sessioni di tennis e preparazione atletica per un totale di 9 ore settimanali.
+                Il programma Performance 3 è pensato per giovani atleti che cercano un equilibrio ottimale tra
+                intensità di allenamento e impegni esterni, offrendo un percorso strutturato con 3 giorni
+                settimanali di allenamento, combinando sessioni di tennis e preparazione atletica.
               </p>
             </RevealAnimation>
             <RevealAnimation delay={200}>
               <p className="font-swiss">
-                Questo programma equilibrato consente di sviluppare le fondamenta tecniche e fisiche necessarie
-                per il tennis agonistico, mantenendo il giusto spazio per impegni scolastici e crescita personale.
-                La tecnologia VICKI™ monitora i progressi in modo preciso, guidando lo sviluppo dell'atleta
-                con un ritmo adeguato alla sua crescita.
+                Questo programma bilanciato consente di sviluppare solide competenze tecniche e fisiche
+                necessarie per il tennis agonistico, mantenendo il giusto spazio per impegni scolastici e
+                crescita personale. La tecnologia VICKI™ monitora costantemente i progressi per garantire
+                uno sviluppo ottimale.
               </p>
             </RevealAnimation>
           </div>
@@ -159,6 +159,11 @@ const Performance3Program = () => {
             </RevealAnimation>
             <RevealAnimation delay={100}>
               <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+                <Link to="/programs/performance-2" className="block p-6 border border-gray-200 bg-white rounded-lg hover:border-ath-clay hover:shadow-sm transition-all">
+                  <h4 className="text-lg font-medium mb-2">Performance 2</h4>
+                  <p className="text-gray-600 mb-3">2 giorni a settimana per un percorso verso l'eccellenza tennistica, ideale per chi ha molti altri impegni.</p>
+                  <span className="inline-flex items-center text-ath-clay">Scopri <ArrowRight size={14} className="ml-1" /></span>
+                </Link>
                 <Link to="/programs/performance-4" className="block p-6 border border-gray-200 bg-white rounded-lg hover:border-ath-clay hover:shadow-sm transition-all">
                   <h4 className="text-lg font-medium mb-2">Performance 4</h4>
                   <p className="text-gray-600 mb-3">4 giorni a settimana per un'intensità maggiore, ideale per atleti più determinati che cercano un allenamento più strutturato.</p>
@@ -167,11 +172,6 @@ const Performance3Program = () => {
                 <Link to="/programs/elite-performance" className="block p-6 border border-gray-200 bg-white rounded-lg hover:border-ath-clay hover:shadow-sm transition-all">
                   <h4 className="text-lg font-medium mb-2">Elite Performance</h4>
                   <p className="text-gray-600 mb-3">5 giorni a settimana di allenamento intensivo per atleti che puntano all'eccellenza e competizioni di alto livello.</p>
-                  <span className="inline-flex items-center text-ath-clay">Scopri <ArrowRight size={14} className="ml-1" /></span>
-                </Link>
-                <Link to="/programs/elite-full" className="block p-6 border border-gray-200 bg-white rounded-lg hover:border-ath-clay hover:shadow-sm transition-all">
-                  <h4 className="text-lg font-medium mb-2">Elite Performance Full</h4>
-                  <p className="text-gray-600 mb-3">Programma completo e immersivo per atleti di alto livello con allenamento giornaliero e supporto totale.</p>
                   <span className="inline-flex items-center text-ath-clay">Scopri <ArrowRight size={14} className="ml-1" /></span>
                 </Link>
               </div>
