@@ -389,7 +389,7 @@ export const it = {
       },
       mental: {
         title: "Forza Mentale",
-        desc: "Sviluppo delle abilità cognitive, gestione dello stress agonistico e ottimizzazione della concentrazione in partita. Capacità avanzata di reazione alle situazioni avverse e controllo emotivo sotto pressione."
+        desc: "Sviluppo delle abilità cognitive, gestione dello stress agonistico e ottimizzazione della concentrazione in partita. Capacità avanzate di reazione alle situazioni avverse e controllo emotivo sotto pressione."
       },
       tactical: {
         title: "Tattica & Strategia",
@@ -430,6 +430,108 @@ export const it = {
       desc1: "Per i genitori, il Metodo ATH garantisce trasparenza e coinvolgimento nel percorso di sviluppo del giovane atleta, con report chiari e comprensibili sui progressi e sugli obiettivi.",
       desc2: "Il sistema fornisce indicazioni pratiche su come supportare al meglio il percorso sportivo del ragazzo/a, senza pressioni eccessive e con un'attenzione costante al benessere psico-fisico.",
       desc3: "La comunicazione con lo staff tecnico è facilitata attraverso canali diretti e aggiornamenti regolari, creando un ambiente collaborativo che favorisce la crescita serena del giovane tennista."
+    },
+    description: {
+      default: "Il Metodo ATH è un sistema integrato che unisce tecnologia avanzata e coaching esperto",
+      junior: "Il Metodo ATH per giovani tennisti combina divertimento e apprendimento tecnico con monitoraggio dello sviluppo",
+      performance: "Il Metodo ATH per agonisti offre analisi avanzata e ottimizzazione della performance per competizioni di alto livello",
+      professional: "Il Metodo ATH per professionisti garantisce un'analisi completa e integrazione di tutti gli aspetti della performance",
+      coach: "Il Metodo ATH per coach fornisce strumenti avanzati di analisi e supporto per sviluppare una metodologia efficace",
+      parent: "Il Metodo ATH per genitori offre supporto e trasparenza nel percorso di sviluppo del giovane atleta",
+      adult: "Il Metodo ATH per amatori offre programmi flessibili ma completi per migliorare il tuo tennis a qualsiasi età",
+      camps: "Il Metodo ATH per i camp estivi fornisce un'esperienza di sviluppo immersiva con monitoraggio continuo"
+    }
+  },
+  camps: {
+    title: "CAMP ESTIVI",
+    subtitle: "Programmi intensivi di allenamento tennistico per giovani giocatori di tutti i livelli",
+    intro: "I nostri camp estivi offrono un'esperienza tennistica immersiva che combina coaching professionale, tecnologia di tracciamento avanzata e un ambiente divertente e stimolante.",
+    summer: "Programma Camp Estivi",
+    description1: "I Camp Estivi ATH sono progettati per offrire un'esperienza tennistica completa che combina allenamento intensivo con le più recenti tecnologie di monitoraggio delle prestazioni. Giocatori di tutti i livelli beneficeranno del nostro programma strutturato che si concentra sullo sviluppo tecnico, la consapevolezza tattica, il condizionamento fisico e l'approccio mentale.",
+    description2: "Ogni partecipante riceve attenzione personalizzata con analisi dettagliate delle prestazioni utilizzando il nostro sistema VICKI, permettendo agli allenatori di adattare feedback e piani di sviluppo alle esigenze individuali.",
+    features: "Caratteristiche del Programma",
+    feature1: "Sessioni giornaliere di allenamento tecnico e tattico",
+    feature2: "Analisi delle prestazioni con tecnologia VICKI™",
+    feature3: "Condizionamento fisico specifico per il tennis",
+    feature4: "Workshop per lo sviluppo delle abilità mentali",
+    feature5: "Gioco competitivo e simulazioni di torneo",
+    feature6: "Analisi video e sessioni di feedback",
+    feature7: "Piani di sviluppo personalizzati",
+    benefits: "Vantaggi per i Giocatori",
+    benefit1: "Rapido sviluppo delle abilità attraverso allenamento mirato",
+    benefit2: "Comprensione completa dello stile di gioco personale",
+    benefit3: "Miglioramento delle prestazioni in partita e mentalità competitiva",
+    benefit4: "Capacità fisiche migliorate specifiche per il tennis",
+    benefit5: "Sviluppo di abitudini di allenamento sostenibili",
+    benefit6: "Accesso ad analisi avanzate delle prestazioni"
+  },
+  programsOverview: {
+    title: "Panoramica Programmi",
+    all: "Tutti i Programmi",
+    tennis: "Programmi Tennis",
+    padel: "Programmi Padel",
+    pickleball: "Programmi Pickleball",
+    touchTennis: "Programmi Touch Tennis",
+  },
+  programs: {
+    ath: {
+      title: "Programmi ATH",
+      subtitle: "Scopri il nostro approccio unico all'allenamento sportivo"
+    },
+    intro: "I Programmi ATH integrano tecnologia avanzata, coaching esperto e metodologia personalizzata per massimizzare il potenziale di ogni atleta.",
+    methodology: "La nostra metodologia unica è basata su dati obiettivi e analisi parametrica, garantendo un percorso di sviluppo ottimale per giocatori di qualsiasi livello ed età.",
+    sport: {
+      description: "Offriamo programmi specializzati per vari sport con racchetta, applicando la metodologia ATH a ciascuna disciplina con adattamenti specifici."
+    },
+    select: {
+      sport: "Seleziona uno Sport"
+    },
+    explore: {
+      programs: "Esplora i nostri programmi per ciascuno sport racchetta",
+      tennis: "Esplora tutti i programmi Tennis →",
+      padel: "Esplora tutti i programmi Padel →",
+      pickleball: "Esplora tutti i programmi Pickleball →",
+      touchtennis: "Esplora tutti i programmi Touch Tennis →"
+    },
+    tennis: "Tennis",
+    padel: "Padel",
+    pickleball: "Pickleball",
+    touchtennis: "Touch Tennis",
+    tennis: {
+      description: "La nostra offerta principale con programmi completi per tutti i livelli, dall'iniziazione al professionismo."
+    },
+    padel: {
+      description: "Programmi innovativi per il padel con analisi tecnica avanzata e sviluppo strategico."
+    },
+    pickleball: {
+      description: "Metodologia specializzata per questo sport in rapida crescita, con focus su tecnica e strategia di gioco."
+    },
+    touchtennis: {
+      description: "Allenamento specifico per touch tennis con enfasi su precisione e controllo."
+    },
+    why: {
+      ath: "Perché Scegliere ATH"
+    },
+    feature: {
+      tech: "Tecnologia Avanzata",
+      tech: {
+        desc: "Monitoraggio parametrico completo con il sistema VICKI™"
+      },
+      experts: "Coach Esperti",
+      experts: {
+        desc: "Professionisti certificati con esperienza internazionale"
+      },
+      integrated: "Metodologia Integrata",
+      integrated: {
+        desc: "Approccio che combina tecnica, tattica, fisico e mentale"
+      },
+      personalization: "Personalizzazione",
+      personalization: {
+        desc: "Programmi adattati alle caratteristiche uniche di ogni atleta"
+      }
+    },
+    request: {
+      info: "Richiedi Informazioni"
     }
   },
 };

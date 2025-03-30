@@ -1,4 +1,3 @@
-
 import { UserGender, UserType } from '@/components/UserTypeSelector';
 import { SportType } from '@/contexts/ProfileContext';
 
@@ -87,40 +86,36 @@ export const getVimeoEmbed = (userGender: UserGender | null, userType: UserType 
   return videoEmbed;
 };
 
-export const getWelcomeMessage = (userType: UserType | null): string => {
-  if (!userType) return "Centro di allenamento ad alta specializzazione con monitoraggio parametrico completo e metodologia integrata";
+export const getWelcomeMessage = (userType: UserType | null, t: (key: string) => string): string => {
+  if (!userType) return t('home.welcomeSubtitle');
   
-  const messages = {
-    junior: "Percorsi specializzati per giovani tennisti con supporto tecnologico completo",
-    performance: "Ottimizzazione parametrica completa per agonisti di alto livello",
-    professional: "Analisi avanzata e supporto integrato per atleti professionisti",
-    coach: "Strumenti di analisi professionali per supportare la tua metodologia",
-    parent: "Supporto completo per la crescita tennistica dei giovani atleti",
-    adult: "Programmi flessibili e personalizzati per tennisti amatoriali di ogni livello"
+  const messageKeys: Record<UserType, string> = {
+    junior: 'home.welcomeJunior',
+    performance: 'home.welcomePerformance',
+    professional: 'home.welcomeProfessional',
+    coach: 'home.welcomeCoach',
+    parent: 'home.welcomeParent',
+    adult: 'home.welcomeAdult',
+    camps: 'camps.subtitle'
   };
   
-  return messages[userType];
+  return t(messageKeys[userType]);
 };
 
-export const getPersonalizedMethodDescription = (userType: UserType | null): string => {
+export const getPersonalizedMethodDescription = (userType: UserType | null, t: (key: string) => string): string => {
   if (!userType) {
-    return "Il Metodo ATH è un sistema integrato che unisce tecnologia avanzata e coaching esperto";
+    return t('method.description.default');
   }
 
-  switch (userType) {
-    case 'junior':
-      return "Il Metodo ATH per giovani tennisti combina divertimento e apprendimento tecnico con monitoraggio dello sviluppo";
-    case 'performance':
-      return "Il Metodo ATH per agonisti offre analisi avanzata e ottimizzazione della performance per competizioni di alto livello";
-    case 'professional':
-      return "Il Metodo ATH per professionisti garantisce un'analisi completa e integrazione di tutti gli aspetti della performance";
-    case 'coach':
-      return "Il Metodo ATH per coach fornisce strumenti avanzati di analisi e supporto per sviluppare una metodologia efficace";
-    case 'parent':
-      return "Il Metodo ATH per genitori offre supporto e trasparenza nel percorso di sviluppo del giovane atleta";
-    case 'adult':
-      return "Il Metodo ATH per amatori offre programmi flessibili ma completi per migliorare il tuo tennis a qualsiasi età";
-    default:
-      return "Il Metodo ATH è un sistema integrato che unisce tecnologia avanzata e coaching esperto";
-  }
+  const descriptionKeys: Record<UserType, string> = {
+    junior: 'method.description.junior',
+    performance: 'method.description.performance',
+    professional: 'method.description.professional',
+    coach: 'method.description.coach',
+    parent: 'method.description.parent',
+    adult: 'method.description.adult',
+    camps: 'method.description.camps'
+  };
+
+  return t(descriptionKeys[userType]);
 };

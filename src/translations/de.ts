@@ -1,4 +1,3 @@
-
 export const de = {
   // Header & Navigation
   nav: {
@@ -253,6 +252,72 @@ export const de = {
       desc2: "Das System bietet praktische Anleitung, wie man die sportliche Reise des Kindes am besten unterstützen kann, ohne übermäßigen Druck und mit konstanter Aufmerksamkeit für das psycho-physische Wohlbefinden.",
       desc3: "Die Kommunikation mit dem technischen Team wird durch direkte Kanäle und regelmäßige Updates erleichtert, wodurch eine kollaborative Umgebung geschaffen wird, die das gelassene Wachstum des jungen Tennisspielers fördert."
     }
+  },
+  
+  camps: {
+    title: "SOMMERCAMPS",
+    subtitle: "Intensive Tennistrainingsprogramme für junge Spieler aller Niveaus",
+    intro: "Unsere Sommercamps bieten ein immersives Tenniserlebnis, das professionelles Coaching, fortschrittliche Tracking-Technologie und eine unterhaltsame, unterstützende Umgebung kombiniert.",
+    summer: "Sommercamp-Programm",
+    description1: "ATH Sommercamps sind darauf ausgerichtet, ein umfassendes Tenniserlebnis zu bieten, das intensives Training mit modernster Leistungsüberwachungstechnologie kombiniert. Spieler aller Niveaus profitieren von unserem strukturierten Programm, das sich auf technische Entwicklung, taktisches Bewusstsein, körperliche Konditionierung und mentalen Ansatz konzentriert.",
+    description2: "Jeder Teilnehmer erhält persönliche Aufmerksamkeit mit detaillierter Leistungsanalyse unter Verwendung unseres VICKI-Systems, das es Trainern ermöglicht, Feedback und Entwicklungspläne auf individuelle Bedürfnisse zuzuschneiden.",
+    features: "Programm-Features",
+    feature1: "Tägliche technische und taktische Trainingseinheiten",
+    feature2: "Leistungsanalyse mit VICKI™-Technologie",
+    feature3: "Tennisspezifisches Konditionstraining",
+    feature4: "Workshops zur Entwicklung mentaler Fähigkeiten",
+    feature5: "Wettkampfspiel und Turniersimulatione",
+    feature6: "Videoanalyse und Feedback-Sitzungen",
+    feature7: "Personalisierte Entwicklungspläne",
+    benefits: "Vorteile für Spieler",
+    benefit1: "Schnelle Fertigkeitsentwicklung durch gezieltes Training",
+    benefit2: "Umfassendes Verständnis des persönlichen Spielstils",
+    benefit3: "Verbesserte Matchleistung und Wettkampfmentalität",
+    benefit4: "Verbesserte physische Fähigkeiten spezifisch für Tennis",
+    benefit5: "Entwicklung nachhaltiger Trainingsgewohnheiten",
+    benefit6: "Zugang zu fortschrittlichen Leistungsanalysen"
+  },
+  
+  method: {
+    description: {
+      default: "Die ATH-Methode ist ein integriertes System, das fortschrittliche Technologie und Expertencoaching kombiniert",
+      junior: "Die ATH-Methode für junge Tennisspieler kombiniert Spaß und technisches Lernen mit Entwicklungsmonitoring",
+      performance: "Die ATH-Methode für Wettkämpfer bietet fortgeschrittene Analyse und Leistungsoptimierung für Wettbewerbe auf hohem Niveau",
+      professional: "Die ATH-Methode für Profis gewährleistet umfassende Analyse und Integration aller Leistungsaspekte",
+      coach: "Die ATH-Methode für Trainer bietet fortschrittliche Analyse- und Unterstützungswerkzeuge zur Entwicklung einer effektiven Methodik",
+      parent: "Die ATH-Methode für Eltern bietet Unterstützung und Transparenz im Entwicklungsweg des jungen Athleten",
+      adult: "Die ATH-Methode für Amateure bietet flexible, aber umfassende Programme zur Verbesserung Ihres Tennis in jedem Alter",
+      camps: "Die ATH-Methode für Sommercamps bietet ein immersives Entwicklungserlebnis mit kontinuierlichem Tracking"
+    }
+  },
+  
+  programs: {
+    title: "PROGRAMME",
+    defaultSubtitle: "Einzigartiger methodischer Ansatz, der für jedes Spielerprofil personalisiert ist",
+    juniorSubtitle: "Spezialisierte Programme für die Entwicklung junger Tennisspieler",
+    performanceSubtitle: "Fortgeschrittene Programme für wettbewerbsfähige Performance-Tennisspieler",
+    professionalSubtitle: "Elite-Programme für Profis, die maximale Leistung anstreben",
+    coachSubtitle: "Fortgeschrittene Programme und Werkzeuge für Trainer",
+    parentSubtitle: "Unterstützung und Einbindung für Eltern junger Athleten",
+    adultSubtitle: "Flexible Programme für Freizeitspieler aller Niveaus",
+    methodBased: "Programme basierend auf der ATH-Methode",
+    methodDescription: "Alle unsere Programme basieren auf der ATH-Methode, einem innovativen System, das fortschrittliche Technologie mit Expertencoaching integriert. Unser Ansatz stellt sicher, dass jeder Athlet, unabhängig von Niveau oder Alter, ein personalisiertes Training erhält, das auf objektiven Daten basiert und von hochqualifizierten Fachleuten unterstützt wird.",
+    showRelevant: "Nur relevante Programme anzeigen",
+    showAll: "Alle Programme anzeigen",
+    learnMoreMethod: "Mehr über die ATH-Methode und das VICKI™-System erfahren →",
+    technicalDevelopment: "Technische Entwicklung",
+    technicalDescription: "Unsere Trainer verwenden fortgeschrittene Videoanalyse und Echtzeit-Feedback, um Ihre Technik bei allen Schlägen zu verfeinern.",
+    tacticalStrategy: "Taktik & Strategie",
+    tacticalDescription: "Wir entwickeln Ihr taktisches Denken und die Fähigkeit, das Spiel Ihres Gegners zu lesen, und geben Ihnen die Werkzeuge, um Ihre Strategie in Echtzeit während des Matches anzupassen.",
+    physicalPreparation: "Körperliche Vorbereitung",
+    physicalDescription: "Tennisspezifische, personalisierte Fitnessprogramme mit Fokus auf Geschwindigkeit, Agilität, Kraft und Ausdauer.",
+    mentalTraining: "Mentales Training",
+    mentalDescription: "Entwickeln Sie mentale Zähigkeit, Konzentration und strategisches Denken mit unseren spezialisierten psychologischen Trainingsmethoden.",
+    athAdvantage: "Der ATH-Vorteil",
+    advantageDescription: "Was ATH auszeichnet, ist unsere Integration von Spitzentechnologie mit Coaching-Expertise von Weltklasse. Unser VICKI™-System erfasst und analysiert über 70 Parameter Ihrer Tennisleistung und ermöglicht unseren Trainern, ein hochpersonalisiertes Training anzubieten.",
+    dataApproachDescription: "Dieser datengesteuerte Ansatz eliminiert Vermutungen und stellt sicher, dass jede Minute Ihres Trainings für maximale Verbesserung optimiert ist. Ob Sie Anfänger oder Elitespieler sind, unsere Methodik passt sich Ihren einzigartigen Bedürfnissen und Zielen an.",
+    joinRevolutionDescription: "Schließen Sie sich der Revolution im Tennistraining an und erleben Sie die Ergebnisse, die ATH zur Wahl von Freizeitspielern und Champions gleichermaßen gemacht haben.",
+    bookTrial: "PROBETRAINING BUCHEN",
   },
 };
 
