@@ -35,6 +35,7 @@ const BottomNavigation = () => {
 
   return (
     <>
+      {/* Make sure the dialog is properly shown when opened */}
       <ProfileDialog 
         open={dialogOpen}
         setOpen={setDialogOpen}
@@ -64,10 +65,11 @@ const BottomNavigation = () => {
             </Link>
           ))}
           
-          {/* Profile button */}
+          {/* Fixed profile button - making sure it's clickable */}
           <button
             onClick={() => setDialogOpen(true)}
             className="flex flex-col items-center justify-center px-1 py-2 text-[10px] font-swiss text-gray-600"
+            aria-label={t("profile.title")}
           >
             <CgProfile size={20} />
             <span className="mt-1">{t("profile.title")}</span>

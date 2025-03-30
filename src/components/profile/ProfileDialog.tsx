@@ -1,7 +1,7 @@
 
 import { UserGender, UserType } from '../UserTypeSelector';
 import UserTypeSelector from '../UserTypeSelector';
-import { CgProfile } from "react-icons/cg";  // Corrected import
+import { CgProfile } from "react-icons/cg";
 import { SportType } from '@/contexts/ProfileContext';
 import { 
   Dialog, 
@@ -59,11 +59,7 @@ const ProfileDialog = ({
     });
   };
 
-  // If mobile, don't render the button in the header
-  if (isMobile) {
-    return null;
-  }
-
+  // Remove the mobile check for rendering
   return (
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>
