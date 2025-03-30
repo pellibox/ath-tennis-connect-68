@@ -70,6 +70,11 @@ export const getVimeoEmbed = (userGender: UserGender | null, userType: UserType 
       videoEmbed = `<iframe src="https://player.vimeo.com/video/1068835737?h=f0a05fef01&autoplay=1&loop=1&background=${useBackground ? '1' : '0'}&autopause=0&player_id=0&app_id=58479&controls=0" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media" style="position:absolute;top:0;left:0;width:100%;height:100%;" title="Summer Camps"></iframe><script src="https://player.vimeo.com/api/player.js"></script>`;
     }
   }
+
+  // Padel video update
+  if (userType === 'performance' && sport === 'padel') {
+    videoEmbed = `<iframe src="https://player.vimeo.com/video/1070763412?h=0e8d74bff5&autoplay=1&loop=1&background=${useBackground ? '1' : '0'}&autopause=0&player_id=0&app_id=58479&controls=0" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media" style="position:absolute;top:0;left:0;width:100%;height:100%;" title="Padel Performance"></iframe><script src="https://player.vimeo.com/api/player.js"></script>`;
+  }
   
   return videoEmbed;
 };
