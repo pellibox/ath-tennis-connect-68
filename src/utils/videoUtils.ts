@@ -1,3 +1,4 @@
+
 import { UserGender, UserType } from '@/components/UserTypeSelector';
 import { SportType } from '@/contexts/ProfileContext';
 
@@ -7,13 +8,19 @@ export const getVimeoEmbed = (userGender: UserGender | null, userType: UserType 
     return `<iframe src="https://player.vimeo.com/video/1069152110?h=95ee4b44fd&autoplay=1&loop=1&background=${useBackground ? '1' : '0'}&autopause=0&player_id=0&app_id=58479&controls=0" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media" style="position:absolute;top:0;left:0;width:100%;height:100%;" title="ATH Technology Video"></iframe><script src="https://player.vimeo.com/api/player.js"></script>`;
   }
   
-  // Padel video update - prioritize sport selection before checking user type and gender
-  if (sport === 'padel') {
-    return `<iframe src="https://player.vimeo.com/video/1070763412?h=0e8d74bff5&autoplay=1&loop=1&background=${useBackground ? '1' : '0'}&autopause=0&player_id=0&app_id=58479&controls=0" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media" style="position:absolute;top:0;left:0;width:100%;height:100%;" title="Padel"></iframe><script src="https://player.vimeo.com/api/player.js"></script>`;
-  }
-  
   // Default video for other pages
   let videoEmbed = `<iframe src="https://player.vimeo.com/video/1069152110?h=95ee4b44fd&autoplay=1&loop=1&background=${useBackground ? '1' : '0'}&autopause=0&player_id=0&app_id=58479&controls=0" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media" style="position:absolute;top:0;left:0;width:100%;height:100%;" title="ATH Main Video"></iframe><script src="https://player.vimeo.com/api/player.js"></script>`;
+  
+  // Check if sport is padel and apply the appropriate video based on gender
+  if (sport === 'padel') {
+    if (userGender === 'female') {
+      // Female padel video
+      return `<iframe src="https://player.vimeo.com/video/1070771184?h=c8eea81db1&autoplay=1&loop=1&background=${useBackground ? '1' : '0'}&autopause=0&player_id=0&app_id=58479&controls=0" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media" style="position:absolute;top:0;left:0;width:100%;height:100%;" title="Female Padel"></iframe><script src="https://player.vimeo.com/api/player.js"></script>`;
+    } else {
+      // Default padel video (male or unspecified gender)
+      return `<iframe src="https://player.vimeo.com/video/1070763412?h=0e8d74bff5&autoplay=1&loop=1&background=${useBackground ? '1' : '0'}&autopause=0&player_id=0&app_id=58479&controls=0" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media" style="position:absolute;top:0;left:0;width:100%;height:100%;" title="Padel"></iframe><script src="https://player.vimeo.com/api/player.js"></script>`;
+    }
+  }
   
   // Only change video if user has explicitly selected a profile
   if (userGender && userType) {
