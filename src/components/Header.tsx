@@ -111,8 +111,10 @@ const Header = ({ useVickiLogo = false }: HeaderProps) => {
       {/* Bottom Navigation for Mobile */}
       {isMobile && <BottomNavigation />}
       
-      {/* Add padding to bottom of page on mobile to account for bottom navigation */}
-      {isMobile && <div className="h-14"></div>}
+      {/* Add consistent spacing at the top to account for the header */}
+      <div className={cn(
+        isMobile ? "h-14" : "h-16", 
+      )}></div>
     </>
   );
 };
