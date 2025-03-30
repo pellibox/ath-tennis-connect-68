@@ -1,9 +1,9 @@
 
-import React from 'react';
+import React, { useState } from 'react';
 import { UserGender, UserType } from './UserTypeSelector';
 import { SportType } from '@/contexts/ProfileContext';
 import { Button } from "@/components/ui/button";
-import { User, GraduationCap, Target, Briefcase, UserCog, Users, Edit, X, RotateCcw, CircleDot } from 'lucide-react';
+import { User, GraduationCap, Target, Briefcase, UserCog, Users, Edit, X, RotateCcw, CircleDot, Globe } from 'lucide-react';
 import { useLanguage } from '@/contexts/LanguageContext';
 import {
   HoverCard,
@@ -21,6 +21,8 @@ import {
   AlertDialogTitle,
   AlertDialogTrigger,
 } from "@/components/ui/alert-dialog";
+import LanguageSwitcher from './LanguageSwitcher';
+import { useIsMobile } from '@/hooks/use-mobile';
 
 interface ProfileIndicatorProps {
   gender: UserGender;
@@ -40,6 +42,8 @@ const ProfileIndicator: React.FC<ProfileIndicatorProps> = ({
   onResetProfile
 }) => {
   const { t } = useLanguage();
+  const isMobile = useIsMobile();
+  const [languageOpen, setLanguageOpen] = useState(false);
   
   // Get icon based on user type
   const getTypeIcon = () => {
@@ -153,6 +157,20 @@ const ProfileIndicator: React.FC<ProfileIndicatorProps> = ({
             </div>
             <span className="text-sm">{getSportDescription()}</span>
           </div>
+          
+          {/* Language selector added here */}
+          {isMobile && (
+            <div className="mt-3 pt-3 border-t border-gray-100">
+              <div className="flex items-center justify-between mb-2">
+                <div className="font-medium text-sm flex items-center gap-2">
+                  <Globe size={16} />
+                  {t("language")}
+                </div>
+                <LanguageSwitcher />
+              </div>
+            </div>
+          )}
+          
           <p className="text-xs text-gray-500 mt-2">
             {t("profile.customContent")}
           </p>

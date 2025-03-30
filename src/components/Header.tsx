@@ -1,4 +1,3 @@
-
 import { useState } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { ChevronLeft, Menu, X } from 'lucide-react';
@@ -25,6 +24,8 @@ const Header = ({ useVickiLogo = false }: HeaderProps) => {
   const isMobile = useIsMobile();
   const { userGender, userType, sport, updateProfile, resetProfile, deleteProfile } = useProfile();
   const [dialogOpen, setDialogOpen] = useState(false);
+  
+  // We're removing the hamburger menu toggle functionality
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   const handleGoBack = () => {
@@ -36,10 +37,6 @@ const Header = ({ useVickiLogo = false }: HeaderProps) => {
 
   const headerBgClass = "bg-white";
   const textColorClass = "text-black";
-
-  const toggleMobileMenu = () => {
-    setMobileMenuOpen(!mobileMenuOpen);
-  };
   
   return (
     <>
@@ -51,15 +48,7 @@ const Header = ({ useVickiLogo = false }: HeaderProps) => {
         )}
       >
         <div className="container mx-auto px-4 flex items-center justify-between relative">
-          {isMobile && (
-            <button 
-              className="text-black p-2 z-50" 
-              onClick={toggleMobileMenu}
-              aria-label={mobileMenuOpen ? t("nav.close") : t("nav.menu")}
-            >
-              {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
-            </button>
-          )}
+          {/* Removed hamburger menu button for mobile */}
 
           <div className={cn(
             "flex items-center z-50", 
@@ -116,7 +105,7 @@ const Header = ({ useVickiLogo = false }: HeaderProps) => {
         </div>
       </header>
 
-      {/* Mobile Menu */}
+      {/* We'll keep MobileMenu but it won't be triggered by the hamburger icon anymore */}
       <MobileMenu isOpen={mobileMenuOpen} />
       
       {/* Bottom Navigation for Mobile */}

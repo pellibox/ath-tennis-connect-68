@@ -3,7 +3,6 @@ import { useNavigate, useLocation } from 'react-router-dom';
 import { ChevronLeft } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import NavigationLinks from './NavigationLinks';
-import LanguageSwitcher from '../LanguageSwitcher';
 import { Button } from '@/components/ui/button';
 import { useLanguage } from '@/contexts/LanguageContext';
 
@@ -46,12 +45,7 @@ const MobileMenu = ({ isOpen }: MobileMenuProps) => {
         isMobile={true} 
       />
       
-      <div className="mt-auto pt-4 border-t border-gray-100">
-        <div className="flex items-center justify-between">
-          <div className="font-medium text-sm">{t("language")}</div>
-          <LanguageSwitcher />
-        </div>
-      </div>
+      {/* Removed the language switcher from here since it's now in the profile */}
     </div>
   );
 };
