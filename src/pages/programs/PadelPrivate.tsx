@@ -22,7 +22,7 @@ const PadelPrivate = () => {
         <Hero
           title="Padel Coaching Privato"
           subtitle="Sessioni individuali o in coppia con coach specializzati e analisi completa delle performance."
-          imageSrc="/lovable-uploads/padel-courts.png"
+          vimeoEmbed='<div style="padding:56.25% 0 0 0;position:relative;"><iframe src="https://player.vimeo.com/video/1070762124?h=81c3b348f2&autoplay=1&loop=1&title=0&byline=0&portrait=0&controls=0" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen style="position:absolute;top:0;left:0;width:100%;height:100%;"></iframe></div><script src="https://player.vimeo.com/api/player.js"></script>'
           buttons={[
             { text: 'PRENOTA UNA SESSIONE', href: '/contact' }
           ]}
