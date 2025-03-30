@@ -2,7 +2,7 @@
 import { Link, useLocation } from 'react-router-dom';
 import { HelpCircle, BookOpen, Zap, Server } from 'lucide-react';
 import { FaList } from "react-icons/fa6";
-import { CgProfile } from "react-icons/cg";  // Corrected import
+import { CgProfile } from "react-icons/cg";
 import { cn } from '@/lib/utils';
 import { useProfile } from '@/contexts/ProfileContext';
 import { useLanguage } from '@/contexts/LanguageContext';
@@ -69,16 +69,7 @@ const BottomNavigation = () => {
             onClick={() => setDialogOpen(true)}
             className="flex flex-col items-center justify-center px-1 py-2 text-[10px] font-swiss text-gray-600"
           >
-            <div className={cn(
-              "p-1 rounded-full",
-              userGender === 'male' ? 'bg-blue-100' : userGender === 'female' ? 'bg-pink-100' : 'bg-gray-100'
-            )}>
-              <CgProfile size={16} className={cn(
-                userGender === 'male' ? 'text-blue-500' : 
-                userGender === 'female' ? 'text-pink-500' : 
-                'text-gray-500'
-              )} />
-            </div>
+            <CgProfile size={20} />
             <span className="mt-1">{t("profile.title")}</span>
           </button>
         </div>
