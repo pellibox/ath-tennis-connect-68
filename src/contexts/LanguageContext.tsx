@@ -7,10 +7,18 @@ import { de } from '../translations/de';
 
 type Language = 'en' | 'it' | 'fr' | 'de';
 
-// Updated type to handle deeply nested translation objects (up to 3 levels)
-type NestedStringRecord = Record<string, string>;
-type DeepNestedStringRecord = Record<string, string | NestedStringRecord>;
-type TranslationsObject = Record<string, string | DeepNestedStringRecord | Record<string, DeepNestedStringRecord>>;
+// Updated type definitions to handle deeply nested translation objects (up to 4 levels deep)
+interface TranslationValue {
+  [key: string]: string | TranslationObject;
+}
+
+interface TranslationObject {
+  [key: string]: string | TranslationValue;
+}
+
+interface TranslationsObject {
+  [key: string]: string | TranslationObject;
+}
 
 interface LanguageContextType {
   language: Language;
