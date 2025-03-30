@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react';
 import { UserGender, UserType } from './UserTypeSelector';
 import { SportType } from '@/contexts/ProfileContext';
@@ -6,6 +7,23 @@ import { GraduationCap, Target, Briefcase, UserCog, Users, Edit, X, RotateCcw, C
 import { CgProfile } from "react-icons/cg";
 import { useLanguage } from '@/contexts/LanguageContext';
 import { useIsMobile } from '@/hooks/use-mobile';
+import {
+  HoverCard,
+  HoverCardTrigger,
+  HoverCardContent
+} from "@/components/ui/hover-card";
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+  AlertDialogTrigger,
+} from "@/components/ui/alert-dialog";
+import LanguageSwitcher from './LanguageSwitcher';
 
 interface ProfileIndicatorProps {
   gender: UserGender;
