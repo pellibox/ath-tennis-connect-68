@@ -20,7 +20,7 @@ export const clinicsPrograms: Program[] = [
     id: "racquet-sports-camp",
     title: "Camp Multi-Sport con Racchetta",
     description: "Esperienza immersiva che combina tennis, padel e pickleball per migliorare le abilità generali negli sport con racchetta.",
-    image: "/lovable-uploads/ef64c04d-055d-4d70-87f4-e67928a3b8e6.png",
+    image: "/lovable-uploads/f0450714-c612-44b3-b474-41565f8d9336.png",
     link: "/padel#racquet-sports-camp",
     features: [
       "Programma intensivo di 3-5 giorni",
