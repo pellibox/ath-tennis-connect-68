@@ -53,7 +53,7 @@ const StandardHeroVideo = ({
         <div 
           className="fixed z-50 pointer-events-none transition-opacity duration-300 left-0 right-0 flex justify-center"
           style={{
-            top: isMobile ? '140px' : '180px',
+            top: isMobile ? '140px' : '180px', // Adjusted to match programs page
             opacity: logoOpacity
           }}
         >
