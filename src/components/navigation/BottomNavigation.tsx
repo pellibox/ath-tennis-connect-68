@@ -1,6 +1,6 @@
 
 import { Link, useLocation } from 'react-router-dom';
-import { HelpCircle, BookOpen, Activity, Zap, Server } from 'lucide-react';
+import { HelpCircle, BookOpen, Zap, Server } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { useProfile } from '@/contexts/ProfileContext';
 
@@ -12,7 +12,15 @@ const BottomNavigation = () => {
   const bottomNavItems = [
     { text: "About", href: '/about', icon: <HelpCircle size={20} /> },
     { text: "Method", href: '/method', icon: <BookOpen size={20} /> },
-    { text: "Programs", href: '/programs', icon: <Activity size={20} /> },
+    { 
+      text: "Programs", 
+      href: '/programs/overview', 
+      icon: <img 
+        src="/lovable-uploads/ffc6588c-879e-4103-a3cc-f48ee9573e63.png" 
+        alt="Programs list" 
+        className="w-[20px] h-[20px]" 
+      /> 
+    },
     { text: "Tech", href: '/technology', icon: <Zap size={20} /> },
     { text: "Facilities", href: '/facilities', icon: <Server size={20} /> }
   ];
