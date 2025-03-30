@@ -39,7 +39,7 @@ const ProgramsOverview = () => {
   }, [sport]);
   
   const isMobile = useIsMobile();
-  const vimeoEmbed = getVimeoEmbed(userGender, userType);
+  const vimeoEmbed = getVimeoEmbed(userGender, userType, true, false, sport);
   
   const handleTabChange = (value: string) => {
     setActiveTab(value as 'tennis' | 'padel' | 'pickleball' | 'touchtennis');
