@@ -93,7 +93,7 @@ const AboutPage = () => {
       
       <Header />
       
-      <main className="flex-grow pt-20">
+      <main className="flex-grow">
         {/* Video background - using personalized video based on user profile */}
         <div className="w-full bg-black min-h-[calc(100vw*9/16)] relative">
           <div dangerouslySetInnerHTML={{ __html: vimeoEmbed }} />
