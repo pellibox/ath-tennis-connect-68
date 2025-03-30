@@ -138,7 +138,12 @@ const ProgramsOverview = () => {
                       </Link>
                     </div>
                     
-                    <ProgramsSection title={t("programs.tennis")} subtitle={t("programs.tennis.description")} categories={programCategories} categoryCollapsible={true} />
+                    <ProgramsSection 
+                      title={t("programs.tennis")} 
+                      subtitle={t("programs.tennis.description")} 
+                      categories={programCategories} 
+                      categoryCollapsible={true} 
+                    />
                   </TabsContent>
                   
                   <TabsContent value="padel" className="mt-0">
@@ -152,7 +157,12 @@ const ProgramsOverview = () => {
                       </Link>
                     </div>
                     
-                    <ProgramsSection title={t("programs.padel")} subtitle={t("programs.padel.description")} categories={padelCategories} categoryCollapsible={true} />
+                    <ProgramsSection 
+                      title={t("programs.padel")} 
+                      subtitle={t("programs.padel.description")} 
+                      categories={padelCategories} 
+                      categoryCollapsible={true} 
+                    />
                   </TabsContent>
                   
                   <TabsContent value="pickleball" className="mt-0">
@@ -166,7 +176,12 @@ const ProgramsOverview = () => {
                       </Link>
                     </div>
                     
-                    <ProgramsSection title={t("programs.pickleball")} subtitle={t("programs.pickleball.description")} categories={pickleballCategories} categoryCollapsible={true} />
+                    <ProgramsSection 
+                      title={t("programs.pickleball")} 
+                      subtitle={t("programs.pickleball.description")} 
+                      categories={pickleballCategories} 
+                      categoryCollapsible={true} 
+                    />
                   </TabsContent>
                   
                   <TabsContent value="touchtennis" className="mt-0">
@@ -180,7 +195,12 @@ const ProgramsOverview = () => {
                       </Link>
                     </div>
                     
-                    <ProgramsSection title={t("programs.touchtennis")} subtitle={t("programs.touchtennis.description")} categories={touchTennisCategories} categoryCollapsible={true} />
+                    <ProgramsSection 
+                      title={t("programs.touchtennis")} 
+                      subtitle={t("programs.touchtennis.description")} 
+                      categories={touchTennisCategories} 
+                      categoryCollapsible={true} 
+                    />
                   </TabsContent>
                 </div>
               </Tabs>

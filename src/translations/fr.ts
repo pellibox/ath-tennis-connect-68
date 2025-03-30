@@ -124,7 +124,12 @@ export const fr = {
     }
   },
   
+  // Programs section
   programs: {
+    ath: {
+      title: "ADVANCED TENNIS HUB",
+      subtitle: "Approche méthodologique unique et personnalisée pour chaque profil de joueur"
+    },
     title: "PROGRAMMES",
     defaultSubtitle: "Approche méthodologique unique et personnalisée pour chaque profil de joueur",
     juniorSubtitle: "Programmes spécialisés pour les jeunes joueurs de tennis en développement",
@@ -151,8 +156,36 @@ export const fr = {
     dataApproachDescription: "Cette approche basée sur les données élimine les conjectures et garantit que chaque minute de votre entraînement est optimisée pour une amélioration maximale. Que vous soyez débutant ou joueur d'élite, notre méthodologie s'adapte à vos besoins et objectifs uniques.",
     joinRevolutionDescription: "Rejoignez la révolution dans l'entraînement du tennis et expérimentez les résultats qui ont fait d'ATH le choix des joueurs récréatifs et des champions.",
     bookTrial: "RÉSERVER UN ESSAI",
+    intro: "Nos programmes intègrent technologie avancée et expertise de coaching pour un développement tennistique optimal.",
+    methodology: "La méthodologie ATH combine analyse de données, coaching personnalisé et une approche intégrée pour maximiser votre potentiel.",
+    "sport.description": "Choisissez parmi nos programmes spécialisés adaptés à différents sports de raquette.",
+    "select.sport": "Sélectionnez votre sport",
+    "explore.programs": "Explorez nos programmes spécialisés pour chaque sport de raquette",
+    tennis: "Tennis",
+    padel: "Padel",
+    pickleball: "Pickleball",
+    touchtennis: "Touch Tennis",
+    "tennis.description": "Programmes d'entraînement complets utilisant notre méthodologie avancée et la technologie VICKI™.",
+    "padel.description": "Programmes spécialisés pour développer vos compétences en padel avec une approche basée sur les données.",
+    "pickleball.description": "Développez votre jeu de pickleball avec nos programmes personnalisés pour tous les niveaux.",
+    "touchtennis.description": "Améliorez votre technique et votre stratégie de touch tennis avec notre approche innovante.",
+    "explore.tennis": "Explorer les programmes de tennis →",
+    "explore.padel": "Explorer les programmes de padel →",
+    "explore.pickleball": "Explorer les programmes de pickleball →",
+    "explore.touchtennis": "Explorer les programmes de touch tennis →",
+    "why.ath": "Pourquoi choisir ATH?",
+    "feature.tech": "Technologie avancée",
+    "feature.tech.desc": "Notre système VICKI™ analyse plus de 70 paramètres de performance pour un coaching précis et personnalisé.",
+    "feature.experts": "Experts qualifiés",
+    "feature.experts.desc": "Notre équipe de coachs professionnels combine expertise technique et pédagogique de haut niveau.",
+    "feature.integrated": "Approche intégrée",
+    "feature.integrated.desc": "Nous intégrons aspects techniques, tactiques, physiques et mentaux pour un développement complet.",
+    "feature.personalization": "Personnalisation complète",
+    "feature.personalization.desc": "Chaque programme est adapté à vos caractéristiques individuelles, objectifs et style de jeu.",
+    "request.info": "Demander plus d'informations"
   },
   
+  // Camps section
   camps: {
     title: "CAMPS D'ÉTÉ",
     subtitle: "Programmes intensifs d'entraînement de tennis pour jeunes joueurs de tous niveaux",
@@ -177,6 +210,21 @@ export const fr = {
     benefit6: "Accès à des analyses de performance avancées"
   },
   
+  // Testimonials section
+  testimonials: {
+    title: "TÉMOIGNAGES",
+    subtitle: "Ce que nos athlètes disent à propos de leur expérience avec ATH",
+    quote1: "ATH a complètement transformé mon approche du tennis. La technologie VICKI™ a identifié des modèles dans mon jeu que je n'aurais jamais remarqués. En seulement trois mois, j'ai considérablement amélioré mon revers et ma stratégie sur le court.",
+    author1: "Marc Dubois",
+    role1: "Joueur Compétitif",
+    quote2: "En tant que parent, j'apprécie énormément la transparence et les retours détaillés qu'ATH fournit sur les progrès de ma fille. Son coach peut me montrer exactement sur quoi ils travaillent et pourquoi, rendant tout le processus beaucoup plus clair.",
+    author2: "Laura Martin",
+    role2: "Parent de Junior",
+    quote3: "La différence avec l'entraînement traditionnel est impressionnante. Chaque séance est précisément calibrée pour mes besoins, et je peux voir des améliorations mesurables semaine après semaine. Cette approche basée sur les données est révolutionnaire.",
+    author3: "Jean Petit",
+    role3: "Joueur Amateur"
+  },
+  
   // Home page translations
   home: {
     welcome: "BIENVENUE À ATH",
@@ -185,6 +233,20 @@ export const fr = {
     testimonials: "TÉMOIGNAGES",
     contactUs: "CONTACTEZ-NOUS",
     allPrograms: "Voir tous les programmes"
+  },
+  
+  // Contact section
+  contact: {
+    title: "Contactez-nous",
+    description: "Contactez-nous pour plus d'informations sur nos programmes et services.",
+    name: "Nom",
+    email: "Email",
+    message: "Message",
+    phone: "Téléphone",
+    send: "Envoyer",
+    submit: "Envoyer",
+    success: "Message envoyé avec succès !",
+    error: "Une erreur est survenue lors de l'envoi de votre message. Veuillez réessayer plus tard."
   },
   
   programsOverview: {

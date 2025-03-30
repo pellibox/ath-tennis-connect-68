@@ -109,6 +109,10 @@ export const de = {
   
   // Programs Section
   programs: {
+    ath: {
+      title: "ADVANCED TENNIS HUB",
+      subtitle: "Maßgeschneiderter methodischer Ansatz für jedes Spielerprofil"
+    },
     title: "Unsere Programme",
     subtitle: "Maßgeschneidertes Tennistraining für jedes Alter und Fähigkeitsniveau",
     junior: "Junior Akademie",
@@ -120,6 +124,33 @@ export const de = {
     personalCoaching: "Privattraining (13+ Jahre)",
     personalCoaching_desc: "Privatstunden mit dediziertem Trainer und Sparringspartner, verfügbar nach Terminvereinbarung für Athleten ab 13 Jahren.",
     more: "Mehr Erfahren",
+    intro: "Unsere Programme integrieren fortschrittliche Technologie und Coaching-Expertise für eine optimale Tennisentwicklung.",
+    methodology: "Die ATH-Methodik kombiniert Datenanalyse, personalisiertes Coaching und einen integrierten Ansatz, um Ihr Potenzial zu maximieren.",
+    "sport.description": "Wählen Sie aus unseren spezialisierten Programmen, die auf verschiedene Schlägersportarten zugeschnitten sind.",
+    "select.sport": "Wählen Sie Ihre Sportart",
+    "explore.programs": "Entdecken Sie unsere spezialisierten Programme für jede Schlägersportart",
+    tennis: "Tennis",
+    padel: "Padel",
+    pickleball: "Pickleball",
+    touchtennis: "Touch Tennis",
+    "tennis.description": "Umfassende Trainingsprogramme mit unserer fortschrittlichen Methodik und VICKI™-Technologie.",
+    "padel.description": "Spezialisierte Programme zur Entwicklung Ihrer Padel-Fähigkeiten mit einem datenbasierten Ansatz.",
+    "pickleball.description": "Entwickeln Sie Ihr Pickleball-Spiel mit unseren personalisierten Programmen für alle Niveaus.",
+    "touchtennis.description": "Verbessern Sie Ihre Touch Tennis-Technik und -Strategie mit unserem innovativen Ansatz.",
+    "explore.tennis": "Tennis-Programme erkunden →",
+    "explore.padel": "Padel-Programme erkunden →",
+    "explore.pickleball": "Pickleball-Programme erkunden →",
+    "explore.touchtennis": "Touch Tennis-Programme erkunden →",
+    "why.ath": "Warum ATH wählen?",
+    "feature.tech": "Fortschrittliche Technologie",
+    "feature.tech.desc": "Unser VICKI™-System analysiert über 70 Leistungsparameter für präzises und personalisiertes Coaching.",
+    "feature.experts": "Qualifizierte Experten",
+    "feature.experts.desc": "Unser Team professioneller Coaches kombiniert technische und pädagogische Expertise auf höchstem Niveau.",
+    "feature.integrated": "Integrierter Ansatz",
+    "feature.integrated.desc": "Wir integrieren technische, taktische, physische und mentale Aspekte für eine umfassende Entwicklung.",
+    "feature.personalization": "Vollständige Personalisierung",
+    "feature.personalization.desc": "Jedes Programm wird an Ihre individuellen Eigenschaften, Ziele und Spielstil angepasst.",
+    "request.info": "Weitere Informationen anfordern"
   },
   
   // Facilities, Coaches, Contact and other sections
@@ -133,9 +164,19 @@ export const de = {
     subtitle: "Lernen Sie von den besten Köpfen im Tennis",
   },
   
+  // Testimonials section
   testimonials: {
     title: "Erfolgsgeschichten",
     subtitle: "Hören Sie von unseren Spielern und Eltern",
+    quote1: "ATH hat meinen Ansatz zum Tennis komplett verändert. Die VICKI™-Technologie hat Muster in meinem Spiel identifiziert, die ich nie bemerkt hätte. In nur drei Monaten habe ich meine Rückhand und meine Strategie auf dem Platz erheblich verbessert.",
+    author1: "Markus Weber",
+    role1: "Wettkampfspieler",
+    quote2: "Als Elternteil schätze ich die Transparenz und das detaillierte Feedback, das ATH über die Fortschritte meiner Tochter liefert, sehr. Ihr Coach kann mir genau zeigen, woran sie arbeiten und warum, was den gesamten Prozess viel klarer macht.",
+    author2: "Lisa Müller",
+    role2: "Elternteil eines Juniors",
+    quote3: "Der Unterschied zum traditionellen Training ist beeindruckend. Jede Sitzung ist präzise auf meine Bedürfnisse zugeschnitten, und ich kann Woche für Woche messbare Verbesserungen sehen. Dieser datenbasierte Ansatz ist revolutionär.",
+    author3: "Johannes Schmidt",
+    role3: "Hobbyspieler"
   },
   
   join: {

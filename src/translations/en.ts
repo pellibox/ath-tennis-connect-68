@@ -1,3 +1,4 @@
+
 export const en = {
   nav: {
     home: "Home",
@@ -54,6 +55,10 @@ export const en = {
     discoverButton: "Discover our method",
   },
   programs: {
+    ath: {
+      title: "ADVANCED TENNIS HUB",
+      subtitle: "Unique methodological approach personalized for every player profile"
+    },
     title: "PROGRAMS",
     defaultSubtitle: "Unique methodological approach personalized for every player profile",
     juniorSubtitle: "Specialized programs for developing young tennis players",
@@ -80,6 +85,33 @@ export const en = {
     dataApproachDescription: "This data-driven approach eliminates guesswork and ensures that every minute of your training is optimized for maximum improvement. Whether you're a beginner or an elite player, our methodology adapts to your unique needs and goals.",
     joinRevolutionDescription: "Join the revolution in tennis training and experience the results that have made ATH the choice of recreational players and champions alike.",
     bookTrial: "BOOK A TRIAL",
+    intro: "Our programs integrate advanced technology and coaching expertise for optimal tennis development.",
+    methodology: "The ATH methodology combines data analysis, personalized coaching, and an integrated approach to maximize your potential.",
+    "sport.description": "Choose from our specialized programs tailored to different racquet sports.",
+    "select.sport": "Select Your Sport",
+    "explore.programs": "Explore our specialized programs for each racquet sport",
+    tennis: "Tennis",
+    padel: "Padel",
+    pickleball: "Pickleball",
+    touchtennis: "Touch Tennis",
+    "tennis.description": "Comprehensive training programs using our advanced methodology and VICKI™ technology.",
+    "padel.description": "Specialized programs to develop your padel skills with a data-driven approach.",
+    "pickleball.description": "Develop your pickleball game with our personalized programs for all levels.",
+    "touchtennis.description": "Improve your touch tennis technique and strategy with our innovative approach.",
+    "explore.tennis": "Explore tennis programs →",
+    "explore.padel": "Explore padel programs →",
+    "explore.pickleball": "Explore pickleball programs →",
+    "explore.touchtennis": "Explore touch tennis programs →",
+    "why.ath": "Why Choose ATH?",
+    "feature.tech": "Advanced Technology",
+    "feature.tech.desc": "Our VICKI™ system analyzes over 70 performance parameters for precise and personalized coaching.",
+    "feature.experts": "Qualified Experts",
+    "feature.experts.desc": "Our team of professional coaches combines high-level technical and pedagogical expertise.",
+    "feature.integrated": "Integrated Approach",
+    "feature.integrated.desc": "We integrate technical, tactical, physical, and mental aspects for comprehensive development.",
+    "feature.personalization": "Complete Personalization",
+    "feature.personalization.desc": "Each program is tailored to your individual characteristics, goals, and playing style.",
+    "request.info": "Request More Information"
   },
   camps: {
     title: "SUMMER CAMPS",
@@ -110,7 +142,9 @@ export const en = {
     name: "Name",
     email: "Email",
     message: "Message",
+    phone: "Phone",
     send: "Send",
+    submit: "Submit",
     success: "Message sent successfully!",
     error: "There was an error sending your message. Please try again later.",
   },
@@ -292,4 +326,17 @@ export const en = {
       camps: "The ATH Method for summer camps provides an immersive development experience with continuous tracking"
     }
   },
+  testimonials: {
+    title: "TESTIMONIALS",
+    subtitle: "What our athletes say about their experience with ATH",
+    quote1: "ATH has completely transformed my approach to tennis. The VICKI™ technology identified patterns in my game that I would never have noticed. In just three months, I significantly improved my backhand and on-court strategy.",
+    author1: "Michael Brown",
+    role1: "Competitive Player",
+    quote2: "As a parent, I greatly appreciate the transparency and detailed feedback that ATH provides on my daughter's progress. Her coach can show me exactly what they're working on and why, making the whole process much clearer.",
+    author2: "Sarah Johnson",
+    role2: "Junior Parent",
+    quote3: "The difference from traditional training is impressive. Each session is precisely calibrated to my needs, and I can see measurable improvements week by week. This data-driven approach is revolutionary.",
+    author3: "David Wilson",
+    role3: "Recreational Player"
+  }
 };

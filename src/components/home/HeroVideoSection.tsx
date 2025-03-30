@@ -12,8 +12,8 @@ const HeroVideoSection = () => {
   return (
     <StandardHeroVideo 
       vimeoEmbed={getVimeoEmbed(userGender, userType, true, false, sport)}
-      title="ADVANCED TENNIS HUB:"
-      subtitle={getWelcomeMessage(userType, t)}
+      titleKey="method.title"
+      subtitleKey="method.tagline"
     />
   );
 };
