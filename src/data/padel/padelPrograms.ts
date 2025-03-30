@@ -42,7 +42,7 @@ export const padelPrograms: Program[] = [
     id: "padel-advanced",
     title: "Padel Agonisti",
     description: "Programma intensivo per giocatori competitivi che vogliono portare il loro gioco a livello agonistico con analisi avanzata delle performance.",
-    image: "/lovable-uploads/padel-courts.png",
+    image: "/lovable-uploads/3911c0fe-e4c8-4455-8529-387eec1efde3.png",
     link: "/programs/padel-advanced",
     features: [
       "Analisi biomeccanica dei colpi con tecnologia Vicki™",

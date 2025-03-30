@@ -23,7 +23,7 @@ const PadelAdvanced = () => {
         <Hero
           title="Padel Agonisti"
           subtitle="Programma intensivo per giocatori competitivi che vogliono portare il loro gioco a livello agonistico."
-          imageSrc="/lovable-uploads/padel-courts.png"
+          imageSrc="/lovable-uploads/3911c0fe-e4c8-4455-8529-387eec1efde3.png"
           buttons={[
             { text: 'PRENOTA UNA VALUTAZIONE', href: '/contact' }
           ]}
