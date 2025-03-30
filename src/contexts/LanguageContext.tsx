@@ -1,9 +1,9 @@
 
 import React, { createContext, useContext, useState, useEffect } from 'react';
-import enTranslations from '../translations/en';
-import itTranslations from '../translations/it';
-import frTranslations from '../translations/fr';
-import deTranslations from '../translations/de';
+import { en } from '../translations/en';
+import { it } from '../translations/it';
+import { fr } from '../translations/fr';
+import { de } from '../translations/de';
 
 type Language = 'en' | 'it' | 'fr' | 'de';
 
@@ -14,10 +14,10 @@ interface LanguageContextType {
 }
 
 const translationsMap: Record<Language, Record<string, string>> = {
-  en: enTranslations,
-  it: itTranslations,
-  fr: frTranslations,
-  de: deTranslations
+  en: en,
+  it: it,
+  fr: fr,
+  de: de
 };
 
 // Create the context with a default value to avoid the undefined check
