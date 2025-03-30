@@ -37,7 +37,13 @@ const ProgramsOverview = () => {
   const [initialRender, setInitialRender] = useState(true);
   const [contentLoaded, setContentLoaded] = useState(false);
   
+  const location = useRef(window.location.pathname);
+  
   useEffect(() => {
+    console.log("ProgramsOverview - Current sport in context:", sport);
+    console.log("ProgramsOverview - Current activeTab:", activeTab);
+    
+    // Force alignment between context sport and active tab on initial load
     if (sport) {
       setActiveTab(sport as 'tennis' | 'padel' | 'pickleball' | 'touchtennis');
     }
@@ -48,10 +54,13 @@ const ProgramsOverview = () => {
       setContentLoaded(true);
     }, 100);
     
-    console.log("ProgramsOverview initialized with sport:", sport, "activeTab:", activeTab);
-    
     return () => clearTimeout(timer);
   }, [sport]);
+
+  // Additional debugging to track activeTab and sport changes
+  useEffect(() => {
+    console.log("Active tab changed to:", activeTab);
+  }, [activeTab]);
   
   const isMobile = useIsMobile();
   const vimeoEmbed = getVimeoEmbed(userGender, userType, true, false, sport);
@@ -61,7 +70,24 @@ const ProgramsOverview = () => {
     setActiveTab(value as 'tennis' | 'padel' | 'pickleball' | 'touchtennis');
 
     if (value === 'tennis' || value === 'padel' || value === 'pickleball' || value === 'touchtennis') {
+      console.log('Updating sport in context to:', value);
       updateSport(value as SportType);
+    }
+  };
+  
+  // Helper function to get the correct program categories based on activeTab
+  const getActiveCategoriesForTab = (tab: string) => {
+    switch (tab) {
+      case 'tennis':
+        return programCategories;
+      case 'padel':
+        return padelCategories;
+      case 'pickleball':
+        return pickleballCategories;
+      case 'touchtennis':
+        return touchTennisCategories;
+      default:
+        return programCategories;
     }
   };
   
@@ -105,7 +131,7 @@ const ProgramsOverview = () => {
                 value={activeTab} 
                 onValueChange={handleTabChange} 
                 className="w-full"
-                defaultValue="tennis" // Ensure tennis is the default
+                defaultValue="tennis"
               >
                 {isMobile ? 
                   <div className="mb-8">
@@ -143,92 +169,100 @@ const ProgramsOverview = () => {
                   </TabsList>
                 }
                 
-                <div className="mt-8">
+                <div className="mt-8 relative">
                   {!contentLoaded && (
                     <div className="py-12 text-center">
                       <p className="text-gray-500">Caricamento programmi...</p>
                     </div>
                   )}
                   
-                  {/* Always render the tennis tab content with forceMount=true */}
-                  <TabsContent value="tennis" className="mt-0" alwaysRender={true}>
-                    <div className="bg-gray-50 p-6 rounded-lg mb-8">
-                      <h3 className="text-xl font-bold mb-3">Tennis</h3>
-                      <p className="mb-4">
-                        Il nostro programma di punta, con soluzioni personalizzate per ogni livello: dai principianti ai professionisti. Utilizzando la nostra tecnologia VICKI™, offriamo un'esperienza di allenamento senza precedenti.
-                      </p>
-                      <Link to="/programs" className="inline-flex items-center text-ath-clay font-medium hover:underline">
-                        Esplora tutti i programmi Tennis →
-                      </Link>
+                  {/* Force all tabs to render, but only show the active one */}
+                  <TabsContent value="tennis" className="mt-0" forceMount={true}>
+                    <div className={`transition-opacity duration-300 ${activeTab === 'tennis' ? 'opacity-100' : 'opacity-0 absolute top-0 left-0 invisible'}`}>
+                      <div className="bg-gray-50 p-6 rounded-lg mb-8">
+                        <h3 className="text-xl font-bold mb-3">Tennis</h3>
+                        <p className="mb-4">
+                          Il nostro programma di punta, con soluzioni personalizzate per ogni livello: dai principianti ai professionisti. Utilizzando la nostra tecnologia VICKI™, offriamo un'esperienza di allenamento senza precedenti.
+                        </p>
+                        <Link to="/programs" className="inline-flex items-center text-ath-clay font-medium hover:underline">
+                          Esplora tutti i programmi Tennis →
+                        </Link>
+                      </div>
+                      
+                      <ProgramsSection 
+                        title="Programmi Tennis" 
+                        subtitle="I nostri programmi di punta, sviluppati con anni di esperienza" 
+                        categories={programCategories} 
+                        categoryCollapsible={true} 
+                        initiallyOpen={true} 
+                      />
                     </div>
-                    
-                    <ProgramsSection 
-                      title="Programmi Tennis" 
-                      subtitle="I nostri programmi di punta, sviluppati con anni di esperienza" 
-                      categories={programCategories} 
-                      categoryCollapsible={true} 
-                      initiallyOpen={true} 
-                    />
                   </TabsContent>
                   
-                  <TabsContent value="padel" className="mt-0" alwaysRender={activeTab === 'padel'}>
-                    <div className="bg-gray-50 p-6 rounded-lg mb-8">
-                      <h3 className="text-xl font-bold mb-3">Padel</h3>
-                      <p className="mb-4">
-                        Abbiamo adattato la nostra metodologia avanzata per questo sport in rapida crescita, offrendo programmi specifici che sfruttano la nostra tecnologia VICKI™ per migliorare rapidamente il tuo gioco.
-                      </p>
-                      <Link to="/padel" className="inline-flex items-center text-ath-clay font-medium hover:underline">
-                        Esplora tutti i programmi Padel →
-                      </Link>
+                  <TabsContent value="padel" className="mt-0" forceMount={true}>
+                    <div className={`transition-opacity duration-300 ${activeTab === 'padel' ? 'opacity-100' : 'opacity-0 absolute top-0 left-0 invisible'}`}>
+                      <div className="bg-gray-50 p-6 rounded-lg mb-8">
+                        <h3 className="text-xl font-bold mb-3">Padel</h3>
+                        <p className="mb-4">
+                          Abbiamo adattato la nostra metodologia avanzata per questo sport in rapida crescita, offrendo programmi specifici che sfruttano la nostra tecnologia VICKI™ per migliorare rapidamente il tuo gioco.
+                        </p>
+                        <Link to="/padel" className="inline-flex items-center text-ath-clay font-medium hover:underline">
+                          Esplora tutti i programmi Padel →
+                        </Link>
+                      </div>
+                      
+                      <ProgramsSection 
+                        title="Programmi Padel" 
+                        subtitle="I nostri programmi specializzati per il Padel" 
+                        categories={padelCategories} 
+                        categoryCollapsible={true} 
+                        initiallyOpen={true}
+                      />
                     </div>
-                    
-                    <ProgramsSection 
-                      title="Programmi Padel" 
-                      subtitle="I nostri programmi specializzati per il Padel" 
-                      categories={padelCategories} 
-                      categoryCollapsible={true} 
-                      initiallyOpen={true}
-                    />
                   </TabsContent>
                   
-                  <TabsContent value="pickleball" className="mt-0" alwaysRender={activeTab === 'pickleball'}>
-                    <div className="bg-gray-50 p-6 rounded-lg mb-8">
-                      <h3 className="text-xl font-bold mb-3">Pickleball</h3>
-                      <p className="mb-4">
-                        Programmi dedicati per questo sport emergente, con focus su tecnica, strategia e divertimento. Scopri come la nostra metodologia ATH può migliorare il tuo gioco di Pickleball.
-                      </p>
-                      <Link to="/pickleball" className="inline-flex items-center text-ath-clay font-medium hover:underline">
-                        Esplora tutti i programmi Pickleball →
-                      </Link>
+                  <TabsContent value="pickleball" className="mt-0" forceMount={true}>
+                    <div className={`transition-opacity duration-300 ${activeTab === 'pickleball' ? 'opacity-100' : 'opacity-0 absolute top-0 left-0 invisible'}`}>
+                      <div className="bg-gray-50 p-6 rounded-lg mb-8">
+                        <h3 className="text-xl font-bold mb-3">Pickleball</h3>
+                        <p className="mb-4">
+                          Programmi dedicati per questo sport emergente, con focus su tecnica, strategia e divertimento. Scopri come la nostra metodologia ATH può migliorare il tuo gioco di Pickleball.
+                        </p>
+                        <Link to="/pickleball" className="inline-flex items-center text-ath-clay font-medium hover:underline">
+                          Esplora tutti i programmi Pickleball →
+                        </Link>
+                      </div>
+                      
+                      <ProgramsSection 
+                        title="Programmi Pickleball" 
+                        subtitle="I nostri programmi specializzati per il Pickleball" 
+                        categories={pickleballCategories} 
+                        categoryCollapsible={true} 
+                        initiallyOpen={true}
+                      />
                     </div>
-                    
-                    <ProgramsSection 
-                      title="Programmi Pickleball" 
-                      subtitle="I nostri programmi specializzati per il Pickleball" 
-                      categories={pickleballCategories} 
-                      categoryCollapsible={true} 
-                      initiallyOpen={true}
-                    />
                   </TabsContent>
                   
-                  <TabsContent value="touchtennis" className="mt-0" alwaysRender={activeTab === 'touchtennis'}>
-                    <div className="bg-gray-50 p-6 rounded-lg mb-8">
-                      <h3 className="text-xl font-bold mb-3">TouchTennis</h3>
-                      <p className="mb-4">
-                        Un formato innovativo che rende il tennis accessibile a tutti. I nostri programmi di TouchTennis sono perfetti per chi vuole divertirsi e migliorare le proprie abilità in uno spazio ridotto.
-                      </p>
-                      <Link to="/touchtennis" className="inline-flex items-center text-ath-clay font-medium hover:underline">
-                        Esplora tutti i programmi TouchTennis →
-                      </Link>
+                  <TabsContent value="touchtennis" className="mt-0" forceMount={true}>
+                    <div className={`transition-opacity duration-300 ${activeTab === 'touchtennis' ? 'opacity-100' : 'opacity-0 absolute top-0 left-0 invisible'}`}>
+                      <div className="bg-gray-50 p-6 rounded-lg mb-8">
+                        <h3 className="text-xl font-bold mb-3">TouchTennis</h3>
+                        <p className="mb-4">
+                          Un formato innovativo che rende il tennis accessibile a tutti. I nostri programmi di TouchTennis sono perfetti per chi vuole divertirsi e migliorare le proprie abilità in uno spazio ridotto.
+                        </p>
+                        <Link to="/touchtennis" className="inline-flex items-center text-ath-clay font-medium hover:underline">
+                          Esplora tutti i programmi TouchTennis →
+                        </Link>
+                      </div>
+                      
+                      <ProgramsSection 
+                        title="Programmi TouchTennis" 
+                        subtitle="Tennis in formato ridotto, divertimento senza limiti" 
+                        categories={touchTennisCategories} 
+                        categoryCollapsible={true} 
+                        initiallyOpen={true}
+                      />
                     </div>
-                    
-                    <ProgramsSection 
-                      title="Programmi TouchTennis" 
-                      subtitle="Tennis in formato ridotto, divertimento senza limiti" 
-                      categories={touchTennisCategories} 
-                      categoryCollapsible={true} 
-                      initiallyOpen={true}
-                    />
                   </TabsContent>
                 </div>
               </Tabs>

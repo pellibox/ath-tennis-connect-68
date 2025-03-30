@@ -34,6 +34,11 @@ const Programs = () => {
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
     
+    // Sync activeTab with sport from context
+    if (sport) {
+      setActiveTab(sport as 'tennis' | 'padel' | 'pickleball' | 'touchtennis');
+    }
+    
     // Set content as ready after a small delay to ensure rendering
     const timer = setTimeout(() => {
       setContentReady(true);
@@ -43,20 +48,26 @@ const Programs = () => {
     console.log("Programs page initialized with sport:", sport, "activeTab:", activeTab);
     
     return () => clearTimeout(timer);
-  }, []);
+  }, [sport]);
 
   const vimeoEmbed = getVimeoEmbed(userGender, userType, true, false, sport);
   
   const { filteredCategories, title, subtitle } = ProgramFilters({ 
     userType, 
     showAllPrograms, 
-    sport: 'tennis' 
+    sport: activeTab 
   });
 
   const handleTabChange = (value: string) => {
     console.log('Tab change in Programs.tsx:', value);
     setActiveTab(value as 'tennis' | 'padel' | 'pickleball' | 'touchtennis');
     
+    // Update the sport in context
+    if (value === 'tennis' || value === 'padel' || value === 'pickleball' || value === 'touchtennis') {
+      updateSport(value as 'tennis' | 'padel' | 'pickleball' | 'touchtennis');
+    }
+    
+    // Navigate to the appropriate page
     switch (value) {
       case 'tennis':
         navigate('/programs');
@@ -115,7 +126,7 @@ const Programs = () => {
           {isMobile ? (
             <div className="mb-8 container mx-auto px-4">
               <h2 className="text-2xl font-display mb-6">Seleziona lo Sport</h2>
-              <Tabs value={activeTab} onValueChange={handleTabChange} className="w-full" defaultValue="tennis">
+              <Tabs value={activeTab} onValueChange={handleTabChange} className="w-full" defaultValue={activeTab}>
                 <TabsList className="w-full mb-2 bg-white border border-gray-200 rounded-full p-1 flex justify-between">
                   <TabsTrigger 
                     value="tennis" 

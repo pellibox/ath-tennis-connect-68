@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { ChevronDown } from 'lucide-react';
@@ -23,50 +24,39 @@ const ProgramsDropdown = ({ textColorClass }: ProgramsDropdownProps) => {
   const isMobile = useIsMobile();
   
   const [activeSport, setActiveSport] = useState<SportType | null>(sport);
-  const [hasExplicitSelection, setHasExplicitSelection] = useState(false);
   
   useEffect(() => {
+    console.log("ProgramsDropdown - current location:", location.pathname, "current sport:", sport);
     const path = location.pathname;
     
     if (path.includes('touchtennis')) {
       setActiveSport('touchtennis');
-      if (!hasExplicitSelection) {
-        updateSport('touchtennis');
-      }
+      updateSport('touchtennis');
     } else if (path.includes('padel')) {
       setActiveSport('padel');
-      if (!hasExplicitSelection) {
-        updateSport('padel');
-      }
+      updateSport('padel');
     } else if (path.includes('pickleball')) {
       setActiveSport('pickleball');
-      if (!hasExplicitSelection) {
-        updateSport('pickleball');
-      }
+      updateSport('pickleball');
     } else if (path.includes('programs')) {
       if (path === '/programs' || path === '/programs/') {
         setActiveSport('tennis');
-        if (!hasExplicitSelection) {
-          updateSport('tennis');
-        }
-      } else {
-        setActiveSport(sport);
+        updateSport('tennis');
       }
-    } else {
-      setActiveSport(sport);
     }
-  }, [location.pathname, sport, hasExplicitSelection, updateSport]);
+  }, [location.pathname, updateSport]);
   
   useEffect(() => {
-    if (sport && sport !== activeSport) {
+    if (sport) {
+      console.log("ProgramsDropdown - Setting activeSport to:", sport);
       setActiveSport(sport);
     }
-  }, [sport, activeSport]);
+  }, [sport]);
   
   const handleSportSelect = (sportType: SportType) => {
+    console.log("ProgramsDropdown - Sport selected:", sportType);
     updateSport(sportType);
     setActiveSport(sportType);
-    setHasExplicitSelection(true);
     
     switch (sportType) {
       case 'tennis':
