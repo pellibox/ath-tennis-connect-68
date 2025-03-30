@@ -2,6 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import { useIsMobile } from '@/hooks/use-mobile';
 import Logo from '@/components/Logo';
+import { useProfile } from '@/contexts/ProfileContext';
 
 interface StandardHeroVideoProps {
   vimeoEmbed: string;
@@ -19,6 +20,7 @@ const StandardHeroVideo = ({
   const isMobile = useIsMobile();
   const [logoYOffset, setLogoYOffset] = useState<number>(0);
   const [logoOpacity, setLogoOpacity] = useState<number>(1);
+  const { sport } = useProfile();
   
   useEffect(() => {
     const handleScroll = () => {
@@ -74,8 +76,13 @@ const StandardHeroVideo = ({
         </div>
       )}
       
-      <div className="w-full bg-black min-h-[calc(100vw*9/16)] relative">
-        <div dangerouslySetInnerHTML={{ __html: vimeoEmbed }} />
+      <div className={`w-full bg-black relative ${sport === 'padel' ? 'min-h-[60vh] md:min-h-[70vh]' : 'min-h-[calc(100vw*9/16)]'}`}>
+        <div 
+          className="video-container" 
+          dangerouslySetInnerHTML={{ __html: vimeoEmbed.replace('style="position:absolute;top:0;left:0;width:100%;height:100%;"', 
+            `style="position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover;${sport === 'padel' ? 'transform:scale(1.05);' : ''}"`) 
+          }}
+        />
       </div>
       
       {(title || subtitle) && (
