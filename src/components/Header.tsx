@@ -1,7 +1,7 @@
 
 import { useState } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
-import { ChevronLeft } from 'lucide-react';
+import { ChevronLeft, Menu, X } from 'lucide-react';
 import Logo from './Logo';
 import { cn } from '@/lib/utils';
 import LanguageSwitcher from './LanguageSwitcher';
@@ -12,6 +12,7 @@ import NavigationLinks from './navigation/NavigationLinks';
 import BottomNavigation from './navigation/BottomNavigation';
 import ProfileDialog from './profile/ProfileDialog';
 import { Button } from './ui/button';
+import MobileMenu from './navigation/MobileMenu';
 
 interface HeaderProps {
   useVickiLogo?: boolean;
@@ -24,6 +25,7 @@ const Header = ({ useVickiLogo = false }: HeaderProps) => {
   const isMobile = useIsMobile();
   const { userGender, userType, sport, updateProfile, resetProfile, deleteProfile } = useProfile();
   const [dialogOpen, setDialogOpen] = useState(false);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   const handleGoBack = () => {
     navigate(-1);
@@ -34,6 +36,10 @@ const Header = ({ useVickiLogo = false }: HeaderProps) => {
 
   const headerBgClass = "bg-white";
   const textColorClass = "text-black";
+
+  const toggleMobileMenu = () => {
+    setMobileMenuOpen(!mobileMenuOpen);
+  };
   
   return (
     <>
@@ -44,10 +50,20 @@ const Header = ({ useVickiLogo = false }: HeaderProps) => {
           isMobile ? 'py-1' : 'py-3' // Reduced padding on mobile
         )}
       >
-        <div className="container mx-auto px-4 flex items-center justify-center relative">
+        <div className="container mx-auto px-4 flex items-center justify-between relative">
+          {isMobile && (
+            <button 
+              className="text-black p-2 z-50" 
+              onClick={toggleMobileMenu}
+              aria-label={mobileMenuOpen ? t("nav.close") : t("nav.menu")}
+            >
+              {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
+            </button>
+          )}
+
           <div className={cn(
             "flex items-center z-50", 
-            isMobile ? "w-full justify-center" : (showBackButton ? "pl-0" : "pl-0")
+            isMobile ? "w-auto mx-auto" : (showBackButton ? "pl-0" : "pl-0")
           )}>
             {showBackButton && !isMobile && (
               <Button 
@@ -55,7 +71,7 @@ const Header = ({ useVickiLogo = false }: HeaderProps) => {
                 size="icon" 
                 onClick={handleGoBack} 
                 className="mr-2" 
-                aria-label="Go back"
+                aria-label={t("nav.back")}
               >
                 <ChevronLeft size={24} />
               </Button>
@@ -67,8 +83,8 @@ const Header = ({ useVickiLogo = false }: HeaderProps) => {
               resetProfile={false}
               useVickiLogo={useVickiLogo}
               isInMenu={false}
-              isCentered={true}
-              className={isMobile ? "mx-auto" : "ml-0"}
+              isCentered={isMobile}
+              className={isMobile ? "" : "ml-0"}
               useBlackLogoOnWhite={true}
             />
           </div>
@@ -99,6 +115,9 @@ const Header = ({ useVickiLogo = false }: HeaderProps) => {
           )}
         </div>
       </header>
+
+      {/* Mobile Menu */}
+      <MobileMenu isOpen={mobileMenuOpen} />
       
       {/* Bottom Navigation for Mobile */}
       {isMobile && <BottomNavigation />}

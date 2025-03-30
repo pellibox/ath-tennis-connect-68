@@ -5,6 +5,7 @@ import { cn } from '@/lib/utils';
 import NavigationLinks from './NavigationLinks';
 import LanguageSwitcher from '../LanguageSwitcher';
 import { Button } from '@/components/ui/button';
+import { useLanguage } from '@/contexts/LanguageContext';
 
 interface MobileMenuProps {
   isOpen: boolean;
@@ -13,6 +14,7 @@ interface MobileMenuProps {
 const MobileMenu = ({ isOpen }: MobileMenuProps) => {
   const navigate = useNavigate();
   const location = useLocation();
+  const { t } = useLanguage();
   
   // Only show back button when not on the homepage
   const showBackButton = location.pathname !== '/';
@@ -35,7 +37,7 @@ const MobileMenu = ({ isOpen }: MobileMenuProps) => {
           onClick={handleGoBack}
         >
           <ChevronLeft size={20} className="mr-2" />
-          <span>Indietro</span>
+          <span>{t("nav.back")}</span>
         </Button>
       )}
       
@@ -44,8 +46,11 @@ const MobileMenu = ({ isOpen }: MobileMenuProps) => {
         isMobile={true} 
       />
       
-      <div className="pt-4 border-t border-gray-100 flex items-center">
-        <LanguageSwitcher />
+      <div className="mt-auto pt-4 border-t border-gray-100">
+        <div className="flex items-center justify-between">
+          <div className="font-medium text-sm">{t("language")}</div>
+          <LanguageSwitcher />
+        </div>
       </div>
     </div>
   );

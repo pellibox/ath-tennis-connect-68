@@ -1,4 +1,3 @@
-
 const translations = {
   // Header & Navigation
   "nav.home": "Home",
@@ -7,6 +6,41 @@ const translations = {
   "nav.coaches": "Allenatori",
   "nav.about": "Perché ATH",
   "nav.contact": "Contatti",
+  "nav.method": "Metodo",
+  "nav.back": "Indietro",
+  "nav.menu": "Menu",
+  "nav.close": "Chiudi",
+  
+  // Profile
+  "profile.title": "Profilo",
+  "profile.edit": "Modifica Profilo",
+  "profile.delete": "Elimina Profilo",
+  "profile.reset": "Reset",
+  "profile.select": "Seleziona Profilo",
+  "profile.customize": "Personalizza la tua esperienza su ATH",
+  "profile.gender.male": "Uomo",
+  "profile.gender.female": "Donna",
+  "profile.yourProfile": "Il tuo profilo",
+  "profile.customContent": "Contenuti personalizzati in base al tuo profilo",
+  "profile.deleteConfirm": "Eliminare il profilo?",
+  "profile.deleteDesc": "Vuoi davvero eliminare le tue preferenze di profilo? Tornerai alla navigazione standard senza contenuti personalizzati.",
+  "profile.deleteAction": "Elimina",
+  "profile.cancelAction": "Annulla",
+  "profile.welcome": "Benvenuto! Contenuto personalizzato per",
+  
+  // Language
+  "language": "Lingua",
+  "language.en": "Inglese",
+  "language.it": "Italiano",
+  "language.fr": "Francese",
+  "language.de": "Tedesco",
+  "language.changed": "Lingua cambiata",
+  "language.updated": "La lingua della pagina è stata aggiornata.",
+  
+  // Technology
+  "tech.title": "Il Vantaggio Tecnologico ATH",
+  "tech.title.short": "Tech",
+  "tech.subtitle": "Sistema di analisi con visione artificiale, AI e tracciamento 3D che analizza oltre 70 parametri in tempo reale",
   
   // Hero Section
   "hero.title": "Eccellenza ad Ogni Livello",

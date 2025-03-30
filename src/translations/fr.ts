@@ -6,6 +6,41 @@ const translations = {
   "nav.coaches": "Entraîneurs",
   "nav.about": "À Propos",
   "nav.contact": "Contact",
+  "nav.method": "Méthode",
+  "nav.back": "Retour",
+  "nav.menu": "Menu",
+  "nav.close": "Fermer",
+  
+  // Profile
+  "profile.title": "Profil",
+  "profile.edit": "Modifier Profil",
+  "profile.delete": "Supprimer Profil",
+  "profile.reset": "Réinitialiser",
+  "profile.select": "Sélectionner Profil",
+  "profile.customize": "Personnalisez votre expérience sur ATH",
+  "profile.gender.male": "Homme",
+  "profile.gender.female": "Femme",
+  "profile.yourProfile": "Votre profil",
+  "profile.customContent": "Contenu personnalisé selon votre profil",
+  "profile.deleteConfirm": "Supprimer le profil?",
+  "profile.deleteDesc": "Voulez-vous vraiment supprimer vos préférences de profil? Vous reviendrez à la navigation standard sans contenu personnalisé.",
+  "profile.deleteAction": "Supprimer",
+  "profile.cancelAction": "Annuler",
+  "profile.welcome": "Bienvenue! Contenu personnalisé pour",
+  
+  // Language
+  "language": "Langue",
+  "language.en": "Anglais",
+  "language.it": "Italien",
+  "language.fr": "Français",
+  "language.de": "Allemand",
+  "language.changed": "Langue modifiée",
+  "language.updated": "La langue de la page a été mise à jour.",
+  
+  // Technology
+  "tech.title": "L'Avantage Technologique ATH",
+  "tech.title.short": "Tech",
+  "tech.subtitle": "Notre système technologique innovant intègre des analyses avancées et l'IA pour révolutionner l'entraînement au tennis",
   
   // Hero Section
   "hero.title": "Exceller à Tous les Niveaux",
@@ -58,6 +93,7 @@ const translations = {
   
   // Technology Section
   "tech.title": "L'Avantage Technologique ATH",
+  "tech.title.short": "Tech",
   "tech.subtitle": "Notre système technologique innovant intègre des analyses avancées et l'IA pour révolutionner l'entraînement au tennis",
   "tech.exclusive": "TECHNOLOGIE EXCLUSIVE",
   "tech.vicki.subtitle": "La Solution aux Défis du Tennis Moderne",

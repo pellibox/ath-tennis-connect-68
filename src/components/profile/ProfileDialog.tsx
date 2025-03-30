@@ -12,6 +12,7 @@ import {
 } from "@/components/ui/dialog";
 import ProfileIndicator from '../ProfileIndicator';
 import { toast } from "sonner";
+import { useLanguage } from '@/contexts/LanguageContext';
 
 interface ProfileDialogProps {
   open: boolean;
@@ -34,12 +35,13 @@ const ProfileDialog = ({
   resetProfile,
   deleteProfile
 }: ProfileDialogProps) => {
+  const { t } = useLanguage();
   
   const handleProfileComplete = (gender: UserGender, type: UserType, selectedSport: SportType = 'tennis') => {
     updateProfile(gender, type, selectedSport);
     setOpen(false);
     
-    toast.success(`Benvenuto! Contenuto personalizzato per ${type}`, {
+    toast.success(`${t("profile.welcome")} ${type}`, {
       position: "bottom-center",
       duration: 3000
     });
@@ -48,7 +50,7 @@ const ProfileDialog = ({
   const handleProfileReset = () => {
     resetProfile();
     
-    toast.info("Seleziona nuove preferenze di profilo", {
+    toast.info(t("profile.select"), {
       position: "bottom-center",
       duration: 3000
     });
@@ -69,16 +71,16 @@ const ProfileDialog = ({
             />
           ) : (
             <button className="mr-4 text-sm px-3 py-1 rounded-md bg-ath-clay text-white font-swiss">
-              Profilo
+              {t("profile.title")}
             </button>
           )}
         </div>
       </DialogTrigger>
       <DialogContent className="sm:max-w-md">
         <DialogHeader>
-          <DialogTitle className="font-swiss">Seleziona Profilo</DialogTitle>
+          <DialogTitle className="font-swiss">{t("profile.select")}</DialogTitle>
           <DialogDescription className="font-swiss">
-            Personalizza la tua esperienza su ATH
+            {t("profile.customize")}
           </DialogDescription>
         </DialogHeader>
         <UserTypeSelector 

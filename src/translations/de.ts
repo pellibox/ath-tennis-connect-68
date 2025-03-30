@@ -6,6 +6,41 @@ const translations = {
   "nav.coaches": "Trainer",
   "nav.about": "Warum ATH",
   "nav.contact": "Kontakt",
+  "nav.method": "Methode",
+  "nav.back": "Zurück",
+  "nav.menu": "Menü",
+  "nav.close": "Schließen",
+  
+  // Profile
+  "profile.title": "Profil",
+  "profile.edit": "Profil bearbeiten",
+  "profile.delete": "Profil löschen",
+  "profile.reset": "Zurücksetzen",
+  "profile.select": "Profil auswählen",
+  "profile.customize": "Passen Sie Ihr Erlebnis auf ATH an",
+  "profile.gender.male": "Mann",
+  "profile.gender.female": "Frau",
+  "profile.yourProfile": "Ihr Profil",
+  "profile.customContent": "Personalisierte Inhalte basierend auf Ihrem Profil",
+  "profile.deleteConfirm": "Profil löschen?",
+  "profile.deleteDesc": "Möchten Sie wirklich Ihre Profileinstellungen löschen? Sie kehren zur Standardnavigation ohne personalisierte Inhalte zurück.",
+  "profile.deleteAction": "Löschen",
+  "profile.cancelAction": "Abbrechen",
+  "profile.welcome": "Willkommen! Personalisierte Inhalte für",
+  
+  // Language
+  "language": "Sprache",
+  "language.en": "Englisch",
+  "language.it": "Italienisch",
+  "language.fr": "Französisch",
+  "language.de": "Deutsch",
+  "language.changed": "Sprache geändert",
+  "language.updated": "Die Seitensprache wurde aktualisiert.",
+  
+  // Technology
+  "tech.title": "Der ATH Technologievorteil",
+  "tech.title.short": "Tech",
+  "tech.subtitle": "Unser innovatives Technologiesystem integriert fortschrittliche Analytik und KI, um das Tennistraining zu revolutionieren",
   
   // Hero Section
   "hero.title": "Auf Jedem Niveau Exzellieren",
@@ -57,7 +92,6 @@ const translations = {
   "camps.benefit6": "Spaß und Leidenschaft für Tennis in einer positiven Umgebung",
   
   // Technology Section
-  "tech.title": "Der ATH Technologievorteil",
   "tech.subtitle": "Unser innovatives Technologiesystem integriert fortschrittliche Analytik und KI, um das Tennistraining zu revolutionieren",
   "tech.exclusive": "EXKLUSIVE TECHNOLOGIE",
   "tech.vicki.subtitle": "Die Lösung für die Herausforderungen des modernen Tennis",

@@ -4,6 +4,7 @@ import { UserGender, UserType } from './UserTypeSelector';
 import { SportType } from '@/contexts/ProfileContext';
 import { Button } from "@/components/ui/button";
 import { User, GraduationCap, Target, Briefcase, UserCog, Users, Edit, X, RotateCcw, CircleDot } from 'lucide-react';
+import { useLanguage } from '@/contexts/LanguageContext';
 import {
   HoverCard,
   HoverCardContent,
@@ -38,6 +39,8 @@ const ProfileIndicator: React.FC<ProfileIndicatorProps> = ({
   onDeleteProfile,
   onResetProfile
 }) => {
+  const { t } = useLanguage();
+  
   // Get icon based on user type
   const getTypeIcon = () => {
     switch (type) {
@@ -76,7 +79,7 @@ const ProfileIndicator: React.FC<ProfileIndicatorProps> = ({
 
   // Get gender description
   const getGenderDescription = () => {
-    return gender === 'male' ? 'Uomo' : 'Donna';
+    return gender === 'male' ? t('profile.gender.male') : t('profile.gender.female');
   };
 
   // Get sport description
@@ -125,13 +128,13 @@ const ProfileIndicator: React.FC<ProfileIndicatorProps> = ({
             <div className="p-1 rounded-full bg-ath-clay/10">
               {getTypeIcon()}
             </div>
-            <span className="text-xs font-medium">Modifica</span>
+            <span className="text-xs font-medium">{t("profile.edit")}</span>
           </div>
         </div>
       </HoverCardTrigger>
       <HoverCardContent className="w-64 p-4 bg-white/95 backdrop-blur-sm border border-ath-clay/20 shadow-lg">
         <div className="space-y-2">
-          <h4 className="font-medium text-ath-clay">Il tuo profilo</h4>
+          <h4 className="font-medium text-ath-clay">{t("profile.yourProfile")}</h4>
           <div className="flex items-center gap-2">
             <div className={`p-1.5 rounded-full ${gender === 'male' ? 'bg-blue-100' : 'bg-pink-100'}`}>
               <User size={18} className={gender === 'male' ? 'text-blue-500' : 'text-pink-500'} />
@@ -151,7 +154,7 @@ const ProfileIndicator: React.FC<ProfileIndicatorProps> = ({
             <span className="text-sm">{getSportDescription()}</span>
           </div>
           <p className="text-xs text-gray-500 mt-2">
-            Contenuti personalizzati in base al tuo profilo
+            {t("profile.customContent")}
           </p>
           
           <div className="flex gap-2 mt-4">
@@ -162,30 +165,30 @@ const ProfileIndicator: React.FC<ProfileIndicatorProps> = ({
               onClick={handleResetProfile}
             >
               <RotateCcw size={14} />
-              <span>Reset</span>
+              <span>{t("profile.reset")}</span>
             </Button>
             
             <AlertDialog>
               <AlertDialogTrigger asChild>
                 <Button variant="outline" size="sm" className="flex-1 text-red-500 border-red-200 hover:bg-red-50 flex items-center justify-center gap-2">
                   <X size={14} />
-                  <span>Elimina</span>
+                  <span>{t("profile.delete")}</span>
                 </Button>
               </AlertDialogTrigger>
               <AlertDialogContent>
                 <AlertDialogHeader>
-                  <AlertDialogTitle>Eliminare il profilo?</AlertDialogTitle>
+                  <AlertDialogTitle>{t("profile.deleteConfirm")}</AlertDialogTitle>
                   <AlertDialogDescription>
-                    Vuoi davvero eliminare le tue preferenze di profilo? Tornerai alla navigazione standard senza contenuti personalizzati.
+                    {t("profile.deleteDesc")}
                   </AlertDialogDescription>
                 </AlertDialogHeader>
                 <AlertDialogFooter>
-                  <AlertDialogCancel>Annulla</AlertDialogCancel>
+                  <AlertDialogCancel>{t("profile.cancelAction")}</AlertDialogCancel>
                   <AlertDialogAction 
                     onClick={handleDeleteProfile}
                     className="bg-red-500 hover:bg-red-600"
                   >
-                    Elimina
+                    {t("profile.deleteAction")}
                   </AlertDialogAction>
                 </AlertDialogFooter>
               </AlertDialogContent>

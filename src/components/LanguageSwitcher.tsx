@@ -4,11 +4,13 @@ import { useLanguage } from '@/contexts/LanguageContext';
 import { useState, useRef, useEffect } from 'react';
 import { cn } from '@/lib/utils';
 import { toast } from '@/components/ui/use-toast';
+import { useIsMobile } from '@/hooks/use-mobile';
 
 const LanguageSwitcher = () => {
   const { language, setLanguage, t } = useLanguage();
   const [isOpen, setIsOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
+  const isMobile = useIsMobile();
 
   // Close dropdown when clicking outside
   useEffect(() => {
@@ -36,8 +38,8 @@ const LanguageSwitcher = () => {
     console.log('Changing language to:', newLanguage);
     setLanguage(newLanguage);
     toast({
-      title: `Language changed to ${languageNames[newLanguage]}`,
-      description: "The page language has been updated.",
+      title: t('language.changed'),
+      description: t('language.updated'),
     });
     setIsOpen(false);
   };
@@ -51,11 +53,14 @@ const LanguageSwitcher = () => {
         aria-haspopup="true"
       >
         <Globe size={16} className="mr-1" />
-        <span className="hidden md:inline-block">{languageNames[language]}</span>
+        <span className={isMobile ? "" : "hidden md:inline-block"}>{languageNames[language]}</span>
       </button>
       
       {isOpen && (
-        <div className="absolute right-0 mt-2 w-40 bg-white shadow-md rounded-md py-1 z-50">
+        <div className={cn(
+          "absolute mt-2 bg-white shadow-md rounded-md py-1 z-50",
+          isMobile ? "left-0 w-48" : "right-0 w-40"
+        )}>
           <div className="px-3 py-2 text-xs font-semibold text-gray-500 border-b border-gray-100">
             {t('language')}
           </div>
