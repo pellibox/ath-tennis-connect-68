@@ -1,6 +1,8 @@
+
 import { Link, useLocation } from 'react-router-dom';
-import { HelpCircle, BookOpen, Zap, Server, User } from 'lucide-react';
+import { HelpCircle, BookOpen, Zap, Server } from 'lucide-react';
 import { FaList } from "react-icons/fa6";
+import { CgProfile } from "react-icons/cg";
 import { cn } from '@/lib/utils';
 import { useProfile } from '@/contexts/ProfileContext';
 import { useLanguage } from '@/contexts/LanguageContext';
@@ -71,7 +73,7 @@ const BottomNavigation = () => {
               "p-1 rounded-full",
               userGender === 'male' ? 'bg-blue-100' : userGender === 'female' ? 'bg-pink-100' : 'bg-gray-100'
             )}>
-              <User size={16} className={cn(
+              <CgProfile size={16} className={cn(
                 userGender === 'male' ? 'text-blue-500' : 
                 userGender === 'female' ? 'text-pink-500' : 
                 'text-gray-500'

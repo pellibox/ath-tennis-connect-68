@@ -1,9 +1,8 @@
-
 import React, { useState } from 'react';
 import { UserGender, UserType } from './UserTypeSelector';
 import { SportType } from '@/contexts/ProfileContext';
 import { Button } from "@/components/ui/button";
-import { User, GraduationCap, Target, Briefcase, UserCog, Users, Edit, X, RotateCcw, CircleDot, Globe } from 'lucide-react';
+import { GraduationCap, Target, Briefcase, UserCog, Users, Edit, X, RotateCcw, CircleDot, Globe, CgProfile } from 'lucide-react';
 import { useLanguage } from '@/contexts/LanguageContext';
 import {
   HoverCard,
@@ -45,7 +44,6 @@ const ProfileIndicator: React.FC<ProfileIndicatorProps> = ({
   const isMobile = useIsMobile();
   const [languageOpen, setLanguageOpen] = useState(false);
   
-  // Get icon based on user type
   const getTypeIcon = () => {
     switch (type) {
       case 'junior':
@@ -63,7 +61,6 @@ const ProfileIndicator: React.FC<ProfileIndicatorProps> = ({
     }
   };
 
-  // Get description based on user type
   const getTypeDescription = () => {
     switch (type) {
       case 'junior':
@@ -81,12 +78,10 @@ const ProfileIndicator: React.FC<ProfileIndicatorProps> = ({
     }
   };
 
-  // Get gender description
   const getGenderDescription = () => {
     return gender === 'male' ? t('profile.gender.male') : t('profile.gender.female');
   };
 
-  // Get sport description
   const getSportDescription = () => {
     switch (sport) {
       case 'tennis':
@@ -102,20 +97,15 @@ const ProfileIndicator: React.FC<ProfileIndicatorProps> = ({
     }
   };
   
-  // Handle profile deletion
   const handleDeleteProfile = () => {
-    // If callback provided, call it
     if (onDeleteProfile) {
       onDeleteProfile();
     }
     
-    // Reload page to reset the UI
     window.location.reload();
   };
 
-  // Handle profile reset
   const handleResetProfile = () => {
-    // If callback provided, call it
     if (onResetProfile) {
       onResetProfile();
     }
@@ -127,7 +117,7 @@ const ProfileIndicator: React.FC<ProfileIndicatorProps> = ({
         <div className="flex items-center cursor-pointer" onClick={onEditClick}>
           <div className="flex items-center gap-2">
             <div className={`p-1 rounded-full ${gender === 'male' ? 'bg-blue-100' : 'bg-pink-100'}`}>
-              <User size={16} className={gender === 'male' ? 'text-blue-500' : 'text-pink-500'} />
+              <CgProfile size={16} className={gender === 'male' ? 'text-blue-500' : 'text-pink-500'} />
             </div>
             <div className="p-1 rounded-full bg-ath-clay/10">
               {getTypeIcon()}
@@ -141,7 +131,7 @@ const ProfileIndicator: React.FC<ProfileIndicatorProps> = ({
           <h4 className="font-medium text-ath-clay">{t("profile.yourProfile")}</h4>
           <div className="flex items-center gap-2">
             <div className={`p-1.5 rounded-full ${gender === 'male' ? 'bg-blue-100' : 'bg-pink-100'}`}>
-              <User size={18} className={gender === 'male' ? 'text-blue-500' : 'text-pink-500'} />
+              <CgProfile size={18} className={gender === 'male' ? 'text-blue-500' : 'text-pink-500'} />
             </div>
             <span className="text-sm">{getGenderDescription()}</span>
           </div>
@@ -158,7 +148,6 @@ const ProfileIndicator: React.FC<ProfileIndicatorProps> = ({
             <span className="text-sm">{getSportDescription()}</span>
           </div>
           
-          {/* Language selector added here */}
           {isMobile && (
             <div className="mt-3 pt-3 border-t border-gray-100">
               <div className="flex items-center justify-between mb-2">

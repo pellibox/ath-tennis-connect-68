@@ -1,6 +1,7 @@
 
 import { UserGender, UserType } from '../UserTypeSelector';
 import UserTypeSelector from '../UserTypeSelector';
+import { CgProfile } from "react-icons/cg";
 import { SportType } from '@/contexts/ProfileContext';
 import {
   Dialog,
@@ -77,8 +78,9 @@ const ProfileDialog = ({
               onResetProfile={handleProfileReset}
             />
           ) : (
-            <button className="mr-4 text-sm px-3 py-1 rounded-md bg-ath-clay text-white font-swiss">
-              {t("profile.title")}
+            <button className="mr-4 text-sm px-3 py-1 rounded-md bg-ath-clay text-white font-swiss flex items-center gap-1">
+              <CgProfile size={16} />
+              <span>{t("profile.title")}</span>
             </button>
           )}
         </div>
@@ -102,4 +104,3 @@ const ProfileDialog = ({
 };
 
 export default ProfileDialog;
-
