@@ -1,4 +1,3 @@
-
 import { Link, useLocation } from 'react-router-dom';
 import { HelpCircle, BookOpen, Zap, Server, User } from 'lucide-react';
 import { FaList } from "react-icons/fa6";
@@ -16,7 +15,7 @@ const BottomNavigation = () => {
   
   // Simplified navigation items for bottom nav
   const bottomNavItems = [
-    { text: t("nav.about"), href: '/about', icon: <HelpCircle size={20} /> },
+    { text: "ATH", href: '/about', icon: <HelpCircle size={20} /> },
     { text: t("nav.method"), href: '/method', icon: <BookOpen size={20} /> },
     { 
       text: t("nav.programs"), 
