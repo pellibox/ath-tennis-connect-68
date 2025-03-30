@@ -1,3 +1,4 @@
+
 import { useEffect } from 'react';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
@@ -26,8 +27,8 @@ const MethodPage = () => {
       <main className="flex-grow">
         <StandardHeroVideo 
           vimeoEmbed={vimeoEmbed}
-          title="IL METODO:"
-          subtitle={t("method.tagline")}
+          titleKey="method.title"
+          subtitleKey="method.tagline"
         />
         
         <section className="py-16 px-6 lg:px-10">
@@ -68,26 +69,23 @@ const MethodPage = () => {
               <RevealAnimation>
                 <div className="bg-ath-gray p-8 rounded-lg mb-16">
                   <h3 className="text-2xl font-display mb-4 text-center md:text-left">
-                    {userType === 'coach' ? 'Per i Coach' : 
-                     userType === 'parent' ? 'Per i Genitori' : 
-                     userType === 'professional' ? 'Per i Professionisti' : 
-                     userType === 'performance' ? 'Per gli Agonisti' : 
-                     'Per i Giovani Tennisti'}
+                    {userType === 'coach' ? t("method.forCoaches") : 
+                     userType === 'parent' ? t("method.forParents") : 
+                     userType === 'professional' ? t("method.forProfessionals") : 
+                     userType === 'performance' ? t("method.forPerformance") : 
+                     t("method.forJuniors")}
                   </h3>
                   
                   {userType === 'professional' && (
                     <div className="space-y-4">
                       <p className="text-lg text-center md:text-left">
-                        Il Metodo ATH per tennisti professionisti si concentra sull'ottimizzazione completa della performance, integrando analisi tecnica, 
-                        preparazione fisica, allenamento mentale e analisi tattica in un sistema coerente.
+                        {t("method.professional.desc1")}
                       </p>
                       <p className="text-lg text-center md:text-left">
-                        Ogni dettaglio viene monitorato e analizzato per identificare i margini di miglioramento anche minimi che, a livello professionale, 
-                        possono fare la differenza tra vittoria e sconfitta.
+                        {t("method.professional.desc2")}
                       </p>
                       <p className="text-lg text-center md:text-left">
-                        Il nostro approccio con i professionisti include anche la gestione dei cicli di carico e recupero, il monitoraggio biochimico 
-                        e la pianificazione strategica della stagione agonistica.
+                        {t("method.professional.desc3")}
                       </p>
                     </div>
                   )}
@@ -95,15 +93,13 @@ const MethodPage = () => {
                   {userType === 'performance' && (
                     <div className="space-y-4">
                       <p className="text-lg text-center md:text-left">
-                        Per gli agonisti di alto livello, il Metodo ATH si concentra sul perfezionamento tecnico-tattico e sullo sviluppo delle capacità 
-                        fisiche e mentali necessarie per competere ad alto livello.
+                        {t("method.performance.desc1")}
                       </p>
                       <p className="text-lg text-center md:text-left">
-                        La tecnologia VICKI™ permette di identificare pattern di gioco efficaci e inefficaci, analizzare le prestazioni in partita 
-                        e monitorare l'evoluzione del carico di lavoro per prevenire infortuni.
+                        {t("method.performance.desc2")}
                       </p>
                       <p className="text-lg text-center md:text-left">
-                        Il metodo include anche la preparazione specifica per i tornei, con simulazioni di match e analisi degli avversari.
+                        {t("method.performance.desc3")}
                       </p>
                     </div>
                   )}
@@ -111,16 +107,13 @@ const MethodPage = () => {
                   {userType === 'junior' && (
                     <div className="space-y-4">
                       <p className="text-lg text-center md:text-left">
-                        Per i giovani tennisti, il Metodo ATH bilancia lo sviluppo tecnico con la componente ludica, monitorando attentamente 
-                        la crescita fisica e lo sviluppo delle capacità coordinative.
+                        {t("method.junior.desc1")}
                       </p>
                       <p className="text-lg text-center md:text-left">
-                        Il sistema VICKI™ identifica precocemente qualità e talenti, permettendo di personalizzare il percorso formativo in base 
-                        alle caratteristiche individuali del giovane atleta.
+                        {t("method.junior.desc2")}
                       </p>
                       <p className="text-lg text-center md:text-left">
-                        Grande attenzione viene data allo sviluppo armonico, evitando specializzazioni precoci e favorendo la multidisciplinarietà 
-                        e il corretto sviluppo motorio.
+                        {t("method.junior.desc3")}
                       </p>
                     </div>
                   )}
@@ -128,16 +121,13 @@ const MethodPage = () => {
                   {userType === 'coach' && (
                     <div className="space-y-4">
                       <p className="text-lg text-center md:text-left">
-                        Per i coach, il Metodo ATH fornisce strumenti avanzati di analisi e monitoraggio, permettendo di codificare la propria 
-                        metodologia all'interno del sistema e di tracciare l'evoluzione dei propri atleti.
+                        {t("method.coach.desc1")}
                       </p>
                       <p className="text-lg text-center md:text-left">
-                        La piattaforma facilita la collaborazione con altri professionisti (preparatori, mental coach, medici) e permette 
-                        di creare programmi personalizzati basati su dati oggettivi.
+                        {t("method.coach.desc2")}
                       </p>
                       <p className="text-lg text-center md:text-left">
-                        I coach possono accedere a dashboard personalizzabili, report dettagliati e strumenti di analisi avanzata per 
-                        ottimizzare il proprio lavoro e massimizzare i risultati dei propri atleti.
+                        {t("method.coach.desc3")}
                       </p>
                     </div>
                   )}
@@ -145,16 +135,13 @@ const MethodPage = () => {
                   {userType === 'parent' && (
                     <div className="space-y-4">
                       <p className="text-lg text-center md:text-left">
-                        Per i genitori, il Metodo ATH garantisce trasparenza e coinvolgimento nel percorso di sviluppo del giovane atleta, 
-                        con report chiari e comprensibili sui progressi e sugli obiettivi.
+                        {t("method.parent.desc1")}
                       </p>
                       <p className="text-lg text-center md:text-left">
-                        Il sistema fornisce indicazioni pratiche su come supportare al meglio il percorso sportivo del ragazzo/a, senza 
-                        pressioni eccessive e con un'attenzione costante al benessere psico-fisico.
+                        {t("method.parent.desc2")}
                       </p>
                       <p className="text-lg text-center md:text-left">
-                        La comunicazione con lo staff tecnico è facilitata attraverso canali diretti e aggiornamenti regolari, creando 
-                        un ambiente collaborativo che favorisce la crescita serena del giovane tennista.
+                        {t("method.parent.desc3")}
                       </p>
                     </div>
                   )}
@@ -163,7 +150,7 @@ const MethodPage = () => {
             )}
             
             <RevealAnimation delay={300}>
-              <h3 className="text-2xl font-display mb-6 text-center">I quattro pilastri del Metodo ATH</h3>
+              <h3 className="text-2xl font-display mb-6 text-center">{t("method.pillars.title")}</h3>
               
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
                 <div className="bg-gradient-to-b from-white to-ath-gray p-6 rounded-lg shadow-md hover:shadow-lg transition-all border border-gray-200">
@@ -172,8 +159,8 @@ const MethodPage = () => {
                       <Settings className="w-8 h-8" />
                     </div>
                   </div>
-                  <h4 className="text-xl font-medium text-center mb-3">Eccellenza Tecnica</h4>
-                  <p className="text-gray-600 text-center">Analisi biomeccanica dettagliata di ogni colpo e movimento, con feedback immediato e indicazioni correttive precise. Perfezionamento del contatto con la pallina e controllo superiore delle traiettorie in ogni situazione di gioco.</p>
+                  <h4 className="text-xl font-medium text-center mb-3">{t("method.pillars.technical.title")}</h4>
+                  <p className="text-gray-600 text-center">{t("method.pillars.technical.desc")}</p>
                 </div>
                 
                 <div className="bg-gradient-to-b from-white to-ath-gray p-6 rounded-lg shadow-md hover:shadow-lg transition-all border border-gray-200">
@@ -182,8 +169,8 @@ const MethodPage = () => {
                       <Activity className="w-8 h-8" />
                     </div>
                   </div>
-                  <h4 className="text-xl font-medium text-center mb-3">Preparazione Atletica</h4>
-                  <p className="text-gray-600 text-center">Monitoraggio delle capacità atletiche, programmi di sviluppo personalizzati e prevenzione infortuni basata sui dati. Ottimizzazione degli spostamenti sul campo e dominanza fisica nelle fasi critiche del match.</p>
+                  <h4 className="text-xl font-medium text-center mb-3">{t("method.pillars.physical.title")}</h4>
+                  <p className="text-gray-600 text-center">{t("method.pillars.physical.desc")}</p>
                 </div>
                 
                 <div className="bg-gradient-to-b from-white to-ath-gray p-6 rounded-lg shadow-md hover:shadow-lg transition-all border border-gray-200">
@@ -192,8 +179,8 @@ const MethodPage = () => {
                       <Brain className="w-8 h-8" />
                     </div>
                   </div>
-                  <h4 className="text-xl font-medium text-center mb-3">Forza Mentale</h4>
-                  <p className="text-gray-600 text-center">Sviluppo delle abilità cognitive, gestione dello stress agonistico e ottimizzazione della concentrazione in partita. Capacità avanzata di reazione alle situazioni avverse e controllo emotivo sotto pressione.</p>
+                  <h4 className="text-xl font-medium text-center mb-3">{t("method.pillars.mental.title")}</h4>
+                  <p className="text-gray-600 text-center">{t("method.pillars.mental.desc")}</p>
                 </div>
                 
                 <div className="bg-gradient-to-b from-white to-ath-gray p-6 rounded-lg shadow-md hover:shadow-lg transition-all border border-gray-200">
@@ -202,22 +189,20 @@ const MethodPage = () => {
                       <Target className="w-8 h-8" />
                     </div>
                   </div>
-                  <h4 className="text-xl font-medium text-center mb-3">Tattica & Strategia</h4>
-                  <p className="text-gray-600 text-center">Analisi dei pattern di gioco, strategia match-specific e capacità decisionale sotto pressione. Lettura anticipata del gioco avversario e adattamento strategico superiore nelle diverse situazioni competitive.</p>
+                  <h4 className="text-xl font-medium text-center mb-3">{t("method.pillars.tactical.title")}</h4>
+                  <p className="text-gray-600 text-center">{t("method.pillars.tactical.desc")}</p>
                 </div>
               </div>
             </RevealAnimation>
             
             <RevealAnimation delay={400}>
               <div className="bg-black text-white p-8 rounded-lg">
-                <h3 className="text-2xl font-display mb-4 text-center md:text-left">Integrazione completa</h3>
+                <h3 className="text-2xl font-display mb-4 text-center md:text-left">{t("method.integration.title")}</h3>
                 <p className="text-lg mb-4 text-center md:text-left">
-                  La vera unicità del Metodo ATH sta nella perfetta integrazione di questi quattro pilastri, supportata dalla tecnologia VICKI™ 
-                  e dalla competenza dei nostri professionisti.
+                  {t("method.integration.desc1")}
                 </p>
                 <p className="text-lg text-center md:text-left">
-                  Questo approccio olistico garantisce che ogni aspetto della formazione tennistica sia curato con la massima attenzione, 
-                  creando un percorso di sviluppo coerente, efficace e personalizzato.
+                  {t("method.integration.desc2")}
                 </p>
               </div>
             </RevealAnimation>
