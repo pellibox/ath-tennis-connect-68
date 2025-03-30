@@ -40,6 +40,7 @@ interface ProgramsSectionProps {
   compact?: boolean;
   gridLayout?: 'standard' | 'dense';
   categoryCollapsible?: boolean;
+  initiallyOpen?: boolean;
 }
 
 const ProgramsSection = ({ 
@@ -50,7 +51,8 @@ const ProgramsSection = ({
   className, 
   compact = false,
   gridLayout = 'standard',
-  categoryCollapsible = false
+  categoryCollapsible = false,
+  initiallyOpen = false
 }: ProgramsSectionProps) => {
   const [failedImages, setFailedImages] = useState<Record<string, boolean>>({});
   const [hoveredCard, setHoveredCard] = useState<string | null>(null);
@@ -60,6 +62,7 @@ const ProgramsSection = ({
   const [openCategories, setOpenCategories] = useState<Record<string, boolean>>({});
   const videoRefs = useRef<Record<string, HTMLVideoElement | null>>({});
   const isMobile = useIsMobile();
+  const sectionRef = useRef<HTMLElement>(null);
 
   const getFallbackImage = (program: Program) => {
     return `https://source.unsplash.com/featured/800x600/?tennis,${encodeURIComponent(program.title.toLowerCase())}`;
@@ -71,13 +74,24 @@ const ProgramsSection = ({
   };
 
   useEffect(() => {
-    if (programs) {
-      programs.forEach(program => {
-        if (program.vimeoEmbed) {
-          console.log(`Program ${program.id} has Vimeo embed: ${program.vimeoEmbed.substring(0, 100)}...`);
-        }
+    if (categories) {
+      console.log('Initializing category open states, initiallyOpen:', initiallyOpen);
+      const initialOpenStates: Record<string, boolean> = {};
+      categories.forEach(category => {
+        initialOpenStates[category.id] = initiallyOpen;
       });
+      setOpenCategories(initialOpenStates);
     }
+  }, [categories, initiallyOpen]);
+
+  useEffect(() => {
+    console.log('ProgramsSection rendered:', {
+      title,
+      categoriesCount: categories?.length,
+      programsCount: programs?.length,
+      openCategoriesState: openCategories
+    });
+    
     if (categories) {
       categories.forEach(category => {
         category.programs.forEach(program => {
@@ -87,7 +101,7 @@ const ProgramsSection = ({
         });
       });
     }
-  }, [programs, categories]);
+  }, [title, categories, programs, openCategories]);
 
   const handleMouseEnter = (id: string) => {
     console.log(`Mouse enter for program ID: ${id}`);
@@ -139,21 +153,16 @@ const ProgramsSection = ({
   };
 
   const toggleCategory = (categoryId: string) => {
+    console.log(`Toggling category: ${categoryId}`, { 
+      before: openCategories[categoryId],
+      after: !openCategories[categoryId]
+    });
+    
     setOpenCategories(prev => ({
       ...prev,
       [categoryId]: !prev[categoryId]
     }));
   };
-
-  useEffect(() => {
-    if (categories) {
-      const initialOpenStates: Record<string, boolean> = {};
-      categories.forEach(category => {
-        initialOpenStates[category.id] = true;
-      });
-      setOpenCategories(initialOpenStates);
-    }
-  }, [categories]);
 
   const getProcessedVimeoEmbed = (embed: string, isHovered: boolean) => {
     let processedEmbed = embed.replace(/'/g, '"');
@@ -327,7 +336,7 @@ const ProgramsSection = ({
   );
 
   return (
-    <section id="programs" className={cn('py-8 md:py-16 px-4 md:px-6 lg:px-10', className)}>
+    <section id="programs" ref={sectionRef} className={cn('py-8 md:py-16 px-4 md:px-6 lg:px-10', className)}>
       <div className="max-w-7xl mx-auto">
         <RevealAnimation>
           <h2 className={cn("font-display mb-4", isMobile ? "text-2xl" : "text-3xl md:text-4xl")}>{title}</h2>
@@ -360,7 +369,7 @@ const ProgramsSection = ({
                       </CollapsibleTrigger>
                     </div>
                     
-                    <CollapsibleContent>
+                    <CollapsibleContent forceMount={initiallyOpen}>
                       <div className={cn(
                         "grid gap-4 md:gap-8",
                         gridLayout === 'dense' 

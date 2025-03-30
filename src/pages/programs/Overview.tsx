@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from 'react';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
@@ -32,16 +33,27 @@ const ProgramsOverview = () => {
     'tennis'
   );
   
+  // Initialize open categories state
+  const [initialRender, setInitialRender] = useState(true);
+  
   useEffect(() => {
     if (sport) {
       setActiveTab(sport as 'tennis' | 'padel' | 'pickleball' | 'touchtennis');
     }
+    
+    // Mark that initial render is complete after a short delay
+    const timer = setTimeout(() => {
+      setInitialRender(false);
+    }, 100);
+    
+    return () => clearTimeout(timer);
   }, [sport]);
   
   const isMobile = useIsMobile();
   const vimeoEmbed = getVimeoEmbed(userGender, userType, true, false, sport);
   
   const handleTabChange = (value: string) => {
+    console.log('Tab changed to:', value);
     setActiveTab(value as 'tennis' | 'padel' | 'pickleball' | 'touchtennis');
 
     if (value === 'tennis' || value === 'padel' || value === 'pickleball' || value === 'touchtennis') {
@@ -85,8 +97,14 @@ const ProgramsOverview = () => {
                 Esplora i nostri programmi specializzati per ciascuna disciplina
               </p>
               
-              <Tabs value={activeTab} onValueChange={handleTabChange} className="w-full">
-                {isMobile ? <div className="mb-8">
+              <Tabs 
+                value={activeTab} 
+                onValueChange={handleTabChange} 
+                className="w-full"
+                defaultValue="tennis" // Ensure tennis is the default
+              >
+                {isMobile ? 
+                  <div className="mb-8">
                     <TabsList className="w-full mb-2 bg-white border border-gray-200 rounded-full p-1 flex justify-between">
                       <TabsTrigger value="tennis" className="flex-1 rounded-full data-[state=active]:bg-ath-clay data-[state=active]:text-white px-4 py-3">
                         Tennis
@@ -103,7 +121,9 @@ const ProgramsOverview = () => {
                         TouchTennis
                       </TabsTrigger>
                     </TabsList>
-                  </div> : <TabsList className="w-full mb-8 bg-white border border-gray-200 rounded-full p-1 flex justify-between">
+                  </div> 
+                : 
+                  <TabsList className="w-full mb-8 bg-white border border-gray-200 rounded-full p-1 flex justify-between">
                     <TabsTrigger value="tennis" className="flex items-center rounded-full data-[state=active]:bg-ath-clay data-[state=active]:text-white px-8 py-3">
                       Tennis
                     </TabsTrigger>
@@ -116,10 +136,12 @@ const ProgramsOverview = () => {
                     <TabsTrigger value="touchtennis" className="flex items-center rounded-full data-[state=active]:bg-ath-clay data-[state=active]:text-white px-8 py-3">
                       TouchTennis
                     </TabsTrigger>
-                  </TabsList>}
+                  </TabsList>
+                }
                 
                 <div className="mt-8">
-                  <TabsContent value="tennis" className="mt-0">
+                  {/* Use alwaysRender for tennis tab to ensure it's always in the DOM */}
+                  <TabsContent value="tennis" className="mt-0" alwaysRender={initialRender || activeTab === 'tennis'}>
                     <div className="bg-gray-50 p-6 rounded-lg mb-8">
                       <h3 className="text-xl font-bold mb-3">Tennis</h3>
                       <p className="mb-4">
@@ -130,7 +152,13 @@ const ProgramsOverview = () => {
                       </Link>
                     </div>
                     
-                    <ProgramsSection title="Programmi Tennis" subtitle="I nostri programmi di punta, sviluppati con anni di esperienza" categories={programCategories} categoryCollapsible={true} />
+                    <ProgramsSection 
+                      title="Programmi Tennis" 
+                      subtitle="I nostri programmi di punta, sviluppati con anni di esperienza" 
+                      categories={programCategories} 
+                      categoryCollapsible={true} 
+                      initiallyOpen={true} // Make sure categories are open by default
+                    />
                   </TabsContent>
                   
                   <TabsContent value="padel" className="mt-0">
@@ -144,7 +172,12 @@ const ProgramsOverview = () => {
                       </Link>
                     </div>
                     
-                    <ProgramsSection title="Programmi Padel" subtitle="I nostri programmi specializzati per il Padel" categories={padelCategories} categoryCollapsible={true} />
+                    <ProgramsSection 
+                      title="Programmi Padel" 
+                      subtitle="I nostri programmi specializzati per il Padel" 
+                      categories={padelCategories} 
+                      categoryCollapsible={true} 
+                    />
                   </TabsContent>
                   
                   <TabsContent value="pickleball" className="mt-0">
@@ -158,7 +191,12 @@ const ProgramsOverview = () => {
                       </Link>
                     </div>
                     
-                    <ProgramsSection title="Programmi Pickleball" subtitle="I nostri programmi specializzati per il Pickleball" categories={pickleballCategories} categoryCollapsible={true} />
+                    <ProgramsSection 
+                      title="Programmi Pickleball" 
+                      subtitle="I nostri programmi specializzati per il Pickleball" 
+                      categories={pickleballCategories} 
+                      categoryCollapsible={true} 
+                    />
                   </TabsContent>
                   
                   <TabsContent value="touchtennis" className="mt-0">
@@ -172,7 +210,12 @@ const ProgramsOverview = () => {
                       </Link>
                     </div>
                     
-                    <ProgramsSection title="Programmi TouchTennis" subtitle="Tennis in formato ridotto, divertimento senza limiti" categories={touchTennisCategories} categoryCollapsible={true} />
+                    <ProgramsSection 
+                      title="Programmi TouchTennis" 
+                      subtitle="Tennis in formato ridotto, divertimento senza limiti" 
+                      categories={touchTennisCategories} 
+                      categoryCollapsible={true} 
+                    />
                   </TabsContent>
                 </div>
               </Tabs>
