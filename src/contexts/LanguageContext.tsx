@@ -2,13 +2,15 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
 import { en } from '../translations/en';
 import { it } from '../translations/it';
-import { default as fr } from '../translations/fr';
-import { default as de } from '../translations/de';
+import { fr } from '../translations/fr';
+import { de } from '../translations/de';
 
 type Language = 'en' | 'it' | 'fr' | 'de';
 
-// Changed type to handle nested translation objects
-type TranslationsObject = Record<string, string | Record<string, string | Record<string, string>>>;
+// Updated type to handle deeply nested translation objects (up to 3 levels)
+type NestedStringRecord = Record<string, string>;
+type DeepNestedStringRecord = Record<string, string | NestedStringRecord>;
+type TranslationsObject = Record<string, string | DeepNestedStringRecord | Record<string, DeepNestedStringRecord>>;
 
 interface LanguageContextType {
   language: Language;
@@ -55,7 +57,7 @@ export const LanguageProvider: React.FC<{ children: React.ReactNode }> = ({ chil
     
   }, [language]);
 
-  // Updated translation function to handle nested objects
+  // Updated translation function to handle deeply nested objects
   const t = (key: string): string => {
     const keys = key.split('.');
     let result: any = translations;
