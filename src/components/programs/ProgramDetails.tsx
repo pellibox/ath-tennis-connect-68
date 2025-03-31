@@ -28,7 +28,7 @@ const ProgramDetails = ({
           <h2 className="text-3xl font-swiss">{title}</h2>
           <Badge variant="ath" className="flex items-center gap-1">
             <Users className="w-3.5 h-3.5" />
-            <span>Percorso Professionistico</span>
+            <span>Team Suggestion</span>
           </Badge>
           <VickiMonitoringBadge level="pro" />
           <VickiPoweredBadge />
