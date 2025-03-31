@@ -1,8 +1,12 @@
 
+import { useLocation } from 'react-router-dom';
 import { cn } from '@/lib/utils';
+import { useLanguage } from '@/contexts/LanguageContext';
 import NavigationLink from './NavigationLink';
 import { navigationItems } from './navigationItems';
-import RegularDropdownItem from './RegularDropdownItem';
+import ProgramsDropdown from './ProgramsDropdown';
+import { LockIcon } from 'lucide-react';
+import { Button } from '../ui/button';
 
 interface DesktopNavigationLinksProps {
   className?: string;
@@ -10,26 +14,50 @@ interface DesktopNavigationLinksProps {
 }
 
 const DesktopNavigationLinks = ({ className, textColorClass }: DesktopNavigationLinksProps) => {
+  const { t } = useLanguage();
+  const location = useLocation();
+
+  const isActive = (href: string) => {
+    return location.pathname === href || 
+           (href !== '/' && location.pathname.startsWith(href));
+  };
+
   return (
-    <nav className={cn("flex items-center space-x-6", className)}>
-      {navigationItems.map((item, index) => (
-        item.submenu ? (
-          <RegularDropdownItem key={index} item={item} textColorClass={textColorClass} />
-        ) : (
+    <div className={cn("flex items-center space-x-6", className)}>
+      {navigationItems.map((item) => {
+        if (item.href === "/programs") {
+          return (
+            <ProgramsDropdown 
+              key={item.href} 
+              textColorClass={textColorClass} 
+              isActive={isActive(item.href)}
+            />
+          );
+        }
+        
+        return (
           <NavigationLink
-            key={index}
+            key={item.href}
             href={item.href}
-            className={cn(
-              "flex items-center text-sm font-swiss transition-colors hover:text-ath-clay",
-              textColorClass
-            )}
+            isActive={isActive(item.href)}
+            textColorClass={textColorClass}
           >
-            {item.icon}
-            {item.text}
+            {t(item.label)}
           </NavigationLink>
-        )
-      ))}
-    </nav>
+        );
+      })}
+
+      {/* Login Link */}
+      <Button
+        variant="outline"
+        size="sm"
+        className="ml-2 border-ath-clay text-ath-clay hover:bg-ath-clay hover:text-white"
+        onClick={() => window.location.href = '/login'}
+      >
+        <LockIcon className="mr-2 h-4 w-4" />
+        Area Coach
+      </Button>
+    </div>
   );
 };
 
