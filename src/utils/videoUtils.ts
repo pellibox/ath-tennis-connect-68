@@ -1,3 +1,4 @@
+
 import { UserGender, UserType } from '@/components/UserTypeSelector';
 import { SportType } from '@/contexts/ProfileContext';
 
@@ -26,6 +27,11 @@ export const getVimeoEmbed = (userGender: UserGender | null, userType: UserType 
     return `<iframe src="https://player.vimeo.com/video/1071020864?h=912ce8d0e8&autoplay=1&loop=1&background=${useBackground ? '1' : '0'}&autopause=0&player_id=0&app_id=58479&controls=0" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media" style="position:absolute;top:0;left:0;width:100%;height:100%;" title="Female Performance Tennis"></iframe><script src="https://player.vimeo.com/api/player.js"></script>`;
   }
   
+  // Add specific video for female/junior/tennis users - NEW
+  if (userGender === 'female' && userType === 'junior' && sport === 'tennis') {
+    return `<iframe src="https://player.vimeo.com/video/1071010661?h=c8ac1ad7e3&autoplay=1&loop=1&background=${useBackground ? '1' : '0'}&autopause=0&player_id=0&app_id=58479&controls=0" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media" style="position:absolute;top:0;left:0;width:100%;height:100%;" title="Female Junior Tennis"></iframe><script src="https://player.vimeo.com/api/player.js"></script>`;
+  }
+  
   // Add specific video for male/junior/tennis users
   if (userGender === 'male' && userType === 'junior' && sport === 'tennis') {
     return `<iframe src="https://player.vimeo.com/video/1071007541?h=792880c5c6&autoplay=1&loop=1&background=${useBackground ? '1' : '0'}&autopause=0&player_id=0&app_id=58479&controls=0" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media" style="position:absolute;top:0;left:0;width:100%;height:100%;" title="Male Junior Tennis"></iframe><script src="https://player.vimeo.com/api/player.js"></script>`;
@@ -46,8 +52,8 @@ export const getVimeoEmbed = (userGender: UserGender | null, userType: UserType 
       return videoEmbed;
     }
     
-    // Female junior video - Use the specified video for all sections
-    if (userGender === 'female' && userType === 'junior') {
+    // Female junior video - moved to specific condition above for tennis
+    if (userGender === 'female' && userType === 'junior' && sport !== 'tennis') {
       videoEmbed = `<iframe src="https://player.vimeo.com/video/1068596969?h=9bbee986ef&autoplay=1&loop=1&background=${useBackground ? '1' : '0'}&autopause=0&player_id=0&app_id=58479&controls=0" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media" style="position:absolute;top:0;left:0;width:100%;height:100%;" title="Female Junior"></iframe><script src="https://player.vimeo.com/api/player.js"></script>`;
       return videoEmbed;
     }
@@ -61,7 +67,7 @@ export const getVimeoEmbed = (userGender: UserGender | null, userType: UserType 
       if (userType === 'professional') {
         videoEmbed = `<iframe src="https://player.vimeo.com/video/1068596920?h=7f23339d4b&autoplay=1&loop=1&background=${useBackground ? '1' : '0'}&autopause=0&player_id=0&app_id=58479&controls=0" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media" style="position:absolute;top:0;left:0;width:100%;height:100%;" title="Female Professional"></iframe><script src="https://player.vimeo.com/api/player.js"></script>`;
       } 
-      // Note: The female/performance case is now handled by the specific condition above
+      // Note: The female/performance and female/junior cases are now handled by the specific conditions above
     }
     
     // Specific videos for male users and coaches
