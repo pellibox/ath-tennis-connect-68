@@ -3,7 +3,6 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { Toaster } from "@/components/ui/sonner";
 import { LanguageProvider } from './contexts/LanguageContext';
 import { ProfileProvider } from './contexts/ProfileContext';
-import { AuthProvider } from './contexts/AuthContext';
 import { useIsMobile } from './hooks/use-mobile';
 import HomePage from '@/pages/Index';
 import ProgramsOverview from '@/pages/programs/Overview';
@@ -20,15 +19,6 @@ import ContactPage from '@/pages/Contact';
 import NotFoundPage from '@/pages/NotFound';
 import PrivacyPage from '@/pages/Privacy';
 import TermsPage from '@/pages/Terms';
-import LoginPage from '@/pages/Login';
-
-// Dashboard pages
-import ProtectedRoute from '@/components/ProtectedRoute';
-import DashboardLayout from '@/components/dashboard/DashboardLayout';
-import DashboardHome from '@/pages/dashboard/DashboardHome';
-import CourtManagement from '@/pages/dashboard/CourtManagement';
-import ExternalApp from '@/pages/dashboard/ExternalApp';
-import Settings from '@/pages/dashboard/Settings';
 
 // Programs pages
 import EliteProgram from '@/pages/programs/Elite';
@@ -65,11 +55,9 @@ function App() {
   return (
     <LanguageProvider>
       <ProfileProvider>
-        <AuthProvider>
-          <Router>
-            <AppContent />
-          </Router>
-        </AuthProvider>
+        <Router>
+          <AppContent />
+        </Router>
       </ProfileProvider>
     </LanguageProvider>
   );
@@ -130,19 +118,6 @@ function AppContent() {
         <Route path="/terms" element={<TermsPage />} />
         
         <Route path="/programs/overview" element={<ProgramsOverview />} />
-        
-        {/* Auth & Dashboard Routes */}
-        <Route path="/login" element={<LoginPage />} />
-        
-        <Route element={<ProtectedRoute />}>
-          <Route element={<DashboardLayout />}>
-            <Route path="/dashboard" element={<DashboardHome />} />
-            <Route path="/dashboard/courts" element={<CourtManagement />} />
-            <Route path="/dashboard/external-app" element={<ExternalApp />} />
-            <Route path="/dashboard/settings" element={<Settings />} />
-          </Route>
-        </Route>
-        
         <Route path="*" element={<NotFoundPage />} />
       </Routes>
       <Toaster position="bottom-right" />
