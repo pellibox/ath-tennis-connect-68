@@ -86,10 +86,6 @@ const StandardHeroVideo = ({
           <div 
             dangerouslySetInnerHTML={{ __html: vimeoEmbed }} 
             className="absolute top-0 left-0 w-full h-full"
-            style={{
-              transform: 'scale(1.5)', /* Increased scale factor to eliminate black bars */
-              transformOrigin: 'center center', /* Ensure the scaling happens from the center */
-            }}
           />
         </div>
       </div>
