@@ -18,7 +18,6 @@ export const elitePrograms: Program[] = [
       'Supporto nutrizionale e psicologico',
       'Percorso collaudato con storici di successo dimostrabili'
     ],
-    vickiPowered: true,
     vickiMonitoringLevel: 'pro'
   },
   {
@@ -36,7 +35,6 @@ export const elitePrograms: Program[] = [
       '5 giorni a settimana, 40 settimane all\'anno',
       'Massimo 2 atleti per campo'
     ],
-    vickiPowered: true,
     vickiMonitoringLevel: 'pro'
   },
   {
@@ -57,7 +55,6 @@ export const elitePrograms: Program[] = [
       'Integrazione tra valutazioni tecniche, fisiche, mediche e mentali',
       'Coordinamento tra coach, preparatore, mental coach, medico'
     ],
-    vickiPowered: true,
     vickiMonitoringLevel: 'advanced'
   }
 ];

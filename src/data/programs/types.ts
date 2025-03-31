@@ -1,4 +1,3 @@
-
 // Program data types
 export interface Program {
   id: string;
@@ -8,7 +7,6 @@ export interface Program {
   vimeoEmbed?: string;
   link: string;
   features?: string[];
-  vickiPowered?: boolean;
   vickiOnRequest?: boolean;
   vickiCustomBadge?: string;
   vickiMonitoringLevel?: 'basic' | 'standard' | 'advanced' | 'elite' | 'pro';

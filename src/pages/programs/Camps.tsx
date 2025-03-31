@@ -1,10 +1,11 @@
+
 import { useEffect, useState } from 'react';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import { useLanguage } from '@/contexts/LanguageContext';
 import RevealAnimation from '@/components/RevealAnimation';
 import { UserGender, UserType, loadUserPreferences } from '@/components/UserTypeSelector';
-import VickiMonitoringBadge from '@/components/VickiMonitoringBadge';
+import VickiUnifiedBadge from '@/components/VickiUnifiedBadge';
 
 const CampsProgram = () => {
   const { t } = useLanguage();
@@ -38,7 +39,7 @@ const CampsProgram = () => {
               {t('camps.subtitle')}
             </p>
             <div className="mt-6">
-              <VickiMonitoringBadge level="basic" className="bg-opacity-20 border-opacity-30 text-white" />
+              <VickiUnifiedBadge level="basic" className="bg-opacity-20 border-opacity-30 text-white" />
             </div>
           </div>
         </div>
@@ -48,7 +49,7 @@ const CampsProgram = () => {
             <RevealAnimation>
               <div className="flex flex-wrap items-center gap-3 mb-6">
                 <h2 className="text-3xl font-display">{t('camps.summer')}</h2>
-                <VickiMonitoringBadge level="basic" />
+                <VickiUnifiedBadge level="basic" />
               </div>
             </RevealAnimation>
             <RevealAnimation delay={100}>

@@ -1,12 +1,10 @@
-
 import { useEffect, useState } from 'react';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import { useLanguage } from '@/contexts/LanguageContext';
 import Hero from '@/components/Hero';
 import { UserGender, UserType, loadUserPreferences } from '@/components/UserTypeSelector';
-import VickiMonitoringBadge from '@/components/VickiMonitoringBadge';
-import VickiPoweredBadge from '@/components/VickiPoweredBadge';
+import VickiUnifiedBadge from '@/components/VickiUnifiedBadge';
 import ContactSection from '@/components/ContactSection';
 import ProgramDetails from '@/components/programs/ProgramDetails';
 import ProgramFeaturesAndPricing from '@/components/programs/ProgramFeaturesAndPricing';
@@ -147,8 +145,7 @@ const ElitePerformanceFullProgram = () => {
                 Tutto potenziato dalla tecnologia VICKI™ per un'analisi dettagliata della performance.
               </p>
               <div className="mt-4 flex flex-wrap gap-3">
-                <VickiMonitoringBadge level="pro" className="bg-opacity-20 border-opacity-30 text-white" />
-                <VickiPoweredBadge className="bg-opacity-20 border-opacity-30 text-white" />
+                <VickiUnifiedBadge level="pro" className="bg-opacity-20 border-opacity-30 text-white" />
               </div>
             </div>
           </div>
