@@ -1,4 +1,3 @@
-
 import { useEffect, useState } from 'react';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
@@ -6,8 +5,7 @@ import { useLanguage } from '@/contexts/LanguageContext';
 import Hero from '@/components/Hero';
 import RevealAnimation from '@/components/RevealAnimation';
 import { UserGender, UserType, loadUserPreferences } from '@/components/UserTypeSelector';
-import VickiMonitoringBadge from '@/components/VickiMonitoringBadge';
-import VickiPoweredBadge from '@/components/VickiPoweredBadge';
+import VickiUnifiedBadge from '@/components/VickiUnifiedBadge';
 import ContactSection from '@/components/ContactSection';
 
 const UniversityProgram = () => {
@@ -53,8 +51,7 @@ const UniversityProgram = () => {
                 </p>
               </div>
               <div className="mt-4 flex flex-wrap gap-3">
-                <VickiMonitoringBadge level="basic" className="bg-opacity-20 border-opacity-30 text-white" />
-                <VickiPoweredBadge onRequest className="bg-opacity-20 border-opacity-30 text-white" />
+                <VickiUnifiedBadge level="basic" className="bg-opacity-20 border-opacity-30 text-white" customText="Vicki™ Basic su richiesta" />
               </div>
             </div>
           </div>
@@ -65,8 +62,7 @@ const UniversityProgram = () => {
             <RevealAnimation>
               <div className="flex flex-wrap items-center gap-3 mb-6">
                 <h2 className="text-3xl font-swiss">Universitari / Scuole Online</h2>
-                <VickiMonitoringBadge level="basic" />
-                <VickiPoweredBadge onRequest />
+                <VickiUnifiedBadge level="basic" customText="Vicki™ Basic su richiesta" />
               </div>
             </RevealAnimation>
             <RevealAnimation delay={100}>

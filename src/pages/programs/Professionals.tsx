@@ -1,4 +1,3 @@
-
 import { useEffect } from 'react';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
@@ -6,8 +5,7 @@ import { Breadcrumb, BreadcrumbItem, BreadcrumbList, BreadcrumbPage, BreadcrumbS
 import { Link } from 'react-router-dom';
 import Hero from '@/components/Hero';
 import RevealAnimation from '@/components/RevealAnimation';
-import VickiMonitoringBadge from '@/components/VickiMonitoringBadge';
-import VickiPoweredBadge from '@/components/VickiPoweredBadge';
+import VickiUnifiedBadge from '@/components/VickiUnifiedBadge';
 import ButtonLink from '@/components/ButtonLink';
 import ContactSection from '@/components/ContactSection';
 
@@ -45,8 +43,7 @@ const ProfessionalsProgram = () => {
                 </p>
               </div>
               <div className="mt-4 flex flex-wrap gap-3">
-                <VickiMonitoringBadge level="elite" className="bg-opacity-20 border-opacity-30 text-white" />
-                <VickiPoweredBadge className="bg-opacity-20 border-opacity-30 text-white" />
+                <VickiUnifiedBadge level="elite" className="bg-opacity-20 border-opacity-30 text-white" />
               </div>
             </div>
           </div>
@@ -57,8 +54,7 @@ const ProfessionalsProgram = () => {
             <RevealAnimation>
               <div className="flex flex-wrap items-center gap-3 mb-6">
                 <h2 className="text-3xl font-swiss">Programma per Professionisti</h2>
-                <VickiMonitoringBadge level="elite" />
-                <VickiPoweredBadge />
+                <VickiUnifiedBadge level="elite" />
               </div>
             </RevealAnimation>
             <RevealAnimation delay={100}>

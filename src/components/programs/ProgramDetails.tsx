@@ -1,8 +1,7 @@
 
 import RevealAnimation from "@/components/RevealAnimation";
 import { UserGender, UserType } from "@/components/UserTypeSelector";
-import VickiMonitoringBadge from "@/components/VickiMonitoringBadge";
-import VickiPoweredBadge from "@/components/VickiPoweredBadge";
+import VickiUnifiedBadge from "@/components/VickiUnifiedBadge";
 import { Badge } from "@/components/ui/badge";
 import { Users } from "lucide-react";
 
@@ -12,6 +11,7 @@ interface ProgramDetailsProps {
   description: string[];
   userGender?: UserGender | null;
   userType?: UserType | null;
+  vickiLevel?: "basic" | "standard" | "advanced" | "elite" | "pro";
 }
 
 const ProgramDetails = ({ 
@@ -19,7 +19,8 @@ const ProgramDetails = ({
   subtitle, 
   description,
   userGender,
-  userType 
+  userType,
+  vickiLevel = "pro"
 }: ProgramDetailsProps) => {
   return (
     <div className="mb-12">
@@ -30,8 +31,7 @@ const ProgramDetails = ({
             <Users className="w-3.5 h-3.5" />
             <span>Team Suggestion</span>
           </Badge>
-          <VickiMonitoringBadge level="pro" />
-          <VickiPoweredBadge />
+          <VickiUnifiedBadge level={vickiLevel} />
         </div>
       </RevealAnimation>
       <RevealAnimation delay={100}>

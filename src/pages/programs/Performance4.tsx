@@ -1,4 +1,3 @@
-
 import { useEffect, useState } from 'react';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
@@ -6,8 +5,7 @@ import { useLanguage } from '@/contexts/LanguageContext';
 import Hero from '@/components/Hero';
 import RevealAnimation from '@/components/RevealAnimation';
 import { UserGender, UserType, loadUserPreferences } from '@/components/UserTypeSelector';
-import VickiMonitoringBadge from '@/components/VickiMonitoringBadge';
-import VickiPoweredBadge from '@/components/VickiPoweredBadge';
+import VickiUnifiedBadge from '@/components/VickiUnifiedBadge';
 import ContactSection from '@/components/ContactSection';
 import { Badge } from '@/components/ui/badge';
 import { Users } from 'lucide-react';
@@ -51,7 +49,6 @@ const Performance4Program = () => {
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
     
-    // Load user preferences
     const { gender, type } = loadUserPreferences();
     if (gender) setUserGender(gender);
     if (type) setUserType(type);
@@ -76,7 +73,6 @@ const Performance4Program = () => {
             overlayOpacity="medium"
           />
           
-          {/* Black banner with claim text */}
           <div className="w-full bg-black py-16 relative" style={{ height: 'auto', minHeight: '400px' }}>
             <div className="max-w-6xl mx-auto px-6 h-full flex flex-col justify-center py-8">
               <h2 className="text-white text-lg font-display mb-4">PROGRAMMA PERFORMANCE 4:</h2>
@@ -102,8 +98,7 @@ const Performance4Program = () => {
                 </li>
               </ul>
               <div className="mt-6 flex flex-wrap gap-3">
-                <VickiMonitoringBadge level="advanced" className="bg-opacity-20 border-opacity-30 text-white" />
-                <VickiPoweredBadge className="bg-opacity-20 border-opacity-30 text-white" />
+                <VickiUnifiedBadge level="advanced" className="bg-opacity-20 border-opacity-30 text-white" />
               </div>
             </div>
           </div>
@@ -120,6 +115,7 @@ const Performance4Program = () => {
             ]}
             userGender={userGender}
             userType={userType}
+            vickiLevel="advanced"
           />
           
           <div className="grid md:grid-cols-2 gap-10">
@@ -171,7 +167,6 @@ const Performance4Program = () => {
           />
         </div>
         
-        {/* Related Programs Section - Using the RelatedPrograms component */}
         <div className="bg-gray-50 py-16">
           <div className="max-w-6xl mx-auto px-6">
             <RevealAnimation delay={100}>
