@@ -1,3 +1,4 @@
+
 // Program data types
 export interface Program {
   id: string;
@@ -10,6 +11,7 @@ export interface Program {
   vickiOnRequest?: boolean;
   vickiCustomBadge?: string;
   vickiMonitoringLevel?: 'basic' | 'standard' | 'advanced' | 'elite' | 'pro';
+  vickiPowered?: boolean;
   sports?: string[]; // Add this property to filter programs by sport
 }
 
