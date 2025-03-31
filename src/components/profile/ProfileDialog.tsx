@@ -1,7 +1,6 @@
-
 import { UserGender, UserType } from '../UserTypeSelector';
 import UserTypeSelector from '../UserTypeSelector';
-import { CgProfile } from "react-icons/cg";
+import { User } from "lucide-react";
 import { SportType } from '@/contexts/ProfileContext';
 import { 
   Dialog, 
@@ -77,7 +76,7 @@ const ProfileDialog = ({
               />
             ) : (
               <button className="mr-4 text-sm px-3 py-1 rounded-md bg-ath-clay text-white font-swiss flex items-center gap-1">
-                <CgProfile size={16} />
+                <User size={16} />
                 <span>{t("profile.title")}</span>
               </button>
             )}
