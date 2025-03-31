@@ -1,4 +1,3 @@
-
 import { UserGender, UserType } from '@/components/UserTypeSelector';
 import { SportType } from '@/contexts/ProfileContext';
 
@@ -8,8 +7,8 @@ export const getVimeoEmbed = (userGender: UserGender | null, userType: UserType 
     return `<iframe src="https://player.vimeo.com/video/1069152110?h=95ee4b44fd&autoplay=1&loop=1&background=${useBackground ? '1' : '0'}&autopause=0&player_id=0&app_id=58479&controls=0" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media" style="position:absolute;top:0;left:0;width:100%;height:100%;" title="ATH Technology Video"></iframe><script src="https://player.vimeo.com/api/player.js"></script>`;
   }
   
-  // Default video for other pages
-  let videoEmbed = `<iframe src="https://player.vimeo.com/video/1069152110?h=95ee4b44fd&autoplay=1&loop=1&background=${useBackground ? '1' : '0'}&autopause=0&player_id=0&app_id=58479&controls=0" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media" style="position:absolute;top:0;left:0;width:100%;height:100%;" title="ATH Main Video"></iframe><script src="https://player.vimeo.com/api/player.js"></script>`;
+  // Default video for other pages - UPDATED to use the new video link
+  let videoEmbed = `<iframe src="https://player.vimeo.com/video/1071002692/a2668fa56d?autoplay=1&loop=1&background=${useBackground ? '1' : '0'}&autopause=0&player_id=0&app_id=58479&controls=0" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media" style="position:absolute;top:0;left:0;width:100%;height:100%;" title="ATH Main Video"></iframe><script src="https://player.vimeo.com/api/player.js"></script>`;
   
   // Check if sport is padel and apply the appropriate video based on gender
   if (sport === 'padel') {
