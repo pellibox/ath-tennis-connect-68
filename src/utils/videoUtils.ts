@@ -8,8 +8,8 @@ export const getVimeoEmbed = (userGender: UserGender | null, userType: UserType 
     return `<iframe src="https://player.vimeo.com/video/1069152110?h=95ee4b44fd&autoplay=1&loop=1&background=${useBackground ? '1' : '0'}&autopause=0&player_id=0&app_id=58479&controls=0" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media" style="position:absolute;top:0;left:0;width:100%;height:100%;" title="ATH Technology Video"></iframe><script src="https://player.vimeo.com/api/player.js"></script>`;
   }
   
-  // Default video for other pages - updated to the specified video
-  let videoEmbed = `<iframe src="https://player.vimeo.com/video/1071012876?h=5799f9c5f7&autoplay=1&loop=1&background=${useBackground ? '1' : '0'}&autopause=0&player_id=0&app_id=58479&controls=0" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media" style="position:absolute;top:0;left:0;width:100%;height:100%;" title="ATH Main Video"></iframe><script src="https://player.vimeo.com/api/player.js"></script>`;
+  // Default video for other pages
+  let videoEmbed = `<iframe src="https://player.vimeo.com/video/1071002692?h=a2668fa56d&autoplay=1&loop=1&background=${useBackground ? '1' : '0'}&autopause=0&player_id=0&app_id=58479&controls=0" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media" style="position:absolute;top:0;left:0;width:100%;height:100%;" title="ATH Main Video"></iframe><script src="https://player.vimeo.com/api/player.js"></script>`;
   
   // Check if sport is padel and apply the appropriate video based on gender
   if (sport === 'padel') {
@@ -25,11 +25,6 @@ export const getVimeoEmbed = (userGender: UserGender | null, userType: UserType 
   // Add specific video for male/junior/tennis users
   if (userGender === 'male' && userType === 'junior' && sport === 'tennis') {
     return `<iframe src="https://player.vimeo.com/video/1071007541?h=792880c5c6&autoplay=1&loop=1&background=${useBackground ? '1' : '0'}&autopause=0&player_id=0&app_id=58479&controls=0" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media" style="position:absolute;top:0;left:0;width:100%;height:100%;" title="Male Junior Tennis"></iframe><script src="https://player.vimeo.com/api/player.js"></script>`;
-  }
-  
-  // Add specific video for female/junior/tennis users
-  if (userGender === 'female' && userType === 'junior' && sport === 'tennis') {
-    return `<iframe src="https://player.vimeo.com/video/1071012876?h=5799f9c5f7&autoplay=1&loop=1&background=${useBackground ? '1' : '0'}&autopause=0&player_id=0&app_id=58479&controls=0" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media" style="position:absolute;top:0;left:0;width:100%;height:100%;" title="Female Junior Tennis"></iframe><script src="https://player.vimeo.com/api/player.js"></script>`;
   }
   
   // Only change video if user has explicitly selected a profile
