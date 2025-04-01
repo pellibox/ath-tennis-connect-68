@@ -2,6 +2,9 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useIsMobile } from '@/hooks/use-mobile';
 import Logo from '@/components/Logo';
+import { Skeleton } from '@/components/ui/skeleton';
+import ResponsiveImage from '@/components/ResponsiveImage';
+import { extractVimeoId } from '@/utils/videoUtils';
 
 interface StandardHeroVideoProps {
   vimeoEmbed: string;
@@ -16,6 +19,7 @@ interface StandardHeroVideoProps {
     mobile?: string;
     desktop?: string;
   };
+  posterImage?: string;
 }
 
 const StandardHeroVideo = ({ 
@@ -30,11 +34,19 @@ const StandardHeroVideo = ({
   logoSize = {
     mobile: 'w-[120px]',
     desktop: 'w-[200px]'
-  }
+  },
+  posterImage
 }: StandardHeroVideoProps) => {
   const isMobile = useIsMobile();
   const [logoOpacity, setLogoOpacity] = useState<number>(1);
   const logoRef = useRef<HTMLDivElement>(null);
+  const [videoLoaded, setVideoLoaded] = useState(false);
+  const [videoError, setVideoError] = useState(false);
+  const vimeoContainerRef = useRef<HTMLDivElement>(null);
+  
+  // Extract Vimeo ID for thumbnail fallback
+  const vimeoId = extractVimeoId(vimeoEmbed);
+  const fallbackImageUrl = posterImage || (vimeoId ? `https://vumbnail.com/${vimeoId}.jpg` : null);
   
   useEffect(() => {
     const handleScroll = () => {
@@ -80,6 +92,57 @@ const StandardHeroVideo = ({
     };
   }, [onLogoOpacityChange, logoTopPositionMobile, logoTopPositionDesktop, isMobile]);
   
+  useEffect(() => {
+    if (vimeoContainerRef.current) {
+      // Reset state when embed changes
+      setVideoLoaded(false);
+      setVideoError(false);
+      
+      // Inject the Vimeo embed code
+      vimeoContainerRef.current.innerHTML = vimeoEmbed;
+      
+      // Handle video loading
+      const iframe = vimeoContainerRef.current.querySelector('iframe');
+      if (iframe) {
+        // Set a timeout to check if video loaded properly
+        const timeoutId = setTimeout(() => {
+          if (!videoLoaded) {
+            console.warn('Vimeo video load timeout');
+            setVideoError(true);
+          }
+        }, 5000);
+        
+        // Listen for iframe load event
+        iframe.onload = () => {
+          console.log('Vimeo iframe loaded');
+          setVideoLoaded(true);
+          clearTimeout(timeoutId);
+        };
+        
+        // Listen for iframe error event
+        iframe.onerror = () => {
+          console.error('Vimeo iframe failed to load');
+          setVideoError(true);
+          clearTimeout(timeoutId);
+        };
+      }
+      
+      // Add Vimeo API script if not already present
+      if (!document.querySelector('script[src="https://player.vimeo.com/api/player.js"]')) {
+        const script = document.createElement('script');
+        script.src = 'https://player.vimeo.com/api/player.js';
+        script.async = true;
+        document.body.appendChild(script);
+      }
+    }
+    
+    return () => {
+      if (vimeoContainerRef.current) {
+        vimeoContainerRef.current.innerHTML = '';
+      }
+    };
+  }, [vimeoEmbed]);
+  
   return (
     <>
       {showLogo && (
@@ -108,14 +171,38 @@ const StandardHeroVideo = ({
             overflow: 'hidden'
           }}
         >
+          {/* Fallback image shown until video loads or if there's an error */}
+          {fallbackImageUrl && (!videoLoaded || videoError) && (
+            <div className="absolute inset-0 z-10 bg-black">
+              <ResponsiveImage
+                src={fallbackImageUrl}
+                alt="Video thumbnail"
+                className="w-full h-full object-cover"
+                onLoad={() => console.log('Fallback image loaded')}
+              />
+              
+              {!videoError && (
+                <div className="absolute inset-0 flex items-center justify-center">
+                  <div className="w-16 h-16 rounded-full bg-black/50 flex items-center justify-center">
+                    <div className="w-10 h-10 border-4 border-white border-t-transparent rounded-full animate-spin"></div>
+                  </div>
+                </div>
+              )}
+            </div>
+          )}
+          
+          {/* Vimeo container */}
           <div 
-            dangerouslySetInnerHTML={{ __html: vimeoEmbed }} 
+            ref={vimeoContainerRef}
             className="absolute top-0 left-0 w-full h-full"
             style={{
               width: '100%', 
               height: '100%', 
               transform: 'scale(1.3)', 
-              transformOrigin: 'center center'
+              transformOrigin: 'center center',
+              opacity: videoLoaded && !videoError ? 1 : 0,
+              transition: 'opacity 0.5s ease-in-out',
+              zIndex: videoLoaded && !videoError ? 20 : 5
             }}
           />
         </div>

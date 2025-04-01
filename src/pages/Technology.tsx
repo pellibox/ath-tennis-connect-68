@@ -6,6 +6,8 @@ import TechnologySection from '@/components/TechnologySection';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { useProfile } from '@/contexts/ProfileContext';
 import RevealAnimation from '@/components/RevealAnimation';
+import { createStandardVimeoEmbed } from '@/utils/videoUtils';
+import StandardHeroVideo from '@/components/StandardHeroVideo';
 
 const TechnologyPage = () => {
   const { t } = useLanguage();
@@ -19,16 +21,19 @@ const TechnologyPage = () => {
     return "Sistema di analisi con visione artificiale, AI e tracciamento 3D che analizza oltre 70 parametri in tempo reale";
   };
 
-  const technologyVideoEmbed = `<div style="padding:56.25% 0 0 0;position:relative;"><iframe src="https://player.vimeo.com/video/1068785493?h=fe90d50dae&autoplay=1&loop=1&background=1&autopause=0&player_id=0&app_id=58479&controls=0" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media" style="position:absolute;top:0;left:0;width:100%;height:100%;" title="ATH Technology Video"></iframe></div><script src="https://player.vimeo.com/api/player.js"></script>`;
+  const technologyVideoEmbed = createStandardVimeoEmbed('1068785493', true, true, true);
+  const posterImage = "/lovable-uploads/8f2b30a1-cb65-453e-ba82-d9721a192426.png";
 
   return (
     <div className="flex flex-col min-h-screen">
       <Header useVickiLogo={false} />
       
       <main className="flex-grow">
-        <div className="w-full bg-black min-h-[calc(100vw*9/16)] relative">
-          <div dangerouslySetInnerHTML={{ __html: technologyVideoEmbed }} />
-        </div>
+        <StandardHeroVideo 
+          vimeoEmbed={technologyVideoEmbed}
+          posterImage={posterImage}
+          showLogo={false}
+        />
         
         <div className="w-full bg-black py-16">
           <div className="max-w-3xl mx-auto text-center">

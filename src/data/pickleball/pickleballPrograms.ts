@@ -1,5 +1,6 @@
 
 import { Program } from './types';
+import { createStandardVimeoEmbed } from '@/utils/videoUtils';
 
 export const pickleballPrograms: Program[] = [
   {
