@@ -85,6 +85,10 @@ const StandardHeroVideo = ({
           <div 
             dangerouslySetInnerHTML={{ __html: vimeoEmbed }} 
             className="absolute top-0 left-0 w-full h-full"
+            style={{ 
+              position: 'relative', 
+              zIndex: 1 // Ensure this is lower than the logo's z-index
+            }}
           />
         </div>
       </div>
