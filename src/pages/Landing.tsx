@@ -8,19 +8,28 @@ import { useIsMobile } from '@/hooks/use-mobile';
 import Logo from '@/components/Logo';
 import EmptyHeader from '@/components/EmptyHeader';
 import EmptyFooter from '@/components/EmptyFooter';
+import { useNavigate } from 'react-router-dom';
 
 const LandingPage = () => {
   const { userGender, userType, sport, updateProfile, resetProfile, deleteProfile } = useProfile();
   const [dialogOpen, setDialogOpen] = useState(false);
   const isMobile = useIsMobile();
+  const navigate = useNavigate();
   
   const vimeoEmbed = getVimeoEmbed(userGender, userType, true, false, sport);
+
+  // Function to handle profile completion
+  const handleProfileComplete = (gender: any, type: any, sportType: any) => {
+    updateProfile(gender, type, sportType);
+    setDialogOpen(false);
+    navigate('/home'); // Navigate to the home page after profile setup
+  };
 
   return (
     <div className="flex flex-col min-h-screen relative bg-black">
       {/* Centered logo container with fixed positioning */}
       <div className="fixed top-0 left-0 w-full h-screen flex items-center justify-center pointer-events-none z-40">
-        <div className="flex flex-col items-center">
+        <div className="flex flex-col items-center" style={{ transform: 'translateX(-100px)' }}>
           {/* Logo with proper sizing */}
           <div className="flex justify-center">
             <Logo 
@@ -42,7 +51,7 @@ const LandingPage = () => {
             </ButtonLink>
             
             <ButtonLink 
-              href="/about" 
+              href="/home" 
               variant="athOutline" 
               className="text-lg px-8 py-2.5 rounded-md border border-ath-clay text-ath-clay hover:bg-ath-clay hover:text-white transition-all font-bold"
             >
@@ -75,7 +84,7 @@ const LandingPage = () => {
         userGender={userGender}
         userType={userType}
         sport={sport}
-        updateProfile={updateProfile}
+        updateProfile={handleProfileComplete}
         resetProfile={resetProfile}
         deleteProfile={deleteProfile}
         showTrigger={false}
