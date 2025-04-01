@@ -8,15 +8,13 @@ interface StandardHeroVideoProps {
   subtitle?: string;
   title?: string;
   showLogo?: boolean;
-  onLogoOpacityChange?: (opacity: number) => void;
 }
 
 const StandardHeroVideo = ({ 
   vimeoEmbed, 
   subtitle, 
   title, 
-  showLogo = true,
-  onLogoOpacityChange
+  showLogo = true 
 }: StandardHeroVideoProps) => {
   const isMobile = useIsMobile();
   const [logoOpacity, setLogoOpacity] = useState<number>(1);
@@ -32,16 +30,8 @@ const StandardHeroVideo = ({
       if (scrollY > fadeThreshold) {
         const opacity = Math.max(0, 1 - (scrollY - fadeThreshold) / (fadeOutBy - fadeThreshold));
         setLogoOpacity(opacity);
-        
-        // Notify parent component about opacity change if callback is provided
-        if (onLogoOpacityChange) {
-          onLogoOpacityChange(opacity);
-        }
       } else {
         setLogoOpacity(1);
-        if (onLogoOpacityChange) {
-          onLogoOpacityChange(1);
-        }
       }
     };
 
@@ -51,16 +41,15 @@ const StandardHeroVideo = ({
     return () => {
       window.removeEventListener('scroll', handleScroll);
     };
-  }, [onLogoOpacityChange]);
+  }, []);
   
   return (
     <>
       {showLogo && (
         <div 
-          className="absolute pointer-events-none transition-opacity duration-300 left-1/2 z-50"
+          className={`z-50 pointer-events-none transition-opacity duration-300 flex justify-center ${isMobile ? 'absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2' : 'fixed left-0 right-0'}`}
           style={{
-            top: isMobile ? '50%' : '100px', // Center logo vertically in mobile mode
-            transform: isMobile ? 'translate(-50%, -50%)' : 'translateX(-50%)', // Center both horizontally and vertically in mobile
+            top: isMobile ? 'auto' : '100px', // 80px for container (mx-auto px-4 pt-4) + 20px offset
             opacity: logoOpacity
           }}
         >
