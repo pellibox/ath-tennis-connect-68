@@ -1,3 +1,4 @@
+
 import { useEffect, useState } from 'react';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
@@ -84,7 +85,7 @@ const LandingPage = () => {
               <div className="flex flex-wrap justify-center gap-6">
                 <button
                   onClick={() => setDialogOpen(true)}
-                  className="text-lg px-8 py-4 rounded-md bg-ath-clay text-white font-swiss hover:bg-opacity-90 transition-all font-bold"
+                  className="text-lg px-8 py-4 rounded-md bg-ath-clay text-white font-swiss hover:bg-opacity-90 transition-all font-bold border border-ath-clay"
                 >
                   DICCI CHI SEI
                 </button>
@@ -92,7 +93,7 @@ const LandingPage = () => {
                 <ButtonLink 
                   href="/about" 
                   variant="outline" 
-                  className="text-lg px-8 py-4 rounded-md border-white text-white hover:bg-white hover:text-ath-clay transition-all font-bold"
+                  className="text-lg px-8 py-4 rounded-md border border-ath-clay text-ath-clay hover:bg-ath-clay hover:text-white transition-all font-bold"
                 >
                   CONTATTACI
                 </ButtonLink>
