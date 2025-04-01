@@ -41,8 +41,8 @@ const Header = ({
   const headerBgClass = bgColor === 'black' ? "bg-black" : "bg-white";
   const textColorClass = bgColor === 'black' ? "text-white" : "text-black";
   
-  // Calculate inverse opacity for header logo
-  const logoOpacity = hideLogoInHeader ? 0 : (1 - (headerLogoOpacity || 0));
+  // Calculate logo opacity for header
+  const logoOpacity = hideLogoInHeader ? headerLogoOpacity : 1;
   
   return (
     <>
