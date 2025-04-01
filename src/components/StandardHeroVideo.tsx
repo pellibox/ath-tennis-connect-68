@@ -57,11 +57,12 @@ const StandardHeroVideo = ({
     <>
       {showLogo && (
         <div 
-          className="absolute pointer-events-none transition-opacity duration-300 left-1/2 z-50"
+          className="absolute pointer-events-none transition-opacity duration-300 left-1/2"
           style={{
-            top: isMobile ? '50%' : '100px', // Center logo vertically in mobile mode
-            transform: isMobile ? 'translate(-50%, -50%)' : 'translateX(-50%)', // Center both horizontally and vertically in mobile
-            opacity: logoOpacity
+            top: isMobile ? '50%' : '100px',
+            transform: isMobile ? 'translate(-50%, -50%)' : 'translateX(-50%)',
+            opacity: logoOpacity,
+            zIndex: 999 // Significantly increased z-index to ensure visibility
           }}
         >
           <img 
