@@ -1,3 +1,4 @@
+
 import { useEffect, useState } from 'react';
 import { useProfile } from '@/contexts/ProfileContext';
 import { getVimeoEmbed } from '@/utils/videoUtils';
@@ -58,7 +59,7 @@ const LandingPage = () => {
       >
         <div 
           style={{
-            width: isMobile ? '120px' : '160px',
+            width: isMobile ? '120px' : '320px',
             transform: `translateY(-${logoYOffset}px)` 
           }}
           className="flex justify-center w-full"
@@ -76,17 +77,18 @@ const LandingPage = () => {
       <main className="flex-grow">
         <div className="w-full bg-black min-h-[calc(100vw*9/16)] relative">
           <div dangerouslySetInnerHTML={{ __html: vimeoEmbed }} />
+          
+          {/* Text positioned inside video container, 10px from bottom */}
+          <div className="absolute bottom-[10px] left-0 right-0 text-center">
+            <h2 className="text-white text-xl md:text-3xl font-swiss uppercase">
+              IL FUTURO DEL TUO TENNIS INIZIA QUI.
+            </h2>
+          </div>
         </div>
         
         <div className="w-full bg-black py-16 relative" style={{ height: 'auto', minHeight: '400px' }}>
           <div className="max-w-6xl mx-auto px-6 h-full flex flex-col justify-center py-8">
-            <div className="flex flex-col items-center space-y-12">
-              <div className="max-w-3xl text-center">
-                <h2 className="text-white text-xl md:text-3xl font-swiss uppercase">
-                  IL FUTURO DEL TUO TENNIS INIZIA QUI.
-                </h2>
-              </div>
-              
+            <div className="flex flex-col items-center">
               <div className="flex flex-wrap justify-center gap-6">
                 <ButtonLink 
                   href="#" 
