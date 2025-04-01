@@ -27,9 +27,10 @@ const LandingPage = () => {
 
   return (
     <div className="flex flex-col min-h-screen relative bg-black">
-      <div className="fixed top-0 left-0 w-full h-screen flex items-center justify-center pointer-events-none z-40">
+      <div className="fixed top-0 left-0 w-full h-screen flex items-center justify-center z-40">
         <div className="flex flex-col items-center w-full">
-          <div className="flex justify-center" style={{ transform: 'translateX(200px)' }}>
+          {/* Logo centered in the page */}
+          <div className="flex justify-center">
             <Logo 
               onDarkBackground={true}
               className={isMobile ? "w-[120px]" : "w-[320px]"}
@@ -38,7 +39,8 @@ const LandingPage = () => {
           </div>
           
           <div className="flex flex-col items-center w-full mt-[50px]">
-            <div className="flex flex-wrap justify-center gap-6" style={{ transform: 'translateX(200px)' }}>
+            {/* Button container with right offset */}
+            <div className="flex flex-wrap justify-center gap-6 pointer-events-auto" style={{ transform: 'translateX(200px)' }}>
               {!hasProfile && (
                 <ButtonLink 
                   href="#" 
