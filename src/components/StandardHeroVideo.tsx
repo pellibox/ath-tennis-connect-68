@@ -49,7 +49,7 @@ const StandardHeroVideo = ({
         <div 
           className="fixed z-50 pointer-events-none transition-opacity duration-300 left-0 right-0 flex justify-center"
           style={{
-            top: isMobile ? '5px' : '5px', 
+            top: isMobile ? '5px' : '100px', // 80px for container (mx-auto px-4 pt-4) + 20px offset
             opacity: logoOpacity
           }}
         >
