@@ -1,4 +1,3 @@
-
 import { useEffect, useRef, useState } from 'react';
 import ButtonLink from './ButtonLink';
 import { cn } from '@/lib/utils';
@@ -226,7 +225,8 @@ const Hero = ({
         
         {buttons.length > 0 && subtitlePosition === 'withTitle' && (
           <div className={cn(
-            'flex flex-wrap gap-3 justify-center mt-4 md:mt-8',
+            'flex flex-wrap gap-3 justify-center',
+            isMobile ? 'mt-4' : 'mt-[82px]',
             positionClasses[contentPosition].includes('items-start') ? 'justify-start' : (positionClasses[contentPosition].includes('items-end') ? 'justify-end' : 'justify-center')
           )}>
             {buttons.map((button, index) => (
