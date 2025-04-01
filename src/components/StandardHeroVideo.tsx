@@ -9,6 +9,7 @@ interface StandardHeroVideoProps {
   title?: string;
   showLogo?: boolean;
   onLogoOpacityChange?: (opacity: number) => void;
+  logoImageSrc?: string;
 }
 
 const StandardHeroVideo = ({ 
@@ -16,7 +17,8 @@ const StandardHeroVideo = ({
   subtitle, 
   title, 
   showLogo = true,
-  onLogoOpacityChange
+  onLogoOpacityChange,
+  logoImageSrc
 }: StandardHeroVideoProps) => {
   const isMobile = useIsMobile();
   const [logoOpacity, setLogoOpacity] = useState<number>(1);
@@ -57,12 +59,12 @@ const StandardHeroVideo = ({
         <div 
           className="absolute pointer-events-none transition-opacity duration-300 left-1/2 transform -translate-x-1/2 z-50"
           style={{
-            top: isMobile ? 'calc(56.25vw - 90px)' : '100px',
+            top: isMobile ? 'calc(56.25vw - 140px)' : '100px',
             opacity: logoOpacity
           }}
         >
           <img 
-            src="/lovable-uploads/a00875f9-6335-4f8b-81c4-029183b59eec.png" 
+            src={logoImageSrc || "/lovable-uploads/a00875f9-6335-4f8b-81c4-029183b59eec.png"}
             alt="ATH - Advanced Tennis Hub" 
             className={`object-contain ${isMobile ? 'w-[120px]' : 'w-[200px]'}`}
           />
