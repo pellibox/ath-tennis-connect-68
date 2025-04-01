@@ -13,7 +13,7 @@ import { Link } from 'react-router-dom';
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
 import { SportType } from '@/contexts/ProfileContext';
 import { useIsMobile } from '@/hooks/use-mobile';
-import { getVimeoEmbed, preloadProgramVideos } from '@/utils/videoUtils';
+import { getVimeoEmbed } from '@/utils/videoUtils';
 import RevealAnimation from '@/components/RevealAnimation';
 import MultisportExplanation from '@/components/programs/MultisportExplanation';
 import StandardHeroVideo from '@/components/StandardHeroVideo';
@@ -36,16 +36,12 @@ const ProgramsOverview = () => {
   // Initialize open categories state
   const [initialRender, setInitialRender] = useState(true);
   const [contentLoaded, setContentLoaded] = useState(false);
-  const [videoError, setVideoError] = useState(false);
   
   const location = useRef(window.location.pathname);
   
   useEffect(() => {
     console.log("ProgramsOverview - Current sport in context:", sport);
     console.log("ProgramsOverview - Current activeTab:", activeTab);
-    
-    // Scroll to top on component mount
-    window.scrollTo({ top: 0, behavior: 'smooth' });
     
     // Force alignment between context sport and active tab on initial load
     if (sport) {
@@ -57,13 +53,6 @@ const ProgramsOverview = () => {
       setInitialRender(false);
       setContentLoaded(true);
     }, 100);
-    
-    // Preload program videos when the page loads
-    if (typeof preloadProgramVideos === 'function') {
-      setTimeout(() => {
-        preloadProgramVideos();
-      }, 500);
-    }
     
     return () => clearTimeout(timer);
   }, [sport]);
@@ -107,31 +96,11 @@ const ProgramsOverview = () => {
       <main className="flex-grow">
         <div className="container mx-auto px-4 pt-4">
           <Breadcrumb>
-            <BreadcrumbList>
-              <BreadcrumbItem>
-                <Link to="/" className="text-gray-500 hover:text-gray-900">Home</Link>
-              </BreadcrumbItem>
-              <BreadcrumbSeparator />
-              <BreadcrumbPage>Programmi</BreadcrumbPage>
-            </BreadcrumbList>
+            
           </Breadcrumb>
         </div>
         
-        {videoError ? (
-          <div className="w-full bg-black min-h-[50vh] flex items-center justify-center">
-            <div className="text-white text-center p-8">
-              <h2 className="text-2xl mb-4">Caricamento video non riuscito</h2>
-              <p>Si è verificato un problema durante il caricamento del video</p>
-            </div>
-          </div>
-        ) : (
-          <StandardHeroVideo 
-            vimeoEmbed={vimeoEmbed} 
-            usePreloadedVideos={true}
-            title="PROGRAMMI ATH" 
-            subtitle="Innovativi e personalizzati" 
-          />
-        )}
+        <StandardHeroVideo vimeoEmbed={vimeoEmbed} />
         
         <div className="container mx-auto px-4 py-12">
           <RevealAnimation>

@@ -9,7 +9,6 @@ import ContactSection from '@/components/ContactSection';
 import HeroVideoSection from '@/components/home/HeroVideoSection';
 import KeyFeaturesSection from '@/components/home/KeyFeaturesSection';
 import TrainingMethodsSection from '@/components/home/TrainingMethodsSection';
-import { preloadVimeoVideos } from '@/utils/videoUtils';
 
 const HomePage = () => {
   const isMobile = useIsMobile();
@@ -17,13 +16,6 @@ const HomePage = () => {
   
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
-    
-    // Start preloading videos in the background
-    const preloadTimeout = setTimeout(() => {
-      preloadVimeoVideos();
-    }, 2000); // Start preloading after 2 seconds to prioritize main page content
-    
-    return () => clearTimeout(preloadTimeout);
   }, []);
 
   const stats = [
