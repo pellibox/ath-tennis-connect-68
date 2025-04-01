@@ -1,5 +1,5 @@
 
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { useProfile } from '@/contexts/ProfileContext';
 import { getVimeoEmbed } from '@/utils/videoUtils';
 import ProfileDialog from '@/components/profile/ProfileDialog';
@@ -8,29 +8,21 @@ import { useIsMobile } from '@/hooks/use-mobile';
 import Logo from '@/components/Logo';
 import EmptyHeader from '@/components/EmptyHeader';
 import EmptyFooter from '@/components/EmptyFooter';
-import { useNavigate } from 'react-router-dom';
 
 const LandingPage = () => {
   const { userGender, userType, sport, updateProfile, resetProfile, deleteProfile } = useProfile();
   const [dialogOpen, setDialogOpen] = useState(false);
   const isMobile = useIsMobile();
-  const navigate = useNavigate();
   
   const vimeoEmbed = getVimeoEmbed(userGender, userType, true, false, sport);
 
-  const handleProfileComplete = (gender: any, type: any, sportType: any) => {
-    updateProfile(gender, type, sportType);
-    setDialogOpen(false);
-  };
-
-  const hasProfile = Boolean(userGender && userType);
-
   return (
     <div className="flex flex-col min-h-screen relative bg-black">
-      <div className="fixed top-0 left-0 w-full h-screen flex items-center justify-center z-40">
-        <div className="flex flex-col items-center w-full">
-          {/* Logo shifted 100px to the left */}
-          <div className="flex justify-center" style={{ transform: 'translateX(-100px)' }}>
+      {/* Centered logo container with fixed positioning */}
+      <div className="fixed top-0 left-0 w-full h-screen flex items-center justify-center pointer-events-none z-40">
+        <div className="flex flex-col items-center">
+          {/* Logo with proper sizing */}
+          <div className="flex justify-center">
             <Logo 
               onDarkBackground={true}
               className={isMobile ? "w-[120px]" : "w-[320px]"}
@@ -38,34 +30,24 @@ const LandingPage = () => {
             />
           </div>
           
-          <div className="flex flex-col items-center w-full mt-[50px]">
-            {/* Button container with further left offset (200px more to the left) */}
-            <div className="flex flex-wrap justify-center gap-6" style={{ transform: 'translateX(-600px)' }}>
-              {!hasProfile && (
-                <ButtonLink 
-                  href="#" 
-                  variant="athOutline"
-                  onClick={() => setDialogOpen(true)}
-                  className="text-lg px-8 py-2.5 rounded-md border border-ath-clay text-ath-clay hover:bg-ath-clay hover:text-white transition-all font-bold"
-                >
-                  DICCI CHI SEI
-                </ButtonLink>
-              )}
-              
-              <ButtonLink 
-                href="/home" 
-                variant="athOutline" 
-                className="text-lg px-8 py-2.5 rounded-md border border-ath-clay text-ath-clay hover:bg-ath-clay hover:text-white transition-all font-bold"
-              >
-                ENTRA IN ATH
-              </ButtonLink>
-            </div>
+          {/* Buttons positioned 50px below the logo */}
+          <div className="flex flex-wrap justify-center gap-6 mt-[50px]">
+            <ButtonLink 
+              href="#" 
+              variant="athOutline"
+              onClick={() => setDialogOpen(true)}
+              className="text-lg px-8 py-2.5 rounded-md border border-ath-clay text-ath-clay hover:bg-ath-clay hover:text-white transition-all font-bold"
+            >
+              DICCI CHI SEI
+            </ButtonLink>
             
-            {hasProfile && (
-              <div className="mt-4 text-white bg-black bg-opacity-70 p-3 rounded-md text-center" style={{ transform: 'translateX(-600px)' }}>
-                <p className="font-swiss">Video personalizzato. Clicca su ENTRA IN ATH per continuare.</p>
-              </div>
-            )}
+            <ButtonLink 
+              href="/about" 
+              variant="athOutline" 
+              className="text-lg px-8 py-2.5 rounded-md border border-ath-clay text-ath-clay hover:bg-ath-clay hover:text-white transition-all font-bold"
+            >
+              ENTRA IN ATH
+            </ButtonLink>
           </div>
         </div>
       </div>
@@ -77,6 +59,7 @@ const LandingPage = () => {
           <div dangerouslySetInnerHTML={{ __html: vimeoEmbed }} />
         </div>
         
+        {/* Empty space where buttons used to be */}
         <div className="w-full bg-black py-16 relative" style={{ height: 'auto', minHeight: '400px' }}>
           <div className="max-w-6xl mx-auto px-6 h-full flex flex-col justify-center py-8">
             {/* Content can be added here if needed */}
@@ -92,7 +75,7 @@ const LandingPage = () => {
         userGender={userGender}
         userType={userType}
         sport={sport}
-        updateProfile={handleProfileComplete}
+        updateProfile={updateProfile}
         resetProfile={resetProfile}
         deleteProfile={deleteProfile}
         showTrigger={false}
