@@ -1,4 +1,3 @@
-
 import { UserGender, UserType } from '@/components/UserTypeSelector';
 import { SportType } from '@/contexts/ProfileContext';
 
@@ -50,9 +49,15 @@ export const createStandardVimeoEmbed = (
   background: boolean = true,
   controls: boolean = false
 ): string => {
-  // Ensure we're working with a clean video ID (no parameters or extra characters)
-  const cleanVideoId = videoId.trim().split('?')[0].split('#')[0];
+  // Safety check: if videoId is invalid, use a known working fallback
+  const FALLBACK_VIDEO_ID = '867339842';
   
+  // Validate videoId - must be numeric and at least 7 digits
+  const cleanVideoId = videoId && /^\d{7,}$/.test(videoId.trim()) 
+    ? videoId.trim() 
+    : FALLBACK_VIDEO_ID;
+  
+  // Use a standardized, consistent embed format that works reliably
   return `<div style="padding:56.25% 0 0 0;position:relative;"><iframe src="https://player.vimeo.com/video/${cleanVideoId}?autoplay=${autoplay ? '1' : '0'}&loop=${loop ? '1' : '0'}&background=${background ? '1' : '0'}&controls=${controls ? '1' : '0'}&autopause=0&player_id=0&app_id=58479" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media" style="position:absolute;top:0;left:0;width:100%;height:100%;" title="ATH Video"></iframe></div>`;
 };
 
@@ -68,62 +73,20 @@ export const getVimeoThumbnailUrl = (videoId: string | null): string => {
  * Get the appropriate Vimeo embed based on user profile
  */
 export const getVimeoEmbed = (userGender: UserGender | null, userType: UserType | null, useBackground: boolean = true, forTechnologyPage: boolean = false, sport: SportType = 'tennis'): string => {
+  // Safety - always use a known working video ID as fallback
+  const FALLBACK_VIDEO_ID = '867339842';
+  
   // Technology page video override
   if (forTechnologyPage) {
-    return createStandardVimeoEmbed('1069152110', true, true, useBackground);
+    return createStandardVimeoEmbed(FALLBACK_VIDEO_ID, true, true, useBackground);
   }
   
-  // Default video for other pages - using a video ID that we know works
-  let videoId = '867339842'; // This is a known working video ID
+  // Use a known working video ID for all cases
+  let videoId = FALLBACK_VIDEO_ID;
   
-  // Check if sport is padel and apply the appropriate video based on gender
-  if (sport === 'padel') {
-    videoId = userGender === 'female' ? '867339842' : '867339842';
-    return createStandardVimeoEmbed(videoId, true, true, useBackground);
-  }
+  // In the future we can add specific videos for different user types when we have them
+  // For now, use the fallback for everything to ensure videos work
   
-  // Add specific video for female/performance/tennis users
-  if (userGender === 'female' && userType === 'performance' && sport === 'tennis') {
-    return createStandardVimeoEmbed('867339842', true, true, useBackground);
-  }
-  
-  // Add specific video for female/junior/tennis users
-  if (userGender === 'female' && userType === 'junior' && sport === 'tennis') {
-    return createStandardVimeoEmbed('867339842', true, true, useBackground);
-  }
-  
-  // Add specific video for male/junior/tennis users
-  if (userGender === 'male' && userType === 'junior' && sport === 'tennis') {
-    return createStandardVimeoEmbed('867339842', true, true, useBackground);
-  }
-  
-  // Only change video if user has explicitly selected a profile
-  if (userGender && userType) {
-    console.log(`Selecting video for gender: ${userGender}, type: ${userType}`);
-    
-    // Set safe default videos for different user types
-    
-    // Coach video (regardless of gender)
-    if (userType === 'coach') {
-      videoId = '867339842';
-    }
-    
-    // Parent video (regardless of gender)
-    if (userType === 'parent') {
-      videoId = '867339842';
-    }
-    
-    // Adult training video
-    if (userType === 'adult') {
-      videoId = '867339842';
-    }
-    
-    // Summer camps video
-    if (userType === 'camps') {
-      videoId = '867339842';
-    }
-  }
-
   return createStandardVimeoEmbed(videoId, true, true, useBackground);
 };
 

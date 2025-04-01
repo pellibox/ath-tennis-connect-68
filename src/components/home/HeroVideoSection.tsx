@@ -24,15 +24,9 @@ const HeroVideoSection = ({ onLogoOpacityChange }: HeroVideoSectionProps) => {
     return posterUrl;
   };
   
-  // Get customized video embed based on user profile with proper backup and defaults
+  // Use our improved video embed getter with fallback
   const getVideoEmbed = () => {
-    try {
-      return getVimeoEmbed(userGender, userType, true, false, sport);
-    } catch (error) {
-      console.error('Error getting video embed:', error);
-      // Return a simple known-working embed code as fallback
-      return '<div style="padding:56.25% 0 0 0;position:relative;"><iframe src="https://player.vimeo.com/video/867339842?autoplay=1&loop=1&background=1&controls=0" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen style="position:absolute;top:0;left:0;width:100%;height:100%;"></iframe></div>';
-    }
+    return getVimeoEmbed(userGender, userType, true, false, sport);
   };
   
   return (

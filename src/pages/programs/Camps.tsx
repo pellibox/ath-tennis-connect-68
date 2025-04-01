@@ -6,6 +6,7 @@ import { useLanguage } from '@/contexts/LanguageContext';
 import RevealAnimation from '@/components/RevealAnimation';
 import { UserGender, UserType, loadUserPreferences } from '@/components/UserTypeSelector';
 import VickiUnifiedBadge from '@/components/VickiUnifiedBadge';
+import { createStandardVimeoEmbed } from '@/utils/videoUtils';
 
 const CampsProgram = () => {
   const { t } = useLanguage();
@@ -27,7 +28,7 @@ const CampsProgram = () => {
       
       <main className="flex-grow pt-0">
         <div className="w-full bg-black min-h-[calc(100vw*9/16)] relative">
-          <div dangerouslySetInnerHTML={{ __html: `<div style="padding:56.25% 0 0 0;position:relative;"><iframe src="https://player.vimeo.com/video/1068835737?h=f0a05fef01&autoplay=1&loop=1&title=0&byline=0&portrait=0&background=1&controls=0" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen style="position:absolute;top:0;left:0;width:100%;height:100%;"></iframe></div><script src="https://player.vimeo.com/api/player.js"></script>` }} />
+          <div dangerouslySetInnerHTML={{ __html: createStandardVimeoEmbed('867339842', true, true, true, false) }} />
         </div>
         
         <div className="w-full bg-black py-16">

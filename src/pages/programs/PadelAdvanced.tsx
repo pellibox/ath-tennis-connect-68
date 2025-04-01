@@ -9,6 +9,7 @@ import ProgramFeaturesAndPricing from '@/components/programs/ProgramFeaturesAndP
 import RelatedPrograms from '@/components/programs/RelatedPrograms';
 import { Badge } from '@/components/ui/badge';
 import { Trophy } from 'lucide-react';
+import { createStandardVimeoEmbed } from '@/utils/videoUtils';
 
 const PadelAdvanced = () => {
   useEffect(() => {
@@ -23,7 +24,7 @@ const PadelAdvanced = () => {
         <Hero
           title="Padel Agonisti"
           subtitle="Programma intensivo per giocatori competitivi che vogliono portare il loro gioco a livello agonistico."
-          vimeoEmbed='<div style="padding:56.25% 0 0 0;position:relative;"><iframe src="https://player.vimeo.com/video/1070763412?h=0e8d74bff5&autoplay=1&loop=1&title=0&byline=0&portrait=0&controls=0" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen style="position:absolute;top:0;left:0;width:100%;height:100%;"></iframe></div><script src="https://player.vimeo.com/api/player.js"></script>'
+          vimeoEmbed={createStandardVimeoEmbed('867339842')}
           buttons={[
             { text: 'PRENOTA UNA VALUTAZIONE', href: '/contact' }
           ]}

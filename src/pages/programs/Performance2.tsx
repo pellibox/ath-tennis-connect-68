@@ -1,3 +1,4 @@
+
 import { useEffect } from 'react';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
@@ -7,6 +8,7 @@ import RevealAnimation from '@/components/RevealAnimation';
 import VickiUnifiedBadge from '@/components/VickiUnifiedBadge';
 import { ArrowRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import { createStandardVimeoEmbed } from '@/utils/videoUtils';
 
 const Performance2Program = () => {
   const { t } = useLanguage();
@@ -25,6 +27,7 @@ const Performance2Program = () => {
             title="Performance 2"
             subtitle="2 giorni a settimana per un percorso verso l'eccellenza tennistica"
             imageSrc="/lovable-uploads/ef64c04d-055d-4d70-87f4-e67928a3b8e6.png"
+            vimeoEmbed={createStandardVimeoEmbed('867339842')}
             buttons={[
               { text: 'PRENOTA UNA PROVA', href: '/contact' },
               { text: 'CONTATTACI', href: '/contact', variant: 'outline' }

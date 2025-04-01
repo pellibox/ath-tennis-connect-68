@@ -1,4 +1,3 @@
-
 import { useEffect, useState } from 'react';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
@@ -9,6 +8,7 @@ import { UserGender, UserType, loadUserPreferences } from '@/components/UserType
 import VickiMonitoringBadge from '@/components/VickiMonitoringBadge';
 import VickiPoweredBadge from '@/components/VickiPoweredBadge';
 import ContactSection from '@/components/ContactSection';
+import { createStandardVimeoEmbed } from '@/utils/videoUtils';
 
 const CoachProgram = () => {
   const { t } = useLanguage();
@@ -34,7 +34,7 @@ const CoachProgram = () => {
             title="Coach / Allenatori"
             subtitle="Formazione avanzata (tutto l'anno)"
             imageSrc="https://images.unsplash.com/photo-1620588280212-9c4784d5d99d?q=80&w=2067&auto=format&fit=crop"
-            vimeoEmbed='<div style="padding:75% 0 0 0;position:relative;"><iframe src="https://player.vimeo.com/video/1064577752?h=698f55b033&autoplay=1&loop=1&background=1&autopause=0&player_id=0&app_id=58479&controls=0" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media" style="position:absolute;top:0;left:0;width:100%;height:100%;" title="Coach Program"></iframe></div><script src="https://player.vimeo.com/api/player.js"></script>'
+            vimeoEmbed={createStandardVimeoEmbed('867339842')}
             buttons={[
               { text: 'RICHIEDI INFORMAZIONI', href: '/contact' },
               { text: 'CONTATTACI', href: '/contact', variant: 'outline' }

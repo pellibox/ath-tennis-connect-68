@@ -10,6 +10,7 @@ import ProgramDetails from '@/components/programs/ProgramDetails';
 import ProgramFeaturesAndPricing from '@/components/programs/ProgramFeaturesAndPricing';
 import ProgramWhyChoose from '@/components/programs/ProgramWhyChoose';
 import RelatedPrograms from '@/components/programs/RelatedPrograms';
+import { createStandardVimeoEmbed } from '@/utils/videoUtils';
 
 const ElitePerformanceFullProgram = () => {
   const { t } = useLanguage();
@@ -108,7 +109,7 @@ const ElitePerformanceFullProgram = () => {
             title="Elite Performance Full"
             subtitle="Programma completo (40 settimane)"
             imageSrc="https://images.unsplash.com/photo-1533561052604-c3beb6d55b8d?q=80&w=2071&auto=format&fit=crop"
-            vimeoEmbed='<div style="padding:75% 0 0 0;position:relative;"><iframe src="https://player.vimeo.com/video/1068788542?h=698f55b033&autoplay=1&loop=1&background=1&autopause=0&player_id=0&app_id=58479&controls=0" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media" style="position:absolute;top:0;left:0;width:100%;height:100%;" title="Elite Performance Full"></iframe></div><script src="https://player.vimeo.com/api/player.js"></script>'
+            vimeoEmbed={createStandardVimeoEmbed('867339842')}
             buttons={[
               { text: 'PRENOTA UNA VALUTAZIONE', href: '/contact' },
               { text: 'CONTATTACI', href: '/contact', variant: 'outline' }
