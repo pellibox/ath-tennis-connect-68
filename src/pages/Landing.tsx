@@ -143,7 +143,7 @@ const LandingPage = () => {
           <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-30 flex justify-center items-center pointer-events-none">
             <Logo 
               onDarkBackground={true}
-              className={isMobile ? "w-[120px]" : "w-[220px]"}
+              className={isMobile ? "w-[180px]" : "w-[280px]"} 
               isCentered={true}
               useLandingLogo={true}
             />
