@@ -23,14 +23,11 @@ const AboutPage = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }, []);
   
-  // Icon sizes based on device type
   const iconSize = isMobile ? 40 : 64;
   const iconContainerSize = isMobile ? "w-20 h-20" : "w-36 h-36";
   
-  // Get personalized video based on user profile
   const vimeoEmbed = getVimeoEmbed(userGender, userType);
   
-  // Handle logo opacity changes from the StandardHeroVideo component
   const handleLogoOpacityChange = (opacity: number) => {
     setHeroLogoOpacity(opacity);
   };
@@ -40,7 +37,6 @@ const AboutPage = () => {
       <Header headerLogoOpacity={heroLogoOpacity} />
       
       <main className="flex-grow">
-        {/* Using StandardHeroVideo with callback for opacity changes */}
         <StandardHeroVideo 
           vimeoEmbed={vimeoEmbed}
           title="PERCHÉ ATH:"
@@ -52,7 +48,7 @@ const AboutPage = () => {
           <div className="max-w-7xl mx-auto">
             <div className="max-w-4xl mx-auto text-center">
               <RevealAnimation>
-                <h2 className="text-3xl md:text-4xl font-display mb-6 text-ath-clay">Le Sfide del Tennis Moderno e le Soluzioni di ATH</h2>
+                <h2 className="text-3xl md:text-2xl font-display mb-6 text-ath-clay">Le Sfide del Tennis Moderno e le Soluzioni di ATH</h2>
                 <p className="text-gray-600 leading-relaxed mb-8">
                   Il tennis contemporaneo affronta diverse sfide che ne limitano l'evoluzione e l'accessibilità. 
                   ATH ha sviluppato soluzioni specifiche per superarle.
