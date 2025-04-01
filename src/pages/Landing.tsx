@@ -7,6 +7,7 @@ import { useIsMobile } from '@/hooks/use-mobile';
 import EmptyHeader from '@/components/EmptyHeader';
 import EmptyFooter from '@/components/EmptyFooter';
 import { useNavigate } from 'react-router-dom';
+import ResponsiveImage from '@/components/ResponsiveImage';
 
 const getUserGenderText = (gender: string | null): string => {
   switch (gender) {
@@ -138,6 +139,15 @@ const LandingPage = () => {
       
       <main className="flex-grow">
         <div className="w-full bg-black min-h-[calc(100vw*9/16)] relative">
+          {!isMobile && (
+            <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-30 flex justify-center items-center pointer-events-none">
+              <img 
+                src="/lovable-uploads/a00875f9-6335-4f8b-81c4-029183b59eec.png" 
+                alt="ATH - Advanced Tennis Hub" 
+                className="w-[400px] object-contain"
+              />
+            </div>
+          )}
           
           <div dangerouslySetInnerHTML={{ __html: vimeoEmbed }} />
         </div>
