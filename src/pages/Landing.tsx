@@ -1,3 +1,4 @@
+
 import { useState, useEffect } from 'react';
 import { useProfile } from '@/contexts/ProfileContext';
 import { getVimeoEmbed } from '@/utils/videoUtils';
@@ -144,7 +145,7 @@ const LandingPage = () => {
               <img 
                 src="/lovable-uploads/a00875f9-6335-4f8b-81c4-029183b59eec.png" 
                 alt="ATH - Advanced Tennis Hub" 
-                className="w-[400px] object-contain"
+                className="w-[200px] object-contain"
               />
             </div>
           )}
