@@ -35,7 +35,7 @@ const LandingPage = () => {
             onClick={() => setDialogOpen(true)}
             className="text-lg px-8 py-2.5 rounded-md border border-ath-clay text-ath-clay hover:bg-ath-clay hover:text-white transition-all font-bold"
           >
-            DICCI CHI SEI
+            DIMMI CHI SEI
           </ButtonLink>
         )}
         
