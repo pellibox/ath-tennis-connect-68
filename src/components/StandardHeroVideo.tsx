@@ -9,7 +9,6 @@ interface StandardHeroVideoProps {
   title?: string;
   showLogo?: boolean;
   onLogoOpacityChange?: (opacity: number) => void;
-  useFacilitiesLogo?: boolean; // New prop
 }
 
 const StandardHeroVideo = ({ 
@@ -17,8 +16,7 @@ const StandardHeroVideo = ({
   subtitle, 
   title, 
   showLogo = true,
-  onLogoOpacityChange,
-  useFacilitiesLogo = false // Default to false
+  onLogoOpacityChange
 }: StandardHeroVideoProps) => {
   const isMobile = useIsMobile();
   const [logoOpacity, setLogoOpacity] = useState<number>(1);
@@ -63,8 +61,9 @@ const StandardHeroVideo = ({
             opacity: logoOpacity
           }}
         >
-          <Logo 
-            useFacilitiesLogo={useFacilitiesLogo}
+          <img 
+            src="/lovable-uploads/0a250ed5-11e7-485c-a8f5-d41ebaa7083f.png" 
+            alt="ATH - Advanced Tennis Hub" 
             className={`object-contain ${isMobile ? 'w-[160px]' : 'w-[220px]'}`}
           />
         </div>
@@ -75,16 +74,12 @@ const StandardHeroVideo = ({
           className="w-full h-full overflow-hidden"
           style={{ 
             position: 'relative',
-            paddingBottom: '56.25%' // 16:9 aspect ratio
+            paddingBottom: '56.25%'
           }}
         >
           <div 
             dangerouslySetInnerHTML={{ __html: vimeoEmbed }} 
-            className="absolute top-0 left-0 w-full h-full scale-125" // Increased scaling from 110% to 125% to eliminate black bars
-            style={{
-              transform: 'scale(1.25)', // Backup scaling through style for browsers that might not support scale-125
-              transformOrigin: 'center center'
-            }}
+            className="absolute top-0 left-0 w-full h-full scale-110" // Scaled up to remove black borders
           />
         </div>
       </div>
@@ -110,4 +105,3 @@ const StandardHeroVideo = ({
 };
 
 export default StandardHeroVideo;
-
