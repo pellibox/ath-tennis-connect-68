@@ -1,3 +1,4 @@
+
 import { useState, useEffect } from 'react';
 import { useProfile } from '@/contexts/ProfileContext';
 import { getVimeoEmbed } from '@/utils/videoUtils';
@@ -125,7 +126,7 @@ const LandingPage = () => {
             <img 
               src="/lovable-uploads/a00875f9-6335-4f8b-81c4-029183b59eec.png" 
               alt="ATH - Advanced Tennis Hub" 
-              className={`object-contain ${isMobile ? 'w-[100px]' : 'w-[200px]'}`}
+              className={`object-contain ${isMobile ? 'w-[120px]' : 'w-[200px]'}`}
             />
           </div>
           
@@ -186,3 +187,4 @@ const LandingPage = () => {
 };
 
 export default LandingPage;
+
