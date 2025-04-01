@@ -49,7 +49,7 @@ const StandardHeroVideo = ({
         <div 
           className={`z-50 pointer-events-none transition-opacity duration-300 flex justify-center ${isMobile ? 'absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2' : 'fixed left-0 right-0'}`}
           style={{
-            top: isMobile ? 'auto' : '100px', // 80px for container (mx-auto px-4 pt-4) + 20px offset
+            top: isMobile ? 'calc(50% + 20px)' : '100px', // Lowered by 20px in mobile mode
             opacity: logoOpacity
           }}
         >
