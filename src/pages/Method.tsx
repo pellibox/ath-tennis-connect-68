@@ -1,3 +1,4 @@
+
 import { useEffect, useState } from 'react';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
@@ -13,22 +14,29 @@ const MethodPage = () => {
   const { t } = useLanguage();
   const { userGender, userType } = useProfile();
   const isMobile = useIsMobile();
+  const [heroLogoOpacity, setHeroLogoOpacity] = useState<number>(1);
   
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }, []);
 
   const vimeoEmbed = getVimeoEmbed(userGender, userType, false);
+  
+  // Handle logo opacity changes from the StandardHeroVideo component
+  const handleLogoOpacityChange = (opacity: number) => {
+    setHeroLogoOpacity(opacity);
+  };
 
   return (
     <div className="flex flex-col min-h-screen relative">
-      <Header />
+      <Header headerLogoOpacity={heroLogoOpacity} />
       
       <main className="flex-grow">
         <StandardHeroVideo 
           vimeoEmbed={vimeoEmbed}
           title="IL METODO:"
           subtitle="Tecnologia e competenza umana al servizio dell'eccellenza tennistica"
+          onLogoOpacityChange={handleLogoOpacityChange}
         />
         
         <section className="py-16 px-6 lg:px-10">

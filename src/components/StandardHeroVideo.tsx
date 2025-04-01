@@ -8,13 +8,15 @@ interface StandardHeroVideoProps {
   subtitle?: string;
   title?: string;
   showLogo?: boolean;
+  onLogoOpacityChange?: (opacity: number) => void;
 }
 
 const StandardHeroVideo = ({ 
   vimeoEmbed, 
   subtitle, 
   title, 
-  showLogo = true 
+  showLogo = true,
+  onLogoOpacityChange
 }: StandardHeroVideoProps) => {
   const isMobile = useIsMobile();
   const [logoOpacity, setLogoOpacity] = useState<number>(1);
@@ -30,8 +32,16 @@ const StandardHeroVideo = ({
       if (scrollY > fadeThreshold) {
         const opacity = Math.max(0, 1 - (scrollY - fadeThreshold) / (fadeOutBy - fadeThreshold));
         setLogoOpacity(opacity);
+        
+        // Notify parent component about opacity change if callback is provided
+        if (onLogoOpacityChange) {
+          onLogoOpacityChange(opacity);
+        }
       } else {
         setLogoOpacity(1);
+        if (onLogoOpacityChange) {
+          onLogoOpacityChange(1);
+        }
       }
     };
 
@@ -41,15 +51,15 @@ const StandardHeroVideo = ({
     return () => {
       window.removeEventListener('scroll', handleScroll);
     };
-  }, []);
+  }, [onLogoOpacityChange]);
   
   return (
     <>
       {showLogo && (
         <div 
-          className="fixed z-50 pointer-events-none transition-opacity duration-300 left-0 right-0 flex justify-center"
+          className="absolute pointer-events-none transition-opacity duration-300 left-1/2 transform -translate-x-1/2 z-50"
           style={{
-            top: isMobile ? '5px' : '100px', // 80px for container (mx-auto px-4 pt-4) + 20px offset
+            top: isMobile ? 'calc(56.25vw + 20px)' : '100px', // Position below video container in mobile mode
             opacity: logoOpacity
           }}
         >

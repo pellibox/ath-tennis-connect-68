@@ -1,5 +1,5 @@
 
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import { useIsMobile } from '@/hooks/use-mobile';
@@ -12,6 +12,7 @@ import TrainingMethodsSection from '@/components/home/TrainingMethodsSection';
 
 const HomePage = () => {
   const isMobile = useIsMobile();
+  const [heroLogoOpacity, setHeroLogoOpacity] = useState<number>(1);
   
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -42,13 +43,18 @@ const HomePage = () => {
       label: 'Personalizzazione'
     },
   ];
+  
+  // Handle logo opacity changes from the HeroVideoSection
+  const handleLogoOpacityChange = (opacity: number) => {
+    setHeroLogoOpacity(opacity);
+  };
 
   return (
     <div className="flex flex-col min-h-screen relative">
-      <Header />
+      <Header headerLogoOpacity={heroLogoOpacity} />
       
       <main className="flex-grow">
-        <HeroVideoSection />
+        <HeroVideoSection onLogoOpacityChange={handleLogoOpacityChange} />
         
         <KeyFeaturesSection />
         
