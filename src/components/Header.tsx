@@ -1,3 +1,4 @@
+
 import { useState } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { ChevronLeft, Menu, X } from 'lucide-react';
@@ -15,12 +16,14 @@ interface HeaderProps {
   useVickiLogo?: boolean;
   bgColor?: 'white' | 'black';
   hideLogoInHeader?: boolean;
+  headerLogoOpacity?: number;
 }
 
 const Header = ({ 
   useVickiLogo = false, 
   bgColor = 'white',
-  hideLogoInHeader = false
+  hideLogoInHeader = false,
+  headerLogoOpacity = 1
 }: HeaderProps) => {
   const location = useLocation();
   const navigate = useNavigate();
@@ -38,6 +41,9 @@ const Header = ({
   const headerBgClass = bgColor === 'black' ? "bg-black" : "bg-white";
   const textColorClass = bgColor === 'black' ? "text-white" : "text-black";
   
+  // Calculate inverse opacity for header logo
+  const logoOpacity = hideLogoInHeader ? 0 : (1 - (headerLogoOpacity || 0));
+  
   return (
     <>
       <header 
@@ -52,10 +58,13 @@ const Header = ({
           isMobile ? "justify-center" : "justify-between"
         )}>
           {!hideLogoInHeader && (
-            <div className={cn(
-              "flex items-center z-50", 
-              isMobile ? "w-full justify-center" : (showBackButton ? "pl-0" : "pl-0")
-            )}>
+            <div 
+              className={cn(
+                "flex items-center z-50", 
+                isMobile ? "w-full justify-center" : (showBackButton ? "pl-0" : "pl-0")
+              )}
+              style={{ opacity: logoOpacity }}
+            >
               {showBackButton && !isMobile && (
                 <Button 
                   variant="ghost" 

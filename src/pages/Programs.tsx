@@ -1,4 +1,3 @@
-
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Header from '@/components/Header';
@@ -30,6 +29,7 @@ const Programs = () => {
     'tennis'
   );
   const [contentReady, setContentReady] = useState(false);
+  const [heroLogoOpacity, setHeroLogoOpacity] = useState<number>(1);
   
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -84,6 +84,10 @@ const Programs = () => {
     }
   };
 
+  const handleLogoOpacityChange = (opacity: number) => {
+    setHeroLogoOpacity(opacity);
+  };
+
   const getPersonalizedSubtitle = () => {
     if (!userType) {
       return "Approccio metodologico unico e personalizzato per ogni profilo di giocatore";
@@ -107,13 +111,14 @@ const Programs = () => {
 
   return (
     <div className="flex flex-col min-h-screen relative">
-      <Header />
+      <Header headerLogoOpacity={heroLogoOpacity} />
       
       <main className="flex-grow pt-0">
         <StandardHeroVideo 
           vimeoEmbed={vimeoEmbed}
           title="PROGRAMMI:"
           subtitle={getPersonalizedSubtitle()}
+          onLogoOpacityChange={handleLogoOpacityChange}
         />
         
         <ProgramsHeader 
