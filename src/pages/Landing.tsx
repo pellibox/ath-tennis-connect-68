@@ -1,3 +1,4 @@
+
 import { useState, useEffect } from 'react';
 import { useProfile } from '@/contexts/ProfileContext';
 import { getVimeoEmbed } from '@/utils/videoUtils';
@@ -144,6 +145,7 @@ const LandingPage = () => {
               onDarkBackground={true}
               className={isMobile ? "w-[120px]" : "w-[220px]"}
               isCentered={true}
+              useLandingLogo={true}
             />
           </div>
           

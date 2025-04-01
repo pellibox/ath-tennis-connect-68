@@ -13,6 +13,7 @@ interface LogoProps {
   isInMenu?: boolean;
   isCentered?: boolean;
   useBlackLogoOnWhite?: boolean;
+  useLandingLogo?: boolean;
 }
 
 const Logo = ({ 
@@ -24,7 +25,8 @@ const Logo = ({
   useVickiLogo = false,
   isInMenu = false,
   isCentered = false,
-  useBlackLogoOnWhite = false
+  useBlackLogoOnWhite = false,
+  useLandingLogo = false
 }: LogoProps) => {
   const isFooter = variant === 'footer';
   const location = useLocation();
@@ -33,7 +35,10 @@ const Logo = ({
   // Logo paths
   let logoSrc;
   
-  if (useBlackLogoOnWhite) {
+  if (useLandingLogo) {
+    // Use the special landing page logo
+    logoSrc = "/lovable-uploads/eaa7f4bb-1040-48c7-be0a-bd5e7310f0ca.png";
+  } else if (useBlackLogoOnWhite) {
     // Use the uploaded black logo image for white header
     logoSrc = "/lovable-uploads/0a250ed5-11e7-485c-a8f5-d41ebaa7083f.png";
   } else if (isInMenu) {
