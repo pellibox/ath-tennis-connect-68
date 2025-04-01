@@ -49,22 +49,45 @@ const LandingPage = () => {
 
   return (
     <div className="flex flex-col min-h-screen relative bg-black">
+      {/* Centered logo container with improved positioning */}
       <div 
         className="fixed top-0 left-0 w-full h-screen flex items-center justify-center pointer-events-none z-40 transition-opacity duration-300"
         style={{ opacity: logoOpacity }}
       >
         <div 
+          className="flex flex-col items-center"
           style={{
-            width: isMobile ? '120px' : '320px',
             transform: `translateY(-${logoYOffset}px)` 
           }}
-          className="flex justify-center w-full"
         >
-          <Logo 
-            onDarkBackground={true}
-            className="w-full h-auto"
-            isCentered={true}
-          />
+          {/* Logo with doubled size */}
+          <div className="flex justify-center">
+            <Logo 
+              onDarkBackground={true}
+              className={isMobile ? "w-[120px]" : "w-[640px]"}
+              isCentered={true}
+            />
+          </div>
+          
+          {/* Buttons positioned 50px below the logo */}
+          <div className="flex flex-wrap justify-center gap-6 mt-[50px]">
+            <ButtonLink 
+              href="#" 
+              variant="athOutline"
+              onClick={() => setDialogOpen(true)}
+              className="text-lg px-8 py-2.5 rounded-md border border-ath-clay text-ath-clay hover:bg-ath-clay hover:text-white transition-all font-bold"
+            >
+              DICCI CHI SEI
+            </ButtonLink>
+            
+            <ButtonLink 
+              href="/about" 
+              variant="outline" 
+              className="text-lg px-8 py-2.5 rounded-md border border-ath-clay text-ath-clay hover:bg-ath-clay hover:text-white transition-all font-bold"
+            >
+              ENTRA IN ATH
+            </ButtonLink>
+          </div>
         </div>
       </div>
       
@@ -75,28 +98,10 @@ const LandingPage = () => {
           <div dangerouslySetInnerHTML={{ __html: vimeoEmbed }} />
         </div>
         
+        {/* Removed the button container since buttons are now with the logo */}
         <div className="w-full bg-black py-16 relative" style={{ height: 'auto', minHeight: '400px' }}>
           <div className="max-w-6xl mx-auto px-6 h-full flex flex-col justify-center py-8">
-            <div className="flex flex-col items-center">
-              <div className="flex flex-wrap justify-center gap-6">
-                <ButtonLink 
-                  href="#" 
-                  variant="athOutline"
-                  onClick={() => setDialogOpen(true)}
-                  className="text-lg px-8 py-2.5 rounded-md border border-ath-clay text-ath-clay hover:bg-ath-clay hover:text-white transition-all font-bold"
-                >
-                  DICCI CHI SEI
-                </ButtonLink>
-                
-                <ButtonLink 
-                  href="/about" 
-                  variant="outline" 
-                  className="text-lg px-8 py-2.5 rounded-md border border-ath-clay text-ath-clay hover:bg-ath-clay hover:text-white transition-all font-bold"
-                >
-                  ENTRA IN ATH
-                </ButtonLink>
-              </div>
-            </div>
+            {/* Content can be added here if needed */}
           </div>
         </div>
       </main>
