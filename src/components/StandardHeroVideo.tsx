@@ -125,7 +125,7 @@ const StandardHeroVideo = ({
         <div className="w-full bg-black py-10 md:py-16">
           <div className="max-w-3xl mx-auto text-center px-4">
             {title && (
-              <h2 className="text-white text-3xl font-display uppercase mb-2">
+              <h2 className="text-white text-lg md:text-2xl font-swiss uppercase mb-2">
                 {title}
               </h2>
             )}

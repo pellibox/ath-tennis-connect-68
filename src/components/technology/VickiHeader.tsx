@@ -35,7 +35,7 @@ const VickiHeader = ({ title, subtitle, className }: VickiHeaderProps) => {
         </h3>
         
         {/* ATH Technological Advantage */}
-        <h2 className="text-3xl md:text-4xl font-display text-center text-ath-clay">
+        <h2 className="text-3xl md:text-4xl font-swiss text-center text-ath-clay">
           {title}
         </h2>
       </div>

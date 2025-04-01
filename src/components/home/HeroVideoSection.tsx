@@ -1,5 +1,5 @@
 
-import React from 'react';
+import React, { useState } from 'react';
 import { useProfile } from '@/contexts/ProfileContext';
 import { getVimeoEmbed, getWelcomeMessage } from '@/utils/videoUtils';
 import StandardHeroVideo from '@/components/StandardHeroVideo';
