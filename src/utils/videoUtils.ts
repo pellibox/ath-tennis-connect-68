@@ -50,10 +50,10 @@ export const createStandardVimeoEmbed = (
   controls: boolean = false
 ): string => {
   // Safety check: if videoId is invalid, use a known working fallback
-  const FALLBACK_VIDEO_ID = '867339842';
+  const FALLBACK_VIDEO_ID = '1071002692/a2668fa56d';
   
-  // Validate videoId - must be numeric and at least 7 digits
-  const cleanVideoId = videoId && /^\d{7,}$/.test(videoId.trim()) 
+  // Validate videoId - must be numeric and at least 7 digits, or include a valid format with a hash
+  const cleanVideoId = videoId && (/^\d{7,}$/.test(videoId.trim()) || videoId.includes('/')) 
     ? videoId.trim() 
     : FALLBACK_VIDEO_ID;
   
@@ -66,6 +66,12 @@ export const createStandardVimeoEmbed = (
  */
 export const getVimeoThumbnailUrl = (videoId: string | null): string => {
   if (!videoId) return '/lovable-uploads/6ea13aa7-2578-488b-8ed4-4b17fc2ddc4e.png';
+  
+  // If videoId contains a slash, extract just the numeric part for the thumbnail
+  if (videoId.includes('/')) {
+    videoId = videoId.split('/')[0];
+  }
+  
   return `https://vumbnail.com/${videoId}.jpg`;
 };
 
@@ -73,19 +79,21 @@ export const getVimeoThumbnailUrl = (videoId: string | null): string => {
  * Get the appropriate Vimeo embed based on user profile
  */
 export const getVimeoEmbed = (userGender: UserGender | null, userType: UserType | null, useBackground: boolean = true, forTechnologyPage: boolean = false, sport: SportType = 'tennis'): string => {
-  // Safety - always use a known working video ID as fallback
-  const FALLBACK_VIDEO_ID = '867339842';
+  // Use the new default video ID as fallback
+  const FALLBACK_VIDEO_ID = '1071002692/a2668fa56d';
   
   // Technology page video override
   if (forTechnologyPage) {
     return createStandardVimeoEmbed(FALLBACK_VIDEO_ID, true, true, useBackground);
   }
   
-  // Use a known working video ID for all cases
-  let videoId = FALLBACK_VIDEO_ID;
+  // For performance/agonista male users, use the specific video
+  if (userGender === 'male' && (userType === 'performance' || userType === 'professional')) {
+    return createStandardVimeoEmbed(FALLBACK_VIDEO_ID, true, true, useBackground);
+  }
   
-  // In the future we can add specific videos for different user types when we have them
-  // For now, use the fallback for everything to ensure videos work
+  // For all other cases, use the fallback video ID
+  let videoId = FALLBACK_VIDEO_ID;
   
   return createStandardVimeoEmbed(videoId, true, true, useBackground);
 };

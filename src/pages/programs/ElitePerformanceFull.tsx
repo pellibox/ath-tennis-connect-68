@@ -109,7 +109,7 @@ const ElitePerformanceFullProgram = () => {
             title="Elite Performance Full"
             subtitle="Programma completo (40 settimane)"
             imageSrc="https://images.unsplash.com/photo-1533561052604-c3beb6d55b8d?q=80&w=2071&auto=format&fit=crop"
-            vimeoEmbed={createStandardVimeoEmbed('867339842')}
+            vimeoEmbed={createStandardVimeoEmbed('1071002692/a2668fa56d')}
             buttons={[
               { text: 'PRENOTA UNA VALUTAZIONE', href: '/contact' },
               { text: 'CONTATTACI', href: '/contact', variant: 'outline' }
