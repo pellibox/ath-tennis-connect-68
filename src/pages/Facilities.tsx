@@ -162,10 +162,10 @@ const FacilitiesPage = () => {
           title="LE STRUTTURE:"
           subtitle="Impianti all'avanguardia di tennis, padel e pickleball dotati di tecnologia Vicki™"
           onLogoOpacityChange={handleLogoOpacityChange}
-          logoTopPositionMobile="140px" 
+          logoTopPositionMobile="60px" 
           logoTopPositionDesktop="100px"
           logoSize={{
-            mobile: 'w-[120px]',
+            mobile: 'w-[140px]',
             desktop: 'w-[200px]'
           }}
         />
