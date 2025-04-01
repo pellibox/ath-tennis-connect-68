@@ -82,12 +82,20 @@ const LandingPage = () => {
         <div className="w-full bg-black py-16 relative" style={{ height: 'auto', minHeight: '400px' }}>
           <div className="max-w-6xl mx-auto px-6 h-full flex flex-col justify-center py-8">
             <div className="flex flex-col items-center space-y-12">
+              {/* Text first (inverted position) */}
+              <div className="max-w-3xl text-center">
+                <h2 className="text-white text-xl md:text-3xl font-swiss uppercase">
+                  IL FUTURO DEL TUO TENNIS INIZIA QUI.
+                </h2>
+              </div>
+              
+              {/* Buttons second (inverted position) with reduced height */}
               <div className="flex flex-wrap justify-center gap-6">
                 <ButtonLink 
                   href="#" 
                   variant="athOutline"
                   onClick={() => setDialogOpen(true)}
-                  className="text-lg px-8 py-4 rounded-md border border-ath-clay text-ath-clay hover:bg-ath-clay hover:text-white transition-all font-bold"
+                  className="text-lg px-8 py-2.5 rounded-md border border-ath-clay text-ath-clay hover:bg-ath-clay hover:text-white transition-all font-bold"
                 >
                   DICCI CHI SEI
                 </ButtonLink>
@@ -95,16 +103,10 @@ const LandingPage = () => {
                 <ButtonLink 
                   href="/about" 
                   variant="outline" 
-                  className="text-lg px-8 py-4 rounded-md border border-ath-clay text-ath-clay hover:bg-ath-clay hover:text-white transition-all font-bold"
+                  className="text-lg px-8 py-2.5 rounded-md border border-ath-clay text-ath-clay hover:bg-ath-clay hover:text-white transition-all font-bold"
                 >
                   ENTRA IN ATH
                 </ButtonLink>
-              </div>
-              
-              <div className="max-w-3xl text-center">
-                <h2 className="text-white text-xl md:text-3xl font-swiss uppercase">
-                  IL FUTURO DEL TUO TENNIS INIZIA QUI.
-                </h2>
               </div>
             </div>
           </div>
