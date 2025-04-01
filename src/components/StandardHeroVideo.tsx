@@ -1,5 +1,5 @@
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { useIsMobile } from '@/hooks/use-mobile';
 import Logo from '@/components/Logo';
 
@@ -34,16 +34,31 @@ const StandardHeroVideo = ({
 }: StandardHeroVideoProps) => {
   const isMobile = useIsMobile();
   const [logoOpacity, setLogoOpacity] = useState<number>(1);
+  const logoRef = useRef<HTMLDivElement>(null);
   
   useEffect(() => {
     const handleScroll = () => {
+      if (!logoRef.current) return;
+      
       const scrollY = window.scrollY;
+      const logoRect = logoRef.current.getBoundingClientRect();
       
-      const fadeThreshold = 50;
-      const fadeOutBy = 200;
+      // Start fade as soon as scrolling begins
+      const fadeStartThreshold = 0;
       
-      if (scrollY > fadeThreshold) {
-        const opacity = Math.max(0, 1 - (scrollY - fadeThreshold) / (fadeOutBy - fadeThreshold));
+      // Calculate when logo should be fully invisible
+      // This is when the bottom of the logo reaches the top of the viewport
+      const logoHeight = logoRect.height;
+      const logoTopPosition = isMobile ? 
+        parseInt(logoTopPositionMobile, 10) : 
+        parseInt(logoTopPositionDesktop, 10);
+      
+      // Logo will be completely invisible when it's scrolled out of view
+      const fadeEndThreshold = logoTopPosition + logoHeight;
+      
+      if (scrollY > fadeStartThreshold) {
+        // Calculate opacity based on how much of the logo is still visible
+        const opacity = Math.max(0, 1 - (scrollY / fadeEndThreshold));
         setLogoOpacity(opacity);
         
         if (onLogoOpacityChange) {
@@ -63,12 +78,13 @@ const StandardHeroVideo = ({
     return () => {
       window.removeEventListener('scroll', handleScroll);
     };
-  }, [onLogoOpacityChange]);
+  }, [onLogoOpacityChange, logoTopPositionMobile, logoTopPositionDesktop, isMobile]);
   
   return (
     <>
       {showLogo && (
         <div 
+          ref={logoRef}
           className="absolute pointer-events-none transition-opacity duration-300 left-1/2 transform -translate-x-1/2 z-50"
           style={{
             top: isMobile ? logoTopPositionMobile : logoTopPositionDesktop,
