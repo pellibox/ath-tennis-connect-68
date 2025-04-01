@@ -119,7 +119,8 @@ const LandingPage = () => {
   return (
     <div className="flex flex-col min-h-screen relative bg-black">
       {!isMobile && (
-        <div className="absolute bottom-12 left-0 w-full flex items-center justify-center z-40 pointer-events-auto">
+        <div className="absolute bottom-12 left-0 w-full flex items-center justify-center z-40 pointer-events-auto" 
+             style={{ transform: 'translateY(-300px)' }}>
           <div className="flex flex-col items-center">
             <div>
               {renderButtons()}
