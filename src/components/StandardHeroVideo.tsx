@@ -74,12 +74,16 @@ const StandardHeroVideo = ({
           className="w-full h-full overflow-hidden"
           style={{ 
             position: 'relative',
-            paddingBottom: '56.25%'
+            paddingBottom: '56.25%' // 16:9 aspect ratio
           }}
         >
           <div 
             dangerouslySetInnerHTML={{ __html: vimeoEmbed }} 
-            className="absolute top-0 left-0 w-full h-full scale-110" // Scaled up to remove black borders
+            className="absolute top-0 left-0 w-full h-full scale-125" // Increased scaling from 110% to 125% to eliminate black bars
+            style={{
+              transform: 'scale(1.25)', // Backup scaling through style for browsers that might not support scale-125
+              transformOrigin: 'center center'
+            }}
           />
         </div>
       </div>
