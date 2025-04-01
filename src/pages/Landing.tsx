@@ -25,40 +25,50 @@ const LandingPage = () => {
 
   const hasProfile = Boolean(userGender && userType);
 
+  const renderButtons = () => {
+    return (
+      <div className="flex flex-wrap justify-center gap-6">
+        {!hasProfile && (
+          <ButtonLink 
+            href="#" 
+            variant="athOutline"
+            onClick={() => setDialogOpen(true)}
+            className="text-lg px-8 py-2.5 rounded-md border border-ath-clay text-ath-clay hover:bg-ath-clay hover:text-white transition-all font-bold"
+          >
+            DICCI CHI SEI
+          </ButtonLink>
+        )}
+        
+        <ButtonLink 
+          href="/home" 
+          variant="athOutline" 
+          className="text-lg px-8 py-2.5 rounded-md border border-ath-clay text-ath-clay hover:bg-ath-clay hover:text-white transition-all font-bold"
+        >
+          ENTRA IN ATH
+        </ButtonLink>
+      </div>
+    );
+  };
+
   return (
     <div className="flex flex-col min-h-screen relative bg-black">
-      {/* Logo and buttons overlay */}
-      <div className="fixed top-0 left-0 w-full h-screen flex items-center justify-center pointer-events-none z-40">
-        <div className="flex flex-col items-center">
-          {/* Buttons container */}
-          <div className="flex flex-wrap justify-center gap-6 mt-[50px]">
-            {!hasProfile && (
-              <ButtonLink 
-                href="#" 
-                variant="athOutline"
-                onClick={() => setDialogOpen(true)}
-                className="text-lg px-8 py-2.5 rounded-md border border-ath-clay text-ath-clay hover:bg-ath-clay hover:text-white transition-all font-bold"
-              >
-                DICCI CHI SEI
-              </ButtonLink>
-            )}
-            
-            <ButtonLink 
-              href="/home" 
-              variant="athOutline" 
-              className="text-lg px-8 py-2.5 rounded-md border border-ath-clay text-ath-clay hover:bg-ath-clay hover:text-white transition-all font-bold"
-            >
-              ENTRA IN ATH
-            </ButtonLink>
-          </div>
-          
-          {hasProfile && (
-            <div className="mt-4 text-white bg-black bg-opacity-70 p-3 rounded-md text-center pointer-events-auto">
-              <p className="font-swiss">Video personalizzato. Clicca su ENTRA IN ATH per continuare.</p>
+      {/* Only show fixed overlay buttons on desktop */}
+      {!isMobile && (
+        <div className="fixed top-0 left-0 w-full h-screen flex items-center justify-center pointer-events-none z-40">
+          <div className="flex flex-col items-center">
+            {/* Buttons container */}
+            <div className="mt-[50px]">
+              {renderButtons()}
             </div>
-          )}
+            
+            {hasProfile && (
+              <div className="mt-4 text-white bg-black bg-opacity-70 p-3 rounded-md text-center pointer-events-auto">
+                <p className="font-swiss">Video personalizzato. Clicca su ENTRA IN ATH per continuare.</p>
+              </div>
+            )}
+          </div>
         </div>
-      </div>
+      )}
       
       <EmptyHeader headerText="IL FUTURO DEL TUO TENNIS INIZIA QUI." />
       
@@ -75,6 +85,21 @@ const LandingPage = () => {
           
           <div dangerouslySetInnerHTML={{ __html: vimeoEmbed }} />
         </div>
+        
+        {/* Mobile buttons below video */}
+        {isMobile && (
+          <div className="w-full bg-black py-6 pointer-events-auto">
+            <div className="container mx-auto px-4">
+              {renderButtons()}
+              
+              {hasProfile && (
+                <div className="mt-4 text-white bg-black bg-opacity-70 p-3 rounded-md text-center">
+                  <p className="font-swiss">Video personalizzato. Clicca su ENTRA IN ATH per continuare.</p>
+                </div>
+              )}
+            </div>
+          </div>
+        )}
         
         <div className="w-full bg-black py-16 relative" style={{ height: 'auto', minHeight: '400px' }}>
           <div className="max-w-6xl mx-auto px-6 h-full flex flex-col justify-center py-8">
