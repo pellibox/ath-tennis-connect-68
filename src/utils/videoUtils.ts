@@ -82,14 +82,20 @@ export const getVimeoThumbnailUrl = (videoId: string | null): string => {
 export const getVimeoEmbed = (userGender: UserGender | null, userType: UserType | null, useBackground: boolean = true, forTechnologyPage: boolean = false, sport: SportType = 'tennis'): string => {
   // Use the new default video ID as fallback
   const FALLBACK_VIDEO_ID = '1071002692?h=a2668fa56d';
+  const MALE_PRO_TENNIS_VIDEO_ID = '1071006843?h=76f8bd542b';
   
   // Technology page video override
   if (forTechnologyPage) {
-    return createStandardVimeoEmbed(FALLBACK_VIDEO_ID, true, true, useBackground);
+    return createStandardVimeoEmbed('1068785493?h=fe90d50dae', true, true, useBackground);
+  }
+  
+  // For male professional tennis players, use the specific video
+  if (userGender === 'male' && userType === 'professional' && sport === 'tennis') {
+    return createStandardVimeoEmbed(MALE_PRO_TENNIS_VIDEO_ID, true, true, useBackground);
   }
   
   // For performance/agonista male users, use the specific video
-  if (userGender === 'male' && (userType === 'performance' || userType === 'professional')) {
+  if (userGender === 'male' && (userType === 'performance')) {
     return createStandardVimeoEmbed(FALLBACK_VIDEO_ID, true, true, useBackground);
   }
   
