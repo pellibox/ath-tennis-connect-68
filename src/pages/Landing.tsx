@@ -1,3 +1,4 @@
+
 import { useState, useEffect } from 'react';
 import { useProfile } from '@/contexts/ProfileContext';
 import { getVimeoEmbed } from '@/utils/videoUtils';
@@ -28,8 +29,8 @@ const LandingPage = () => {
     <div className="flex flex-col min-h-screen relative bg-black">
       <div className="fixed top-0 left-0 w-full h-screen flex items-center justify-center z-40">
         <div className="flex flex-col items-center w-full">
-          {/* Logo centered in the page */}
-          <div className="flex justify-center">
+          {/* Logo shifted 100px to the left */}
+          <div className="flex justify-center" style={{ transform: 'translateX(-100px)' }}>
             <Logo 
               onDarkBackground={true}
               className={isMobile ? "w-[120px]" : "w-[320px]"}
@@ -38,8 +39,8 @@ const LandingPage = () => {
           </div>
           
           <div className="flex flex-col items-center w-full mt-[50px]">
-            {/* Button container with left offset */}
-            <div className="flex flex-wrap justify-center gap-6" style={{ transform: 'translateX(-400px)' }}>
+            {/* Button container with further left offset (200px more to the left) */}
+            <div className="flex flex-wrap justify-center gap-6" style={{ transform: 'translateX(-600px)' }}>
               {!hasProfile && (
                 <ButtonLink 
                   href="#" 
@@ -61,7 +62,7 @@ const LandingPage = () => {
             </div>
             
             {hasProfile && (
-              <div className="mt-4 text-white bg-black bg-opacity-70 p-3 rounded-md text-center" style={{ transform: 'translateX(-400px)' }}>
+              <div className="mt-4 text-white bg-black bg-opacity-70 p-3 rounded-md text-center" style={{ transform: 'translateX(-600px)' }}>
                 <p className="font-swiss">Video personalizzato. Clicca su ENTRA IN ATH per continuare.</p>
               </div>
             )}
