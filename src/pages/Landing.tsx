@@ -1,3 +1,4 @@
+
 import { useEffect, useState } from 'react';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
@@ -47,7 +48,7 @@ const LandingPage = () => {
   const vimeoEmbed = getVimeoEmbed(userGender, userType, true, false, sport);
 
   return (
-    <div className="flex flex-col min-h-screen relative">
+    <div className="flex flex-col min-h-screen relative bg-black">
       <div 
         className="fixed z-50 pointer-events-none transition-opacity duration-300 left-0 right-0 flex justify-center"
         style={{
@@ -71,7 +72,7 @@ const LandingPage = () => {
         </div>
       </div>
       
-      <Header />
+      <Header bgColor="black" hideLogoInHeader={true} />
       
       <main className="flex-grow">
         <div className="w-full bg-black min-h-[calc(100vw*9/16)] relative">

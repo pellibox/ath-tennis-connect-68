@@ -1,3 +1,4 @@
+
 import { useState } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { ChevronLeft, Menu, X } from 'lucide-react';
@@ -15,9 +16,15 @@ import MobileMenu from './navigation/MobileMenu';
 
 interface HeaderProps {
   useVickiLogo?: boolean;
+  bgColor?: 'white' | 'black';
+  hideLogoInHeader?: boolean;
 }
 
-const Header = ({ useVickiLogo = false }: HeaderProps) => {
+const Header = ({ 
+  useVickiLogo = false, 
+  bgColor = 'white',
+  hideLogoInHeader = false
+}: HeaderProps) => {
   const location = useLocation();
   const navigate = useNavigate();
   const { t } = useLanguage();
@@ -35,8 +42,8 @@ const Header = ({ useVickiLogo = false }: HeaderProps) => {
   // Show back button only when not on homepage
   const showBackButton = location.pathname !== '/';
 
-  const headerBgClass = "bg-white";
-  const textColorClass = "text-black";
+  const headerBgClass = bgColor === 'black' ? "bg-black" : "bg-white";
+  const textColorClass = bgColor === 'black' ? "text-white" : "text-black";
   
   return (
     <>
@@ -50,36 +57,41 @@ const Header = ({ useVickiLogo = false }: HeaderProps) => {
         <div className="container mx-auto px-4 flex items-center justify-between relative">
           {/* Removed hamburger menu button for mobile */}
 
-          <div className={cn(
-            "flex items-center z-50", 
-            isMobile ? "w-auto mx-auto" : (showBackButton ? "pl-0" : "pl-0")
-          )}>
-            {showBackButton && !isMobile && (
-              <Button 
-                variant="ghost" 
-                size="icon" 
-                onClick={handleGoBack} 
-                className="mr-2" 
-                aria-label={t("nav.back")}
-              >
-                <ChevronLeft size={24} />
-              </Button>
-            )}
-            <Logo 
-              variant="default" 
-              onDarkBackground={false}
-              preserveUserProfile={true}
-              resetProfile={false}
-              useVickiLogo={useVickiLogo}
-              isInMenu={false}
-              isCentered={isMobile}
-              className={isMobile ? "" : "ml-0"}
-              useBlackLogoOnWhite={true}
-            />
-          </div>
+          {!hideLogoInHeader && (
+            <div className={cn(
+              "flex items-center z-50", 
+              isMobile ? "w-auto mx-auto" : (showBackButton ? "pl-0" : "pl-0")
+            )}>
+              {showBackButton && !isMobile && (
+                <Button 
+                  variant="ghost" 
+                  size="icon" 
+                  onClick={handleGoBack} 
+                  className="mr-2" 
+                  aria-label={t("nav.back")}
+                >
+                  <ChevronLeft size={24} className={textColorClass} />
+                </Button>
+              )}
+              <Logo 
+                variant="default" 
+                onDarkBackground={bgColor === 'black'}
+                preserveUserProfile={true}
+                resetProfile={false}
+                useVickiLogo={useVickiLogo}
+                isInMenu={false}
+                isCentered={isMobile}
+                className={isMobile ? "" : "ml-0"}
+                useBlackLogoOnWhite={bgColor !== 'black'}
+              />
+            </div>
+          )}
           
           {!isMobile && (
-            <div className="hidden lg:flex items-center ml-auto justify-center flex-1">
+            <div className={cn(
+              "hidden lg:flex items-center justify-center flex-1",
+              hideLogoInHeader ? "ml-0" : ""
+            )}>
               <NavigationLinks textColorClass={textColorClass} />
             </div>
           )}
