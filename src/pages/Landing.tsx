@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from 'react';
 import { useProfile } from '@/contexts/ProfileContext';
 import { getVimeoEmbed } from '@/utils/videoUtils';
@@ -117,11 +116,11 @@ const LandingPage = () => {
   };
 
   return (
-    <div className="flex flex-col min-h-screen bg-black overflow-auto">
+    <div className="flex flex-col min-h-screen relative bg-black">
       <EmptyHeader headerText="" />
       
       <main className="flex-grow">
-        <div className="w-full bg-black relative">
+        <div className="w-full bg-black min-h-[calc(100vw*9/16)] relative">
           <div className="absolute top-0 left-1/2 transform -translate-x-1/2 mt-5 z-30 pointer-events-none">
             <img 
               src="/lovable-uploads/a00875f9-6335-4f8b-81c4-029183b59eec.png" 
@@ -141,7 +140,7 @@ const LandingPage = () => {
             </div>
           )}
           
-          <div dangerouslySetInnerHTML={{ __html: vimeoEmbed }} className="w-full" />
+          <div dangerouslySetInnerHTML={{ __html: vimeoEmbed }} />
         </div>
         
         {isMobile && (
@@ -162,7 +161,7 @@ const LandingPage = () => {
           </div>
         )}
         
-        <div className="w-full bg-black py-16 relative">
+        <div className="w-full bg-black py-16 relative" style={{ height: 'auto', minHeight: '400px' }}>
           <div className="max-w-6xl mx-auto px-6 h-full flex flex-col justify-center py-8">
             {/* Content can be added here if needed */}
           </div>
