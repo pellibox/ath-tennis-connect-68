@@ -10,6 +10,68 @@ import EmptyHeader from '@/components/EmptyHeader';
 import EmptyFooter from '@/components/EmptyFooter';
 import { useNavigate } from 'react-router-dom';
 
+// Define mapping functions for translating user selections to Italian
+const getUserGenderText = (gender: string | null): string => {
+  switch (gender) {
+    case 'male':
+      return 'Uomo';
+    case 'female':
+      return 'Donna';
+    default:
+      return '';
+  }
+};
+
+const getUserTypeText = (type: string | null): string => {
+  switch (type) {
+    case 'junior':
+      return 'Junior';
+    case 'adult':
+      return 'Adulto';
+    case 'professional':
+      return 'Professionista';
+    case 'coach':
+      return 'Coach';
+    case 'parent':
+      return 'Genitore';
+    case 'performance':
+      return 'Performance';
+    case 'camps':
+      return 'Camps';
+    default:
+      return '';
+  }
+};
+
+const getSportText = (sport: string | null): string => {
+  switch (sport) {
+    case 'tennis':
+      return 'Tennis';
+    case 'padel':
+      return 'Padel';
+    case 'pickleball':
+      return 'Pickleball';
+    case 'touchtennis':
+      return 'TouchTennis';
+    default:
+      return '';
+  }
+};
+
+const getPersonalizedContentText = (gender: string | null, type: string | null, sport: string | null): string => {
+  const genderText = getUserGenderText(gender);
+  const typeText = getUserTypeText(type);
+  const sportText = getSportText(sport);
+  
+  const selections = [
+    genderText && genderText,
+    typeText && typeText,
+    sportText && sportText
+  ].filter(Boolean).join(', ');
+  
+  return `Contenuto personalizzato: ${selections} - Clicca su ENTRA IN ATH per continuare.`;
+};
+
 const LandingPage = () => {
   const { userGender, userType, sport, updateProfile, resetProfile, deleteProfile } = useProfile();
   const [dialogOpen, setDialogOpen] = useState(false);
@@ -63,7 +125,7 @@ const LandingPage = () => {
             
             {hasProfile && (
               <div className="mt-4 text-white bg-black bg-opacity-70 p-3 rounded-md text-center pointer-events-auto">
-                <p className="font-swiss">Video personalizzato. Clicca su ENTRA IN ATH per continuare.</p>
+                <p className="font-swiss">{getPersonalizedContentText(userGender, userType, sport)}</p>
               </div>
             )}
           </div>
@@ -94,7 +156,7 @@ const LandingPage = () => {
               
               {hasProfile && (
                 <div className="mt-4 text-white bg-black bg-opacity-70 p-3 rounded-md text-center">
-                  <p className="font-swiss">Video personalizzato. Clicca su ENTRA IN ATH per continuare.</p>
+                  <p className="font-swiss">{getPersonalizedContentText(userGender, userType, sport)}</p>
                 </div>
               )}
             </div>
