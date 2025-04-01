@@ -28,8 +28,8 @@ const LandingPage = () => {
   return (
     <div className="flex flex-col min-h-screen relative bg-black">
       <div className="fixed top-0 left-0 w-full h-screen flex items-center justify-center pointer-events-none z-40">
-        <div className="flex flex-col items-center w-full" style={{ transform: 'translateX(200px)' }}>
-          <div className="flex justify-center">
+        <div className="flex flex-col items-center w-full">
+          <div className="flex justify-center" style={{ transform: 'translateX(200px)' }}>
             <Logo 
               onDarkBackground={true}
               className={isMobile ? "w-[120px]" : "w-[320px]"}
@@ -38,7 +38,7 @@ const LandingPage = () => {
           </div>
           
           <div className="flex flex-col items-center w-full mt-[50px]">
-            <div className="flex flex-wrap justify-center gap-6">
+            <div className="flex flex-wrap justify-center gap-6" style={{ transform: 'translateX(200px)' }}>
               {!hasProfile && (
                 <ButtonLink 
                   href="#" 
@@ -60,7 +60,7 @@ const LandingPage = () => {
             </div>
             
             {hasProfile && (
-              <div className="mt-4 text-white bg-black bg-opacity-70 p-3 rounded-md text-center pointer-events-auto">
+              <div className="mt-4 text-white bg-black bg-opacity-70 p-3 rounded-md text-center pointer-events-auto" style={{ transform: 'translateX(200px)' }}>
                 <p className="font-swiss">Video personalizzato. Clicca su ENTRA IN ATH per continuare.</p>
               </div>
             )}
