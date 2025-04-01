@@ -1,5 +1,4 @@
-
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useProfile } from '@/contexts/ProfileContext';
 import { getVimeoEmbed } from '@/utils/videoUtils';
 import ProfileDialog from '@/components/profile/ProfileDialog';
@@ -18,19 +17,17 @@ const LandingPage = () => {
   
   const vimeoEmbed = getVimeoEmbed(userGender, userType, true, false, sport);
 
-  // Function to handle profile completion
   const handleProfileComplete = (gender: any, type: any, sportType: any) => {
     updateProfile(gender, type, sportType);
     setDialogOpen(false);
-    navigate('/home'); // Navigate to the home page after profile setup
   };
+
+  const hasProfile = Boolean(userGender && userType);
 
   return (
     <div className="flex flex-col min-h-screen relative bg-black">
-      {/* Centered logo container with fixed positioning */}
       <div className="fixed top-0 left-0 w-full h-screen flex items-center justify-center pointer-events-none z-40">
-        <div className="flex flex-col items-center" style={{ transform: 'translateX(-100px)' }}>
-          {/* Logo with proper sizing */}
+        <div className="flex flex-col items-center" style={{ transform: 'translateX(100px)' }}>
           <div className="flex justify-center">
             <Logo 
               onDarkBackground={true}
@@ -39,16 +36,17 @@ const LandingPage = () => {
             />
           </div>
           
-          {/* Buttons positioned 50px below the logo */}
-          <div className="flex flex-wrap justify-center gap-6 mt-[50px]">
-            <ButtonLink 
-              href="#" 
-              variant="athOutline"
-              onClick={() => setDialogOpen(true)}
-              className="text-lg px-8 py-2.5 rounded-md border border-ath-clay text-ath-clay hover:bg-ath-clay hover:text-white transition-all font-bold"
-            >
-              DICCI CHI SEI
-            </ButtonLink>
+          <div className={`flex flex-wrap ${hasProfile ? 'justify-center' : 'justify-center gap-6'} mt-[50px]`}>
+            {!hasProfile && (
+              <ButtonLink 
+                href="#" 
+                variant="athOutline"
+                onClick={() => setDialogOpen(true)}
+                className="text-lg px-8 py-2.5 rounded-md border border-ath-clay text-ath-clay hover:bg-ath-clay hover:text-white transition-all font-bold"
+              >
+                DICCI CHI SEI
+              </ButtonLink>
+            )}
             
             <ButtonLink 
               href="/home" 
@@ -58,6 +56,12 @@ const LandingPage = () => {
               ENTRA IN ATH
             </ButtonLink>
           </div>
+          
+          {hasProfile && (
+            <div className="mt-4 text-white bg-black bg-opacity-70 p-3 rounded-md text-center pointer-events-auto">
+              <p className="font-swiss">Video personalizzato. Clicca su ENTRA IN ATH per continuare.</p>
+            </div>
+          )}
         </div>
       </div>
       
@@ -68,7 +72,6 @@ const LandingPage = () => {
           <div dangerouslySetInnerHTML={{ __html: vimeoEmbed }} />
         </div>
         
-        {/* Empty space where buttons used to be */}
         <div className="w-full bg-black py-16 relative" style={{ height: 'auto', minHeight: '400px' }}>
           <div className="max-w-6xl mx-auto px-6 h-full flex flex-col justify-center py-8">
             {/* Content can be added here if needed */}
