@@ -117,15 +117,12 @@ const LandingPage = () => {
 
   return (
     <div className="flex flex-col min-h-screen relative bg-black">
-      {/* Remove the buttons at the bottom position for desktop */}
-      {/* We're keeping only the mobile version of these buttons */}
-      
       <EmptyHeader headerText={isMobile ? "IL FUTURO DEL TUO TENNIS INIZIA QUI." : ""} />
       
       <main className="flex-grow">
         <div className="w-full bg-black min-h-[calc(100vw*9/16)] relative">
           {!isMobile && (
-            <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-30 flex flex-col justify-center items-center pointer-events-none" style={{ marginTop: "0px" }}>
+            <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-30 flex flex-col justify-center items-center pointer-events-none">
               <img 
                 src="/lovable-uploads/a00875f9-6335-4f8b-81c4-029183b59eec.png" 
                 alt="ATH - Advanced Tennis Hub" 
