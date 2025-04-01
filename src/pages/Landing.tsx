@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from 'react';
 import { useProfile } from '@/contexts/ProfileContext';
 import { getVimeoEmbed } from '@/utils/videoUtils';
@@ -29,7 +28,7 @@ const LandingPage = () => {
     <div className="flex flex-col min-h-screen relative bg-black">
       <div className="fixed top-0 left-0 w-full h-screen flex items-center justify-center pointer-events-none z-40">
         <div className="flex flex-col items-center">
-          <div className="flex justify-center translate-x-[100px]">
+          <div className={`flex justify-center ${isMobile ? 'w-full' : ''}`}>
             <Logo 
               onDarkBackground={true}
               className={isMobile ? "w-[120px]" : "w-[320px]"}
