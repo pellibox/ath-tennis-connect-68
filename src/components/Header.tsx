@@ -11,6 +11,8 @@ import NavigationLinks from './navigation/NavigationLinks';
 import BottomNavigation from './navigation/BottomNavigation';
 import { Button } from './ui/button';
 import MobileMenu from './navigation/MobileMenu';
+import ProfileDialog from './profile/ProfileDialog';
+import { useProfile } from '@/contexts/ProfileContext';
 
 interface HeaderProps {
   useVickiLogo?: boolean;
@@ -29,8 +31,10 @@ const Header = ({
   const navigate = useNavigate();
   const { t } = useLanguage();
   const isMobile = useIsMobile();
+  const { userType, userGender, sport, updateProfile, resetProfile, deleteProfile } = useProfile();
   
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [profileDialogOpen, setProfileDialogOpen] = useState(false);
 
   const handleGoBack = () => {
     navigate(-1);
@@ -98,6 +102,18 @@ const Header = ({
           </div>
           
           <div className="flex items-center z-50 ml-auto lg:ml-0">
+            {!isMobile && (
+              <ProfileDialog 
+                open={profileDialogOpen}
+                setOpen={setProfileDialogOpen}
+                userGender={userGender}
+                userType={userType}
+                sport={sport}
+                updateProfile={updateProfile}
+                resetProfile={resetProfile}
+                deleteProfile={deleteProfile}
+              />
+            )}
             <div className={cn("hidden lg:block", textColorClass)}>
               <LanguageSwitcher />
             </div>

@@ -1,3 +1,4 @@
+
 import { UserGender, UserType } from '../UserTypeSelector';
 import UserTypeSelector from '../UserTypeSelector';
 import { User } from "lucide-react";
@@ -14,6 +15,7 @@ import ProfileIndicator from '../ProfileIndicator';
 import { toast } from "sonner";
 import { useLanguage } from '@/contexts/LanguageContext';
 import { useIsMobile } from '@/hooks/use-mobile';
+import { Button } from '@/components/ui/button';
 
 interface ProfileDialogProps {
   open: boolean;
@@ -75,10 +77,10 @@ const ProfileDialog = ({
                 onResetProfile={handleProfileReset}
               />
             ) : (
-              <button className="mr-4 text-sm px-3 py-1 rounded-md bg-ath-clay text-white font-swiss flex items-center gap-1">
+              <Button className="mr-4 text-sm px-3 py-1 rounded-md bg-ath-clay text-white font-swiss flex items-center gap-1">
                 <User size={16} />
                 <span>{t("profile.title")}</span>
-              </button>
+              </Button>
             )}
           </div>
         </DialogTrigger>
