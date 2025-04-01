@@ -23,9 +23,9 @@ const StandardHeroVideo = ({
     const handleScroll = () => {
       const scrollY = window.scrollY;
       
-      // Only fade out logo as user scrolls down, don't move it
-      const fadeThreshold = 100;
-      const fadeOutBy = 300;
+      // Fade out logo as user scrolls down, with faster fade effect
+      const fadeThreshold = 50; // Reduced from 100 for faster fade
+      const fadeOutBy = 200;    // Reduced from 300 for faster fade
       
       if (scrollY > fadeThreshold) {
         const opacity = Math.max(0, 1 - (scrollY - fadeThreshold) / (fadeOutBy - fadeThreshold));
@@ -49,23 +49,15 @@ const StandardHeroVideo = ({
         <div 
           className="fixed z-50 pointer-events-none transition-opacity duration-300 left-0 right-0 flex justify-center"
           style={{
-            top: isMobile ? '140px' : '180px', 
-            opacity: logoOpacity,
-            transform: isMobile ? 'translateX(20px)' : 'translateX(110px)'
+            top: isMobile ? '5px' : '5px', 
+            opacity: logoOpacity
           }}
         >
-          <div 
-            style={{
-              width: isMobile ? '120px' : '160px',
-            }}
-            className="flex justify-center w-full"
-          >
-            <Logo 
-              onDarkBackground={true} 
-              className="w-full h-auto"
-              isCentered={true}
-            />
-          </div>
+          <img 
+            src="/lovable-uploads/a00875f9-6335-4f8b-81c4-029183b59eec.png" 
+            alt="ATH - Advanced Tennis Hub" 
+            className={`object-contain ${isMobile ? 'w-[120px]' : 'w-[200px]'}`}
+          />
         </div>
       )}
       

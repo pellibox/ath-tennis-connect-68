@@ -22,16 +22,16 @@ const AboutPage = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }, []);
   
-  // Handle scroll effect for the logo - only fading, no movement
+  // Handle scroll effect for the logo - only fading, no movement, with faster fade
   useEffect(() => {
     const handleScroll = () => {
       // Get current scroll position
       const scrollY = window.scrollY;
       
       // Fade out logo as user scrolls down
-      // Start fading at 100px of scroll, completely fade out by 300px
-      const fadeThreshold = 100;
-      const fadeOutBy = 300;
+      // Start fading earlier and complete fade faster
+      const fadeThreshold = 50;  // Reduced from 100 for faster fade
+      const fadeOutBy = 200;     // Reduced from 300 for faster fade
       
       if (scrollY > fadeThreshold) {
         const opacity = Math.max(0, 1 - (scrollY - fadeThreshold) / (fadeOutBy - fadeThreshold));
@@ -62,27 +62,19 @@ const AboutPage = () => {
 
   return (
     <div className="flex flex-col min-h-screen relative">
-      {/* Centered logo with improved positioning for both mobile and desktop */}
+      {/* Centered logo with landing page style */}
       <div 
         className="fixed z-50 pointer-events-none transition-opacity duration-300 left-0 right-0 flex justify-center"
         style={{
-          top: isMobile ? '140px' : '180px', 
+          top: isMobile ? '5px' : '5px', 
           opacity: logoOpacity,
-          transform: 'translateX(10px)' // Added 10px horizontal offset
         }}
       >
-        <div 
-          style={{
-            width: isMobile ? '120px' : '160px',
-          }}
-          className="flex justify-center w-full" // Ensure full width for perfect centering
-        >
-          <Logo 
-            onDarkBackground={true}
-            className="w-full h-auto"
-            isCentered={true}
-          />
-        </div>
+        <img 
+          src="/lovable-uploads/a00875f9-6335-4f8b-81c4-029183b59eec.png" 
+          alt="ATH - Advanced Tennis Hub" 
+          className={`object-contain ${isMobile ? 'w-[120px]' : 'w-[200px]'}`}
+        />
       </div>
       
       <Header />
