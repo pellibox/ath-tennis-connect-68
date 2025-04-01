@@ -1,4 +1,3 @@
-
 import { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import Header from '@/components/Header';
@@ -150,12 +149,11 @@ const FacilitiesPage = () => {
     setHeroLogoOpacity(opacity);
   };
 
-  // Using directly embedded Vimeo code with specific video ID
   const facilitiesVimeoEmbed = `<div style="position:relative;padding-bottom:56.25%;height:0;overflow:hidden;width:100%;"><iframe src="https://player.vimeo.com/video/1068878064?h=2b90638be1&autoplay=1&loop=1&background=1&autopause=0&player_id=0&app_id=58479&controls=0" style="position:absolute;top:0;left:0;width:100%;height:100%;" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media" title="ATH Facilities Video"></iframe></div><script src="https://player.vimeo.com/api/player.js"></script>`;
 
   return (
     <div className="flex flex-col min-h-screen relative overflow-hidden">
-      <Header bgColor="white" hideLogoInHeader={false} headerLogoOpacity={heroLogoOpacity} />
+      <Header headerLogoOpacity={heroLogoOpacity} />
       
       <main className="flex-grow font-swiss relative">
         <StandardHeroVideo 

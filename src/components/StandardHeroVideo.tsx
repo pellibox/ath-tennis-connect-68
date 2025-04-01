@@ -57,29 +57,30 @@ const StandardHeroVideo = ({
         <div 
           className="absolute pointer-events-none transition-opacity duration-300 left-1/2 transform -translate-x-1/2 z-50"
           style={{
-            top: isMobile ? '80px' : '120px',
+            top: isMobile ? 'calc(56.25vw - 90px)' : '100px',
             opacity: logoOpacity
           }}
         >
           <img 
-            src="/lovable-uploads/0a250ed5-11e7-485c-a8f5-d41ebaa7083f.png" 
+            src="/lovable-uploads/a00875f9-6335-4f8b-81c4-029183b59eec.png" 
             alt="ATH - Advanced Tennis Hub" 
-            className={`object-contain ${isMobile ? 'w-[160px]' : 'w-[220px]'}`}
+            className={`object-contain ${isMobile ? 'w-[120px]' : 'w-[200px]'}`}
           />
         </div>
       )}
       
-      <div className="w-full bg-black relative overflow-hidden">
+      <div className="w-full bg-black min-h-[calc(100vw*9/16)] relative overflow-hidden">
         <div 
-          className="w-full h-full overflow-hidden"
+          className="w-full h-full" 
           style={{ 
-            position: 'relative',
-            paddingBottom: '56.25%'
+            position: 'relative', 
+            paddingBottom: '56.25%',
+            overflow: 'hidden'
           }}
         >
           <div 
             dangerouslySetInnerHTML={{ __html: vimeoEmbed }} 
-            className="absolute top-0 left-0 w-full h-full scale-110" // Scaled up to remove black borders
+            className="absolute top-0 left-0 w-full h-full"
           />
         </div>
       </div>
