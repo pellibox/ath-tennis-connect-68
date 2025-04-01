@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from 'react';
 import { useProfile } from '@/contexts/ProfileContext';
 import { getVimeoEmbed } from '@/utils/videoUtils';
@@ -39,8 +38,8 @@ const LandingPage = () => {
           </div>
           
           <div className="flex flex-col items-center w-full mt-[50px]">
-            {/* Button container with right offset */}
-            <div className="flex flex-wrap justify-center gap-6 pointer-events-auto" style={{ transform: 'translateX(200px)' }}>
+            {/* Button container with left offset */}
+            <div className="flex flex-wrap justify-center gap-6" style={{ transform: 'translateX(-400px)' }}>
               {!hasProfile && (
                 <ButtonLink 
                   href="#" 
@@ -62,7 +61,7 @@ const LandingPage = () => {
             </div>
             
             {hasProfile && (
-              <div className="mt-4 text-white bg-black bg-opacity-70 p-3 rounded-md text-center pointer-events-auto" style={{ transform: 'translateX(200px)' }}>
+              <div className="mt-4 text-white bg-black bg-opacity-70 p-3 rounded-md text-center" style={{ transform: 'translateX(-400px)' }}>
                 <p className="font-swiss">Video personalizzato. Clicca su ENTRA IN ATH per continuare.</p>
               </div>
             )}
