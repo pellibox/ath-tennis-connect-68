@@ -1,3 +1,4 @@
+
 import { useState, useEffect } from 'react';
 import { useProfile } from '@/contexts/ProfileContext';
 import { getVimeoEmbed } from '@/utils/videoUtils';
@@ -26,17 +27,11 @@ const LandingPage = () => {
 
   return (
     <div className="flex flex-col min-h-screen relative bg-black">
+      {/* Logo and buttons overlay */}
       <div className="fixed top-0 left-0 w-full h-screen flex items-center justify-center pointer-events-none z-40">
         <div className="flex flex-col items-center">
-          <div className={`flex justify-center ${isMobile ? 'w-full' : ''}`}>
-            <Logo 
-              onDarkBackground={true}
-              className={isMobile ? "w-[120px]" : "w-[320px]"}
-              isCentered={true}
-            />
-          </div>
-          
-          <div className={`flex flex-wrap ${hasProfile ? 'justify-center' : 'justify-center gap-6'} mt-[50px]`}>
+          {/* Buttons container */}
+          <div className="flex flex-wrap justify-center gap-6 mt-[50px]">
             {!hasProfile && (
               <ButtonLink 
                 href="#" 
@@ -69,6 +64,15 @@ const LandingPage = () => {
       
       <main className="flex-grow">
         <div className="w-full bg-black min-h-[calc(100vw*9/16)] relative">
+          {/* Logo positioned on top of video */}
+          <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-30 flex justify-center items-center pointer-events-none">
+            <Logo 
+              onDarkBackground={true}
+              className={isMobile ? "w-[120px]" : "w-[220px]"}
+              isCentered={true}
+            />
+          </div>
+          
           <div dangerouslySetInnerHTML={{ __html: vimeoEmbed }} />
         </div>
         
