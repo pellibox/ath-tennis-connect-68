@@ -112,18 +112,16 @@ const LandingPage = () => {
 
   return (
     <div className="flex flex-col min-h-screen relative bg-black">
-      {/* Only show fixed overlay buttons on desktop */}
       {!isMobile && (
         <div className="fixed top-0 left-0 w-full h-screen flex items-center justify-center pointer-events-none z-40">
           <div className="flex flex-col items-center">
-            {/* Buttons container */}
             <div className="mt-[50px]">
               {renderButtons()}
             </div>
             
             {hasProfile && (
               <div className="mt-4 text-white bg-black bg-opacity-70 p-3 rounded-md text-center pointer-events-auto">
-                <p className="font-swiss text-sm">{getPersonalizedContentText(userGender, userType, sport)}</p>
+                <p className="font-swiss text-xs truncate max-w-full">{getPersonalizedContentText(userGender, userType, sport)}</p>
               </div>
             )}
           </div>
@@ -134,7 +132,6 @@ const LandingPage = () => {
       
       <main className="flex-grow">
         <div className="w-full bg-black min-h-[calc(100vw*9/16)] relative">
-          {/* Logo positioned on top of video */}
           <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-30 flex justify-center items-center pointer-events-none">
             <Logo 
               onDarkBackground={true}
@@ -146,7 +143,6 @@ const LandingPage = () => {
           <div dangerouslySetInnerHTML={{ __html: vimeoEmbed }} />
         </div>
         
-        {/* Mobile buttons below video */}
         {isMobile && (
           <div className="w-full bg-black py-6 pointer-events-auto">
             <div className="container mx-auto px-4">
@@ -154,7 +150,7 @@ const LandingPage = () => {
               
               {hasProfile && (
                 <div className="mt-4 text-white bg-black bg-opacity-70 p-3 rounded-md text-center">
-                  <p className="font-swiss text-sm">{getPersonalizedContentText(userGender, userType, sport)}</p>
+                  <p className="font-swiss text-xs truncate max-w-full">{getPersonalizedContentText(userGender, userType, sport)}</p>
                 </div>
               )}
             </div>
