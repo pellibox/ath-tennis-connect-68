@@ -1,4 +1,3 @@
-
 import { useEffect, useState } from 'react';
 import { useProfile } from '@/contexts/ProfileContext';
 import { getVimeoEmbed } from '@/utils/videoUtils';
@@ -47,24 +46,19 @@ const LandingPage = () => {
 
   const vimeoEmbed = getVimeoEmbed(userGender, userType, true, false, sport);
 
-  // Adjust logo position - 25px higher than original
-  const logoTopPosition = isMobile ? '115px' : '155px';
-  // Double the logo size for desktop
-  const logoWidth = isMobile ? '120px' : '320px';
-
   return (
     <div className="flex flex-col min-h-screen relative bg-black">
       <div 
         className="fixed z-50 pointer-events-none transition-opacity duration-300 left-0 right-0 flex justify-center"
         style={{
-          top: logoTopPosition, 
+          top: isMobile ? '140px' : '180px', 
           opacity: logoOpacity,
           transform: 'translateX(10px)'
         }}
       >
         <div 
           style={{
-            width: logoWidth,
+            width: isMobile ? '120px' : '160px',
             transform: `translateY(-${logoYOffset}px)` 
           }}
           className="flex justify-center w-full"
@@ -87,14 +81,12 @@ const LandingPage = () => {
         <div className="w-full bg-black py-16 relative" style={{ height: 'auto', minHeight: '400px' }}>
           <div className="max-w-6xl mx-auto px-6 h-full flex flex-col justify-center py-8">
             <div className="flex flex-col items-center space-y-12">
-              {/* Text first (inverted position) */}
               <div className="max-w-3xl text-center">
                 <h2 className="text-white text-xl md:text-3xl font-swiss uppercase">
                   IL FUTURO DEL TUO TENNIS INIZIA QUI.
                 </h2>
               </div>
               
-              {/* Buttons second (inverted position) with reduced height */}
               <div className="flex flex-wrap justify-center gap-6">
                 <ButtonLink 
                   href="#" 
