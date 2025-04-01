@@ -4,6 +4,7 @@ import { Toaster } from "@/components/ui/sonner";
 import { LanguageProvider } from './contexts/LanguageContext';
 import { ProfileProvider } from './contexts/ProfileContext';
 import { useIsMobile } from './hooks/use-mobile';
+import LandingPage from '@/pages/Landing';
 import HomePage from '@/pages/Index';
 import ProgramsOverview from '@/pages/programs/Overview';
 import AboutPage from '@/pages/About';
@@ -69,7 +70,8 @@ function AppContent() {
   return (
     <div className={isMobile ? "pb-14" : ""}>
       <Routes>
-        <Route path="/" element={<HomePage />} />
+        <Route path="/" element={<LandingPage />} />
+        <Route path="/home" element={<HomePage />} />
         <Route path="/about" element={<AboutPage />} />
         <Route path="/method" element={<MethodPage />} />
         <Route path="/technology" element={<TechnologyPage />} />
