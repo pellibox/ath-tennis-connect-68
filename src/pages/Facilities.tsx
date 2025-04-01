@@ -9,6 +9,8 @@ import JoinRevolutionSection from '@/components/JoinRevolutionSection';
 import FacilitiesIntro from '@/components/facilities/FacilitiesIntro';
 import ServicesSection from '@/components/facilities/ServicesSection';
 import StandardHeroVideo from '@/components/StandardHeroVideo';
+import { useProfile } from '@/contexts/ProfileContext';
+import { getVimeoEmbed } from '@/utils/videoUtils';
 
 const facilities = [
   {
@@ -128,6 +130,7 @@ const facilities = [
 
 const FacilitiesPage = () => {
   const location = useLocation();
+  const { userGender, userType } = useProfile();
   const [heroLogoOpacity, setHeroLogoOpacity] = useState<number>(1);
   
   useEffect(() => {
@@ -148,7 +151,8 @@ const FacilitiesPage = () => {
     setHeroLogoOpacity(opacity);
   };
 
-  const facilitiesVimeoEmbed = `<div style="position:relative;padding-bottom:56.25%;height:0;overflow:hidden;width:100%;"><iframe src="https://player.vimeo.com/video/1068878064?h=2b90638be1&autoplay=1&loop=1&background=1&autopause=0&player_id=0&app_id=58479&controls=0" style="position:absolute;top:0;left:0;width:100%;height:100%;" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media" title="ATH Facilities Video"></iframe></div><script src="https://player.vimeo.com/api/player.js"></script>`;
+  // Get personalized video based on user profile
+  const vimeoEmbed = getVimeoEmbed(userGender, userType);
 
   return (
     <div className="flex flex-col min-h-screen relative overflow-hidden">
@@ -156,7 +160,7 @@ const FacilitiesPage = () => {
       
       <main className="flex-grow font-swiss relative">
         <StandardHeroVideo 
-          vimeoEmbed={facilitiesVimeoEmbed}
+          vimeoEmbed={vimeoEmbed}
           title="LE STRUTTURE:"
           subtitle="Impianti all'avanguardia di tennis, padel e pickleball dotati di tecnologia Vicki™"
           onLogoOpacityChange={handleLogoOpacityChange}

@@ -41,18 +41,15 @@ const Header = ({
   const headerBgClass = bgColor === 'black' ? "bg-black" : "bg-white";
   const textColorClass = bgColor === 'black' ? "text-white" : "text-black";
   
-  // Calculate logo opacity for header, ensuring it's always visible when not hidden
-  const logoOpacity = hideLogoInHeader ? headerLogoOpacity : 1;
-  
   return (
     <>
       <header 
         className={cn(
-          'fixed top-0 left-0 w-full z-[100] transition-all duration-300 shadow-sm', // Increased z-index to 100
+          'fixed top-0 left-0 w-full z-[100] transition-all duration-300 shadow-sm',
           headerBgClass,
           isMobile ? 'py-1' : 'py-3'
         )}
-        style={{ opacity: logoOpacity }}
+        style={{ opacity: headerLogoOpacity }}
       >
         <div className={cn(
           "container mx-auto px-4 flex items-center", 
