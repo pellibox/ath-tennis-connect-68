@@ -1,4 +1,3 @@
-
 import { useEffect } from 'react';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
@@ -21,7 +20,7 @@ const TechnologyPage = () => {
     return "Sistema di analisi con visione artificiale, AI e tracciamento 3D che analizza oltre 70 parametri in tempo reale";
   };
 
-  const technologyVideoEmbed = createStandardVimeoEmbed('1068785493', true, true, true);
+  const technologyVideoEmbed = createStandardVimeoEmbed('1068785493?h=fe90d50dae', true, true, true);
   const posterImage = "/lovable-uploads/8f2b30a1-cb65-453e-ba82-d9721a192426.png";
 
   return (
