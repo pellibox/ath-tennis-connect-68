@@ -20,7 +20,7 @@ const LandingPage = () => {
     <div className="flex flex-col min-h-screen relative bg-black">
       {/* Centered logo container with fixed positioning */}
       <div className="fixed top-0 left-0 w-full h-screen flex items-center justify-center pointer-events-none z-40">
-        <div className="flex flex-col items-center">
+        <div className="flex flex-col items-center translate-x-[100px]">
           {/* Logo with proper sizing */}
           <div className="flex justify-center">
             <Logo 
