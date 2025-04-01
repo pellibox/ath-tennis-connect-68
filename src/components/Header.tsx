@@ -9,7 +9,6 @@ import { useProfile } from '@/contexts/ProfileContext';
 import { useIsMobile } from '@/hooks/use-mobile';
 import NavigationLinks from './navigation/NavigationLinks';
 import BottomNavigation from './navigation/BottomNavigation';
-import ProfileDialog from './profile/ProfileDialog';
 import { Button } from './ui/button';
 import MobileMenu from './navigation/MobileMenu';
 
@@ -28,8 +27,6 @@ const Header = ({
   const navigate = useNavigate();
   const { t } = useLanguage();
   const isMobile = useIsMobile();
-  const { userGender, userType, sport, updateProfile, resetProfile, deleteProfile } = useProfile();
-  const [dialogOpen, setDialogOpen] = useState(false);
   
   // We're removing the hamburger menu toggle functionality
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -95,17 +92,7 @@ const Header = ({
           </div>
           
           <div className="flex items-center z-50 ml-auto lg:ml-0">
-            <ProfileDialog 
-              open={dialogOpen}
-              setOpen={setDialogOpen}
-              userGender={userGender}
-              userType={userType}
-              sport={sport}
-              updateProfile={updateProfile}
-              resetProfile={resetProfile}
-              deleteProfile={deleteProfile}
-              showTrigger={true}
-            />
+            {/* Removed ProfileDialog component from here */}
             
             <div className={cn("hidden lg:block", textColorClass)}>
               <LanguageSwitcher />

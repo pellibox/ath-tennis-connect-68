@@ -35,6 +35,18 @@ const BottomNavigation = () => {
            (href !== '/' && location.pathname.startsWith(href));
   };
 
+  // Get profile icon color based on gender
+  const getProfileIconColor = () => {
+    if (!userGender) return "text-gray-600";
+    return userGender === 'male' ? "text-blue-500" : "text-pink-500";
+  };
+
+  // Get profile background color based on gender
+  const getProfileBgColor = () => {
+    if (!userGender) return "";
+    return userGender === 'male' ? "bg-blue-100" : "bg-pink-100";
+  };
+
   return (
     <>
       {/* Make sure the dialog is properly shown when opened but hide the trigger */}
@@ -68,14 +80,22 @@ const BottomNavigation = () => {
             </Link>
           ))}
           
-          {/* Fixed profile button - making sure it's clickable */}
+          {/* Fixed profile button with gender-based styling */}
           <button
             onClick={() => setDialogOpen(true)}
-            className="flex flex-col items-center justify-center px-1 py-2 text-[10px] font-swiss text-gray-600"
+            className="flex flex-col items-center justify-center px-1 py-2 text-[10px] font-swiss"
             aria-label={t("profile.title")}
           >
-            <CgProfile size={20} />
-            <span className="mt-1">{t("profile.title")}</span>
+            <div className={cn(
+              "rounded-full p-1 flex items-center justify-center",
+              userGender ? getProfileBgColor() : ""
+            )}>
+              <CgProfile 
+                size={18} 
+                className={getProfileIconColor()} 
+              />
+            </div>
+            <span className="mt-1 text-gray-600">{t("profile.title")}</span>
           </button>
         </div>
       </div>
