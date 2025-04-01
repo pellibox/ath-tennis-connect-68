@@ -125,7 +125,7 @@ const LandingPage = () => {
             <img 
               src="/lovable-uploads/a00875f9-6335-4f8b-81c4-029183b59eec.png" 
               alt="ATH - Advanced Tennis Hub" 
-              className="w-[200px] object-contain"
+              className={`object-contain ${isMobile ? 'w-[100px]' : 'w-[200px]'}`}
             />
           </div>
           
@@ -146,7 +146,7 @@ const LandingPage = () => {
         {isMobile && (
           <div className="w-full bg-black py-6 pointer-events-auto">
             <div className="container mx-auto px-4">
-              <h2 className="text-white text-xl text-center font-swiss uppercase mb-4">
+              <h2 className="text-white text-base text-center font-swiss uppercase mb-4">
                 IL FUTURO DEL TUO TENNIS INIZIA QUI.
               </h2>
               {renderButtons()}
