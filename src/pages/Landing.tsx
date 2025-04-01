@@ -117,22 +117,20 @@ const LandingPage = () => {
 
   return (
     <div className="flex flex-col min-h-screen relative bg-black">
-      <EmptyHeader headerText={isMobile ? "IL FUTURO DEL TUO TENNIS INIZIA QUI." : ""} />
+      <EmptyHeader headerText="" />
       
       <main className="flex-grow">
         <div className="w-full bg-black min-h-[calc(100vw*9/16)] relative">
-          {!isMobile && (
-            <div className="absolute top-0 left-1/2 transform -translate-x-1/2 mt-5 z-30 pointer-events-none">
-              <img 
-                src="/lovable-uploads/a00875f9-6335-4f8b-81c4-029183b59eec.png" 
-                alt="ATH - Advanced Tennis Hub" 
-                className="w-[200px] object-contain"
-              />
-            </div>
-          )}
+          <div className="absolute top-0 left-1/2 transform -translate-x-1/2 mt-5 z-30 pointer-events-none">
+            <img 
+              src="/lovable-uploads/a00875f9-6335-4f8b-81c4-029183b59eec.png" 
+              alt="ATH - Advanced Tennis Hub" 
+              className="w-[200px] object-contain"
+            />
+          </div>
           
           {!isMobile && (
-            <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-30 flex flex-col justify-center items-center pointer-events-none">
+            <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-30 flex flex-col justify-center items-center pointer-events-none" style={{ marginTop: "20px" }}>
               <h2 className="text-white text-xl mt-4 font-swiss uppercase">
                 IL FUTURO DEL TUO TENNIS INIZIA QUI.
               </h2>
@@ -148,6 +146,9 @@ const LandingPage = () => {
         {isMobile && (
           <div className="w-full bg-black py-6 pointer-events-auto">
             <div className="container mx-auto px-4">
+              <h2 className="text-white text-xl text-center font-swiss uppercase mb-4">
+                IL FUTURO DEL TUO TENNIS INIZIA QUI.
+              </h2>
               {renderButtons()}
               
               {hasProfile && (
