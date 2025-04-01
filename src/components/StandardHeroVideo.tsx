@@ -17,17 +17,13 @@ const StandardHeroVideo = ({
   showLogo = true 
 }: StandardHeroVideoProps) => {
   const isMobile = useIsMobile();
-  const [logoYOffset, setLogoYOffset] = useState<number>(0);
   const [logoOpacity, setLogoOpacity] = useState<number>(1);
   
   useEffect(() => {
     const handleScroll = () => {
       const scrollY = window.scrollY;
       
-      // Apply parallax effect to logo
-      setLogoYOffset(scrollY * 0.2);
-      
-      // Fade out logo as user scrolls down
+      // Only fade out logo as user scrolls down, don't move it
       const fadeThreshold = 100;
       const fadeOutBy = 300;
       
@@ -61,7 +57,6 @@ const StandardHeroVideo = ({
           <div 
             style={{
               width: isMobile ? '120px' : '160px',
-              transform: `translateY(-${logoYOffset}px)`
             }}
             className="flex justify-center w-full"
           >

@@ -1,4 +1,3 @@
-
 import { useEffect, useState } from 'react';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
@@ -16,7 +15,6 @@ import { getVimeoEmbed } from '@/utils/videoUtils';
 const AboutPage = () => {
   const { t } = useLanguage();
   const { userGender, userType } = useProfile();
-  const [logoYOffset, setLogoYOffset] = useState<number>(0);
   const [logoOpacity, setLogoOpacity] = useState<number>(1);
   const isMobile = useIsMobile();
   
@@ -24,14 +22,11 @@ const AboutPage = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }, []);
   
-  // Handle scroll effect for the logo
+  // Handle scroll effect for the logo - only fading, no movement
   useEffect(() => {
     const handleScroll = () => {
       // Get current scroll position
       const scrollY = window.scrollY;
-      
-      // Calculate offset to move the logo up as user scrolls down
-      setLogoYOffset(scrollY * 0.2); // Adjust the multiplier to control the speed
       
       // Fade out logo as user scrolls down
       // Start fading at 100px of scroll, completely fade out by 300px
@@ -79,7 +74,6 @@ const AboutPage = () => {
         <div 
           style={{
             width: isMobile ? '120px' : '160px',
-            transform: `translateY(-${logoYOffset}px)` 
           }}
           className="flex justify-center w-full" // Ensure full width for perfect centering
         >
