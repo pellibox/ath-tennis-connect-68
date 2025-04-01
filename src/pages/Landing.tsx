@@ -117,27 +117,32 @@ const LandingPage = () => {
 
   return (
     <div className="flex flex-col min-h-screen relative bg-black">
-      {!isMobile && (
-        <div className="absolute bottom-12 left-0 w-full flex items-center justify-center z-40 pointer-events-auto" 
-             style={{ transform: 'translateY(-450px)' }}>
+      <EmptyHeader headerText="IL FUTURO DEL TUO TENNIS INIZIA QUI." />
+      
+      <main className="flex-grow">
+        <div className="w-full flex justify-center my-8">
+          <img 
+            src="/lovable-uploads/ffe85c8f-b2b8-46c9-87c9-1029bf828f14.png" 
+            alt="ATH - Advanced Tennis Hub" 
+            className={isMobile ? "w-[200px]" : "w-[300px]"}
+          />
+        </div>
+        
+        <div className="w-full flex justify-center mb-8">
           <div className="flex flex-col items-center">
             <div>
               {renderButtons()}
             </div>
             
             {hasProfile && (
-              <div className="mt-4 text-white bg-black bg-opacity-70 p-3 rounded-md text-center pointer-events-auto">
+              <div className="mt-4 text-white bg-black bg-opacity-70 p-3 rounded-md text-center">
                 <p className="font-swiss text-[10px] truncate max-w-full">{personalizedContent.first}</p>
                 <p className="font-swiss text-[10px] truncate max-w-full">{personalizedContent.second}</p>
               </div>
             )}
           </div>
         </div>
-      )}
-      
-      <EmptyHeader headerText="IL FUTURO DEL TUO TENNIS INIZIA QUI." />
-      
-      <main className="flex-grow">
+        
         <div className="w-full bg-black min-h-[calc(100vw*9/16)] relative">
           <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-30 flex justify-center items-center pointer-events-none">
             <Logo 
@@ -149,21 +154,6 @@ const LandingPage = () => {
           
           <div dangerouslySetInnerHTML={{ __html: vimeoEmbed }} />
         </div>
-        
-        {isMobile && (
-          <div className="w-full bg-black py-6 pointer-events-auto">
-            <div className="container mx-auto px-4">
-              {renderButtons()}
-              
-              {hasProfile && (
-                <div className="mt-4 text-white bg-black bg-opacity-70 p-3 rounded-md text-center">
-                  <p className="font-swiss text-[10px] truncate max-w-full">{personalizedContent.first}</p>
-                  <p className="font-swiss text-[10px] truncate max-w-full">{personalizedContent.second}</p>
-                </div>
-              )}
-            </div>
-          </div>
-        )}
         
         <div className="w-full bg-black py-16 relative" style={{ height: 'auto', minHeight: '400px' }}>
           <div className="max-w-6xl mx-auto px-6 h-full flex flex-col justify-center py-8">
