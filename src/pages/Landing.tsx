@@ -1,3 +1,4 @@
+
 import { useState, useEffect } from 'react';
 import { useProfile } from '@/contexts/ProfileContext';
 import { getVimeoEmbed } from '@/utils/videoUtils';
@@ -118,9 +119,9 @@ const LandingPage = () => {
   return (
     <div className="flex flex-col min-h-screen relative bg-black">
       {!isMobile && (
-        <div className="fixed top-0 left-0 w-full h-screen flex items-center justify-center pointer-events-none z-40">
+        <div className="absolute bottom-12 left-0 w-full flex items-center justify-center z-40 pointer-events-auto">
           <div className="flex flex-col items-center">
-            <div className="mt-[50px]">
+            <div>
               {renderButtons()}
             </div>
             

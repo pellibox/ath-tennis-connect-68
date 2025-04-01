@@ -55,7 +55,7 @@ const StandardHeroVideo = ({
           style={{
             top: isMobile ? '140px' : '180px', 
             opacity: logoOpacity,
-            transform: isMobile ? 'translateX(20px)' : 'translateX(10px)'
+            transform: isMobile ? 'translateX(20px)' : 'translateX(110px)'
           }}
         >
           <div 
@@ -111,4 +111,3 @@ const StandardHeroVideo = ({
 };
 
 export default StandardHeroVideo;
-
