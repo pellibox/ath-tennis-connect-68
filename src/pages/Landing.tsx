@@ -91,37 +91,35 @@ const LandingPage = () => {
           <div dangerouslySetInnerHTML={{ __html: vimeoEmbed }} />
         </div>
         
-        {/* Black frame with claim */}
-        <div className="w-full bg-black py-16">
-          <div className="max-w-3xl mx-auto text-center">
-            <h2 className="text-white text-xl md:text-3xl font-swiss uppercase mb-2">
-              IL FUTURO DEL TUO TENNIS INIZIA QUI.
-            </h2>
-          </div>
-        </div>
-        
-        {/* Profile and Enter buttons */}
-        <div className="bg-gradient-to-r from-ath-clay/5 to-white py-24 px-6">
+        {/* Profile and Enter buttons first, then the claim */}
+        <div className="bg-black py-16 px-6">
           <div className="max-w-2xl mx-auto text-center space-y-12">
-            <div className="flex flex-col items-center space-y-4">
-              <button
-                onClick={() => setDialogOpen(true)}
-                className="text-lg px-6 py-3 rounded-md bg-ath-clay text-white font-swiss flex items-center gap-2 hover:bg-opacity-90 transition-all"
-              >
-                <span>Profilo</span>
-              </button>
-              <p className="text-gray-600">Dicci chi sei</p>
+            <div className="flex flex-col md:flex-row items-center justify-center gap-6">
+              <div className="flex flex-col items-center">
+                <button
+                  onClick={() => setDialogOpen(true)}
+                  className="text-lg px-6 py-3 rounded-md bg-ath-clay text-white font-swiss hover:bg-opacity-90 transition-all min-w-[180px]"
+                >
+                  DICCI CHI SEI
+                </button>
+              </div>
+              
+              <div>
+                <ButtonLink 
+                  href="/about" 
+                  variant="primary" 
+                  size="lg"
+                  className="min-w-[180px]"
+                >
+                  ENTRA IN ATH
+                </ButtonLink>
+              </div>
             </div>
             
-            <div>
-              <ButtonLink 
-                href="/about" 
-                variant="primary" 
-                size="lg"
-                className="min-w-[180px]"
-              >
-                Entra in ATH
-              </ButtonLink>
+            <div className="max-w-3xl mx-auto text-center">
+              <h2 className="text-white text-xl md:text-3xl font-swiss uppercase mb-2">
+                IL FUTURO DEL TUO TENNIS INIZIA QUI.
+              </h2>
             </div>
           </div>
         </div>
