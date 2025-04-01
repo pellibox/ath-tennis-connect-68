@@ -41,6 +41,9 @@ const Header = ({
   const headerBgClass = bgColor === 'black' ? "bg-black" : "bg-white";
   const textColorClass = bgColor === 'black' ? "text-white" : "text-black";
   
+  // Calculate logo opacity for header, ensuring it's always visible when not hidden
+  const logoOpacity = hideLogoInHeader ? headerLogoOpacity : 1;
+  
   return (
     <>
       <header 
@@ -49,7 +52,7 @@ const Header = ({
           headerBgClass,
           isMobile ? 'py-1' : 'py-3'
         )}
-        style={{ opacity: headerLogoOpacity }}
+        style={{ opacity: logoOpacity }}
       >
         <div className={cn(
           "container mx-auto px-4 flex items-center", 
