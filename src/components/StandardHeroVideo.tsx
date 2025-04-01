@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { useIsMobile } from '@/hooks/use-mobile';
 import Logo from '@/components/Logo';
@@ -25,15 +24,13 @@ const StandardHeroVideo = ({
     const handleScroll = () => {
       const scrollY = window.scrollY;
       
-      // Fade out logo as user scrolls down, with faster fade effect
-      const fadeThreshold = 50; // Reduced from 100 for faster fade
-      const fadeOutBy = 200;    // Reduced from 300 for faster fade
+      const fadeThreshold = 50;
+      const fadeOutBy = 200;
       
       if (scrollY > fadeThreshold) {
         const opacity = Math.max(0, 1 - (scrollY - fadeThreshold) / (fadeOutBy - fadeThreshold));
         setLogoOpacity(opacity);
         
-        // Notify parent component about opacity change if callback is provided
         if (onLogoOpacityChange) {
           onLogoOpacityChange(opacity);
         }
@@ -46,7 +43,7 @@ const StandardHeroVideo = ({
     };
 
     window.addEventListener('scroll', handleScroll);
-    handleScroll(); // Initialize values
+    handleScroll();
     
     return () => {
       window.removeEventListener('scroll', handleScroll);
@@ -59,7 +56,7 @@ const StandardHeroVideo = ({
         <div 
           className="absolute pointer-events-none transition-opacity duration-300 left-1/2 transform -translate-x-1/2 z-50"
           style={{
-            top: isMobile ? 'calc(56.25vw - 10px)' : '100px', // Modified to lower logo by 10px in mobile mode
+            top: isMobile ? 'calc(56.25vw - 40px)' : '100px',
             opacity: logoOpacity
           }}
         >
@@ -76,7 +73,7 @@ const StandardHeroVideo = ({
           className="w-full h-full" 
           style={{ 
             position: 'relative', 
-            paddingBottom: '56.25%', /* 16:9 Aspect Ratio */
+            paddingBottom: '56.25%',
             overflow: 'hidden'
           }}
         >
