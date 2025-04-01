@@ -57,12 +57,10 @@ const StandardHeroVideo = ({
     <>
       {showLogo && (
         <div 
-          className="absolute pointer-events-none transition-opacity duration-300 left-1/2"
+          className="absolute pointer-events-none transition-opacity duration-300 left-1/2 transform -translate-x-1/2 z-50"
           style={{
-            top: isMobile ? '50%' : '100px',
-            transform: isMobile ? 'translate(-50%, -50%)' : 'translateX(-50%)',
-            opacity: logoOpacity,
-            zIndex: 999 // Significantly increased z-index to ensure visibility
+            top: isMobile ? 'calc(56.25vw + 20px)' : '100px', // Position below video container in mobile mode
+            opacity: logoOpacity
           }}
         >
           <img 
@@ -85,10 +83,6 @@ const StandardHeroVideo = ({
           <div 
             dangerouslySetInnerHTML={{ __html: vimeoEmbed }} 
             className="absolute top-0 left-0 w-full h-full"
-            style={{ 
-              position: 'relative', 
-              zIndex: 1 // Ensure this is lower than the logo's z-index
-            }}
           />
         </div>
       </div>
