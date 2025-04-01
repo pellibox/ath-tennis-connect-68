@@ -2,7 +2,7 @@
 import React from 'react';
 import Hero from '@/components/Hero';
 import VickiUnifiedBadge from '@/components/VickiUnifiedBadge';
-import StandardHeroVideo from '@/components/StandardHeroVideo';
+import { createStandardVimeoEmbed } from '@/utils/videoUtils';
 
 const PrivateProgramHeader = () => {
   return (
@@ -11,7 +11,7 @@ const PrivateProgramHeader = () => {
         title="Private Personal Coaching (13+ anni)"
         subtitle="Lezioni private con maestro e sparring per un'attenzione dedicata e un progresso accelerato"
         imageSrc="https://images.unsplash.com/photo-1588453251771-cd919ff14bee?q=80&w=2070&auto=format&fit=crop"
-        vimeoEmbed='<iframe src="https://player.vimeo.com/video/1068788542?h=698f55b033&autoplay=1&loop=1&background=1&autopause=0&player_id=0&app_id=58479&controls=0" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media" style="position:absolute;top:0;left:0;width:100%;height:100%;" title="Private Lessons"></iframe><script src="https://player.vimeo.com/api/player.js"></script>'
+        vimeoEmbed={createStandardVimeoEmbed('1071002692?h=a2668fa56d')}
         buttons={[
           { text: 'PRENOTA UNA PROVA', href: '/contact' },
           { text: 'CONTATTACI', href: '/contact', variant: 'outline' }

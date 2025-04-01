@@ -1,5 +1,6 @@
 
 import { Program } from './types';
+import { createStandardVimeoEmbed } from '@/utils/videoUtils';
 
 export const elitePrograms: Program[] = [
   {
@@ -7,7 +8,7 @@ export const elitePrograms: Program[] = [
     title: 'Elite Performance Full',
     description: 'Programma completo e immersivo per atleti con aspirazioni professionali.',
     image: '/lovable-uploads/ef64c04d-055d-4d70-87f4-e67928a3b8e6.png',
-    vimeoEmbed: '<div style="padding:56.25% 0 0 0;position:relative;"><iframe src="https://player.vimeo.com/video/1071002692/a2668fa56d?h=698f55b033&autoplay=1&loop=1&background=1&autopause=0&player_id=0&app_id=58479&controls=0" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen style="position:absolute;top:0;left:0;width:100%;height:100%;"></iframe></div>',
+    vimeoEmbed: createStandardVimeoEmbed('1071002692?h=a2668fa56d', true, true, true),
     link: '/programs/elite-full',
     features: [
       'Eccellenza Tecnica: Analisi biomeccanica dettagliata e feedback immediato',
@@ -25,7 +26,7 @@ export const elitePrograms: Program[] = [
     title: 'Elite Performance',
     description: 'Programma avanzato per atleti agonisti con obiettivi competitivi di alto livello.',
     image: '/lovable-uploads/ef64c04d-055d-4d70-87f4-e67928a3b8e6.png',
-    vimeoEmbed: '<div style="padding:56.25% 0 0 0;position:relative;"><iframe src="https://player.vimeo.com/video/1071002692/a2668fa56d?h=698f55b033&autoplay=1&loop=1&background=1&autopause=0&player_id=0&app_id=58479&controls=0" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen style="position:absolute;top:0;left:0;width:100%;height:100%;"></iframe></div>',
+    vimeoEmbed: createStandardVimeoEmbed('1071002692?h=a2668fa56d', true, true, true),
     link: '/programs/elite-performance',
     features: [
       'Eccellenza Tecnica: Analisi biomeccanica dettagliata di ogni colpo',
@@ -42,7 +43,7 @@ export const elitePrograms: Program[] = [
     title: 'Performance 2, 3 & 4 (11+ anni)',
     description: 'Programmi completi per giovani atleti dai 11 anni in su che vogliono sviluppare un percorso agonistico strutturato, con opzioni da 2 a 4 giorni settimanali, supportati dalla tecnologia VICKI™ per un allenamento personalizzato e mirato.',
     image: '/lovable-uploads/ef64c04d-055d-4d70-87f4-e67928a3b8e6.png',
-    vimeoEmbed: '<div style="padding:56.25% 0 0 0;position:relative;"><iframe src="https://player.vimeo.com/video/1071002692/a2668fa56d?h=222acb69b2&autoplay=1&loop=1&title=0&byline=0&portrait=0&controls=0" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen style="position:absolute;top:0;left:0;width:100%;height:100%;"></iframe></div>',
+    vimeoEmbed: createStandardVimeoEmbed('1071002692?h=a2668fa56d', true, true, true),
     link: '/programs/performance-2',
     features: [
       'Percorsi flessibili: 2, 3 o 4 giorni settimanali di allenamento',

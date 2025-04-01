@@ -8,7 +8,7 @@ export const touchTennisPrograms: Program[] = [
     title: 'TouchTennis Base',
     description: 'Programma introduttivo al TouchTennis, ideale per principianti e per chi vuole scoprire questo sport dinamico e divertente.',
     image: '/lovable-uploads/ef64c04d-055d-4d70-87f4-e67928a3b8e6.png',
-    vimeoEmbed: createStandardVimeoEmbed('1071002692/a2668fa56d', true, true, true), 
+    vimeoEmbed: createStandardVimeoEmbed('1071002692?h=a2668fa56d', true, true, true), 
     link: '/programs/touchtennis-base',
     features: [
       'Introduzione ai fondamentali del TouchTennis',
@@ -25,7 +25,7 @@ export const touchTennisPrograms: Program[] = [
     title: 'TouchTennis Avanzato',
     description: 'Programma per giocatori con esperienza nel TouchTennis che vogliono migliorare le proprie abilità tecniche e tattiche.',
     image: '/lovable-uploads/ef64c04d-055d-4d70-87f4-e67928a3b8e6.png',
-    vimeoEmbed: createStandardVimeoEmbed('1071002692/a2668fa56d', true, true, true),
+    vimeoEmbed: createStandardVimeoEmbed('1071002692?h=a2668fa56d', true, true, true),
     link: '/programs/touchtennis-avanzato',
     features: [
       'Allenamento tecnico avanzato',
@@ -42,7 +42,7 @@ export const touchTennisPrograms: Program[] = [
     title: 'TouchTennis Junior (8-14 anni)',
     description: 'Programma specifico per giovani atleti che vogliono approcciarsi al TouchTennis in modo divertente e strutturato.',
     image: '/lovable-uploads/ef64c04d-055d-4d70-87f4-e67928a3b8e6.png',
-    vimeoEmbed: createStandardVimeoEmbed('1071002692/a2668fa56d', true, true, true),
+    vimeoEmbed: createStandardVimeoEmbed('1071002692?h=a2668fa56d', true, true, true),
     link: '/programs/touchtennis-junior',
     features: [
       'Metodologia adattata per giovani atleti',

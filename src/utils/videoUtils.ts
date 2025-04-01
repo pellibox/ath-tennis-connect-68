@@ -1,3 +1,4 @@
+
 import { UserGender, UserType } from '@/components/UserTypeSelector';
 import { SportType } from '@/contexts/ProfileContext';
 
@@ -50,15 +51,15 @@ export const createStandardVimeoEmbed = (
   controls: boolean = false
 ): string => {
   // Safety check: if videoId is invalid, use a known working fallback
-  const FALLBACK_VIDEO_ID = '1071002692/a2668fa56d';
+  const FALLBACK_VIDEO_ID = '1071002692?h=a2668fa56d';
   
   // Validate videoId - must be numeric and at least 7 digits, or include a valid format with a hash
-  const cleanVideoId = videoId && (/^\d{7,}$/.test(videoId.trim()) || videoId.includes('/')) 
+  const cleanVideoId = videoId && (/^\d{7,}$/.test(videoId.trim()) || videoId.includes('/') || videoId.includes('?h=')) 
     ? videoId.trim() 
     : FALLBACK_VIDEO_ID;
   
-  // Use a standardized, consistent embed format that works reliably
-  return `<div style="padding:56.25% 0 0 0;position:relative;"><iframe src="https://player.vimeo.com/video/${cleanVideoId}?autoplay=${autoplay ? '1' : '0'}&loop=${loop ? '1' : '0'}&background=${background ? '1' : '0'}&controls=${controls ? '1' : '0'}&autopause=0&player_id=0&app_id=58479" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media" style="position:absolute;top:0;left:0;width:100%;height:100%;" title="ATH Video"></iframe></div>`;
+  // Use the provided embed code format
+  return `<div style="padding:56.25% 0 0 0;position:relative;"><iframe src="https://player.vimeo.com/video/${cleanVideoId}${cleanVideoId.includes('?') ? '&' : '?'}badge=0&autoplay=${autoplay ? '1' : '0'}&loop=${loop ? '1' : '0'}&background=${background ? '1' : '0'}&controls=${controls ? '1' : '0'}&autopause=0&player_id=0&app_id=58479" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media" style="position:absolute;top:0;left:0;width:100%;height:100%;" title="ATH Video"></iframe></div>`;
 };
 
 /**
@@ -67,9 +68,9 @@ export const createStandardVimeoEmbed = (
 export const getVimeoThumbnailUrl = (videoId: string | null): string => {
   if (!videoId) return '/lovable-uploads/6ea13aa7-2578-488b-8ed4-4b17fc2ddc4e.png';
   
-  // If videoId contains a slash, extract just the numeric part for the thumbnail
-  if (videoId.includes('/')) {
-    videoId = videoId.split('/')[0];
+  // If videoId contains a slash or question mark, extract just the numeric part for the thumbnail
+  if (videoId.includes('/') || videoId.includes('?h=')) {
+    videoId = videoId.split(/[\/\?]/)[0];
   }
   
   return `https://vumbnail.com/${videoId}.jpg`;
@@ -80,7 +81,7 @@ export const getVimeoThumbnailUrl = (videoId: string | null): string => {
  */
 export const getVimeoEmbed = (userGender: UserGender | null, userType: UserType | null, useBackground: boolean = true, forTechnologyPage: boolean = false, sport: SportType = 'tennis'): string => {
   // Use the new default video ID as fallback
-  const FALLBACK_VIDEO_ID = '1071002692/a2668fa56d';
+  const FALLBACK_VIDEO_ID = '1071002692?h=a2668fa56d';
   
   // Technology page video override
   if (forTechnologyPage) {
