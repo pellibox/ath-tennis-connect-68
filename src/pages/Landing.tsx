@@ -1,13 +1,13 @@
 
 import { useEffect, useState } from 'react';
-import Header from '@/components/Header';
-import Footer from '@/components/Footer';
 import { useProfile } from '@/contexts/ProfileContext';
 import { getVimeoEmbed } from '@/utils/videoUtils';
 import ProfileDialog from '@/components/profile/ProfileDialog';
 import ButtonLink from '@/components/ButtonLink';
 import { useIsMobile } from '@/hooks/use-mobile';
 import Logo from '@/components/Logo';
+import EmptyHeader from '@/components/EmptyHeader';
+import EmptyFooter from '@/components/EmptyFooter';
 
 const LandingPage = () => {
   const { userGender, userType, sport, updateProfile, resetProfile, deleteProfile } = useProfile();
@@ -47,19 +47,24 @@ const LandingPage = () => {
 
   const vimeoEmbed = getVimeoEmbed(userGender, userType, true, false, sport);
 
+  // Adjust logo position - 25px higher than original
+  const logoTopPosition = isMobile ? '115px' : '155px';
+  // Double the logo size for desktop
+  const logoWidth = isMobile ? '120px' : '320px';
+
   return (
     <div className="flex flex-col min-h-screen relative bg-black">
       <div 
         className="fixed z-50 pointer-events-none transition-opacity duration-300 left-0 right-0 flex justify-center"
         style={{
-          top: isMobile ? '140px' : '180px', 
+          top: logoTopPosition, 
           opacity: logoOpacity,
           transform: 'translateX(10px)'
         }}
       >
         <div 
           style={{
-            width: isMobile ? '120px' : '160px',
+            width: logoWidth,
             transform: `translateY(-${logoYOffset}px)` 
           }}
           className="flex justify-center w-full"
@@ -72,7 +77,7 @@ const LandingPage = () => {
         </div>
       </div>
       
-      <Header bgColor="black" hideLogoInHeader={true} />
+      <EmptyHeader />
       
       <main className="flex-grow">
         <div className="w-full bg-black min-h-[calc(100vw*9/16)] relative">
@@ -113,7 +118,7 @@ const LandingPage = () => {
         </div>
       </main>
       
-      <Footer />
+      <EmptyFooter />
       
       <ProfileDialog 
         open={dialogOpen}
