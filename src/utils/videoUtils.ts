@@ -1,4 +1,3 @@
-
 import { UserGender, UserType } from '@/components/UserTypeSelector';
 import { SportType } from '@/contexts/ProfileContext';
 
@@ -135,4 +134,78 @@ export const getPersonalizedMethodDescription = (userType: UserType | null): str
     default:
       return "Il Metodo ATH è un sistema integrato che unisce tecnologia avanzata e coaching esperto";
   }
+};
+
+export const extractVimeoId = (embedCode: string): string | null => {
+  const match = embedCode.match(/video\/(\d+)\?/);
+  return match ? match[1] : null;
+};
+
+export const getAllPossibleVideoIds = (): string[] => {
+  const videoIds = new Set<string>();
+  
+  // Main videos
+  const mainVideo = getVimeoEmbed(null, null);
+  const mainVideoId = extractVimeoId(mainVideo);
+  if (mainVideoId) videoIds.add(mainVideoId);
+  
+  // Technology page video
+  const techVideo = getVimeoEmbed(null, null, true, true);
+  const techVideoId = extractVimeoId(techVideo);
+  if (techVideoId) videoIds.add(techVideoId);
+  
+  // Tennis videos for different genders and user types
+  const userGenders: UserGender[] = ['male', 'female'];
+  const userTypes: UserType[] = ['junior', 'performance', 'professional', 'coach', 'parent', 'adult', 'camps'];
+  
+  // Tennis videos
+  userGenders.forEach(gender => {
+    userTypes.forEach(type => {
+      const video = getVimeoEmbed(gender, type, true, false, 'tennis');
+      const videoId = extractVimeoId(video);
+      if (videoId) videoIds.add(videoId);
+    });
+  });
+  
+  // Padel videos
+  userGenders.forEach(gender => {
+    const video = getVimeoEmbed(gender, null, true, false, 'padel');
+    const videoId = extractVimeoId(video);
+    if (videoId) videoIds.add(videoId);
+  });
+  
+  return Array.from(videoIds);
+};
+
+export const preloadVimeoVideos = (): void => {
+  console.log('Starting video preloading...');
+  const videoIds = getAllPossibleVideoIds();
+  
+  // Create a container div for preload iframes that's off-screen
+  const preloadContainer = document.createElement('div');
+  preloadContainer.style.position = 'absolute';
+  preloadContainer.style.width = '0px';
+  preloadContainer.style.height = '0px';
+  preloadContainer.style.overflow = 'hidden';
+  preloadContainer.style.opacity = '0';
+  preloadContainer.style.pointerEvents = 'none';
+  preloadContainer.id = 'vimeo-preload-container';
+  document.body.appendChild(preloadContainer);
+  
+  // Add iframes for each video ID
+  videoIds.forEach((id, index) => {
+    // Stagger the preloading to avoid overwhelming the browser
+    setTimeout(() => {
+      const iframe = document.createElement('iframe');
+      iframe.src = `https://player.vimeo.com/video/${id}?background=1&autopause=0&player_id=0&app_id=58479&controls=0&preload=true`;
+      iframe.style.width = '10px';
+      iframe.style.height = '10px';
+      iframe.allow = 'autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media';
+      iframe.title = `Preload ${id}`;
+      preloadContainer.appendChild(iframe);
+      console.log(`Preloading video ID: ${id}`);
+    }, index * 150); // Stagger each video load by 150ms
+  });
+  
+  console.log(`Started preloading ${videoIds.length} videos`);
 };

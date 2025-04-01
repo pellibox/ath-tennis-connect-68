@@ -1,5 +1,5 @@
 
-import React, { useState } from 'react';
+import React from 'react';
 import { useProfile } from '@/contexts/ProfileContext';
 import { getVimeoEmbed, getWelcomeMessage } from '@/utils/videoUtils';
 import StandardHeroVideo from '@/components/StandardHeroVideo';
@@ -17,6 +17,7 @@ const HeroVideoSection = ({ onLogoOpacityChange }: HeroVideoSectionProps) => {
       title="ADVANCED TENNIS HUB:"
       subtitle={getWelcomeMessage(userType)}
       onLogoOpacityChange={onLogoOpacityChange}
+      usePreloadedVideos={true}
     />
   );
 };

@@ -1,7 +1,7 @@
 
 import React, { useState, useEffect, useRef } from 'react';
 import { useIsMobile } from '@/hooks/use-mobile';
-import Logo from '@/components/Logo';
+import { extractVimeoId } from '@/utils/videoUtils';
 
 interface StandardHeroVideoProps {
   vimeoEmbed: string;
@@ -16,6 +16,7 @@ interface StandardHeroVideoProps {
     mobile?: string;
     desktop?: string;
   };
+  usePreloadedVideos?: boolean;
 }
 
 const StandardHeroVideo = ({ 
@@ -30,11 +31,13 @@ const StandardHeroVideo = ({
   logoSize = {
     mobile: 'w-[120px]',
     desktop: 'w-[200px]'
-  }
+  },
+  usePreloadedVideos = false
 }: StandardHeroVideoProps) => {
   const isMobile = useIsMobile();
   const [logoOpacity, setLogoOpacity] = useState<number>(1);
   const logoRef = useRef<HTMLDivElement>(null);
+  const videoContainerRef = useRef<HTMLDivElement>(null);
   
   useEffect(() => {
     const handleScroll = () => {
@@ -80,6 +83,43 @@ const StandardHeroVideo = ({
     };
   }, [onLogoOpacityChange, logoTopPositionMobile, logoTopPositionDesktop, isMobile]);
   
+  useEffect(() => {
+    if (!usePreloadedVideos || !videoContainerRef.current) return;
+    
+    const videoId = extractVimeoId(vimeoEmbed);
+    if (!videoId) return;
+    
+    // Check if there's a preloaded iframe for this video
+    const preloadContainer = document.getElementById('vimeo-preload-container');
+    if (preloadContainer) {
+      const preloadedIframe = Array.from(preloadContainer.querySelectorAll('iframe'))
+        .find(iframe => iframe.src.includes(`/video/${videoId}`));
+      
+      if (preloadedIframe) {
+        console.log(`Found preloaded video for ID: ${videoId}`);
+        
+        // Create a clone of the preloaded iframe for our actual display
+        const clonedIframe = preloadedIframe.cloneNode(true) as HTMLIFrameElement;
+        clonedIframe.style.width = '100%';
+        clonedIframe.style.height = '100%';
+        clonedIframe.style.position = 'absolute';
+        clonedIframe.style.top = '0';
+        clonedIframe.style.left = '0';
+        clonedIframe.style.transform = 'scale(1.3)';
+        clonedIframe.style.transformOrigin = 'center center';
+        
+        // Add the cloned iframe to our video container
+        videoContainerRef.current.innerHTML = '';
+        videoContainerRef.current.appendChild(clonedIframe);
+        return;
+      }
+    }
+    
+    // Fallback to regular embed if no preloaded video is available
+    videoContainerRef.current.innerHTML = vimeoEmbed;
+    
+  }, [vimeoEmbed, usePreloadedVideos]);
+  
   return (
     <>
       {showLogo && (
@@ -109,7 +149,7 @@ const StandardHeroVideo = ({
           }}
         >
           <div 
-            dangerouslySetInnerHTML={{ __html: vimeoEmbed }} 
+            ref={videoContainerRef}
             className="absolute top-0 left-0 w-full h-full"
             style={{
               width: '100%', 
@@ -117,6 +157,7 @@ const StandardHeroVideo = ({
               transform: 'scale(1.3)', 
               transformOrigin: 'center center'
             }}
+            dangerouslySetInnerHTML={usePreloadedVideos ? undefined : { __html: vimeoEmbed }}
           />
         </div>
       </div>
