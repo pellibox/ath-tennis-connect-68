@@ -1,3 +1,4 @@
+
 import { useEffect, useState } from 'react';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
@@ -34,7 +35,7 @@ const CoachProgram = () => {
             title="Coach / Allenatori"
             subtitle="Formazione avanzata (tutto l'anno)"
             imageSrc="https://images.unsplash.com/photo-1620588280212-9c4784d5d99d?q=80&w=2067&auto=format&fit=crop"
-            vimeoEmbed={createStandardVimeoEmbed('867339842')}
+            vimeoEmbed={createStandardVimeoEmbed('1068788542?h=698f55b033')}
             buttons={[
               { text: 'RICHIEDI INFORMAZIONI', href: '/contact' },
               { text: 'CONTATTACI', href: '/contact', variant: 'outline' }
