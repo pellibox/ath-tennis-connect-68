@@ -122,7 +122,7 @@ const LandingPage = () => {
       <main className="flex-grow">
         <div className="w-full bg-black min-h-[calc(100vw*9/16)] relative">
           {!isMobile && (
-            <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-30 flex flex-col justify-center items-center pointer-events-none">
+            <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-30 flex flex-col justify-center items-center pointer-events-none" style={{ marginTop: "20px" }}>
               <img 
                 src="/lovable-uploads/a00875f9-6335-4f8b-81c4-029183b59eec.png" 
                 alt="ATH - Advanced Tennis Hub" 
