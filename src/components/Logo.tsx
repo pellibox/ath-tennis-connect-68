@@ -14,6 +14,7 @@ interface LogoProps {
   isCentered?: boolean;
   useBlackLogoOnWhite?: boolean;
   useLandingLogo?: boolean;
+  useFacilitiesLogo?: boolean; // New prop
 }
 
 const Logo = ({ 
@@ -26,7 +27,8 @@ const Logo = ({
   isInMenu = false,
   isCentered = false,
   useBlackLogoOnWhite = false,
-  useLandingLogo = false
+  useLandingLogo = false,
+  useFacilitiesLogo = false // New prop
 }: LogoProps) => {
   const isFooter = variant === 'footer';
   const location = useLocation();
@@ -35,7 +37,10 @@ const Logo = ({
   // Logo paths
   let logoSrc;
   
-  if (useLandingLogo) {
+  if (useFacilitiesLogo) {
+    // Use the new facilities logo
+    logoSrc = "/lovable-uploads/94bcf7ea-691d-4d90-a7d8-e23187cc031c.png";
+  } else if (useLandingLogo) {
     // Use the special landing page logo
     logoSrc = "/lovable-uploads/6d0219a1-42de-42d9-b4b0-ce57ac5a67df.png";
   } else if (useBlackLogoOnWhite) {
@@ -58,10 +63,10 @@ const Logo = ({
   const sizeClasses = isFooter 
     ? 'h-28' 
     : (isInMenu 
-        ? 'w-24 h-auto' // Increased mobile logo size from w-10 to w-24
+        ? 'w-24 h-auto' 
         : (isMobile 
-            ? 'w-24 h-auto' // Increased mobile logo size from w-20 to w-24
-            : 'w-28 sm:w-32 h-auto')); // Adjusted desktop size for header (not affecting floating logos)
+            ? 'w-24 h-auto' 
+            : 'w-28 sm:w-32 h-auto')); 
   
   // Function to handle logo click
   const handleLogoClick = (e: React.MouseEvent) => {
@@ -93,3 +98,4 @@ const Logo = ({
 };
 
 export default Logo;
+
