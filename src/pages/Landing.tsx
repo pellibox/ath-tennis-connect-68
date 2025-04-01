@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from 'react';
 import { useProfile } from '@/contexts/ProfileContext';
 import { getVimeoEmbed } from '@/utils/videoUtils';
@@ -118,30 +117,15 @@ const LandingPage = () => {
 
   return (
     <div className="flex flex-col min-h-screen relative bg-black">
-      {!isMobile && (
-        <div className="absolute bottom-12 left-0 w-full flex items-center justify-center z-40 pointer-events-auto" 
-             style={{ transform: 'translateY(-450px)' }}>
-          <div className="flex flex-col items-center">
-            <div>
-              {renderButtons()}
-            </div>
-            
-            {hasProfile && (
-              <div className="mt-4 text-white bg-black bg-opacity-70 p-3 rounded-md text-center pointer-events-auto">
-                <p className="font-swiss text-[10px] truncate max-w-full">{personalizedContent.first}</p>
-                <p className="font-swiss text-[10px] truncate max-w-full">{personalizedContent.second}</p>
-              </div>
-            )}
-          </div>
-        </div>
-      )}
+      {/* Remove the buttons at the bottom position for desktop */}
+      {/* We're keeping only the mobile version of these buttons */}
       
       <EmptyHeader headerText={isMobile ? "IL FUTURO DEL TUO TENNIS INIZIA QUI." : ""} />
       
       <main className="flex-grow">
         <div className="w-full bg-black min-h-[calc(100vw*9/16)] relative">
           {!isMobile && (
-            <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-30 flex flex-col justify-center items-center pointer-events-none" style={{ marginTop: "-50px" }}>
+            <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-30 flex flex-col justify-center items-center pointer-events-none" style={{ marginTop: "0px" }}>
               <img 
                 src="/lovable-uploads/a00875f9-6335-4f8b-81c4-029183b59eec.png" 
                 alt="ATH - Advanced Tennis Hub" 
