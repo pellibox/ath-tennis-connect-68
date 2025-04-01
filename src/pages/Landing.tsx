@@ -1,4 +1,3 @@
-
 import { useEffect, useState } from 'react';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
@@ -20,17 +19,12 @@ const LandingPage = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }, []);
   
-  // Handle scroll effect for the logo
   useEffect(() => {
     const handleScroll = () => {
-      // Get current scroll position
       const scrollY = window.scrollY;
       
-      // Calculate offset to move the logo up as user scrolls down
-      setLogoYOffset(scrollY * 0.2); // Adjust the multiplier to control the speed
+      setLogoYOffset(scrollY * 0.2);
       
-      // Fade out logo as user scrolls down
-      // Start fading at 100px of scroll, completely fade out by 300px
       const fadeThreshold = 100;
       const fadeOutBy = 300;
       
@@ -42,24 +36,18 @@ const LandingPage = () => {
       }
     };
 
-    // Add scroll event listener
     window.addEventListener('scroll', handleScroll);
-    
-    // Initial calculation
     handleScroll();
     
-    // Clean up
     return () => {
       window.removeEventListener('scroll', handleScroll);
     };
   }, []);
 
-  // Get personalized video based on user profile
   const vimeoEmbed = getVimeoEmbed(userGender, userType, true, false, sport);
 
   return (
     <div className="flex flex-col min-h-screen relative">
-      {/* Centered logo with improved positioning for both mobile and desktop */}
       <div 
         className="fixed z-50 pointer-events-none transition-opacity duration-300 left-0 right-0 flex justify-center"
         style={{
@@ -86,40 +74,35 @@ const LandingPage = () => {
       <Header />
       
       <main className="flex-grow">
-        {/* Video background */}
         <div className="w-full bg-black min-h-[calc(100vw*9/16)] relative">
           <div dangerouslySetInnerHTML={{ __html: vimeoEmbed }} />
         </div>
         
-        {/* Profile and Enter buttons first, then the claim */}
-        <div className="bg-black py-16 px-6">
-          <div className="max-w-2xl mx-auto text-center space-y-12">
-            <div className="flex flex-col md:flex-row items-center justify-center gap-6">
-              <div className="flex flex-col items-center">
+        <div className="w-full bg-black py-16 relative" style={{ height: 'auto', minHeight: '400px' }}>
+          <div className="max-w-6xl mx-auto px-6 h-full flex flex-col justify-center py-8">
+            <div className="flex flex-col items-center space-y-12">
+              <div className="flex flex-wrap justify-center gap-6">
                 <button
                   onClick={() => setDialogOpen(true)}
-                  className="text-lg px-6 py-3 rounded-md bg-ath-clay text-white font-swiss hover:bg-opacity-90 transition-all min-w-[180px]"
+                  className="text-lg px-8 py-4 rounded-md bg-ath-clay text-white font-swiss hover:bg-opacity-90 transition-all font-bold"
                 >
                   DICCI CHI SEI
                 </button>
-              </div>
-              
-              <div>
+                
                 <ButtonLink 
                   href="/about" 
-                  variant="primary" 
-                  size="lg"
-                  className="min-w-[180px]"
+                  variant="outline" 
+                  className="text-lg px-8 py-4 rounded-md border-white text-white hover:bg-white hover:text-ath-clay transition-all font-bold"
                 >
-                  ENTRA IN ATH
+                  CONTATTACI
                 </ButtonLink>
               </div>
-            </div>
-            
-            <div className="max-w-3xl mx-auto text-center">
-              <h2 className="text-white text-xl md:text-3xl font-swiss uppercase mb-2">
-                IL FUTURO DEL TUO TENNIS INIZIA QUI.
-              </h2>
+              
+              <div className="max-w-3xl text-center">
+                <h2 className="text-white text-xl md:text-3xl font-swiss uppercase">
+                  IL FUTURO DEL TUO TENNIS INIZIA QUI.
+                </h2>
+              </div>
             </div>
           </div>
         </div>
@@ -127,7 +110,6 @@ const LandingPage = () => {
       
       <Footer />
       
-      {/* Profile Dialog */}
       <ProfileDialog 
         open={dialogOpen}
         setOpen={setDialogOpen}
