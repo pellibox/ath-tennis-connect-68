@@ -95,7 +95,7 @@ const LandingPage = () => {
                   variant="outline" 
                   className="text-lg px-8 py-4 rounded-md border border-ath-clay text-ath-clay hover:bg-ath-clay hover:text-white transition-all font-bold"
                 >
-                  CONTATTACI
+                  ENTRA IN ATH
                 </ButtonLink>
               </div>
               
@@ -127,3 +127,4 @@ const LandingPage = () => {
 };
 
 export default LandingPage;
+
