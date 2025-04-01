@@ -38,6 +38,8 @@ const StandardHeroVideo = ({
   const [logoOpacity, setLogoOpacity] = useState<number>(1);
   const logoRef = useRef<HTMLDivElement>(null);
   const videoContainerRef = useRef<HTMLDivElement>(null);
+  const [videoLoaded, setVideoLoaded] = useState(false);
+  const [videoError, setVideoError] = useState(false);
   
   useEffect(() => {
     const handleScroll = () => {
@@ -87,17 +89,29 @@ const StandardHeroVideo = ({
     if (!usePreloadedVideos || !videoContainerRef.current) return;
     
     const videoId = extractVimeoId(vimeoEmbed);
-    if (!videoId) return;
+    if (!videoId) {
+      console.error(`Could not extract video ID from embed code: ${vimeoEmbed.substring(0, 50)}...`);
+      setVideoError(true);
+      return;
+    }
+    
+    console.log(`Looking for preloaded video with ID: ${videoId}`);
     
     // Check if there's a preloaded iframe for this video
     const preloadContainer = document.getElementById('vimeo-preload-container');
-    if (preloadContainer) {
-      const preloadedIframe = Array.from(preloadContainer.querySelectorAll('iframe'))
-        .find(iframe => iframe.src.includes(`/video/${videoId}`));
+    if (!preloadContainer) {
+      console.warn('Preload container not found, falling back to regular embed');
+      videoContainerRef.current.innerHTML = vimeoEmbed;
+      return;
+    }
+    
+    const preloadedIframe = Array.from(preloadContainer.querySelectorAll('iframe'))
+      .find(iframe => iframe.src.includes(`/video/${videoId}`));
       
-      if (preloadedIframe) {
-        console.log(`Found preloaded video for ID: ${videoId}`);
-        
+    if (preloadedIframe) {
+      console.log(`Found preloaded video for ID: ${videoId}`);
+      
+      try {
         // Create a clone of the preloaded iframe for our actual display
         const clonedIframe = preloadedIframe.cloneNode(true) as HTMLIFrameElement;
         clonedIframe.style.width = '100%';
@@ -111,10 +125,18 @@ const StandardHeroVideo = ({
         // Add the cloned iframe to our video container
         videoContainerRef.current.innerHTML = '';
         videoContainerRef.current.appendChild(clonedIframe);
-        return;
+        setVideoLoaded(true);
+      } catch (error) {
+        console.error('Error using preloaded video:', error);
+        setVideoError(true);
+        // Fallback to regular embed
+        videoContainerRef.current.innerHTML = vimeoEmbed;
       }
+      
+      return;
     }
     
+    console.log(`No preloaded video found for ID: ${videoId}, using regular embed`);
     // Fallback to regular embed if no preloaded video is available
     videoContainerRef.current.innerHTML = vimeoEmbed;
     
@@ -148,17 +170,23 @@ const StandardHeroVideo = ({
             overflow: 'hidden'
           }}
         >
-          <div 
-            ref={videoContainerRef}
-            className="absolute top-0 left-0 w-full h-full"
-            style={{
-              width: '100%', 
-              height: '100%', 
-              transform: 'scale(1.3)', 
-              transformOrigin: 'center center'
-            }}
-            dangerouslySetInnerHTML={usePreloadedVideos ? undefined : { __html: vimeoEmbed }}
-          />
+          {videoError ? (
+            <div className="absolute inset-0 flex items-center justify-center bg-gray-900 text-white">
+              <p>Si è verificato un problema nel caricamento del video</p>
+            </div>
+          ) : (
+            <div 
+              ref={videoContainerRef}
+              className="absolute top-0 left-0 w-full h-full"
+              style={{
+                width: '100%', 
+                height: '100%', 
+                transform: 'scale(1.3)', 
+                transformOrigin: 'center center'
+              }}
+              dangerouslySetInnerHTML={usePreloadedVideos ? undefined : { __html: vimeoEmbed }}
+            />
+          )}
         </div>
       </div>
       

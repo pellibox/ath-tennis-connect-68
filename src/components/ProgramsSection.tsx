@@ -1,4 +1,3 @@
-
 import { ArrowRight, Play, Target, ChevronDown, ChevronUp } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import RevealAnimation from './RevealAnimation';
@@ -9,6 +8,7 @@ import { Collapsible, CollapsibleContent, CollapsibleTrigger } from '@/component
 import VickiMonitoringBadge, { MonitoringLevel } from './VickiMonitoringBadge';
 import VickiPoweredBadge from './VickiPoweredBadge';
 import { useIsMobile } from '@/hooks/use-mobile';
+import { extractVimeoId, standardizeVimeoEmbed } from '@/utils/videoUtils';
 
 interface Program {
   id: string;
@@ -62,7 +62,9 @@ const ProgramsSection = ({
   const [blackOverlay, setBlackOverlay] = useState<Record<string, boolean>>({});
   const [openCategories, setOpenCategories] = useState<Record<string, boolean>>({});
   const [contentInitialized, setContentInitialized] = useState(false);
+  const [vimeoErrors, setVimeoErrors] = useState<Record<string, boolean>>({});
   const videoRefs = useRef<Record<string, HTMLVideoElement | null>>({});
+  const vimeoContainerRefs = useRef<Record<string, HTMLDivElement | null>>({});
   const isMobile = useIsMobile();
   const sectionRef = useRef<HTMLElement>(null);
 
@@ -103,57 +105,180 @@ const ProgramsSection = ({
       initiallyOpen
     });
     
-    if (categories) {
-      categories.forEach(category => {
-        category.programs.forEach(program => {
-          if (program.vimeoEmbed) {
-            console.log(`Program ${program.id} in category ${category.id} has Vimeo embed: ${program.vimeoEmbed.substring(0, 50)}...`);
-          }
+    // Check and preload all Vimeo videos in the programs data
+    const preloadProgramVideos = () => {
+      const preloadContainer = document.getElementById('vimeo-preload-container');
+      if (!preloadContainer) {
+        console.warn('Preload container not found for program videos');
+        return;
+      }
+      
+      const allPrograms: Program[] = [];
+      
+      if (programs) {
+        allPrograms.push(...programs);
+      }
+      
+      if (categories) {
+        categories.forEach(category => {
+          allPrograms.push(...category.programs);
         });
+      }
+      
+      console.log(`Found ${allPrograms.length} programs with potential videos to preload`);
+      
+      // Extract and preload all Vimeo videos
+      allPrograms.forEach((program) => {
+        if (program.vimeoEmbed) {
+          const videoId = extractVimeoId(program.vimeoEmbed);
+          if (!videoId) {
+            console.warn(`Could not extract video ID from program ${program.id}`);
+            return;
+          }
+          
+          // Check if this video is already being preloaded
+          const existingIframe = Array.from(preloadContainer.querySelectorAll('iframe'))
+            .find(iframe => iframe.src.includes(`/video/${videoId}`));
+            
+          if (!existingIframe) {
+            console.log(`Preloading Vimeo video ${videoId} for program ${program.id}`);
+            
+            // Create and add a preloader iframe
+            setTimeout(() => {
+              const iframe = document.createElement('iframe');
+              iframe.src = `https://player.vimeo.com/video/${videoId}?background=1&autopause=0&player_id=0&app_id=58479&controls=0&preload=true`;
+              iframe.style.width = '10px';
+              iframe.style.height = '10px';
+              iframe.allow = 'autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media';
+              iframe.title = `Preload ${videoId}`;
+              preloadContainer.appendChild(iframe);
+            }, Math.random() * 500); // Stagger preloads with random delay
+          } else {
+            console.log(`Video ${videoId} for program ${program.id} already preloaded`);
+          }
+        }
       });
+    };
+    
+    if (contentInitialized) {
+      preloadProgramVideos();
     }
-  }, [title, categories, programs, openCategories, initiallyOpen]);
+  }, [title, categories, programs, openCategories, initiallyOpen, contentInitialized]);
 
-  const handleMouseEnter = (id: string) => {
+  const handleMouseEnter = (id: string, program: Program) => {
     console.log(`Mouse enter for program ID: ${id}`);
     setHoveredCard(id);
-    setBlackOverlay(prev => ({ ...prev, [id]: true }));
-    if (videoRefs.current[id]) {
-      videoRefs.current[id]!.currentTime = 0;
-      videoRefs.current[id]!.load();
-      setTimeout(() => {
-        try {
-          const playPromise = videoRefs.current[id]?.play();
-          if (playPromise !== undefined) {
-            playPromise.then(() => {
-              console.log(`Video playing for ID: ${id}`);
-              setTimeout(() => {
-                setVideosPlaying(prev => ({ ...prev, [id]: true }));
-              }, 300);
-            }).catch(err => {
-              console.log(`Failed to play video for ID: ${id}`, err);
-            });
+    
+    if (program.videoSrc) {
+      // Regular video handling
+      setBlackOverlay(prev => ({ ...prev, [id]: true }));
+      if (videoRefs.current[id]) {
+        videoRefs.current[id]!.currentTime = 0;
+        videoRefs.current[id]!.load();
+        setTimeout(() => {
+          try {
+            const playPromise = videoRefs.current[id]?.play();
+            if (playPromise !== undefined) {
+              playPromise.then(() => {
+                console.log(`Video playing for ID: ${id}`);
+                setTimeout(() => {
+                  setVideosPlaying(prev => ({ ...prev, [id]: true }));
+                }, 300);
+              }).catch(err => {
+                console.log(`Failed to play video for ID: ${id}`, err);
+              });
+            }
+          } catch (error) {
+            console.error("Error playing video:", error);
           }
+        }, 200);
+      }
+    } else if (program.vimeoEmbed) {
+      // Handle Vimeo embed
+      const vimeoRef = vimeoContainerRefs.current[id];
+      if (vimeoRef) {
+        try {
+          // Get the video ID from the embed code
+          const videoId = extractVimeoId(program.vimeoEmbed);
+          if (!videoId) {
+            console.error(`Could not extract video ID from program ${id}`);
+            return;
+          }
+          
+          // Try to find a preloaded video first
+          const preloadContainer = document.getElementById('vimeo-preload-container');
+          if (preloadContainer) {
+            const preloadedIframe = Array.from(preloadContainer.querySelectorAll('iframe'))
+              .find(iframe => iframe.src.includes(`/video/${videoId}`));
+              
+            if (preloadedIframe) {
+              console.log(`Using preloaded Vimeo video for program ${id}`);
+              
+              // Create a clone of the preloaded iframe
+              const clonedIframe = preloadedIframe.cloneNode(true) as HTMLIFrameElement;
+              clonedIframe.style.width = '100%';
+              clonedIframe.style.height = '100%';
+              clonedIframe.style.position = 'absolute';
+              clonedIframe.style.top = '0';
+              clonedIframe.style.left = '0';
+              
+              // Modify the src to enable autoplay
+              const srcUrl = new URL(clonedIframe.src);
+              srcUrl.searchParams.set('autoplay', '1');
+              clonedIframe.src = srcUrl.toString();
+              
+              // Replace the content
+              vimeoRef.innerHTML = '';
+              vimeoRef.appendChild(clonedIframe);
+              return;
+            }
+          }
+          
+          // If no preloaded video is found, use the regular embed with autoplay
+          vimeoRef.innerHTML = standardizeVimeoEmbed(program.vimeoEmbed, true);
         } catch (error) {
-          console.error("Error playing video:", error);
+          console.error(`Error setting up Vimeo video for program ${id}:`, error);
+          setVimeoErrors(prev => ({ ...prev, [id]: true }));
         }
-      }, 200);
+      }
     }
   };
 
-  const handleMouseLeave = (id: string) => {
+  const handleMouseLeave = (id: string, program: Program) => {
     console.log(`Mouse leave for program ID: ${id}`);
     setHoveredCard(null);
-    setVideosPlaying(prev => ({ ...prev, [id]: false }));
-    setTimeout(() => {
-      setBlackOverlay(prev => ({ ...prev, [id]: false }));
-    }, 200);
-    if (videoRefs.current[id]) {
-      try {
-        videoRefs.current[id]?.pause();
-        videoRefs.current[id]!.currentTime = 0;
-      } catch (error) {
-        console.error("Error pausing video:", error);
+    
+    if (program.videoSrc) {
+      // Regular video handling
+      setVideosPlaying(prev => ({ ...prev, [id]: false }));
+      setTimeout(() => {
+        setBlackOverlay(prev => ({ ...prev, [id]: false }));
+      }, 200);
+      if (videoRefs.current[id]) {
+        try {
+          videoRefs.current[id]?.pause();
+          videoRefs.current[id]!.currentTime = 0;
+        } catch (error) {
+          console.error("Error pausing video:", error);
+        }
+      }
+    } else if (program.vimeoEmbed) {
+      // Handle Vimeo embed
+      const vimeoRef = vimeoContainerRefs.current[id];
+      if (vimeoRef) {
+        try {
+          // Get the video ID from the embed code
+          const videoId = extractVimeoId(program.vimeoEmbed);
+          if (!videoId) {
+            console.error(`Could not extract video ID from program ${id}`);
+            return;
+          }
+          
+          // Replace with non-autoplay version
+          vimeoRef.innerHTML = standardizeVimeoEmbed(program.vimeoEmbed, false);
+        } catch (error) {
+          console.error(`Error resetting Vimeo video for program ${id}:`, error);
+        }
       }
     }
   };
@@ -175,36 +300,16 @@ const ProgramsSection = ({
     }));
   };
 
-  const getProcessedVimeoEmbed = (embed: string, isHovered: boolean) => {
-    let processedEmbed = embed.replace(/'/g, '"');
-    const srcMatch = processedEmbed.match(/src="([^"]+)"/);
-    if (srcMatch && srcMatch[1]) {
-      const originalSrc = srcMatch[1];
-      let newSrc = originalSrc;
-      if (isHovered) {
-        if (newSrc.includes('autoplay=0')) {
-          newSrc = newSrc.replace('autoplay=0', 'autoplay=1');
-        } else if (!newSrc.includes('autoplay=')) {
-          newSrc += (newSrc.includes('?') ? '&' : '?') + 'autoplay=1';
-        }
-      } else {
-        if (newSrc.includes('autoplay=1')) {
-          newSrc = newSrc.replace('autoplay=1', 'autoplay=0');
-        }
-      }
-      if (!newSrc.includes('loop=')) {
-        newSrc += (newSrc.includes('?') ? '&' : '?') + 'loop=1';
-      }
-      if (!newSrc.includes('background=')) {
-        newSrc += (newSrc.includes('?') ? '&' : '?') + 'background=1';
-      }
-      if (!newSrc.includes('controls=')) {
-        newSrc += (newSrc.includes('?') ? '&' : '?') + 'controls=0';
-      }
-      processedEmbed = processedEmbed.replace(originalSrc, newSrc);
-      console.log(`Processed Vimeo embed for hover=${isHovered}: ${newSrc.substring(0, 50)}...`);
+  const renderVimeoEmbed = (program: Program, isHovered: boolean) => {
+    if (!program.vimeoEmbed) return null;
+    
+    try {
+      // Use standardizeVimeoEmbed to get a consistent format
+      return standardizeVimeoEmbed(program.vimeoEmbed, isHovered);
+    } catch (error) {
+      console.error(`Error processing Vimeo embed for ${program.id}:`, error);
+      return '<div class="w-full h-full bg-gray-800 flex items-center justify-center text-white">Video non disponibile</div>';
     }
-    return processedEmbed;
   };
 
   const renderProgramCard = (program: Program, index: number) => (
@@ -213,32 +318,32 @@ const ProgramsSection = ({
         className="group h-full flex flex-col border border-gray-200 bg-white transition-all hover:shadow-sm overflow-hidden"
         onMouseEnter={() => {
           if (!isMobile) {
-            console.log(`Hovering on program: ${program.id} - ${program.title}`);
-            if (program.videoSrc) {
-              handleMouseEnter(program.id);
-            } else if (program.vimeoEmbed) {
-              setHoveredCard(program.id);
-            }
+            handleMouseEnter(program.id, program);
           }
         }}
         onMouseLeave={() => {
           if (!isMobile) {
-            if (program.videoSrc) {
-              handleMouseLeave(program.id);
-            } else if (program.vimeoEmbed) {
-              setHoveredCard(null);
-            }
+            handleMouseLeave(program.id, program);
           }
         }}
       >
         <div className="relative overflow-hidden aspect-video">
           {program.vimeoEmbed ? (
-            <div 
-              className="w-full h-full vimeo-container" 
-              dangerouslySetInnerHTML={{ 
-                __html: getProcessedVimeoEmbed(program.vimeoEmbed, hoveredCard === program.id)
-              }}
-            />
+            <>
+              {vimeoErrors[program.id] ? (
+                <div className="w-full h-full bg-gray-800 flex items-center justify-center text-white">
+                  <p className="text-center px-4">Si è verificato un problema nel caricamento del video</p>
+                </div>
+              ) : (
+                <div 
+                  ref={ref => vimeoContainerRefs.current[program.id] = ref} 
+                  className="w-full h-full vimeo-container" 
+                  dangerouslySetInnerHTML={{ 
+                    __html: renderVimeoEmbed(program, hoveredCard === program.id) || ''
+                  }}
+                />
+              )}
+            </>
           ) : program.videoSrc ? (
             <>
               <img 
@@ -288,6 +393,7 @@ const ProgramsSection = ({
             />
           )}
         </div>
+        
         <div className="flex flex-col flex-grow p-4 md:p-6">
           <div className="flex flex-wrap items-start justify-between mb-3 gap-2">
             <h3 className={cn("font-medium text-ath-clay", isMobile ? "text-lg" : "text-xl")}>{program.title}</h3>

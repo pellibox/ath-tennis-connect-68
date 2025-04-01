@@ -7,7 +7,7 @@ export const touchTennisPrograms: Program[] = [
     title: 'TouchTennis Base',
     description: 'Programma introduttivo al TouchTennis, ideale per principianti e per chi vuole scoprire questo sport dinamico e divertente.',
     image: '/lovable-uploads/ef64c04d-055d-4d70-87f4-e67928a3b8e6.png',
-    vimeoEmbed: '<div style="padding:56.25% 0 0 0;position:relative;"><iframe src="https://player.vimeo.com/video/1068596935?h=222acb69b2&autoplay=1&loop=1&title=0&byline=0&portrait=0&controls=0" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen style="position:absolute;top:0;left:0;width:100%;height:100%;"></iframe></div>',
+    vimeoEmbed: '<iframe src="https://player.vimeo.com/video/1068596935?h=222acb69b2&autoplay=1&loop=1&background=1&autopause=0&player_id=0&app_id=58479&controls=0" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen style="position:absolute;top:0;left:0;width:100%;height:100%;"></iframe><script src="https://player.vimeo.com/api/player.js"></script>',
     link: '/programs/touchtennis-base',
     features: [
       'Introduzione ai fondamentali del TouchTennis',
@@ -24,7 +24,7 @@ export const touchTennisPrograms: Program[] = [
     title: 'TouchTennis Avanzato',
     description: 'Programma per giocatori con esperienza nel TouchTennis che vogliono migliorare le proprie abilità tecniche e tattiche.',
     image: '/lovable-uploads/ef64c04d-055d-4d70-87f4-e67928a3b8e6.png',
-    vimeoEmbed: '<div style="padding:56.25% 0 0 0;position:relative;"><iframe src="https://player.vimeo.com/video/1068596935?h=222acb69b2&autoplay=1&loop=1&title=0&byline=0&portrait=0&controls=0" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen style="position:absolute;top:0;left:0;width:100%;height:100%;"></iframe></div>',
+    vimeoEmbed: '<iframe src="https://player.vimeo.com/video/1068596935?h=222acb69b2&autoplay=1&loop=1&background=1&autopause=0&player_id=0&app_id=58479&controls=0" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen style="position:absolute;top:0;left:0;width:100%;height:100%;"></iframe><script src="https://player.vimeo.com/api/player.js"></script>',
     link: '/programs/touchtennis-avanzato',
     features: [
       'Allenamento tecnico avanzato',
@@ -41,7 +41,7 @@ export const touchTennisPrograms: Program[] = [
     title: 'TouchTennis Junior (8-14 anni)',
     description: 'Programma specifico per giovani atleti che vogliono approcciarsi al TouchTennis in modo divertente e strutturato.',
     image: '/lovable-uploads/ef64c04d-055d-4d70-87f4-e67928a3b8e6.png',
-    vimeoEmbed: '<div style="padding:56.25% 0 0 0;position:relative;"><iframe src="https://player.vimeo.com/video/1068596935?h=222acb69b2&autoplay=1&loop=1&title=0&byline=0&portrait=0&controls=0" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen style="position:absolute;top:0;left:0;width:100%;height:100%;"></iframe></div>',
+    vimeoEmbed: '<iframe src="https://player.vimeo.com/video/1068596935?h=222acb69b2&autoplay=1&loop=1&background=1&autopause=0&player_id=0&app_id=58479&controls=0" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen style="position:absolute;top:0;left:0;width:100%;height:100%;"></iframe><script src="https://player.vimeo.com/api/player.js"></script>',
     link: '/programs/touchtennis-junior',
     features: [
       'Metodologia adattata per giovani atleti',

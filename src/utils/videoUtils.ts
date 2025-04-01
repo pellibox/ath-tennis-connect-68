@@ -1,3 +1,4 @@
+
 import { UserGender, UserType } from '@/components/UserTypeSelector';
 import { SportType } from '@/contexts/ProfileContext';
 
@@ -137,8 +138,34 @@ export const getPersonalizedMethodDescription = (userType: UserType | null): str
 };
 
 export const extractVimeoId = (embedCode: string): string | null => {
-  const match = embedCode.match(/video\/(\d+)\?/);
-  return match ? match[1] : null;
+  // Improve video ID extraction to handle different embed formats
+  const videoIdPatterns = [
+    /video\/(\d+)\?/,               // Standard format: video/123456789?
+    /vimeo\.com\/(\d+)/,            // URL format: vimeo.com/123456789
+    /player\.vimeo\.com\/video\/(\d+)/ // Player URL: player.vimeo.com/video/123456789
+  ];
+  
+  for (const pattern of videoIdPatterns) {
+    const match = embedCode.match(pattern);
+    if (match && match[1]) {
+      return match[1];
+    }
+  }
+  
+  console.warn('Failed to extract Vimeo ID from embed code:', embedCode.substring(0, 100) + '...');
+  return null;
+};
+
+export const standardizeVimeoEmbed = (embedCode: string, autoplay: boolean = true, useBackground: boolean = true): string => {
+  // Extract the video ID
+  const videoId = extractVimeoId(embedCode);
+  if (!videoId) {
+    console.error('Could not extract Vimeo ID from:', embedCode);
+    return embedCode; // Return original if we can't extract ID
+  }
+  
+  // Create a standardized embed code
+  return `<iframe src="https://player.vimeo.com/video/${videoId}?autoplay=${autoplay ? '1' : '0'}&loop=1&background=${useBackground ? '1' : '0'}&autopause=0&player_id=0&app_id=58479&controls=0" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media" style="position:absolute;top:0;left:0;width:100%;height:100%;" title="Vimeo ${videoId}"></iframe><script src="https://player.vimeo.com/api/player.js"></script>`;
 };
 
 export const getAllPossibleVideoIds = (): string[] => {
@@ -174,6 +201,8 @@ export const getAllPossibleVideoIds = (): string[] => {
     if (videoId) videoIds.add(videoId);
   });
   
+  // Add program videos from data files - this will be handled by the preloader later
+  
   return Array.from(videoIds);
 };
 
@@ -182,18 +211,30 @@ export const preloadVimeoVideos = (): void => {
   const videoIds = getAllPossibleVideoIds();
   
   // Create a container div for preload iframes that's off-screen
-  const preloadContainer = document.createElement('div');
-  preloadContainer.style.position = 'absolute';
-  preloadContainer.style.width = '0px';
-  preloadContainer.style.height = '0px';
-  preloadContainer.style.overflow = 'hidden';
-  preloadContainer.style.opacity = '0';
-  preloadContainer.style.pointerEvents = 'none';
-  preloadContainer.id = 'vimeo-preload-container';
-  document.body.appendChild(preloadContainer);
+  let preloadContainer = document.getElementById('vimeo-preload-container');
+  if (!preloadContainer) {
+    preloadContainer = document.createElement('div');
+    preloadContainer.style.position = 'absolute';
+    preloadContainer.style.width = '0px';
+    preloadContainer.style.height = '0px';
+    preloadContainer.style.overflow = 'hidden';
+    preloadContainer.style.opacity = '0';
+    preloadContainer.style.pointerEvents = 'none';
+    preloadContainer.id = 'vimeo-preload-container';
+    document.body.appendChild(preloadContainer);
+  }
   
   // Add iframes for each video ID
   videoIds.forEach((id, index) => {
+    // Check if this video is already being preloaded
+    const existingIframe = Array.from(preloadContainer!.querySelectorAll('iframe'))
+      .find(iframe => iframe.src.includes(`/video/${id}`));
+      
+    if (existingIframe) {
+      console.log(`Video ID ${id} is already being preloaded, skipping`);
+      return;
+    }
+    
     // Stagger the preloading to avoid overwhelming the browser
     setTimeout(() => {
       const iframe = document.createElement('iframe');
@@ -202,10 +243,16 @@ export const preloadVimeoVideos = (): void => {
       iframe.style.height = '10px';
       iframe.allow = 'autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media';
       iframe.title = `Preload ${id}`;
-      preloadContainer.appendChild(iframe);
+      preloadContainer!.appendChild(iframe);
       console.log(`Preloading video ID: ${id}`);
     }, index * 150); // Stagger each video load by 150ms
   });
   
   console.log(`Started preloading ${videoIds.length} videos`);
+};
+
+// Function to preload program videos specifically
+export const preloadProgramVideos = (): void => {
+  // Implemented in Step 5
+  console.log('Additional program videos will be preloaded when browsing program pages');
 };
