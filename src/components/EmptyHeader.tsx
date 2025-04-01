@@ -2,7 +2,11 @@
 import { useIsMobile } from '@/hooks/use-mobile';
 import { cn } from '@/lib/utils';
 
-const EmptyHeader = () => {
+interface EmptyHeaderProps {
+  headerText?: string;
+}
+
+const EmptyHeader = ({ headerText }: EmptyHeaderProps) => {
   const isMobile = useIsMobile();
   
   return (
@@ -10,7 +14,15 @@ const EmptyHeader = () => {
       <header 
         className="fixed top-0 left-0 w-full z-50 bg-black"
       >
-        <div className="container mx-auto px-4"></div>
+        <div className="container mx-auto px-4">
+          {headerText && (
+            <div className="py-4 text-center">
+              <h2 className="text-white text-xl md:text-3xl font-swiss uppercase">
+                {headerText}
+              </h2>
+            </div>
+          )}
+        </div>
       </header>
       
       {/* Add consistent spacing at the top */}

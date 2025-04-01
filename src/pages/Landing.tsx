@@ -50,12 +50,8 @@ const LandingPage = () => {
   return (
     <div className="flex flex-col min-h-screen relative bg-black">
       <div 
-        className="fixed z-50 pointer-events-none transition-opacity duration-300 left-0 right-0 flex justify-center"
-        style={{
-          top: isMobile ? '140px' : '180px', 
-          opacity: logoOpacity,
-          transform: 'translateX(10px)'
-        }}
+        className="fixed top-0 left-0 w-full h-screen flex items-center justify-center pointer-events-none z-40 transition-opacity duration-300"
+        style={{ opacity: logoOpacity }}
       >
         <div 
           style={{
@@ -72,18 +68,11 @@ const LandingPage = () => {
         </div>
       </div>
       
-      <EmptyHeader />
+      <EmptyHeader headerText="IL FUTURO DEL TUO TENNIS INIZIA QUI." />
       
       <main className="flex-grow">
         <div className="w-full bg-black min-h-[calc(100vw*9/16)] relative">
           <div dangerouslySetInnerHTML={{ __html: vimeoEmbed }} />
-          
-          {/* Text positioned inside video container, 10px from bottom */}
-          <div className="absolute bottom-[10px] left-0 right-0 text-center">
-            <h2 className="text-white text-xl md:text-3xl font-swiss uppercase">
-              IL FUTURO DEL TUO TENNIS INIZIA QUI.
-            </h2>
-          </div>
         </div>
         
         <div className="w-full bg-black py-16 relative" style={{ height: 'auto', minHeight: '400px' }}>
