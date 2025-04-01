@@ -2,7 +2,6 @@
 import React from 'react';
 import Hero from '@/components/Hero';
 import VickiUnifiedBadge from '@/components/VickiUnifiedBadge';
-import StandardHeroVideo from '@/components/StandardHeroVideo';
 
 const PrivateProgramHeader = () => {
   return (

@@ -38,7 +38,7 @@ const TechnologySection = ({
         {/* Subtitle if provided */}
         {subtitle && (
           <RevealAnimation delay={100}>
-            <p className={`text-ath-clay max-w-3xl mx-auto text-center mb-12 font-swiss ${isMobile ? 'text-sm' : 'text-lg'}`}>
+            <p className={`text-ath-clay max-w-3xl mx-auto text-center mb-12 font-swiss ${isMobile ? 'text-base' : 'text-lg'}`}>
               {subtitle}
             </p>
           </RevealAnimation>

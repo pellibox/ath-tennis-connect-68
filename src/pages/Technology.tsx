@@ -1,3 +1,4 @@
+
 import { useEffect } from 'react';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
@@ -31,7 +32,7 @@ const TechnologyPage = () => {
         
         <div className="w-full bg-black py-16">
           <div className="max-w-3xl mx-auto text-center">
-            <h2 className="text-white text-3xl md:text-2xl font-display uppercase mb-2">
+            <h2 className="text-white text-3xl font-display uppercase mb-2">
               LA TECNOLOGIA:
             </h2>
             <p className="text-white text-base md:text-2xl opacity-90 font-swiss drop-shadow-md">
