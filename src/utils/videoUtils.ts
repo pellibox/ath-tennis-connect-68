@@ -83,6 +83,7 @@ export const getVimeoEmbed = (userGender: UserGender | null, userType: UserType 
   // Use the new default video ID as fallback
   const FALLBACK_VIDEO_ID = '1071002692?h=a2668fa56d';
   const MALE_PRO_TENNIS_VIDEO_ID = '1071006843?h=76f8bd542b';
+  const MALE_JUNIOR_TENNIS_VIDEO_ID = '1071007541?h=792880c5c6';
   
   // Technology page video override
   if (forTechnologyPage) {
@@ -92,6 +93,11 @@ export const getVimeoEmbed = (userGender: UserGender | null, userType: UserType 
   // For male professional tennis players, use the specific video
   if (userGender === 'male' && userType === 'professional' && sport === 'tennis') {
     return createStandardVimeoEmbed(MALE_PRO_TENNIS_VIDEO_ID, true, true, useBackground);
+  }
+  
+  // For male junior tennis players, use the specific video
+  if (userGender === 'male' && userType === 'junior' && sport === 'tennis') {
+    return createStandardVimeoEmbed(MALE_JUNIOR_TENNIS_VIDEO_ID, true, true, useBackground);
   }
   
   // For performance/agonista male users, use the specific video
