@@ -83,12 +83,14 @@ const LandingPage = () => {
           <div className="max-w-6xl mx-auto px-6 h-full flex flex-col justify-center py-8">
             <div className="flex flex-col items-center space-y-12">
               <div className="flex flex-wrap justify-center gap-6">
-                <button
+                <ButtonLink 
+                  href="#" 
+                  variant="athOutline"
                   onClick={() => setDialogOpen(true)}
-                  className="text-lg px-8 py-4 rounded-md bg-ath-clay text-white font-swiss hover:bg-opacity-90 transition-all font-bold border border-ath-clay"
+                  className="text-lg px-8 py-4 rounded-md border border-ath-clay text-ath-clay hover:bg-ath-clay hover:text-white transition-all font-bold"
                 >
                   DICCI CHI SEI
-                </button>
+                </ButtonLink>
                 
                 <ButtonLink 
                   href="/about" 
