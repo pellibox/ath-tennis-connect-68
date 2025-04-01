@@ -4,7 +4,7 @@ import { useIsMobile } from '@/hooks/use-mobile';
 import Logo from '@/components/Logo';
 import { Skeleton } from '@/components/ui/skeleton';
 import ResponsiveImage from '@/components/ResponsiveImage';
-import { extractVimeoId } from '@/utils/videoUtils';
+import { extractVimeoId, getVimeoThumbnailUrl } from '@/utils/videoUtils';
 
 interface StandardHeroVideoProps {
   vimeoEmbed: string;
@@ -43,10 +43,13 @@ const StandardHeroVideo = ({
   const [videoLoaded, setVideoLoaded] = useState(false);
   const [videoError, setVideoError] = useState(false);
   const vimeoContainerRef = useRef<HTMLDivElement>(null);
+  const [retryCount, setRetryCount] = useState(0);
   
   // Extract Vimeo ID for thumbnail fallback
   const vimeoId = extractVimeoId(vimeoEmbed);
-  const fallbackImageUrl = posterImage || (vimeoId ? `https://vumbnail.com/${vimeoId}.jpg` : null);
+  // Set default fallback image with a known working image
+  const defaultFallbackImage = "/lovable-uploads/6ea13aa7-2578-488b-8ed4-4b17fc2ddc4e.png";
+  const fallbackImageUrl = posterImage || (vimeoId ? getVimeoThumbnailUrl(vimeoId) : defaultFallbackImage);
   
   useEffect(() => {
     const handleScroll = () => {
@@ -92,11 +95,16 @@ const StandardHeroVideo = ({
     };
   }, [onLogoOpacityChange, logoTopPositionMobile, logoTopPositionDesktop, isMobile]);
   
-  useEffect(() => {
-    if (vimeoContainerRef.current) {
-      // Reset state when embed changes
+  const loadVimeoEmbed = () => {
+    if (!vimeoContainerRef.current) return;
+    
+    try {
+      // Reset states
       setVideoLoaded(false);
       setVideoError(false);
+      
+      // Clear previous content
+      vimeoContainerRef.current.innerHTML = '';
       
       // Inject the Vimeo embed code
       vimeoContainerRef.current.innerHTML = vimeoEmbed;
@@ -125,6 +133,9 @@ const StandardHeroVideo = ({
           setVideoError(true);
           clearTimeout(timeoutId);
         };
+      } else {
+        console.error('No iframe found in Vimeo embed code');
+        setVideoError(true);
       }
       
       // Add Vimeo API script if not already present
@@ -134,7 +145,14 @@ const StandardHeroVideo = ({
         script.async = true;
         document.body.appendChild(script);
       }
+    } catch (error) {
+      console.error('Error loading Vimeo embed:', error);
+      setVideoError(true);
     }
+  };
+  
+  useEffect(() => {
+    loadVimeoEmbed();
     
     return () => {
       if (vimeoContainerRef.current) {
@@ -142,6 +160,19 @@ const StandardHeroVideo = ({
       }
     };
   }, [vimeoEmbed]);
+  
+  // Retry logic for video loading
+  useEffect(() => {
+    if (videoError && retryCount < 2) {
+      const retryTimeout = setTimeout(() => {
+        console.log(`Retrying video load, attempt ${retryCount + 1}`);
+        setRetryCount(prevCount => prevCount + 1);
+        loadVimeoEmbed();
+      }, 2000);
+      
+      return () => clearTimeout(retryTimeout);
+    }
+  }, [videoError, retryCount]);
   
   return (
     <>
@@ -172,24 +203,32 @@ const StandardHeroVideo = ({
           }}
         >
           {/* Fallback image shown until video loads or if there's an error */}
-          {fallbackImageUrl && (!videoLoaded || videoError) && (
-            <div className="absolute inset-0 z-10 bg-black">
-              <ResponsiveImage
-                src={fallbackImageUrl}
-                alt="Video thumbnail"
-                className="w-full h-full object-cover"
-                onLoad={() => console.log('Fallback image loaded')}
-              />
-              
-              {!videoError && (
-                <div className="absolute inset-0 flex items-center justify-center">
-                  <div className="w-16 h-16 rounded-full bg-black/50 flex items-center justify-center">
-                    <div className="w-10 h-10 border-4 border-white border-t-transparent rounded-full animate-spin"></div>
-                  </div>
+          <div className="absolute inset-0 z-10 bg-black">
+            <ResponsiveImage
+              src={fallbackImageUrl}
+              alt="Video thumbnail"
+              className="w-full h-full object-cover"
+              onLoad={() => console.log('Fallback image loaded')}
+              onError={() => {
+                console.error('Fallback image failed to load, using default');
+                // If the fallback image fails, use the default image
+                if (fallbackImageUrl !== defaultFallbackImage) {
+                  const imgElement = document.querySelector('.bg-black img') as HTMLImageElement;
+                  if (imgElement) {
+                    imgElement.src = defaultFallbackImage;
+                  }
+                }
+              }}
+            />
+            
+            {!videoError && !videoLoaded && (
+              <div className="absolute inset-0 flex items-center justify-center">
+                <div className="w-16 h-16 rounded-full bg-black/50 flex items-center justify-center">
+                  <div className="w-10 h-10 border-4 border-white border-t-transparent rounded-full animate-spin"></div>
                 </div>
-              )}
-            </div>
-          )}
+              </div>
+            )}
+          </div>
           
           {/* Vimeo container */}
           <div 
