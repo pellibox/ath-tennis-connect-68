@@ -56,7 +56,7 @@ const getSportText = (sport: string | null): string => {
   }
 };
 
-const getPersonalizedContentText = (gender: string | null, type: string | null, sport: string | null): string => {
+const getPersonalizedContentText = (gender: string | null, type: string | null, sport: string | null): { first: string, second: string } => {
   const genderText = getUserGenderText(gender);
   const typeText = getUserTypeText(type);
   const sportText = getSportText(sport);
@@ -67,7 +67,10 @@ const getPersonalizedContentText = (gender: string | null, type: string | null, 
     sportText && sportText
   ].filter(Boolean).join(', ');
   
-  return `Contenuto personalizzato: ${selections} - Clicca su ENTRA IN ATH per continuare.`;
+  return {
+    first: `Contenuto personalizzato: ${selections}`,
+    second: 'Clicca su ENTRA IN ATH per continuare.'
+  };
 };
 
 const LandingPage = () => {
@@ -84,6 +87,8 @@ const LandingPage = () => {
   };
 
   const hasProfile = Boolean(userGender && userType);
+
+  const personalizedContent = getPersonalizedContentText(userGender, userType, sport);
 
   const renderButtons = () => {
     return (
@@ -121,7 +126,8 @@ const LandingPage = () => {
             
             {hasProfile && (
               <div className="mt-4 text-white bg-black bg-opacity-70 p-3 rounded-md text-center pointer-events-auto">
-                <p className="font-swiss text-xs truncate max-w-full">{getPersonalizedContentText(userGender, userType, sport)}</p>
+                <p className="font-swiss text-[10px] truncate max-w-full">{personalizedContent.first}</p>
+                <p className="font-swiss text-[10px] truncate max-w-full">{personalizedContent.second}</p>
               </div>
             )}
           </div>
@@ -150,7 +156,8 @@ const LandingPage = () => {
               
               {hasProfile && (
                 <div className="mt-4 text-white bg-black bg-opacity-70 p-3 rounded-md text-center">
-                  <p className="font-swiss text-xs truncate max-w-full">{getPersonalizedContentText(userGender, userType, sport)}</p>
+                  <p className="font-swiss text-[10px] truncate max-w-full">{personalizedContent.first}</p>
+                  <p className="font-swiss text-[10px] truncate max-w-full">{personalizedContent.second}</p>
                 </div>
               )}
             </div>
