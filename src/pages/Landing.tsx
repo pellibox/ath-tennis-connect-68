@@ -1,11 +1,9 @@
-
 import { useState, useEffect } from 'react';
 import { useProfile } from '@/contexts/ProfileContext';
 import { getVimeoEmbed } from '@/utils/videoUtils';
 import ProfileDialog from '@/components/profile/ProfileDialog';
 import ButtonLink from '@/components/ButtonLink';
 import { useIsMobile } from '@/hooks/use-mobile';
-import Logo from '@/components/Logo';
 import EmptyHeader from '@/components/EmptyHeader';
 import EmptyFooter from '@/components/EmptyFooter';
 import { useNavigate } from 'react-router-dom';
@@ -140,14 +138,6 @@ const LandingPage = () => {
       
       <main className="flex-grow">
         <div className="w-full bg-black min-h-[calc(100vw*9/16)] relative">
-          <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-30 flex justify-center items-center pointer-events-none">
-            <Logo 
-              onDarkBackground={true}
-              className={isMobile ? "w-[180px]" : "w-[280px]"} 
-              isCentered={true}
-              useLandingLogo={true}
-            />
-          </div>
           
           <div dangerouslySetInnerHTML={{ __html: vimeoEmbed }} />
         </div>
