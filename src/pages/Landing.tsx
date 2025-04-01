@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from 'react';
 import { useProfile } from '@/contexts/ProfileContext';
 import { getVimeoEmbed } from '@/utils/videoUtils';
@@ -10,7 +9,6 @@ import EmptyHeader from '@/components/EmptyHeader';
 import EmptyFooter from '@/components/EmptyFooter';
 import { useNavigate } from 'react-router-dom';
 
-// Define mapping functions for translating user selections to Italian
 const getUserGenderText = (gender: string | null): string => {
   switch (gender) {
     case 'male':
@@ -125,7 +123,7 @@ const LandingPage = () => {
             
             {hasProfile && (
               <div className="mt-4 text-white bg-black bg-opacity-70 p-3 rounded-md text-center pointer-events-auto">
-                <p className="font-swiss">{getPersonalizedContentText(userGender, userType, sport)}</p>
+                <p className="font-swiss text-sm">{getPersonalizedContentText(userGender, userType, sport)}</p>
               </div>
             )}
           </div>
@@ -156,7 +154,7 @@ const LandingPage = () => {
               
               {hasProfile && (
                 <div className="mt-4 text-white bg-black bg-opacity-70 p-3 rounded-md text-center">
-                  <p className="font-swiss">{getPersonalizedContentText(userGender, userType, sport)}</p>
+                  <p className="font-swiss text-sm">{getPersonalizedContentText(userGender, userType, sport)}</p>
                 </div>
               )}
             </div>
