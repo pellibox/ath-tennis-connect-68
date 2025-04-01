@@ -34,7 +34,7 @@ const AdultTrainingProgram = () => {
             title="Adult Training"
             subtitle="Per adulti (30 settimane)"
             imageSrc="https://images.unsplash.com/photo-1622279457486-28f703f58401?q=80&w=2070&auto=format&fit=crop"
-            vimeoEmbed={createStandardVimeoEmbed('867339842')}
+            vimeoEmbed={createStandardVimeoEmbed('1068788229?h=5f3c14e5ec')}
             buttons={[
               { text: 'PRENOTA UNA PROVA', href: '/contact' },
               { text: 'CONTATTACI', href: '/contact', variant: 'outline' }

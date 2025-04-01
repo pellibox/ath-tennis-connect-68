@@ -9,6 +9,7 @@ import { UserGender, UserType, loadUserPreferences } from '@/components/UserType
 import Logo from '@/components/Logo';
 import VickiMonitoringBadge from '@/components/VickiMonitoringBadge';
 import VickiPoweredBadge from '@/components/VickiPoweredBadge';
+import { createStandardVimeoEmbed } from '@/utils/videoUtils';
 
 const AdultProgram = () => {
   const { t } = useLanguage();
@@ -84,6 +85,7 @@ const AdultProgram = () => {
             title="Adult Training"
             subtitle="Percorsi flessibili per giocatori amatoriali che vogliono migliorare le proprie capacità."
             imageSrc="https://images.unsplash.com/photo-1535131749006-b7f58c99034b?q=80&w=2070&auto=format&fit=crop"
+            vimeoEmbed={createStandardVimeoEmbed('1068788229?h=5f3c14e5ec')}
             buttons={[
               { text: 'PRENOTA UNA PROVA', href: '/contact' },
               { text: 'CONTATTACI', href: '/contact', variant: 'outline' }

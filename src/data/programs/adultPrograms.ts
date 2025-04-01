@@ -9,7 +9,7 @@ export const adultPrograms: Program[] = [
     title: 'Amatori',
     description: 'Percorsi flessibili per giocatori amatoriali che vogliono migliorare le proprie capacità.',
     image: 'https://images.unsplash.com/photo-1535131749006-b7f58c990c4b?q=80&w=2070&auto=format&fit=crop',
-    vimeoEmbed: createStandardVimeoEmbed('1071002692?h=a2668fa56d', true, true, true),
+    vimeoEmbed: createStandardVimeoEmbed('1068788229?h=5f3c14e5ec', true, true, true),
     link: '/programs/amateur',
     features: [
       'Allenamento personalizzato anche su base occasionale',
