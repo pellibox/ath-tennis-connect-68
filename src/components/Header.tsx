@@ -1,4 +1,3 @@
-
 import { useState } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { ChevronLeft, Menu, X } from 'lucide-react';
@@ -87,34 +86,31 @@ const Header = ({
             </div>
           )}
           
-          {!isMobile && (
-            <div className={cn(
-              "hidden lg:flex items-center justify-center flex-1",
-              hideLogoInHeader ? "ml-0" : ""
-            )}>
-              <NavigationLinks textColorClass={textColorClass} />
-            </div>
-          )}
+          {/* Always show navigation links regardless of hideLogoInHeader */}
+          <div className={cn(
+            "hidden lg:flex items-center justify-center flex-1",
+            hideLogoInHeader ? "ml-0" : ""
+          )}>
+            <NavigationLinks textColorClass={textColorClass} />
+          </div>
           
-          {!isMobile && (
-            <div className="flex items-center z-50 ml-auto lg:ml-0">
-              <ProfileDialog 
-                open={dialogOpen}
-                setOpen={setDialogOpen}
-                userGender={userGender}
-                userType={userType}
-                sport={sport}
-                updateProfile={updateProfile}
-                resetProfile={resetProfile}
-                deleteProfile={deleteProfile}
-                showTrigger={true}
-              />
-              
-              <div className={cn("hidden lg:block", textColorClass)}>
-                <LanguageSwitcher />
-              </div>
+          <div className="flex items-center z-50 ml-auto lg:ml-0">
+            <ProfileDialog 
+              open={dialogOpen}
+              setOpen={setDialogOpen}
+              userGender={userGender}
+              userType={userType}
+              sport={sport}
+              updateProfile={updateProfile}
+              resetProfile={resetProfile}
+              deleteProfile={deleteProfile}
+              showTrigger={true}
+            />
+            
+            <div className={cn("hidden lg:block", textColorClass)}>
+              <LanguageSwitcher />
             </div>
-          )}
+          </div>
         </div>
       </header>
 
