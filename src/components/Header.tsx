@@ -5,7 +5,6 @@ import Logo from './Logo';
 import { cn } from '@/lib/utils';
 import LanguageSwitcher from './LanguageSwitcher';
 import { useLanguage } from '@/contexts/LanguageContext';
-import { useProfile } from '@/contexts/ProfileContext';
 import { useIsMobile } from '@/hooks/use-mobile';
 import NavigationLinks from './navigation/NavigationLinks';
 import BottomNavigation from './navigation/BottomNavigation';
@@ -28,14 +27,12 @@ const Header = ({
   const { t } = useLanguage();
   const isMobile = useIsMobile();
   
-  // We're removing the hamburger menu toggle functionality
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   const handleGoBack = () => {
     navigate(-1);
   };
 
-  // Show back button only when not on homepage
   const showBackButton = location.pathname !== '/';
 
   const headerBgClass = bgColor === 'black' ? "bg-black" : "bg-white";
@@ -47,16 +44,17 @@ const Header = ({
         className={cn(
           'fixed top-0 left-0 w-full z-50 transition-all duration-300 shadow-sm',
           headerBgClass,
-          isMobile ? 'py-1' : 'py-3' // Reduced padding on mobile
+          isMobile ? 'py-1' : 'py-3'
         )}
       >
-        <div className="container mx-auto px-4 flex items-center justify-between relative">
-          {/* Removed hamburger menu button for mobile */}
-
+        <div className={cn(
+          "container mx-auto px-4 flex items-center", 
+          isMobile ? "justify-center" : "justify-between"
+        )}>
           {!hideLogoInHeader && (
             <div className={cn(
               "flex items-center z-50", 
-              isMobile ? "w-auto mx-auto" : (showBackButton ? "pl-0" : "pl-0")
+              isMobile ? "w-full justify-center" : (showBackButton ? "pl-0" : "pl-0")
             )}>
               {showBackButton && !isMobile && (
                 <Button 
@@ -83,7 +81,6 @@ const Header = ({
             </div>
           )}
           
-          {/* Always show navigation links regardless of hideLogoInHeader */}
           <div className={cn(
             "hidden lg:flex items-center justify-center flex-1",
             hideLogoInHeader ? "ml-0" : ""
@@ -92,8 +89,6 @@ const Header = ({
           </div>
           
           <div className="flex items-center z-50 ml-auto lg:ml-0">
-            {/* Removed ProfileDialog component from here */}
-            
             <div className={cn("hidden lg:block", textColorClass)}>
               <LanguageSwitcher />
             </div>
@@ -101,13 +96,10 @@ const Header = ({
         </div>
       </header>
 
-      {/* We'll keep MobileMenu but it won't be triggered by the hamburger icon anymore */}
       <MobileMenu isOpen={mobileMenuOpen} />
       
-      {/* Bottom Navigation for Mobile */}
       {isMobile && <BottomNavigation />}
       
-      {/* Add consistent spacing at the top to account for the header */}
       <div className={cn(
         isMobile ? "h-14" : "h-16", 
       )}></div>
