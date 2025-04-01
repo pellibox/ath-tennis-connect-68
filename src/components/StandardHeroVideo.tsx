@@ -44,6 +44,7 @@ const StandardHeroVideo = ({
   const [videoError, setVideoError] = useState(false);
   const vimeoContainerRef = useRef<HTMLDivElement>(null);
   const [retryCount, setRetryCount] = useState(0);
+  const [placeholderOpacity, setPlaceholderOpacity] = useState(1);
   
   // Extract Vimeo ID for thumbnail fallback
   const vimeoId = extractVimeoId(vimeoEmbed);
@@ -124,6 +125,12 @@ const StandardHeroVideo = ({
         iframe.onload = () => {
           console.log('Vimeo iframe loaded');
           setVideoLoaded(true);
+          
+          // Fade out the placeholder with a smooth transition
+          setTimeout(() => {
+            setPlaceholderOpacity(0);
+          }, 300);
+          
           clearTimeout(timeoutId);
         };
         
@@ -202,8 +209,11 @@ const StandardHeroVideo = ({
             overflow: 'hidden'
           }}
         >
-          {/* Fallback image shown until video loads or if there's an error */}
-          <div className="absolute inset-0 z-10 bg-black">
+          {/* Placeholder image shown until video loads or if there's an error */}
+          <div 
+            className="absolute inset-0 z-10 bg-black transition-opacity duration-500"
+            style={{ opacity: placeholderOpacity }}
+          >
             <ResponsiveImage
               src={fallbackImageUrl}
               alt="Video thumbnail"
@@ -239,9 +249,7 @@ const StandardHeroVideo = ({
               height: '100%', 
               transform: 'scale(1.3)', 
               transformOrigin: 'center center',
-              opacity: videoLoaded && !videoError ? 1 : 0,
-              transition: 'opacity 0.5s ease-in-out',
-              zIndex: videoLoaded && !videoError ? 20 : 5
+              zIndex: 20
             }}
           />
         </div>
