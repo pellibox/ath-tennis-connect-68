@@ -32,7 +32,8 @@ const ChatbotWidget = () => {
 
   return (
     <div className="fixed bottom-20 right-5 z-50 font-swiss md:bottom-5">
-      <div className="w-[320px] md:w-[350px] bg-white rounded-lg shadow-lg overflow-hidden">
+      <div className={`${expanded ? 'w-[320px] md:w-[350px] bg-white rounded-lg' : ''} 
+        shadow-lg overflow-hidden transition-all duration-300 ease-in-out`}>
         <ChatHeader 
           isExpanded={expanded} 
           toggleExpanded={toggleExpanded} 
@@ -40,7 +41,7 @@ const ChatbotWidget = () => {
         />
         
         {expanded && (
-          <>
+          <div className="animate-fade-in">
             <ChatMessages messages={messages} isProcessing={isProcessing} />
             <ChatInput 
               onSendMessage={sendMessage} 
@@ -48,7 +49,7 @@ const ChatbotWidget = () => {
               stopListening={stopListening}
               isListening={isListening}
             />
-          </>
+          </div>
         )}
       </div>
     </div>
