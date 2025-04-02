@@ -17,7 +17,7 @@ export interface JsPDFInternal {
 }
 
 // Extend the global jsPDF interface with autoTable method
-declare global {
+declare module 'jspdf' {
   interface jsPDF {
     internal: JsPDFInternal;
     autoTable: (options: {
