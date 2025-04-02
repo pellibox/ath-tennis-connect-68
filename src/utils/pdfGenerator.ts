@@ -1,3 +1,4 @@
+
 import jsPDF from 'jspdf';
 import 'jspdf-autotable';
 import { programCategories } from '@/data/programs';
@@ -779,4 +780,30 @@ export const generateSiteBrochure = async (options: PdfOptions = {}) => {
       
       // Add page numbers to each page
       for (let i = 1; i <= pageCount; i++) {
-        doc.
+        doc.setPage(i);
+        doc.setFontSize(10);
+        doc.setFont('helvetica', 'normal');
+        doc.text(`Pagina ${i} di ${pageCount}`, doc.internal.pageSize.width / 2, doc.internal.pageSize.height - 10, { align: 'center' });
+      }
+      
+      // Save the PDF
+      doc.save('ATH_Tennis_Hub_Brochure.pdf');
+      return true;
+    } catch (error) {
+      console.error('Error adding page numbers to PDF:', error);
+      // Save anyway
+      doc.save('ATH_Tennis_Hub_Brochure.pdf');
+      return true;
+    }
+    
+  } catch (error) {
+    console.error('Error generating PDF brochure:', error);
+    toast.error('Si è verificato un errore nella generazione della brochure.');
+    return false;
+  }
+};
+
+// Public function for downloading the brochure
+export const downloadSiteBrochure = async (options: PdfOptions = {}) => {
+  return await generateSiteBrochure(options);
+};
