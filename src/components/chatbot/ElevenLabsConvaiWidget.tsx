@@ -1,4 +1,3 @@
-
 import React, { useEffect, useState } from 'react';
 import { useElevenLabsAuth } from '@/hooks/useElevenLabsAuth';
 import { useLanguage } from '@/contexts/LanguageContext';
@@ -7,7 +6,7 @@ import { useLanguage } from '@/contexts/LanguageContext';
 const AGENT_ID = "jJMZr28UE8hDLsO00dmt";
 
 const ElevenLabsConvaiWidget = () => {
-  const { currentLanguage } = useLanguage();
+  const { language } = useLanguage();
   const [widgetInitialized, setWidgetInitialized] = useState(false);
   const { signedUrl, error, isLoading } = useElevenLabsAuth(AGENT_ID);
   
@@ -29,7 +28,7 @@ const ElevenLabsConvaiWidget = () => {
         if (window.ElevenLabsConvai) {
           // Initialize the widget
           window.ElevenLabsConvai?.init({
-            language: currentLanguage || 'it', // Default to Italian, use the app's language context
+            language: language || 'it', // Default to Italian, use the app's language context
             usePublicAgents: true // Use public agents mode as we don't have a signed URL
           });
           setWidgetInitialized(true);
@@ -48,7 +47,7 @@ const ElevenLabsConvaiWidget = () => {
     if (!widgetInitialized) {
       initWidget();
     }
-  }, [currentLanguage, widgetInitialized]);
+  }, [language, widgetInitialized]);
   
   // Log any authentication errors
   useEffect(() => {
@@ -67,7 +66,7 @@ const ElevenLabsConvaiWidget = () => {
       ) : (
         <elevenlabs-convai 
           agent-id={AGENT_ID}
-          language={currentLanguage || 'it'} // Set the language attribute
+          language={language || 'it'} // Set the language attribute
         ></elevenlabs-convai>
       )}
     </div>
