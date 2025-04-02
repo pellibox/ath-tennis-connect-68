@@ -5,6 +5,7 @@ import ChatHeader from './ChatHeader';
 import ChatMessages from './ChatMessages';
 import ChatInput from './ChatInput';
 import { useChatbot } from '@/hooks/useChatbot';
+import { Volume2, VolumeX } from 'lucide-react';
 
 const ChatbotWidget = () => {
   const [expanded, setExpanded] = useState(false);
@@ -15,7 +16,8 @@ const ChatbotWidget = () => {
     isProcessing, 
     startListening, 
     stopListening, 
-    isListening 
+    isListening,
+    isSpeaking
   } = useChatbot();
 
   const toggleExpanded = () => {
@@ -26,7 +28,7 @@ const ChatbotWidget = () => {
   useEffect(() => {
     if (expanded && messages.length === 0) {
       // Add welcome message but don't send to API
-      sendMessage(t('chatbot.welcomeMessage') || "Benvenuto! Come posso aiutarti?", true);
+      sendMessage(t('chatbot.welcomeMessage') || "Ciao! Sono l'assistente virtuale di ATH. Come posso aiutarti oggi?", true);
     }
   }, [expanded, messages.length, sendMessage, t]);
 
@@ -38,6 +40,7 @@ const ChatbotWidget = () => {
           isExpanded={expanded} 
           toggleExpanded={toggleExpanded} 
           title={t('chatbot.title') || "Assistente ATH"}
+          isSpeaking={isSpeaking}
         />
         
         {expanded && (
@@ -49,6 +52,11 @@ const ChatbotWidget = () => {
               stopListening={stopListening}
               isListening={isListening}
             />
+            {isSpeaking && (
+              <div className="absolute bottom-16 right-3 bg-ath-clay text-white p-1 rounded-full">
+                <Volume2 size={16} className="animate-pulse" />
+              </div>
+            )}
           </div>
         )}
       </div>
