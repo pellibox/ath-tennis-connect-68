@@ -1,4 +1,3 @@
-
 import * as React from "react"
 
 // Define multiple breakpoints for more precise control
@@ -10,19 +9,18 @@ const BREAKPOINTS = {
 }
 
 export function useIsMobile() {
-  const [isMobile, setIsMobile] = React.useState<boolean | undefined>(undefined)
+  const [isMobile, setIsMobile] = React.useState<boolean>(window.innerWidth < BREAKPOINTS.md)
 
   React.useEffect(() => {
-    const mql = window.matchMedia(`(max-width: ${BREAKPOINTS.md - 1}px)`)
-    const onChange = () => {
+    const handleResize = () => {
       setIsMobile(window.innerWidth < BREAKPOINTS.md)
     }
-    mql.addEventListener("change", onChange)
-    setIsMobile(window.innerWidth < BREAKPOINTS.md)
-    return () => mql.removeEventListener("change", onChange)
+    
+    window.addEventListener("resize", handleResize)
+    return () => window.removeEventListener("resize", handleResize)
   }, [])
 
-  return !!isMobile
+  return isMobile
 }
 
 // Additional hook for more precise breakpoint control
