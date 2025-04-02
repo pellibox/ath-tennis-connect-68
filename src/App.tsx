@@ -22,6 +22,7 @@ import PrivacyPage from '@/pages/Privacy';
 import TermsPage from '@/pages/Terms';
 import Brochure from '@/pages/Brochure';
 import ElevenLabsConvaiWidget from '@/components/chatbot/ElevenLabsConvaiWidget';
+import BottomNavigation from '@/components/navigation/BottomNavigation';
 
 // Programs pages
 import EliteProgram from '@/pages/programs/Elite';
@@ -72,6 +73,8 @@ function App() {
 }
 
 function AppContent() {
+  const isMobile = useIsMobile();
+  
   return (
     <div>
       <Routes>
@@ -136,6 +139,9 @@ function AppContent() {
 
       {/* ElevenLabs Convai widget - always present regardless of route */}
       <ElevenLabsConvaiWidget />
+      
+      {/* Add BottomNavigation for mobile view */}
+      {isMobile && <BottomNavigation />}
       
       <Toaster position="bottom-right" />
     </div>
