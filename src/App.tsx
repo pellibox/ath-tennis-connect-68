@@ -54,6 +54,11 @@ import PadelAdultProgram from '@/pages/programs/PadelAdult';
 import PadelAdvancedProgram from '@/pages/programs/PadelAdvanced';
 import PadelPrivateProgram from '@/pages/programs/PadelPrivate';
 
+// TouchTennis dedicated program pages
+import TouchTennisBaseProgram from '@/pages/programs/TouchTennisBase';
+import TouchTennisAdvancedProgram from '@/pages/programs/TouchTennisAdvanced';
+import TouchTennisJuniorProgram from '@/pages/programs/TouchTennisJunior';
+
 function App() {
   return (
     <LanguageProvider>
@@ -114,6 +119,11 @@ function AppContent() {
         <Route path="/programs/padel-adult" element={<PadelAdultProgram />} />
         <Route path="/programs/padel-advanced" element={<PadelAdvancedProgram />} />
         <Route path="/programs/padel-private" element={<PadelPrivateProgram />} />
+        
+        {/* TouchTennis dedicated program routes */}
+        <Route path="/programs/touchtennis-base" element={<TouchTennisBaseProgram />} />
+        <Route path="/programs/touchtennis-avanzato" element={<TouchTennisAdvancedProgram />} />
+        <Route path="/programs/touchtennis-junior" element={<TouchTennisJuniorProgram />} />
         
         <Route path="/contact" element={<ContactPage />} />
         <Route path="/privacy" element={<PrivacyPage />} />

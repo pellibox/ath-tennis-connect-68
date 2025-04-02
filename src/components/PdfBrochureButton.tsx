@@ -24,11 +24,14 @@ const PdfBrochureButton = ({
     try {
       setIsGenerating(true);
       toast.info("Generazione brochure in corso...");
+      
+      console.log("Starting brochure download with language:", language);
       await downloadSiteBrochure({ language });
+      
       toast.success("Brochure scaricata con successo!");
     } catch (error) {
       console.error('Error downloading brochure:', error);
-      toast.error("Errore durante la generazione della brochure.");
+      toast.error("Errore durante la generazione della brochure. Riprova più tardi.");
     } finally {
       setIsGenerating(false);
     }

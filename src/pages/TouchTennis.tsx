@@ -11,6 +11,9 @@ import ProgramsHeader from '@/components/programs/ProgramsHeader';
 import { touchTennisCategories } from '@/data/touchtennis';
 import { useIsMobile } from '@/hooks/use-mobile';
 import StandardHeroVideo from '@/components/StandardHeroVideo';
+import { Link } from 'react-router-dom';
+import { Button } from '@/components/ui/button';
+import RevealAnimation from '@/components/RevealAnimation';
 
 const TouchTennis = () => {
   const { t } = useLanguage();
@@ -54,6 +57,46 @@ const TouchTennis = () => {
               categories={touchTennisCategories}
               className=""
             />
+          </div>
+        </div>
+        
+        <div className="bg-white py-12">
+          <div className="container mx-auto px-4">
+            <RevealAnimation>
+              <h2 className="text-3xl font-display mb-8 text-center">Programmi TouchTennis in Evidenza</h2>
+            </RevealAnimation>
+            
+            <div className="grid md:grid-cols-3 gap-8 mb-12">
+              <RevealAnimation delay={100}>
+                <div className="bg-gray-50 p-6 rounded-lg shadow-sm border border-gray-100 flex flex-col h-full">
+                  <h3 className="text-xl font-semibold mb-3">TouchTennis Base</h3>
+                  <p className="text-gray-700 mb-4 flex-grow">Programma introduttivo al TouchTennis, ideale per principianti e per chi vuole scoprire questo sport dinamico e divertente.</p>
+                  <Link to="/programs/touchtennis-base">
+                    <Button className="w-full">Scopri il Programma</Button>
+                  </Link>
+                </div>
+              </RevealAnimation>
+              
+              <RevealAnimation delay={200}>
+                <div className="bg-gray-50 p-6 rounded-lg shadow-sm border border-gray-100 flex flex-col h-full">
+                  <h3 className="text-xl font-semibold mb-3">TouchTennis Avanzato</h3>
+                  <p className="text-gray-700 mb-4 flex-grow">Programma per giocatori con esperienza nel TouchTennis che vogliono migliorare le proprie abilità tecniche e tattiche.</p>
+                  <Link to="/programs/touchtennis-avanzato">
+                    <Button className="w-full">Scopri il Programma</Button>
+                  </Link>
+                </div>
+              </RevealAnimation>
+              
+              <RevealAnimation delay={300}>
+                <div className="bg-gray-50 p-6 rounded-lg shadow-sm border border-gray-100 flex flex-col h-full">
+                  <h3 className="text-xl font-semibold mb-3">TouchTennis Junior</h3>
+                  <p className="text-gray-700 mb-4 flex-grow">Programma specifico per giovani atleti (8-14 anni) che vogliono approcciarsi al TouchTennis in modo divertente e strutturato.</p>
+                  <Link to="/programs/touchtennis-junior">
+                    <Button className="w-full">Scopri il Programma</Button>
+                  </Link>
+                </div>
+              </RevealAnimation>
+            </div>
           </div>
         </div>
         

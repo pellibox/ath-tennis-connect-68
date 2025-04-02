@@ -16,17 +16,19 @@ export interface JsPDFInternal {
   getEncryptor(objectId: number): (data: string) => string;
 }
 
-// Properly extend the global jsPDF interface
+// Properly extend the global jsPDF interface with more specific typing
 declare global {
   interface jsPDF {
     internal: JsPDFInternal;
-  }
-}
-
-// Extend jsPDF with autoTable - properly define the return type
-declare module 'jspdf' {
-  interface jsPDF {
-    autoTable: (options: any) => jsPDF & { 
+    autoTable: (options: {
+      startY?: number;
+      head?: any[][];
+      body?: any[][];
+      theme?: string;
+      headStyles?: any;
+      columnStyles?: any;
+      [key: string]: any;
+    }) => jsPDF & { 
       previous: {
         finalY: number;
       }

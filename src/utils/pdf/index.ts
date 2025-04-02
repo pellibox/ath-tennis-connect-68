@@ -1,5 +1,6 @@
 
 import { jsPDF } from 'jspdf';
+// Fix the import of jspdf-autotable
 import 'jspdf-autotable';
 import { toast } from 'sonner';
 import { PdfOptions } from './types';
