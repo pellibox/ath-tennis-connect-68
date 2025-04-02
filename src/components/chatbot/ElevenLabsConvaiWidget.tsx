@@ -48,7 +48,7 @@ const ElevenLabsConvaiWidget = () => {
   }, [language]);
   
   return (
-    <div className={`fixed right-4 z-50 ${isMobile ? 'bottom-[96px]' : 'bottom-5'}`}>
+    <div className={`fixed right-4 z-50 ${isMobile ? 'bottom-[76px]' : 'bottom-5'}`}>
       <div className="bg-white rounded-lg shadow-lg overflow-hidden transition-all duration-300 ease-in-out max-w-[350px] animate-fade-in">
         <TooltipProvider>
           <Tooltip>
