@@ -1,10 +1,13 @@
+
 import jsPDF from 'jspdf';
 import 'jspdf-autotable';
 import { programCategories } from '@/data/programs';
 import { touchTennisCategories } from '@/data/touchtennis';
 import { formatCurrency } from '@/utils/formatUtils';
+import { toast } from 'sonner';
 
 // Extended interface for jsPDF with autotable
+// Use proper TypeScript interface merging
 declare module 'jspdf' {
   interface jsPDF {
     autoTable: (options: any) => jsPDF;
@@ -33,11 +36,12 @@ export const generateSiteBrochure = async (options: PdfOptions = {}) => {
     // Set default language
     const language = options.language || 'it';
     
-    // Add ATH logo
+    // Add ATH logo - Use correct path from lovable-uploads
     const logoImg = new Image();
-    logoImg.src = '/img/ath-logo-black.png';
+    // Use a logo from lovable-uploads directory
+    logoImg.src = '/lovable-uploads/0a250ed5-11e7-485c-a8f5-d41ebaa7083f.png';
     
-    await new Promise<void>((resolve, reject) => {
+    await new Promise<void>((resolve) => {
       logoImg.onload = () => {
         try {
           // Calculate aspect ratio to fit width
@@ -214,31 +218,38 @@ export const generateSiteBrochure = async (options: PdfOptions = {}) => {
     doc.setFont('helvetica', 'bold');
     doc.text('Tariffe e Prezzi', 20, 20);
     
-    // Add pricing tables as needed
-    // Example pricing table
-    doc.autoTable({
-      startY: 30,
-      head: [['Programma', 'Durata', 'Prezzo']],
-      body: [
-        ['Elite Performance Full', '40 settimane', '€ 15.000'],
-        ['Elite Performance', '40 settimane', '€ 7.500'],
-        ['Performance 4', '40 settimane', '€ 6.500'],
-        ['Performance 3', '40 settimane', '€ 5.000'],
-        ['Performance 2', '40 settimane', '€ 4.000'],
-        ['SIT - Scuola Individuazione Talenti', '30 settimane', '€ 950'],
-        ['SAT - Propedeutico', '30 settimane', '€ 500'],
-        ['Adult Training', '30 settimane', '€ 700'],
-        ['Universitari / Scuole Online', '30 settimane', '€ 1.000'],
-        ['Private Personal Coaching', 'Sessione', '€ 120']
-      ],
-      theme: 'grid',
-      headStyles: { fillColor: [150, 150, 150], textColor: [255, 255, 255] },
-      columnStyles: {
-        0: { cellWidth: 70 },
-        1: { cellWidth: 50 },
-        2: { cellWidth: 50 }
-      }
-    });
+    try {
+      // Add pricing tables with proper error handling
+      doc.autoTable({
+        startY: 30,
+        head: [['Programma', 'Durata', 'Prezzo']],
+        body: [
+          ['Elite Performance Full', '40 settimane', '€ 15.000'],
+          ['Elite Performance', '40 settimane', '€ 7.500'],
+          ['Performance 4', '40 settimane', '€ 6.500'],
+          ['Performance 3', '40 settimane', '€ 5.000'],
+          ['Performance 2', '40 settimane', '€ 4.000'],
+          ['SIT - Scuola Individuazione Talenti', '30 settimane', '€ 950'],
+          ['SAT - Propedeutico', '30 settimane', '€ 500'],
+          ['Adult Training', '30 settimane', '€ 700'],
+          ['Universitari / Scuole Online', '30 settimane', '€ 1.000'],
+          ['Private Personal Coaching', 'Sessione', '€ 120']
+        ],
+        theme: 'grid',
+        headStyles: { fillColor: [150, 150, 150], textColor: [255, 255, 255] },
+        columnStyles: {
+          0: { cellWidth: 70 },
+          1: { cellWidth: 50 },
+          2: { cellWidth: 50 }
+        }
+      });
+    } catch (error) {
+      console.error('Error creating pricing table:', error);
+      // Add fallback text if table fails
+      doc.setFont('helvetica', 'normal');
+      doc.setFontSize(10);
+      doc.text('Per informazioni sui prezzi, contattare direttamente il nostro staff.', 20, 40);
+    }
     
     // Contact information
     doc.addPage();
@@ -265,21 +276,25 @@ export const generateSiteBrochure = async (options: PdfOptions = {}) => {
     doc.text('Sabato: 9:00 - 20:00', 20, 92);
     doc.text('Domenica: 9:00 - 18:00', 20, 99);
     
-    // Add page number to each page
-    const totalPages = doc.internal.getNumberOfPages();
-    for (let i = 1; i <= totalPages; i++) {
-      doc.setPage(i);
+    try {
+      // Add page number to each page
+      const totalPages = doc.internal.getNumberOfPages();
+      for (let i = 1; i <= totalPages; i++) {
+        doc.setPage(i);
+        doc.setFontSize(10);
+        doc.setFont('helvetica', 'normal');
+        doc.text(`Pagina ${i} di ${totalPages}`, doc.internal.pageSize.width - 30, doc.internal.pageSize.height - 10);
+      }
+      
+      // Add generation date
+      const today = new Date();
+      const dateString = today.toLocaleDateString(language === 'en' ? 'en-US' : 'it-IT');
+      doc.setPage(1);
       doc.setFontSize(10);
-      doc.setFont('helvetica', 'normal');
-      doc.text(`Pagina ${i} di ${totalPages}`, doc.internal.pageSize.width - 30, doc.internal.pageSize.height - 10);
+      doc.text(`Generato il: ${dateString}`, 20, doc.internal.pageSize.height - 10);
+    } catch (error) {
+      console.error('Error adding page numbers:', error);
     }
-    
-    // Add generation date
-    const today = new Date();
-    const dateString = today.toLocaleDateString(language === 'en' ? 'en-US' : 'it-IT');
-    doc.setPage(1);
-    doc.setFontSize(10);
-    doc.text(`Generato il: ${dateString}`, 20, doc.internal.pageSize.height - 10);
     
     // Return the generated PDF as a blob
     return doc.output('blob');
@@ -306,6 +321,7 @@ export const downloadSiteBrochure = async (options: PdfOptions = {}) => {
     URL.revokeObjectURL(pdfUrl);
   } catch (error) {
     console.error('Error downloading PDF:', error);
+    toast.error("Si è verificato un errore durante la generazione della brochure.");
     throw error;
   }
 };
