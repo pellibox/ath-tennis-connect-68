@@ -1,3 +1,4 @@
+
 import { jsPDF } from 'jspdf';
 // Import the autotable plugin to extend jsPDF
 import 'jspdf-autotable';
@@ -20,25 +21,32 @@ export const createPricingTable = (
   yPosition += 10;
   
   console.log(`Creating table "${title}" at position ${yPosition}`);
+  console.log(`Table data:`, JSON.stringify(tableData));
   
-  // Add table with proper configuration
-  const result = doc.autoTable({
-    startY: yPosition,
-    head: tableData.head,
-    body: tableData.body,
-    theme: 'grid',
-    headStyles: { fillColor: [150, 150, 150], textColor: [255, 255, 255] },
-    columnStyles: {
-      0: { cellWidth: 70 },
-      1: { cellWidth: 50 },
-      2: { cellWidth: 50 }
-    },
-    margin: { left: 20, right: 20 }
-  });
-  
-  const finalY = result.previous?.finalY || yPosition;
-  console.log(`Table "${title}" created, final Y position: ${finalY}`);
-  return finalY + 15;
+  try {
+    // Add table with proper configuration
+    const result = doc.autoTable({
+      startY: yPosition,
+      head: tableData.head,
+      body: tableData.body,
+      theme: 'grid',
+      headStyles: { fillColor: [150, 150, 150], textColor: [255, 255, 255] },
+      columnStyles: {
+        0: { cellWidth: 70 },
+        1: { cellWidth: 50 },
+        2: { cellWidth: 50 }
+      },
+      margin: { left: 20, right: 20 }
+    });
+    
+    const finalY = result.previous?.finalY || yPosition;
+    console.log(`Table "${title}" created, final Y position: ${finalY}`);
+    return finalY + 15;
+  } catch (error) {
+    console.error(`Error creating table "${title}":`, error);
+    // Return yPosition + some space to prevent overlap in case of error
+    return yPosition + 50;
+  }
 };
 
 /**
@@ -63,6 +71,9 @@ export const generatePricingTables = (doc: jsPDF, yPosition: number): void => {
     console.log("Starting to generate pricing tables at position:", yPosition);
     
     // Tennis Programs Pricing
+    doc.setFontSize(12); // Ensure text size is readable
+    doc.setTextColor(0, 0, 0); // Ensure text color is black
+    
     yPosition = createPricingTable(doc, 'Prezzi Programmi Tennis', {
       head: [['Programma', 'Durata', 'Prezzo']],
       body: [
@@ -81,12 +92,10 @@ export const generatePricingTables = (doc: jsPDF, yPosition: number): void => {
     
     console.log("After Tennis Programs table, yPosition:", yPosition);
     
-    // Check if we need a new page
-    if (needsNewPage(doc, yPosition, 60)) {
-      doc.addPage();
-      yPosition = 20;
-      console.log("Added new page for Padel Programs, yPosition reset to:", yPosition);
-    }
+    // Add new page for the padel programs
+    doc.addPage();
+    yPosition = 20;
+    console.log("Added new page for Padel Programs, yPosition reset to:", yPosition);
     
     // Padel Programs Pricing
     yPosition = createPricingTable(doc, 'Prezzi Programmi Padel', {
@@ -101,12 +110,10 @@ export const generatePricingTables = (doc: jsPDF, yPosition: number): void => {
     
     console.log("After Padel Programs table, yPosition:", yPosition);
     
-    // Check if we need a new page
-    if (needsNewPage(doc, yPosition, 60)) {
-      doc.addPage();
-      yPosition = 20;
-      console.log("Added new page for Pickleball Programs, yPosition reset to:", yPosition);
-    }
+    // Add new page for the pickleball programs
+    doc.addPage();
+    yPosition = 20;
+    console.log("Added new page for Pickleball Programs, yPosition reset to:", yPosition);
     
     // Pickleball Programs Pricing
     yPosition = createPricingTable(doc, 'Prezzi Programmi Pickleball', {
@@ -121,12 +128,10 @@ export const generatePricingTables = (doc: jsPDF, yPosition: number): void => {
     
     console.log("After Pickleball Programs table, yPosition:", yPosition);
     
-    // Check if we need a new page
-    if (needsNewPage(doc, yPosition, 60)) {
-      doc.addPage();
-      yPosition = 20;
-      console.log("Added new page for TouchTennis Programs, yPosition reset to:", yPosition);
-    }
+    // Add new page for the TouchTennis programs
+    doc.addPage();
+    yPosition = 20;
+    console.log("Added new page for TouchTennis Programs, yPosition reset to:", yPosition);
     
     // TouchTennis Programs Pricing
     yPosition = createPricingTable(doc, 'Prezzi Programmi TouchTennis', {
@@ -140,12 +145,10 @@ export const generatePricingTables = (doc: jsPDF, yPosition: number): void => {
     
     console.log("After TouchTennis Programs table, yPosition:", yPosition);
     
-    // Check if we need a new page
-    if (needsNewPage(doc, yPosition, 60)) {
-      doc.addPage();
-      yPosition = 20;
-      console.log("Added new page for Multi-sport programs, yPosition reset to:", yPosition);
-    }
+    // Add new page for Multi-sport programs
+    doc.addPage();
+    yPosition = 20;
+    console.log("Added new page for Multi-sport programs, yPosition reset to:", yPosition);
     
     // Multi-sport programs
     yPosition = createPricingTable(doc, 'Programmi Multi-Sport', {
@@ -158,12 +161,10 @@ export const generatePricingTables = (doc: jsPDF, yPosition: number): void => {
     
     console.log("After Multi-sport programs table, yPosition:", yPosition);
     
-    // Add pricing notes
-    if (needsNewPage(doc, yPosition, 40)) {
-      doc.addPage();
-      yPosition = 20;
-      console.log("Added new page for pricing notes, yPosition reset to:", yPosition);
-    }
+    // Add new page for pricing notes
+    doc.addPage();
+    yPosition = 20;
+    console.log("Added new page for pricing notes, yPosition reset to:", yPosition);
     
     const pricingNotes = [
       '* I prezzi possono subire variazioni. Contattare la reception per confermare.',

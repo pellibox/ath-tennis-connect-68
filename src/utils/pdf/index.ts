@@ -33,6 +33,7 @@ export const generateSiteBrochure = async (options: PdfOptions = {}): Promise<js
     
     // Create cover page
     let yPosition = await createCoverPage(doc);
+    console.log('Cover page created, yPosition:', yPosition);
     
     // Generate sport sections
     yPosition = generateTennisSection(doc, yPosition);
@@ -46,7 +47,7 @@ export const generateSiteBrochure = async (options: PdfOptions = {}): Promise<js
     yPosition = 20;
     yPosition = generateTouchTennisSection(doc, yPosition);
     
-    // Add pricing tables section
+    // Add pricing tables section (on a new page)
     doc.addPage();
     yPosition = 20;
     doc.setFontSize(18);
@@ -56,10 +57,10 @@ export const generateSiteBrochure = async (options: PdfOptions = {}): Promise<js
     
     console.log('Starting pricing tables section at yPosition:', yPosition);
     
-    // Generate all pricing tables
+    // Generate all pricing tables with explicit page management
     generatePricingTables(doc, yPosition);
     
-    // Add contact information page
+    // Add contact information page (on a new page)
     doc.addPage();
     createContactPage(doc);
     
