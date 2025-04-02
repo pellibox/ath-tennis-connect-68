@@ -1,4 +1,3 @@
-
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { Toaster } from "@/components/ui/sonner";
 import { LanguageProvider } from './contexts/LanguageContext';
@@ -20,7 +19,7 @@ import ContactPage from '@/pages/Contact';
 import NotFoundPage from '@/pages/NotFound';
 import PrivacyPage from '@/pages/Privacy';
 import TermsPage from '@/pages/Terms';
-import ChatbotWidget from '@/components/chatbot/ChatbotWidget';
+import ElevenLabsConvaiWidget from '@/components/chatbot/ElevenLabsConvaiWidget';
 
 // Programs pages
 import EliteProgram from '@/pages/programs/Elite';
@@ -124,8 +123,8 @@ function AppContent() {
         <Route path="*" element={<NotFoundPage />} />
       </Routes>
 
-      {/* Chatbot widget - always present regardless of route */}
-      <ChatbotWidget />
+      {/* ElevenLabs Convai widget - always present regardless of route */}
+      <ElevenLabsConvaiWidget />
       
       <Toaster position="bottom-right" />
     </div>
