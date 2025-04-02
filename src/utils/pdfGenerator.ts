@@ -1,4 +1,3 @@
-
 import jsPDF from 'jspdf';
 import 'jspdf-autotable';
 import { programCategories } from '@/data/programs';
@@ -12,7 +11,11 @@ import { toast } from 'sonner';
 // Use proper TypeScript interface merging
 declare module 'jspdf' {
   interface jsPDF {
-    autoTable: (options: any) => jsPDF;
+    autoTable: (options: any) => jsPDF & { 
+      previous: {
+        finalY: number;
+      }
+    };
   }
 }
 
@@ -27,7 +30,7 @@ interface JsPDFInternal {
     getHeight: () => number;
   };
   pages: number[];
-  getNumberOfPages: () => number; // Changed from method to property getter
+  getNumberOfPages: () => number;
   getEncryptor(objectId: number): (data: string) => string;
 }
 
@@ -515,7 +518,7 @@ export const generateSiteBrochure = async (options: PdfOptions = {}) => {
     
     try {
       // Add pricing tables with proper error handling
-      doc.autoTable({
+      const tennisTable = doc.autoTable({
         startY: yPosition,
         head: [['Programma', 'Durata', 'Prezzo']],
         body: [
@@ -538,15 +541,16 @@ export const generateSiteBrochure = async (options: PdfOptions = {}) => {
           2: { cellWidth: 50 }
         }
       });
+      
+      yPosition = tennisTable.previous.finalY + 15;
     } catch (error) {
       console.error('Error creating pricing table:', error);
       // Add fallback text if table fails
       doc.setFont('helvetica', 'normal');
       doc.setFontSize(10);
       doc.text('Per informazioni sui prezzi, contattare direttamente il nostro staff.', 20, yPosition + 10);
+      yPosition += 20;
     }
-    
-    yPosition = doc.autoTable.previous.finalY + 15;
     
     if (yPosition > doc.internal.pageSize.height - 60) {
       doc.addPage();
@@ -560,7 +564,7 @@ export const generateSiteBrochure = async (options: PdfOptions = {}) => {
     yPosition += 10;
     
     try {
-      doc.autoTable({
+      const padelTable = doc.autoTable({
         startY: yPosition,
         head: [['Programma', 'Durata', 'Prezzo']],
         body: [
@@ -577,14 +581,15 @@ export const generateSiteBrochure = async (options: PdfOptions = {}) => {
           2: { cellWidth: 50 }
         }
       });
+      
+      yPosition = padelTable.previous.finalY + 15;
     } catch (error) {
       console.error('Error creating padel pricing table:', error);
       doc.setFont('helvetica', 'normal');
       doc.setFontSize(10);
       doc.text('Per informazioni sui prezzi dei programmi Padel, contattare direttamente il nostro staff.', 20, yPosition + 10);
+      yPosition += 20;
     }
-    
-    yPosition = doc.autoTable.previous.finalY + 15;
     
     if (yPosition > doc.internal.pageSize.height - 60) {
       doc.addPage();
@@ -598,7 +603,7 @@ export const generateSiteBrochure = async (options: PdfOptions = {}) => {
     yPosition += 10;
     
     try {
-      doc.autoTable({
+      const pickleballTable = doc.autoTable({
         startY: yPosition,
         head: [['Programma', 'Durata', 'Prezzo']],
         body: [
@@ -615,14 +620,15 @@ export const generateSiteBrochure = async (options: PdfOptions = {}) => {
           2: { cellWidth: 50 }
         }
       });
+      
+      yPosition = pickleballTable.previous.finalY + 15;
     } catch (error) {
       console.error('Error creating pickleball pricing table:', error);
       doc.setFont('helvetica', 'normal');
       doc.setFontSize(10);
       doc.text('Per informazioni sui prezzi dei programmi Pickleball, contattare direttamente il nostro staff.', 20, yPosition + 10);
+      yPosition += 20;
     }
-    
-    yPosition = doc.autoTable.previous.finalY + 15;
     
     if (yPosition > doc.internal.pageSize.height - 60) {
       doc.addPage();
@@ -636,7 +642,7 @@ export const generateSiteBrochure = async (options: PdfOptions = {}) => {
     yPosition += 10;
     
     try {
-      doc.autoTable({
+      const touchTennisTable = doc.autoTable({
         startY: yPosition,
         head: [['Programma', 'Durata', 'Prezzo']],
         body: [
@@ -652,14 +658,15 @@ export const generateSiteBrochure = async (options: PdfOptions = {}) => {
           2: { cellWidth: 50 }
         }
       });
+      
+      yPosition = touchTennisTable.previous.finalY + 15;
     } catch (error) {
       console.error('Error creating touchtennis pricing table:', error);
       doc.setFont('helvetica', 'normal');
       doc.setFontSize(10);
       doc.text('Per informazioni sui prezzi dei programmi TouchTennis, contattare direttamente il nostro staff.', 20, yPosition + 10);
+      yPosition += 20;
     }
-    
-    yPosition = doc.autoTable.previous.finalY + 15;
     
     if (yPosition > doc.internal.pageSize.height - 60) {
       doc.addPage();
@@ -673,7 +680,7 @@ export const generateSiteBrochure = async (options: PdfOptions = {}) => {
     yPosition += 10;
     
     try {
-      doc.autoTable({
+      const multiSportTable = doc.autoTable({
         startY: yPosition,
         head: [['Programma', 'Durata', 'Prezzo']],
         body: [
@@ -688,21 +695,23 @@ export const generateSiteBrochure = async (options: PdfOptions = {}) => {
           2: { cellWidth: 50 }
         }
       });
+      
+      // Additional notes on pricing
+      yPosition = multiSportTable.previous.finalY + 15;
     } catch (error) {
       console.error('Error creating multi-sport pricing table:', error);
       doc.setFont('helvetica', 'normal');
       doc.setFontSize(10);
       doc.text('Per informazioni sui prezzi dei programmi Multi-Sport, contattare direttamente il nostro staff.', 20, yPosition + 10);
+      yPosition += 20;
     }
-    
-    // Additional notes on pricing
-    yPosition = doc.autoTable.previous.finalY + 15;
     
     if (yPosition > doc.internal.pageSize.height - 40) {
       doc.addPage();
       yPosition = 20;
     }
     
+    // Additional notes on pricing
     doc.setFontSize(11);
     doc.setFont('helvetica', 'italic');
     const pricingNotes = [
@@ -765,54 +774,9 @@ export const generateSiteBrochure = async (options: PdfOptions = {}) => {
     }
     
     try {
-      // Fix for getNumberOfPages - Use a safer approach
-      const pageCount = doc.internal.getNumberOfPages(); // This now properly accesses the function
+      // Fix for getNumberOfPages - Use the properly typed function
+      const pageCount = doc.internal.getNumberOfPages();
       
       // Add page numbers to each page
       for (let i = 1; i <= pageCount; i++) {
-        doc.setPage(i);
-        doc.setFontSize(10);
-        doc.setFont('helvetica', 'normal');
-        doc.text(`Pagina ${i} di ${pageCount}`, doc.internal.pageSize.width - 30, doc.internal.pageSize.height - 10);
-      }
-      
-      // Add generation date
-      const today = new Date();
-      const dateString = today.toLocaleDateString(language === 'en' ? 'en-US' : 'it-IT');
-      doc.setPage(1);
-      doc.setFontSize(10);
-      doc.text(`Generato il: ${dateString}`, 20, doc.internal.pageSize.height - 10);
-    } catch (error) {
-      console.error('Error adding page numbers:', error);
-    }
-    
-    // Return the generated PDF as a blob
-    return doc.output('blob');
-    
-  } catch (error) {
-    console.error('Error generating PDF:', error);
-    throw new Error('Failed to generate PDF brochure');
-  }
-};
-
-// Function to trigger PDF download
-export const downloadSiteBrochure = async (options: PdfOptions = {}) => {
-  try {
-    const pdfBlob = await generateSiteBrochure(options);
-    const pdfUrl = URL.createObjectURL(pdfBlob);
-    
-    // Create temporary link to trigger download
-    const link = document.createElement('a');
-    link.href = pdfUrl;
-    link.download = 'ATH_Tennis_Hub_Brochure_Completa.pdf';
-    link.click();
-    
-    // Clean up
-    URL.revokeObjectURL(pdfUrl);
-    toast.success("Brochure scaricata con successo!");
-  } catch (error) {
-    console.error('Error downloading PDF:', error);
-    toast.error("Si è verificato un errore durante la generazione della brochure.");
-    throw error;
-  }
-};
+        doc.
