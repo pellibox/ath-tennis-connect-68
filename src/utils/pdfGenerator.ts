@@ -8,19 +8,12 @@ import { formatCurrency } from '@/utils/formatUtils';
 declare module 'jspdf' {
   interface jsPDF {
     autoTable: (options: any) => jsPDF;
-    internal: {
-      events: any;
-      scaleFactor: number;
-      pageSize: {
-        width: number;
-        getWidth: () => number;
-        height: number;
-        getHeight: () => number;
-      };
-      pages: number[];
+  }
+  
+  namespace jsPDF {
+    interface Internal {
       getNumberOfPages(): number;
-      getEncryptor(objectId: number): (data: string) => string;
-    };
+    }
   }
 }
 
