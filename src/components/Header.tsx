@@ -8,7 +8,6 @@ import LanguageSwitcher from './LanguageSwitcher';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { useIsMobile } from '@/hooks/use-mobile';
 import NavigationLinks from './navigation/NavigationLinks';
-import BottomNavigation from './navigation/BottomNavigation';
 import { Button } from './ui/button';
 import MobileMenu from './navigation/MobileMenu';
 import ProfileDialog from './profile/ProfileDialog';
@@ -122,8 +121,6 @@ const Header = ({
       </header>
 
       <MobileMenu isOpen={mobileMenuOpen} />
-      
-      {isMobile && <BottomNavigation />}
       
       <div className={cn(
         isMobile ? "h-14" : "h-16", 

@@ -1,3 +1,4 @@
+
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { Toaster } from "@/components/ui/sonner";
 import { LanguageProvider } from './contexts/LanguageContext';
@@ -65,10 +66,8 @@ function App() {
 }
 
 function AppContent() {
-  const isMobile = useIsMobile();
-  
   return (
-    <div className={isMobile ? "pb-14" : ""}>
+    <div>
       <Routes>
         <Route path="/" element={<LandingPage />} />
         <Route path="/home" element={<HomePage />} />
