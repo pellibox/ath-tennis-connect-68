@@ -22,7 +22,7 @@ export const useSpeechSynthesis = () => {
 
   // Load available voices
   useEffect(() => {
-    if ('speechSynthesis' in window) {
+    if (typeof window !== 'undefined' && 'speechSynthesis' in window) {
       setIsSupported(true);
       
       const loadVoices = () => {
@@ -38,6 +38,7 @@ export const useSpeechSynthesis = () => {
       }
     } else {
       setIsSupported(false);
+      console.warn("Speech synthesis is not supported in this browser");
     }
   }, []);
 
@@ -45,6 +46,8 @@ export const useSpeechSynthesis = () => {
   useEffect(() => {
     if (voices.length > 0) {
       const targetLang = getSpeechLanguage(language);
+      console.log("Available voices:", voices.map(v => `${v.name} (${v.lang})`).join(", "));
+      console.log("Selecting voice for language:", targetLang);
       
       // Try to find a female voice for the language (generally sounds better)
       let voice = voices.find(voice => 
@@ -62,13 +65,17 @@ export const useSpeechSynthesis = () => {
         voice = voices[0];
       }
 
+      console.log("Selected voice:", voice ? voice.name : "None");
       setSelectedVoice(voice);
     }
   }, [voices, language, getSpeechLanguage]);
 
   const speak = useCallback(
     (text: string) => {
-      if (!isSupported || !text) return;
+      if (!isSupported || !text) {
+        console.warn("Speech synthesis not supported or no text provided");
+        return;
+      }
 
       // Cancel any current speech
       window.speechSynthesis.cancel();
@@ -79,13 +86,26 @@ export const useSpeechSynthesis = () => {
         utterance.voice = selectedVoice;
       }
 
-      utterance.rate = 1.0;
+      utterance.rate = 0.9; // Slightly slower for better clarity
       utterance.pitch = 1.0;
       utterance.lang = getSpeechLanguage(language);
+      
+      console.log(`Speaking with voice: ${utterance.voice?.name || 'default'}, language: ${utterance.lang}`);
 
-      utterance.onstart = () => setIsSpeaking(true);
-      utterance.onend = () => setIsSpeaking(false);
-      utterance.onerror = () => setIsSpeaking(false);
+      utterance.onstart = () => {
+        console.log("Speech started");
+        setIsSpeaking(true);
+      };
+      
+      utterance.onend = () => {
+        console.log("Speech ended");
+        setIsSpeaking(false);
+      };
+      
+      utterance.onerror = (event) => {
+        console.error("Speech error:", event.error);
+        setIsSpeaking(false);
+      };
 
       window.speechSynthesis.speak(utterance);
     },
@@ -94,6 +114,7 @@ export const useSpeechSynthesis = () => {
 
   const stop = useCallback(() => {
     if (isSupported) {
+      console.log("Stopping speech");
       window.speechSynthesis.cancel();
       setIsSpeaking(false);
     }

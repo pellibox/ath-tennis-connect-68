@@ -11,7 +11,7 @@ export interface Message {
   role: 'user' | 'assistant' | 'system';
 }
 
-// Pre-defined API key - considera di utilizzare una chiave API con quota sufficiente
+// Pre-defined API key
 const OPENAI_API_KEY = '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';
 
 // Modalità di fallback quando l'API non è disponibile
@@ -20,6 +20,7 @@ const FALLBACK_MODE = true;
 export const useChatbot = () => {
   const [messages, setMessages] = useState<Message[]>([]);
   const [isProcessing, setIsProcessing] = useState(false);
+  const [isSpeechEnabled, setIsSpeechEnabled] = useState(true);
   const abortControllerRef = useRef<AbortController | null>(null);
   
   // Speech synthesis hook
@@ -57,6 +58,17 @@ export const useChatbot = () => {
     
     siteKnowledge.current = knowledgeBase;
   }, []);
+
+  // Toggle speech functionality
+  const toggleSpeech = useCallback(() => {
+    setIsSpeechEnabled(prev => {
+      const newValue = !prev;
+      if (!newValue) {
+        stopSpeaking();
+      }
+      return newValue;
+    });
+  }, [stopSpeaking]);
 
   // Speech recognition hook with callbacks
   const onSpeechResult = useCallback((text: string) => {
@@ -204,8 +216,11 @@ export const useChatbot = () => {
         { role: 'assistant', content: assistantMessage }
       ]);
 
-      // Speak the response
-      speak(assistantMessage);
+      // Speak the response if speech is enabled
+      if (isSpeechEnabled) {
+        console.log("Speaking:", assistantMessage);
+        speak(assistantMessage);
+      }
       
     } catch (error) {
       // Ignore aborted requests
@@ -223,7 +238,9 @@ export const useChatbot = () => {
         { role: 'assistant', content: fallbackResponse }
       ]);
       
-      speak(fallbackResponse);
+      if (isSpeechEnabled) {
+        speak(fallbackResponse);
+      }
       
       toast({
         title: "Errore di connessione",
@@ -234,7 +251,7 @@ export const useChatbot = () => {
       setIsProcessing(false);
       abortControllerRef.current = null;
     }
-  }, [messages, speak, stopSpeaking]);
+  }, [messages, speak, stopSpeaking, isSpeechEnabled]);
 
   const sendMessage = useCallback((message: string, skipApi = false) => {
     // Add user message to state
@@ -244,8 +261,13 @@ export const useChatbot = () => {
     } else {
       // Just add the message without API processing (for welcome message)
       setMessages(prev => [...prev, { role: 'assistant', content: message }]);
+      
+      // Speak welcome message if speech is enabled
+      if (isSpeechEnabled && !skipApi) {
+        speak(message);
+      }
     }
-  }, [processMessage]);
+  }, [processMessage, speak, isSpeechEnabled]);
 
   return {
     messages,
@@ -254,6 +276,8 @@ export const useChatbot = () => {
     isListening,
     startListening,
     stopListening,
-    isSpeaking
+    isSpeaking,
+    toggleSpeech,
+    isSpeechEnabled
   };
 };

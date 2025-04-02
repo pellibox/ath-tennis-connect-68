@@ -17,7 +17,9 @@ const ChatbotWidget = () => {
     startListening, 
     stopListening, 
     isListening,
-    isSpeaking
+    isSpeaking,
+    toggleSpeech,
+    isSpeechEnabled
   } = useChatbot();
 
   const toggleExpanded = () => {
@@ -41,6 +43,8 @@ const ChatbotWidget = () => {
           toggleExpanded={toggleExpanded} 
           title={t('chatbot.title') || "Assistente ATH"}
           isSpeaking={isSpeaking}
+          toggleSpeech={toggleSpeech}
+          isSpeechEnabled={isSpeechEnabled}
         />
         
         {expanded && (
@@ -52,11 +56,21 @@ const ChatbotWidget = () => {
               stopListening={stopListening}
               isListening={isListening}
             />
-            {isSpeaking && (
-              <div className="absolute bottom-16 right-3 bg-ath-clay text-white p-1 rounded-full">
-                <Volume2 size={16} className="animate-pulse" />
+            <div className="flex justify-between items-center px-3 py-2 border-t border-gray-100">
+              <div className="flex items-center text-xs text-gray-500">
+                {isSpeaking ? (
+                  <Volume2 size={14} className="animate-pulse mr-1" />
+                ) : null}
               </div>
-            )}
+              <button 
+                onClick={toggleSpeech} 
+                className={`p-1.5 rounded-full ${isSpeechEnabled ? 'bg-ath-clay text-white' : 'bg-gray-200 text-gray-600'}`}
+                aria-label={isSpeechEnabled ? "Disattiva risposta vocale" : "Attiva risposta vocale"}
+                title={isSpeechEnabled ? "Disattiva risposta vocale" : "Attiva risposta vocale"}
+              >
+                {isSpeechEnabled ? <Volume2 size={14} /> : <VolumeX size={14} />}
+              </button>
+            </div>
           </div>
         )}
       </div>
