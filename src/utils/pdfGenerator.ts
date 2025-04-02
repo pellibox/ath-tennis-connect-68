@@ -780,4 +780,3 @@ export const generateSiteBrochure = async (options: PdfOptions = {}) => {
     
     for (let i = 0; i < facilities.length; i++) {
       doc.text(facilities[i], 20, 125 + (i * 7));
-    }
