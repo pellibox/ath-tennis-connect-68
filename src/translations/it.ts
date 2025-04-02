@@ -1,3 +1,4 @@
+
 const translations = {
   // Header & Navigation
   "nav.home": "Home",
@@ -202,7 +203,8 @@ const translations = {
   "chatbot.apiKeyPrompt": "Per utilizzare l'assistente vocale, inserisci la tua chiave API OpenAI:",
   "chatbot.apiKeyError": "È necessaria una chiave API OpenAI. Riprova più tardi.",
   "chatbot.errorMessage": "Si è verificato un errore. Riprova più tardi.",
-  "chatbot.speechNotSupported": "Il riconoscimento vocale non è supportato nel tuo browser."
+  "chatbot.speechNotSupported": "Il riconoscimento vocale non è supportato nel tuo browser.",
+  "chatbot.askCoach": "Chiedi al coach",
 };
 
 export default translations;

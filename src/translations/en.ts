@@ -1,3 +1,4 @@
+
 const translations = {
   // Header & Navigation
   "nav.home": "Home",
@@ -135,6 +136,7 @@ const translations = {
   "chatbot.apiKeyError": "An OpenAI API key is required. Please try again later.",
   "chatbot.errorMessage": "An error occurred. Please try again later.",
   "chatbot.speechNotSupported": "Speech recognition is not supported in your browser.",
+  "chatbot.askCoach": "Ask the coach",
 };
 
 export default translations;
