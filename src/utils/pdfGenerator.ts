@@ -46,6 +46,8 @@ interface PdfOptions {
 
 export const generateSiteBrochure = async (options: PdfOptions = {}) => {
   try {
+    console.log('Starting PDF generation...');
+    
     // Create PDF document (A4 portrait)
     const doc = new jsPDF({
       orientation: 'portrait',
@@ -56,11 +58,15 @@ export const generateSiteBrochure = async (options: PdfOptions = {}) => {
     // Set default language
     const language = options.language || 'it';
     
-    // Add ATH logo - Use correct path from lovable-uploads
+    // Extensive logging for debugging
+    console.log('Language:', language);
+    console.log('Document created successfully');
+    
+    // Add logo with more robust error handling
     const logoImg = new Image();
     logoImg.src = '/lovable-uploads/0a250ed5-11e7-485c-a8f5-d41ebaa7083f.png';
     
-    await new Promise<void>((resolve) => {
+    await new Promise<void>((resolve, reject) => {
       logoImg.onload = () => {
         try {
           // Calculate aspect ratio to fit width
@@ -76,6 +82,7 @@ export const generateSiteBrochure = async (options: PdfOptions = {}) => {
           resolve(); // Continue even if the logo fails
         }
       };
+      
       logoImg.onerror = () => {
         console.error('Error loading logo for PDF');
         resolve(); // Continue without the logo
@@ -83,10 +90,11 @@ export const generateSiteBrochure = async (options: PdfOptions = {}) => {
       
       // Set a timeout to prevent hanging
       setTimeout(() => {
+        console.warn('Logo loading timed out');
         resolve(); // Continue after timeout
-      }, 3000);
+      }, 5000);
     });
-    
+
     // Title
     doc.setFont('helvetica', 'bold');
     doc.setFontSize(22);
@@ -755,17 +763,24 @@ export const generateSiteBrochure = async (options: PdfOptions = {}) => {
       doc.text(facilities[i], 20, 125 + (i * 7));
     }
     
-    // Save PDF with timestamp
-    const timestamp = new Date().toISOString().replace(/[:.]/g, '-');
-    return doc.save(`ATH_Tennis_Hub_Brochure_${timestamp}.pdf`);
+    // Enhanced error handling for PDF saving
+    try {
+      const timestamp = new Date().toISOString().replace(/[:.]/g, '-');
+      console.log('Attempting to save PDF...');
+      return doc.save(`ATH_Tennis_Hub_Brochure_${timestamp}.pdf`);
+    } catch (saveError) {
+      console.error('Error saving PDF:', saveError);
+      toast.error('Errore durante il salvataggio della brochure.');
+      throw saveError;
+    }
   } catch (error) {
-    console.error('Error generating PDF brochure:', error);
+    console.error('Complete PDF generation error:', error);
     toast.error('Si è verificato un errore durante la generazione della brochure.');
     throw error;
   }
 };
 
-// Function to download the site brochure
+// Keep the downloadSiteBrochure function the same
 export const downloadSiteBrochure = async (options: PdfOptions = {}) => {
   try {
     await generateSiteBrochure(options);
