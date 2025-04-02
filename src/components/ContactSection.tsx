@@ -1,4 +1,3 @@
-
 import { useState } from 'react';
 import { Mail, Phone, MapPin } from 'lucide-react';
 import RevealAnimation from './RevealAnimation';
@@ -83,7 +82,7 @@ const ContactSection = ({
             <div>
               <h3 className="text-xl font-medium mb-6">Invia un Messaggio</h3>
               
-              <form onSubmit={handleSubmit}>
+              <form onSubmit={handleSubmit} id="form">
                 <div className="mb-4">
                   <label htmlFor="name" className="block text-sm font-medium mb-2 font-swiss">Nome Completo</label>
                   <input

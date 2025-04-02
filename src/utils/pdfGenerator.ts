@@ -1,10 +1,11 @@
+
 import jsPDF from 'jspdf';
 import 'jspdf-autotable';
 import { programCategories } from '@/data/programs';
 import { touchTennisCategories } from '@/data/touchtennis';
 import { formatCurrency } from '@/utils/formatUtils';
 
-// Extend jsPDF with autotable
+// Extended interface for jsPDF with autotable
 declare module 'jspdf' {
   interface jsPDF {
     autoTable: (options: any) => jsPDF;
@@ -44,21 +45,31 @@ export const generateSiteBrochure = async (options: PdfOptions = {}) => {
     const logoImg = new Image();
     logoImg.src = '/img/ath-logo-black.png';
     
-    await new Promise<void>((resolve) => {
+    await new Promise<void>((resolve, reject) => {
       logoImg.onload = () => {
-        // Calculate aspect ratio to fit width
-        const imgWidth = 50;
-        const imgHeight = (logoImg.height * imgWidth) / logoImg.width;
-        
-        // Center logo
-        const pageWidth = doc.internal.pageSize.width;
-        doc.addImage(logoImg, 'PNG', (pageWidth - imgWidth) / 2, 10, imgWidth, imgHeight);
-        resolve();
+        try {
+          // Calculate aspect ratio to fit width
+          const imgWidth = 50;
+          const imgHeight = (logoImg.height * imgWidth) / logoImg.width;
+          
+          // Center logo
+          const pageWidth = doc.internal.pageSize.width;
+          doc.addImage(logoImg, 'PNG', (pageWidth - imgWidth) / 2, 10, imgWidth, imgHeight);
+          resolve();
+        } catch (error) {
+          console.error('Error adding logo to PDF:', error);
+          resolve(); // Continue even if the logo fails
+        }
       };
       logoImg.onerror = () => {
         console.error('Error loading logo for PDF');
-        resolve();
+        resolve(); // Continue without the logo
       };
+      
+      // Set a timeout to prevent hanging
+      setTimeout(() => {
+        resolve(); // Continue after timeout
+      }, 3000);
     });
     
     // Title
@@ -278,8 +289,7 @@ export const generateSiteBrochure = async (options: PdfOptions = {}) => {
     doc.setFontSize(10);
     doc.text(`Generato il: ${dateString}`, 20, doc.internal.pageSize.height - 10);
     
-    // Add download timestamp to ensure fresh content
-    const timestamp = Date.now();
+    // Return the generated PDF as a blob
     return doc.output('blob');
     
   } catch (error) {

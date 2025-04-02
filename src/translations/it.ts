@@ -188,6 +188,8 @@ const translations = {
   "footer.privacy": "Informativa sulla Privacy",
   "footer.terms": "Termini di Servizio",
   "footer.sitemap": "Mappa del Sito",
+  "footer.method": "Metodo",
+  "footer.technology": "Tecnologia",
   
   // Method section
   "method.title": "Metodo ATH",
@@ -205,6 +207,10 @@ const translations = {
   "chatbot.errorMessage": "Si è verificato un errore. Riprova più tardi.",
   "chatbot.speechNotSupported": "Il riconoscimento vocale non è supportato nel tuo browser.",
   "chatbot.askCoach": "Chiedi al coach",
+  
+  // Brochure translations
+  "brochure.download": "Scarica Brochure Informativa",
+  "brochure.generating": "Generazione...",
 };
 
 export default translations;

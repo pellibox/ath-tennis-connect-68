@@ -15,7 +15,7 @@ const Footer = () => {
             <Logo variant="footer" onDarkBackground={true} />
           </div>
           <p className="text-gray-400 text-sm mb-6 font-swiss">
-            Elevare l'eccellenza del tennis attraverso programmi di allenamento innovativi, strutture di livello internazionale e coaching personalizzato.
+            {t('footer.description')}
           </p>
           <div className="flex space-x-4 mb-4">
             <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className="hover:text-gray-400 transition-colors" aria-label="Instagram">
@@ -50,11 +50,12 @@ const Footer = () => {
             <li><Link to="/coaches" className="text-gray-400 hover:text-white text-sm transition-colors font-swiss">{t('footer.coaches')}</Link></li>
             <li><Link to="/method" className="text-gray-400 hover:text-white text-sm transition-colors font-swiss">{t('footer.method')}</Link></li>
             <li><Link to="/technology" className="text-gray-400 hover:text-white text-sm transition-colors font-swiss">{t('footer.technology')}</Link></li>
+            <li><Link to="/contact#form" className="text-gray-400 hover:text-white text-sm transition-colors font-swiss">{t('footer.contact')}</Link></li>
           </ul>
         </div>
 
         <div>
-          <h3 className="text-lg font-medium mb-6">{t('footer.contact')}</h3>
+          <h3 className="text-lg font-medium mb-6">{t('contact.info')}</h3>
           <ul className="space-y-4">
             <li className="flex items-start">
               <MapPin size={18} className="mr-3 mt-0.5 text-gray-400" />
@@ -67,6 +68,12 @@ const Footer = () => {
             <li className="flex items-center">
               <Mail size={18} className="mr-3 text-gray-400" />
               <a href="mailto:info@ath.tennis" className="text-gray-400 hover:text-white text-sm transition-colors font-swiss">info@ath.tennis</a>
+            </li>
+            <li className="mt-4">
+              <Link to="/contact" className="inline-flex items-center px-4 py-2 text-sm font-medium text-white bg-ath-clay rounded-md hover:bg-ath-clay/90 transition-colors">
+                <Mail size={16} className="mr-2" />
+                {t('contact.send')}
+              </Link>
             </li>
           </ul>
         </div>

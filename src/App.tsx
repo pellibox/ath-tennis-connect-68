@@ -20,6 +20,7 @@ import ContactPage from '@/pages/Contact';
 import NotFoundPage from '@/pages/NotFound';
 import PrivacyPage from '@/pages/Privacy';
 import TermsPage from '@/pages/Terms';
+import Brochure from '@/pages/Brochure';
 import ElevenLabsConvaiWidget from '@/components/chatbot/ElevenLabsConvaiWidget';
 
 // Programs pages
@@ -117,6 +118,7 @@ function AppContent() {
         <Route path="/contact" element={<ContactPage />} />
         <Route path="/privacy" element={<PrivacyPage />} />
         <Route path="/terms" element={<TermsPage />} />
+        <Route path="/brochure" element={<Brochure />} />
         
         <Route path="/programs/overview" element={<ProgramsOverview />} />
         <Route path="*" element={<NotFoundPage />} />
