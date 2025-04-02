@@ -1,5 +1,5 @@
 
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { useIsMobile } from '@/hooks/use-mobile';
 import { 
@@ -13,11 +13,22 @@ import {
 const WIDGET_TOGGLE_EVENT = 'ath-widget-toggle';
 const AGENT_ID = "jJMZr28UE8hDLsO00dmt";
 
+// Adjust the position more significantly for mobile to avoid overlap with navigation
+const MOBILE_BOTTOM_POSITION = '140px';
+const DESKTOP_BOTTOM_POSITION = '20px';
+
 const ElevenLabsConvaiWidget = () => {
   const { language, t } = useLanguage();
   const widgetRef = useRef<HTMLElement>(null);
   const widgetInitialized = useRef(false);
   const isMobile = useIsMobile();
+  const [bottomPosition, setBottomPosition] = useState(isMobile ? MOBILE_BOTTOM_POSITION : DESKTOP_BOTTOM_POSITION);
+
+  // Update position when mobile state changes
+  useEffect(() => {
+    setBottomPosition(isMobile ? MOBILE_BOTTOM_POSITION : DESKTOP_BOTTOM_POSITION);
+    console.log("Mobile state changed:", isMobile, "Setting bottom to:", isMobile ? MOBILE_BOTTOM_POSITION : DESKTOP_BOTTOM_POSITION);
+  }, [isMobile]);
 
   // Initialize the widget when the component mounts
   useEffect(() => {
@@ -48,13 +59,20 @@ const ElevenLabsConvaiWidget = () => {
   }, [language]);
   
   return (
-    <div className={`fixed right-4 z-50 ${isMobile ? 'bottom-[120px]' : 'bottom-5'}`}>
+    <div 
+      className="fixed right-4 z-50" 
+      style={{ bottom: bottomPosition }}
+    >
       <div className="bg-white rounded-lg shadow-lg overflow-hidden transition-all duration-300 ease-in-out max-w-[350px] animate-fade-in">
         <TooltipProvider>
           <Tooltip>
             <TooltipTrigger asChild>
               <div className="elevenlabs-widget-container max-h-[500px] max-w-[350px]">
-                <elevenlabs-convai ref={widgetRef} agent-id={AGENT_ID} language={language || 'it'}></elevenlabs-convai>
+                <elevenlabs-convai 
+                  ref={widgetRef} 
+                  agent-id={AGENT_ID} 
+                  language={language || 'it'}
+                ></elevenlabs-convai>
               </div>
             </TooltipTrigger>
             <TooltipContent side="top">
