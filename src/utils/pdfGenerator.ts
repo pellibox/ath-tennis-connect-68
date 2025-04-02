@@ -1,4 +1,3 @@
-
 import jsPDF from 'jspdf';
 import 'jspdf-autotable';
 import { programCategories } from '@/data/programs';
@@ -759,10 +758,10 @@ export const generateSiteBrochure = async (options: PdfOptions = {}) => {
     doc.setFontSize(12);
     doc.setFont('helvetica', 'normal');
     const facilities = [
-      '• 8 Campi da Tennis (4 indoor, 4 outdoor)',
-      '• 4 Campi da Padel (2 indoor, 2 outdoor)',
-      '• 2 Campi da Pickleball',
-      '• 2 Campi da TouchTennis',
+      '• 4 Campi da Tennis in terra rossa di cui uno atp standard, 2 campi da Tennis in resina (ITF 2) (4 indoor, 2 outdoor)',
+      '• 2 Campi da Padel indoor',
+      '• 1 Campi da Pickleball',
+      '• 1 Campi da TouchTennis',
       '• Palestra attrezzata',
       '• Area riabilitativa',
       '• Spogliatoi con sauna',
