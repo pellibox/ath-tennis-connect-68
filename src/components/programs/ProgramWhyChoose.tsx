@@ -1,41 +1,34 @@
 
 import RevealAnimation from "@/components/RevealAnimation";
-import { ArrowRight } from "lucide-react";
-import { Link } from "react-router-dom";
+
+interface Benefit {
+  title: string;
+  description: string;
+}
 
 interface ProgramWhyChooseProps {
   title: string;
-  description: string;
-  benefits: string[];
-  ctaText: string;
-  ctaLink: string;
+  benefits: Benefit[];
 }
 
-const ProgramWhyChoose = ({
-  title,
-  description,
-  benefits,
-  ctaText,
-  ctaLink
-}: ProgramWhyChooseProps) => {
+const ProgramWhyChoose = ({ title, benefits }: ProgramWhyChooseProps) => {
   return (
-    <RevealAnimation delay={400}>
-      <div className="bg-ath-clay/5 border border-ath-clay/20 p-8 rounded-lg mb-12">
-        <h3 className="text-2xl font-display mb-4 text-ath-clay">{title}</h3>
-        <p className="mb-4">{description}</p>
-        <ul className="list-disc list-inside space-y-2 mb-6">
-          {benefits.map((benefit, index) => (
-            <li key={index}>{benefit}</li>
-          ))}
-        </ul>
-        <Link 
-          to={ctaLink} 
-          className="inline-flex items-center bg-ath-clay text-white py-2 px-6 rounded hover:bg-ath-clay/90 transition-colors"
-        >
-          {ctaText} <ArrowRight size={16} className="ml-2" />
-        </Link>
+    <div className="mb-12">
+      <RevealAnimation>
+        <h3 className="text-2xl font-swiss font-semibold mb-6">{title}</h3>
+      </RevealAnimation>
+      
+      <div className="grid md:grid-cols-2 gap-6">
+        {benefits.map((benefit, index) => (
+          <RevealAnimation key={index} delay={100 + (index * 50)}>
+            <div className="bg-gray-50 p-6 rounded-lg">
+              <h4 className="text-lg font-swiss font-semibold mb-2">{benefit.title}</h4>
+              <p className="text-gray-700 font-swiss">{benefit.description}</p>
+            </div>
+          </RevealAnimation>
+        ))}
       </div>
-    </RevealAnimation>
+    </div>
   );
 };
 
