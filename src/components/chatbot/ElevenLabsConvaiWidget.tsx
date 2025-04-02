@@ -1,3 +1,4 @@
+
 import React, { useEffect, useRef } from 'react';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { useIsMobile } from '@/hooks/use-mobile';
@@ -47,7 +48,7 @@ const ElevenLabsConvaiWidget = () => {
   }, [language]);
   
   return (
-    <div className={`fixed right-4 z-50 ${isMobile ? 'bottom-[90px]' : 'bottom-5'}`}>
+    <div className={`fixed right-4 z-50 ${isMobile ? 'bottom-[120px]' : 'bottom-5'}`}>
       <div className="bg-white rounded-lg shadow-lg overflow-hidden transition-all duration-300 ease-in-out max-w-[350px] animate-fade-in">
         <TooltipProvider>
           <Tooltip>
