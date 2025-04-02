@@ -1,3 +1,4 @@
+
 import jsPDF from 'jspdf';
 import 'jspdf-autotable';
 import { programCategories } from '@/data/programs';
@@ -780,3 +781,26 @@ export const generateSiteBrochure = async (options: PdfOptions = {}) => {
     
     for (let i = 0; i < facilities.length; i++) {
       doc.text(facilities[i], 20, 125 + (i * 7));
+    }
+    
+    // Save PDF with timestamp
+    const timestamp = new Date().toISOString().replace(/[:.]/g, '-');
+    return doc.save(`ATH_Tennis_Hub_Brochure_${timestamp}.pdf`);
+  } catch (error) {
+    console.error('Error generating PDF brochure:', error);
+    toast.error('Si è verificato un errore durante la generazione della brochure.');
+    throw error;
+  }
+};
+
+// Function to download the site brochure
+export const downloadSiteBrochure = async (options: PdfOptions = {}) => {
+  try {
+    await generateSiteBrochure(options);
+    toast.success('Brochure scaricata con successo!');
+  } catch (error) {
+    console.error('Error downloading brochure:', error);
+    toast.error('Errore durante la generazione della brochure.');
+    throw error;
+  }
+};
