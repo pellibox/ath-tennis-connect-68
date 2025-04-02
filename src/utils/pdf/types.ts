@@ -1,35 +1,22 @@
 
 import { jsPDF } from 'jspdf';
 
-// Define the internal interface for jsPDF
-export interface JsPDFInternal {
-  events: any;
-  scaleFactor: number;
-  pageSize: {
-    width: number;
-    getWidth: () => number;
-    height: number;
-    getHeight: () => number;
-  };
-  pages: number[];
-  getNumberOfPages: () => number;
-  getEncryptor(objectId: number): (data: string) => string;
+// Define the interface for autoTable options
+export interface AutoTableOptions {
+  startY?: number;
+  head?: any[][];
+  body?: any[][];
+  theme?: string;
+  headStyles?: any;
+  columnStyles?: any;
+  margin?: any;
+  [key: string]: any;
 }
 
-// Extend the global jsPDF interface with autoTable method
+// Extend the jsPDF interface with autoTable method without redefining internal
 declare module 'jspdf' {
   interface jsPDF {
-    internal: JsPDFInternal;
-    autoTable: (options: {
-      startY?: number;
-      head?: any[][];
-      body?: any[][];
-      theme?: string;
-      headStyles?: any;
-      columnStyles?: any;
-      margin?: any;
-      [key: string]: any;
-    }) => {
+    autoTable: (options: AutoTableOptions) => {
       previous: {
         finalY: number;
       }

@@ -1,4 +1,3 @@
-
 import { jsPDF } from 'jspdf';
 // Import the autotable plugin to extend jsPDF
 import 'jspdf-autotable';
@@ -20,6 +19,8 @@ export const createPricingTable = (
   doc.text(title, 20, yPosition);
   yPosition += 10;
   
+  console.log(`Creating table "${title}" at position ${yPosition}`);
+  
   // Add table with proper configuration
   const result = doc.autoTable({
     startY: yPosition,
@@ -35,7 +36,9 @@ export const createPricingTable = (
     margin: { left: 20, right: 20 }
   });
   
-  return (result.previous?.finalY || yPosition) + 15;
+  const finalY = result.previous?.finalY || yPosition;
+  console.log(`Table "${title}" created, final Y position: ${finalY}`);
+  return finalY + 15;
 };
 
 /**
