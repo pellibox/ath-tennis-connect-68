@@ -1,7 +1,7 @@
 
 import { useState, useCallback, useEffect, useRef } from 'react';
 import { useSpeechRecognition } from './useSpeechRecognition';
-import { useSpeechSynthesis } from './useSpeechSynthesis';
+import { useOpenAITTS } from './useOpenAITTS';
 import { toast } from '@/components/ui/use-toast';
 import { programCategories } from '@/data/programs/categories';
 import { touchTennisCategories } from '@/data/touchtennis/categories';
@@ -23,9 +23,10 @@ export const useChatbot = () => {
   const [isSpeechEnabled, setIsSpeechEnabled] = useState(true);
   const abortControllerRef = useRef<AbortController | null>(null);
   const conversationInProgressRef = useRef(false);
+  const lastProcessedUserMessageRef = useRef<string | null>(null);
   
-  // Speech synthesis hook
-  const { speak, stop: stopSpeaking, isSpeaking } = useSpeechSynthesis();
+  // Replace speech synthesis with OpenAI TTS
+  const { speak, stop: stopSpeaking, isSpeaking } = useOpenAITTS();
 
   // Conoscenza del sito
   const siteKnowledge = useRef<string>('');
@@ -73,6 +74,14 @@ export const useChatbot = () => {
 
   // Process message and get AI response
   const processMessage = useCallback(async (userMessage: string) => {
+    // Don't process the same message twice in a row
+    if (lastProcessedUserMessageRef.current === userMessage) {
+      console.log("Skipping duplicate message:", userMessage);
+      return;
+    }
+    
+    lastProcessedUserMessageRef.current = userMessage;
+    
     if (conversationInProgressRef.current) {
       console.log("Conversation already in progress, queuing this request");
     }
@@ -220,7 +229,8 @@ export const useChatbot = () => {
     isSupported: isSpeechSupported
   } = useSpeechRecognition({ 
     onResult: onSpeechResult,
-    continuous: false
+    continuous: true,
+    autoRestart: true
   });
 
   const startListening = useCallback(() => {

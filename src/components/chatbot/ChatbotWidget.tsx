@@ -34,6 +34,17 @@ const ChatbotWidget = () => {
     }
   }, [expanded, messages.length, sendMessage, t]);
 
+  // Auto-start listening on expansion if no messages yet
+  useEffect(() => {
+    if (expanded && messages.length <= 1 && !isListening && !isSpeaking) {
+      // Small delay to allow UI to render first
+      const timer = setTimeout(() => {
+        startListening();
+      }, 500);
+      return () => clearTimeout(timer);
+    }
+  }, [expanded, messages.length, startListening, isListening, isSpeaking]);
+
   return (
     <div className="fixed bottom-20 right-5 z-50 font-swiss md:bottom-5">
       <div className={`${expanded ? 'w-[320px] md:w-[350px] bg-white rounded-lg' : ''} 
@@ -57,6 +68,7 @@ const ChatbotWidget = () => {
               startListening={startListening}
               stopListening={stopListening}
               isListening={isListening}
+              isProcessing={isProcessing}
             />
             <div className="flex justify-between items-center px-3 py-2 border-t border-gray-100">
               <div className="flex items-center gap-2 text-xs text-gray-500">
@@ -79,6 +91,7 @@ const ChatbotWidget = () => {
                   className={`p-1.5 rounded-full ${isListening ? 'bg-red-500 text-white' : 'bg-gray-200 text-gray-600'}`}
                   aria-label={isListening ? "Smetti di ascoltare" : "Inizia ad ascoltare"}
                   title={isListening ? "Smetti di ascoltare" : "Inizia ad ascoltare"}
+                  disabled={isProcessing}
                 >
                   {isListening ? <MicOff size={14} /> : <Mic size={14} />}
                 </button>
