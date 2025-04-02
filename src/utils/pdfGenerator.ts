@@ -1,3 +1,4 @@
+
 import jsPDF from 'jspdf';
 import 'jspdf-autotable';
 import { programCategories } from '@/data/programs';
@@ -8,6 +9,15 @@ import { formatCurrency } from '@/utils/formatUtils';
 declare module 'jspdf' {
   interface jsPDF {
     autoTable: (options: any) => jsPDF;
+    internal: {
+      pageSize: {
+        width: number;
+        height: number;
+        getWidth: () => number;
+        getHeight: () => number;
+      };
+      getNumberOfPages: () => number;
+    };
   }
 }
 
