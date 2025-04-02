@@ -1,4 +1,3 @@
-
 import jsPDF from 'jspdf';
 import 'jspdf-autotable';
 import { programCategories } from '@/data/programs';
@@ -8,8 +7,7 @@ import { touchTennisCategories } from '@/data/touchtennis';
 import { formatCurrency } from '@/utils/formatUtils';
 import { toast } from 'sonner';
 
-// Extended interface for jsPDF with autotable
-// Use proper TypeScript interface merging
+// Extend jsPDF with autoTable - properly define the return type
 declare module 'jspdf' {
   interface jsPDF {
     autoTable: (options: any) => jsPDF & { 
@@ -20,7 +18,7 @@ declare module 'jspdf' {
   }
 }
 
-// Add the internal interface with getNumberOfPages
+// Define the internal interface for jsPDF
 interface JsPDFInternal {
   events: any;
   scaleFactor: number;
@@ -35,19 +33,10 @@ interface JsPDFInternal {
   getEncryptor(objectId: number): (data: string) => string;
 }
 
-// Extend the jsPDF typings
+// Properly extend the global jsPDF interface
 declare global {
   interface jsPDF {
     internal: JsPDFInternal;
-  }
-}
-
-// Extend the jsPDF typings to include getNumberOfPages
-declare module 'jspdf' {
-  interface jsPDF {
-    internal: {
-      getNumberOfPages: () => number;
-    };
   }
 }
 
@@ -69,7 +58,6 @@ export const generateSiteBrochure = async (options: PdfOptions = {}) => {
     
     // Add ATH logo - Use correct path from lovable-uploads
     const logoImg = new Image();
-    // Use a logo from lovable-uploads directory
     logoImg.src = '/lovable-uploads/0a250ed5-11e7-485c-a8f5-d41ebaa7083f.png';
     
     await new Promise<void>((resolve) => {
@@ -526,41 +514,38 @@ export const generateSiteBrochure = async (options: PdfOptions = {}) => {
     doc.text('Prezzi Programmi Tennis', 20, yPosition);
     yPosition += 10;
     
-    try {
-      // Add pricing tables with proper error handling
-      const tennisTable = doc.autoTable({
-        startY: yPosition,
-        head: [['Programma', 'Durata', 'Prezzo']],
-        body: [
-          ['Elite Performance Full', '40 settimane', '€ 15.000'],
-          ['Elite Performance', '40 settimane', '€ 7.500'],
-          ['Performance 4', '40 settimane', '€ 6.500'],
-          ['Performance 3', '40 settimane', '€ 5.000'],
-          ['Performance 2', '40 settimane', '€ 4.000'],
-          ['SIT - Scuola Individuazione Talenti', '30 settimane', '€ 950'],
-          ['SAT - Propedeutico', '30 settimane', '€ 500'],
-          ['Adult Training', '30 settimane', '€ 700'],
-          ['Universitari / Scuole Online', '30 settimane', '€ 1.000'],
-          ['Private Personal Coaching', 'Sessione', '€ 120']
-        ],
-        theme: 'grid',
-        headStyles: { fillColor: [150, 150, 150], textColor: [255, 255, 255] },
-        columnStyles: {
-          0: { cellWidth: 70 },
-          1: { cellWidth: 50 },
-          2: { cellWidth: 50 }
-        }
-      });
-      
-      yPosition = tennisTable.previous.finalY + 15;
-    } catch (error) {
-      console.error('Error creating pricing table:', error);
-      // Add fallback text if table fails
-      doc.setFont('helvetica', 'normal');
-      doc.setFontSize(10);
-      doc.text('Per informazioni sui prezzi, contattare direttamente il nostro staff.', 20, yPosition + 10);
-      yPosition += 20;
-    }
+    // Define pricing table data
+    const tennisTableData = {
+      head: [['Programma', 'Durata', 'Prezzo']],
+      body: [
+        ['Elite Performance Full', '40 settimane', '€ 15.000'],
+        ['Elite Performance', '40 settimane', '€ 7.500'],
+        ['Performance 4', '40 settimane', '€ 6.500'],
+        ['Performance 3', '40 settimane', '€ 5.000'],
+        ['Performance 2', '40 settimane', '€ 4.000'],
+        ['SIT - Scuola Individuazione Talenti', '30 settimane', '€ 950'],
+        ['SAT - Propedeutico', '30 settimane', '€ 500'],
+        ['Adult Training', '30 settimane', '€ 700'],
+        ['Universitari / Scuole Online', '30 settimane', '€ 1.000'],
+        ['Private Personal Coaching', 'Sessione', '€ 120']
+      ]
+    };
+    
+    // Add pricing tables - use direct method approach to avoid type issues
+    const tennisTable = doc.autoTable({
+      startY: yPosition,
+      head: tennisTableData.head,
+      body: tennisTableData.body,
+      theme: 'grid',
+      headStyles: { fillColor: [150, 150, 150], textColor: [255, 255, 255] },
+      columnStyles: {
+        0: { cellWidth: 70 },
+        1: { cellWidth: 50 },
+        2: { cellWidth: 50 }
+      }
+    });
+    
+    yPosition = tennisTable.previous.finalY + 15;
     
     if (yPosition > doc.internal.pageSize.height - 60) {
       doc.addPage();
@@ -573,33 +558,30 @@ export const generateSiteBrochure = async (options: PdfOptions = {}) => {
     doc.text('Prezzi Programmi Padel', 20, yPosition);
     yPosition += 10;
     
-    try {
-      const padelTable = doc.autoTable({
-        startY: yPosition,
-        head: [['Programma', 'Durata', 'Prezzo']],
-        body: [
-          ['Padel Avanzato', '30 settimane', '€ 1.200'],
-          ['Padel Intermedio', '30 settimane', '€ 900'],
-          ['Padel Principianti', '30 settimane', '€ 700'],
-          ['Padel Coaching Privato', 'Sessione', '€ 90']
-        ],
-        theme: 'grid',
-        headStyles: { fillColor: [150, 150, 150], textColor: [255, 255, 255] },
-        columnStyles: {
-          0: { cellWidth: 70 },
-          1: { cellWidth: 50 },
-          2: { cellWidth: 50 }
-        }
-      });
-      
-      yPosition = padelTable.previous.finalY + 15;
-    } catch (error) {
-      console.error('Error creating padel pricing table:', error);
-      doc.setFont('helvetica', 'normal');
-      doc.setFontSize(10);
-      doc.text('Per informazioni sui prezzi dei programmi Padel, contattare direttamente il nostro staff.', 20, yPosition + 10);
-      yPosition += 20;
-    }
+    const padelTableData = {
+      head: [['Programma', 'Durata', 'Prezzo']],
+      body: [
+        ['Padel Avanzato', '30 settimane', '€ 1.200'],
+        ['Padel Intermedio', '30 settimane', '€ 900'],
+        ['Padel Principianti', '30 settimane', '€ 700'],
+        ['Padel Coaching Privato', 'Sessione', '€ 90']
+      ]
+    };
+    
+    const padelTable = doc.autoTable({
+      startY: yPosition,
+      head: padelTableData.head,
+      body: padelTableData.body,
+      theme: 'grid',
+      headStyles: { fillColor: [150, 150, 150], textColor: [255, 255, 255] },
+      columnStyles: {
+        0: { cellWidth: 70 },
+        1: { cellWidth: 50 },
+        2: { cellWidth: 50 }
+      }
+    });
+    
+    yPosition = padelTable.previous.finalY + 15;
     
     if (yPosition > doc.internal.pageSize.height - 60) {
       doc.addPage();
@@ -612,33 +594,30 @@ export const generateSiteBrochure = async (options: PdfOptions = {}) => {
     doc.text('Prezzi Programmi Pickleball', 20, yPosition);
     yPosition += 10;
     
-    try {
-      const pickleballTable = doc.autoTable({
-        startY: yPosition,
-        head: [['Programma', 'Durata', 'Prezzo']],
-        body: [
-          ['Pickleball Avanzato', '30 settimane', '€ 1.000'],
-          ['Pickleball Intermedio', '30 settimane', '€ 800'],
-          ['Pickleball Principianti', '30 settimane', '€ 600'],
-          ['Pickleball Clinics', 'Sessione (2h)', '€ 60']
-        ],
-        theme: 'grid',
-        headStyles: { fillColor: [150, 150, 150], textColor: [255, 255, 255] },
-        columnStyles: {
-          0: { cellWidth: 70 },
-          1: { cellWidth: 50 },
-          2: { cellWidth: 50 }
-        }
-      });
-      
-      yPosition = pickleballTable.previous.finalY + 15;
-    } catch (error) {
-      console.error('Error creating pickleball pricing table:', error);
-      doc.setFont('helvetica', 'normal');
-      doc.setFontSize(10);
-      doc.text('Per informazioni sui prezzi dei programmi Pickleball, contattare direttamente il nostro staff.', 20, yPosition + 10);
-      yPosition += 20;
-    }
+    const pickleballTableData = {
+      head: [['Programma', 'Durata', 'Prezzo']],
+      body: [
+        ['Pickleball Avanzato', '30 settimane', '€ 1.000'],
+        ['Pickleball Intermedio', '30 settimane', '€ 800'],
+        ['Pickleball Principianti', '30 settimane', '€ 600'],
+        ['Pickleball Clinics', 'Sessione (2h)', '€ 60']
+      ]
+    };
+    
+    const pickleballTable = doc.autoTable({
+      startY: yPosition,
+      head: pickleballTableData.head,
+      body: pickleballTableData.body,
+      theme: 'grid',
+      headStyles: { fillColor: [150, 150, 150], textColor: [255, 255, 255] },
+      columnStyles: {
+        0: { cellWidth: 70 },
+        1: { cellWidth: 50 },
+        2: { cellWidth: 50 }
+      }
+    });
+    
+    yPosition = pickleballTable.previous.finalY + 15;
     
     if (yPosition > doc.internal.pageSize.height - 60) {
       doc.addPage();
@@ -651,32 +630,29 @@ export const generateSiteBrochure = async (options: PdfOptions = {}) => {
     doc.text('Prezzi Programmi TouchTennis', 20, yPosition);
     yPosition += 10;
     
-    try {
-      const touchTennisTable = doc.autoTable({
-        startY: yPosition,
-        head: [['Programma', 'Durata', 'Prezzo']],
-        body: [
-          ['TouchTennis Avanzato', '30 settimane', '€ 900'],
-          ['TouchTennis Base', '30 settimane', '€ 600'],
-          ['TouchTennis Junior (8-14 anni)', '30 settimane', '€ 500']
-        ],
-        theme: 'grid',
-        headStyles: { fillColor: [150, 150, 150], textColor: [255, 255, 255] },
-        columnStyles: {
-          0: { cellWidth: 70 },
-          1: { cellWidth: 50 },
-          2: { cellWidth: 50 }
-        }
-      });
-      
-      yPosition = touchTennisTable.previous.finalY + 15;
-    } catch (error) {
-      console.error('Error creating touchtennis pricing table:', error);
-      doc.setFont('helvetica', 'normal');
-      doc.setFontSize(10);
-      doc.text('Per informazioni sui prezzi dei programmi TouchTennis, contattare direttamente il nostro staff.', 20, yPosition + 10);
-      yPosition += 20;
-    }
+    const touchTennisTableData = {
+      head: [['Programma', 'Durata', 'Prezzo']],
+      body: [
+        ['TouchTennis Avanzato', '30 settimane', '€ 900'],
+        ['TouchTennis Base', '30 settimane', '€ 600'],
+        ['TouchTennis Junior (8-14 anni)', '30 settimane', '€ 500']
+      ]
+    };
+    
+    const touchTennisTable = doc.autoTable({
+      startY: yPosition,
+      head: touchTennisTableData.head,
+      body: touchTennisTableData.body,
+      theme: 'grid',
+      headStyles: { fillColor: [150, 150, 150], textColor: [255, 255, 255] },
+      columnStyles: {
+        0: { cellWidth: 70 },
+        1: { cellWidth: 50 },
+        2: { cellWidth: 50 }
+      }
+    });
+    
+    yPosition = touchTennisTable.previous.finalY + 15;
     
     if (yPosition > doc.internal.pageSize.height - 60) {
       doc.addPage();
@@ -689,32 +665,28 @@ export const generateSiteBrochure = async (options: PdfOptions = {}) => {
     doc.text('Programmi Multi-Sport', 20, yPosition);
     yPosition += 10;
     
-    try {
-      const multiSportTable = doc.autoTable({
-        startY: yPosition,
-        head: [['Programma', 'Durata', 'Prezzo']],
-        body: [
-          ['Camp Multi-Sport con Racchetta', '5 giorni', '€ 350'],
-          ['Camp Multi-Sport con Racchetta', '3 giorni', '€ 220']
-        ],
-        theme: 'grid',
-        headStyles: { fillColor: [150, 150, 150], textColor: [255, 255, 255] },
-        columnStyles: {
-          0: { cellWidth: 70 },
-          1: { cellWidth: 50 },
-          2: { cellWidth: 50 }
-        }
-      });
-      
-      // Additional notes on pricing
-      yPosition = multiSportTable.previous.finalY + 15;
-    } catch (error) {
-      console.error('Error creating multi-sport pricing table:', error);
-      doc.setFont('helvetica', 'normal');
-      doc.setFontSize(10);
-      doc.text('Per informazioni sui prezzi dei programmi Multi-Sport, contattare direttamente il nostro staff.', 20, yPosition + 10);
-      yPosition += 20;
-    }
+    const multiSportTableData = {
+      head: [['Programma', 'Durata', 'Prezzo']],
+      body: [
+        ['Camp Multi-Sport con Racchetta', '5 giorni', '€ 350'],
+        ['Camp Multi-Sport con Racchetta', '3 giorni', '€ 220']
+      ]
+    };
+    
+    const multiSportTable = doc.autoTable({
+      startY: yPosition,
+      head: multiSportTableData.head,
+      body: multiSportTableData.body,
+      theme: 'grid',
+      headStyles: { fillColor: [150, 150, 150], textColor: [255, 255, 255] },
+      columnStyles: {
+        0: { cellWidth: 70 },
+        1: { cellWidth: 50 },
+        2: { cellWidth: 50 }
+      }
+    });
+    
+    yPosition = multiSportTable.previous.finalY + 15;
     
     if (yPosition > doc.internal.pageSize.height - 40) {
       doc.addPage();
