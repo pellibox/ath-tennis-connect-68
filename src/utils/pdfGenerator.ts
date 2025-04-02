@@ -12,11 +12,27 @@ declare module 'jspdf' {
   interface jsPDF {
     autoTable: (options: any) => jsPDF;
   }
-  
-  namespace jsPDF {
-    interface Internal {
-      getNumberOfPages(): number;
-    }
+}
+
+// Add the internal interface with getNumberOfPages
+interface JsPDFInternal {
+  events: any;
+  scaleFactor: number;
+  pageSize: {
+    width: number;
+    getWidth: () => number;
+    height: number;
+    getHeight: () => number;
+  };
+  pages: number[];
+  getNumberOfPages(): number;
+  getEncryptor(objectId: number): (data: string) => string;
+}
+
+// Extend the jsPDF typings
+declare global {
+  interface jsPDF {
+    internal: JsPDFInternal;
   }
 }
 
@@ -277,13 +293,15 @@ export const generateSiteBrochure = async (options: PdfOptions = {}) => {
     doc.text('Domenica: 9:00 - 18:00', 20, 99);
     
     try {
-      // Add page number to each page
-      const totalPages = doc.internal.getNumberOfPages();
-      for (let i = 1; i <= totalPages; i++) {
+      // Fix for getNumberOfPages - Add a safer way to get page count
+      const pageCount = doc.internal.getNumberOfPages();
+      
+      // Add page numbers to each page
+      for (let i = 1; i <= pageCount; i++) {
         doc.setPage(i);
         doc.setFontSize(10);
         doc.setFont('helvetica', 'normal');
-        doc.text(`Pagina ${i} di ${totalPages}`, doc.internal.pageSize.width - 30, doc.internal.pageSize.height - 10);
+        doc.text(`Pagina ${i} di ${pageCount}`, doc.internal.pageSize.width - 30, doc.internal.pageSize.height - 10);
       }
       
       // Add generation date
