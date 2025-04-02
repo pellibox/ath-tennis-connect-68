@@ -5,6 +5,7 @@ import RevealAnimation from './RevealAnimation';
 import { cn } from '@/lib/utils';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { toast } from "sonner";
+import PdfBrochureButton from './PdfBrochureButton';
 
 interface ContactSectionProps {
   title: string;
@@ -153,6 +154,15 @@ const ContactSection = ({
                   <p className="mt-4 text-red-600 font-swiss">Si è verificato un errore durante l'invio del messaggio. Riprova.</p>
                 )}
               </form>
+
+              {/* PDF Brochure Download Button */}
+              <div className="mt-8 pt-4 border-t border-gray-200">
+                <h4 className="text-base font-medium mb-2">Scarica la brochure informativa</h4>
+                <p className="text-sm text-gray-600 mb-4 font-swiss">
+                  Scarica una copia completa di tutte le informazioni sui nostri servizi, programmi e prezzi.
+                </p>
+                <PdfBrochureButton />
+              </div>
             </div>
           </RevealAnimation>
           

@@ -5,6 +5,8 @@ import Footer from '@/components/Footer';
 import ContactSection from '@/components/ContactSection';
 import { useLocation } from 'react-router-dom';
 import Hero from '@/components/Hero';
+import RevealAnimation from '@/components/RevealAnimation';
+import PdfBrochureButton from '@/components/PdfBrochureButton';
 
 const ContactPage = () => {
   const location = useLocation();
@@ -39,6 +41,20 @@ const ContactPage = () => {
           contentPosition="center"
           contentVerticalPosition="bottom"
         />
+        
+        <div className="bg-ath-clay text-white py-6 px-4">
+          <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between">
+            <RevealAnimation immediate={true}>
+              <div className="mb-4 md:mb-0">
+                <h3 className="text-lg md:text-xl font-medium">Scarica la nostra brochure completa</h3>
+                <p className="text-sm md:text-base opacity-90">Tutti i programmi, prezzi e servizi in un unico documento</p>
+              </div>
+            </RevealAnimation>
+            <RevealAnimation immediate={true} delay={100}>
+              <PdfBrochureButton variant="outline" className="bg-white hover:bg-gray-100 text-ath-clay border-white" />
+            </RevealAnimation>
+          </div>
+        </div>
         
         <ContactSection 
           title="Richiedi Informazioni"
