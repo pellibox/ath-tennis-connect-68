@@ -1,6 +1,6 @@
 
 import React from 'react';
-import { MessageSquare, ChevronDown, ChevronUp } from 'lucide-react';
+import { MessageCircle, ChevronUp } from 'lucide-react';
 
 interface ChatHeaderProps {
   isExpanded: boolean;
@@ -11,22 +11,23 @@ interface ChatHeaderProps {
 const ChatHeader: React.FC<ChatHeaderProps> = ({ isExpanded, toggleExpanded, title }) => {
   return (
     <div 
-      className={`${isExpanded ? 'bg-ath-clay text-white px-4 py-3' : 'bg-ath-clay rounded-full p-3 shadow-md'} 
-      cursor-pointer flex justify-between items-center transition-all duration-200`} 
+      className={`${isExpanded ? 'bg-ath-clay text-white px-3 py-2' : 'bg-ath-clay rounded-full p-2 shadow-md'} 
+      cursor-pointer flex justify-center items-center transition-all duration-200`} 
       onClick={toggleExpanded}
     >
       {isExpanded ? (
-        <>
-          <h3 className="font-medium text-sm">{title}</h3>
-          <button className="text-white focus:outline-none">
-            <ChevronDown size={18} />
-          </button>
-        </>
+        <div className="flex items-center justify-between w-full">
+          <span className="text-xs font-light opacity-80">{title}</span>
+          <MessageCircle size={16} className="opacity-70" />
+        </div>
       ) : (
-        <button className="text-white focus:outline-none mx-auto flex items-center gap-2">
-          <MessageSquare size={22} />
-          <ChevronUp size={18} className="animate-bounce" />
-        </button>
+        <div className="relative">
+          <MessageCircle size={20} className="text-white" />
+          <ChevronUp 
+            size={14} 
+            className="absolute -top-1 -right-1 text-white animate-bounce opacity-70" 
+          />
+        </div>
       )}
     </div>
   );
