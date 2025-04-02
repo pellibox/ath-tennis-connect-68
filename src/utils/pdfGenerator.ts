@@ -1,4 +1,3 @@
-
 import jsPDF from 'jspdf';
 import 'jspdf-autotable';
 import { programCategories } from '@/data/programs';
@@ -6,7 +5,6 @@ import { touchTennisCategories } from '@/data/touchtennis';
 import { formatCurrency } from '@/utils/formatUtils';
 
 // Extended interface for jsPDF with autotable
-// The correct way is to augment the module without redefining properties
 declare module 'jspdf' {
   interface jsPDF {
     autoTable: (options: any) => jsPDF;
