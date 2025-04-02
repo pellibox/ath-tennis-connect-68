@@ -1,3 +1,4 @@
+
 import { useEffect, useState } from 'react';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
@@ -63,11 +64,26 @@ const ElitePerformanceFullProgram = () => {
     title: "Perché scegliere Elite Performance Full?",
     description: "Il programma Elite Performance Full rappresenta la soluzione definitiva per gli atleti agonisti che mirano a costruire una carriera tennistica professionale. È strutturato seguendo metodologie utilizzate nel circuito professionistico e adattate alle esigenze di sviluppo di ogni atleta.",
     benefits: [
-      "Approccio professionale identico a quello utilizzato dai top players internazionali",
-      "Attenzione altamente personalizzata con massimo 2 atleti per campo",
-      "Monitoraggio avanzato con tecnologia VICKI™ di livello professionistico",
-      "Team multidisciplinare dedicato alla crescita dell'atleta",
-      "Percorso collaudato con storici di successo dimostrabili"
+      {
+        title: "Approccio professionale",
+        description: "Identico a quello utilizzato dai top players internazionali"
+      },
+      {
+        title: "Attenzione personalizzata",
+        description: "Con massimo 2 atleti per campo"
+      },
+      {
+        title: "Monitoraggio avanzato",
+        description: "Con tecnologia VICKI™ di livello professionistico"
+      },
+      {
+        title: "Team multidisciplinare",
+        description: "Dedicato alla crescita dell'atleta"
+      },
+      {
+        title: "Percorso collaudato",
+        description: "Con storici di successo dimostrabili"
+      }
     ],
     ctaText: "Prenota una valutazione",
     ctaLink: "/contact"
@@ -168,10 +184,7 @@ const ElitePerformanceFullProgram = () => {
           
           <ProgramWhyChoose 
             title={whyChoose.title}
-            description={whyChoose.description}
             benefits={whyChoose.benefits}
-            ctaText={whyChoose.ctaText}
-            ctaLink={whyChoose.ctaLink}
           />
           
           <RelatedPrograms 

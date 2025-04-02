@@ -1,3 +1,4 @@
+
 import { useEffect, useState } from 'react';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
@@ -153,17 +154,32 @@ const Performance4Program = () => {
           
           <ProgramWhyChoose
             title="Perché scegliere Performance 4"
-            description="Il programma Performance 4 offre numerosi vantaggi per atleti che vogliono conciliare tennis di alto livello e percorso formativo:"
             benefits={[
-              "Equilibrio ottimale tra intensità di allenamento e tempo per lo studio",
-              "Attenzione personalizzata con massimo 2 atleti per campo",
-              "Analisi dettagliata di ogni aspetto del gioco con tecnologia VICKI™",
-              "Sviluppo completo: tecnico, atletico, mentale e tattico",
-              "Preparazione mirata per competizioni agonistiche",
-              "Supporto costante da un team di professionisti"
+              {
+                title: "Equilibrio ottimale",
+                description: "Tra intensità di allenamento e tempo per lo studio"
+              },
+              {
+                title: "Attenzione personalizzata",
+                description: "Con massimo 2 atleti per campo"
+              },
+              {
+                title: "Analisi dettagliata",
+                description: "Di ogni aspetto del gioco con tecnologia VICKI™"
+              },
+              {
+                title: "Sviluppo completo",
+                description: "Tecnico, atletico, mentale e tattico"
+              },
+              {
+                title: "Preparazione mirata",
+                description: "Per competizioni agonistiche"
+              },
+              {
+                title: "Supporto costante",
+                description: "Da un team di professionisti"
+              }
             ]}
-            ctaText="Scopri di più"
-            ctaLink="/contact"
           />
         </div>
         

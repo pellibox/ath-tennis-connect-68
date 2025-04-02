@@ -55,3 +55,9 @@ export interface PriceTableData {
   head: string[][];
   body: string[][];
 }
+
+// Add the Benefit interface to be used by ProgramWhyChoose
+export interface Benefit {
+  title: string;
+  description: string;
+}
