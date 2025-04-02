@@ -41,6 +41,15 @@ declare global {
   }
 }
 
+// Extend the jsPDF typings to include getNumberOfPages
+declare module 'jspdf' {
+  interface jsPDF {
+    internal: {
+      getNumberOfPages: () => number;
+    };
+  }
+}
+
 interface PdfOptions {
   language?: string;
 }
@@ -758,10 +767,10 @@ export const generateSiteBrochure = async (options: PdfOptions = {}) => {
     doc.setFontSize(12);
     doc.setFont('helvetica', 'normal');
     const facilities = [
-      '• 4 Campi da Tennis in terra rossa di cui uno atp standard, 2 campi da Tennis in resina (ITF 2) (4 indoor, 2 outdoor)',
+      '• 4 Campi da Tennis in terra rossa di cui uno ATP standard, 2 campi da Tennis in resina (ITF 2) (4 indoor, 2 outdoor)',
       '• 2 Campi da Padel indoor',
-      '• 1 Campi da Pickleball',
-      '• 1 Campi da TouchTennis',
+      '• 1 Campo da Pickleball',
+      '• 1 Campo da TouchTennis',
       '• Palestra attrezzata',
       '• Area riabilitativa',
       '• Spogliatoi con sauna',
@@ -772,37 +781,3 @@ export const generateSiteBrochure = async (options: PdfOptions = {}) => {
     for (let i = 0; i < facilities.length; i++) {
       doc.text(facilities[i], 20, 125 + (i * 7));
     }
-    
-    try {
-      // Fix for getNumberOfPages - Use the properly typed function
-      const pageCount = doc.internal.getNumberOfPages();
-      
-      // Add page numbers to each page
-      for (let i = 1; i <= pageCount; i++) {
-        doc.setPage(i);
-        doc.setFontSize(10);
-        doc.setFont('helvetica', 'normal');
-        doc.text(`Pagina ${i} di ${pageCount}`, doc.internal.pageSize.width / 2, doc.internal.pageSize.height - 10, { align: 'center' });
-      }
-      
-      // Save the PDF
-      doc.save('ATH_Tennis_Hub_Brochure.pdf');
-      return true;
-    } catch (error) {
-      console.error('Error adding page numbers to PDF:', error);
-      // Save anyway
-      doc.save('ATH_Tennis_Hub_Brochure.pdf');
-      return true;
-    }
-    
-  } catch (error) {
-    console.error('Error generating PDF brochure:', error);
-    toast.error('Si è verificato un errore nella generazione della brochure.');
-    return false;
-  }
-};
-
-// Public function for downloading the brochure
-export const downloadSiteBrochure = async (options: PdfOptions = {}) => {
-  return await generateSiteBrochure(options);
-};
