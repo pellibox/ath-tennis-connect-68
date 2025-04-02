@@ -16,7 +16,7 @@ export interface JsPDFInternal {
   getEncryptor(objectId: number): (data: string) => string;
 }
 
-// Properly extend the global jsPDF interface with more specific typing
+// Extend the global jsPDF interface with autoTable method
 declare global {
   interface jsPDF {
     internal: JsPDFInternal;
@@ -27,8 +27,9 @@ declare global {
       theme?: string;
       headStyles?: any;
       columnStyles?: any;
+      margin?: any;
       [key: string]: any;
-    }) => jsPDF & { 
+    }) => {
       previous: {
         finalY: number;
       }
