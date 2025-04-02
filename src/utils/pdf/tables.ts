@@ -1,6 +1,7 @@
 
 import { jsPDF } from 'jspdf';
-import 'jspdf-autotable'; // Make sure this import comes before using autoTable
+// Import the autotable plugin to extend jsPDF
+import 'jspdf-autotable';
 import { PriceTableData } from './types';
 import { addNewPageIfNeeded, needsNewPage } from './layout';
 
