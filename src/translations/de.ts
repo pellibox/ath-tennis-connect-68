@@ -1,4 +1,3 @@
-
 const translations = {
   // Header & Navigation
   "nav.home": "Startseite",
@@ -167,7 +166,19 @@ const translations = {
   
   // Method section
   "method.title": "ATH-Methode",
-  "method.subtitle": "Ein innovativer Ansatz für Tennis-Exzellenz"
+  "method.subtitle": "Ein innovativer Ansatz für Tennis-Exzellenz",
+  
+  // Chatbot translations
+  "chatbot.title": "ATH-Assistent",
+  "chatbot.welcomeMessage": "Hallo! Ich bin der virtuelle Assistent von ATH. Wie kann ich Ihnen heute helfen?",
+  "chatbot.placeholder": "Nachricht schreiben...",
+  "chatbot.send": "Senden",
+  "chatbot.listening": "Hört zu...",
+  "chatbot.microphoneNotAllowed": "Bitte erlauben Sie den Zugriff auf das Mikrofon, um Sprachfunktionen zu nutzen.",
+  "chatbot.apiKeyPrompt": "Um den Sprachassistenten zu nutzen, geben Sie bitte Ihren OpenAI-API-Schlüssel ein:",
+  "chatbot.apiKeyError": "Ein OpenAI-API-Schlüssel ist erforderlich. Bitte versuchen Sie es später erneut.",
+  "chatbot.errorMessage": "Ein Fehler ist aufgetreten. Bitte versuchen Sie es später erneut.",
+  "chatbot.speechNotSupported": "Spracherkennung wird in Ihrem Browser nicht unterstützt."
 };
 
 export default translations;

@@ -20,6 +20,7 @@ import ContactPage from '@/pages/Contact';
 import NotFoundPage from '@/pages/NotFound';
 import PrivacyPage from '@/pages/Privacy';
 import TermsPage from '@/pages/Terms';
+import ChatbotWidget from '@/components/chatbot/ChatbotWidget';
 
 // Programs pages
 import EliteProgram from '@/pages/programs/Elite';
@@ -122,6 +123,10 @@ function AppContent() {
         <Route path="/programs/overview" element={<ProgramsOverview />} />
         <Route path="*" element={<NotFoundPage />} />
       </Routes>
+
+      {/* Chatbot widget - always present regardless of route */}
+      <ChatbotWidget />
+      
       <Toaster position="bottom-right" />
     </div>
   );

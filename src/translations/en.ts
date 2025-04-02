@@ -122,7 +122,19 @@ const translations = {
   
   // Method section
   "method.title": "ATH Method",
-  "method.subtitle": "An innovative approach to tennis excellence"
+  "method.subtitle": "An innovative approach to tennis excellence",
+  
+  // Chatbot translations
+  "chatbot.title": "ATH Assistant",
+  "chatbot.welcomeMessage": "Hello! I'm the ATH virtual assistant. How can I help you today?",
+  "chatbot.placeholder": "Type a message...",
+  "chatbot.send": "Send",
+  "chatbot.listening": "Listening...",
+  "chatbot.microphoneNotAllowed": "Please allow microphone access to use voice features.",
+  "chatbot.apiKeyPrompt": "To use the voice assistant, please enter your OpenAI API key:",
+  "chatbot.apiKeyError": "An OpenAI API key is required. Please try again later.",
+  "chatbot.errorMessage": "An error occurred. Please try again later.",
+  "chatbot.speechNotSupported": "Speech recognition is not supported in your browser.",
 };
 
 export default translations;
