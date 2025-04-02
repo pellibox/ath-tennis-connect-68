@@ -19,6 +19,7 @@ declare module 'jspdf' {
         getHeight: () => number;
       };
       pages: number[];
+      // Use a consistent API interface
       getNumberOfPages: () => number;
       getEncryptor(objectId: number): (data: string) => string;
     };
