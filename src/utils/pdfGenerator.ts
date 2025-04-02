@@ -1,4 +1,3 @@
-
 import jsPDF from 'jspdf';
 import 'jspdf-autotable';
 import { programCategories } from '@/data/programs';
@@ -10,13 +9,17 @@ declare module 'jspdf' {
   interface jsPDF {
     autoTable: (options: any) => jsPDF;
     internal: {
+      events: any;
+      scaleFactor: number;
       pageSize: {
         width: number;
-        height: number;
         getWidth: () => number;
+        height: number;
         getHeight: () => number;
       };
+      pages: number[];
       getNumberOfPages: () => number;
+      getEncryptor(objectId: number): (data: string) => string;
     };
   }
 }
