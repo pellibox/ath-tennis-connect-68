@@ -39,6 +39,14 @@ const ChatInput: React.FC<ChatInputProps> = ({
     inputRef.current?.focus();
   }, []);
 
+  // Placeholder change based on listening state
+  const getPlaceholder = () => {
+    if (isListening) {
+      return "Sto ascoltando...";
+    }
+    return "Scrivi un messaggio o premi il microfono per parlare...";
+  };
+
   return (
     <form onSubmit={handleSubmit} className="border-t border-gray-200 p-2 flex items-center">
       <input
@@ -46,12 +54,15 @@ const ChatInput: React.FC<ChatInputProps> = ({
         type="text"
         value={text}
         onChange={(e) => setText(e.target.value)}
-        placeholder="Scrivi un messaggio..."
+        placeholder={getPlaceholder()}
         className="flex-1 px-3 py-2 text-sm border border-gray-300 rounded-l-md focus:outline-none focus:ring-1 focus:ring-ath-clay"
+        disabled={isListening}
       />
       <button 
         type="button"
         onClick={toggleListening}
+        aria-label={isListening ? "Smetti di ascoltare" : "Inizia ad ascoltare"}
+        title={isListening ? "Smetti di ascoltare" : "Inizia ad ascoltare"}
         className={`px-2 py-2 ${isListening ? 'bg-red-500' : 'bg-gray-200'} text-${isListening ? 'white' : 'gray-700'}`}
       >
         {isListening ? <MicOff size={18} /> : <Mic size={18} />}
@@ -59,7 +70,7 @@ const ChatInput: React.FC<ChatInputProps> = ({
       <button 
         type="submit" 
         className="px-3 py-2 bg-ath-clay text-white rounded-r-md"
-        disabled={!text.trim()}
+        disabled={!text.trim() || isListening}
       >
         <Send size={18} />
       </button>

@@ -22,6 +22,7 @@ export const useChatbot = () => {
   const [isProcessing, setIsProcessing] = useState(false);
   const [isSpeechEnabled, setIsSpeechEnabled] = useState(true);
   const abortControllerRef = useRef<AbortController | null>(null);
+  const conversationInProgressRef = useRef(false);
   
   // Speech synthesis hook
   const { speak, stop: stopSpeaking, isSpeaking } = useSpeechSynthesis();
@@ -70,64 +71,13 @@ export const useChatbot = () => {
     });
   }, [stopSpeaking]);
 
-  // Speech recognition hook with callbacks
-  const onSpeechResult = useCallback((text: string) => {
-    if (text.trim()) {
-      setMessages(prev => [...prev, { role: 'user', content: text }]);
-      processMessage(text);
-    }
-  }, []);
-
-  const {
-    isListening,
-    startListening: startSpeechListening,
-    stopListening: stopSpeechListening,
-    isSupported: isSpeechSupported
-  } = useSpeechRecognition({ onResult: onSpeechResult });
-
-  const startListening = useCallback(() => {
-    if (isSpeechSupported) {
-      startSpeechListening();
-    } else {
-      toast({
-        title: "Errore",
-        description: "Il riconoscimento vocale non è supportato nel tuo browser.",
-        variant: "destructive",
-      });
-    }
-  }, [isSpeechSupported, startSpeechListening]);
-
-  const stopListening = useCallback(() => {
-    if (isSpeechSupported) {
-      stopSpeechListening();
-    }
-  }, [isSpeechSupported, stopSpeechListening]);
-
-  // Risposte di fallback per quando l'API è down
-  const getFallbackResponse = (userMessage: string): string => {
-    const lowerCaseMessage = userMessage.toLowerCase();
-    
-    if (lowerCaseMessage.includes('programm') || lowerCaseMessage.includes('cors')) {
-      return "In ATH offriamo diversi programmi per ogni livello ed età. Abbiamo programmi Elite per atleti professionisti, programmi Junior per giovani atleti, e programmi Amatori per adulti. Ogni programma è personalizzato in base alle esigenze specifiche del giocatore.";
-    }
-    
-    if (lowerCaseMessage.includes('vicki') || lowerCaseMessage.includes('tecnolog')) {
-      return "Vicki è la nostra tecnologia proprietaria che monitora oltre 70 parametri durante il gioco. Utilizziamo sensori avanzati e telecamere ad alta velocità per analizzare ogni aspetto della performance, fornendo feedback immediato e personalizzato.";
-    }
-    
-    if (lowerCaseMessage.includes('struttur') || lowerCaseMessage.includes('centro') || lowerCaseMessage.includes('sede')) {
-      return "Il nostro centro si trova in Via F. Turati, 9, 20090 Rodano MI, Italia. Disponiamo di 6 campi monitorati con la tecnologia Vicki, aree dedicate alla preparazione atletica, e spazi per l'analisi video e la preparazione mentale.";
-    }
-    
-    if (lowerCaseMessage.includes('contatt') || lowerCaseMessage.includes('prenotare') || lowerCaseMessage.includes('info')) {
-      return "Per prenotazioni o maggiori informazioni, puoi contattarci al numero +39 02 1234567 o via email a info@ath.tennis. Saremo lieti di rispondere a tutte le tue domande.";
-    }
-    
-    return "Come assistente virtuale di ATH, sono qui per fornirti informazioni sui nostri programmi di allenamento, la nostra tecnologia Vicki, e le nostre strutture. Come posso aiutarti in modo più specifico?";
-  };
-
   // Process message and get AI response
   const processMessage = useCallback(async (userMessage: string) => {
+    if (conversationInProgressRef.current) {
+      console.log("Conversation already in progress, queuing this request");
+    }
+    
+    conversationInProgressRef.current = true;
     setIsProcessing(true);
     
     // Cancel any previous request
@@ -250,8 +200,84 @@ export const useChatbot = () => {
     } finally {
       setIsProcessing(false);
       abortControllerRef.current = null;
+      conversationInProgressRef.current = false;
     }
   }, [messages, speak, stopSpeaking, isSpeechEnabled]);
+
+  // Speech recognition hook with callbacks
+  const onSpeechResult = useCallback((text: string) => {
+    if (text.trim()) {
+      console.log("Speech input processed:", text);
+      setMessages(prev => [...prev, { role: 'user', content: text }]);
+      processMessage(text);
+    }
+  }, [processMessage]);
+
+  const {
+    isListening,
+    startListening: startSpeechListening,
+    stopListening: stopSpeechListening,
+    isSupported: isSpeechSupported
+  } = useSpeechRecognition({ 
+    onResult: onSpeechResult,
+    continuous: false
+  });
+
+  const startListening = useCallback(() => {
+    if (isSpeechSupported) {
+      if (isSpeaking) {
+        stopSpeaking();
+      }
+      startSpeechListening();
+    } else {
+      toast({
+        title: "Errore",
+        description: "Il riconoscimento vocale non è supportato nel tuo browser.",
+        variant: "destructive",
+      });
+    }
+  }, [isSpeechSupported, startSpeechListening, isSpeaking, stopSpeaking]);
+
+  const stopListening = useCallback(() => {
+    if (isSpeechSupported) {
+      stopSpeechListening();
+    }
+  }, [isSpeechSupported, stopSpeechListening]);
+
+  // Risposte di fallback per quando l'API è down
+  const getFallbackResponse = (userMessage: string): string => {
+    const lowerCaseMessage = userMessage.toLowerCase();
+    
+    if (lowerCaseMessage.includes('programm') || lowerCaseMessage.includes('cors')) {
+      return "In ATH offriamo diversi programmi per ogni livello ed età. Abbiamo programmi Elite per atleti professionisti, programmi Junior per giovani atleti, e programmi Amatori per adulti. Ogni programma è personalizzato in base alle esigenze specifiche del giocatore.";
+    }
+    
+    if (lowerCaseMessage.includes('vicki') || lowerCaseMessage.includes('tecnolog')) {
+      return "Vicki è la nostra tecnologia proprietaria che monitora oltre 70 parametri durante il gioco. Utilizziamo sensori avanzati e telecamere ad alta velocità per analizzare ogni aspetto della performance, fornendo feedback immediato e personalizzato.";
+    }
+    
+    if (lowerCaseMessage.includes('struttur') || lowerCaseMessage.includes('centro') || lowerCaseMessage.includes('sede')) {
+      return "Il nostro centro si trova in Via F. Turati, 9, 20090 Rodano MI, Italia. Disponiamo di 6 campi monitorati con la tecnologia Vicki, aree dedicate alla preparazione atletica, e spazi per l'analisi video e la preparazione mentale.";
+    }
+    
+    if (lowerCaseMessage.includes('contatt') || lowerCaseMessage.includes('prenotare') || lowerCaseMessage.includes('info')) {
+      return "Per prenotazioni o maggiori informazioni, puoi contattarci al numero +39 02 1234567 o via email a info@ath.tennis. Saremo lieti di rispondere a tutte le tue domande.";
+    }
+    
+    if (lowerCaseMessage.includes('ciao') || lowerCaseMessage.includes('salve') || lowerCaseMessage.includes('buongiorno') || lowerCaseMessage.includes('buonasera')) {
+      return "Ciao! Sono l'assistente virtuale di ATH. Come posso aiutarti oggi? Puoi chiedermi informazioni sui nostri programmi, la tecnologia Vicki, o la nostra struttura.";
+    }
+    
+    if (lowerCaseMessage.includes('grazie') || lowerCaseMessage.includes('thank')) {
+      return "Prego! Sono qui per aiutarti. C'è altro che ti interessa sapere su ATH?";
+    }
+    
+    if (lowerCaseMessage.includes('parla') || lowerCaseMessage.includes('voce') || lowerCaseMessage.includes('ascolta')) {
+      return "Sì, posso sia parlare che ascoltarti. Usa il pulsante del microfono per attivare l'ascolto e il pulsante dell'altoparlante per attivare o disattivare la mia voce.";
+    }
+    
+    return "Come assistente virtuale di ATH, sono qui per fornirti informazioni sui nostri programmi di allenamento, la nostra tecnologia Vicki, e le nostre strutture. Come posso aiutarti in modo più specifico?";
+  };
 
   const sendMessage = useCallback((message: string, skipApi = false) => {
     // Add user message to state
@@ -263,7 +289,7 @@ export const useChatbot = () => {
       setMessages(prev => [...prev, { role: 'assistant', content: message }]);
       
       // Speak welcome message if speech is enabled
-      if (isSpeechEnabled && !skipApi) {
+      if (isSpeechEnabled) {
         speak(message);
       }
     }

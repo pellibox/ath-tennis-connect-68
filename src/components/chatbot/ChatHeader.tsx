@@ -1,6 +1,6 @@
 
 import React from 'react';
-import { MessageCircle, ChevronUp, Volume2, VolumeX } from 'lucide-react';
+import { MessageCircle, ChevronUp, Volume2, VolumeX, Mic, MicOff } from 'lucide-react';
 
 interface ChatHeaderProps {
   isExpanded: boolean;
@@ -9,6 +9,8 @@ interface ChatHeaderProps {
   isSpeaking?: boolean;
   toggleSpeech?: () => void;
   isSpeechEnabled?: boolean;
+  isListening?: boolean;
+  toggleListening?: () => void;
 }
 
 const ChatHeader: React.FC<ChatHeaderProps> = ({ 
@@ -17,7 +19,9 @@ const ChatHeader: React.FC<ChatHeaderProps> = ({
   title, 
   isSpeaking,
   toggleSpeech,
-  isSpeechEnabled
+  isSpeechEnabled,
+  isListening,
+  toggleListening
 }) => {
   return (
     <div 
@@ -27,16 +31,30 @@ const ChatHeader: React.FC<ChatHeaderProps> = ({
     >
       {isExpanded ? (
         <div className="flex items-center justify-between w-full">
-          <span className="text-xs font-light opacity-80">{title}</span>
-          <div className="flex items-center">
-            {isSpeaking && <Volume2 size={16} className="mr-1 animate-pulse" />}
+          <span className="text-xs font-light opacity-80">
+            {title}
+            {isSpeaking && <span className="ml-1 animate-pulse">•</span>}
+          </span>
+          <div className="flex items-center space-x-2">
+            {toggleListening && (
+              <button
+                onClick={(e) => {
+                  e.stopPropagation(); // Prevent toggling chatbot
+                  toggleListening();
+                }}
+                className={`opacity-80 hover:opacity-100 ${isListening ? 'text-red-300' : ''}`}
+                aria-label={isListening ? "Smetti di ascoltare" : "Inizia ad ascoltare"}
+              >
+                {isListening ? <MicOff size={16} /> : <Mic size={16} />}
+              </button>
+            )}
             {toggleSpeech && (
               <button
                 onClick={(e) => {
                   e.stopPropagation(); // Prevent toggling chatbot
                   toggleSpeech();
                 }}
-                className="mr-2 opacity-80 hover:opacity-100"
+                className="opacity-80 hover:opacity-100"
                 aria-label={isSpeechEnabled ? "Disattiva audio" : "Attiva audio"}
               >
                 {isSpeechEnabled ? <Volume2 size={16} /> : <VolumeX size={16} />}
@@ -52,6 +70,12 @@ const ChatHeader: React.FC<ChatHeaderProps> = ({
             size={14} 
             className="absolute -top-1 -right-1 text-white animate-bounce opacity-70" 
           />
+          {isListening && (
+            <Mic 
+              size={14} 
+              className="absolute -top-1 -left-1 text-red-500 animate-pulse" 
+            />
+          )}
         </div>
       )}
     </div>

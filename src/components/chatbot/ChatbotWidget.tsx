@@ -5,7 +5,7 @@ import ChatHeader from './ChatHeader';
 import ChatMessages from './ChatMessages';
 import ChatInput from './ChatInput';
 import { useChatbot } from '@/hooks/useChatbot';
-import { Volume2, VolumeX } from 'lucide-react';
+import { Volume2, VolumeX, Mic, MicOff } from 'lucide-react';
 
 const ChatbotWidget = () => {
   const [expanded, setExpanded] = useState(false);
@@ -45,6 +45,8 @@ const ChatbotWidget = () => {
           isSpeaking={isSpeaking}
           toggleSpeech={toggleSpeech}
           isSpeechEnabled={isSpeechEnabled}
+          isListening={isListening}
+          toggleListening={() => isListening ? stopListening() : startListening()}
         />
         
         {expanded && (
@@ -57,19 +59,38 @@ const ChatbotWidget = () => {
               isListening={isListening}
             />
             <div className="flex justify-between items-center px-3 py-2 border-t border-gray-100">
-              <div className="flex items-center text-xs text-gray-500">
+              <div className="flex items-center gap-2 text-xs text-gray-500">
                 {isSpeaking ? (
-                  <Volume2 size={14} className="animate-pulse mr-1" />
+                  <div className="flex items-center">
+                    <Volume2 size={14} className="animate-pulse mr-1" />
+                    <span>Parlando...</span>
+                  </div>
+                ) : null}
+                {isListening ? (
+                  <div className="flex items-center">
+                    <Mic size={14} className="animate-pulse text-red-500 mr-1" />
+                    <span className="text-red-500">Ascoltando...</span>
+                  </div>
                 ) : null}
               </div>
-              <button 
-                onClick={toggleSpeech} 
-                className={`p-1.5 rounded-full ${isSpeechEnabled ? 'bg-ath-clay text-white' : 'bg-gray-200 text-gray-600'}`}
-                aria-label={isSpeechEnabled ? "Disattiva risposta vocale" : "Attiva risposta vocale"}
-                title={isSpeechEnabled ? "Disattiva risposta vocale" : "Attiva risposta vocale"}
-              >
-                {isSpeechEnabled ? <Volume2 size={14} /> : <VolumeX size={14} />}
-              </button>
+              <div className="flex gap-2">
+                <button 
+                  onClick={() => isListening ? stopListening() : startListening()} 
+                  className={`p-1.5 rounded-full ${isListening ? 'bg-red-500 text-white' : 'bg-gray-200 text-gray-600'}`}
+                  aria-label={isListening ? "Smetti di ascoltare" : "Inizia ad ascoltare"}
+                  title={isListening ? "Smetti di ascoltare" : "Inizia ad ascoltare"}
+                >
+                  {isListening ? <MicOff size={14} /> : <Mic size={14} />}
+                </button>
+                <button 
+                  onClick={toggleSpeech} 
+                  className={`p-1.5 rounded-full ${isSpeechEnabled ? 'bg-ath-clay text-white' : 'bg-gray-200 text-gray-600'}`}
+                  aria-label={isSpeechEnabled ? "Disattiva risposta vocale" : "Attiva risposta vocale"}
+                  title={isSpeechEnabled ? "Disattiva risposta vocale" : "Attiva risposta vocale"}
+                >
+                  {isSpeechEnabled ? <Volume2 size={14} /> : <VolumeX size={14} />}
+                </button>
+              </div>
             </div>
           </div>
         )}
