@@ -2,6 +2,8 @@
 import jsPDF from 'jspdf';
 import 'jspdf-autotable';
 import { programCategories } from '@/data/programs';
+import { programCategories as padelCategories } from '@/data/padel';
+import { programCategories as pickleballCategories } from '@/data/pickleball';
 import { touchTennisCategories } from '@/data/touchtennis';
 import { formatCurrency } from '@/utils/formatUtils';
 import { toast } from 'sonner';
@@ -25,7 +27,7 @@ interface JsPDFInternal {
     getHeight: () => number;
   };
   pages: number[];
-  getNumberOfPages(): number;
+  getNumberOfPages: () => number; // Changed from method to property getter
   getEncryptor(objectId: number): (data: string) => string;
 }
 
@@ -92,7 +94,7 @@ export const generateSiteBrochure = async (options: PdfOptions = {}) => {
     // Subtitle
     doc.setFontSize(14);
     doc.setFont('helvetica', 'normal');
-    doc.text('Brochure Informativa', doc.internal.pageSize.width / 2, 53, { align: 'center' });
+    doc.text('Brochure Informativa Completa', doc.internal.pageSize.width / 2, 53, { align: 'center' });
     
     // Add divider
     doc.setDrawColor(150, 150, 150);
@@ -120,11 +122,38 @@ export const generateSiteBrochure = async (options: PdfOptions = {}) => {
     
     let yPosition = 120;
     
-    // Programs overview
-    doc.setFontSize(16);
+    // Table of Contents
+    doc.setFontSize(14);
     doc.setFont('helvetica', 'bold');
-    doc.text('I Nostri Programmi', 20, yPosition);
+    doc.text('Indice dei Contenuti', doc.internal.pageSize.width / 2, yPosition, { align: 'center' });
     yPosition += 10;
+    
+    doc.setFontSize(10);
+    doc.setFont('helvetica', 'normal');
+    const tocItems = [
+      '1. Programmi Tennis',
+      '2. Programmi Padel',
+      '3. Programmi Pickleball',
+      '4. Programmi TouchTennis',
+      '5. Tariffe e Prezzi',
+      '6. Contatti e Orari'
+    ];
+    
+    tocItems.forEach((item, index) => {
+      doc.text(item, doc.internal.pageSize.width / 2, yPosition + (index * 7), { align: 'center' });
+    });
+    
+    yPosition += (tocItems.length * 7) + 10;
+    
+    // Add page break
+    doc.addPage();
+    yPosition = 20;
+    
+    // SECTION 1: Tennis Programs
+    doc.setFontSize(18);
+    doc.setFont('helvetica', 'bold');
+    doc.text('1. Programmi Tennis', 20, yPosition);
+    yPosition += 15;
     
     // Tennis Programs
     for (const category of programCategories) {
@@ -167,77 +196,327 @@ export const generateSiteBrochure = async (options: PdfOptions = {}) => {
           }
           yPosition += 5;
         }
-      }
-      
-      yPosition += 10;
-    }
-    
-    // Add TouchTennis programs
-    if (touchTennisCategories && touchTennisCategories.length > 0) {
-      doc.addPage();
-      yPosition = 20;
-      
-      doc.setFontSize(16);
-      doc.setFont('helvetica', 'bold');
-      doc.text('Programmi TouchTennis', 20, yPosition);
-      yPosition += 10;
-      
-      for (const category of touchTennisCategories) {
-        if (yPosition > doc.internal.pageSize.height - 30) {
-          doc.addPage();
-          yPosition = 20;
-        }
         
-        doc.setFontSize(14);
-        doc.setFont('helvetica', 'bold');
-        doc.text(category.title, 20, yPosition);
-        yPosition += 8;
-        
-        for (const program of category.programs) {
-          if (yPosition > doc.internal.pageSize.height - 40) {
+        // Add VICKI info if applicable
+        if (program.vickiMonitoringLevel || program.vickiPowered || program.vickiOnRequest || program.vickiCustomBadge) {
+          if (yPosition > doc.internal.pageSize.height - 20) {
             doc.addPage();
             yPosition = 20;
           }
           
-          doc.setFontSize(12);
-          doc.setFont('helvetica', 'bold');
-          doc.text(program.title, 25, yPosition);
-          yPosition += 6;
+          doc.setFontSize(9);
+          doc.setFont('helvetica', 'italic');
           
-          doc.setFontSize(10);
-          doc.setFont('helvetica', 'normal');
-          const programDesc = doc.splitTextToSize(program.description, doc.internal.pageSize.width - 50);
-          doc.text(programDesc, 25, yPosition);
-          yPosition += (programDesc.length * 5) + 2;
+          if (program.vickiPowered) {
+            doc.text('Questo programma utilizza la tecnologia VICKI™ per l\'analisi avanzata.', 30, yPosition);
+            yPosition += 5;
+          }
           
-          if (program.features && program.features.length > 0) {
-            for (const feature of program.features) {
-              if (yPosition > doc.internal.pageSize.height - 20) {
-                doc.addPage();
-                yPosition = 20;
-              }
-              const featureText = doc.splitTextToSize(`• ${feature}`, doc.internal.pageSize.width - 55);
-              doc.text(featureText, 30, yPosition);
-              yPosition += (featureText.length * 5);
-            }
+          if (program.vickiMonitoringLevel) {
+            doc.text(`Livello di monitoraggio VICKI™: ${program.vickiMonitoringLevel.toUpperCase()}`, 30, yPosition);
+            yPosition += 5;
+          }
+          
+          if (program.vickiOnRequest) {
+            doc.text('Tecnologia VICKI™ disponibile su richiesta.', 30, yPosition);
+            yPosition += 5;
+          }
+          
+          if (program.vickiCustomBadge) {
+            doc.text(`Badge VICKI™: ${program.vickiCustomBadge}`, 30, yPosition);
             yPosition += 5;
           }
         }
         
-        yPosition += 10;
+        yPosition += 8;
       }
+      
+      yPosition += 10;
     }
     
-    // Add pricing page
+    // SECTION 2: Padel Programs
     doc.addPage();
-    doc.setFontSize(16);
+    yPosition = 20;
+    
+    doc.setFontSize(18);
     doc.setFont('helvetica', 'bold');
-    doc.text('Tariffe e Prezzi', 20, 20);
+    doc.text('2. Programmi Padel', 20, yPosition);
+    yPosition += 15;
+    
+    // Padel Programs
+    for (const category of padelCategories) {
+      if (yPosition > doc.internal.pageSize.height - 30) {
+        doc.addPage();
+        yPosition = 20;
+      }
+      
+      doc.setFontSize(14);
+      doc.setFont('helvetica', 'bold');
+      doc.text(category.title, 20, yPosition);
+      yPosition += 8;
+      
+      for (const program of category.programs) {
+        if (yPosition > doc.internal.pageSize.height - 40) {
+          doc.addPage();
+          yPosition = 20;
+        }
+        
+        doc.setFontSize(12);
+        doc.setFont('helvetica', 'bold');
+        doc.text(program.title, 25, yPosition);
+        yPosition += 6;
+        
+        doc.setFontSize(10);
+        doc.setFont('helvetica', 'normal');
+        const programDesc = doc.splitTextToSize(program.description, doc.internal.pageSize.width - 50);
+        doc.text(programDesc, 25, yPosition);
+        yPosition += (programDesc.length * 5) + 2;
+        
+        if (program.features && program.features.length > 0) {
+          for (const feature of program.features) {
+            if (yPosition > doc.internal.pageSize.height - 20) {
+              doc.addPage();
+              yPosition = 20;
+            }
+            const featureText = doc.splitTextToSize(`• ${feature}`, doc.internal.pageSize.width - 55);
+            doc.text(featureText, 30, yPosition);
+            yPosition += (featureText.length * 5);
+          }
+          yPosition += 5;
+        }
+        
+        // Add VICKI info if applicable
+        if (program.vickiMonitoringLevel || program.vickiPowered || program.vickiOnRequest || program.vickiCustomBadge) {
+          if (yPosition > doc.internal.pageSize.height - 20) {
+            doc.addPage();
+            yPosition = 20;
+          }
+          
+          doc.setFontSize(9);
+          doc.setFont('helvetica', 'italic');
+          
+          if (program.vickiPowered) {
+            doc.text('Questo programma utilizza la tecnologia VICKI™ per l\'analisi avanzata.', 30, yPosition);
+            yPosition += 5;
+          }
+          
+          if (program.vickiMonitoringLevel) {
+            doc.text(`Livello di monitoraggio VICKI™: ${program.vickiMonitoringLevel.toUpperCase()}`, 30, yPosition);
+            yPosition += 5;
+          }
+          
+          if (program.vickiOnRequest) {
+            doc.text('Tecnologia VICKI™ disponibile su richiesta.', 30, yPosition);
+            yPosition += 5;
+          }
+          
+          if (program.vickiCustomBadge) {
+            doc.text(`Badge VICKI™: ${program.vickiCustomBadge}`, 30, yPosition);
+            yPosition += 5;
+          }
+        }
+        
+        yPosition += 8;
+      }
+      
+      yPosition += 10;
+    }
+    
+    // SECTION 3: Pickleball Programs
+    doc.addPage();
+    yPosition = 20;
+    
+    doc.setFontSize(18);
+    doc.setFont('helvetica', 'bold');
+    doc.text('3. Programmi Pickleball', 20, yPosition);
+    yPosition += 15;
+    
+    // Pickleball Programs
+    for (const category of pickleballCategories) {
+      if (yPosition > doc.internal.pageSize.height - 30) {
+        doc.addPage();
+        yPosition = 20;
+      }
+      
+      doc.setFontSize(14);
+      doc.setFont('helvetica', 'bold');
+      doc.text(category.title, 20, yPosition);
+      yPosition += 8;
+      
+      for (const program of category.programs) {
+        if (yPosition > doc.internal.pageSize.height - 40) {
+          doc.addPage();
+          yPosition = 20;
+        }
+        
+        doc.setFontSize(12);
+        doc.setFont('helvetica', 'bold');
+        doc.text(program.title, 25, yPosition);
+        yPosition += 6;
+        
+        doc.setFontSize(10);
+        doc.setFont('helvetica', 'normal');
+        const programDesc = doc.splitTextToSize(program.description, doc.internal.pageSize.width - 50);
+        doc.text(programDesc, 25, yPosition);
+        yPosition += (programDesc.length * 5) + 2;
+        
+        if (program.features && program.features.length > 0) {
+          for (const feature of program.features) {
+            if (yPosition > doc.internal.pageSize.height - 20) {
+              doc.addPage();
+              yPosition = 20;
+            }
+            const featureText = doc.splitTextToSize(`• ${feature}`, doc.internal.pageSize.width - 55);
+            doc.text(featureText, 30, yPosition);
+            yPosition += (featureText.length * 5);
+          }
+          yPosition += 5;
+        }
+        
+        // Add VICKI info if applicable
+        if (program.vickiMonitoringLevel || program.vickiPowered || program.vickiOnRequest || program.vickiCustomBadge) {
+          if (yPosition > doc.internal.pageSize.height - 20) {
+            doc.addPage();
+            yPosition = 20;
+          }
+          
+          doc.setFontSize(9);
+          doc.setFont('helvetica', 'italic');
+          
+          if (program.vickiPowered) {
+            doc.text('Questo programma utilizza la tecnologia VICKI™ per l\'analisi avanzata.', 30, yPosition);
+            yPosition += 5;
+          }
+          
+          if (program.vickiMonitoringLevel) {
+            doc.text(`Livello di monitoraggio VICKI™: ${program.vickiMonitoringLevel.toUpperCase()}`, 30, yPosition);
+            yPosition += 5;
+          }
+          
+          if (program.vickiOnRequest) {
+            doc.text('Tecnologia VICKI™ disponibile su richiesta.', 30, yPosition);
+            yPosition += 5;
+          }
+          
+          if (program.vickiCustomBadge) {
+            doc.text(`Badge VICKI™: ${program.vickiCustomBadge}`, 30, yPosition);
+            yPosition += 5;
+          }
+        }
+        
+        yPosition += 8;
+      }
+      
+      yPosition += 10;
+    }
+    
+    // SECTION 4: TouchTennis programs
+    doc.addPage();
+    yPosition = 20;
+    
+    doc.setFontSize(18);
+    doc.setFont('helvetica', 'bold');
+    doc.text('4. Programmi TouchTennis', 20, yPosition);
+    yPosition += 15;
+    
+    // TouchTennis Programs
+    for (const category of touchTennisCategories) {
+      if (yPosition > doc.internal.pageSize.height - 30) {
+        doc.addPage();
+        yPosition = 20;
+      }
+      
+      doc.setFontSize(14);
+      doc.setFont('helvetica', 'bold');
+      doc.text(category.title, 20, yPosition);
+      yPosition += 8;
+      
+      for (const program of category.programs) {
+        if (yPosition > doc.internal.pageSize.height - 40) {
+          doc.addPage();
+          yPosition = 20;
+        }
+        
+        doc.setFontSize(12);
+        doc.setFont('helvetica', 'bold');
+        doc.text(program.title, 25, yPosition);
+        yPosition += 6;
+        
+        doc.setFontSize(10);
+        doc.setFont('helvetica', 'normal');
+        const programDesc = doc.splitTextToSize(program.description, doc.internal.pageSize.width - 50);
+        doc.text(programDesc, 25, yPosition);
+        yPosition += (programDesc.length * 5) + 2;
+        
+        if (program.features && program.features.length > 0) {
+          for (const feature of program.features) {
+            if (yPosition > doc.internal.pageSize.height - 20) {
+              doc.addPage();
+              yPosition = 20;
+            }
+            const featureText = doc.splitTextToSize(`• ${feature}`, doc.internal.pageSize.width - 55);
+            doc.text(featureText, 30, yPosition);
+            yPosition += (featureText.length * 5);
+          }
+          yPosition += 5;
+        }
+        
+        // Add VICKI info if applicable
+        if (program.vickiMonitoringLevel || program.vickiPowered || program.vickiOnRequest || program.vickiCustomBadge) {
+          if (yPosition > doc.internal.pageSize.height - 20) {
+            doc.addPage();
+            yPosition = 20;
+          }
+          
+          doc.setFontSize(9);
+          doc.setFont('helvetica', 'italic');
+          
+          if (program.vickiPowered) {
+            doc.text('Questo programma utilizza la tecnologia VICKI™ per l\'analisi avanzata.', 30, yPosition);
+            yPosition += 5;
+          }
+          
+          if (program.vickiMonitoringLevel) {
+            doc.text(`Livello di monitoraggio VICKI™: ${program.vickiMonitoringLevel.toUpperCase()}`, 30, yPosition);
+            yPosition += 5;
+          }
+          
+          if (program.vickiOnRequest) {
+            doc.text('Tecnologia VICKI™ disponibile su richiesta.', 30, yPosition);
+            yPosition += 5;
+          }
+          
+          if (program.vickiCustomBadge) {
+            doc.text(`Badge VICKI™: ${program.vickiCustomBadge}`, 30, yPosition);
+            yPosition += 5;
+          }
+        }
+        
+        yPosition += 8;
+      }
+      
+      yPosition += 10;
+    }
+    
+    // SECTION 5: Pricing Tables
+    doc.addPage();
+    yPosition = 20;
+    
+    doc.setFontSize(18);
+    doc.setFont('helvetica', 'bold');
+    doc.text('5. Tariffe e Prezzi', 20, yPosition);
+    yPosition += 15;
+    
+    // Tennis Programs Pricing
+    doc.setFontSize(14);
+    doc.setFont('helvetica', 'bold');
+    doc.text('Prezzi Programmi Tennis', 20, yPosition);
+    yPosition += 10;
     
     try {
       // Add pricing tables with proper error handling
       doc.autoTable({
-        startY: 30,
+        startY: yPosition,
         head: [['Programma', 'Durata', 'Prezzo']],
         body: [
           ['Elite Performance Full', '40 settimane', '€ 15.000'],
@@ -264,14 +543,184 @@ export const generateSiteBrochure = async (options: PdfOptions = {}) => {
       // Add fallback text if table fails
       doc.setFont('helvetica', 'normal');
       doc.setFontSize(10);
-      doc.text('Per informazioni sui prezzi, contattare direttamente il nostro staff.', 20, 40);
+      doc.text('Per informazioni sui prezzi, contattare direttamente il nostro staff.', 20, yPosition + 10);
     }
     
-    // Contact information
-    doc.addPage();
-    doc.setFontSize(16);
+    yPosition = doc.autoTable.previous.finalY + 15;
+    
+    if (yPosition > doc.internal.pageSize.height - 60) {
+      doc.addPage();
+      yPosition = 20;
+    }
+    
+    // Padel Programs Pricing
+    doc.setFontSize(14);
     doc.setFont('helvetica', 'bold');
-    doc.text('Contatti', 20, 20);
+    doc.text('Prezzi Programmi Padel', 20, yPosition);
+    yPosition += 10;
+    
+    try {
+      doc.autoTable({
+        startY: yPosition,
+        head: [['Programma', 'Durata', 'Prezzo']],
+        body: [
+          ['Padel Avanzato', '30 settimane', '€ 1.200'],
+          ['Padel Intermedio', '30 settimane', '€ 900'],
+          ['Padel Principianti', '30 settimane', '€ 700'],
+          ['Padel Coaching Privato', 'Sessione', '€ 90']
+        ],
+        theme: 'grid',
+        headStyles: { fillColor: [150, 150, 150], textColor: [255, 255, 255] },
+        columnStyles: {
+          0: { cellWidth: 70 },
+          1: { cellWidth: 50 },
+          2: { cellWidth: 50 }
+        }
+      });
+    } catch (error) {
+      console.error('Error creating padel pricing table:', error);
+      doc.setFont('helvetica', 'normal');
+      doc.setFontSize(10);
+      doc.text('Per informazioni sui prezzi dei programmi Padel, contattare direttamente il nostro staff.', 20, yPosition + 10);
+    }
+    
+    yPosition = doc.autoTable.previous.finalY + 15;
+    
+    if (yPosition > doc.internal.pageSize.height - 60) {
+      doc.addPage();
+      yPosition = 20;
+    }
+    
+    // Pickleball Programs Pricing
+    doc.setFontSize(14);
+    doc.setFont('helvetica', 'bold');
+    doc.text('Prezzi Programmi Pickleball', 20, yPosition);
+    yPosition += 10;
+    
+    try {
+      doc.autoTable({
+        startY: yPosition,
+        head: [['Programma', 'Durata', 'Prezzo']],
+        body: [
+          ['Pickleball Avanzato', '30 settimane', '€ 1.000'],
+          ['Pickleball Intermedio', '30 settimane', '€ 800'],
+          ['Pickleball Principianti', '30 settimane', '€ 600'],
+          ['Pickleball Clinics', 'Sessione (2h)', '€ 60']
+        ],
+        theme: 'grid',
+        headStyles: { fillColor: [150, 150, 150], textColor: [255, 255, 255] },
+        columnStyles: {
+          0: { cellWidth: 70 },
+          1: { cellWidth: 50 },
+          2: { cellWidth: 50 }
+        }
+      });
+    } catch (error) {
+      console.error('Error creating pickleball pricing table:', error);
+      doc.setFont('helvetica', 'normal');
+      doc.setFontSize(10);
+      doc.text('Per informazioni sui prezzi dei programmi Pickleball, contattare direttamente il nostro staff.', 20, yPosition + 10);
+    }
+    
+    yPosition = doc.autoTable.previous.finalY + 15;
+    
+    if (yPosition > doc.internal.pageSize.height - 60) {
+      doc.addPage();
+      yPosition = 20;
+    }
+    
+    // TouchTennis Programs Pricing
+    doc.setFontSize(14);
+    doc.setFont('helvetica', 'bold');
+    doc.text('Prezzi Programmi TouchTennis', 20, yPosition);
+    yPosition += 10;
+    
+    try {
+      doc.autoTable({
+        startY: yPosition,
+        head: [['Programma', 'Durata', 'Prezzo']],
+        body: [
+          ['TouchTennis Avanzato', '30 settimane', '€ 900'],
+          ['TouchTennis Base', '30 settimane', '€ 600'],
+          ['TouchTennis Junior (8-14 anni)', '30 settimane', '€ 500']
+        ],
+        theme: 'grid',
+        headStyles: { fillColor: [150, 150, 150], textColor: [255, 255, 255] },
+        columnStyles: {
+          0: { cellWidth: 70 },
+          1: { cellWidth: 50 },
+          2: { cellWidth: 50 }
+        }
+      });
+    } catch (error) {
+      console.error('Error creating touchtennis pricing table:', error);
+      doc.setFont('helvetica', 'normal');
+      doc.setFontSize(10);
+      doc.text('Per informazioni sui prezzi dei programmi TouchTennis, contattare direttamente il nostro staff.', 20, yPosition + 10);
+    }
+    
+    yPosition = doc.autoTable.previous.finalY + 15;
+    
+    if (yPosition > doc.internal.pageSize.height - 60) {
+      doc.addPage();
+      yPosition = 20;
+    }
+    
+    // Multi-sport programs
+    doc.setFontSize(14);
+    doc.setFont('helvetica', 'bold');
+    doc.text('Programmi Multi-Sport', 20, yPosition);
+    yPosition += 10;
+    
+    try {
+      doc.autoTable({
+        startY: yPosition,
+        head: [['Programma', 'Durata', 'Prezzo']],
+        body: [
+          ['Camp Multi-Sport con Racchetta', '5 giorni', '€ 350'],
+          ['Camp Multi-Sport con Racchetta', '3 giorni', '€ 220']
+        ],
+        theme: 'grid',
+        headStyles: { fillColor: [150, 150, 150], textColor: [255, 255, 255] },
+        columnStyles: {
+          0: { cellWidth: 70 },
+          1: { cellWidth: 50 },
+          2: { cellWidth: 50 }
+        }
+      });
+    } catch (error) {
+      console.error('Error creating multi-sport pricing table:', error);
+      doc.setFont('helvetica', 'normal');
+      doc.setFontSize(10);
+      doc.text('Per informazioni sui prezzi dei programmi Multi-Sport, contattare direttamente il nostro staff.', 20, yPosition + 10);
+    }
+    
+    // Additional notes on pricing
+    yPosition = doc.autoTable.previous.finalY + 15;
+    
+    if (yPosition > doc.internal.pageSize.height - 40) {
+      doc.addPage();
+      yPosition = 20;
+    }
+    
+    doc.setFontSize(11);
+    doc.setFont('helvetica', 'italic');
+    const pricingNotes = [
+      '* I prezzi possono subire variazioni. Contattare la reception per confermare.',
+      '* Sono disponibili sconti per iscrizioni multiple e pacchetti famiglia.',
+      '* La tecnologia VICKI™ può comportare costi aggiuntivi quando richiesta separatamente.',
+      '* Tutti i programmi includono l\'accesso alle strutture durante le ore di lezione.'
+    ];
+    
+    for (let i = 0; i < pricingNotes.length; i++) {
+      doc.text(pricingNotes[i], 20, yPosition + (i * 7));
+    }
+    
+    // SECTION 6: Contact information
+    doc.addPage();
+    doc.setFontSize(18);
+    doc.setFont('helvetica', 'bold');
+    doc.text('6. Contatti e Orari', 20, 20);
     
     doc.setFontSize(12);
     doc.setFont('helvetica', 'normal');
@@ -292,9 +741,32 @@ export const generateSiteBrochure = async (options: PdfOptions = {}) => {
     doc.text('Sabato: 9:00 - 20:00', 20, 92);
     doc.text('Domenica: 9:00 - 18:00', 20, 99);
     
+    // Strutture disponibili
+    doc.setFontSize(14);
+    doc.setFont('helvetica', 'bold');
+    doc.text('Strutture Disponibili', 20, 115);
+    
+    doc.setFontSize(12);
+    doc.setFont('helvetica', 'normal');
+    const facilities = [
+      '• 8 Campi da Tennis (4 indoor, 4 outdoor)',
+      '• 4 Campi da Padel (2 indoor, 2 outdoor)',
+      '• 2 Campi da Pickleball',
+      '• 2 Campi da TouchTennis',
+      '• Palestra attrezzata',
+      '• Area riabilitativa',
+      '• Spogliatoi con sauna',
+      '• Bar e ristorante',
+      '• Area relax'
+    ];
+    
+    for (let i = 0; i < facilities.length; i++) {
+      doc.text(facilities[i], 20, 125 + (i * 7));
+    }
+    
     try {
-      // Fix for getNumberOfPages - Add a safer way to get page count
-      const pageCount = doc.internal.getNumberOfPages();
+      // Fix for getNumberOfPages - Use a safer approach
+      const pageCount = doc.internal.getNumberOfPages(); // This now properly accesses the function
       
       // Add page numbers to each page
       for (let i = 1; i <= pageCount; i++) {
@@ -332,11 +804,12 @@ export const downloadSiteBrochure = async (options: PdfOptions = {}) => {
     // Create temporary link to trigger download
     const link = document.createElement('a');
     link.href = pdfUrl;
-    link.download = 'ATH_Tennis_Hub_Brochure.pdf';
+    link.download = 'ATH_Tennis_Hub_Brochure_Completa.pdf';
     link.click();
     
     // Clean up
     URL.revokeObjectURL(pdfUrl);
+    toast.success("Brochure scaricata con successo!");
   } catch (error) {
     console.error('Error downloading PDF:', error);
     toast.error("Si è verificato un errore durante la generazione della brochure.");
