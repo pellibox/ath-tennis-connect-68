@@ -3,6 +3,8 @@ import React, { useEffect, useRef, useState } from 'react';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { MessageCircle, ChevronUp } from 'lucide-react';
 
+// Create a custom event name for communication between widgets
+const WIDGET_TOGGLE_EVENT = 'ath-widget-toggle';
 const AGENT_ID = "jJMZr28UE8hDLsO00dmt";
 
 const ElevenLabsConvaiWidget = () => {
@@ -12,8 +14,31 @@ const ElevenLabsConvaiWidget = () => {
   const [expanded, setExpanded] = useState(false);
   
   const toggleExpanded = () => {
+    if (!expanded) {
+      // When expanding this widget, dispatch an event to close other widgets
+      const event = new CustomEvent(WIDGET_TOGGLE_EVENT, { detail: { widget: 'elevenlabs' } });
+      window.dispatchEvent(event);
+    }
     setExpanded(prev => !prev);
   };
+  
+  // Listen for toggle events from other widgets
+  useEffect(() => {
+    const handleWidgetToggle = (event: CustomEvent) => {
+      // If another widget is opening and this one is expanded, close this one
+      if (event.detail.widget !== 'elevenlabs' && expanded) {
+        setExpanded(false);
+      }
+    };
+    
+    // Add event listener for custom widget toggle event
+    window.addEventListener(WIDGET_TOGGLE_EVENT, handleWidgetToggle as EventListener);
+    
+    // Clean up listener when component unmounts
+    return () => {
+      window.removeEventListener(WIDGET_TOGGLE_EVENT, handleWidgetToggle as EventListener);
+    };
+  }, [expanded]);
   
   // Initialize the widget when the component mounts or language changes
   useEffect(() => {

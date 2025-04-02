@@ -7,6 +7,9 @@ import ChatInput from './ChatInput';
 import { useChatbot } from '@/hooks/useChatbot';
 import { Volume2, VolumeX, Mic, MicOff } from 'lucide-react';
 
+// Custom event name for widget communication
+const WIDGET_TOGGLE_EVENT = 'ath-widget-toggle';
+
 const ChatbotWidget = () => {
   const [expanded, setExpanded] = useState(false);
   const { t } = useLanguage();
@@ -23,8 +26,31 @@ const ChatbotWidget = () => {
   } = useChatbot();
 
   const toggleExpanded = () => {
+    if (!expanded) {
+      // When expanding this widget, dispatch an event to close other widgets
+      const event = new CustomEvent(WIDGET_TOGGLE_EVENT, { detail: { widget: 'chatbot' } });
+      window.dispatchEvent(event);
+    }
     setExpanded(prev => !prev);
   };
+  
+  // Listen for toggle events from other widgets
+  useEffect(() => {
+    const handleWidgetToggle = (event: CustomEvent) => {
+      // If another widget is opening and this one is expanded, close this one
+      if (event.detail.widget !== 'chatbot' && expanded) {
+        setExpanded(false);
+      }
+    };
+    
+    // Add event listener for custom widget toggle event
+    window.addEventListener(WIDGET_TOGGLE_EVENT, handleWidgetToggle as EventListener);
+    
+    // Clean up listener when component unmounts
+    return () => {
+      window.removeEventListener(WIDGET_TOGGLE_EVENT, handleWidgetToggle as EventListener);
+    };
+  }, [expanded]);
 
   // Show welcome message when first expanded
   useEffect(() => {
