@@ -2,25 +2,20 @@
 import { useState, useCallback, useEffect } from 'react';
 import { useSpeechRecognition } from './useSpeechRecognition';
 import { useSpeechSynthesis } from './useSpeechSynthesis';
+import { toast } from '@/components/ui/use-toast';
 
 export interface Message {
   content: string;
   role: 'user' | 'assistant' | 'system';
 }
 
+// Pre-defined API key
+const OPENAI_API_KEY = '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';
+
 export const useChatbot = () => {
   const [messages, setMessages] = useState<Message[]>([]);
   const [isProcessing, setIsProcessing] = useState(false);
-  const [apiKey, setApiKey] = useState<string | null>(null);
-
-  // Load API key from localStorage
-  useEffect(() => {
-    const savedApiKey = localStorage.getItem('openai-api-key');
-    if (savedApiKey) {
-      setApiKey(savedApiKey);
-    }
-  }, []);
-
+  
   // Speech synthesis hook
   const { speak, stop: stopSpeaking } = useSpeechSynthesis();
 
@@ -43,7 +38,11 @@ export const useChatbot = () => {
     if (isSpeechSupported) {
       startSpeechListening();
     } else {
-      alert('Il riconoscimento vocale non è supportato nel tuo browser.');
+      toast({
+        title: "Errore",
+        description: "Il riconoscimento vocale non è supportato nel tuo browser.",
+        variant: "destructive",
+      });
     }
   }, [isSpeechSupported, startSpeechListening]);
 
@@ -55,27 +54,6 @@ export const useChatbot = () => {
 
   // Process message and get AI response
   const processMessage = useCallback(async (userMessage: string) => {
-    if (!apiKey) {
-      // Ask for API key if not set
-      const newApiKey = prompt(
-        'Per utilizzare l\'assistente vocale, inserisci la tua chiave API OpenAI:'
-      );
-      
-      if (!newApiKey) {
-        setMessages(prev => [
-          ...prev, 
-          { 
-            role: 'assistant', 
-            content: 'È necessaria una chiave API OpenAI per continuare. Riprova più tardi.' 
-          }
-        ]);
-        return;
-      }
-      
-      localStorage.setItem('openai-api-key', newApiKey);
-      setApiKey(newApiKey);
-    }
-
     setIsProcessing(true);
     
     try {
@@ -108,7 +86,7 @@ export const useChatbot = () => {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-          "Authorization": `Bearer ${apiKey}`
+          "Authorization": `Bearer ${OPENAI_API_KEY}`
         },
         body: JSON.stringify({
           model: "gpt-4o-mini",
@@ -122,14 +100,7 @@ export const useChatbot = () => {
         const error = await response.json();
         console.error("OpenAI API error:", error);
         
-        // Check if the API key is invalid
-        if (response.status === 401) {
-          localStorage.removeItem('openai-api-key');
-          setApiKey(null);
-          throw new Error('API key non valida. Per favore, fornisci una chiave API valida.');
-        }
-        
-        throw new Error('Errore nel contattare il servizio di intelligenza artificiale.');
+        throw new Error('Errore nel contattare il servizio di intelligenza artificiale. Per favore, riprova più tardi.');
       }
 
       const data = await response.json();
@@ -153,10 +124,16 @@ export const useChatbot = () => {
           content: error instanceof Error ? error.message : 'Si è verificato un errore. Riprova più tardi.' 
         }
       ]);
+      
+      toast({
+        title: "Errore",
+        description: error instanceof Error ? error.message : "Si è verificato un errore con l'assistente virtuale",
+        variant: "destructive",
+      });
     } finally {
       setIsProcessing(false);
     }
-  }, [apiKey, messages, speak]);
+  }, [messages, speak]);
 
   const sendMessage = useCallback((message: string, skipApi = false) => {
     // Add user message to state
