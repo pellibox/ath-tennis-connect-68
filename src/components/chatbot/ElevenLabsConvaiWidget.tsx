@@ -39,7 +39,7 @@ const ElevenLabsConvaiWidget = () => {
     <div className="fixed bottom-16 right-4 z-50 md:bottom-5">
       <div className="bg-white rounded-lg shadow-lg overflow-hidden transition-all duration-300 ease-in-out max-w-[350px] animate-fade-in">
         <div className="bg-ath-clay text-white px-3 py-2">
-          <span className="text-xs font-light">Assistente ATH AI</span>
+          {/* Removed the text "Assistente ATH AI" */}
         </div>
         <div className="elevenlabs-widget-container max-h-[500px] max-w-[350px]">
           <elevenlabs-convai 
@@ -54,3 +54,4 @@ const ElevenLabsConvaiWidget = () => {
 };
 
 export default ElevenLabsConvaiWidget;
+
