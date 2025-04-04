@@ -3,12 +3,12 @@ import { supabase } from '@/integrations/supabase/client';
 
 export const setAsAdmin = async (userId: string) => {
   try {
-    // Use a more generic approach with type assertions
-    const { data, error } = await supabase
-      .from('user_roles')
+    // Use type casting to bypass type checking
+    const { data, error } = await (supabase
+      .from('user_roles' as any)
       .insert([
         { user_id: userId, role: 'admin' }
-      ] as any);
+      ]) as any);
     
     if (error) throw error;
     return { success: true, data };
@@ -20,12 +20,12 @@ export const setAsAdmin = async (userId: string) => {
 
 export const setAsEditor = async (userId: string) => {
   try {
-    // Use a more generic approach with type assertions
-    const { data, error } = await supabase
-      .from('user_roles')
+    // Use type casting to bypass type checking
+    const { data, error } = await (supabase
+      .from('user_roles' as any)
       .insert([
         { user_id: userId, role: 'editor' }
-      ] as any);
+      ]) as any);
     
     if (error) throw error;
     return { success: true, data };
@@ -37,12 +37,12 @@ export const setAsEditor = async (userId: string) => {
 
 export const removeRole = async (userId: string, role: string) => {
   try {
-    // Use a more generic approach with table name as string
-    const { data, error } = await supabase
-      .from('user_roles')
+    // Use type casting to bypass type checking
+    const { data, error } = await (supabase
+      .from('user_roles' as any)
       .delete()
       .eq('user_id', userId)
-      .eq('role', role);
+      .eq('role', role) as any);
     
     if (error) throw error;
     return { success: true, data };
@@ -54,12 +54,12 @@ export const removeRole = async (userId: string, role: string) => {
 
 export const fetchUserProfile = async (userId: string) => {
   try {
-    // Use a more generic approach with table name as string
-    const { data, error } = await supabase
-      .from('profiles')
+    // Use type casting to bypass type checking
+    const { data, error } = await (supabase
+      .from('profiles' as any)
       .select('*')
       .eq('id', userId)
-      .single();
+      .single() as any);
     
     if (error) throw error;
     return { success: true, data };
@@ -71,11 +71,11 @@ export const fetchUserProfile = async (userId: string) => {
 
 export const updateUserProfile = async (userId: string, updates: any) => {
   try {
-    // Use a more generic approach with table name as string
-    const { data, error } = await supabase
-      .from('profiles')
-      .update(updates as any)
-      .eq('id', userId);
+    // Use type casting to bypass type checking
+    const { data, error } = await (supabase
+      .from('profiles' as any)
+      .update(updates)
+      .eq('id', userId) as any);
     
     if (error) throw error;
     return { success: true, data };
