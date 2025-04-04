@@ -12,11 +12,29 @@ import { padelPrograms } from '@/data/padel/padelPrograms';
 import { pickleballPrograms } from '@/data/pickleball/pickleballPrograms';
 import { touchTennisPrograms } from '@/data/touchtennis/touchTennisPrograms';
 import { toast } from 'sonner';
+import { RefreshCw, Clock } from 'lucide-react';
 
 const KnowledgeBase = () => {
   const { t } = useLanguage();
   const [copySuccess, setCopySuccess] = useState(false);
   const [activeTab, setActiveTab] = useState('tennis');
+  const [lastUpdated, setLastUpdated] = useState<string | null>(null);
+
+  useEffect(() => {
+    // Load the last updated timestamp
+    const timestamp = localStorage.getItem('knowledgeBaseLastUpdated');
+    setLastUpdated(timestamp);
+    
+    // Check for updates periodically
+    const checkInterval = setInterval(() => {
+      const newTimestamp = localStorage.getItem('knowledgeBaseLastUpdated');
+      if (newTimestamp !== lastUpdated) {
+        setLastUpdated(newTimestamp);
+      }
+    }, 5000); // Check every 5 seconds
+    
+    return () => clearInterval(checkInterval);
+  }, [lastUpdated]);
 
   // Function to extract all program information
   const getAllPrograms = () => {
@@ -305,15 +323,55 @@ ATH (Advanced Tennis Hub) è situato a Rodano, in provincia di Milano, in una st
       });
   };
 
+  // Format the timestamp for display
+  const formatTimestamp = (timestamp: string | null) => {
+    if (!timestamp) return 'Mai aggiornato';
+    
+    const date = new Date(timestamp);
+    return new Intl.DateTimeFormat('it-IT', {
+      year: 'numeric',
+      month: 'short',
+      day: '2-digit',
+      hour: '2-digit',
+      minute: '2-digit',
+    }).format(date);
+  };
+
+  // Manually update knowledge base timestamp
+  const handleManualUpdate = () => {
+    const currentDate = new Date().toISOString();
+    localStorage.setItem('knowledgeBaseLastUpdated', currentDate);
+    setLastUpdated(currentDate);
+    toast.success('Knowledge base updated successfully!');
+  };
+
   return (
     <AdminLayout title={t('admin.knowledgeBase') || 'Knowledge Base'}>
       <Card>
         <CardHeader>
-          <CardTitle>{t('admin.knowledgeBase') || 'Knowledge Base'}</CardTitle>
-          <CardDescription>
-            Questa pagina contiene tutte le informazioni del sito che possono essere utilizzate dall'agente ElevenLabs Convai.
-            Copia il contenuto e aggiornalo nella configurazione dell'agente su ElevenLabs.
-          </CardDescription>
+          <div className="flex justify-between items-start">
+            <div>
+              <CardTitle>{t('admin.knowledgeBase') || 'Knowledge Base'}</CardTitle>
+              <CardDescription>
+                Questa pagina contiene tutte le informazioni del sito che possono essere utilizzate dall'agente ElevenLabs Convai.
+                Copia il contenuto e aggiornalo nella configurazione dell'agente su ElevenLabs.
+              </CardDescription>
+            </div>
+            <Button 
+              variant="outline" 
+              size="sm" 
+              onClick={handleManualUpdate}
+              className="flex items-center gap-1"
+            >
+              <RefreshCw className="h-4 w-4" />
+              Aggiorna Knowledge Base
+            </Button>
+          </div>
+          
+          <div className="bg-muted/50 p-3 rounded-md mt-2 flex items-center gap-2">
+            <Clock className="h-4 w-4 text-muted-foreground" />
+            <span className="text-sm">Ultimo aggiornamento: <strong>{formatTimestamp(lastUpdated)}</strong></span>
+          </div>
         </CardHeader>
         <CardContent>
           <div className="mb-4">

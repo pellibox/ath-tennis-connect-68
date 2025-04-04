@@ -1,5 +1,5 @@
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import AdminLayout from '@/components/admin/AdminLayout';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle, CardFooter } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
@@ -7,7 +7,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Textarea } from '@/components/ui/textarea';
-import { PlusCircle, Edit, Trash, Save, X, EyeIcon, Settings } from 'lucide-react';
+import { PlusCircle, Edit, Trash, Save, X, EyeIcon, Settings, RefreshCw } from 'lucide-react';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { toast } from 'sonner';
 import { Table, TableHeader, TableBody, TableRow, TableHead, TableCell } from '@/components/ui/table';
@@ -20,6 +20,7 @@ import {
   DialogDescription
 } from '@/components/ui/dialog';
 import PageContentEditor from '@/components/admin/PageContentEditor';
+import { Switch } from '@/components/ui/switch';
 
 const Pages = () => {
   const { t } = useLanguage();
@@ -27,6 +28,8 @@ const Pages = () => {
   const [editingPageId, setEditingPageId] = useState<string | null>(null);
   const [editingContent, setEditingContent] = useState(false);
   const [currentPage, setCurrentPage] = useState<any>(null);
+  const [updateKnowledgeBase, setUpdateKnowledgeBase] = useState(true);
+  const [knowledgeBaseLastUpdated, setKnowledgeBaseLastUpdated] = useState<string | null>(null);
   
   // Mock data for demonstration - in a real app this would come from Supabase
   const [pages, setPages] = useState([
@@ -84,6 +87,18 @@ const Pages = () => {
     },
   ]);
 
+  // Initialize last update timestamp from localStorage or set current date
+  useEffect(() => {
+    const savedTimestamp = localStorage.getItem('knowledgeBaseLastUpdated');
+    if (savedTimestamp) {
+      setKnowledgeBaseLastUpdated(savedTimestamp);
+    } else {
+      const currentDate = new Date().toISOString();
+      setKnowledgeBaseLastUpdated(currentDate);
+      localStorage.setItem('knowledgeBaseLastUpdated', currentDate);
+    }
+  }, []);
+
   // State for the new page form
   const [newPage, setNewPage] = useState({
     title: '',
@@ -111,12 +126,22 @@ const Pages = () => {
     setPages([...pages, newPageWithId]);
     setNewPage({ title: '', slug: '', content: '', sections: [] });
     toast.success('Page created successfully! (Demo only)');
+    
+    // Update knowledge base if enabled
+    if (updateKnowledgeBase) {
+      updateKnowledgeBaseTimestamp();
+    }
   };
 
   const handleDeletePage = (id: string) => {
     // Here we would normally delete from Supabase
     setPages(pages.filter(page => page.id !== id));
     toast.success('Page deleted successfully! (Demo only)');
+    
+    // Update knowledge base if enabled
+    if (updateKnowledgeBase) {
+      updateKnowledgeBaseTimestamp();
+    }
   };
 
   const handleEditPage = (id: string) => {
@@ -127,6 +152,11 @@ const Pages = () => {
     // Here we would normally update in Supabase
     setEditingPageId(null);
     toast.success('Page updated successfully! (Demo only)');
+    
+    // Update knowledge base if enabled
+    if (updateKnowledgeBase) {
+      updateKnowledgeBaseTimestamp();
+    }
   };
 
   const handleCancelEdit = () => {
@@ -150,6 +180,11 @@ const Pages = () => {
     setEditingContent(false);
     setCurrentPage(null);
     toast.success('Page content updated successfully! (Demo only)');
+    
+    // Update knowledge base if enabled
+    if (updateKnowledgeBase) {
+      updateKnowledgeBaseTimestamp();
+    }
   };
 
   const handleCancelContentEdit = () => {
@@ -170,6 +205,11 @@ const Pages = () => {
     
     setPages(updatedPages);
     toast.success(`Page ${updatedPages.find(p => p.id === id)?.status === 'published' ? 'published' : 'unpublished'} successfully! (Demo only)`);
+    
+    // Update knowledge base if enabled
+    if (updateKnowledgeBase) {
+      updateKnowledgeBaseTimestamp();
+    }
   };
 
   const handlePreviewPage = (slug: string) => {
@@ -177,8 +217,68 @@ const Pages = () => {
     toast.info(`Previewing page: /${slug} (Demo only)`);
   };
 
+  // Function to update the knowledge base timestamp
+  const updateKnowledgeBaseTimestamp = () => {
+    const currentDate = new Date().toISOString();
+    setKnowledgeBaseLastUpdated(currentDate);
+    localStorage.setItem('knowledgeBaseLastUpdated', currentDate);
+  };
+
+  // Format the timestamp for display
+  const formatTimestamp = (timestamp: string | null) => {
+    if (!timestamp) return 'Never';
+    
+    const date = new Date(timestamp);
+    return new Intl.DateTimeFormat('it-IT', {
+      year: 'numeric',
+      month: 'short',
+      day: '2-digit',
+      hour: '2-digit',
+      minute: '2-digit',
+    }).format(date);
+  };
+
+  // Manually update knowledge base
+  const handleUpdateKnowledgeBase = () => {
+    updateKnowledgeBaseTimestamp();
+    toast.success('Knowledge base updated successfully!');
+  };
+
   return (
     <AdminLayout title={t('admin.pages') || 'Pages'}>
+      <div className="mb-6 flex justify-between items-center">
+        <div>
+          <h1 className="text-2xl font-bold">{t('admin.pages') || 'Pages'}</h1>
+          <p className="text-muted-foreground">Manage website content and pages</p>
+        </div>
+        <div className="flex items-center gap-4">
+          <div className="flex items-center gap-2">
+            <Switch 
+              id="update-knowledge" 
+              checked={updateKnowledgeBase} 
+              onCheckedChange={setUpdateKnowledgeBase}
+            />
+            <Label htmlFor="update-knowledge" className="font-medium">Auto-update Knowledge Base</Label>
+          </div>
+          <Button 
+            variant="outline" 
+            size="sm" 
+            onClick={handleUpdateKnowledgeBase}
+            className="flex items-center gap-1"
+          >
+            <RefreshCw className="h-4 w-4" />
+            Update Knowledge Base
+          </Button>
+        </div>
+      </div>
+      
+      <div className="bg-muted/50 p-3 rounded-md mb-4">
+        <div className="flex items-center gap-2 text-sm">
+          <span className="font-medium">Knowledge Base Last Updated:</span>
+          <span>{formatTimestamp(knowledgeBaseLastUpdated)}</span>
+        </div>
+      </div>
+      
       <Tabs defaultValue="all" className="space-y-4" onValueChange={setActiveTab}>
         <div className="flex justify-between items-center">
           <TabsList>
@@ -515,7 +615,7 @@ const Pages = () => {
           <DialogHeader>
             <DialogTitle>Edit {currentPage?.title} Content</DialogTitle>
             <DialogDescription>
-              Edit the content of this page. The layout will remain unchanged.
+              Edit the content of this page. Updates will automatically sync with the knowledge base.
             </DialogDescription>
           </DialogHeader>
           
@@ -524,6 +624,7 @@ const Pages = () => {
               sections={currentPage.sections} 
               onSave={handleSaveContent}
               onCancel={handleCancelContentEdit}
+              updateKnowledgeBase={updateKnowledgeBase}
             />
           )}
         </DialogContent>

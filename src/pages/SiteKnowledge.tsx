@@ -1,5 +1,5 @@
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Button } from '@/components/ui/button';
 import { Separator } from '@/components/ui/separator';
@@ -9,10 +9,28 @@ import { Program } from '@/data/programs/types';
 import { padelPrograms } from '@/data/padel/padelPrograms';
 import { pickleballPrograms } from '@/data/pickleball/pickleballPrograms';
 import { touchTennisPrograms } from '@/data/touchtennis/touchTennisPrograms';
+import { RefreshCw, Clock } from 'lucide-react';
 
 const SiteKnowledge = () => {
   const [copySuccess, setCopySuccess] = useState(false);
   const [activeTab, setActiveTab] = useState('all-content');
+  const [lastUpdated, setLastUpdated] = useState<string | null>(null);
+
+  useEffect(() => {
+    // Load the last updated timestamp
+    const timestamp = localStorage.getItem('knowledgeBaseLastUpdated');
+    setLastUpdated(timestamp);
+    
+    // Check for updates periodically
+    const checkInterval = setInterval(() => {
+      const newTimestamp = localStorage.getItem('knowledgeBaseLastUpdated');
+      if (newTimestamp !== lastUpdated) {
+        setLastUpdated(newTimestamp);
+      }
+    }, 5000); // Check every 5 seconds
+    
+    return () => clearInterval(checkInterval);
+  }, [lastUpdated]);
 
   // Function to extract all program information
   const getAllPrograms = () => {
@@ -574,6 +592,20 @@ ${programsContent}
       });
   };
 
+  // Format the timestamp for display
+  const formatTimestamp = (timestamp: string | null) => {
+    if (!timestamp) return 'Mai aggiornato';
+    
+    const date = new Date(timestamp);
+    return new Intl.DateTimeFormat('it-IT', {
+      year: 'numeric',
+      month: 'short',
+      day: '2-digit',
+      hour: '2-digit',
+      minute: '2-digit',
+    }).format(date);
+  };
+
   return (
     <div className="max-w-6xl mx-auto p-6">
       <header className="mb-6">
@@ -583,6 +615,25 @@ ${programsContent}
           Pagina ottimizzata per l'agente conversazionale.
         </p>
       </header>
+      
+      <div className="bg-muted/50 p-4 rounded-md mb-6 flex justify-between items-center">
+        <div className="flex items-center gap-2">
+          <Clock className="h-4 w-4 text-muted-foreground" />
+          <span className="text-sm">Ultimo aggiornamento: <strong>{formatTimestamp(lastUpdated)}</strong></span>
+        </div>
+        <Button 
+          variant="outline" 
+          size="sm" 
+          onClick={() => {
+            window.location.reload();
+            toast.success('Contenuto aggiornato!');
+          }}
+          className="flex items-center gap-1"
+        >
+          <RefreshCw className="h-4 w-4" />
+          Aggiorna
+        </Button>
+      </div>
 
       <div className="mb-4">
         <Tabs defaultValue="all-content" value={activeTab} onValueChange={setActiveTab}>
