@@ -1,4 +1,3 @@
-
 const translations = {
   // Header & Navigation
   "nav.home": "Home",
@@ -231,9 +230,10 @@ const translations = {
   "admin.welcome": "Benvenuto",
   "admin.dashboardIntro": "Questa è la tua dashboard amministrativa. Usa il menu per gestire i contenuti del sito.",
   "admin.pagesDescription": "Gestisci le pagine del sito",
-  "admin.programsDescription": "Gestisci i programmi",
-  "admin.pricesDescription": "Gestisci i prezzi",
+  "admin.programsDescription": "Gestisci i programmi sportivi",
+  "admin.pricesDescription": "Gestisci i prezzi dei programmi",
   "admin.usersDescription": "Gestisci gli utenti",
+  "admin.knowledgeBase": "Base di Conoscenza",
   
   // Admin users page
   "admin.usersManagement": "Gestione Utenti",

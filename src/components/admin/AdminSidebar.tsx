@@ -10,6 +10,7 @@ import {
   DollarSign, 
   Users, 
   Settings,
+  Database,
   LogOut,
   ChevronRight
 } from 'lucide-react';
@@ -61,6 +62,11 @@ const AdminSidebar = () => {
       title: t('admin.settings') || 'Settings',
       icon: <Settings className="h-5 w-5" />,
       path: '/admin/settings',
+    },
+    {
+      title: t('admin.knowledgeBase') || 'Knowledge Base',
+      icon: <Database className="h-5 w-5" />,
+      path: '/admin/knowledge-base',
     },
   ];
 
