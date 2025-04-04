@@ -1,20 +1,12 @@
 
-export interface Program {
-  id: string;
-  title: string;
-  description: string;
-  image: string;
-  vimeoEmbed?: string;
-  link: string;
-  features?: string[];
-  vickiPowered?: boolean;
-  vickiOnRequest?: boolean;
-  vickiCustomBadge?: string;
-  vickiMonitoringLevel?: 'essentials' | 'core' | 'advanced' | 'performance' | 'pro';
-}
+import { Program } from '@/data/programs/types';
+
+export interface { Program };
 
 export interface ProgramCategory {
   id: string;
   title: string;
   programs: Program[];
+  applicableUserTypes?: string[];
+  sports?: string[];
 }

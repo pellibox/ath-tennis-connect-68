@@ -66,7 +66,7 @@ const SatProgram = () => {
                 Un viaggio entusiasmante alla scoperta del tennis, dove ogni bambino può esprimersi attraverso il gioco e il movimento. Creiamo un ambiente gioioso dove le prime esperienze con racchetta e pallina diventano momenti di divertimento e crescita.
               </p>
               <div className="mt-4 flex flex-wrap gap-3">
-                <VickiMonitoringBadge level="basic" className="bg-opacity-20 border-opacity-30 text-white" />
+                <VickiMonitoringBadge level="essentials" className="bg-opacity-20 border-opacity-30 text-white" />
                 <VickiPoweredBadge className="bg-opacity-20 border-opacity-30 text-white" />
               </div>
             </div>
@@ -78,7 +78,7 @@ const SatProgram = () => {
             <RevealAnimation>
               <div className="flex flex-wrap items-center gap-3 mb-6">
                 <h2 className="text-3xl font-swiss">SAT - Scuola Avviamento al Tennis (4-10+ anni)</h2>
-                <VickiMonitoringBadge level="basic" />
+                <VickiMonitoringBadge level="essentials" />
                 <VickiPoweredBadge />
               </div>
             </RevealAnimation>
