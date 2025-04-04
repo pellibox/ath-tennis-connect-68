@@ -1,8 +1,13 @@
+
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { Toaster } from "@/components/ui/sonner";
 import { LanguageProvider } from './contexts/LanguageContext';
 import { ProfileProvider } from './contexts/ProfileContext';
+import { AuthProvider } from './contexts/AuthContext';
 import { useIsMobile } from './hooks/use-mobile';
+import ProtectedRoute from './components/ProtectedRoute';
+
+// Pages
 import LandingPage from '@/pages/Landing';
 import HomePage from '@/pages/Index';
 import ProgramsOverview from '@/pages/programs/Overview';
@@ -22,6 +27,17 @@ import TermsPage from '@/pages/Terms';
 import Brochure from '@/pages/Brochure';
 import ElevenLabsConvaiWidget from '@/components/chatbot/ElevenLabsConvaiWidget';
 import BottomNavigation from '@/components/navigation/BottomNavigation';
+
+// Auth pages
+import Login from '@/pages/auth/Login';
+import Register from '@/pages/auth/Register';
+import ForgotPassword from '@/pages/auth/ForgotPassword';
+import ResetPassword from '@/pages/auth/ResetPassword';
+import RegistrationSuccess from '@/pages/auth/RegistrationSuccess';
+import Unauthorized from '@/pages/Unauthorized';
+
+// Admin pages
+import Dashboard from '@/pages/admin/Dashboard';
 
 // Programs pages
 import EliteProgram from '@/pages/programs/Elite';
@@ -63,9 +79,11 @@ function App() {
   return (
     <LanguageProvider>
       <ProfileProvider>
-        <Router>
-          <AppContent />
-        </Router>
+        <AuthProvider>
+          <Router>
+            <AppContent />
+          </Router>
+        </AuthProvider>
       </ProfileProvider>
     </LanguageProvider>
   );
@@ -126,6 +144,21 @@ function AppContent() {
         <Route path="/programs/touchtennis-base" element={<TouchTennisBaseProgram />} />
         <Route path="/programs/touchtennis-avanzato" element={<TouchTennisAdvancedProgram />} />
         <Route path="/programs/touchtennis-junior" element={<TouchTennisJuniorProgram />} />
+        
+        {/* Authentication routes */}
+        <Route path="/auth/login" element={<Login />} />
+        <Route path="/auth/register" element={<Register />} />
+        <Route path="/auth/forgot-password" element={<ForgotPassword />} />
+        <Route path="/auth/reset-password" element={<ResetPassword />} />
+        <Route path="/auth/success" element={<RegistrationSuccess />} />
+        <Route path="/unauthorized" element={<Unauthorized />} />
+        
+        {/* Admin routes - protected */}
+        <Route path="/admin" element={
+          <ProtectedRoute requireEditor>
+            <Dashboard />
+          </ProtectedRoute>
+        } />
         
         <Route path="/contact" element={<ContactPage />} />
         <Route path="/privacy" element={<PrivacyPage />} />

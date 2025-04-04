@@ -1,11 +1,13 @@
 
 import { Link } from 'react-router-dom';
-import { Instagram, Facebook, Twitter, Mail, Phone, MapPin } from 'lucide-react';
+import { Instagram, Facebook, Twitter, Mail, Phone, MapPin, UserCog } from 'lucide-react';
 import Logo from './Logo';
 import { useLanguage } from '@/contexts/LanguageContext';
+import { useAuth } from '@/contexts/AuthContext';
 
 const Footer = () => {
   const { t } = useLanguage();
+  const { user } = useAuth();
 
   return (
     <footer className="bg-black text-white py-16 px-6 lg:px-10">
@@ -86,6 +88,17 @@ const Footer = () => {
             <Link to="/privacy" className="text-gray-500 hover:text-white text-sm transition-colors font-swiss">{t('footer.privacy')}</Link>
             <Link to="/terms" className="text-gray-500 hover:text-white text-sm transition-colors font-swiss">{t('footer.terms')}</Link>
             <Link to="/contact" className="text-gray-500 hover:text-white text-sm transition-colors font-swiss">{t('footer.contact')}</Link>
+            {user ? (
+              <Link to="/admin" className="text-gray-500 hover:text-white text-sm transition-colors font-swiss flex items-center">
+                <UserCog size={16} className="mr-1" />
+                Admin
+              </Link>
+            ) : (
+              <Link to="/auth/login" className="text-gray-500 hover:text-white text-sm transition-colors font-swiss flex items-center">
+                <UserCog size={16} className="mr-1" />
+                Login
+              </Link>
+            )}
           </div>
         </div>
       </div>
