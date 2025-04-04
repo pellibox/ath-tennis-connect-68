@@ -1,13 +1,40 @@
-
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Card } from '@/components/ui/card';
 import VickiPoweredBadge from './VickiPoweredBadge';
 import RevealAnimation from './RevealAnimation';
 import { Link } from 'react-router-dom';
 import { ArrowRight } from 'lucide-react';
+import { supabase } from '@/integrations/supabase/client';
+
+interface PricingItem {
+  id: string;
+  name: string;
+  price: string;
+  description: string;
+}
+
+interface Section {
+  id: string;
+  name: string;
+  type: 'text' | 'pricing';
+  content?: string;
+  items?: PricingItem[];
+}
+
+interface PageData {
+  id: string;
+  title: string;
+  slug: string;
+  status: 'published' | 'draft';
+  lastModified: string;
+  sections: Section[];
+}
 
 const PricingTables = () => {
-  const performancePrograms = [
+  const [loading, setLoading] = useState(true);
+  const [programsPage, setProgramsPage] = useState<PageData | null>(null);
+  
+  const defaultPerformancePrograms = [
     {
       title: 'Performance 2',
       subtitle: '2 giorni a settimana (40 settimane)',
@@ -70,8 +97,8 @@ const PricingTables = () => {
       link: '/programs/elite-full'
     }
   ];
-
-  const juniorPrograms = [
+  
+  const defaultJuniorPrograms = [
     {
       title: 'SIT - Scuola Individuazione Talenti (4-10 anni)',
       subtitle: 'under 8–10 + over 10 (30 settimane)',
@@ -96,6 +123,79 @@ const PricingTables = () => {
     }
   ];
 
+  useEffect(() => {
+    const fetchPricingData = async () => {
+      setLoading(true);
+      try {
+        const { data, error } = await supabase
+          .from('pages')
+          .select('*')
+          .eq('slug', 'programs')
+          .eq('status', 'published')
+          .single();
+          
+        if (error) {
+          console.error('Error fetching programs page:', error);
+          return;
+        }
+        
+        if (data) {
+          const formattedPage: PageData = {
+            id: data.id,
+            title: data.title,
+            slug: data.slug,
+            status: data.status,
+            lastModified: new Date(data.last_modified).toISOString().split('T')[0],
+            sections: data.sections || []
+          };
+          
+          setProgramsPage(formattedPage);
+        }
+      } catch (error) {
+        console.error('Error in pricing data fetch:', error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchPricingData();
+  }, []);
+
+  const getPricingSectionByName = (name: string) => {
+    if (!programsPage || !programsPage.sections) return null;
+    return programsPage.sections.find(
+      section => section.type === 'pricing' && section.name.toLowerCase().includes(name.toLowerCase())
+    );
+  };
+
+  const mapPricingItems = (items: PricingItem[] | undefined, defaultItems: any[]) => {
+    if (!items || items.length === 0) return defaultItems;
+    
+    return items.map(item => {
+      const features = item.description.split(/[;\n]/).filter(f => f.trim() !== '');
+      
+      return {
+        title: item.name,
+        subtitle: features[0] || '',
+        features: features.slice(1),
+        price: item.price,
+        vickiPowered: true,
+        link: `/programs/${item.name.toLowerCase().replace(/\s+/g, '-')}`,
+        highlight: item.name.toLowerCase().includes('elite')
+      };
+    });
+  };
+
+  const performancePrograms = mapPricingItems(
+    getPricingSectionByName('performance')?.items,
+    defaultPerformancePrograms
+  );
+  
+  const juniorPrograms = mapPricingItems(
+    getPricingSectionByName('junior')?.items,
+    defaultJuniorPrograms
+  );
+  
   const personalTrainingPrograms = [
     {
       title: 'Private Personal Coaching (13+ anni)',
@@ -220,22 +320,35 @@ const PricingTables = () => {
     </Card>
   );
 
+  const getSectionTextContent = (name: string) => {
+    if (!programsPage || !programsPage.sections) return null;
+    const section = programsPage.sections.find(
+      s => s.type === 'text' && s.name.toLowerCase().includes(name.toLowerCase())
+    );
+    return section?.content;
+  };
+
   return (
     <div className="py-16 bg-gray-50">
       <div className="max-w-6xl mx-auto px-6">
         <RevealAnimation>
           <div className="text-center mb-12">
-            <h2 className="text-4xl font-display mb-3 text-ath-clay">Il Valore della Tua Scelta</h2>
+            <h2 className="text-4xl font-display mb-3 text-ath-clay">
+              {getSectionTextContent('header title') || 'Il Valore della Tua Scelta'}
+            </h2>
             <p className="text-xl text-gray-700 max-w-3xl mx-auto">
-              I nostri Percorsi verso l'Eccellenza Tennistica
+              {getSectionTextContent('header subtitle') || 'I nostri Percorsi verso l\'Eccellenza Tennistica'}
             </p>
           </div>
         </RevealAnimation>
 
         <RevealAnimation>
-          <h2 className="text-3xl font-display mb-2 border-l-4 border-ath-clay pl-3">Agonisti Performance ed Elite</h2>
+          <h2 className="text-3xl font-display mb-2 border-l-4 border-ath-clay pl-3">
+            {getSectionTextContent('performance title') || 'Agonisti Performance ed Elite'}
+          </h2>
           <p className="text-gray-600 mb-8">
-            Percorsi ad alto contenuto tecnico e fisico, pensati per chi compete a livello FITP, Tennis Europe o ITF. Programmi di 48 settimane per un percorso verso il proprio massimo potenziale.
+            {getSectionTextContent('performance description') || 
+              'Percorsi ad alto contenuto tecnico e fisico, pensati per chi compete a livello FITP, Tennis Europe o ITF. Programmi di 48 settimane per un percorso verso il proprio massimo potenziale.'}
           </p>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-16">
             {performancePrograms.map((program, index) => (
@@ -247,9 +360,12 @@ const PricingTables = () => {
         </RevealAnimation>
 
         <RevealAnimation>
-          <h2 className="text-3xl font-display mb-2 border-l-4 border-ath-clay pl-3">Junior Program</h2>
+          <h2 className="text-3xl font-display mb-2 border-l-4 border-ath-clay pl-3">
+            {getSectionTextContent('junior title') || 'Junior Program'}
+          </h2>
           <p className="text-gray-600 mb-8">
-            Percorsi dedicati allo sviluppo motorio e tecnico dai 4 ai 12 anni. Programmi di 30 settimane.
+            {getSectionTextContent('junior description') || 
+              'Percorsi dedicati allo sviluppo motorio e tecnico dai 4 ai 12 anni. Programmi di 30 settimane.'}
           </p>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-16">
             {juniorPrograms.map((program, index) => (
@@ -261,9 +377,12 @@ const PricingTables = () => {
         </RevealAnimation>
 
         <RevealAnimation>
-          <h2 className="text-3xl font-display mb-2 border-l-4 border-ath-clay pl-3">Personal Coaching e Lezioni Private</h2>
+          <h2 className="text-3xl font-display mb-2 border-l-4 border-ath-clay pl-3">
+            {getSectionTextContent('personal title') || 'Personal Coaching e Lezioni Private'}
+          </h2>
           <p className="text-gray-600 mb-8">
-            Il Personal Coaching include maestro e sparring dedicati con analisi VICKI™, mentre le Lezioni Private offrono sessioni personalizzate con un maestro certificato. Entrambi i programmi disponibili su prenotazione.
+            {getSectionTextContent('personal description') || 
+              'Il Personal Coaching include maestro e sparring dedicati con analisi VICKI™, mentre le Lezioni Private offrono sessioni personalizzate con un maestro certificato. Entrambi i programmi disponibili su prenotazione.'}
           </p>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-16">
             {personalTrainingPrograms.map((program, index) => (
@@ -275,9 +394,12 @@ const PricingTables = () => {
         </RevealAnimation>
 
         <RevealAnimation>
-          <h2 className="text-3xl font-display mb-2 border-l-4 border-ath-clay pl-3">Adulti e Universitari</h2>
+          <h2 className="text-3xl font-display mb-2 border-l-4 border-ath-clay pl-3">
+            {getSectionTextContent('adult title') || 'Adulti e Universitari'}
+          </h2>
           <p className="text-gray-600 mb-8">
-            Programmi per adulti e studenti con esigenze di flessibilità. Programmi di 30 settimane.
+            {getSectionTextContent('adult description') || 
+              'Programmi per adulti e studenti con esigenze di flessibilità. Programmi di 30 settimane.'}
           </p>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-16">
             {adultPrograms.map((program, index) => (
@@ -289,9 +411,12 @@ const PricingTables = () => {
         </RevealAnimation>
         
         <RevealAnimation>
-          <h2 className="text-3xl font-display mb-2 border-l-4 border-ath-clay pl-3">Programmi per Coach</h2>
+          <h2 className="text-3xl font-display mb-2 border-l-4 border-ath-clay pl-3">
+            {getSectionTextContent('coach title') || 'Programmi per Coach'}
+          </h2>
           <p className="text-gray-600 mb-8">
-            Formazione e strumenti avanzati per allenatori di tennis. Disponibili tutto l'anno con prezzi personalizzati.
+            {getSectionTextContent('coach description') || 
+              'Formazione e strumenti avanzati per allenatori di tennis. Disponibili tutto l\'anno con prezzi personalizzati.'}
           </p>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-16">
             {coachPrograms.map((program, index) => (
@@ -303,9 +428,12 @@ const PricingTables = () => {
         </RevealAnimation>
 
         <RevealAnimation>
-          <h2 className="text-3xl font-display mb-2 border-l-4 border-ath-clay pl-3">Programmi per Club</h2>
+          <h2 className="text-3xl font-display mb-2 border-l-4 border-ath-clay pl-3">
+            {getSectionTextContent('club title') || 'Programmi per Club'}
+          </h2>
           <p className="text-gray-600 mb-8">
-            Soluzioni per integrare il metodo ATH e la tecnologia VICKI™ nei centri tennistici e accademie. Prezzi personalizzati in base alle esigenze.
+            {getSectionTextContent('club description') || 
+              'Soluzioni per integrare il metodo ATH e la tecnologia VICKI™ nei centri tennistici e accademie. Prezzi personalizzati in base alle esigenze.'}
           </p>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {clubPrograms.map((program, index) => (

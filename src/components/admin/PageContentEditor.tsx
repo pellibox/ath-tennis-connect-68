@@ -19,6 +19,7 @@ import {
   AccordionTrigger,
 } from '@/components/ui/accordion';
 import { toast } from 'sonner';
+import { supabase } from '@/integrations/supabase/client';
 
 interface PricingItem {
   id: string;
@@ -37,19 +38,22 @@ interface Section {
 
 interface PageContentEditorProps {
   sections: Section[];
-  onSave: (sections: Section[]) => void;
+  onSave: (sections: Section[]) => Promise<void>;
   onCancel: () => void;
   updateKnowledgeBase?: boolean;
+  pageId?: string;
 }
 
 const PageContentEditor: React.FC<PageContentEditorProps> = ({ 
   sections: initialSections, 
   onSave, 
   onCancel,
-  updateKnowledgeBase = true
+  updateKnowledgeBase = true,
+  pageId
 }) => {
   const [sections, setSections] = useState<Section[]>(initialSections);
   const [expandedSections, setExpandedSections] = useState<string[]>([]);
+  const [isSaving, setIsSaving] = useState(false);
   
   // Initialize expanded sections
   useEffect(() => {
@@ -147,11 +151,22 @@ const PageContentEditor: React.FC<PageContentEditorProps> = ({
     );
   };
 
-  const handleSaveWithKnowledgeBase = () => {
-    if (updateKnowledgeBase) {
-      toast.success('Content saved and knowledge base updated');
+  const handleSaveWithKnowledgeBase = async () => {
+    setIsSaving(true);
+    try {
+      await onSave(sections);
+      
+      if (updateKnowledgeBase) {
+        toast.success('Content saved and knowledge base updated');
+      } else {
+        toast.success('Content saved successfully');
+      }
+    } catch (error) {
+      console.error('Error saving content:', error);
+      toast.error('Failed to save content');
+    } finally {
+      setIsSaving(false);
     }
-    onSave(sections);
   };
 
   const countTextSections = sections.filter(section => section.type === 'text').length;
@@ -336,11 +351,11 @@ const PageContentEditor: React.FC<PageContentEditorProps> = ({
       </div>
       
       <div className="flex justify-end space-x-2 mt-6">
-        <Button variant="outline" onClick={onCancel}>
+        <Button variant="outline" onClick={onCancel} disabled={isSaving}>
           Cancel
         </Button>
-        <Button onClick={handleSaveWithKnowledgeBase}>
-          {updateKnowledgeBase ? 'Save & Update Knowledge Base' : 'Save Changes'}
+        <Button onClick={handleSaveWithKnowledgeBase} disabled={isSaving}>
+          {isSaving ? 'Saving...' : updateKnowledgeBase ? 'Save & Update Knowledge Base' : 'Save Changes'}
         </Button>
       </div>
     </div>
