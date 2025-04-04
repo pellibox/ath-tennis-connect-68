@@ -203,3 +203,6 @@ const Register = () => {
       <EmptyFooter />
     </div>
   );
+};
+
+export default Register;
