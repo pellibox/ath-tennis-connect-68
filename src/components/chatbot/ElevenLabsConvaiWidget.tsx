@@ -13,9 +13,9 @@ import {
 const WIDGET_TOGGLE_EVENT = 'ath-widget-toggle';
 const AGENT_ID = "jJMZr28UE8hDLsO00dmt";
 
-// Adjust the position more significantly for mobile to avoid overlap with navigation
-const MOBILE_BOTTOM_POSITION = '140px';
-const DESKTOP_BOTTOM_POSITION = '20px';
+// Increase the bottom position values to avoid overlap with the footer login section
+const MOBILE_BOTTOM_POSITION = '180px'; // Increased from 140px
+const DESKTOP_BOTTOM_POSITION = '80px'; // Increased from 20px
 
 const ElevenLabsConvaiWidget = () => {
   const { language, t } = useLanguage();

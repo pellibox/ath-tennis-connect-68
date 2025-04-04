@@ -211,6 +211,12 @@ const translations = {
   // Brochure translations
   "brochure.download": "Scarica Brochure Informativa",
   "brochure.generating": "Generazione...",
+  
+  // Unauthorized page translations
+  "unauthorized.title": "Accesso Negato",
+  "unauthorized.message": "Spiacenti, non hai il permesso di accedere a questa pagina. Contatta un amministratore se ritieni che questo sia un errore.",
+  "unauthorized.backToHome": "Torna alla Home",
+  "unauthorized.goBack": "Torna Indietro"
 };
 
 export default translations;
