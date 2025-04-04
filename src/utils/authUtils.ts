@@ -4,11 +4,11 @@ import { supabase } from '@/integrations/supabase/client';
 export const setAsAdmin = async (userId: string) => {
   try {
     // Use type casting to bypass type checking
-    const { data, error } = await (supabase
-      .from('user_roles' as any)
+    const { data, error } = await (supabase as any)
+      .from('user_roles')
       .insert([
         { user_id: userId, role: 'admin' }
-      ]) as any);
+      ]);
     
     if (error) throw error;
     return { success: true, data };
@@ -21,11 +21,11 @@ export const setAsAdmin = async (userId: string) => {
 export const setAsEditor = async (userId: string) => {
   try {
     // Use type casting to bypass type checking
-    const { data, error } = await (supabase
-      .from('user_roles' as any)
+    const { data, error } = await (supabase as any)
+      .from('user_roles')
       .insert([
         { user_id: userId, role: 'editor' }
-      ]) as any);
+      ]);
     
     if (error) throw error;
     return { success: true, data };
@@ -38,11 +38,11 @@ export const setAsEditor = async (userId: string) => {
 export const removeRole = async (userId: string, role: string) => {
   try {
     // Use type casting to bypass type checking
-    const { data, error } = await (supabase
-      .from('user_roles' as any)
+    const { data, error } = await (supabase as any)
+      .from('user_roles')
       .delete()
       .eq('user_id', userId)
-      .eq('role', role) as any);
+      .eq('role', role);
     
     if (error) throw error;
     return { success: true, data };
@@ -55,11 +55,11 @@ export const removeRole = async (userId: string, role: string) => {
 export const fetchUserProfile = async (userId: string) => {
   try {
     // Use type casting to bypass type checking
-    const { data, error } = await (supabase
-      .from('profiles' as any)
+    const { data, error } = await (supabase as any)
+      .from('profiles')
       .select('*')
       .eq('id', userId)
-      .single() as any);
+      .single();
     
     if (error) throw error;
     return { success: true, data };
@@ -72,10 +72,10 @@ export const fetchUserProfile = async (userId: string) => {
 export const updateUserProfile = async (userId: string, updates: any) => {
   try {
     // Use type casting to bypass type checking
-    const { data, error } = await (supabase
-      .from('profiles' as any)
+    const { data, error } = await (supabase as any)
+      .from('profiles')
       .update(updates)
-      .eq('id', userId) as any);
+      .eq('id', userId);
     
     if (error) throw error;
     return { success: true, data };

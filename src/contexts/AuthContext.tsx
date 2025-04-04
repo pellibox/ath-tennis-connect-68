@@ -1,4 +1,3 @@
-
 import React, { createContext, useState, useEffect, useContext } from 'react';
 import { Session, User } from '@supabase/supabase-js';
 import { supabase } from '@/integrations/supabase/client';
@@ -61,18 +60,17 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
 
   const fetchUserRoles = async (userId: string) => {
     try {
-      // Use a more generic approach with type casting to bypass type checking
-      const { data, error } = await (supabase
-        .from('user_roles' as any)
+      // Use type casting to bypass type checking completely
+      const { data, error } = await (supabase as any)
+        .from('user_roles')
         .select('role')
-        .eq('user_id', userId) as any);
+        .eq('user_id', userId);
 
       if (error) {
         throw error;
       }
 
       if (data) {
-        // Use type assertion to handle the data
         const roles = data.map((r: any) => r.role);
         setUserRoles(roles);
       }
