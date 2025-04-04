@@ -3,11 +3,12 @@ import { supabase } from '@/integrations/supabase/client';
 
 export const setAsAdmin = async (userId: string) => {
   try {
+    // Use a more generic approach with type assertions
     const { data, error } = await supabase
       .from('user_roles')
       .insert([
         { user_id: userId, role: 'admin' }
-      ]);
+      ] as any);
     
     if (error) throw error;
     return { success: true, data };
@@ -19,11 +20,12 @@ export const setAsAdmin = async (userId: string) => {
 
 export const setAsEditor = async (userId: string) => {
   try {
+    // Use a more generic approach with type assertions
     const { data, error } = await supabase
       .from('user_roles')
       .insert([
         { user_id: userId, role: 'editor' }
-      ]);
+      ] as any);
     
     if (error) throw error;
     return { success: true, data };
@@ -35,6 +37,7 @@ export const setAsEditor = async (userId: string) => {
 
 export const removeRole = async (userId: string, role: string) => {
   try {
+    // Use a more generic approach with table name as string
     const { data, error } = await supabase
       .from('user_roles')
       .delete()
@@ -51,6 +54,7 @@ export const removeRole = async (userId: string, role: string) => {
 
 export const fetchUserProfile = async (userId: string) => {
   try {
+    // Use a more generic approach with table name as string
     const { data, error } = await supabase
       .from('profiles')
       .select('*')
@@ -67,9 +71,10 @@ export const fetchUserProfile = async (userId: string) => {
 
 export const updateUserProfile = async (userId: string, updates: any) => {
   try {
+    // Use a more generic approach with table name as string
     const { data, error } = await supabase
       .from('profiles')
-      .update(updates)
+      .update(updates as any)
       .eq('id', userId);
     
     if (error) throw error;

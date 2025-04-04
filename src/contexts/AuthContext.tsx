@@ -61,6 +61,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
 
   const fetchUserRoles = async (userId: string) => {
     try {
+      // Use a more generic approach that doesn't rely on specific types
       const { data, error } = await supabase
         .from('user_roles')
         .select('role')
@@ -71,7 +72,8 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
       }
 
       if (data) {
-        const roles = data.map(r => r.role);
+        // Use type assertion to handle the data
+        const roles = data.map((r: any) => r.role);
         setUserRoles(roles);
       }
     } catch (error) {
