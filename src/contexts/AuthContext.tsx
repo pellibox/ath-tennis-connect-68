@@ -1,8 +1,10 @@
+
 import React, { createContext, useState, useEffect, useContext } from 'react';
 import { Session, User } from '@supabase/supabase-js';
 import { supabase } from '@/integrations/supabase/client';
 import { toast } from 'sonner';
 import { useLanguage } from './LanguageContext';
+import { setupUserProfile } from '@/utils/authUtils';
 
 interface AuthContextType {
   session: Session | null;
@@ -36,6 +38,13 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
         // Fetch user roles when session changes
         if (session?.user) {
           fetchUserRoles(session.user.id);
+          
+          // Check if the user has a profile and create one if needed
+          if (event === 'SIGNED_IN') {
+            setTimeout(() => {
+              setupUserProfile(session.user.id, session.user.user_metadata);
+            }, 0);
+          }
         } else {
           setUserRoles([]);
         }
@@ -49,6 +58,8 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
       
       if (session?.user) {
         fetchUserRoles(session.user.id);
+        // Ensure user has a profile
+        setupUserProfile(session.user.id, session.user.user_metadata);
       }
       setIsLoading(false);
     });
@@ -101,7 +112,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
 
   const signUp = async (email: string, password: string, username: string, fullName: string) => {
     try {
-      const { error } = await supabase.auth.signUp({
+      const { error, data } = await supabase.auth.signUp({
         email,
         password,
         options: {
@@ -114,6 +125,25 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
 
       if (error) {
         throw error;
+      }
+
+      if (data.user) {
+        // Setup user profile upon successful signup
+        await setupUserProfile(data.user.id, {
+          username,
+          full_name: fullName
+        });
+        
+        // Set default user role
+        const { error: roleError } = await (supabase as any)
+          .from('user_roles')
+          .insert([
+            { user_id: data.user.id, role: 'user' }
+          ]);
+          
+        if (roleError) {
+          console.error('Error setting default user role:', roleError);
+        }
       }
 
       toast.success(t('auth.signUpSuccess') || 'Registration successful');
