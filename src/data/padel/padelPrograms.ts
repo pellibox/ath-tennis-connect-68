@@ -71,6 +71,6 @@ export const padelPrograms: Program[] = [
       "Report dettagliato delle performance",
       "Pianificazione del percorso di miglioramento"
     ],
-    vickiMonitoringLevel: "elite"
+    vickiMonitoringLevel: "performance"
   }
 ];

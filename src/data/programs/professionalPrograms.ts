@@ -21,6 +21,6 @@ export const professionalPrograms: Program[] = [
       'Integrazione di parametri medici e biochimici per massimizzare la performance'
     ],
     vickiPowered: true,
-    vickiMonitoringLevel: 'elite'
+    vickiMonitoringLevel: 'pro'
   }
 ];

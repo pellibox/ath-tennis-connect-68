@@ -40,7 +40,7 @@ const CampsProgram = () => {
               {t('camps.subtitle')}
             </p>
             <div className="mt-6">
-              <VickiUnifiedBadge level="basic" className="bg-opacity-20 border-opacity-30 text-white" />
+              <VickiUnifiedBadge level="essentials" className="bg-opacity-20 border-opacity-30 text-white" />
             </div>
           </div>
         </div>
@@ -50,7 +50,7 @@ const CampsProgram = () => {
             <RevealAnimation>
               <div className="flex flex-wrap items-center gap-3 mb-6">
                 <h2 className="text-3xl font-display">{t('camps.summer')}</h2>
-                <VickiUnifiedBadge level="basic" />
+                <VickiUnifiedBadge level="essentials" />
               </div>
             </RevealAnimation>
             <RevealAnimation delay={100}>

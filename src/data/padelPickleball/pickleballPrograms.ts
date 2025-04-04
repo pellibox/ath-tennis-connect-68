@@ -42,6 +42,6 @@ export const pickleballPrograms: Program[] = [
       "Preparazione fisica specifica per il pickleball",
       "Strategie di gioco per competizioni"
     ],
-    vickiMonitoringLevel: "standard"
+    vickiMonitoringLevel: "core"
   }
 ];

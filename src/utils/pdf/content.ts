@@ -76,7 +76,23 @@ export const addVickiInfo = (doc: jsPDF, program: ProgramInfo, yPosition: number
     }
     
     if (program.vickiMonitoringLevel) {
-      doc.text(`Livello di monitoraggio VICKI™: ${program.vickiMonitoringLevel.toUpperCase()}`, 30, yPosition);
+      // Convert monitoring level to display format
+      let displayLevel = program.vickiMonitoringLevel.toUpperCase();
+      
+      // Apply specific mapping for renamed levels
+      if (program.vickiMonitoringLevel === 'essentials' || program.vickiMonitoringLevel === 'basic') {
+        displayLevel = 'ESSENTIALS';
+      } else if (program.vickiMonitoringLevel === 'core' || program.vickiMonitoringLevel === 'standard') {
+        displayLevel = 'CORE';
+      } else if (program.vickiMonitoringLevel === 'advanced') {
+        displayLevel = 'ADVANCED';
+      } else if (program.vickiMonitoringLevel === 'performance' || program.vickiMonitoringLevel === 'elite') {
+        displayLevel = 'PERFORMANCE';
+      } else if (program.vickiMonitoringLevel === 'pro') {
+        displayLevel = 'PRO';
+      }
+      
+      doc.text(`Livello di monitoraggio VICKI™: ${displayLevel}`, 30, yPosition);
       yPosition += 5;
     }
     

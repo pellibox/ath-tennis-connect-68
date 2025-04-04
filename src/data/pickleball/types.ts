@@ -10,7 +10,7 @@ export interface Program {
   vickiPowered?: boolean;
   vickiOnRequest?: boolean;
   vickiCustomBadge?: string;
-  vickiMonitoringLevel?: 'basic' | 'standard' | 'advanced' | 'elite' | 'pro';
+  vickiMonitoringLevel?: 'essentials' | 'core' | 'advanced' | 'performance' | 'pro';
 }
 
 export interface ProgramCategory {

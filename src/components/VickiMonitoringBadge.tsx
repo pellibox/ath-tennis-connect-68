@@ -3,7 +3,7 @@ import React from 'react';
 import { Monitor, Shield, ShieldCheck, Award } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
-export type MonitoringLevel = 'basic' | 'standard' | 'advanced' | 'elite' | 'pro';
+export type MonitoringLevel = 'essentials' | 'core' | 'advanced' | 'performance' | 'pro';
 export type BadgeSize = 'sm' | 'md' | 'lg';
 
 interface VickiMonitoringBadgeProps {
@@ -22,29 +22,29 @@ const VickiMonitoringBadge = ({
   // Define colors and icons based on level
   const getLevelDetails = () => {
     switch (level) {
-      case 'basic':
+      case 'essentials':
         return {
           color: 'bg-red-50 text-ath-clay border-red-200',
           icon: <Monitor className={`${size === 'sm' ? 'w-3 h-3' : size === 'lg' ? 'w-5 h-5' : 'w-4 h-4'} mr-2`} />,
-          label: 'Monitoraggio Vicki™ Base'
+          label: 'Monitoraggio Vicki™ Essentials'
         };
-      case 'standard':
+      case 'core':
         return {
           color: 'bg-red-100 text-ath-clay border-red-200',
           icon: <Monitor className={`${size === 'sm' ? 'w-3 h-3' : size === 'lg' ? 'w-5 h-5' : 'w-4 h-4'} mr-2`} />,
-          label: 'Monitoraggio Vicki™ Standard'
+          label: 'Monitoraggio Vicki™ Core'
         };
       case 'advanced':
         return {
           color: 'bg-red-100 text-ath-clay border-red-200',
           icon: <ShieldCheck className={`${size === 'sm' ? 'w-3 h-3' : size === 'lg' ? 'w-5 h-5' : 'w-4 h-4'} mr-2`} />,
-          label: 'Monitoraggio Vicki™ Avanzato'
+          label: 'Monitoraggio Vicki™ Advanced'
         };
-      case 'elite':
+      case 'performance':
         return {
           color: 'bg-red-100 text-ath-clay border-red-200',
           icon: <Shield className={`${size === 'sm' ? 'w-3 h-3' : size === 'lg' ? 'w-5 h-5' : 'w-4 h-4'} mr-2`} />,
-          label: 'Monitoraggio Vicki™ Elite'
+          label: 'Monitoraggio Vicki™ Performance'
         };
       case 'pro':
         return {

@@ -11,7 +11,7 @@ interface ProgramDetailsProps {
   description: string[];
   userGender?: UserGender | null;
   userType?: UserType | null;
-  vickiLevel?: "basic" | "standard" | "advanced" | "elite" | "pro";
+  vickiLevel?: "essentials" | "core" | "advanced" | "performance" | "pro";
 }
 
 const ProgramDetails = ({ 

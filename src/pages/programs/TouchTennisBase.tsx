@@ -33,9 +33,9 @@ const TouchTennisBase = () => {
             description={[
               "Il programma TouchTennis Base è pensato per chi si avvicina per la prima volta a questo sport o per chi desidera migliorare le proprie abilità di base. Il TouchTennis è una versione ridotta del tennis tradizionale, giocata su un campo più piccolo con racchette e palline più morbide, che lo rendono accessibile a tutti.",
               "Durante le sessioni di allenamento, i partecipanti impareranno i fondamentali del TouchTennis: dritto, rovescio, volée, servizio e risposta. Le lezioni si svolgeranno in gruppi di massimo 4 persone per garantire un'attenzione personalizzata da parte dei coach.",
-              "Il programma è supportato dalla tecnologia VICKI™ a livello base, che consente un'analisi oggettiva dei movimenti e dei progressi di ogni partecipante."
+              "Il programma è supportato dalla tecnologia VICKI™ a livello Essentials, che consente un'analisi oggettiva dei movimenti e dei progressi di ogni partecipante."
             ]}
-            vickiLevel="basic"
+            vickiLevel="essentials"
           />
           
           <ProgramFeaturesAndPricing
@@ -47,7 +47,7 @@ const TouchTennisBase = () => {
                 "Sessioni di gioco guidate",
                 "Adatto a tutte le età e livelli di esperienza",
                 "2 sessioni settimanali da 60 minuti",
-                "Monitoraggio dei progressi con tecnologia VICKI™ di livello Basic"
+                "Monitoraggio dei progressi con tecnologia VICKI™ di livello Essentials"
               ]
             }}
             pricing={{

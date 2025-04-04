@@ -10,7 +10,7 @@ export interface Program {
   features?: string[];
   vickiOnRequest?: boolean;
   vickiCustomBadge?: string;
-  vickiMonitoringLevel?: 'basic' | 'standard' | 'advanced' | 'elite' | 'pro';
+  vickiMonitoringLevel?: 'essentials' | 'core' | 'advanced' | 'performance' | 'pro';
   vickiPowered?: boolean;
   sports?: string[]; // Add this property to filter programs by sport
 }

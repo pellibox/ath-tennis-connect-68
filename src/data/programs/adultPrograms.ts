@@ -20,6 +20,6 @@ export const adultPrograms: Program[] = [
       'Report leggibili con focus su controllo, postura e miglioramenti visibili'
     ],
     vickiOnRequest: true,
-    vickiMonitoringLevel: 'basic'
+    vickiMonitoringLevel: 'essentials'
   }
 ];

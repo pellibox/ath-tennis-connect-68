@@ -12,10 +12,10 @@ const VickiMonitoringLevels = ({ className }: VickiMonitoringLevelsProps) => {
   
   // Monitoring levels for display
   const monitoringLevels: { level: MonitoringLevel, label: string }[] = [
-    { level: 'basic', label: 'Base' },
-    { level: 'standard', label: 'Standard' },
-    { level: 'advanced', label: 'Avanzato' },
-    { level: 'elite', label: 'Elite' },
+    { level: 'essentials', label: 'Essentials' },
+    { level: 'core', label: 'Core' },
+    { level: 'advanced', label: 'Advanced' },
+    { level: 'performance', label: 'Performance' },
     { level: 'pro', label: 'Pro' }
   ];
 
@@ -33,10 +33,10 @@ const VickiMonitoringLevels = ({ className }: VickiMonitoringLevelsProps) => {
               <VickiMonitoringBadge level={item.level} showLabel={false} className="mb-3" size="lg" />
               <span className="text-lg font-medium block mb-2">{item.label}</span>
               <p className={`text-gray-500 max-w-[180px] ${isMobile ? 'text-xs' : 'text-sm'}`}>
-                {item.level === 'basic' && "Monitoraggio fondamentale per principianti e amatori"}
-                {item.level === 'standard' && "Analisi intermedia per giocatori in sviluppo"}
+                {item.level === 'essentials' && "Monitoraggio fondamentale per principianti e amatori"}
+                {item.level === 'core' && "Analisi intermedia per giocatori in sviluppo"}
                 {item.level === 'advanced' && "Monitoraggio avanzato per agonisti"}
-                {item.level === 'elite' && "Sistema completo per professionisti e top players"}
+                {item.level === 'performance' && "Sistema completo per professionisti e top players"}
                 {item.level === 'pro' && "Monitoraggio d'élite per giocatori di altissimo livello"}
               </p>
             </div>

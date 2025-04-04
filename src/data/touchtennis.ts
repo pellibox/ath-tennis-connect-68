@@ -19,7 +19,7 @@ export const touchTennisCategories: ProgramCategory[] = [
           'Gruppi ridotti per maggiore attenzione',
         ],
         vickiOnRequest: true,
-        vickiMonitoringLevel: 'basic'
+        vickiMonitoringLevel: 'essentials'
       }
     ],
     applicableUserTypes: ['junior', 'adult'],
@@ -42,7 +42,7 @@ export const touchTennisCategories: ProgramCategory[] = [
           'Monitoraggio progressi con sistema Vicki™'
         ],
         vickiPowered: true,
-        vickiMonitoringLevel: 'standard'
+        vickiMonitoringLevel: 'core'
       }
     ],
     applicableUserTypes: ['performance'],

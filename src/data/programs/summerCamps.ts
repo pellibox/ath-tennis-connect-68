@@ -19,6 +19,6 @@ export const summerCamps: Program[] = [
       'Per gli agonisti: 1,5 ore di atletica per sessione'
     ],
     vickiOnRequest: true,
-    vickiMonitoringLevel: 'standard'
+    vickiMonitoringLevel: 'core'
   }
 ];

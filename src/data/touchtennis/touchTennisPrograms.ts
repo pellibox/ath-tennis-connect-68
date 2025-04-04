@@ -18,7 +18,7 @@ export const touchTennisPrograms: Program[] = [
       '2 sessioni settimanali da 60 minuti'
     ],
     vickiPowered: true,
-    vickiMonitoringLevel: 'basic'
+    vickiMonitoringLevel: 'essentials'
   },
   {
     id: 'touchtennis-avanzato',
@@ -52,6 +52,6 @@ export const touchTennisPrograms: Program[] = [
       '2 sessioni settimanali da 60 minuti'
     ],
     vickiPowered: true,
-    vickiMonitoringLevel: 'standard'
+    vickiMonitoringLevel: 'core'
   }
 ];
