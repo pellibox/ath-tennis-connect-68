@@ -38,6 +38,11 @@ import Unauthorized from '@/pages/Unauthorized';
 
 // Admin pages
 import Dashboard from '@/pages/admin/Dashboard';
+import Pages from '@/pages/admin/Pages';
+import AdminPrograms from '@/pages/admin/Programs';
+import Prices from '@/pages/admin/Prices';
+import Users from '@/pages/admin/Users';
+import Settings from '@/pages/admin/Settings';
 
 // Programs pages
 import EliteProgram from '@/pages/programs/Elite';
@@ -157,6 +162,31 @@ function AppContent() {
         <Route path="/admin" element={
           <ProtectedRoute requireEditor>
             <Dashboard />
+          </ProtectedRoute>
+        } />
+        <Route path="/admin/pages" element={
+          <ProtectedRoute requireEditor>
+            <Pages />
+          </ProtectedRoute>
+        } />
+        <Route path="/admin/programs" element={
+          <ProtectedRoute requireEditor>
+            <AdminPrograms />
+          </ProtectedRoute>
+        } />
+        <Route path="/admin/prices" element={
+          <ProtectedRoute requireEditor>
+            <Prices />
+          </ProtectedRoute>
+        } />
+        <Route path="/admin/users" element={
+          <ProtectedRoute requireAdmin>
+            <Users />
+          </ProtectedRoute>
+        } />
+        <Route path="/admin/settings" element={
+          <ProtectedRoute requireAdmin>
+            <Settings />
           </ProtectedRoute>
         } />
         
