@@ -10,7 +10,7 @@ const PrivateProgramDescription = () => {
       <RevealAnimation>
         <div className="flex flex-wrap items-center gap-3 mb-6">
           <h2 className="text-3xl font-swiss">Lezioni Private</h2>
-          <VickiMonitoringBadge level="standard" />
+          <VickiMonitoringBadge level="core" />
           <VickiPoweredBadge onRequest />
         </div>
       </RevealAnimation>

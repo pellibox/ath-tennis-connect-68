@@ -1,4 +1,3 @@
-
 import { useEffect, useState } from 'react';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
@@ -27,17 +26,12 @@ const AdultProgram = () => {
     if (type) setUserType(type);
   }, []);
 
-  // Handle scroll effect for the logo
   useEffect(() => {
     const handleScroll = () => {
-      // Get current scroll position
       const scrollY = window.scrollY;
       
-      // Calculate offset to move the logo up as user scrolls down
-      setLogoYOffset(scrollY * 0.2); // Adjust the multiplier to control the speed
+      setLogoYOffset(scrollY * 0.2);
       
-      // Fade out logo as user scrolls down
-      // Start fading at 100px of scroll, completely fade out by 300px
       const fadeThreshold = 100;
       const fadeOutBy = 300;
       
@@ -49,13 +43,9 @@ const AdultProgram = () => {
       }
     };
 
-    // Add scroll event listener
     window.addEventListener('scroll', handleScroll);
-    
-    // Initial calculation
     handleScroll();
     
-    // Clean up
     return () => {
       window.removeEventListener('scroll', handleScroll);
     };
@@ -63,7 +53,6 @@ const AdultProgram = () => {
 
   return (
     <div className="flex flex-col min-h-screen relative">
-      {/* Overlay logo */}
       <div 
         className="fixed top-[calc(25%-100px)] left-1/2 transform -translate-x-1/2 z-50 w-40 h-40 pointer-events-none transition-opacity duration-300 flex justify-center"
         style={{
@@ -95,7 +84,6 @@ const AdultProgram = () => {
             subtitlePosition="bottom"
           />
           
-          {/* Black banner with claim text - matching Method page style */}
           <div className="w-full bg-black py-16 relative" style={{ height: '300px' }}>
             <div className="max-w-6xl mx-auto px-6 h-full flex flex-col justify-center">
               <div className="flex items-center mb-2">
@@ -105,7 +93,7 @@ const AdultProgram = () => {
                 </p>
               </div>
               <div className="mt-4 flex flex-wrap gap-3">
-                <VickiMonitoringBadge level="standard" className="bg-opacity-20 border-opacity-30 text-white" />
+                <VickiMonitoringBadge level="core" className="bg-opacity-20 border-opacity-30 text-white" />
                 <VickiPoweredBadge className="bg-opacity-20 border-opacity-30 text-white" />
               </div>
             </div>
@@ -117,7 +105,7 @@ const AdultProgram = () => {
             <RevealAnimation>
               <div className="flex flex-wrap items-center gap-3 mb-6">
                 <h2 className="text-3xl font-swiss">Adult Training</h2>
-                <VickiMonitoringBadge level="standard" />
+                <VickiMonitoringBadge level="core" />
                 <VickiPoweredBadge />
               </div>
             </RevealAnimation>

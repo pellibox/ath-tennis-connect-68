@@ -73,7 +73,7 @@ const SitProgram = () => {
                 Il nostro programma SIT trasforma l'apprendimento del tennis in un'avventura divertente che, giocando, prepara i piccoli campioni alle sfide di domani — sul campo e nella vita.
               </p>
               <div className="mt-4 flex flex-wrap gap-3">
-                <VickiUnifiedBadge level="basic" className="bg-opacity-20 border-opacity-30 text-white" />
+                <VickiUnifiedBadge level="essentials" className="bg-opacity-20 border-opacity-30 text-white" />
               </div>
             </div>
           </div>
@@ -84,7 +84,7 @@ const SitProgram = () => {
             <RevealAnimation>
               <div className="flex flex-wrap items-center gap-3 mb-6">
                 <h2 className="text-3xl font-swiss">SIT - Scuola Individuazione Talenti (6-10+ anni)</h2>
-                <VickiUnifiedBadge level="basic" />
+                <VickiUnifiedBadge level="essentials" />
               </div>
             </RevealAnimation>
             <RevealAnimation delay={100}>

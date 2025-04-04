@@ -1,5 +1,4 @@
 
-// TouchTennis program data types
 export interface Program {
   id: string;
   title: string;
@@ -11,13 +10,11 @@ export interface Program {
   vickiPowered?: boolean;
   vickiOnRequest?: boolean;
   vickiCustomBadge?: string;
-  vickiMonitoringLevel?: 'basic' | 'standard' | 'advanced' | 'elite' | 'pro';
+  vickiMonitoringLevel?: 'essentials' | 'core' | 'advanced' | 'performance' | 'pro';
 }
 
 export interface ProgramCategory {
   id: string;
   title: string;
   programs: Program[];
-  applicableUserTypes?: string[];
-  sports?: string[];
 }

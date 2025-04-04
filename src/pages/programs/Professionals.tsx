@@ -1,4 +1,3 @@
-
 import { useEffect } from 'react';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
@@ -44,7 +43,7 @@ const ProfessionalsProgram = () => {
                 </p>
               </div>
               <div className="mt-4 flex flex-wrap gap-3">
-                <VickiUnifiedBadge level="elite" className="bg-opacity-20 border-opacity-30 text-white" />
+                <VickiUnifiedBadge level="pro" className="bg-opacity-20 border-opacity-30 text-white" />
               </div>
             </div>
           </div>
@@ -55,7 +54,7 @@ const ProfessionalsProgram = () => {
             <RevealAnimation>
               <div className="flex flex-wrap items-center gap-3 mb-6">
                 <h2 className="text-3xl font-swiss">Programma per Professionisti</h2>
-                <VickiUnifiedBadge level="elite" />
+                <VickiUnifiedBadge level="pro" />
               </div>
             </RevealAnimation>
             <RevealAnimation delay={100}>

@@ -53,7 +53,7 @@ const AdultTrainingProgram = () => {
                 </p>
               </div>
               <div className="mt-4 flex flex-wrap gap-3">
-                <VickiMonitoringBadge level="basic" className="bg-opacity-20 border-opacity-30 text-white" />
+                <VickiMonitoringBadge level="essentials" className="bg-opacity-20 border-opacity-30 text-white" />
                 <VickiPoweredBadge className="bg-opacity-20 border-opacity-30 text-white" />
               </div>
             </div>
@@ -65,7 +65,7 @@ const AdultTrainingProgram = () => {
             <RevealAnimation>
               <div className="flex flex-wrap items-center gap-3 mb-6">
                 <h2 className="text-3xl font-swiss">Adult Training</h2>
-                <VickiMonitoringBadge level="basic" />
+                <VickiMonitoringBadge level="essentials" />
                 <VickiPoweredBadge />
               </div>
             </RevealAnimation>

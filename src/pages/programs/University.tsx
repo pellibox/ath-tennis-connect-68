@@ -51,7 +51,7 @@ const UniversityProgram = () => {
                 </p>
               </div>
               <div className="mt-4 flex flex-wrap gap-3">
-                <VickiUnifiedBadge level="basic" className="bg-opacity-20 border-opacity-30 text-white" customText="Vicki™ Basic su richiesta" />
+                <VickiUnifiedBadge level="essentials" className="bg-opacity-20 border-opacity-30 text-white" customText="Vicki™ Basic su richiesta" />
               </div>
             </div>
           </div>
@@ -62,7 +62,7 @@ const UniversityProgram = () => {
             <RevealAnimation>
               <div className="flex flex-wrap items-center gap-3 mb-6">
                 <h2 className="text-3xl font-swiss">Universitari / Scuole Online</h2>
-                <VickiUnifiedBadge level="basic" customText="Vicki™ Basic su richiesta" />
+                <VickiUnifiedBadge level="essentials" customText="Vicki™ Basic su richiesta" />
               </div>
             </RevealAnimation>
             <RevealAnimation delay={100}>

@@ -39,7 +39,7 @@ export const coachPrograms: Program[] = [
       'Riservato ad atleti dai 13 anni in su'
     ],
     vickiPowered: true,
-    vickiMonitoringLevel: 'elite'
+    vickiMonitoringLevel: 'performance'
   },
   {
     id: '12',
@@ -56,7 +56,7 @@ export const coachPrograms: Program[] = [
       'Disponibile su prenotazione'
     ],
     vickiOnRequest: true,
-    vickiMonitoringLevel: 'standard'
+    vickiMonitoringLevel: 'core'
   },
   {
     id: '9',

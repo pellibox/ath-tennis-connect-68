@@ -30,7 +30,7 @@ const PrivateProgramHeader = () => {
             </p>
           </div>
           <div className="mt-4 flex flex-wrap gap-3">
-            <VickiUnifiedBadge level="elite" className="bg-opacity-20 border-opacity-30 text-white" />
+            <VickiUnifiedBadge level="performance" className="bg-opacity-20 border-opacity-30 text-white" />
           </div>
         </div>
       </div>

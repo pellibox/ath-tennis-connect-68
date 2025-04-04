@@ -1,4 +1,3 @@
-
 import { Program } from './types';
 
 export const juniorPrograms: Program[] = [
@@ -21,7 +20,7 @@ export const juniorPrograms: Program[] = [
       'Possibilità di accesso dal programma SAT dopo valutazione specifica'
     ],
     vickiPowered: true,
-    vickiMonitoringLevel: 'basic'
+    vickiMonitoringLevel: 'essentials'
   },
   {
     id: '1',
@@ -40,7 +39,7 @@ export const juniorPrograms: Program[] = [
       'Possibilità di upgrade al programma SIT dopo valutazione specifica'
     ],
     vickiPowered: true,
-    vickiMonitoringLevel: 'basic'
+    vickiMonitoringLevel: 'essentials'
   },
   {
     id: '5',

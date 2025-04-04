@@ -36,7 +36,7 @@ const TouchTennisJunior = () => {
               "Il programma utilizza la tecnologia VICKI™ a livello standard, adattata specificamente per monitorare e supportare lo sviluppo dei giovani atleti, fornendo feedback adeguati alla loro età e livello di comprensione."
             ]}
             userType="junior"
-            vickiLevel="standard"
+            vickiLevel="core"
           />
           
           <ProgramFeaturesAndPricing
