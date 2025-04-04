@@ -1,4 +1,3 @@
-
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { Toaster } from "@/components/ui/sonner";
 import { LanguageProvider } from './contexts/LanguageContext';
@@ -27,6 +26,7 @@ import TermsPage from '@/pages/Terms';
 import Brochure from '@/pages/Brochure';
 import ElevenLabsConvaiWidget from '@/components/chatbot/ElevenLabsConvaiWidget';
 import BottomNavigation from '@/components/navigation/BottomNavigation';
+import SiteKnowledge from '@/pages/SiteKnowledge';
 
 // Auth pages
 import Login from '@/pages/auth/Login';
@@ -115,13 +115,10 @@ function AppContent() {
         <Route path="/pickleball" element={<PickleballPage />} />
         <Route path="/touchtennis" element={<TouchTennisPage />} />
         
-        <Route path="/programs/elite" element={<EliteProgram />} />
-        <Route path="/programs/junior" element={<JuniorProgram />} />
-        <Route path="/programs/adult" element={<AdultProgram />} />
-        <Route path="/programs/private" element={<PrivateProgram />} />
-        <Route path="/programs/camps" element={<CampsProgram />} />
+        {/* Public Knowledge Base route - accessible without login */}
+        <Route path="/site-knowledge" element={<SiteKnowledge />} />
         
-        {/* New program detail routes */}
+        {/* Program detail routes */}
         <Route path="/programs/performance-2" element={<Performance2Program />} />
         <Route path="/programs/performance-3" element={<Performance3Program />} />
         <Route path="/programs/performance-4" element={<Performance4Program />} />
