@@ -1,8 +1,9 @@
+
 import React, { useEffect, useState } from 'react';
 import { supabase } from '@/integrations/supabase/client';
 import { Page } from '@/integrations/supabase/database.types';
-
-// Other imports and code...
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
+import { Skeleton } from '@/components/ui/skeleton';
 
 const PricingTables = () => {
   const [pricingData, setPricingData] = useState<Page | null>(null);
@@ -38,10 +39,77 @@ const PricingTables = () => {
     fetchPricingData();
   }, []);
 
-  // Rest of the component...
-  
+  // Render loading state
+  if (isLoading) {
+    return (
+      <div className="container mx-auto py-10">
+        <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+          {[1, 2, 3].map((i) => (
+            <Card key={i} className="flex flex-col">
+              <CardHeader>
+                <Skeleton className="h-8 w-1/2 mb-2" />
+                <Skeleton className="h-4 w-3/4" />
+              </CardHeader>
+              <CardContent className="flex-grow">
+                <Skeleton className="h-4 w-full mb-2" />
+                <Skeleton className="h-4 w-5/6 mb-2" />
+                <Skeleton className="h-4 w-4/6" />
+              </CardContent>
+            </Card>
+          ))}
+        </div>
+      </div>
+    );
+  }
+
+  // Render error state
+  if (error) {
+    return (
+      <div className="container mx-auto py-10">
+        <Card className="border-red-200">
+          <CardHeader>
+            <CardTitle className="text-red-500">Error Loading Pricing</CardTitle>
+          </CardHeader>
+          <CardContent>
+            <p>{error}</p>
+          </CardContent>
+        </Card>
+      </div>
+    );
+  }
+
+  // Render content from pricing data
   return (
-    // Component JSX
+    <div className="container mx-auto py-10">
+      <h2 className="text-3xl font-bold text-center mb-10">
+        {pricingData?.title || 'Our Pricing Plans'}
+      </h2>
+      
+      <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+        {pricingData?.sections?.map((section) => (
+          <Card key={section.id} className="flex flex-col">
+            <CardHeader>
+              <CardTitle>{section.name}</CardTitle>
+              <CardDescription>
+                {section.type === 'text' && section.content}
+              </CardDescription>
+            </CardHeader>
+            <CardContent className="flex-grow">
+              <div dangerouslySetInnerHTML={{ __html: section.content }} />
+            </CardContent>
+          </Card>
+        )) || (
+          <Card>
+            <CardHeader>
+              <CardTitle>No pricing information available</CardTitle>
+            </CardHeader>
+            <CardContent>
+              <p>Please check back later for our updated pricing plans.</p>
+            </CardContent>
+          </Card>
+        )}
+      </div>
+    </div>
   );
 };
 
