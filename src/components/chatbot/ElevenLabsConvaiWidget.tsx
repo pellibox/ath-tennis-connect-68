@@ -1,4 +1,3 @@
-
 import React, { useEffect, useRef, useState } from 'react';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { useIsMobile } from '@/hooks/use-mobile';
@@ -118,7 +117,9 @@ const ElevenLabsConvaiWidget = () => {
       
       if (window.innerWidth < 768) {
         if (widget instanceof HTMLElement) {
-          widget.style.transform = 'translateY(-70px)';
+          // Add additional 60px offset on home page
+          const homePageOffset = isHomePage ? 60 : 0;
+          widget.style.transform = `translateY(-${70 + homePageOffset}px)`;
         }
         
         let wrapper = findWrapper(document);
@@ -127,11 +128,13 @@ const ElevenLabsConvaiWidget = () => {
         }
         
         if (wrapper) {
-          wrapper.style.transform = 'translateY(-70px)';
+          // Add additional 60px offset on home page
+          const homePageOffset = isHomePage ? 60 : 0;
+          wrapper.style.transform = `translateY(-${70 + homePageOffset}px)`;
           
           const bottomNavHeight = 56;
           const additionalPadding = 14;
-          wrapper.style.bottom = `${bottomNavHeight + additionalPadding}px`;
+          wrapper.style.bottom = `${bottomNavHeight + additionalPadding + (isHomePage ? 60 : 0)}px`;
         }
       } else {
         if (widget instanceof HTMLElement) {
@@ -192,7 +195,7 @@ const ElevenLabsConvaiWidget = () => {
       if (cleanup) cleanup();
       window.removeEventListener('resize', adjustWidgetPosition);
     };
-  }, []);
+  }, [isHomePage]);
 
   const handleMouseDown = (e: React.MouseEvent) => {
     if (!widgetRef.current) return;

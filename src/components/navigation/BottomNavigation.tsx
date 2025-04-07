@@ -49,6 +49,9 @@ const BottomNavigation = () => {
 
   // Check if we should hide bottom navigation (on landing page)
   const shouldHideNavigation = location.pathname === '/';
+  
+  // Check if we're on the index/home page to apply different styling
+  const isIndexPage = location.pathname === '/home';
 
   if (shouldHideNavigation) {
     return null;
@@ -69,7 +72,10 @@ const BottomNavigation = () => {
         showTrigger={false}
       />
       
-      <div className="fixed bottom-0 left-0 right-0 bg-white shadow-[0_-2px_10px_rgba(0,0,0,0.05)] z-[999] lg:hidden">
+      <div className={cn(
+        "fixed bottom-0 left-0 right-0 shadow-[0_-2px_10px_rgba(0,0,0,0.05)] z-[999] lg:hidden",
+        isIndexPage ? "bg-black" : "bg-white"
+      )}>
         <div className="grid grid-cols-6 h-14">
           {navItems && navItems.map((item, index) => (
             <Link
@@ -79,7 +85,7 @@ const BottomNavigation = () => {
                 "flex flex-col items-center justify-center px-1 py-2 text-[10px] font-swiss",
                 isActive(item.href) 
                   ? "text-ath-clay" 
-                  : "text-gray-600"
+                  : isIndexPage ? "text-white" : "text-gray-600"
               )}
             >
               {item.icon}
@@ -102,7 +108,12 @@ const BottomNavigation = () => {
                 className={getProfileIconColor()} 
               />
             </div>
-            <span className="mt-1 text-gray-600">{t("profile.title")}</span>
+            <span className={cn(
+              "mt-1", 
+              isIndexPage ? "text-white" : "text-gray-600"
+            )}>
+              {t("profile.title")}
+            </span>
           </button>
         </div>
       </div>
