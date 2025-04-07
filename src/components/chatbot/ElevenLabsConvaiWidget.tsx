@@ -1,4 +1,3 @@
-
 import React, { useEffect, useRef, useState } from 'react';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { useIsMobile } from '@/hooks/use-mobile';
@@ -17,15 +16,17 @@ const AGENT_ID = "jJMZr28UE8hDLsO00dmt";
 // Storage key for widget position
 const WIDGET_POSITION_KEY = 'ath-elevenlabs-widget-position';
 
-// Default positions - Significantly increasing mobile bottom position to avoid navigation bar
-const DEFAULT_MOBILE_POSITION = { bottom: '120px', right: '20px', top: 'auto', left: 'auto' };
-const DEFAULT_DESKTOP_POSITION = { bottom: '80px', right: '20px', top: 'auto', left: 'auto' };
+// MODIFICATO: Cambia questi valori per la posizione predefinita desiderata
+// Ad esempio, questo posizionerà il widget in alto a sinistra
+const DEFAULT_MOBILE_POSITION = { top: '20px', left: '20px', bottom: 'auto', right: 'auto' };
+const DEFAULT_DESKTOP_POSITION = { top: '20px', left: '20px', bottom: 'auto', right: 'auto' };
 
 const ElevenLabsConvaiWidget = () => {
   const { language, t } = useLanguage();
   const widgetRef = useRef<HTMLDivElement>(null);
   const widgetInitialized = useRef(false);
   const isMobile = useIsMobile();
+  const positionInitialized = useRef(false);
   
   // Position state
   const [position, setPosition] = useState(() => {
@@ -44,17 +45,19 @@ const ElevenLabsConvaiWidget = () => {
   const dragStartPos = useRef({ x: 0, y: 0 });
   const widgetStartPos = useRef({ top: 0, left: 0 });
 
-  // Update position when mobile state changes or if route changes
+  // MODIFICATO: Solo imposta la posizione predefinita la prima volta, non ogni volta che cambia lo stato mobile
   useEffect(() => {
-    if (!isDragging) {
-      // Apply the correct default position when mobile state changes
+    if (!positionInitialized.current && !isDragging) {
       setPosition(isMobile ? DEFAULT_MOBILE_POSITION : DEFAULT_DESKTOP_POSITION);
+      positionInitialized.current = true;
       
-      // Also reset any saved position to prevent persistence of bad positions
+      // Salva la posizione predefinita nel localStorage
       try {
-        localStorage.removeItem(WIDGET_POSITION_KEY);
+        localStorage.setItem(WIDGET_POSITION_KEY, JSON.stringify(
+          isMobile ? DEFAULT_MOBILE_POSITION : DEFAULT_DESKTOP_POSITION
+        ));
       } catch (e) {
-        console.error("Failed to remove widget position from localStorage", e);
+        console.error("Failed to save widget position to localStorage", e);
       }
     }
   }, [isMobile, isDragging]);
