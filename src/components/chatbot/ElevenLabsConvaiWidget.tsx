@@ -17,8 +17,8 @@ const AGENT_ID = "jJMZr28UE8hDLsO00dmt";
 // Storage key for widget position
 const WIDGET_POSITION_KEY = 'ath-elevenlabs-widget-position';
 
-// Default positions
-const DEFAULT_MOBILE_POSITION = { bottom: '180px', right: '20px', top: 'auto', left: 'auto' };
+// Default positions - Adjusting mobile position to avoid bottom navigation
+const DEFAULT_MOBILE_POSITION = { bottom: '80px', right: '20px', top: 'auto', left: 'auto' };
 const DEFAULT_DESKTOP_POSITION = { bottom: '80px', right: '20px', top: 'auto', left: 'auto' };
 
 const ElevenLabsConvaiWidget = () => {
