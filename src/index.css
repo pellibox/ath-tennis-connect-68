@@ -366,25 +366,3 @@
     transform: none !important;
   }
 }
-
-/* Add styling for the ElevenLabs widget container */
-.elevenlabs-widget {
-  transition: all 0.3s ease-in-out;
-}
-
-/* Animation for when widget is moved due to page change */
-@keyframes widget-reposition {
-  0% { opacity: 0.5; transform: translateY(20px); }
-  100% { opacity: 1; transform: translateY(0); }
-}
-
-.elevenlabs-widget.repositioned {
-  animation: widget-reposition 0.5s ease-out;
-}
-
-/* Custom position adjustments based on screen size */
-@media (max-width: 768px) {
-  .elevenlabs-widget {
-    z-index: 9999 !important;
-  }
-}

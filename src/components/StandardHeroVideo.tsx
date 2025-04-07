@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect, useRef } from 'react';
 import { useIsMobile } from '@/hooks/use-mobile';
 import Logo from '@/components/Logo';
@@ -45,7 +46,9 @@ const StandardHeroVideo = ({
   const [retryCount, setRetryCount] = useState(0);
   const [placeholderOpacity, setPlaceholderOpacity] = useState(1);
   
+  // Extract Vimeo ID for thumbnail fallback
   const vimeoId = extractVimeoId(vimeoEmbed);
+  // Set default fallback image with a known working image
   const defaultFallbackImage = "/lovable-uploads/6ea13aa7-2578-488b-8ed4-4b17fc2ddc4e.png";
   const fallbackImageUrl = posterImage || (vimeoId ? getVimeoThumbnailUrl(vimeoId) : defaultFallbackImage);
   
@@ -56,15 +59,21 @@ const StandardHeroVideo = ({
       const scrollY = window.scrollY;
       const logoRect = logoRef.current.getBoundingClientRect();
       
+      // Start fade as soon as scrolling begins
       const fadeStartThreshold = 0;
+      
+      // Calculate when logo should be fully invisible
+      // This is when the bottom of the logo reaches the top of the viewport
       const logoHeight = logoRect.height;
       const logoTopPosition = isMobile ? 
         parseInt(logoTopPositionMobile, 10) : 
         parseInt(logoTopPositionDesktop, 10);
       
+      // Logo will be completely invisible when it's scrolled out of view
       const fadeEndThreshold = logoTopPosition + logoHeight;
       
       if (scrollY > fadeStartThreshold) {
+        // Calculate opacity based on how much of the logo is still visible
         const opacity = Math.max(0, 1 - (scrollY / fadeEndThreshold));
         setLogoOpacity(opacity);
         
@@ -91,15 +100,20 @@ const StandardHeroVideo = ({
     if (!vimeoContainerRef.current) return;
     
     try {
+      // Reset states
       setVideoLoaded(false);
       setVideoError(false);
       
+      // Clear previous content
       vimeoContainerRef.current.innerHTML = '';
       
+      // Inject the Vimeo embed code
       vimeoContainerRef.current.innerHTML = vimeoEmbed;
       
+      // Handle video loading
       const iframe = vimeoContainerRef.current.querySelector('iframe');
       if (iframe) {
+        // Set a timeout to check if video loaded properly
         const timeoutId = setTimeout(() => {
           if (!videoLoaded) {
             console.warn('Vimeo video load timeout');
@@ -107,10 +121,12 @@ const StandardHeroVideo = ({
           }
         }, 5000);
         
+        // Listen for iframe load event
         iframe.onload = () => {
           console.log('Vimeo iframe loaded');
           setVideoLoaded(true);
           
+          // Fade out the placeholder with a smooth transition
           setTimeout(() => {
             setPlaceholderOpacity(0);
           }, 300);
@@ -118,6 +134,7 @@ const StandardHeroVideo = ({
           clearTimeout(timeoutId);
         };
         
+        // Listen for iframe error event
         iframe.onerror = () => {
           console.error('Vimeo iframe failed to load');
           setVideoError(true);
@@ -128,6 +145,7 @@ const StandardHeroVideo = ({
         setVideoError(true);
       }
       
+      // Add Vimeo API script if not already present
       if (!document.querySelector('script[src="https://player.vimeo.com/api/player.js"]')) {
         const script = document.createElement('script');
         script.src = 'https://player.vimeo.com/api/player.js';
@@ -150,6 +168,7 @@ const StandardHeroVideo = ({
     };
   }, [vimeoEmbed]);
   
+  // Retry logic for video loading
   useEffect(() => {
     if (videoError && retryCount < 2) {
       const retryTimeout = setTimeout(() => {
@@ -161,18 +180,6 @@ const StandardHeroVideo = ({
       return () => clearTimeout(retryTimeout);
     }
   }, [videoError, retryCount]);
-  
-  useEffect(() => {
-    if (videoLoaded && !videoError) {
-      const event = new CustomEvent('hero-video-loaded', {
-        detail: { 
-          videoContainer: vimeoContainerRef.current,
-          containerHeight: vimeoContainerRef.current?.offsetHeight
-        }
-      });
-      document.dispatchEvent(event);
-    }
-  }, [videoLoaded, videoError]);
   
   return (
     <>
@@ -202,6 +209,7 @@ const StandardHeroVideo = ({
             overflow: 'hidden'
           }}
         >
+          {/* Placeholder image shown until video loads or if there's an error */}
           <div 
             className="absolute inset-0 z-10 bg-black transition-opacity duration-500"
             style={{ opacity: placeholderOpacity }}
@@ -213,6 +221,7 @@ const StandardHeroVideo = ({
               onLoad={() => console.log('Fallback image loaded')}
               onError={() => {
                 console.error('Fallback image failed to load, using default');
+                // If the fallback image fails, use the default image
                 if (fallbackImageUrl !== defaultFallbackImage) {
                   const imgElement = document.querySelector('.bg-black img') as HTMLImageElement;
                   if (imgElement) {
@@ -231,6 +240,7 @@ const StandardHeroVideo = ({
             )}
           </div>
           
+          {/* Vimeo container */}
           <div 
             ref={vimeoContainerRef}
             className="absolute top-0 left-0 w-full h-full"
