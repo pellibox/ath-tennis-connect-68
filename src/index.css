@@ -1,3 +1,4 @@
+
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 
 /* Swiss721 BT Font Face Declarations */
@@ -109,6 +110,16 @@
     font-family: 'Swiss721 BT', 'Inter', sans-serif;
     overscroll-behavior: none;
     -webkit-text-size-adjust: 100%;
+    /* Fix for scrolling */
+    overflow-y: auto;
+    overflow-x: hidden;
+    position: relative;
+  }
+
+  html {
+    /* Ensure html scrolls correctly */
+    overflow-y: auto;
+    overflow-x: hidden;
   }
 
   h1, h2, h3, h4, h5, h6 {
@@ -151,6 +162,7 @@
       left: 16px !important;
       right: 16px !important;
       width: auto !important;
+      pointer-events: auto !important;
     }
     
     /* Make sure the widget doesn't overlap with bottom navigation */
@@ -382,5 +394,22 @@
   elevenlabs-convai {
     --elf-border-radius: 12px !important;
     --elf-chat-container-width: 100% !important;
+    /* Make sure widget doesn't break scrolling */
+    position: fixed !important;
+    z-index: 50 !important;
+  }
+
+  /* Shadow DOM styling for scroll fix */
+  elevenlabs-convai::part(container),
+  elevenlabs-convai::part(wrapper) {
+    overflow-y: auto !important;
+    max-height: 60vh !important;
+  }
+
+  /* Fix to prevent document from becoming unscrollable */
+  body.has-elevenlabs-widget {
+    overflow-y: auto !important;
+    height: auto !important;
+    position: relative !important;
   }
 }

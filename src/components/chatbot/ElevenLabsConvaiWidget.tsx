@@ -1,3 +1,4 @@
+
 import React, { useEffect, useRef, useState } from 'react';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { useIsMobile } from '@/hooks/use-mobile';
@@ -44,13 +45,13 @@ const ElevenLabsConvaiWidget = () => {
   const dragStartPos = useRef({ x: 0, y: 0 });
   const widgetStartPos = useRef({ top: 0, left: 0 });
 
-  // MODIFICATO: Solo imposta la posizione predefinita la prima volta, non ogni volta che cambia lo stato mobile
+  // Only set the default position the first time, not every time mobile state changes
   useEffect(() => {
     if (!positionInitialized.current && !isDragging) {
       setPosition(isMobile ? DEFAULT_MOBILE_POSITION : DEFAULT_DESKTOP_POSITION);
       positionInitialized.current = true;
       
-      // Salva la posizione predefinita nel localStorage
+      // Save the default position to localStorage
       try {
         localStorage.setItem(WIDGET_POSITION_KEY, JSON.stringify(
           isMobile ? DEFAULT_MOBILE_POSITION : DEFAULT_DESKTOP_POSITION
@@ -157,11 +158,11 @@ const ElevenLabsConvaiWidget = () => {
     };
   }, [isMobile]);
 
-  // Enhanced MutationObserver to adjust widget position specifically for mobile
+  // Modified MutationObserver to fix scrolling issues
   useEffect(() => {
     if (!isMobile) return;
     
-    // Function to apply position adjustment specifically for mobile
+    // Function to apply position adjustment specifically for mobile without breaking scrolling
     const adjustWidgetPositionMobile = () => {
       // Find the widget and its shadow DOM elements
       const widget = document.querySelector('elevenlabs-convai');
@@ -199,6 +200,9 @@ const ElevenLabsConvaiWidget = () => {
           if (widget instanceof HTMLElement) {
             widget.style.position = 'fixed';
             widget.style.transform = '';
+            widget.style.zIndex = '50';
+            // Ensure widget doesn't interfere with body scrolling
+            widget.style.pointerEvents = 'auto';
           }
           
           // Try to find the wrapper in Light DOM
@@ -218,6 +222,7 @@ const ElevenLabsConvaiWidget = () => {
             wrapper.style.left = '16px';
             wrapper.style.right = '16px';
             wrapper.style.transform = '';
+            wrapper.style.zIndex = '50';
             
             // Avoid overlapping with bottom navigation
             const bottomNavHeight = 56; 
@@ -228,6 +233,15 @@ const ElevenLabsConvaiWidget = () => {
             const availableHeight = windowHeight - topPosition - bottomNavHeight - bottomPadding;
             wrapper.style.maxHeight = `${Math.min(availableHeight, 400)}px`;
             wrapper.style.height = 'auto';
+            wrapper.style.overflow = 'auto';
+            
+            // Make sure scroll events don't propagate to body
+            if (!wrapper.getAttribute('data-scroll-handler-set')) {
+              wrapper.addEventListener('wheel', (e) => {
+                e.stopPropagation();
+              });
+              wrapper.setAttribute('data-scroll-handler-set', 'true');
+            }
           }
         } else {
           // Desktop - reset transform
@@ -256,6 +270,10 @@ const ElevenLabsConvaiWidget = () => {
       }
     };
     
+    // Reset document body overflow to ensure scrolling works
+    document.body.style.overflow = '';
+    document.documentElement.style.overflow = '';
+    
     // Set up MutationObserver to watch for changes in the widget
     const setupObserver = () => {
       const widget = document.querySelector('elevenlabs-convai');
@@ -268,32 +286,30 @@ const ElevenLabsConvaiWidget = () => {
       // Apply initial adjustment
       adjustWidgetPositionMobile();
       
-      // Create observer to watch for changes
-      const observer = new MutationObserver(() => {
-        adjustWidgetPositionMobile();
+      // Create less invasive observer to watch only for attribute changes
+      const observer = new MutationObserver((mutations) => {
+        // Only adjust if changes are relevant to positioning
+        const shouldAdjust = mutations.some(mutation => 
+          mutation.type === 'attributes' || 
+          (mutation.type === 'childList' && mutation.addedNodes.length > 0)
+        );
+        
+        if (shouldAdjust) {
+          adjustWidgetPositionMobile();
+        }
       });
       
-      // Start observing
+      // Start observing with more targeted options
       observer.observe(widget, { 
         attributes: true, 
-        childList: true, 
-        subtree: true 
-      });
-      
-      // Also observe document body for changes that might affect the widget
-      const bodyObserver = new MutationObserver(() => {
-        adjustWidgetPositionMobile();
-      });
-      
-      bodyObserver.observe(document.body, { 
-        childList: true, 
-        subtree: true 
+        attributeFilter: ['style', 'class'],
+        childList: true,
+        subtree: false // Reduce DOM traversal
       });
       
       // Clean up function
       return () => {
         observer.disconnect();
-        bodyObserver.disconnect();
       };
     };
     
@@ -307,6 +323,8 @@ const ElevenLabsConvaiWidget = () => {
     return () => {
       if (cleanup) cleanup();
       window.removeEventListener('resize', adjustWidgetPositionMobile);
+      document.body.style.overflow = '';
+      document.documentElement.style.overflow = '';
     };
   }, [isMobile]);
   
