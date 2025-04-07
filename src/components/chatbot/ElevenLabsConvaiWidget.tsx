@@ -18,6 +18,8 @@ const WIDGET_POSITION_KEY = 'ath-elevenlabs-widget-position';
 const DEFAULT_MOBILE_POSITION = { top: 'auto', left: '20px', bottom: '70px', right: 'auto' };
 const DEFAULT_DESKTOP_POSITION = { top: '20px', left: '20px', bottom: 'auto', right: 'auto' };
 
+const LANDING_PAGE_POSITION = { top: 'auto', left: '20px', bottom: '170px', right: 'auto' };
+
 const ElevenLabsConvaiWidget = () => {
   const { language, t } = useLanguage();
   const widgetRef = useRef<HTMLDivElement>(null);
@@ -26,11 +28,15 @@ const ElevenLabsConvaiWidget = () => {
   const positionInitialized = useRef(false);
   const location = useLocation();
   
-  // Determine if we're on the homepage
   const isHomePage = location.pathname === '/home';
+  const isLandingPage = location.pathname === '/';
   
   const [position, setPosition] = useState(() => {
     try {
+      if (isLandingPage) {
+        return LANDING_PAGE_POSITION;
+      }
+      
       const savedPosition = localStorage.getItem(WIDGET_POSITION_KEY);
       return savedPosition ? JSON.parse(savedPosition) : 
         isMobile ? DEFAULT_MOBILE_POSITION : DEFAULT_DESKTOP_POSITION;
@@ -45,26 +51,35 @@ const ElevenLabsConvaiWidget = () => {
 
   useEffect(() => {
     if (!positionInitialized.current && !isDragging) {
-      setPosition(isMobile ? DEFAULT_MOBILE_POSITION : DEFAULT_DESKTOP_POSITION);
+      if (isLandingPage) {
+        setPosition(LANDING_PAGE_POSITION);
+      } else {
+        setPosition(isMobile ? DEFAULT_MOBILE_POSITION : DEFAULT_DESKTOP_POSITION);
+      }
+      
       positionInitialized.current = true;
       
       try {
-        localStorage.setItem(WIDGET_POSITION_KEY, JSON.stringify(
-          isMobile ? DEFAULT_MOBILE_POSITION : DEFAULT_DESKTOP_POSITION
-        ));
+        if (!isLandingPage) {
+          localStorage.setItem(WIDGET_POSITION_KEY, JSON.stringify(
+            isMobile ? DEFAULT_MOBILE_POSITION : DEFAULT_DESKTOP_POSITION
+          ));
+        }
       } catch (e) {
         console.error("Failed to save widget position to localStorage", e);
       }
     }
-  }, [isMobile, isDragging]);
+  }, [isMobile, isDragging, isLandingPage]);
 
   useEffect(() => {
-    try {
-      localStorage.setItem(WIDGET_POSITION_KEY, JSON.stringify(position));
-    } catch (e) {
-      console.error("Failed to save widget position to localStorage", e);
+    if (!isLandingPage) {
+      try {
+        localStorage.setItem(WIDGET_POSITION_KEY, JSON.stringify(position));
+      } catch (e) {
+        console.error("Failed to save widget position to localStorage", e);
+      }
     }
-  }, [position]);
+  }, [position, isLandingPage]);
 
   useEffect(() => {
     if (window.ElevenLabsConvai && !widgetInitialized.current) {
@@ -82,14 +97,13 @@ const ElevenLabsConvaiWidget = () => {
       });
       window.dispatchEvent(event);
       
-      // If we're on the home page, we want the widget to be expanded by default
       if (isHomePage && widgetRef.current) {
         setTimeout(() => {
           const expandButton = widgetRef.current?.querySelector('button[aria-label="Expand"]');
           if (expandButton instanceof HTMLElement) {
             expandButton.click();
           }
-        }, 1000); // Delay to ensure the widget is fully loaded
+        }, 1000);
       }
     }
   }, [language, isHomePage]);
@@ -117,9 +131,9 @@ const ElevenLabsConvaiWidget = () => {
       
       if (window.innerWidth < 768) {
         if (widget instanceof HTMLElement) {
-          // Add additional 60px offset on home page
           const homePageOffset = isHomePage ? 60 : 0;
-          widget.style.transform = `translateY(-${70 + homePageOffset}px)`;
+          const landingPageOffset = isLandingPage ? 100 : 0;
+          widget.style.transform = `translateY(-${70 + homePageOffset + landingPageOffset}px)`;
         }
         
         let wrapper = findWrapper(document);
@@ -128,13 +142,14 @@ const ElevenLabsConvaiWidget = () => {
         }
         
         if (wrapper) {
-          // Add additional 60px offset on home page
           const homePageOffset = isHomePage ? 60 : 0;
-          wrapper.style.transform = `translateY(-${70 + homePageOffset}px)`;
+          const landingPageOffset = isLandingPage ? 100 : 0;
+          wrapper.style.transform = `translateY(-${70 + homePageOffset + landingPageOffset}px)`;
           
           const bottomNavHeight = 56;
           const additionalPadding = 14;
-          wrapper.style.bottom = `${bottomNavHeight + additionalPadding + (isHomePage ? 60 : 0)}px`;
+          const pageOffset = isHomePage ? 60 : (isLandingPage ? 100 : 0);
+          wrapper.style.bottom = `${bottomNavHeight + additionalPadding + pageOffset}px`;
         }
       } else {
         if (widget instanceof HTMLElement) {
@@ -195,7 +210,7 @@ const ElevenLabsConvaiWidget = () => {
       if (cleanup) cleanup();
       window.removeEventListener('resize', adjustWidgetPosition);
     };
-  }, [isHomePage]);
+  }, [isHomePage, isLandingPage]);
 
   const handleMouseDown = (e: React.MouseEvent) => {
     if (!widgetRef.current) return;

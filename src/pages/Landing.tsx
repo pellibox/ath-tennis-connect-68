@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from 'react';
 import { useProfile } from '@/contexts/ProfileContext';
 import { getVimeoEmbed } from '@/utils/videoUtils';
@@ -120,8 +119,8 @@ const LandingPage = () => {
     <div className="flex flex-col min-h-screen relative bg-black">
       <EmptyHeader headerText="" />
       
-      <main className="flex-grow">
-        <div className="w-full bg-black min-h-[calc(100vw*9/16)] relative">
+      <main className="flex-grow flex flex-col">
+        <div className="w-full bg-black relative flex-shrink-0" style={{ height: isMobile ? 'calc(100vh - 170px)' : 'calc(100vh - 230px)' }}>
           <div className="absolute top-0 left-1/2 transform -translate-x-1/2 mt-5 z-30 pointer-events-none">
             <img 
               src="/lovable-uploads/a00875f9-6335-4f8b-81c4-029183b59eec.png" 
@@ -130,41 +129,25 @@ const LandingPage = () => {
             />
           </div>
           
-          {!isMobile && (
-            <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-30 flex flex-col justify-center items-center pointer-events-none" style={{ marginTop: "20px" }}>
-              <h2 className="text-white text-xl mt-4 font-swiss uppercase">
-                IL FUTURO DEL TUO TENNIS INIZIA QUI.
-              </h2>
-              <div className="mt-6 pointer-events-auto">
-                {renderButtons()}
-              </div>
-            </div>
-          )}
-          
           <div dangerouslySetInnerHTML={{ __html: vimeoEmbed }} />
         </div>
         
-        {isMobile && (
-          <div className="w-full bg-black py-6 pointer-events-auto">
-            <div className="container mx-auto px-4">
-              <h2 className="text-white text-base text-center font-swiss uppercase mb-4">
-                IL FUTURO DEL TUO TENNIS INIZIA QUI.
-              </h2>
+        <div className="w-full bg-black py-6 flex-shrink-0 border-t border-gray-800">
+          <div className="container mx-auto px-4 text-center">
+            <h2 className="text-white text-xl md:text-2xl font-swiss uppercase mb-6">
+              IL FUTURO DEL TUO TENNIS INIZIA QUI.
+            </h2>
+            
+            <div className="mb-6">
               {renderButtons()}
-              
-              {hasProfile && (
-                <div className="mt-4 text-white bg-black bg-opacity-70 p-3 rounded-md text-center">
-                  <p className="font-swiss text-[10px] truncate max-w-full">{personalizedContent.first}</p>
-                  <p className="font-swiss text-[10px] truncate max-w-full">{personalizedContent.second}</p>
-                </div>
-              )}
             </div>
-          </div>
-        )}
-        
-        <div className="w-full bg-black py-16 relative" style={{ height: 'auto', minHeight: '400px' }}>
-          <div className="max-w-6xl mx-auto px-6 h-full flex flex-col justify-center py-8">
-            {/* Content can be added here if needed */}
+            
+            {hasProfile && (
+              <div className="mt-4 text-white bg-black bg-opacity-70 p-3 rounded-md text-center">
+                <p className="font-swiss text-sm md:text-base truncate max-w-full">{personalizedContent.first}</p>
+                <p className="font-swiss text-sm md:text-base truncate max-w-full">{personalizedContent.second}</p>
+              </div>
+            )}
           </div>
         </div>
       </main>
@@ -187,4 +170,3 @@ const LandingPage = () => {
 };
 
 export default LandingPage;
-
