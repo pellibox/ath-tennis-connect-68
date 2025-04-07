@@ -1,4 +1,3 @@
-
 import React, { useEffect, useRef, useState } from 'react';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { useIsMobile } from '@/hooks/use-mobile';
@@ -106,12 +105,16 @@ const ElevenLabsConvaiWidget = () => {
       if (!widget) return;
       
       // Handle both direct DOM access and Shadow DOM
-      const findWrapper = (root: Document | ShadowRoot) => {
+      const findWrapper = (root: Document | ShadowRoot): HTMLElement | null => {
         // Try multiple possible selectors based on common widget patterns
-        return root.querySelector('div[class*="_wrapper_"]') || 
-               root.querySelector('div.widget-container') ||
-               root.querySelector('div.convai-container') ||
-               root.querySelector('div');
+        const element = 
+          root.querySelector('div[class*="_wrapper_"]') || 
+          root.querySelector('div.widget-container') ||
+          root.querySelector('div.convai-container') ||
+          root.querySelector('div');
+          
+        // Cast to HTMLElement to get access to style property
+        return element as HTMLElement | null;
       };
       
       // Try to find the wrapper in Light DOM
