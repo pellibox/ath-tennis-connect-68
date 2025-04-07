@@ -17,8 +17,8 @@ const AGENT_ID = "jJMZr28UE8hDLsO00dmt";
 // Storage key for widget position
 const WIDGET_POSITION_KEY = 'ath-elevenlabs-widget-position';
 
-// Default positions - Adjusting mobile position to avoid bottom navigation
-const DEFAULT_MOBILE_POSITION = { bottom: '80px', right: '20px', top: 'auto', left: 'auto' };
+// Default positions - Significantly increasing mobile bottom position to avoid navigation bar
+const DEFAULT_MOBILE_POSITION = { bottom: '120px', right: '20px', top: 'auto', left: 'auto' };
 const DEFAULT_DESKTOP_POSITION = { bottom: '80px', right: '20px', top: 'auto', left: 'auto' };
 
 const ElevenLabsConvaiWidget = () => {
@@ -44,11 +44,18 @@ const ElevenLabsConvaiWidget = () => {
   const dragStartPos = useRef({ x: 0, y: 0 });
   const widgetStartPos = useRef({ top: 0, left: 0 });
 
-  // Update position when mobile state changes
+  // Update position when mobile state changes or if route changes
   useEffect(() => {
     if (!isDragging) {
-      // Only reset position on mobile change if not currently dragging
+      // Apply the correct default position when mobile state changes
       setPosition(isMobile ? DEFAULT_MOBILE_POSITION : DEFAULT_DESKTOP_POSITION);
+      
+      // Also reset any saved position to prevent persistence of bad positions
+      try {
+        localStorage.removeItem(WIDGET_POSITION_KEY);
+      } catch (e) {
+        console.error("Failed to remove widget position from localStorage", e);
+      }
     }
   }, [isMobile, isDragging]);
 
