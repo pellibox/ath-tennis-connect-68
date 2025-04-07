@@ -22,13 +22,13 @@ const ElevenLabsConvaiWidget = () => {
   const isMobile = useIsMobile();
   const location = useLocation();
   const [expanded, setExpanded] = useState(false);
+  const [repositioned, setRepositioned] = useState(false);
 
   // Initialize the widget when the component mounts
   useEffect(() => {
     if (window.ElevenLabsConvai && !widgetInitialized.current) {
       window.ElevenLabsConvai.init({
         language: language || 'it',
-        // Default to Italian if no language is set
         usePublicAgents: true // Use public agents mode
       });
       widgetInitialized.current = true;
@@ -46,7 +46,17 @@ const ElevenLabsConvaiWidget = () => {
   // Reset expanded state and position the widget properly when the route changes
   useEffect(() => {
     setExpanded(false);
-    positionWidgetInHeroSection();
+    
+    // Small delay to ensure DOM is fully loaded
+    setTimeout(() => {
+      positionWidgetInHeroSection();
+      setRepositioned(true);
+      
+      // Reset repositioned state after animation completes
+      setTimeout(() => {
+        setRepositioned(false);
+      }, 500);
+    }, 300);
     
     // When route changes, dispatch an event to close other widgets
     const event = new CustomEvent(WIDGET_TOGGLE_EVENT, {
@@ -59,36 +69,45 @@ const ElevenLabsConvaiWidget = () => {
 
   // Position the widget in the bottom right corner of the hero section
   const positionWidgetInHeroSection = () => {
+    if (!widgetRef.current) return;
+    
     // Find the hero section on the current page
-    setTimeout(() => {
-      const heroSection = document.querySelector('.hero-image, [class*="Hero"], div[class*="hero"]');
+    const heroSection = document.querySelector(
+      '.hero-image, [class*="Hero"], div[class*="hero"], .vimeo-container, ' + 
+      'iframe[src*="vimeo"], iframe[src*="youtube"], video, ' +
+      '[class*="StandardHeroVideo"], [class*="HeroVideo"]'
+    );
+    
+    if (heroSection && widgetRef.current) {
+      // Get hero section position and dimensions
+      const heroRect = heroSection.getBoundingClientRect();
       
-      if (heroSection && widgetRef.current) {
-        // Get hero section position and dimensions
-        const heroRect = heroSection.getBoundingClientRect();
-        
-        // Position the widget at the bottom right of the hero
-        const bottom = window.innerHeight - (heroRect.bottom);
-        const right = 20; // 20px from the right edge
-        
-        // Apply the positioning
+      // Position the widget at the bottom right of the hero
+      const bottom = window.innerHeight - heroRect.bottom;
+      const right = 20; // 20px from the right edge
+      
+      console.log('Hero section found:', { 
+        bottom: bottom, 
+        right: right,
+        heroBottom: heroRect.bottom,
+        windowHeight: window.innerHeight 
+      });
+      
+      // Apply the positioning
+      widgetRef.current.style.top = 'auto';
+      widgetRef.current.style.left = 'auto';
+      widgetRef.current.style.bottom = `${Math.max(bottom + 20, 80)}px`; // Ensure it's not too close to bottom navigation
+      widgetRef.current.style.right = `${right}px`;
+    } else {
+      // Default positioning if hero not found
+      console.log('No hero section found, using default positioning');
+      if (widgetRef.current) {
         widgetRef.current.style.top = 'auto';
         widgetRef.current.style.left = 'auto';
-        widgetRef.current.style.bottom = `${Math.max(bottom, 80)}px`; // Ensure it's not too close to bottom navigation
-        widgetRef.current.style.right = `${right}px`;
-        
-        console.log('Positioned widget relative to hero section:', { bottom, right });
-      } else {
-        // Default positioning if hero not found
-        if (widgetRef.current) {
-          widgetRef.current.style.top = 'auto';
-          widgetRef.current.style.left = 'auto';
-          widgetRef.current.style.bottom = isMobile ? '80px' : '20px';
-          widgetRef.current.style.right = '20px';
-          console.log('Applied default widget positioning');
-        }
+        widgetRef.current.style.bottom = isMobile ? '80px' : '20px';
+        widgetRef.current.style.right = '20px';
       }
-    }, 300); // Small delay to ensure DOM is ready
+    }
   };
 
   // Use MutationObserver to adjust widget position when DOM changes
@@ -225,9 +244,9 @@ const ElevenLabsConvaiWidget = () => {
   return (
     <div 
       ref={widgetRef}
-      className="fixed z-50 transition-all duration-300 elevenlabs-widget"
+      className={`fixed z-50 transition-all duration-300 elevenlabs-widget ${repositioned ? 'repositioned' : ''}`}
     >
-      <div className="bg-white rounded-lg shadow-lg overflow-hidden transition-all duration-300 ease-in-out max-w-[350px] animate-fade-in relative">
+      <div className="bg-white rounded-lg shadow-lg overflow-hidden transition-all duration-300 ease-in-out max-w-[350px]">
         {!expanded ? (
           <div 
             onClick={toggleExpanded}
