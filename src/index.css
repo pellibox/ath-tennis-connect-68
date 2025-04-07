@@ -1,4 +1,3 @@
-
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 
 /* Swiss721 BT Font Face Declarations */
@@ -110,16 +109,6 @@
     font-family: 'Swiss721 BT', 'Inter', sans-serif;
     overscroll-behavior: none;
     -webkit-text-size-adjust: 100%;
-    /* Fix for scrolling */
-    overflow-y: auto;
-    overflow-x: hidden;
-    position: relative;
-  }
-
-  html {
-    /* Ensure html scrolls correctly */
-    overflow-y: auto;
-    overflow-x: hidden;
   }
 
   h1, h2, h3, h4, h5, h6 {
@@ -154,22 +143,11 @@
       font-size: 0.875rem; /* 14px, reduced from 16px */
     }
     
-    /* Custom styling for ElevenLabs Convai widget on mobile */
+    /* NEW: Direct styling for ElevenLabs Convai widget on mobile */
     elevenlabs-convai {
       position: fixed !important;
+      bottom: 70px !important;
       z-index: 9999 !important;
-      max-width: calc(100vw - 32px) !important;
-      left: 16px !important;
-      right: 16px !important;
-      width: auto !important;
-      pointer-events: auto !important;
-    }
-    
-    /* Make sure the widget doesn't overlap with bottom navigation */
-    elevenlabs-convai > div,
-    elevenlabs-convai::part(container) {
-      max-height: calc(60vh) !important;
-      overflow-y: auto !important;
     }
   }
   
@@ -382,34 +360,9 @@
   max-height: 500px;
 }
 
-/* Mobile positioning for ElevenLabs widget */
+/* Ensure we're not applying conflicting transforms */
 @media (max-width: 768px) {
   .elevenlabs-widget-container {
     transform: none !important;
-    width: 100% !important;
-    max-width: 100% !important;
-  }
-  
-  /* Ensure the widget is appropriately sized on mobile screens */
-  elevenlabs-convai {
-    --elf-border-radius: 12px !important;
-    --elf-chat-container-width: 100% !important;
-    /* Make sure widget doesn't break scrolling */
-    position: fixed !important;
-    z-index: 50 !important;
-  }
-
-  /* Shadow DOM styling for scroll fix */
-  elevenlabs-convai::part(container),
-  elevenlabs-convai::part(wrapper) {
-    overflow-y: auto !important;
-    max-height: 60vh !important;
-  }
-
-  /* Fix to prevent document from becoming unscrollable */
-  body.has-elevenlabs-widget {
-    overflow-y: auto !important;
-    height: auto !important;
-    position: relative !important;
   }
 }
