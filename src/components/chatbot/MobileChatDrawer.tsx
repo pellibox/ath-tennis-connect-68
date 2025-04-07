@@ -7,6 +7,9 @@ import ChatMessages from './ChatMessages';
 import ChatInput from './ChatInput';
 import { Volume2, VolumeX, Mic, MicOff } from 'lucide-react';
 
+// Custom event name for widget communication
+const WIDGET_TOGGLE_EVENT = 'ath-widget-toggle';
+
 interface MobileChatDrawerProps {
   open: boolean;
   onOpenChange: (open: boolean) => void;
@@ -44,6 +47,19 @@ const MobileChatDrawer: React.FC<MobileChatDrawerProps> = ({ open, onOpenChange 
       return () => clearTimeout(timer);
     }
   }, [open, messages.length, startListening, isListening, isSpeaking]);
+
+  // Dispatch event when drawer opens to close other widgets
+  useEffect(() => {
+    if (open) {
+      // Dispatch an event to close other widgets
+      const event = new CustomEvent(WIDGET_TOGGLE_EVENT, {
+        detail: {
+          widget: 'mobilechat'
+        }
+      });
+      window.dispatchEvent(event);
+    }
+  }, [open]);
 
   return (
     <Drawer open={open} onOpenChange={onOpenChange}>
