@@ -1,5 +1,5 @@
 
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import { useIsMobile } from '@/hooks/use-mobile';
@@ -13,9 +13,16 @@ import TrainingMethodsSection from '@/components/home/TrainingMethodsSection';
 const HomePage = () => {
   const isMobile = useIsMobile();
   const [heroLogoOpacity, setHeroLogoOpacity] = useState<number>(1);
+  const pageRef = useRef<HTMLDivElement>(null);
   
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
+    
+    // Signal that the homepage has been loaded (useful for widget positioning)
+    const event = new CustomEvent('homepage-loaded', {
+      detail: { pageElement: pageRef.current }
+    });
+    document.dispatchEvent(event);
   }, []);
 
   const stats = [
@@ -50,7 +57,7 @@ const HomePage = () => {
   };
 
   return (
-    <div className="flex flex-col min-h-screen relative">
+    <div ref={pageRef} className="flex flex-col min-h-screen relative">
       <Header headerLogoOpacity={heroLogoOpacity} />
       
       <main className="flex-grow">

@@ -2,74 +2,26 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { useIsMobile } from '@/hooks/use-mobile';
+import { useLocation } from 'react-router-dom';
 import { 
   Tooltip, 
   TooltipContent, 
   TooltipProvider, 
   TooltipTrigger 
 } from '@/components/ui/tooltip';
-import { GripVertical } from 'lucide-react';
+import { MessageCircle } from 'lucide-react';
 
 // Create a custom event name for communication between widgets
 const WIDGET_TOGGLE_EVENT = 'ath-widget-toggle';
 const AGENT_ID = "jJMZr28UE8hDLsO00dmt";
-
-// Storage key for widget position
-const WIDGET_POSITION_KEY = 'ath-elevenlabs-widget-position';
-
-// Default positions for mobile and desktop
-const DEFAULT_MOBILE_POSITION = { top: '20px', left: '20px', bottom: 'auto', right: 'auto' };
-const DEFAULT_DESKTOP_POSITION = { top: '20px', left: '20px', bottom: 'auto', right: 'auto' };
 
 const ElevenLabsConvaiWidget = () => {
   const { language, t } = useLanguage();
   const widgetRef = useRef<HTMLDivElement>(null);
   const widgetInitialized = useRef(false);
   const isMobile = useIsMobile();
-  const positionInitialized = useRef(false);
-  
-  // Position state
-  const [position, setPosition] = useState(() => {
-    // Try to load saved position from localStorage
-    try {
-      const savedPosition = localStorage.getItem(WIDGET_POSITION_KEY);
-      return savedPosition ? JSON.parse(savedPosition) : 
-        isMobile ? DEFAULT_MOBILE_POSITION : DEFAULT_DESKTOP_POSITION;
-    } catch (e) {
-      return isMobile ? DEFAULT_MOBILE_POSITION : DEFAULT_DESKTOP_POSITION;
-    }
-  });
-
-  // Dragging state
-  const [isDragging, setIsDragging] = useState(false);
-  const dragStartPos = useRef({ x: 0, y: 0 });
-  const widgetStartPos = useRef({ top: 0, left: 0 });
-
-  // MODIFICATO: Solo imposta la posizione predefinita la prima volta, non ogni volta che cambia lo stato mobile
-  useEffect(() => {
-    if (!positionInitialized.current && !isDragging) {
-      setPosition(isMobile ? DEFAULT_MOBILE_POSITION : DEFAULT_DESKTOP_POSITION);
-      positionInitialized.current = true;
-      
-      // Salva la posizione predefinita nel localStorage
-      try {
-        localStorage.setItem(WIDGET_POSITION_KEY, JSON.stringify(
-          isMobile ? DEFAULT_MOBILE_POSITION : DEFAULT_DESKTOP_POSITION
-        ));
-      } catch (e) {
-        console.error("Failed to save widget position to localStorage", e);
-      }
-    }
-  }, [isMobile, isDragging]);
-
-  // Save position to localStorage when it changes
-  useEffect(() => {
-    try {
-      localStorage.setItem(WIDGET_POSITION_KEY, JSON.stringify(position));
-    } catch (e) {
-      console.error("Failed to save widget position to localStorage", e);
-    }
-  }, [position]);
+  const location = useLocation();
+  const [expanded, setExpanded] = useState(false);
 
   // Initialize the widget when the component mounts
   useEffect(() => {
@@ -81,14 +33,6 @@ const ElevenLabsConvaiWidget = () => {
       });
       widgetInitialized.current = true;
       console.log("ElevenLabs Convai widget initialized with language:", language);
-
-      // Dispatch an event to close other widgets
-      const event = new CustomEvent(WIDGET_TOGGLE_EVENT, {
-        detail: {
-          widget: 'elevenlabs'
-        }
-      });
-      window.dispatchEvent(event);
     }
   }, [language]);
 
@@ -99,7 +43,55 @@ const ElevenLabsConvaiWidget = () => {
     }
   }, [language]);
 
-  // NEW: Use MutationObserver to adjust widget position
+  // Reset expanded state and position the widget properly when the route changes
+  useEffect(() => {
+    setExpanded(false);
+    positionWidgetInHeroSection();
+    
+    // When route changes, dispatch an event to close other widgets
+    const event = new CustomEvent(WIDGET_TOGGLE_EVENT, {
+      detail: {
+        widget: 'elevenlabs'
+      }
+    });
+    window.dispatchEvent(event);
+  }, [location.pathname]);
+
+  // Position the widget in the bottom right corner of the hero section
+  const positionWidgetInHeroSection = () => {
+    // Find the hero section on the current page
+    setTimeout(() => {
+      const heroSection = document.querySelector('.hero-image, [class*="Hero"], div[class*="hero"]');
+      
+      if (heroSection && widgetRef.current) {
+        // Get hero section position and dimensions
+        const heroRect = heroSection.getBoundingClientRect();
+        
+        // Position the widget at the bottom right of the hero
+        const bottom = window.innerHeight - (heroRect.bottom);
+        const right = 20; // 20px from the right edge
+        
+        // Apply the positioning
+        widgetRef.current.style.top = 'auto';
+        widgetRef.current.style.left = 'auto';
+        widgetRef.current.style.bottom = `${Math.max(bottom, 80)}px`; // Ensure it's not too close to bottom navigation
+        widgetRef.current.style.right = `${right}px`;
+        
+        console.log('Positioned widget relative to hero section:', { bottom, right });
+      } else {
+        // Default positioning if hero not found
+        if (widgetRef.current) {
+          widgetRef.current.style.top = 'auto';
+          widgetRef.current.style.left = 'auto';
+          widgetRef.current.style.bottom = isMobile ? '80px' : '20px';
+          widgetRef.current.style.right = '20px';
+          console.log('Applied default widget positioning');
+        }
+      }
+    }, 300); // Small delay to ensure DOM is ready
+  };
+
+  // Use MutationObserver to adjust widget position when DOM changes
   useEffect(() => {
     // Function to apply the position adjustment
     const adjustWidgetPosition = () => {
@@ -124,7 +116,7 @@ const ElevenLabsConvaiWidget = () => {
       if (window.innerWidth < 768) {
         // Mobile adjustments
         if (widget instanceof HTMLElement) {
-          widget.style.transform = 'translateY(-70px)';
+          widget.style.transform = 'translateY(-40px)';
         }
         
         // Try to find the wrapper in Light DOM
@@ -136,7 +128,7 @@ const ElevenLabsConvaiWidget = () => {
         }
         
         if (wrapper) {
-          wrapper.style.transform = 'translateY(-70px)';
+          wrapper.style.transform = 'translateY(-40px)';
           
           // Also set the bottom space to avoid overlapping with navigation
           const bottomNavHeight = 56; // Height of the bottom navigation
@@ -208,167 +200,58 @@ const ElevenLabsConvaiWidget = () => {
     
     // Add resize listener for responsive adjustments
     window.addEventListener('resize', adjustWidgetPosition);
+    positionWidgetInHeroSection();
     
     // Clean up on component unmount
     return () => {
       if (cleanup) cleanup();
       window.removeEventListener('resize', adjustWidgetPosition);
     };
-  }, []);
-  
-  // Handle mouse down event to start dragging
-  const handleMouseDown = (e: React.MouseEvent) => {
-    if (!widgetRef.current) return;
-    
-    e.preventDefault();
-    setIsDragging(true);
-    
-    // Store starting positions
-    dragStartPos.current = { x: e.clientX, y: e.clientY };
-    
-    const rect = widgetRef.current.getBoundingClientRect();
-    widgetStartPos.current = {
-      top: rect.top,
-      left: rect.left
-    };
-  };
+  }, [isMobile]);
 
-  // Handle touch start event for mobile dragging
-  const handleTouchStart = (e: React.TouchEvent) => {
-    if (!widgetRef.current || e.touches.length !== 1) return;
+  // Toggle expanded state
+  const toggleExpanded = () => {
+    setExpanded(!expanded);
     
-    e.preventDefault();
-    setIsDragging(true);
-    
-    // Store starting positions
-    const touch = e.touches[0];
-    dragStartPos.current = { x: touch.clientX, y: touch.clientY };
-    
-    const rect = widgetRef.current.getBoundingClientRect();
-    widgetStartPos.current = {
-      top: rect.top,
-      left: rect.left
-    };
-  };
-
-  // Handle mouse move during dragging
-  const handleMouseMove = (e: MouseEvent) => {
-    if (!isDragging || !widgetRef.current) return;
-    
-    // Calculate new position
-    const deltaX = e.clientX - dragStartPos.current.x;
-    const deltaY = e.clientY - dragStartPos.current.y;
-    
-    const newLeft = widgetStartPos.current.left + deltaX;
-    const newTop = widgetStartPos.current.top + deltaY;
-    
-    // Apply boundary constraints
-    const maxX = window.innerWidth - widgetRef.current.offsetWidth;
-    const maxY = window.innerHeight - widgetRef.current.offsetHeight;
-    
-    const boundedLeft = Math.max(0, Math.min(newLeft, maxX));
-    const boundedTop = Math.max(0, Math.min(newTop, maxY));
-    
-    // Update position
-    setPosition({
-      top: `${boundedTop}px`,
-      left: `${boundedLeft}px`,
-      bottom: 'auto',
-      right: 'auto'
-    });
-  };
-
-  // Handle touch move for mobile dragging
-  const handleTouchMove = (e: TouchEvent) => {
-    if (!isDragging || !widgetRef.current || e.touches.length !== 1) return;
-    
-    // Calculate new position
-    const touch = e.touches[0];
-    const deltaX = touch.clientX - dragStartPos.current.x;
-    const deltaY = touch.clientY - dragStartPos.current.y;
-    
-    const newLeft = widgetStartPos.current.left + deltaX;
-    const newTop = widgetStartPos.current.top + deltaY;
-    
-    // Apply boundary constraints
-    const maxX = window.innerWidth - widgetRef.current.offsetWidth;
-    const maxY = window.innerHeight - widgetRef.current.offsetHeight;
-    
-    const boundedLeft = Math.max(0, Math.min(newLeft, maxX));
-    const boundedTop = Math.max(0, Math.min(newTop, maxY));
-    
-    // Update position
-    setPosition({
-      top: `${boundedTop}px`,
-      left: `${boundedLeft}px`,
-      bottom: 'auto',
-      right: 'auto'
-    });
-  };
-
-  // End dragging on mouse up or touch end
-  const handleDragEnd = () => {
-    setIsDragging(false);
-  };
-
-  // Add event listeners for dragging
-  useEffect(() => {
-    if (isDragging) {
-      // Mouse events
-      document.addEventListener('mousemove', handleMouseMove);
-      document.addEventListener('mouseup', handleDragEnd);
-      
-      // Touch events
-      document.addEventListener('touchmove', handleTouchMove);
-      document.addEventListener('touchend', handleDragEnd);
-      document.addEventListener('touchcancel', handleDragEnd);
+    // When expanding this widget, dispatch an event to close other widgets
+    if (!expanded) {
+      const event = new CustomEvent(WIDGET_TOGGLE_EVENT, {
+        detail: { widget: 'elevenlabs' }
+      });
+      window.dispatchEvent(event);
     }
-    
-    return () => {
-      // Clean up event listeners
-      document.removeEventListener('mousemove', handleMouseMove);
-      document.removeEventListener('mouseup', handleDragEnd);
-      document.removeEventListener('touchmove', handleTouchMove);
-      document.removeEventListener('touchend', handleDragEnd);
-      document.removeEventListener('touchcancel', handleDragEnd);
-    };
-  }, [isDragging]);
+  };
   
   return (
     <div 
       ref={widgetRef}
-      className="fixed z-50" 
-      style={{
-        ...position,
-        transition: isDragging ? 'none' : 'all 0.2s ease-in-out'
-      }}
+      className="fixed z-50 transition-all duration-300 elevenlabs-widget"
     >
       <div className="bg-white rounded-lg shadow-lg overflow-hidden transition-all duration-300 ease-in-out max-w-[350px] animate-fade-in relative">
-        {/* Improved drag handle - more prominent and visible */}
-        <div 
-          className="absolute top-0 left-0 w-full h-8 bg-ath-clay flex items-center justify-center cursor-move z-[999]"
-          onMouseDown={handleMouseDown}
-          onTouchStart={handleTouchStart}
-        >
-          <GripVertical size={18} className="text-white" />
-          <span className="text-white text-xs ml-1">Trascina</span>
-        </div>
-        
-        <TooltipProvider>
-          <Tooltip>
-            <TooltipTrigger asChild>
-              <div className="elevenlabs-widget-container max-h-[500px] max-w-[350px] pt-8">
-                <elevenlabs-convai 
-                  agent-id={AGENT_ID} 
-                  language={language || 'it'}
-                ></elevenlabs-convai>
-              </div>
-            </TooltipTrigger>
-            <TooltipContent side="top">
-              <p>{t('chatbot.askCoach')}</p>
-            </TooltipContent>
-          </Tooltip>
-        </TooltipProvider>
+        {!expanded ? (
+          <div 
+            onClick={toggleExpanded}
+            className="bg-ath-clay text-white rounded-full p-3 cursor-pointer shadow-lg hover:bg-opacity-90 transition-all duration-200"
+          >
+            <MessageCircle size={24} />
+          </div>
+        ) : (
+          <TooltipProvider>
+            <Tooltip>
+              <TooltipTrigger asChild>
+                <div className="elevenlabs-widget-container max-h-[500px] max-w-[350px]">
+                  <elevenlabs-convai 
+                    agent-id={AGENT_ID} 
+                    language={language || 'it'}
+                  ></elevenlabs-convai>
+                </div>
+              </TooltipTrigger>
+              <TooltipContent side="top">
+                <p>{t('chatbot.askCoach')}</p>
+              </TooltipContent>
+            </Tooltip>
+          </TooltipProvider>
+        )}
       </div>
     </div>
   );
