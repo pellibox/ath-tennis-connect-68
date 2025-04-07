@@ -1,3 +1,4 @@
+
 import React, { useEffect, useRef, useState } from 'react';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { useIsMobile } from '@/hooks/use-mobile';
@@ -16,8 +17,7 @@ const AGENT_ID = "jJMZr28UE8hDLsO00dmt";
 // Storage key for widget position
 const WIDGET_POSITION_KEY = 'ath-elevenlabs-widget-position';
 
-// MODIFICATO: Cambia questi valori per la posizione predefinita desiderata
-// Ad esempio, questo posizionerà il widget in alto a sinistra
+// Default positions for mobile and desktop
 const DEFAULT_MOBILE_POSITION = { top: '20px', left: '20px', bottom: 'auto', right: 'auto' };
 const DEFAULT_DESKTOP_POSITION = { top: '20px', left: '20px', bottom: 'auto', right: 'auto' };
 
@@ -98,6 +98,58 @@ const ElevenLabsConvaiWidget = () => {
       widgetRef.current.setAttribute('language', language || 'it');
     }
   }, [language]);
+
+  // NEW: Adjust widget position to prevent overlap with bottom navigation on mobile
+  useEffect(() => {
+    const adjustWidgetPosition = () => {
+      const widget = document.querySelector('elevenlabs-convai');
+      if (!widget) return;
+      
+      // Handle both direct DOM access and Shadow DOM
+      const findWrapper = (root: Document | ShadowRoot) => {
+        // Try multiple possible selectors based on common widget patterns
+        return root.querySelector('div[class*="_wrapper_"]') || 
+               root.querySelector('div.widget-container') ||
+               root.querySelector('div.convai-container') ||
+               root.querySelector('div');
+      };
+      
+      // Try to find the wrapper in Light DOM
+      let wrapper = findWrapper(document);
+      
+      // If not found, try Shadow DOM
+      if (!wrapper && widget.shadowRoot) {
+        wrapper = findWrapper(widget.shadowRoot);
+      }
+      
+      if (wrapper) {
+        const bottomNavHeight = 56; // Height of the bottom navigation
+        const additionalPadding = 14; // Extra padding for better appearance
+        
+        if (window.innerWidth < 768) {
+          // Add bottom offset on mobile to avoid overlapping bottom navigation
+          wrapper.style.bottom = `${bottomNavHeight + additionalPadding}px`;
+        } else {
+          // Reset on desktop
+          wrapper.style.bottom = '0px';
+        }
+      }
+    };
+    
+    // Initial adjustment after a short delay to ensure widget is loaded
+    const timer = setTimeout(adjustWidgetPosition, 1000);
+    
+    // Adjust on resize or orientation change
+    window.addEventListener('resize', adjustWidgetPosition);
+    window.addEventListener('orientationchange', adjustWidgetPosition);
+    
+    // Clean up
+    return () => {
+      clearTimeout(timer);
+      window.removeEventListener('resize', adjustWidgetPosition);
+      window.removeEventListener('orientationchange', adjustWidgetPosition);
+    };
+  }, []);
 
   // Handle mouse down event to start dragging
   const handleMouseDown = (e: React.MouseEvent) => {
