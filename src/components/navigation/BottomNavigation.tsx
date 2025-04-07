@@ -47,6 +47,13 @@ const BottomNavigation = () => {
     return userGender === 'male' ? "bg-blue-100" : "bg-pink-100";
   };
 
+  // Check if we should hide bottom navigation (on landing page)
+  const shouldHideNavigation = location.pathname === '/';
+
+  if (shouldHideNavigation) {
+    return null;
+  }
+
   return (
     <>
       {/* Make sure the dialog is properly shown when opened but hide the trigger */}
@@ -62,7 +69,7 @@ const BottomNavigation = () => {
         showTrigger={false}
       />
       
-      <div className="fixed bottom-0 left-0 right-0 bg-white shadow-[0_-2px_10px_rgba(0,0,0,0.05)] z-50 lg:hidden">
+      <div className="fixed bottom-0 left-0 right-0 bg-white shadow-[0_-2px_10px_rgba(0,0,0,0.05)] z-[999] lg:hidden">
         <div className="grid grid-cols-6 h-14">
           {navItems && navItems.map((item, index) => (
             <Link

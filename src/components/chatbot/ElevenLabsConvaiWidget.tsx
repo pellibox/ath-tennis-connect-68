@@ -1,3 +1,4 @@
+
 import React, { useEffect, useRef, useState } from 'react';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { useIsMobile } from '@/hooks/use-mobile';
@@ -8,6 +9,7 @@ import {
   TooltipTrigger 
 } from '@/components/ui/tooltip';
 import { GripVertical } from 'lucide-react';
+import { useLocation } from 'react-router-dom';
 
 const WIDGET_TOGGLE_EVENT = 'ath-widget-toggle';
 const AGENT_ID = "jJMZr28UE8hDLsO00dmt";
@@ -23,6 +25,10 @@ const ElevenLabsConvaiWidget = () => {
   const widgetInitialized = useRef(false);
   const isMobile = useIsMobile();
   const positionInitialized = useRef(false);
+  const location = useLocation();
+  
+  // Determine if we're on the homepage
+  const isHomePage = location.pathname === '/home';
   
   const [position, setPosition] = useState(() => {
     try {
@@ -76,8 +82,18 @@ const ElevenLabsConvaiWidget = () => {
         }
       });
       window.dispatchEvent(event);
+      
+      // If we're on the home page, we want the widget to be expanded by default
+      if (isHomePage && widgetRef.current) {
+        setTimeout(() => {
+          const expandButton = widgetRef.current?.querySelector('button[aria-label="Expand"]');
+          if (expandButton instanceof HTMLElement) {
+            expandButton.click();
+          }
+        }, 1000); // Delay to ensure the widget is fully loaded
+      }
     }
-  }, [language]);
+  }, [language, isHomePage]);
 
   useEffect(() => {
     if (widgetRef.current) {
