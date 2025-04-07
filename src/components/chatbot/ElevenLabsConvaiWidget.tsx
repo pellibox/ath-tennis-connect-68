@@ -217,19 +217,20 @@ const ElevenLabsConvaiWidget = () => {
       }}
     >
       <div className="bg-white rounded-lg shadow-lg overflow-hidden transition-all duration-300 ease-in-out max-w-[350px] animate-fade-in relative">
-        {/* Drag handle */}
+        {/* Improved drag handle - more prominent and visible */}
         <div 
-          className="absolute top-0 left-0 w-full h-6 bg-gray-100 flex items-center justify-center cursor-move"
+          className="absolute top-0 left-0 w-full h-8 bg-ath-clay flex items-center justify-center cursor-move z-[999]"
           onMouseDown={handleMouseDown}
           onTouchStart={handleTouchStart}
         >
-          <GripVertical size={16} className="text-gray-500" />
+          <GripVertical size={18} className="text-white" />
+          <span className="text-white text-xs ml-1">Trascina</span>
         </div>
         
         <TooltipProvider>
           <Tooltip>
             <TooltipTrigger asChild>
-              <div className="elevenlabs-widget-container max-h-[500px] max-w-[350px] pt-6">
+              <div className="elevenlabs-widget-container max-h-[500px] max-w-[350px] pt-8">
                 <elevenlabs-convai 
                   agent-id={AGENT_ID} 
                   language={language || 'it'}
