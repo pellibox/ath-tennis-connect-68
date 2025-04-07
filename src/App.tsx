@@ -99,7 +99,7 @@ function AppContent() {
   const isMobile = useIsMobile();
   
   return (
-    <div>
+    <div className="flex flex-col min-h-screen relative">
       <Routes>
         <Route path="/" element={<LandingPage />} />
         <Route path="/home" element={<HomePage />} />

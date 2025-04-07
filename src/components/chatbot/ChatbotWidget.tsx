@@ -120,7 +120,10 @@ const ChatbotWidget = () => {
     <div 
       ref={widgetRef}
       className={`fixed ${isMobileView ? 'right-5' : 'bottom-20 right-5 md:bottom-5'} z-50 font-swiss transition-all duration-300`}
-      style={{ position: 'fixed' }}
+      style={{ 
+        position: 'fixed',
+        bottom: isMobileView ? '80px' : undefined // Position above bottom nav on mobile
+      }}
     >
       <div className={`${expanded ? 'w-[320px] md:w-[350px] bg-white rounded-lg' : ''} 
         shadow-lg overflow-hidden transition-all duration-300 ease-in-out`}>

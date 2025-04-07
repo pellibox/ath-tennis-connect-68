@@ -62,7 +62,7 @@ const BottomNavigation = () => {
         showTrigger={false}
       />
       
-      <div className="fixed bottom-0 left-0 right-0 bg-white shadow-[0_-2px_10px_rgba(0,0,0,0.05)] z-40 lg:hidden">
+      <div className="fixed bottom-0 left-0 right-0 bg-white shadow-[0_-2px_10px_rgba(0,0,0,0.05)] z-50 lg:hidden">
         <div className="grid grid-cols-6 h-14">
           {navItems && navItems.map((item, index) => (
             <Link
