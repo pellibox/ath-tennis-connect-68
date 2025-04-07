@@ -143,11 +143,21 @@
       font-size: 0.875rem; /* 14px, reduced from 16px */
     }
     
-    /* NEW: Direct styling for ElevenLabs Convai widget on mobile */
+    /* Custom styling for ElevenLabs Convai widget on mobile */
     elevenlabs-convai {
       position: fixed !important;
-      bottom: 70px !important;
       z-index: 9999 !important;
+      max-width: calc(100vw - 32px) !important;
+      left: 16px !important;
+      right: 16px !important;
+      width: auto !important;
+    }
+    
+    /* Make sure the widget doesn't overlap with bottom navigation */
+    elevenlabs-convai > div,
+    elevenlabs-convai::part(container) {
+      max-height: calc(60vh) !important;
+      overflow-y: auto !important;
     }
   }
   
@@ -360,9 +370,17 @@
   max-height: 500px;
 }
 
-/* Ensure we're not applying conflicting transforms */
+/* Mobile positioning for ElevenLabs widget */
 @media (max-width: 768px) {
   .elevenlabs-widget-container {
     transform: none !important;
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+  
+  /* Ensure the widget is appropriately sized on mobile screens */
+  elevenlabs-convai {
+    --elf-border-radius: 12px !important;
+    --elf-chat-container-width: 100% !important;
   }
 }

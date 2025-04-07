@@ -1,4 +1,3 @@
-
 import React, { useEffect, useRef, useState } from 'react';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { useIsMobile } from '@/hooks/use-mobile';
@@ -18,7 +17,7 @@ const AGENT_ID = "jJMZr28UE8hDLsO00dmt";
 const WIDGET_POSITION_KEY = 'ath-elevenlabs-widget-position';
 
 // Default positions for mobile and desktop
-const DEFAULT_MOBILE_POSITION = { top: '20px', left: '20px', bottom: 'auto', right: 'auto' };
+const DEFAULT_MOBILE_POSITION = { top: 'auto', left: '20px', bottom: '70px', right: 'auto' };
 const DEFAULT_DESKTOP_POSITION = { top: '20px', left: '20px', bottom: 'auto', right: 'auto' };
 
 const ElevenLabsConvaiWidget = () => {
@@ -40,7 +39,7 @@ const ElevenLabsConvaiWidget = () => {
     }
   });
 
-  // Dragging state
+  // Dragging state - only enabled on desktop
   const [isDragging, setIsDragging] = useState(false);
   const dragStartPos = useRef({ x: 0, y: 0 });
   const widgetStartPos = useRef({ top: 0, left: 0 });
@@ -62,14 +61,16 @@ const ElevenLabsConvaiWidget = () => {
     }
   }, [isMobile, isDragging]);
 
-  // Save position to localStorage when it changes
+  // Save position to localStorage when it changes - only for desktop
   useEffect(() => {
-    try {
-      localStorage.setItem(WIDGET_POSITION_KEY, JSON.stringify(position));
-    } catch (e) {
-      console.error("Failed to save widget position to localStorage", e);
+    if (!isMobile) {
+      try {
+        localStorage.setItem(WIDGET_POSITION_KEY, JSON.stringify(position));
+      } catch (e) {
+        console.error("Failed to save widget position to localStorage", e);
+      }
     }
-  }, [position]);
+  }, [position, isMobile]);
 
   // Initialize the widget when the component mounts
   useEffect(() => {
@@ -99,10 +100,69 @@ const ElevenLabsConvaiWidget = () => {
     }
   }, [language]);
 
-  // NEW: Use MutationObserver to adjust widget position
+  // Find the hero component and position widget below it on mobile
   useEffect(() => {
-    // Function to apply the position adjustment
-    const adjustWidgetPosition = () => {
+    if (!isMobile) return;
+
+    const positionWidgetBelowHero = () => {
+      // Look for hero elements - either StandardHeroVideo or Hero component
+      const heroVideo = document.querySelector('.w-full.bg-black.min-h-\\[calc\\(100vw\\*9\\/16\\)\\]');
+      const heroSection = document.querySelector('[class*="relative w-full flex items-center justify-center overflow-hidden"]');
+      
+      if (heroVideo || heroSection) {
+        const heroElement = heroVideo || heroSection;
+        if (!heroElement) return;
+        
+        const heroRect = heroElement.getBoundingClientRect();
+        const heroBottom = heroRect.bottom;
+        const windowHeight = window.innerHeight;
+        
+        // Position the widget 10px below the hero
+        // But make sure it doesn't overlap with the bottom navigation
+        const bottomNavHeight = 56; // Height of bottom navigation
+        const offset = 10; // 10px below hero
+        
+        if (widgetRef.current) {
+          // Calculate available space
+          const availableHeight = windowHeight - heroBottom - offset - bottomNavHeight - 20; // 20px extra padding
+          const widgetHeight = Math.min(availableHeight, 400); // Limit max height
+          
+          widgetRef.current.style.position = 'fixed';
+          widgetRef.current.style.top = `${heroBottom + offset}px`;
+          widgetRef.current.style.left = '16px';
+          widgetRef.current.style.right = '16px';
+          widgetRef.current.style.maxHeight = `${widgetHeight}px`;
+          widgetRef.current.style.width = 'auto';
+          widgetRef.current.style.zIndex = '50';
+          
+          // When scrolling past the hero, keep the widget visible at the top
+          if (heroBottom < 0) {
+            widgetRef.current.style.top = `${offset}px`;
+          }
+        }
+      }
+    };
+    
+    // Initial positioning
+    positionWidgetBelowHero();
+    
+    // Set up on scroll listener
+    window.addEventListener('scroll', positionWidgetBelowHero);
+    window.addEventListener('resize', positionWidgetBelowHero);
+    
+    // Clean up
+    return () => {
+      window.removeEventListener('scroll', positionWidgetBelowHero);
+      window.removeEventListener('resize', positionWidgetBelowHero);
+    };
+  }, [isMobile]);
+
+  // Enhanced MutationObserver to adjust widget position specifically for mobile
+  useEffect(() => {
+    if (!isMobile) return;
+    
+    // Function to apply position adjustment specifically for mobile
+    const adjustWidgetPositionMobile = () => {
       // Find the widget and its shadow DOM elements
       const widget = document.querySelector('elevenlabs-convai');
       if (!widget) return;
@@ -120,44 +180,78 @@ const ElevenLabsConvaiWidget = () => {
         return element as HTMLElement | null;
       };
       
-      // Apply transform based on screen size
-      if (window.innerWidth < 768) {
-        // Mobile adjustments
-        if (widget instanceof HTMLElement) {
-          widget.style.transform = 'translateY(-70px)';
-        }
+      // Look for hero elements to position below
+      const heroVideo = document.querySelector('.w-full.bg-black.min-h-\\[calc\\(100vw\\*9\\/16\\)\\]');
+      const heroSection = document.querySelector('[class*="relative w-full flex items-center justify-center overflow-hidden"]');
+      
+      if (heroVideo || heroSection) {
+        const heroElement = heroVideo || heroSection;
+        if (!heroElement) return;
         
-        // Try to find the wrapper in Light DOM
-        let wrapper = findWrapper(document);
+        const heroRect = heroElement.getBoundingClientRect();
+        const heroBottom = heroRect.bottom;
+        const windowHeight = window.innerHeight;
+        const offset = 10; // 10px below hero
         
-        // If not found, try Shadow DOM
-        if (!wrapper && widget.shadowRoot) {
-          wrapper = findWrapper(widget.shadowRoot);
-        }
-        
-        if (wrapper) {
-          wrapper.style.transform = 'translateY(-70px)';
+        // Apply transform based on screen size
+        if (window.innerWidth < 768) {
+          // Mobile adjustments
+          if (widget instanceof HTMLElement) {
+            widget.style.position = 'fixed';
+            widget.style.transform = '';
+          }
           
-          // Also set the bottom space to avoid overlapping with navigation
-          const bottomNavHeight = 56; // Height of the bottom navigation
-          const additionalPadding = 14; // Extra padding for better appearance
-          wrapper.style.bottom = `${bottomNavHeight + additionalPadding}px`;
-        }
-      } else {
-        // Desktop - reset transform
-        if (widget instanceof HTMLElement) {
-          widget.style.transform = '';
-        }
-        
-        // Reset wrapper transform too
-        let wrapper = findWrapper(document);
-        if (!wrapper && widget.shadowRoot) {
-          wrapper = findWrapper(widget.shadowRoot);
-        }
-        
-        if (wrapper) {
-          wrapper.style.transform = '';
-          wrapper.style.bottom = '0px';
+          // Try to find the wrapper in Light DOM
+          let wrapper = findWrapper(document);
+          
+          // If not found, try Shadow DOM
+          if (!wrapper && widget.shadowRoot) {
+            wrapper = findWrapper(widget.shadowRoot);
+          }
+          
+          if (wrapper) {
+            // Position 10px below hero or at top if scrolled past hero
+            const topPosition = heroBottom < 0 ? offset : (heroBottom + offset);
+            
+            wrapper.style.position = 'fixed';
+            wrapper.style.top = `${topPosition}px`;
+            wrapper.style.left = '16px';
+            wrapper.style.right = '16px';
+            wrapper.style.transform = '';
+            
+            // Avoid overlapping with bottom navigation
+            const bottomNavHeight = 56; 
+            const bottomPadding = 14; 
+            wrapper.style.bottom = `${bottomNavHeight + bottomPadding}px`;
+            
+            // Limit height based on available space
+            const availableHeight = windowHeight - topPosition - bottomNavHeight - bottomPadding;
+            wrapper.style.maxHeight = `${Math.min(availableHeight, 400)}px`;
+            wrapper.style.height = 'auto';
+          }
+        } else {
+          // Desktop - reset transform
+          if (widget instanceof HTMLElement) {
+            widget.style.position = '';
+            widget.style.transform = '';
+          }
+          
+          // Reset wrapper transform too
+          let wrapper = findWrapper(document);
+          if (!wrapper && widget.shadowRoot) {
+            wrapper = findWrapper(widget.shadowRoot);
+          }
+          
+          if (wrapper) {
+            wrapper.style.position = '';
+            wrapper.style.top = '';
+            wrapper.style.left = '';
+            wrapper.style.right = '';
+            wrapper.style.transform = '';
+            wrapper.style.bottom = '0px';
+            wrapper.style.maxHeight = '';
+            wrapper.style.height = '';
+          }
         }
       }
     };
@@ -172,11 +266,11 @@ const ElevenLabsConvaiWidget = () => {
       }
       
       // Apply initial adjustment
-      adjustWidgetPosition();
+      adjustWidgetPositionMobile();
       
       // Create observer to watch for changes
       const observer = new MutationObserver(() => {
-        adjustWidgetPosition();
+        adjustWidgetPositionMobile();
       });
       
       // Start observing
@@ -188,7 +282,7 @@ const ElevenLabsConvaiWidget = () => {
       
       // Also observe document body for changes that might affect the widget
       const bodyObserver = new MutationObserver(() => {
-        adjustWidgetPosition();
+        adjustWidgetPositionMobile();
       });
       
       bodyObserver.observe(document.body, { 
@@ -207,18 +301,18 @@ const ElevenLabsConvaiWidget = () => {
     const cleanup = setupObserver();
     
     // Add resize listener for responsive adjustments
-    window.addEventListener('resize', adjustWidgetPosition);
+    window.addEventListener('resize', adjustWidgetPositionMobile);
     
     // Clean up on component unmount
     return () => {
       if (cleanup) cleanup();
-      window.removeEventListener('resize', adjustWidgetPosition);
+      window.removeEventListener('resize', adjustWidgetPositionMobile);
     };
-  }, []);
+  }, [isMobile]);
   
-  // Handle mouse down event to start dragging
+  // Handle mouse down event to start dragging - desktop only
   const handleMouseDown = (e: React.MouseEvent) => {
-    if (!widgetRef.current) return;
+    if (!widgetRef.current || isMobile) return;
     
     e.preventDefault();
     setIsDragging(true);
@@ -233,9 +327,9 @@ const ElevenLabsConvaiWidget = () => {
     };
   };
 
-  // Handle touch start event for mobile dragging
+  // Handle touch start event for mobile dragging - disabled on mobile
   const handleTouchStart = (e: React.TouchEvent) => {
-    if (!widgetRef.current || e.touches.length !== 1) return;
+    if (!widgetRef.current || e.touches.length !== 1 || isMobile) return;
     
     e.preventDefault();
     setIsDragging(true);
@@ -251,9 +345,9 @@ const ElevenLabsConvaiWidget = () => {
     };
   };
 
-  // Handle mouse move during dragging
+  // Handle mouse move during dragging - desktop only
   const handleMouseMove = (e: MouseEvent) => {
-    if (!isDragging || !widgetRef.current) return;
+    if (!isDragging || !widgetRef.current || isMobile) return;
     
     // Calculate new position
     const deltaX = e.clientX - dragStartPos.current.x;
@@ -278,9 +372,9 @@ const ElevenLabsConvaiWidget = () => {
     });
   };
 
-  // Handle touch move for mobile dragging
+  // Handle touch move for mobile dragging - disabled on mobile
   const handleTouchMove = (e: TouchEvent) => {
-    if (!isDragging || !widgetRef.current || e.touches.length !== 1) return;
+    if (!isDragging || !widgetRef.current || e.touches.length !== 1 || isMobile) return;
     
     // Calculate new position
     const touch = e.touches[0];
@@ -311,9 +405,9 @@ const ElevenLabsConvaiWidget = () => {
     setIsDragging(false);
   };
 
-  // Add event listeners for dragging
+  // Add event listeners for dragging - only on desktop
   useEffect(() => {
-    if (isDragging) {
+    if (isDragging && !isMobile) {
       // Mouse events
       document.addEventListener('mousemove', handleMouseMove);
       document.addEventListener('mouseup', handleDragEnd);
@@ -332,32 +426,34 @@ const ElevenLabsConvaiWidget = () => {
       document.removeEventListener('touchend', handleDragEnd);
       document.removeEventListener('touchcancel', handleDragEnd);
     };
-  }, [isDragging]);
+  }, [isDragging, isMobile]);
   
   return (
     <div 
       ref={widgetRef}
-      className="fixed z-50" 
-      style={{
+      className={`fixed z-50 ${isMobile ? 'transition-none' : ''}`} 
+      style={isMobile ? {} : {
         ...position,
         transition: isDragging ? 'none' : 'all 0.2s ease-in-out'
       }}
     >
       <div className="bg-white rounded-lg shadow-lg overflow-hidden transition-all duration-300 ease-in-out max-w-[350px] animate-fade-in relative">
-        {/* Improved drag handle - more prominent and visible */}
-        <div 
-          className="absolute top-0 left-0 w-full h-8 bg-ath-clay flex items-center justify-center cursor-move z-[999]"
-          onMouseDown={handleMouseDown}
-          onTouchStart={handleTouchStart}
-        >
-          <GripVertical size={18} className="text-white" />
-          <span className="text-white text-xs ml-1">Trascina</span>
-        </div>
+        {/* Drag handle - only show on desktop */}
+        {!isMobile && (
+          <div 
+            className="absolute top-0 left-0 w-full h-8 bg-ath-clay flex items-center justify-center cursor-move z-[999]"
+            onMouseDown={handleMouseDown}
+            onTouchStart={handleTouchStart}
+          >
+            <GripVertical size={18} className="text-white" />
+            <span className="text-white text-xs ml-1">Trascina</span>
+          </div>
+        )}
         
         <TooltipProvider>
           <Tooltip>
             <TooltipTrigger asChild>
-              <div className="elevenlabs-widget-container max-h-[500px] max-w-[350px] pt-8">
+              <div className={`elevenlabs-widget-container max-w-[350px] ${!isMobile ? 'pt-8' : ''}`}>
                 <elevenlabs-convai 
                   agent-id={AGENT_ID} 
                   language={language || 'it'}
