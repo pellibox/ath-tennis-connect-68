@@ -1,3 +1,4 @@
+
 import React, { useEffect, useRef, useState } from 'react';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { useIsMobile } from '@/hooks/use-mobile';
@@ -98,13 +99,15 @@ const ElevenLabsConvaiWidget = () => {
     }
   }, [language]);
 
-  // NEW: Adjust widget position to prevent overlap with bottom navigation on mobile
+  // NEW: Use MutationObserver to adjust widget position
   useEffect(() => {
+    // Function to apply the position adjustment
     const adjustWidgetPosition = () => {
+      // Find the widget and its shadow DOM elements
       const widget = document.querySelector('elevenlabs-convai');
       if (!widget) return;
       
-      // Handle both direct DOM access and Shadow DOM
+      // Try both direct DOM access and Shadow DOM
       const findWrapper = (root: Document | ShadowRoot): HTMLElement | null => {
         // Try multiple possible selectors based on common widget patterns
         const element = 
@@ -117,43 +120,102 @@ const ElevenLabsConvaiWidget = () => {
         return element as HTMLElement | null;
       };
       
-      // Try to find the wrapper in Light DOM
-      let wrapper = findWrapper(document);
-      
-      // If not found, try Shadow DOM
-      if (!wrapper && widget.shadowRoot) {
-        wrapper = findWrapper(widget.shadowRoot);
-      }
-      
-      if (wrapper) {
-        const bottomNavHeight = 56; // Height of the bottom navigation
-        const additionalPadding = 14; // Extra padding for better appearance
+      // Apply transform based on screen size
+      if (window.innerWidth < 768) {
+        // Mobile adjustments
+        if (widget instanceof HTMLElement) {
+          widget.style.transform = 'translateY(-70px)';
+        }
         
-        if (window.innerWidth < 768) {
-          // Add bottom offset on mobile to avoid overlapping bottom navigation
+        // Try to find the wrapper in Light DOM
+        let wrapper = findWrapper(document);
+        
+        // If not found, try Shadow DOM
+        if (!wrapper && widget.shadowRoot) {
+          wrapper = findWrapper(widget.shadowRoot);
+        }
+        
+        if (wrapper) {
+          wrapper.style.transform = 'translateY(-70px)';
+          
+          // Also set the bottom space to avoid overlapping with navigation
+          const bottomNavHeight = 56; // Height of the bottom navigation
+          const additionalPadding = 14; // Extra padding for better appearance
           wrapper.style.bottom = `${bottomNavHeight + additionalPadding}px`;
-        } else {
-          // Reset on desktop
+        }
+      } else {
+        // Desktop - reset transform
+        if (widget instanceof HTMLElement) {
+          widget.style.transform = '';
+        }
+        
+        // Reset wrapper transform too
+        let wrapper = findWrapper(document);
+        if (!wrapper && widget.shadowRoot) {
+          wrapper = findWrapper(widget.shadowRoot);
+        }
+        
+        if (wrapper) {
+          wrapper.style.transform = '';
           wrapper.style.bottom = '0px';
         }
       }
     };
     
-    // Initial adjustment after a short delay to ensure widget is loaded
-    const timer = setTimeout(adjustWidgetPosition, 1000);
+    // Set up MutationObserver to watch for changes in the widget
+    const setupObserver = () => {
+      const widget = document.querySelector('elevenlabs-convai');
+      if (!widget) {
+        // If widget not found, try again after a short delay
+        setTimeout(setupObserver, 500);
+        return;
+      }
+      
+      // Apply initial adjustment
+      adjustWidgetPosition();
+      
+      // Create observer to watch for changes
+      const observer = new MutationObserver(() => {
+        adjustWidgetPosition();
+      });
+      
+      // Start observing
+      observer.observe(widget, { 
+        attributes: true, 
+        childList: true, 
+        subtree: true 
+      });
+      
+      // Also observe document body for changes that might affect the widget
+      const bodyObserver = new MutationObserver(() => {
+        adjustWidgetPosition();
+      });
+      
+      bodyObserver.observe(document.body, { 
+        childList: true, 
+        subtree: true 
+      });
+      
+      // Clean up function
+      return () => {
+        observer.disconnect();
+        bodyObserver.disconnect();
+      };
+    };
     
-    // Adjust on resize or orientation change
+    // Initial setup
+    const cleanup = setupObserver();
+    
+    // Add resize listener for responsive adjustments
     window.addEventListener('resize', adjustWidgetPosition);
-    window.addEventListener('orientationchange', adjustWidgetPosition);
     
-    // Clean up
+    // Clean up on component unmount
     return () => {
-      clearTimeout(timer);
+      if (cleanup) cleanup();
       window.removeEventListener('resize', adjustWidgetPosition);
-      window.removeEventListener('orientationchange', adjustWidgetPosition);
     };
   }, []);
-
+  
   // Handle mouse down event to start dragging
   const handleMouseDown = (e: React.MouseEvent) => {
     if (!widgetRef.current) return;
