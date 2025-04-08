@@ -111,6 +111,18 @@
     -webkit-text-size-adjust: 100%;
   }
 
+  /* Add padding to the bottom of the page on mobile to account for bottom navigation */
+  @media (max-width: 1023px) {
+    main, .main-content {
+      padding-bottom: 5rem; /* 80px of bottom padding */
+    }
+    
+    /* Adjust footer to account for bottom navigation bar */
+    footer {
+      padding-bottom: 5rem;
+    }
+  }
+
   h1, h2, h3, h4, h5, h6 {
     font-family: 'Swiss721 BT', 'Inter', sans-serif;
   }
@@ -143,11 +155,11 @@
       font-size: 0.875rem; /* 14px, reduced from 16px */
     }
     
-    /* NEW: Direct styling for ElevenLabs Convai widget on mobile */
+    /* Direct styling for ElevenLabs Convai widget on mobile */
     elevenlabs-convai {
       position: fixed !important;
-      bottom: 70px !important;
-      z-index: 9999 !important;
+      bottom: 80px !important; /* Position above the bottom navigation */
+      z-index: 49 !important; /* Just below the bottom navigation z-index */
     }
   }
   
@@ -360,9 +372,10 @@
   max-height: 500px;
 }
 
-/* Ensure we're not applying conflicting transforms */
+/* Ensure floating elements like the chat widget don't overlap with bottom navigation */
 @media (max-width: 768px) {
   .elevenlabs-widget-container {
     transform: none !important;
+    bottom: 80px !important; /* Position above bottom navigation */
   }
 }
