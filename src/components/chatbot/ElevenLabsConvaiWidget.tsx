@@ -347,7 +347,7 @@ const ElevenLabsConvaiWidget = () => {
           <Tooltip>
             <TooltipTrigger asChild>
               <div className="elevenlabs-widget-container max-h-[500px] max-w-[350px] pt-8">
-                <elevenlabs-convai agent-id={AGENT_ID} language={language || 'it'} className="my-[79px]"></elevenlabs-convai>
+                <elevenlabs-convai agent-id={AGENT_ID} language={language || 'it'} className="my-[240px] mx-[39px] py-[99px]"></elevenlabs-convai>
               </div>
             </TooltipTrigger>
             <TooltipContent side="top">
