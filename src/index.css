@@ -113,11 +113,11 @@
 
   @media (max-width: 1023px) {
     main, .main-content {
-      padding-bottom: 3.5rem; /* Reduced padding from 5rem to 3.5rem (56px) */
+      padding-bottom: 3.5rem;
     }
     
     footer {
-      padding-bottom: 3.5rem; /* Reduced padding from 5rem to 3.5rem (56px) */
+      padding-bottom: 3.5rem;
     }
   }
 
@@ -149,13 +149,13 @@
     iframe + p,
     .video-container + p,
     .image-wrapper + p {
-      font-size: 0.875rem; /* 14px, reduced from 16px */
+      font-size: 0.875rem;
     }
     
     elevenlabs-convai {
       position: fixed !important;
-      bottom: 60px !important; /* Reduced from 80px to 60px to match new bottom nav height */
-      z-index: 49 !important; /* Just below the bottom navigation z-index */
+      bottom: 60px !important;
+      z-index: 49 !important;
     }
   }
   
@@ -201,6 +201,11 @@
   position: relative !important;
   height: 100% !important;
   padding: 0 !important;
+}
+
+.landing-vimeo-container iframe {
+  transform: scale(1.2);
+  transform-origin: center center;
 }
 
 .bg-ath-gray {
@@ -404,6 +409,6 @@
 @media (max-width: 768px) {
   .elevenlabs-widget-container {
     transform: none !important;
-    bottom: 60px !important; /* Reduced from 80px to 60px to match new bottom nav height */
+    bottom: 60px !important;
   }
 }

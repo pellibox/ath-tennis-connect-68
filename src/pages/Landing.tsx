@@ -1,3 +1,4 @@
+
 import { useState, useEffect } from 'react';
 import { useProfile } from '@/contexts/ProfileContext';
 import { getVimeoEmbed } from '@/utils/videoUtils';
@@ -129,7 +130,7 @@ const LandingPage = () => {
           }} />
         </div>
         
-        {isMobile && <div className="w-full bg-black py-2 pointer-events-auto">
+        {isMobile && <div className="fixed bottom-0 left-0 right-0 bg-black py-4 z-40 border-t border-gray-800">
             <div className="container mx-auto px-4">
               <h2 className="text-white text-sm text-center font-swiss uppercase mb-2">
                 IL FUTURO DEL TUO TENNIS INIZIA QUI.
