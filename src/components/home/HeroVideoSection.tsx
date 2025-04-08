@@ -26,7 +26,7 @@ const HeroVideoSection = ({ onLogoOpacityChange }: { onLogoOpacityChange?: (opac
   };
   
   return (
-    <div className="w-full">
+    <div className="w-full relative bg-black">
       <StandardHeroVideo 
         vimeoEmbed={getVideoEmbed()}
         title="ADVANCED TENNIS HUB:"

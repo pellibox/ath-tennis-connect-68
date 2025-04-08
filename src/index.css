@@ -1,6 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 
-/* Swiss721 BT Font Face Declarations */
 @font-face {
   font-family: 'Swiss721 BT';
   src: url('../assets/fonts/Swiss721BT-Roman.woff2') format('woff2'),
@@ -109,31 +108,18 @@
     font-family: 'Swiss721 BT', 'Inter', sans-serif;
     overscroll-behavior: none;
     -webkit-text-size-adjust: 100%;
+    padding-bottom: env(safe-area-inset-bottom, 0);
   }
 
-  h1, h2, h3, h4, h5, h6 {
-    font-family: 'Swiss721 BT', 'Inter', sans-serif;
+  main, .main-content {
+    padding-bottom: 70px; 
   }
-  
-  .font-display {
-    font-family: 'Playfair Display', serif;
-  }
-  
-  .font-swiss {
-    font-family: 'Swiss721 BT', 'Inter', sans-serif;
-  }
-  
-  /* Add bottom padding to the main content on mobile to accommodate the fixed nav */
+
   @media (max-width: 768px) {
     main, .main-content {
-      padding-bottom: 4rem !important; /* 64px for the bottom nav height + extra space */
+      padding-bottom: 80px !important; 
     }
-    
-    /* Ensure body has room for the fixed nav */
-    body {
-      padding-bottom: env(safe-area-inset-bottom, 16px);
-    }
-    
+
     button, 
     a, 
     [role="button"], 
@@ -144,35 +130,32 @@
       min-width: 44px;
     }
 
-    /* Reduce caption text size under videos by 2 points on mobile */
     .vimeo-container + p,
     video + p,
     iframe + p,
     .video-container + p,
     .image-wrapper + p {
-      font-size: 0.875rem; /* 14px, reduced from 16px */
+      font-size: 0.875rem; 
     }
-    
-    /* Direct styling for ElevenLabs Convai widget on mobile */
+
     elevenlabs-convai {
       position: fixed !important;
-      bottom: 70px !important;
+      bottom: 80px !important; 
       z-index: 9999 !important;
     }
-    
-    /* Special styling for landing page */
+
     .landing-page-container {
       display: flex;
       flex-direction: column;
       min-height: 100vh;
       overflow: hidden;
     }
-    
+
     .landing-page-hero {
       flex: 1;
       position: relative;
     }
-    
+
     .landing-page-content {
       padding: 1.5rem 1rem;
       background-color: #000;
@@ -189,7 +172,6 @@
     }
   }
 
-  /* Landing page specific styles */
   .landing-page-container {
     display: flex;
     flex-direction: column;
@@ -309,27 +291,31 @@
 }
 
 .fixed-bottom-nav {
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  z-index: 1000;
-  box-shadow: 0 -2px 10px rgba(0,0,0,0.05);
+  position: fixed !important;
+  bottom: 0 !important;
+  left: 0 !important;
+  right: 0 !important;
+  z-index: 1000 !important;
+  box-shadow: 0 -2px 10px rgba(0,0,0,0.05) !important;
 }
 
 .hero-video-container {
   width: 100%;
-  height: 100%;
+  height: 70vh; 
+  min-height: 500px;
   position: relative;
   overflow: hidden;
+  background-color: #000;
 }
 
-.hero-video-container iframe {
+.hero-video-container iframe,
+.hero-video-container video {
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
+  object-fit: cover;
 }
 
 @media (max-width: 768px) {
@@ -422,14 +408,13 @@
   opacity: 0;
 }
 
-/* Custom styling for ElevenLabs widget iframe to adjust positioning */
-.elevenlabs-widget-container iframe {
-  max-height: 500px;
+.elevenlabs-widget-container {
+  max-height: calc(80vh - 80px); 
+  overflow: auto;
 }
 
-/* Ensure we're not applying conflicting transforms */
-@media (max-width: 768px) {
-  .elevenlabs-widget-container {
-    transform: none !important;
-  }
+.chatbot-widget {
+  z-index: 1001 !important;
+  position: fixed !important;
+  bottom: 80px !important;
 }

@@ -75,7 +75,7 @@ const BottomNavigation = () => {
       <div className={cn(
         "fixed bottom-0 left-0 right-0 shadow-[0_-2px_10px_rgba(0,0,0,0.05)] z-[999] lg:hidden",
         isIndexPage ? "bg-black" : "bg-white"
-      )}>
+      )} style={{ position: 'fixed' }}>
         <div className="grid grid-cols-6 h-14">
           {navItems && navItems.map((item, index) => (
             <Link

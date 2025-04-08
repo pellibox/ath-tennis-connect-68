@@ -38,7 +38,7 @@ const ChatbotWidget = () => {
     
     const viewportHeight = window.innerHeight;
     const widgetHeight = expanded ? widgetRef.current.offsetHeight : 40; // Approximate collapsed height
-    const bottomNavHeight = 56; // Approximate height of bottom navigation
+    const bottomNavHeight = 60; // Approximate height of bottom navigation
     
     // Calculate position to center the widget
     let topPosition = (viewportHeight - widgetHeight) / 2;
@@ -129,10 +129,10 @@ const ChatbotWidget = () => {
   return (
     <div 
       ref={widgetRef}
-      className={`fixed ${isMobileView ? 'right-5' : 'bottom-20 right-5 md:bottom-5'} z-50 font-swiss transition-all duration-300`}
+      className="fixed right-5 z-50 font-swiss transition-all duration-300 chatbot-widget"
       style={{ 
         position: 'fixed',
-        bottom: isMobileView ? '80px' : undefined // Position above bottom nav on mobile
+        bottom: isMobileView ? '80px' : '20px' // Position above bottom nav on mobile
       }}
     >
       <div className={`${expanded ? 'w-[320px] md:w-[350px] bg-white rounded-lg' : ''} 
