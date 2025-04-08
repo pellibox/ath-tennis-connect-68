@@ -8,6 +8,7 @@ import EmptyHeader from '@/components/EmptyHeader';
 import EmptyFooter from '@/components/EmptyFooter';
 import { useNavigate } from 'react-router-dom';
 import ResponsiveImage from '@/components/ResponsiveImage';
+
 const getUserGenderText = (gender: string | null): string => {
   switch (gender) {
     case 'male':
@@ -18,6 +19,7 @@ const getUserGenderText = (gender: string | null): string => {
       return '';
   }
 };
+
 const getUserTypeText = (type: string | null): string => {
   switch (type) {
     case 'junior':
@@ -38,6 +40,7 @@ const getUserTypeText = (type: string | null): string => {
       return '';
   }
 };
+
 const getSportText = (sport: string | null): string => {
   switch (sport) {
     case 'tennis':
@@ -52,6 +55,7 @@ const getSportText = (sport: string | null): string => {
       return '';
   }
 };
+
 const getPersonalizedContentText = (gender: string | null, type: string | null, sport: string | null): {
   first: string;
   second: string;
@@ -65,6 +69,7 @@ const getPersonalizedContentText = (gender: string | null, type: string | null, 
     second: 'Clicca su ENTRA IN ATH per continuare.'
   };
 };
+
 const LandingPage = () => {
   const {
     userGender,
@@ -84,6 +89,7 @@ const LandingPage = () => {
   };
   const hasProfile = Boolean(userGender && userType);
   const personalizedContent = getPersonalizedContentText(userGender, userType, sport);
+  
   const renderButtons = () => {
     return <div className="flex flex-wrap justify-center gap-4">
         {!hasProfile && <ButtonLink href="#" variant="athOutline" onClick={() => setDialogOpen(true)} className="text-lg px-6 py-2 rounded-md border border-ath-clay text-ath-clay hover:bg-ath-clay hover:text-white transition-all font-bold">
@@ -95,13 +101,14 @@ const LandingPage = () => {
         </ButtonLink>
       </div>;
   };
-  return <div className="flex flex-col min-h-screen relative bg-black">
+  
+  return <div className="flex flex-col min-h-screen bg-black">
       <EmptyHeader headerText="" />
       
-      <main className="flex-grow py-2 px-[4px] mx-0 my-0">
-        <div className="w-full bg-black relative" style={isMobile ? {
-        height: 'calc(100vh - 120px)'
-      } : {}}>
+      <main className="flex-grow px-0 py-0 mx-0 my-0">
+        <div className="w-full bg-black relative" style={{
+          height: isMobile ? 'calc(100vh - 70px)' : '100vh'
+        }}>
           <div className="absolute top-0 left-1/2 transform -translate-x-1/2 mt-3 z-30 pointer-events-none">
             <img src="/lovable-uploads/a00875f9-6335-4f8b-81c4-029183b59eec.png" alt="ATH - Advanced Tennis Hub" className={`object-contain ${isMobile ? 'w-[100px]' : 'w-[200px]'}`} />
           </div>
@@ -117,15 +124,14 @@ const LandingPage = () => {
               </div>
             </div>}
           
-          <div dangerouslySetInnerHTML={{
-          __html: vimeoEmbed
-        }} style={isMobile ? {
-          transform: 'scale(1.2)',
-          height: '100%'
-        } : {}} className="h-full py-0" />
+          <div className="vimeo-container h-full w-full overflow-hidden" style={{
+            transform: isMobile ? 'scale(1.2)' : 'none'
+          }} dangerouslySetInnerHTML={{
+            __html: vimeoEmbed
+          }} />
         </div>
         
-        {isMobile && <div className="w-full bg-black py-3 pointer-events-auto">
+        {isMobile && <div className="w-full bg-black py-2 pointer-events-auto">
             <div className="container mx-auto px-4">
               <h2 className="text-white text-sm text-center font-swiss uppercase mb-2">
                 IL FUTURO DEL TUO TENNIS INIZIA QUI.
@@ -145,4 +151,5 @@ const LandingPage = () => {
       <ProfileDialog open={dialogOpen} setOpen={setDialogOpen} userGender={userGender} userType={userType} sport={sport} updateProfile={handleProfileComplete} resetProfile={resetProfile} deleteProfile={deleteProfile} showTrigger={false} />
     </div>;
 };
+
 export default LandingPage;
