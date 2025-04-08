@@ -144,6 +144,14 @@ const StandardHeroVideo = ({
         console.error('No iframe found in Vimeo embed code');
         setVideoError(true);
       }
+      
+      // Add Vimeo API script if not already present
+      if (!document.querySelector('script[src="https://player.vimeo.com/api/player.js"]')) {
+        const script = document.createElement('script');
+        script.src = 'https://player.vimeo.com/api/player.js';
+        script.async = true;
+        document.body.appendChild(script);
+      }
     } catch (error) {
       console.error('Error loading Vimeo embed:', error);
       setVideoError(true);
@@ -192,47 +200,59 @@ const StandardHeroVideo = ({
         </div>
       )}
       
-      {/* Video container with fixed height */}
-      <div className="w-full bg-black relative" style={{ height: "70vh", minHeight: "500px" }}>
-        {/* Placeholder/fallback image */}
+      <div className="w-full bg-black min-h-[calc(100vw*9/16)] relative overflow-hidden">
         <div 
-          className="absolute inset-0 z-10 bg-black transition-opacity duration-500"
-          style={{ opacity: placeholderOpacity }}
+          className="w-full h-full" 
+          style={{ 
+            position: 'relative', 
+            paddingBottom: '56.25%',
+            overflow: 'hidden'
+          }}
         >
-          <ResponsiveImage
-            src={fallbackImageUrl}
-            alt="Video thumbnail"
-            className="w-full h-full object-cover"
-            onLoad={() => console.log('Fallback image loaded')}
-            onError={() => {
-              console.error('Fallback image failed to load, using default');
-              if (fallbackImageUrl !== defaultFallbackImage) {
-                const imgElement = document.querySelector('.bg-black img') as HTMLImageElement;
-                if (imgElement) {
-                  imgElement.src = defaultFallbackImage;
+          {/* Placeholder image shown until video loads or if there's an error */}
+          <div 
+            className="absolute inset-0 z-10 bg-black transition-opacity duration-500"
+            style={{ opacity: placeholderOpacity }}
+          >
+            <ResponsiveImage
+              src={fallbackImageUrl}
+              alt="Video thumbnail"
+              className="w-full h-full object-cover"
+              onLoad={() => console.log('Fallback image loaded')}
+              onError={() => {
+                console.error('Fallback image failed to load, using default');
+                // If the fallback image fails, use the default image
+                if (fallbackImageUrl !== defaultFallbackImage) {
+                  const imgElement = document.querySelector('.bg-black img') as HTMLImageElement;
+                  if (imgElement) {
+                    imgElement.src = defaultFallbackImage;
+                  }
                 }
-              }
+              }}
+            />
+            
+            {!videoError && !videoLoaded && (
+              <div className="absolute inset-0 flex items-center justify-center">
+                <div className="w-16 h-16 rounded-full bg-black/50 flex items-center justify-center">
+                  <div className="w-10 h-10 border-4 border-white border-t-transparent rounded-full animate-spin"></div>
+                </div>
+              </div>
+            )}
+          </div>
+          
+          {/* Vimeo container */}
+          <div 
+            ref={vimeoContainerRef}
+            className="absolute top-0 left-0 w-full h-full"
+            style={{
+              width: '100%', 
+              height: '100%', 
+              transform: 'scale(1.3)', 
+              transformOrigin: 'center center',
+              zIndex: 20
             }}
           />
-          
-          {!videoError && !videoLoaded && (
-            <div className="absolute inset-0 flex items-center justify-center">
-              <div className="w-16 h-16 rounded-full bg-black/50 flex items-center justify-center">
-                <div className="w-10 h-10 border-4 border-white border-t-transparent rounded-full animate-spin"></div>
-              </div>
-            </div>
-          )}
         </div>
-        
-        {/* Vimeo container with absolute positioning */}
-        <div 
-          ref={vimeoContainerRef}
-          className="absolute inset-0 z-20 w-full h-full"
-          style={{ 
-            transform: 'scale(1.3)',
-            transformOrigin: 'center center'
-          }}
-        />
       </div>
       
       {(title || subtitle) && (

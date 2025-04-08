@@ -7,7 +7,6 @@ import ChatInput from './ChatInput';
 import { useChatbot } from '@/hooks/useChatbot';
 import { Volume2, VolumeX, Mic, MicOff } from 'lucide-react';
 import { useBreakpoint } from '@/hooks/use-mobile';
-import { useLocation } from 'react-router-dom';
 
 // Custom event name for widget communication
 const WIDGET_TOGGLE_EVENT = 'ath-widget-toggle';
@@ -18,7 +17,6 @@ const ChatbotWidget = () => {
   const widgetRef = useRef<HTMLDivElement>(null);
   const breakpoint = useBreakpoint();
   const isMobileView = ['xs', 'sm'].includes(breakpoint);
-  const location = useLocation();
   
   const { 
     messages, 
@@ -38,7 +36,7 @@ const ChatbotWidget = () => {
     
     const viewportHeight = window.innerHeight;
     const widgetHeight = expanded ? widgetRef.current.offsetHeight : 40; // Approximate collapsed height
-    const bottomNavHeight = 60; // Approximate height of bottom navigation
+    const bottomNavHeight = 56; // Approximate height of bottom navigation
     
     // Calculate position to center the widget
     let topPosition = (viewportHeight - widgetHeight) / 2;
@@ -118,22 +116,11 @@ const ChatbotWidget = () => {
     }
   }, [expanded, messages.length, startListening, isListening, isSpeaking]);
 
-  // Check if we're on the landing page or home page
-  const isLandingOrHomePage = location.pathname === '/' || location.pathname === '/home';
-
-  // Don't show the chatbot widget on landing or home page
-  if (isLandingOrHomePage) {
-    return null;
-  }
-
   return (
     <div 
       ref={widgetRef}
-      className="fixed right-5 z-50 font-swiss transition-all duration-300 chatbot-widget"
-      style={{ 
-        position: 'fixed',
-        bottom: isMobileView ? '80px' : '20px' // Position above bottom nav on mobile
-      }}
+      className={`fixed ${isMobileView ? 'right-5' : 'bottom-20 right-5 md:bottom-5'} z-50 font-swiss transition-all duration-300`}
+      style={{ position: 'fixed' }}
     >
       <div className={`${expanded ? 'w-[320px] md:w-[350px] bg-white rounded-lg' : ''} 
         shadow-lg overflow-hidden transition-all duration-300 ease-in-out`}>

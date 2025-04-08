@@ -50,13 +50,11 @@ const HomePage = () => {
   };
 
   return (
-    <div className="flex flex-col min-h-screen relative bg-black">
+    <div className="flex flex-col min-h-screen relative">
       <Header headerLogoOpacity={heroLogoOpacity} />
       
-      <main className="flex-grow main-content overflow-hidden">
-        <div className="hero-video-container">
-          <HeroVideoSection onLogoOpacityChange={handleLogoOpacityChange} />
-        </div>
+      <main className="flex-grow">
+        <HeroVideoSection onLogoOpacityChange={handleLogoOpacityChange} />
         
         <KeyFeaturesSection />
         

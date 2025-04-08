@@ -1,5 +1,4 @@
-
-import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { Toaster } from "@/components/ui/sonner";
 import { LanguageProvider } from './contexts/LanguageContext';
 import { ProfileProvider } from './contexts/ProfileContext';
@@ -100,7 +99,7 @@ function AppContent() {
   const isMobile = useIsMobile();
   
   return (
-    <div className="flex flex-col min-h-screen relative">
+    <div>
       <Routes>
         <Route path="/" element={<LandingPage />} />
         <Route path="/home" element={<HomePage />} />
