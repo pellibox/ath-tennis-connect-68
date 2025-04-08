@@ -98,7 +98,7 @@ const LandingPage = () => {
   return <div className="flex flex-col min-h-screen relative bg-black">
       <EmptyHeader headerText="" />
       
-      <main className="flex-grow px-[4px] mx-0 my-0 py-[19px]">
+      <main className="flex-grow py-[22px] px-[4px] mx-0 my-0">
         <div className="w-full bg-black min-h-[calc(100vw*9/16)] relative">
           <div className="absolute top-0 left-1/2 transform -translate-x-1/2 mt-5 z-30 pointer-events-none">
             <img src="/lovable-uploads/a00875f9-6335-4f8b-81c4-029183b59eec.png" alt="ATH - Advanced Tennis Hub" className={`object-contain ${isMobile ? 'w-[120px]' : 'w-[200px]'}`} />
