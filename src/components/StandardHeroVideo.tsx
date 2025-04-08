@@ -200,7 +200,8 @@ const StandardHeroVideo = ({
         </div>
       )}
       
-      <div className="w-full bg-black min-h-[calc(100vw*9/16)] relative overflow-hidden">
+      {/* Improved video container with proper aspect ratio */}
+      <div className="w-full bg-black relative overflow-hidden" style={{ minHeight: "60vh" }}>
         <div 
           className="w-full h-full" 
           style={{ 
@@ -240,7 +241,7 @@ const StandardHeroVideo = ({
             )}
           </div>
           
-          {/* Vimeo container */}
+          {/* Vimeo container with improved positioning */}
           <div 
             ref={vimeoContainerRef}
             className="absolute top-0 left-0 w-full h-full"

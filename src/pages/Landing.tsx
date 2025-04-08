@@ -1,3 +1,4 @@
+
 import { useState, useEffect } from 'react';
 import { useProfile } from '@/contexts/ProfileContext';
 import { getVimeoEmbed } from '@/utils/videoUtils';
@@ -120,7 +121,8 @@ const LandingPage = () => {
       <EmptyHeader headerText="" />
       
       <main className="flex-grow flex flex-col">
-        <div className="w-full bg-black relative flex-shrink-0" style={{ height: isMobile ? 'calc(100vh - 170px)' : 'calc(100vh - 230px)' }}>
+        {/* Hero Video Container - Fixed height to ensure visibility */}
+        <div className="w-full bg-black relative" style={{ height: 'calc(100vh - 150px)' }}>
           <div className="absolute top-0 left-1/2 transform -translate-x-1/2 mt-5 z-30 pointer-events-none">
             <img 
               src="/lovable-uploads/a00875f9-6335-4f8b-81c4-029183b59eec.png" 
@@ -129,10 +131,14 @@ const LandingPage = () => {
             />
           </div>
           
-          <div dangerouslySetInnerHTML={{ __html: vimeoEmbed }} />
+          {/* Vimeo player container with positioning improvements */}
+          <div className="absolute inset-0 w-full h-full overflow-hidden">
+            <div dangerouslySetInnerHTML={{ __html: vimeoEmbed }} />
+          </div>
         </div>
         
-        <div className="w-full bg-black py-6 flex-shrink-0 border-t border-gray-800">
+        {/* Button and content section */}
+        <div className="w-full bg-black py-6 border-t border-gray-800">
           <div className="container mx-auto px-4 text-center">
             <h2 className="text-white text-xl md:text-2xl font-swiss uppercase mb-6">
               IL FUTURO DEL TUO TENNIS INIZIA QUI.

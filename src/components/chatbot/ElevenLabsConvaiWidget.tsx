@@ -18,7 +18,7 @@ const WIDGET_POSITION_KEY = 'ath-elevenlabs-widget-position';
 const DEFAULT_MOBILE_POSITION = { top: 'auto', left: '20px', bottom: '70px', right: 'auto' };
 const DEFAULT_DESKTOP_POSITION = { top: '20px', left: '20px', bottom: 'auto', right: 'auto' };
 
-const LANDING_PAGE_POSITION = { top: 'auto', left: '20px', bottom: '170px', right: 'auto' };
+const LANDING_PAGE_POSITION = { top: 'auto', left: '20px', bottom: '80px', right: 'auto' };
 
 const ElevenLabsConvaiWidget = () => {
   const { language, t } = useLanguage();
@@ -132,7 +132,7 @@ const ElevenLabsConvaiWidget = () => {
       if (window.innerWidth < 768) {
         if (widget instanceof HTMLElement) {
           const homePageOffset = isHomePage ? 60 : 0;
-          const landingPageOffset = isLandingPage ? 100 : 0;
+          const landingPageOffset = isLandingPage ? 20 : 0;
           widget.style.transform = `translateY(-${70 + homePageOffset + landingPageOffset}px)`;
         }
         
@@ -143,12 +143,12 @@ const ElevenLabsConvaiWidget = () => {
         
         if (wrapper) {
           const homePageOffset = isHomePage ? 60 : 0;
-          const landingPageOffset = isLandingPage ? 100 : 0;
+          const landingPageOffset = isLandingPage ? 20 : 0;
           wrapper.style.transform = `translateY(-${70 + homePageOffset + landingPageOffset}px)`;
           
           const bottomNavHeight = 56;
           const additionalPadding = 14;
-          const pageOffset = isHomePage ? 60 : (isLandingPage ? 100 : 0);
+          const pageOffset = isHomePage ? 60 : (isLandingPage ? 20 : 0);
           wrapper.style.bottom = `${bottomNavHeight + additionalPadding + pageOffset}px`;
         }
       } else {

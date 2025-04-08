@@ -26,13 +26,15 @@ const HeroVideoSection = ({ onLogoOpacityChange }: { onLogoOpacityChange?: (opac
   };
   
   return (
-    <StandardHeroVideo 
-      vimeoEmbed={getVideoEmbed()}
-      title="ADVANCED TENNIS HUB:"
-      subtitle={getWelcomeMessage(userType)}
-      onLogoOpacityChange={onLogoOpacityChange}
-      posterImage={getPosterImage()}
-    />
+    <div className="w-full">
+      <StandardHeroVideo 
+        vimeoEmbed={getVideoEmbed()}
+        title="ADVANCED TENNIS HUB:"
+        subtitle={getWelcomeMessage(userType)}
+        onLogoOpacityChange={onLogoOpacityChange}
+        posterImage={getPosterImage()}
+      />
+    </div>
   );
 };
 
