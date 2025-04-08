@@ -8,7 +8,6 @@ import EmptyHeader from '@/components/EmptyHeader';
 import EmptyFooter from '@/components/EmptyFooter';
 import { useNavigate } from 'react-router-dom';
 import ResponsiveImage from '@/components/ResponsiveImage';
-
 const getUserGenderText = (gender: string | null): string => {
   switch (gender) {
     case 'male':
@@ -19,7 +18,6 @@ const getUserGenderText = (gender: string | null): string => {
       return '';
   }
 };
-
 const getUserTypeText = (type: string | null): string => {
   switch (type) {
     case 'junior':
@@ -40,7 +38,6 @@ const getUserTypeText = (type: string | null): string => {
       return '';
   }
 };
-
 const getSportText = (sport: string | null): string => {
   switch (sport) {
     case 'tennis':
@@ -55,7 +52,6 @@ const getSportText = (sport: string | null): string => {
       return '';
   }
 };
-
 const getPersonalizedContentText = (gender: string | null, type: string | null, sport: string | null): {
   first: string;
   second: string;
@@ -69,7 +65,6 @@ const getPersonalizedContentText = (gender: string | null, type: string | null, 
     second: 'Clicca su ENTRA IN ATH per continuare.'
   };
 };
-
 const LandingPage = () => {
   const {
     userGender,
@@ -83,105 +78,66 @@ const LandingPage = () => {
   const isMobile = useIsMobile();
   const navigate = useNavigate();
   const vimeoEmbed = getVimeoEmbed(userGender, userType, true, false, sport);
-
   const handleProfileComplete = (gender: any, type: any, sportType: any) => {
     updateProfile(gender, type, sportType);
     setDialogOpen(false);
   };
-
   const hasProfile = Boolean(userGender && userType);
   const personalizedContent = getPersonalizedContentText(userGender, userType, sport);
-
   const renderButtons = () => {
-    return (
-      <div className="flex flex-wrap justify-center gap-6">
-        {!hasProfile && (
-          <ButtonLink 
-            href="#" 
-            variant="athOutline" 
-            onClick={() => setDialogOpen(true)}
-            className="text-lg px-8 py-2.5 rounded-md border border-ath-clay text-ath-clay hover:bg-ath-clay hover:text-white transition-all font-bold"
-          >
+    return <div className="flex flex-wrap justify-center gap-6">
+        {!hasProfile && <ButtonLink href="#" variant="athOutline" onClick={() => setDialogOpen(true)} className="text-lg px-8 py-2.5 rounded-md border border-ath-clay text-ath-clay hover:bg-ath-clay hover:text-white transition-all font-bold">
             DIMMI CHI SEI
-          </ButtonLink>
-        )}
+          </ButtonLink>}
         
-        <ButtonLink 
-          href="/home" 
-          variant="athOutline"
-          className="text-lg px-8 py-2.5 rounded-md border border-ath-clay text-ath-clay hover:bg-ath-clay hover:text-white transition-all font-bold"
-        >
+        <ButtonLink href="/home" variant="athOutline" className="text-lg px-8 py-2.5 rounded-md border border-ath-clay text-ath-clay hover:bg-ath-clay hover:text-white transition-all font-bold">
           ENTRA IN ATH
         </ButtonLink>
-      </div>
-    );
+      </div>;
   };
-
-  return (
-    <div className="flex flex-col min-h-screen relative bg-black">
+  return <div className="flex flex-col min-h-screen relative bg-black">
       <EmptyHeader headerText="" />
       
-      <main className="flex-grow">
+      <main className="flex-grow py-[22px] px-[4px] mx-0 my-0">
         <div className="w-full bg-black min-h-[calc(100vw*9/16)] relative">
           <div className="absolute top-0 left-1/2 transform -translate-x-1/2 mt-5 z-30 pointer-events-none">
-            <img 
-              src="/lovable-uploads/a00875f9-6335-4f8b-81c4-029183b59eec.png" 
-              alt="ATH - Advanced Tennis Hub" 
-              className={`object-contain ${isMobile ? 'w-[120px]' : 'w-[200px]'}`} 
-            />
+            <img src="/lovable-uploads/a00875f9-6335-4f8b-81c4-029183b59eec.png" alt="ATH - Advanced Tennis Hub" className={`object-contain ${isMobile ? 'w-[120px]' : 'w-[200px]'}`} />
           </div>
           
-          {!isMobile && (
-            <div 
-              className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-30 flex flex-col justify-center items-center pointer-events-none" 
-              style={{ marginTop: "20px" }}
-            >
+          {!isMobile && <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-30 flex flex-col justify-center items-center pointer-events-none" style={{
+          marginTop: "20px"
+        }}>
               <h2 className="text-white text-xl mt-4 font-swiss uppercase">
                 IL FUTURO DEL TUO TENNIS INIZIA QUI.
               </h2>
               <div className="mt-6 pointer-events-auto">
                 {renderButtons()}
               </div>
-            </div>
-          )}
+            </div>}
           
-          <div dangerouslySetInnerHTML={{ __html: vimeoEmbed }} />
+          <div dangerouslySetInnerHTML={{
+          __html: vimeoEmbed
+        }} />
         </div>
         
-        {isMobile && (
-          <div className="w-full bg-black py-6 pointer-events-auto pb-16">
+        {isMobile && <div className="w-full bg-black py-6 pointer-events-auto pb-16">
             <div className="container mx-auto px-4">
               <h2 className="text-white text-base text-center font-swiss uppercase mb-4">
                 IL FUTURO DEL TUO TENNIS INIZIA QUI.
               </h2>
               {renderButtons()}
               
-              {hasProfile && (
-                <div className="mt-4 text-white bg-black bg-opacity-70 p-3 rounded-md text-center">
+              {hasProfile && <div className="mt-4 text-white bg-black bg-opacity-70 p-3 rounded-md text-center">
                   <p className="font-swiss text-[10px] truncate max-w-full">{personalizedContent.first}</p>
                   <p className="font-swiss text-[10px] truncate max-w-full">{personalizedContent.second}</p>
-                </div>
-              )}
+                </div>}
             </div>
-          </div>
-        )}
+          </div>}
       </main>
       
       <EmptyFooter />
       
-      <ProfileDialog 
-        open={dialogOpen} 
-        setOpen={setDialogOpen} 
-        userGender={userGender} 
-        userType={userType} 
-        sport={sport} 
-        updateProfile={handleProfileComplete} 
-        resetProfile={resetProfile} 
-        deleteProfile={deleteProfile} 
-        showTrigger={false} 
-      />
-    </div>
-  );
+      <ProfileDialog open={dialogOpen} setOpen={setDialogOpen} userGender={userGender} userType={userType} sport={sport} updateProfile={handleProfileComplete} resetProfile={resetProfile} deleteProfile={deleteProfile} showTrigger={false} />
+    </div>;
 };
-
 export default LandingPage;
