@@ -111,13 +111,11 @@
     -webkit-text-size-adjust: 100%;
   }
 
-  /* Add padding to the bottom of the page on mobile to account for bottom navigation */
   @media (max-width: 1023px) {
     main, .main-content {
       padding-bottom: 3.5rem; /* Reduced padding from 5rem to 3.5rem (56px) */
     }
     
-    /* Adjust footer to account for bottom navigation bar */
     footer {
       padding-bottom: 3.5rem; /* Reduced padding from 5rem to 3.5rem (56px) */
     }
@@ -146,7 +144,6 @@
       min-width: 44px;
     }
 
-    /* Reduce caption text size under videos by 2 points on mobile */
     .vimeo-container + p,
     video + p,
     iframe + p,
@@ -155,7 +152,6 @@
       font-size: 0.875rem; /* 14px, reduced from 16px */
     }
     
-    /* Direct styling for ElevenLabs Convai widget on mobile */
     elevenlabs-convai {
       position: fixed !important;
       bottom: 60px !important; /* Reduced from 80px to 60px to match new bottom nav height */
@@ -185,6 +181,26 @@
   left: 0;
   width: 100% !important;
   height: 100% !important;
+}
+
+.landing-vimeo-container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.landing-vimeo-container iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100% !important;
+  height: 100% !important;
+}
+
+.landing-vimeo-container > div {
+  position: relative !important;
+  height: 100% !important;
+  padding: 0 !important;
 }
 
 .bg-ath-gray {
@@ -381,12 +397,10 @@
   opacity: 0;
 }
 
-/* Custom styling for ElevenLabs widget iframe to adjust positioning */
 .elevenlabs-widget-container iframe {
   max-height: 500px;
 }
 
-/* Ensure floating elements like the chat widget don't overlap with bottom navigation */
 @media (max-width: 768px) {
   .elevenlabs-widget-container {
     transform: none !important;

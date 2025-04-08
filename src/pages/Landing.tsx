@@ -107,7 +107,7 @@ const LandingPage = () => {
       
       <main className="flex-grow px-0 py-0 mx-0 my-0">
         <div className="w-full bg-black relative" style={{
-          height: isMobile ? 'calc(100vh - 70px)' : '100vh'
+          height: isMobile ? 'calc(100vh - 60px)' : '100vh'
         }}>
           <div className="absolute top-0 left-1/2 transform -translate-x-1/2 mt-3 z-30 pointer-events-none">
             <img src="/lovable-uploads/a00875f9-6335-4f8b-81c4-029183b59eec.png" alt="ATH - Advanced Tennis Hub" className={`object-contain ${isMobile ? 'w-[100px]' : 'w-[200px]'}`} />
@@ -124,9 +124,7 @@ const LandingPage = () => {
               </div>
             </div>}
           
-          <div className="vimeo-container h-full w-full overflow-hidden" style={{
-            transform: isMobile ? 'scale(1.2)' : 'none'
-          }} dangerouslySetInnerHTML={{
+          <div className="landing-vimeo-container h-full w-full overflow-hidden" dangerouslySetInnerHTML={{
             __html: vimeoEmbed
           }} />
         </div>
