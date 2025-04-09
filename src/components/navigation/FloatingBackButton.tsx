@@ -28,7 +28,7 @@ const FloatingBackButton = () => {
     <button
       onClick={handleGoBack}
       className={cn(
-        "fixed left-3 top-1/2 -translate-y-1/2 z-40 w-10 h-10",
+        "fixed left-3 top-1/2 -translate-y-1/2 z-40 w-10 h-10", // Ensures center-left positioning
         "flex items-center justify-center rounded-full",
         "bg-white/70 backdrop-blur-sm shadow-md",
         "transition-all duration-200 hover:bg-white/90"
