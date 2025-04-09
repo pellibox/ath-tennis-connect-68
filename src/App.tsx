@@ -5,7 +5,6 @@ import { ProfileProvider } from './contexts/ProfileContext';
 import { AuthProvider } from './contexts/AuthContext';
 import { useIsMobile } from './hooks/use-mobile';
 import ProtectedRoute from './components/ProtectedRoute';
-import FloatingBackButton from './components/navigation/FloatingBackButton';
 
 // Pages
 import LandingPage from '@/pages/Landing';
@@ -197,8 +196,6 @@ function AppContent() {
       </Routes>
 
       <ElevenLabsConvaiWidget />
-      
-      <FloatingBackButton />
       
       {isMobile && <BottomNavigation />}
       

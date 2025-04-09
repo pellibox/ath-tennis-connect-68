@@ -28,14 +28,15 @@ const FloatingBackButton = () => {
     <button
       onClick={handleGoBack}
       className={cn(
-        "fixed left-3 top-1/2 -translate-y-1/2 z-40 w-10 h-10", // Ensures center-left positioning
+        "fixed left-3 top-1/2 -translate-y-1/2 z-10", // Lower z-index to prevent overlapping with content
         "flex items-center justify-center rounded-full",
         "bg-white/70 backdrop-blur-sm shadow-md",
-        "transition-all duration-200 hover:bg-white/90"
+        "transition-all duration-200 hover:bg-white/90",
+        "w-8 h-8" // Smaller button size
       )}
       aria-label="Go back"
     >
-      <ChevronLeft size={24} className="text-ath-clay" />
+      <ChevronLeft size={20} className="text-ath-clay" />
     </button>
   );
 };
