@@ -5,7 +5,6 @@ import { ProfileProvider } from './contexts/ProfileContext';
 import { AuthProvider } from './contexts/AuthContext';
 import { useIsMobile } from './hooks/use-mobile';
 import ProtectedRoute from './components/ProtectedRoute';
-import FloatingBackButton from './components/navigation/FloatingBackButton';
 
 // Pages
 import LandingPage from '@/pages/Landing';
@@ -110,13 +109,16 @@ function AppContent() {
         <Route path="/facilities" element={<FacilitiesPage />} />
         <Route path="/coaches" element={<CoachesPage />} />
         
+        {/* Programs routes */}
         <Route path="/programs" element={<ProgramsPage />} />
         <Route path="/padel" element={<PadelPage />} />
         <Route path="/pickleball" element={<PickleballPage />} />
         <Route path="/touchtennis" element={<TouchTennisPage />} />
         
+        {/* Public Knowledge Base route - accessible without login */}
         <Route path="/site-knowledge" element={<SiteKnowledge />} />
         
+        {/* Program detail routes */}
         <Route path="/programs/performance-2" element={<Performance2Program />} />
         <Route path="/programs/performance-3" element={<Performance3Program />} />
         <Route path="/programs/performance-4" element={<Performance4Program />} />
@@ -135,15 +137,18 @@ function AppContent() {
         <Route path="/programs/professionals" element={<ProfessionalsProgram />} />
         <Route path="/programs/performance-analysis" element={<PerformanceAnalysisProgram />} />
         
+        {/* Padel dedicated program routes */}
         <Route path="/programs/padel-kids" element={<PadelKidsProgram />} />
         <Route path="/programs/padel-adult" element={<PadelAdultProgram />} />
         <Route path="/programs/padel-advanced" element={<PadelAdvancedProgram />} />
         <Route path="/programs/padel-private" element={<PadelPrivateProgram />} />
         
+        {/* TouchTennis dedicated program routes */}
         <Route path="/programs/touchtennis-base" element={<TouchTennisBaseProgram />} />
         <Route path="/programs/touchtennis-avanzato" element={<TouchTennisAdvancedProgram />} />
         <Route path="/programs/touchtennis-junior" element={<TouchTennisJuniorProgram />} />
         
+        {/* Authentication routes */}
         <Route path="/auth/login" element={<Login />} />
         <Route path="/auth/register" element={<Register />} />
         <Route path="/auth/forgot-password" element={<ForgotPassword />} />
@@ -151,6 +156,7 @@ function AppContent() {
         <Route path="/auth/success" element={<RegistrationSuccess />} />
         <Route path="/unauthorized" element={<Unauthorized />} />
         
+        {/* Admin routes - protected */}
         <Route path="/admin" element={
           <ProtectedRoute requireEditor>
             <Dashboard />
@@ -196,10 +202,10 @@ function AppContent() {
         <Route path="*" element={<NotFoundPage />} />
       </Routes>
 
+      {/* ElevenLabs Convai widget - always present regardless of route */}
       <ElevenLabsConvaiWidget />
       
-      <FloatingBackButton />
-      
+      {/* Add BottomNavigation for mobile view */}
       {isMobile && <BottomNavigation />}
       
       <Toaster position="bottom-right" />
