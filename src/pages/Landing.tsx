@@ -7,7 +7,7 @@ import ButtonLink from '@/components/ButtonLink';
 import { useIsMobile } from '@/hooks/use-mobile';
 import EmptyHeader from '@/components/EmptyHeader';
 import EmptyFooter from '@/components/EmptyFooter';
-import { useNavigate } from 'react-router-dom';
+import LandingPageWidget from '@/components/chatbot/LandingPageWidget';
 import ResponsiveImage from '@/components/ResponsiveImage';
 
 const getUserGenderText = (gender: string | null): string => {
@@ -78,7 +78,6 @@ const LandingPage = () => {
   const { userGender, userType, sport, updateProfile, resetProfile, deleteProfile } = useProfile();
   const [dialogOpen, setDialogOpen] = useState(false);
   const isMobile = useIsMobile();
-  const navigate = useNavigate();
   
   const vimeoEmbed = getVimeoEmbed(userGender, userType, true, false, sport);
 
@@ -152,6 +151,11 @@ const LandingPage = () => {
               <div className="mt-6 pointer-events-auto">
                 {renderButtons()}
               </div>
+              
+              {/* Add the custom widget below the buttons on desktop */}
+              <div className="mt-8 pointer-events-auto">
+                <LandingPageWidget />
+              </div>
             </div>
           )}
           
@@ -172,6 +176,9 @@ const LandingPage = () => {
                   <p className="font-swiss text-[10px] truncate max-w-full">{personalizedContent.second}</p>
                 </div>
               )}
+              
+              {/* Add the custom widget below the buttons on mobile */}
+              <LandingPageWidget />
             </div>
           </div>
         )}

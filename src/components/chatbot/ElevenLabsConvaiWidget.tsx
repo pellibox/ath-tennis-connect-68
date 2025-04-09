@@ -8,8 +8,9 @@ import { GripVertical } from 'lucide-react';
 const WIDGET_TOGGLE_EVENT = 'ath-widget-toggle';
 const AGENT_ID = "jJMZr28UE8hDLsO00dmt";
 
-// Storage key for widget position
+// Storage keys for widget position and state
 const WIDGET_POSITION_KEY = 'ath-elevenlabs-widget-position';
+const WIDGET_EXPANDED_KEY = 'ath-elevenlabs-widget-expanded';
 
 // Default positions for mobile and desktop
 const DEFAULT_MOBILE_POSITION = {
@@ -24,6 +25,7 @@ const DEFAULT_DESKTOP_POSITION = {
   bottom: 'auto',
   right: 'auto'
 };
+
 const ElevenLabsConvaiWidget = () => {
   const {
     language,
@@ -33,6 +35,15 @@ const ElevenLabsConvaiWidget = () => {
   const widgetInitialized = useRef(false);
   const isMobile = useIsMobile();
   const positionInitialized = useRef(false);
+  const [isExpanded, setIsExpanded] = useState(() => {
+    try {
+      // Try to restore expanded state from localStorage
+      const savedState = localStorage.getItem(WIDGET_EXPANDED_KEY);
+      return savedState ? JSON.parse(savedState) : false;
+    } catch (e) {
+      return false;
+    }
+  });
 
   // Position state
   const [position, setPosition] = useState(() => {
@@ -55,6 +66,15 @@ const ElevenLabsConvaiWidget = () => {
     top: 0,
     left: 0
   });
+
+  // Save expanded state to localStorage when it changes
+  useEffect(() => {
+    try {
+      localStorage.setItem(WIDGET_EXPANDED_KEY, JSON.stringify(isExpanded));
+    } catch (e) {
+      console.error("Failed to save widget expanded state to localStorage", e);
+    }
+  }, [isExpanded]);
 
   // MODIFICATO: Solo imposta la posizione predefinita la prima volta, non ogni volta che cambia lo stato mobile
   useEffect(() => {
@@ -85,7 +105,6 @@ const ElevenLabsConvaiWidget = () => {
     if (window.ElevenLabsConvai && !widgetInitialized.current) {
       window.ElevenLabsConvai.init({
         language: language || 'it',
-        // Default to Italian if no language is set
         usePublicAgents: true // Use public agents mode
       });
       widgetInitialized.current = true;
@@ -107,6 +126,11 @@ const ElevenLabsConvaiWidget = () => {
       widgetRef.current.setAttribute('language', language || 'it');
     }
   }, [language]);
+
+  // Toggle expanded state
+  const toggleExpanded = () => {
+    setIsExpanded(prev => !prev);
+  };
 
   // NEW: Use MutationObserver to adjust widget position
   useEffect(() => {
@@ -332,21 +356,27 @@ const ElevenLabsConvaiWidget = () => {
       document.removeEventListener('touchcancel', handleDragEnd);
     };
   }, [isDragging]);
+
   return <div ref={widgetRef} className="fixed z-50" style={{
     ...position,
     transition: isDragging ? 'none' : 'all 0.2s ease-in-out'
   }}>
       <div className="bg-white rounded-lg shadow-lg overflow-hidden transition-all duration-300 ease-in-out max-w-[350px] animate-fade-in relative">
         {/* Improved drag handle - more prominent and visible */}
-        <div className="absolute top-0 left-0 w-full h-8 bg-ath-clay flex items-center justify-center cursor-move z-[999]" onMouseDown={handleMouseDown} onTouchStart={handleTouchStart}>
+        <div 
+          className="absolute top-0 left-0 w-full h-8 bg-ath-clay flex items-center justify-center cursor-move z-[999]" 
+          onMouseDown={handleMouseDown} 
+          onTouchStart={handleTouchStart}
+          onClick={toggleExpanded}
+        >
           <GripVertical size={18} className="text-white" />
-          <span className="text-white text-xs ml-1">Trascina</span>
+          <span className="text-white text-xs ml-1">{isExpanded ? 'Chiudi' : 'Trascina'}</span>
         </div>
         
         <TooltipProvider>
           <Tooltip>
             <TooltipTrigger asChild>
-              <div className="elevenlabs-widget-container max-h-[500px] max-w-[350px] pt-8">
+              <div className={`elevenlabs-widget-container max-w-[350px] pt-8 ${isExpanded ? 'max-h-[500px]' : 'max-h-[80px] overflow-hidden'}`}>
                 <elevenlabs-convai agent-id={AGENT_ID} language={language || 'it'} className="py-0 my-[240px]"></elevenlabs-convai>
               </div>
             </TooltipTrigger>
@@ -358,4 +388,5 @@ const ElevenLabsConvaiWidget = () => {
       </div>
     </div>;
 };
+
 export default ElevenLabsConvaiWidget;
