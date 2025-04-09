@@ -1,4 +1,5 @@
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+
+import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
 import { Toaster } from "@/components/ui/sonner";
 import { LanguageProvider } from './contexts/LanguageContext';
 import { ProfileProvider } from './contexts/ProfileContext';
@@ -97,6 +98,10 @@ function App() {
 
 function AppContent() {
   const isMobile = useIsMobile();
+  const location = useLocation();
+  
+  // Check if current route is landing page
+  const isLandingPage = location.pathname === '/';
   
   return (
     <div>
@@ -205,8 +210,8 @@ function AppContent() {
       {/* ElevenLabs Convai widget - always present regardless of route */}
       <ElevenLabsConvaiWidget />
       
-      {/* Add BottomNavigation for mobile view */}
-      {isMobile && <BottomNavigation />}
+      {/* Add BottomNavigation for mobile view - except on landing page */}
+      {isMobile && !isLandingPage && <BottomNavigation />}
       
       <Toaster position="bottom-right" />
     </div>
