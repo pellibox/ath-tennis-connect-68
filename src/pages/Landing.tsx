@@ -116,6 +116,20 @@ const LandingPage = () => {
     );
   };
 
+  // Set body background to black for this page only
+  useEffect(() => {
+    // Save original background
+    const originalBackground = document.body.style.background;
+    document.body.style.background = '#000';
+    document.documentElement.style.background = '#000';
+    
+    // Cleanup when component unmounts
+    return () => {
+      document.body.style.background = originalBackground;
+      document.documentElement.style.background = '';
+    };
+  }, []);
+
   return (
     <div className="flex flex-col min-h-screen bg-black">
       <EmptyHeader headerText="" />

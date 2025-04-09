@@ -8,7 +8,7 @@ interface EmptyFooterProps {
 
 const EmptyFooter: React.FC<EmptyFooterProps> = ({ className }) => {
   return (
-    <footer className={cn("flex justify-center items-center py-2", className)}>
+    <footer className={cn("flex justify-center items-center py-0", className)}>
       {/* Empty footer with no content */}
     </footer>
   );
