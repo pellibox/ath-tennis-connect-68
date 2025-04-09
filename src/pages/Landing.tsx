@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from 'react';
 import { useProfile } from '@/contexts/ProfileContext';
 import { getVimeoEmbed } from '@/utils/videoUtils';
@@ -187,4 +186,3 @@ const LandingPage = () => {
 };
 
 export default LandingPage;
-

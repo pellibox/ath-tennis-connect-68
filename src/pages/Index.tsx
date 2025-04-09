@@ -9,7 +9,6 @@ import ContactSection from '@/components/ContactSection';
 import HeroVideoSection from '@/components/home/HeroVideoSection';
 import KeyFeaturesSection from '@/components/home/KeyFeaturesSection';
 import TrainingMethodsSection from '@/components/home/TrainingMethodsSection';
-import FloatingBackButton from '@/components/navigation/FloatingBackButton';
 
 const HomePage = () => {
   const isMobile = useIsMobile();
@@ -53,7 +52,6 @@ const HomePage = () => {
   return (
     <div className="flex flex-col min-h-screen relative">
       <Header headerLogoOpacity={heroLogoOpacity} />
-      <FloatingBackButton />
       
       <main className="flex-grow">
         <HeroVideoSection onLogoOpacityChange={handleLogoOpacityChange} />
