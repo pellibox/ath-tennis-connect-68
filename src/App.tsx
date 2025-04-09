@@ -1,3 +1,4 @@
+
 import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
 import { Toaster } from "@/components/ui/sonner";
 import { LanguageProvider } from './contexts/LanguageContext';
@@ -6,6 +7,7 @@ import { AuthProvider } from './contexts/AuthContext';
 import { useIsMobile } from './hooks/use-mobile';
 import ProtectedRoute from './components/ProtectedRoute';
 import ElevenLabsConvaiWidget from '@/components/chatbot/ElevenLabsConvaiWidget';
+import BottomNavigation from '@/components/navigation/BottomNavigation';
 
 // Pages
 import LandingPage from '@/pages/Landing';
