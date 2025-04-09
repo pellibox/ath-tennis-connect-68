@@ -1,8 +1,8 @@
 
 const EmptyFooter = () => {
   return (
-    <footer className="bg-black py-0 h-0">
-      <div className="container mx-auto px-0"></div>
+    <footer className="bg-black py-8">
+      <div className="container mx-auto px-4"></div>
     </footer>
   );
 };
