@@ -66,9 +66,9 @@ const LandingPageWidget = () => {
         onClick={toggleWidget}
       >
         {/* White border button with phone icon and text */}
-        <div className="flex items-center justify-center space-x-2 rounded-full py-2 px-4 w-full">
-          <Phone size={18} className="text-white" />
-          <span className="text-white font-bold text-base whitespace-nowrap">Chiedi a Vicki</span>
+        <div className="flex items-center justify-center space-x-2 rounded-full py-3 px-6 w-full text-base">
+          <Phone size={16} className="text-white" />
+          <span className="text-white font-bold whitespace-nowrap">Chiedi a Vicki</span>
         </div>
       </div>
       
