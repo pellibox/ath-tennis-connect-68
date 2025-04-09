@@ -117,10 +117,10 @@ const LandingPage = () => {
   };
 
   return (
-    <div className="flex flex-col min-h-screen relative bg-black">
+    <div className="flex flex-col min-h-screen bg-black">
       <EmptyHeader headerText="" />
       
-      <main className="flex-grow">
+      <main className="flex-grow bg-black">
         <div className="w-full bg-black min-h-[calc(100vw*9/16)] relative">
           <div className="absolute top-0 left-1/2 transform -translate-x-1/2 mt-5 z-30 pointer-events-none">
             <img 
@@ -161,15 +161,9 @@ const LandingPage = () => {
             </div>
           </div>
         )}
-        
-        <div className="w-full bg-black py-16 relative" style={{ height: 'auto', minHeight: '400px' }}>
-          <div className="max-w-6xl mx-auto px-6 h-full flex flex-col justify-center py-8">
-            {/* Content can be added here if needed */}
-          </div>
-        </div>
       </main>
       
-      <EmptyFooter />
+      <EmptyFooter className="bg-black" />
       
       <ProfileDialog 
         open={dialogOpen}
@@ -187,4 +181,3 @@ const LandingPage = () => {
 };
 
 export default LandingPage;
-
