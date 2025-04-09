@@ -62,11 +62,11 @@ const LandingPageWidget = () => {
     <div className="w-full flex flex-col items-center mt-8">
       {/* Button container */}
       <div 
-        className="relative rounded-full py-3 shadow-md flex items-center justify-center cursor-pointer w-full max-w-[200px]"
+        className="relative rounded-full py-3 shadow-md flex items-center justify-center cursor-pointer w-full max-w-[200px] border border-white bg-transparent hover:bg-white/10 transition-all duration-300"
         onClick={toggleWidget}
       >
-        {/* Black pill button with phone icon and text */}
-        <div className="flex items-center justify-center space-x-2 bg-black rounded-full py-2 px-4 w-full">
+        {/* White border button with phone icon and text */}
+        <div className="flex items-center justify-center space-x-2 rounded-full py-2 px-4 w-full">
           <Phone size={18} className="text-white" />
           <span className="text-white font-bold text-base whitespace-nowrap">Chiedi a Vicki</span>
         </div>
