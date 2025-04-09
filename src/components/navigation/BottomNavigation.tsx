@@ -62,28 +62,28 @@ const BottomNavigation = () => {
         showTrigger={false}
       />
       
-      <div className="fixed bottom-0 left-0 right-0 bg-white shadow-[0_-4px_10px_rgba(0,0,0,0.1)] z-50 lg:hidden">
+      <div className="fixed bottom-0 left-0 right-0 bg-white shadow-[0_-2px_10px_rgba(0,0,0,0.05)] z-40 lg:hidden">
         <div className="grid grid-cols-6 h-14">
           {navItems && navItems.map((item, index) => (
             <Link
               key={index}
               to={item.href}
               className={cn(
-                "flex flex-col items-center justify-center px-1 py-1 text-[10px] font-swiss",
+                "flex flex-col items-center justify-center px-1 py-2 text-[10px] font-swiss",
                 isActive(item.href) 
                   ? "text-ath-clay" 
                   : "text-gray-600"
               )}
             >
               {item.icon}
-              <span className="mt-0.5">{item.text}</span>
+              <span className="mt-1">{item.text}</span>
             </Link>
           ))}
           
           {/* Fixed profile button with gender-based styling */}
           <button
             onClick={() => setDialogOpen(true)}
-            className="flex flex-col items-center justify-center px-1 py-1 text-[10px] font-swiss"
+            className="flex flex-col items-center justify-center px-1 py-2 text-[10px] font-swiss"
             aria-label={t("profile.title")}
           >
             <div className={cn(
@@ -95,7 +95,7 @@ const BottomNavigation = () => {
                 className={getProfileIconColor()} 
               />
             </div>
-            <span className="mt-0.5 text-gray-600">{t("profile.title")}</span>
+            <span className="mt-1 text-gray-600">{t("profile.title")}</span>
           </button>
         </div>
       </div>

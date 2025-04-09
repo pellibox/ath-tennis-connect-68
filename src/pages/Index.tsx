@@ -53,7 +53,7 @@ const HomePage = () => {
     <div className="flex flex-col min-h-screen relative">
       <Header headerLogoOpacity={heroLogoOpacity} />
       
-      <main className="flex-grow main-content">
+      <main className="flex-grow">
         <HeroVideoSection onLogoOpacityChange={handleLogoOpacityChange} />
         
         <KeyFeaturesSection />
