@@ -28,6 +28,7 @@ const MobileMenu = ({ isOpen }: MobileMenuProps) => {
         'fixed inset-0 bg-white pt-24 px-8 flex-col lg:hidden transition-transform duration-300 ease-in-out z-50',
         isOpen ? 'translate-x-0 flex' : 'translate-x-full hidden'
       )}
+      style={{ position: 'fixed', bottom: 0, left: 0, right: 0, top: 0, zIndex: 1000 }}
     >
       {showBackButton && (
         <Button 
