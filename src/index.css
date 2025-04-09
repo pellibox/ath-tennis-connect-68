@@ -143,11 +143,6 @@
       font-size: 0.875rem; /* 14px, reduced from 16px */
     }
     
-    /* Ensure the floating back button doesn't interfere with bottom navigation */
-    .floating-back-button {
-      z-index: 39; /* Just below the bottom navigation's z-index of 40 */
-    }
-    
     /* NEW: Direct styling for ElevenLabs Convai widget on mobile */
     elevenlabs-convai {
       position: fixed !important;
