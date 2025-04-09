@@ -111,6 +111,16 @@
     -webkit-text-size-adjust: 100%;
   }
 
+  @media (max-width: 1023px) {
+    main, .main-content {
+      padding-bottom: 3.5rem;
+    }
+    
+    footer {
+      padding-bottom: 3.5rem;
+    }
+  }
+
   h1, h2, h3, h4, h5, h6 {
     font-family: 'Swiss721 BT', 'Inter', sans-serif;
   }
@@ -134,20 +144,18 @@
       min-width: 44px;
     }
 
-    /* Reduce caption text size under videos by 2 points on mobile */
     .vimeo-container + p,
     video + p,
     iframe + p,
     .video-container + p,
     .image-wrapper + p {
-      font-size: 0.875rem; /* 14px, reduced from 16px */
+      font-size: 0.875rem;
     }
     
-    /* NEW: Direct styling for ElevenLabs Convai widget on mobile */
     elevenlabs-convai {
       position: fixed !important;
-      bottom: 70px !important;
-      z-index: 9999 !important;
+      bottom: 60px !important;
+      z-index: 49 !important;
     }
   }
   
@@ -159,6 +167,45 @@
       padding-right: 1rem;
     }
   }
+}
+
+.vimeo-container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.vimeo-container iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100% !important;
+  height: 100% !important;
+}
+
+.landing-vimeo-container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.landing-vimeo-container iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100% !important;
+  height: 100% !important;
+}
+
+.landing-vimeo-container > div {
+  position: relative !important;
+  height: 100% !important;
+  padding: 0 !important;
+}
+
+.landing-vimeo-container iframe {
+  transform: scale(1.2);
+  transform-origin: center center;
 }
 
 .bg-ath-gray {
@@ -355,14 +402,13 @@
   opacity: 0;
 }
 
-/* Custom styling for ElevenLabs widget iframe to adjust positioning */
 .elevenlabs-widget-container iframe {
   max-height: 500px;
 }
 
-/* Ensure we're not applying conflicting transforms */
 @media (max-width: 768px) {
   .elevenlabs-widget-container {
     transform: none !important;
+    bottom: 60px !important;
   }
 }
