@@ -30,9 +30,32 @@ const LandingPageWidget = () => {
     }
   }, [language]);
 
-  // Toggle widget visibility
+  // Toggle widget visibility and initialize call
   const toggleWidget = () => {
-    setIsWidgetVisible(prev => !prev);
+    setIsWidgetVisible(prev => {
+      const newState = !prev;
+      
+      // If opening the widget, trigger the call after a short delay to ensure widget is rendered
+      if (newState) {
+        setTimeout(() => {
+          // Find the widget element and click its internal button if available
+          const widgetElement = document.querySelector('elevenlabs-convai');
+          if (widgetElement && widgetElement.shadowRoot) {
+            // Try to find the start call button in the shadow DOM
+            const startButton = widgetElement.shadowRoot.querySelector('button[aria-label="Start Call"]') ||
+                               widgetElement.shadowRoot.querySelector('button.call-button') ||
+                               widgetElement.shadowRoot.querySelector('button[class*="start-call"]');
+                               
+            if (startButton instanceof HTMLElement) {
+              startButton.click();
+              console.log('Automatically starting ElevenLabs call');
+            }
+          }
+        }, 500);
+      }
+      
+      return newState;
+    });
   };
 
   return (
@@ -49,12 +72,14 @@ const LandingPageWidget = () => {
         </div>
       </div>
       
-      <div 
-        ref={widgetRef} 
-        className={`elevenlabs-widget-container max-w-[350px] transition-all duration-300 ${isWidgetVisible ? 'block mt-4' : 'hidden'}`}
-      >
-        <elevenlabs-convai agent-id={AGENT_ID} language={language || 'it'} className="py-0 my-0"></elevenlabs-convai>
-      </div>
+      {isWidgetVisible && (
+        <div 
+          ref={widgetRef} 
+          className="elevenlabs-widget-container max-w-[350px] mt-4 animate-fade-in"
+        >
+          <elevenlabs-convai agent-id={AGENT_ID} language={language || 'it'} className="py-0 my-0"></elevenlabs-convai>
+        </div>
+      )}
     </div>
   );
 };
