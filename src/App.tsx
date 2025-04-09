@@ -1,4 +1,3 @@
-
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { Toaster } from "@/components/ui/sonner";
 import { LanguageProvider } from './contexts/LanguageContext';
@@ -197,8 +196,9 @@ function AppContent() {
         <Route path="*" element={<NotFoundPage />} />
       </Routes>
 
-      <FloatingBackButton />
       <ElevenLabsConvaiWidget />
+      
+      <FloatingBackButton />
       
       {isMobile && <BottomNavigation />}
       
