@@ -171,7 +171,7 @@ const StandardHeroVideo = ({
           <img src={logoImagePath} alt="ATH - Advanced Tennis Hub" className={`object-contain ${isMobile ? logoSize.mobile : logoSize.desktop}`} />
         </div>}
       
-      <div className="w-full bg-black min-h-[calc(100vw*9/16)] relative overflow-hidden py-[18px]">
+      <div className="w-full bg-black min-h-[calc(100vw*9/16)] relative overflow-hidden py-0">
         <div className="w-full h-full" style={{
         position: 'relative',
         paddingBottom: '56.25%',
