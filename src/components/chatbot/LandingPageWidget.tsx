@@ -63,7 +63,7 @@ const LandingPageWidget = () => {
       </div>
       
       {isWidgetVisible && <div ref={widgetRef} className="elevenlabs-widget-container max-w-[350px] mt-4 animate-fade-in">
-          <elevenlabs-convai agent-id={AGENT_ID} language={language || 'it'} className="py-0 my-0"></elevenlabs-convai>
+          <elevenlabs-convai agent-id={AGENT_ID} language={language || 'it'} className="my-[240px] mx-[38px] px-0 py-[240px]"></elevenlabs-convai>
         </div>}
     </div>;
 };
