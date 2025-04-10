@@ -1,9 +1,9 @@
 
 import React, { useEffect, useRef, useState } from 'react';
 import { useLanguage } from '@/contexts/LanguageContext';
-import { Phone } from 'lucide-react';
 import { toast } from '@/hooks/use-toast';
 import { Button } from '@/components/ui/button';
+import { GiArtificialIntelligence } from "react-icons/gi";
 
 const AGENT_ID = "jJMZr28UE8hDLsO00dmt";
 
@@ -13,6 +13,7 @@ const LandingPageWidget = () => {
   const [initAttempt, setInitAttempt] = useState(0);
   const widgetInitialized = useRef(false);
   const [isLoading, setIsLoading] = useState(false);
+  const [buttonClicked, setButtonClicked] = useState(false);
 
   // Initialize the widget when the component mounts
   useEffect(() => {
@@ -40,6 +41,7 @@ const LandingPageWidget = () => {
   const startElevenLabsCall = () => {
     console.log("Attempting to start ElevenLabs call...");
     setIsLoading(true);
+    setButtonClicked(true); // Set button to clicked state
     
     // Increment init attempt counter to trigger the useEffect
     setInitAttempt(prev => prev + 1);
@@ -53,6 +55,7 @@ const LandingPageWidget = () => {
         variant: "destructive"
       });
       setIsLoading(false);
+      setButtonClicked(false);
       return;
     }
     
@@ -61,6 +64,7 @@ const LandingPageWidget = () => {
     if (!widgetElement) {
       console.error("Could not find the ElevenLabs widget element");
       setIsLoading(false);
+      setButtonClicked(false);
       return;
     }
     
@@ -147,6 +151,7 @@ const LandingPageWidget = () => {
             variant: "destructive"
           });
           setIsLoading(false);
+          setButtonClicked(false);
         }
       }
     };
@@ -192,10 +197,10 @@ const LandingPageWidget = () => {
         onClick={startElevenLabsCall}
         disabled={isLoading}
         variant="outline"
-        className="relative rounded-full shadow-md flex items-center justify-center w-full max-w-[200px] border border-white bg-transparent hover:bg-white/10 hover:text-white transition-all duration-300 text-white font-bold"
+        className={`relative rounded-full shadow-md flex items-center justify-center w-full max-w-[200px] border border-white bg-transparent hover:bg-white/10 hover:text-white transition-all duration-300 text-white font-bold ${buttonClicked ? 'max-w-[60px] aspect-square p-0' : ''}`}
       >
-        <Phone size={16} className="mr-2" />
-        <span className="whitespace-nowrap">Chiedi a Vicki</span>
+        <GiArtificialIntelligence size={24} className={buttonClicked ? "" : "mr-2"} />
+        {!buttonClicked && <span className="whitespace-nowrap">Chiedi a Vicki</span>}
       </Button>
       
       {/* Hidden widget - not visible but still functional */}
