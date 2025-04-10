@@ -22,20 +22,34 @@ const LandingPageWidget = () => {
     if (window.ElevenLabsConvai && !widgetInitialized.current) {
       window.ElevenLabsConvai.init({
         language: language || 'it',
-        usePublicAgents: true, // Use public agents mode
-        onConnect: () => {
-          console.log("ElevenLabs connection established!");
-          setCallActive(true);
-          setConnectionError(false);
-        },
-        onDisconnect: () => {
-          console.log("ElevenLabs connection closed");
-          setCallActive(false);
-        },
-        onError: (error) => {
-          console.error("ElevenLabs connection error:", error);
-          setConnectionError(true);
-          setCallActive(false);
+        usePublicAgents: true // Use public agents mode
+      });
+      widgetInitialized.current = true;
+      console.log("ElevenLabs widget initialized with language:", language);
+    }
+  }, [language]);
+
+  // Setup connection monitoring
+  useEffect(() => {
+    // Define a function to check connection status
+    const checkConnectionStatus = () => {
+      if (!hiddenWidgetRef.current) return;
+      
+      const widgetElement = hiddenWidgetRef.current.querySelector('elevenlabs-convai');
+      if (widgetElement && widgetElement.shadowRoot) {
+        // Find active call elements in the shadow DOM
+        const activeCallIndicators = widgetElement.shadowRoot.querySelectorAll('.active-call, .call-active, [data-status="connected"]');
+        const errorElements = widgetElement.shadowRoot.querySelectorAll('.error-state, .connection-error, [data-status="error"]');
+        
+        setCallActive(activeCallIndicators.length > 0);
+        setConnectionError(errorElements.length > 0);
+        
+        if (activeCallIndicators.length > 0) {
+          console.log("ElevenLabs connection appears to be active");
+        }
+        
+        if (errorElements.length > 0) {
+          console.error("ElevenLabs connection appears to have an error");
           toast({
             title: "Errore di connessione",
             description: "Si è verificato un problema con la connessione. Riprova più tardi.",
@@ -44,11 +58,15 @@ const LandingPageWidget = () => {
           setIsLoading(false);
           setButtonClicked(false);
         }
-      });
-      widgetInitialized.current = true;
-      console.log("Landing page ElevenLabs widget initialized with language:", language);
-    }
-  }, [language]);
+      }
+    };
+    
+    // Setup interval to regularly check connection status
+    const connectionCheckInterval = setInterval(checkConnectionStatus, 1000);
+    
+    // Cleanup interval on unmount
+    return () => clearInterval(connectionCheckInterval);
+  }, []);
 
   // Update the language attribute when language changes
   useEffect(() => {
