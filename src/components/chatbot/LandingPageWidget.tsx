@@ -4,6 +4,7 @@ import { useLanguage } from '@/contexts/LanguageContext';
 import { toast } from '@/hooks/use-toast';
 import { Button } from '@/components/ui/button';
 import { GiArtificialIntelligence } from "react-icons/gi";
+import { XCircle } from "lucide-react";
 
 const AGENT_ID = "jJMZr28UE8hDLsO00dmt";
 
@@ -78,8 +79,59 @@ const LandingPageWidget = () => {
     }
   }, [language]);
   
+  // Function to stop the ElevenLabs call
+  const stopElevenLabsCall = () => {
+    console.log("Attempting to stop ElevenLabs call...");
+    
+    if (!hiddenWidgetRef.current) return;
+    
+    const widgetElement = hiddenWidgetRef.current.querySelector('elevenlabs-convai');
+    if (widgetElement && widgetElement.shadowRoot) {
+      // Try to find the close/stop button in the shadow DOM
+      const stopButtons = widgetElement.shadowRoot.querySelectorAll('button[aria-label="Close"], button[aria-label="Stop"], button[class*="close"], button[class*="stop"]');
+      
+      let buttonClicked = false;
+      stopButtons.forEach((button) => {
+        if (button instanceof HTMLElement) {
+          console.log("Found stop button:", button);
+          button.click();
+          buttonClicked = true;
+        }
+      });
+      
+      if (!buttonClicked) {
+        console.log("Could not find stop button, trying to reset the widget");
+        // If no button found, try to remove and recreate the widget
+        if (hiddenWidgetRef.current.contains(widgetElement)) {
+          hiddenWidgetRef.current.removeChild(widgetElement);
+          
+          // Reset states
+          setButtonClicked(false);
+          setCallActive(false);
+          widgetInitialized.current = false;
+          
+          // Reinitialize after a delay
+          setTimeout(() => {
+            if (window.ElevenLabsConvai) {
+              window.ElevenLabsConvai.init({
+                language: language || 'it',
+                usePublicAgents: true
+              });
+              widgetInitialized.current = true;
+            }
+          }, 500);
+        }
+      }
+    }
+  };
+  
   // Improved function to start the ElevenLabs call
   const startElevenLabsCall = () => {
+    if (callActive) {
+      stopElevenLabsCall();
+      return;
+    }
+    
     console.log("Attempting to start ElevenLabs call...");
     setIsLoading(true);
     setButtonClicked(true); // Set button to clicked state
@@ -237,18 +289,18 @@ const LandingPageWidget = () => {
 
   // Function to create the appropriate button class based on states
   const getButtonClasses = () => {
-    let baseClasses = "relative rounded-full shadow-md flex items-center justify-center w-full max-w-[200px] border border-white bg-transparent hover:bg-white/10 hover:text-white transition-all duration-300 text-white font-bold";
+    let baseClasses = "relative rounded-full shadow-md flex items-center justify-center w-full max-w-[200px] border border-ath-clay bg-transparent hover:bg-ath-clay hover:text-white transition-all duration-300 text-ath-clay font-bold";
     
     if (buttonClicked) {
       baseClasses += ' max-w-[70px] aspect-square p-0';
     }
     
     if (callActive) {
-      baseClasses += ' animate-pulse-soft';
+      baseClasses += ' animate-pulse-soft bg-ath-clay text-white';
     }
     
     if (connectionError) {
-      baseClasses += ' border-red-500 text-red-500';
+      baseClasses += ' border-red-500 text-red-500 hover:bg-red-500';
     }
     
     return baseClasses;
@@ -284,10 +336,18 @@ const LandingPageWidget = () => {
         className={getButtonClasses()}
       >
         <div className={`relative ${callActive ? 'icon-glow' : ''}`}>
-          <GiArtificialIntelligence 
-            size={getIconSize()} 
-            className={getIconClassName()}
-          />
+          {!callActive ? (
+            <GiArtificialIntelligence 
+              size={getIconSize()} 
+              className={getIconClassName()}
+            />
+          ) : (
+            <XCircle 
+              size={getIconSize()} 
+              className="text-white animate-pulse"
+              strokeWidth={2.5}
+            />
+          )}
           {isLoading && (
             <span className="absolute inset-0 flex items-center justify-center">
               <div className="w-full h-full animate-spin rounded-full border-b-2 border-white"></div>

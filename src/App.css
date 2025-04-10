@@ -1,3 +1,4 @@
+
 #root {
   max-width: 100%;
   margin: 0;
@@ -111,4 +112,21 @@
 
 .animate-fade-in {
   animation: fadeIn 0.3s ease-out;
+}
+
+/* New animations for the stop button */
+@keyframes pulse-red {
+  0% {
+    filter: drop-shadow(0 0 3px rgba(239, 68, 68, 0.7));
+  }
+  50% {
+    filter: drop-shadow(0 0 8px rgba(239, 68, 68, 0.9));
+  }
+  100% {
+    filter: drop-shadow(0 0 3px rgba(239, 68, 68, 0.7));
+  }
+}
+
+.icon-stop-glow {
+  animation: pulse-red 2s infinite ease-in-out;
 }
