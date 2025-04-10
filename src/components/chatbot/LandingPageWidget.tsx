@@ -1,3 +1,4 @@
+
 import React, { useEffect, useRef, useState } from 'react';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { toast } from '@/hooks/use-toast';
@@ -266,7 +267,7 @@ const LandingPageWidget = () => {
           ${buttonClicked ? 'max-w-[70px] aspect-square p-0' : 'max-w-[200px] w-full'}
           ${callActive 
             ? 'bg-ath-clay text-white border-white' 
-            : 'bg-transparent text-white border border-white hover:bg-white hover:text-ath-clay'}
+            : 'bg-transparent text-white border border-white hover:bg-ath-clay hover:text-white'}
           transition-all duration-300
           ${connectionError ? 'border-red-500 text-red-500 hover:bg-red-500' : ''}
         `}
