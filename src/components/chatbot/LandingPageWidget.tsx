@@ -1,4 +1,3 @@
-
 import React, { useEffect, useRef, useState } from 'react';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { toast } from '@/hooks/use-toast';
@@ -18,27 +17,23 @@ const LandingPageWidget = () => {
   const [callActive, setCallActive] = useState(false);
   const [connectionError, setConnectionError] = useState(false);
 
-  // Initialize the widget when the component mounts
   useEffect(() => {
     if (window.ElevenLabsConvai && !widgetInitialized.current) {
       window.ElevenLabsConvai.init({
         language: language || 'it',
-        usePublicAgents: true // Use public agents mode
+        usePublicAgents: true
       });
       widgetInitialized.current = true;
       console.log("ElevenLabs widget initialized with language:", language);
     }
   }, [language]);
 
-  // Setup connection monitoring
   useEffect(() => {
-    // Define a function to check connection status
     const checkConnectionStatus = () => {
       if (!hiddenWidgetRef.current) return;
       
       const widgetElement = hiddenWidgetRef.current.querySelector('elevenlabs-convai');
       if (widgetElement && widgetElement.shadowRoot) {
-        // Find active call elements in the shadow DOM
         const activeCallIndicators = widgetElement.shadowRoot.querySelectorAll('.active-call, .call-active, [data-status="connected"]');
         const errorElements = widgetElement.shadowRoot.querySelectorAll('.error-state, .connection-error, [data-status="error"]');
         
@@ -62,14 +57,11 @@ const LandingPageWidget = () => {
       }
     };
     
-    // Setup interval to regularly check connection status
     const connectionCheckInterval = setInterval(checkConnectionStatus, 1000);
     
-    // Cleanup interval on unmount
     return () => clearInterval(connectionCheckInterval);
   }, []);
 
-  // Update the language attribute when language changes
   useEffect(() => {
     if (hiddenWidgetRef.current) {
       const widgetElement = hiddenWidgetRef.current.querySelector('elevenlabs-convai');
@@ -79,7 +71,6 @@ const LandingPageWidget = () => {
     }
   }, [language]);
   
-  // Function to stop the ElevenLabs call
   const stopElevenLabsCall = () => {
     console.log("Attempting to stop ElevenLabs call...");
     
@@ -87,7 +78,6 @@ const LandingPageWidget = () => {
     
     const widgetElement = hiddenWidgetRef.current.querySelector('elevenlabs-convai');
     if (widgetElement && widgetElement.shadowRoot) {
-      // Try to find the close/stop button in the shadow DOM
       const stopButtons = widgetElement.shadowRoot.querySelectorAll('button[aria-label="Close"], button[aria-label="Stop"], button[class*="close"], button[class*="stop"]');
       
       let buttonClicked = false;
@@ -101,16 +91,13 @@ const LandingPageWidget = () => {
       
       if (!buttonClicked) {
         console.log("Could not find stop button, trying to reset the widget");
-        // If no button found, try to remove and recreate the widget
         if (hiddenWidgetRef.current.contains(widgetElement)) {
           hiddenWidgetRef.current.removeChild(widgetElement);
           
-          // Reset states
           setButtonClicked(false);
           setCallActive(false);
           widgetInitialized.current = false;
           
-          // Reinitialize after a delay
           setTimeout(() => {
             if (window.ElevenLabsConvai) {
               window.ElevenLabsConvai.init({
@@ -125,7 +112,6 @@ const LandingPageWidget = () => {
     }
   };
   
-  // Improved function to start the ElevenLabs call
   const startElevenLabsCall = () => {
     if (callActive) {
       stopElevenLabsCall();
@@ -134,12 +120,10 @@ const LandingPageWidget = () => {
     
     console.log("Attempting to start ElevenLabs call...");
     setIsLoading(true);
-    setButtonClicked(true); // Set button to clicked state
+    setButtonClicked(true);
     
-    // Increment init attempt counter to trigger the useEffect
     setInitAttempt(prev => prev + 1);
     
-    // First, make sure the widget is in the DOM
     if (!hiddenWidgetRef.current) {
       console.error("Widget reference is not available yet");
       toast({
@@ -152,7 +136,6 @@ const LandingPageWidget = () => {
       return;
     }
     
-    // Find the widget element
     const widgetElement = hiddenWidgetRef.current.querySelector('elevenlabs-convai');
     if (!widgetElement) {
       console.error("Could not find the ElevenLabs widget element");
@@ -163,7 +146,6 @@ const LandingPageWidget = () => {
     
     console.log("Found widget element:", widgetElement);
     
-    // Function to try different button selectors
     const tryClickButton = () => {
       if (!widgetElement.shadowRoot) {
         console.log("Widget has no shadowRoot, trying again in 1 second...");
@@ -173,7 +155,6 @@ const LandingPageWidget = () => {
       
       console.log("Shadow root found, looking for button...");
       
-      // Target the button specifically by title
       const startCallButton = widgetElement.shadowRoot.querySelector('button[title="Chiedi a Vicki"]');
       if (startCallButton && startCallButton instanceof HTMLElement) {
         console.log("Found start call button by title:", startCallButton);
@@ -184,7 +165,6 @@ const LandingPageWidget = () => {
         return;
       }
       
-      // Try multiple selectors for the button
       const buttonSelectors = [
         'button[aria-label="Start Call"]',
         'button.call-button',
@@ -194,22 +174,18 @@ const LandingPageWidget = () => {
         'button'
       ];
       
-      // Debug the shadow DOM to see what elements are available
       const allButtons = widgetElement.shadowRoot.querySelectorAll('button');
       console.log(`Found ${allButtons.length} buttons in the shadow DOM`);
       allButtons.forEach((button, buttonIndex) => {
         console.log(`Button ${buttonIndex}:`, button.outerHTML);
       });
       
-      // Try each selector
       let buttonClicked = false;
       for (const selector of buttonSelectors) {
         const buttons = widgetElement.shadowRoot.querySelectorAll(selector);
         console.log(`Selector '${selector}' found ${buttons.length} elements`);
         
-        // Using forEach with index parameter to access button index
         buttons.forEach((button, buttonIndex) => {
-          // Skip the first two buttons which are usually Cancel and Agree
           if (buttonIndex > 1 && button instanceof HTMLElement && 
               !button.getAttribute('aria-label')?.includes('Close') && 
               !button.classList.contains('close')) {
@@ -227,7 +203,6 @@ const LandingPageWidget = () => {
       
       if (!buttonClicked) {
         console.error("Could not find any suitable button to click");
-        // Try to look for any clickable element as a last resort
         const clickableElements = widgetElement.shadowRoot.querySelectorAll('[role="button"], a, button');
         for (const element of clickableElements) {
           if (element instanceof HTMLElement) {
@@ -253,32 +228,25 @@ const LandingPageWidget = () => {
       }
     };
     
-    // Give widget time to fully initialize if it just loaded
     setTimeout(tryClickButton, 1000);
   };
 
-  // Additional effect to try to initialize the widget when the user clicks
   useEffect(() => {
     if (initAttempt > 0) {
-      // Only run this effect when init attempt counter changes and is greater than 0
       const checkAndInitWidget = () => {
         if (!hiddenWidgetRef.current) return;
         
-        // Check if widget already exists
         let widget = hiddenWidgetRef.current.querySelector('elevenlabs-convai');
         
         if (!widget) {
-          // If widget doesn't exist, create it
           console.log("Creating widget element dynamically");
           const elevenlabsWidget = document.createElement('elevenlabs-convai');
           elevenlabsWidget.setAttribute('agent-id', AGENT_ID);
           elevenlabsWidget.setAttribute('language', language || 'it');
           hiddenWidgetRef.current.appendChild(elevenlabsWidget);
           
-          // Wait for widget to initialize
           setTimeout(startElevenLabsCall, 1000);
         } else {
-          // Widget exists, try to start call
           startElevenLabsCall();
         }
       };
@@ -289,7 +257,6 @@ const LandingPageWidget = () => {
 
   return (
     <div className="w-full flex flex-col items-center mt-8">
-      {/* Button with updated style to match other buttons */}
       <Button 
         onClick={startElevenLabsCall}
         disabled={isLoading}
@@ -298,8 +265,8 @@ const LandingPageWidget = () => {
           rounded-full shadow-md px-6 py-2.5 font-bold text-lg
           ${buttonClicked ? 'max-w-[70px] aspect-square p-0' : 'max-w-[200px] w-full'}
           ${callActive 
-            ? 'bg-ath-clay text-white border-ath-clay' 
-            : 'bg-transparent text-ath-clay border border-ath-clay hover:bg-ath-clay hover:text-white'}
+            ? 'bg-ath-clay text-white border-white' 
+            : 'bg-transparent text-white border border-white hover:bg-white hover:text-ath-clay'}
           transition-all duration-300
           ${connectionError ? 'border-red-500 text-red-500 hover:bg-red-500' : ''}
         `}
@@ -308,7 +275,7 @@ const LandingPageWidget = () => {
           {!callActive ? (
             <GiArtificialIntelligence 
               size={buttonClicked ? 40 : 30} 
-              className={`${buttonClicked ? '' : 'mr-2'} transition-all duration-300`}
+              className={`${buttonClicked ? '' : 'mr-2'} transition-all duration-300 text-white`}
             />
           ) : (
             <XCircle 
@@ -323,13 +290,12 @@ const LandingPageWidget = () => {
             </span>
           )}
         </div>
-        {!buttonClicked && <span className="whitespace-nowrap">Chiedi a Vicki</span>}
+        {!buttonClicked && <span className="whitespace-nowrap text-white">Chiedi a Vicki</span>}
       </Button>
       
-      {/* Hidden widget - not visible but still functional */}
       <div 
         ref={hiddenWidgetRef} 
-        className="hidden" // Hide the widget completely
+        className="hidden"
       >
         <elevenlabs-convai 
           agent-id={AGENT_ID} 
