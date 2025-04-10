@@ -3,6 +3,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { Phone } from 'lucide-react';
 import { toast } from '@/hooks/use-toast';
+import { Button } from '@/components/ui/button';
 
 const AGENT_ID = "jJMZr28UE8hDLsO00dmt";
 
@@ -11,6 +12,7 @@ const LandingPageWidget = () => {
   const hiddenWidgetRef = useRef<HTMLDivElement>(null);
   const [initAttempt, setInitAttempt] = useState(0);
   const widgetInitialized = useRef(false);
+  const [isLoading, setIsLoading] = useState(false);
 
   // Initialize the widget when the component mounts
   useEffect(() => {
@@ -37,6 +39,7 @@ const LandingPageWidget = () => {
   // Improved function to start the ElevenLabs call
   const startElevenLabsCall = () => {
     console.log("Attempting to start ElevenLabs call...");
+    setIsLoading(true);
     
     // Increment init attempt counter to trigger the useEffect
     setInitAttempt(prev => prev + 1);
@@ -49,6 +52,7 @@ const LandingPageWidget = () => {
         description: "Impossibile avviare la chiamata. Riprova tra qualche secondo.",
         variant: "destructive"
       });
+      setIsLoading(false);
       return;
     }
     
@@ -56,6 +60,7 @@ const LandingPageWidget = () => {
     const widgetElement = hiddenWidgetRef.current.querySelector('elevenlabs-convai');
     if (!widgetElement) {
       console.error("Could not find the ElevenLabs widget element");
+      setIsLoading(false);
       return;
     }
     
@@ -70,6 +75,16 @@ const LandingPageWidget = () => {
       }
       
       console.log("Shadow root found, looking for button...");
+      
+      // Target the button specifically by title
+      const startCallButton = widgetElement.shadowRoot.querySelector('button[title="Chiedi a Vicki"]');
+      if (startCallButton && startCallButton instanceof HTMLElement) {
+        console.log("Found start call button by title:", startCallButton);
+        startCallButton.click();
+        console.log("Start call button clicked by title!");
+        setIsLoading(false);
+        return;
+      }
       
       // Try multiple selectors for the button
       const buttonSelectors = [
@@ -95,13 +110,15 @@ const LandingPageWidget = () => {
         console.log(`Selector '${selector}' found ${buttons.length} elements`);
         
         for (const button of buttons) {
-          if (button instanceof HTMLElement && 
+          // Skip the first two buttons which are usually Cancel and Agree
+          if (index > 1 && button instanceof HTMLElement && 
               !button.getAttribute('aria-label')?.includes('Close') && 
               !button.classList.contains('close')) {
             console.log("Found potential start button:", button);
             button.click();
             console.log("Button clicked!");
             buttonClicked = true;
+            setIsLoading(false);
             break;
           }
         }
@@ -118,6 +135,7 @@ const LandingPageWidget = () => {
             console.log("Trying to click alternative element:", element);
             element.click();
             buttonClicked = true;
+            setIsLoading(false);
             break;
           }
         }
@@ -128,12 +146,13 @@ const LandingPageWidget = () => {
             description: "Impossibile avviare la chiamata. Riprova più tardi.",
             variant: "destructive"
           });
+          setIsLoading(false);
         }
       }
     };
     
     // Give widget time to fully initialize if it just loaded
-    setTimeout(tryClickButton, 500);
+    setTimeout(tryClickButton, 1000);
   };
 
   // Additional effect to try to initialize the widget when the user clicks
@@ -168,14 +187,16 @@ const LandingPageWidget = () => {
 
   return (
     <div className="w-full flex flex-col items-center mt-8">
-      {/* Button container */}
-      <div onClick={startElevenLabsCall} className="relative rounded-full shadow-md flex items-center justify-center cursor-pointer w-full max-w-[200px] border border-white bg-transparent hover:bg-white/10 transition-all duration-300 px-0 mx-0 py-0">
-        {/* White border button with phone icon and text */}
-        <div className="flex items-center justify-center space-x-2 rounded-full py-3 px-6 w-full text-base">
-          <Phone size={16} className="text-white" />
-          <span className="text-white font-bold whitespace-nowrap">Chiedi a Vicki</span>
-        </div>
-      </div>
+      {/* Button container - Using Button component from shadcn/ui */}
+      <Button 
+        onClick={startElevenLabsCall}
+        disabled={isLoading}
+        variant="outline"
+        className="relative rounded-full shadow-md flex items-center justify-center w-full max-w-[200px] border border-white bg-transparent hover:bg-white/10 hover:text-white transition-all duration-300 text-white font-bold"
+      >
+        <Phone size={16} className="mr-2" />
+        <span className="whitespace-nowrap">Chiedi a Vicki</span>
+      </Button>
       
       {/* Hidden widget - not visible but still functional */}
       <div 
