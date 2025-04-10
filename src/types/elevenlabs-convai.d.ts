@@ -15,6 +15,9 @@ interface ElevenLabsConvaiType {
     language?: string;
     usePublicAgents?: boolean;
   }) => void;
+  destroy?: () => void;
+  reinitialize?: () => void;
+  reset?: () => void;
 }
 
 interface Window {

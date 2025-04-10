@@ -130,3 +130,19 @@
 .icon-stop-glow {
   animation: pulse-red 2s infinite ease-in-out;
 }
+
+/* Ensure ElevenLabs widget loads properly */
+elevenlabs-convai {
+  display: block;
+  width: 100%;
+  min-height: 50px;
+}
+
+/* Override ElevenLabs default button styles when visible */
+elevenlabs-convai button,
+.shadow-dom-button {
+  min-height: 40px !important;
+  min-width: 40px !important;
+  padding: 8px 16px !important;
+  font-size: 14px !important;
+}

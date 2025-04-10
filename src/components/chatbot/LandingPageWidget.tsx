@@ -7,8 +7,9 @@ import { GiArtificialIntelligence } from "react-icons/gi";
 import { XCircle, AlertCircle, Loader2 } from "lucide-react";
 
 const AGENT_ID = "jJMZr28UE8hDLsO00dmt";
-const MAX_INIT_ATTEMPTS = 3;
-const MAX_BUTTON_FIND_ATTEMPTS = 5;
+const MAX_INIT_ATTEMPTS = 5;
+const MAX_BUTTON_FIND_ATTEMPTS = 7;
+const WIDGET_SCRIPT_URL = "https://cdn.elevenlabs.io/convai/convai.js";
 
 const LandingPageWidget = () => {
   const { language } = useLanguage();
@@ -21,11 +22,54 @@ const LandingPageWidget = () => {
   const [connectionError, setConnectionError] = useState(false);
   const [permissionError, setPermissionError] = useState(false);
   const [initializationError, setInitializationError] = useState(false);
+  const [scriptLoaded, setScriptLoaded] = useState(false);
   const buttonFindAttemptsRef = useRef(0);
   const audioContextRef = useRef<AudioContext | null>(null);
 
+  // Load ElevenLabs script if not already available
+  useEffect(() => {
+    if (window.ElevenLabsConvai) {
+      console.log("ElevenLabs script already loaded");
+      setScriptLoaded(true);
+      return;
+    }
+
+    const loadScript = () => {
+      console.log("Loading ElevenLabs script from:", WIDGET_SCRIPT_URL);
+      const script = document.createElement('script');
+      script.src = WIDGET_SCRIPT_URL;
+      script.async = true;
+      script.onload = () => {
+        console.log("ElevenLabs script loaded successfully");
+        setScriptLoaded(true);
+      };
+      script.onerror = (error) => {
+        console.error("Error loading ElevenLabs script:", error);
+        toast({
+          title: "Errore di caricamento",
+          description: "Non è stato possibile caricare lo script di ElevenLabs. Ricarica la pagina.",
+          variant: "destructive"
+        });
+      };
+      document.body.appendChild(script);
+    };
+
+    // Load script with a slight delay to ensure DOM is ready
+    setTimeout(loadScript, 500);
+
+    return () => {
+      // Cleanup script if component unmounts during loading
+      const existingScript = document.querySelector(`script[src="${WIDGET_SCRIPT_URL}"]`);
+      if (existingScript && existingScript.parentNode) {
+        existingScript.parentNode.removeChild(existingScript);
+      }
+    };
+  }, []);
+
   // Initialize the ElevenLabs widget with proper error handling
   useEffect(() => {
+    if (!scriptLoaded) return;
+    
     const initializeWidget = async () => {
       try {
         if (window.ElevenLabsConvai && !widgetInitialized.current) {
@@ -76,7 +120,7 @@ const LandingPageWidget = () => {
     };
 
     initializeWidget();
-  }, [language, initAttempt]);
+  }, [language, initAttempt, scriptLoaded]);
 
   // Check for audio permissions
   const checkAudioPermissions = async () => {
@@ -190,7 +234,9 @@ const LandingPageWidget = () => {
         'button[class*="close"]', 
         'button[class*="stop"]',
         'button[class*="end"]',
-        'button[title*="Interrompi"]'
+        'button[title*="Interrompi"]',
+        'button[title*="Chiudi"]',
+        '[role="button"][class*="close"]'
       ];
       
       for (const selector of stopSelectors) {
@@ -226,6 +272,26 @@ const LandingPageWidget = () => {
           }
         }, 500);
       }
+    }
+  };
+  
+  // Debug helper function to log all elements in the shadow DOM
+  const logShadowDOMElements = () => {
+    if (!hiddenWidgetRef.current) return;
+    
+    const widgetElement = hiddenWidgetRef.current.querySelector('elevenlabs-convai');
+    if (widgetElement && widgetElement.shadowRoot) {
+      console.log("All elements in shadow DOM:");
+      const elements = widgetElement.shadowRoot.querySelectorAll('*');
+      elements.forEach((element, index) => {
+        console.log(`Element ${index}:`, element.tagName, element.className, element);
+      });
+      
+      console.log("All buttons in shadow DOM:");
+      const buttons = widgetElement.shadowRoot.querySelectorAll('button, [role="button"]');
+      buttons.forEach((button, index) => {
+        console.log(`Button ${index}:`, button.tagName, button.className, button.getAttribute('aria-label'), button);
+      });
     }
   };
   
@@ -268,7 +334,20 @@ const LandingPageWidget = () => {
     
     // Make sure widget is properly initialized
     if (!widgetInitialized.current) {
-      setInitAttempt(prev => prev + 1);
+      if (window.ElevenLabsConvai) {
+        console.log("Re-initializing widget before call");
+        window.ElevenLabsConvai.init({
+          language: language || 'it',
+          usePublicAgents: true
+        });
+        widgetInitialized.current = true;
+      } else {
+        console.log("Widget API not available, triggering re-init attempt");
+        setInitAttempt(prev => prev + 1);
+        setIsLoading(false);
+        setButtonClicked(false);
+        return;
+      }
     }
     
     // Re-create widget if needed
@@ -283,6 +362,9 @@ const LandingPageWidget = () => {
       // Wait a bit for the widget to initialize
       await new Promise(resolve => setTimeout(resolve, 1000));
     }
+    
+    // Log all elements in shadow DOM for debugging
+    logShadowDOMElements();
     
     // Try to find and click the start button
     tryClickStartButton();
@@ -315,7 +397,24 @@ const LandingPageWidget = () => {
       return;
     }
     
-    // First try title-based button
+    // First try direct targeting by class name structure - this is the most reliable method
+    // Look for buttons with specific classes that ElevenLabs uses
+    const directButtons = widgetElement.shadowRoot.querySelectorAll(
+      'button._start_1xhaw_1, button[class*="start"], button[data-action="start"], [role="button"][class*="start"]'
+    );
+    
+    if (directButtons.length > 0) {
+      console.log("Found direct start button match:", directButtons[0]);
+      if (directButtons[0] instanceof HTMLElement) {
+        directButtons[0].click();
+        console.log("Direct start button clicked!");
+        setIsLoading(false);
+        setCallActive(true);
+        return;
+      }
+    }
+    
+    // Second try title-based button
     const startCallButton = widgetElement.shadowRoot.querySelector('button[title="Chiedi a Vicki"]');
     if (startCallButton && startCallButton instanceof HTMLElement) {
       console.log("Found start call button by title:", startCallButton);
@@ -412,7 +511,7 @@ const LandingPageWidget = () => {
 
   // Create or update widget when initialization is attempted
   useEffect(() => {
-    if (initAttempt > 0) {
+    if (initAttempt > 0 && scriptLoaded) {
       // Create or update widget element
       if (hiddenWidgetRef.current) {
         let widget = hiddenWidgetRef.current.querySelector('elevenlabs-convai');
@@ -426,7 +525,7 @@ const LandingPageWidget = () => {
         }
       }
     }
-  }, [initAttempt, language]);
+  }, [initAttempt, language, scriptLoaded]);
 
   // Render button status icon based on current state
   const renderButtonIcon = () => {
@@ -456,14 +555,14 @@ const LandingPageWidget = () => {
     <div className="w-full flex flex-col items-center mt-8">
       <Button 
         onClick={startElevenLabsCall}
-        disabled={isLoading || initializationError}
+        disabled={isLoading || initializationError || !scriptLoaded}
         variant="outline"
         className={`
           rounded-full shadow-md px-6 py-2.5 font-bold text-lg
           ${buttonClicked ? 'max-w-[70px] aspect-square p-0' : 'max-w-[200px] w-full'}
           ${callActive 
-            ? 'bg-ath-clay text-white border-white' 
-            : 'bg-transparent text-white border border-white hover:bg-ath-clay hover:text-white'}
+            ? 'bg-ath-clay border-ath-clay hover:bg-ath-clay/90 hover:border-ath-clay/90' 
+            : 'bg-transparent text-white border-white hover:bg-ath-clay hover:text-white hover:border-ath-clay'}
           transition-all duration-300
           ${connectionError ? 'border-red-500 text-red-500 hover:bg-red-500' : ''}
           ${permissionError ? 'border-yellow-500 animate-pulse' : ''}
@@ -474,6 +573,10 @@ const LandingPageWidget = () => {
         </div>
         {!buttonClicked && <span className="whitespace-nowrap text-white">Chiedi a Vicki</span>}
       </Button>
+      
+      {!scriptLoaded && (
+        <p className="text-xs text-white/70 mt-2 animate-pulse">Caricamento...</p>
+      )}
       
       <div 
         ref={hiddenWidgetRef} 
