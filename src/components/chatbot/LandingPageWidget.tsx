@@ -287,64 +287,33 @@ const LandingPageWidget = () => {
     }
   }, [initAttempt, language]);
 
-  // Function to create the appropriate button class based on states
-  const getButtonClasses = () => {
-    let baseClasses = "relative rounded-full shadow-md flex items-center justify-center w-full max-w-[200px] border border-ath-clay bg-transparent hover:bg-ath-clay hover:text-white transition-all duration-300 text-ath-clay font-bold";
-    
-    if (buttonClicked) {
-      baseClasses += ' max-w-[70px] aspect-square p-0';
-    }
-    
-    if (callActive) {
-      baseClasses += ' animate-pulse-soft bg-ath-clay text-white';
-    }
-    
-    if (connectionError) {
-      baseClasses += ' border-red-500 text-red-500 hover:bg-red-500';
-    }
-    
-    return baseClasses;
-  };
-
-  // Function to determine icon size based on state
-  const getIconSize = () => {
-    return buttonClicked ? 40 : 30;
-  };
-
-  // Function to determine icon className based on state
-  const getIconClassName = () => {
-    let classes = buttonClicked ? "" : "mr-2";
-    
-    if (callActive) {
-      classes += ' text-white';
-    }
-    
-    if (connectionError) {
-      classes += ' text-red-500';
-    }
-    
-    return classes;
-  };
-
   return (
     <div className="w-full flex flex-col items-center mt-8">
-      {/* Button container - Using Button component from shadcn/ui */}
+      {/* Button with updated style to match other buttons */}
       <Button 
         onClick={startElevenLabsCall}
         disabled={isLoading}
         variant="outline"
-        className={getButtonClasses()}
+        className={`
+          rounded-full shadow-md px-6 py-2.5 font-bold text-lg
+          ${buttonClicked ? 'max-w-[70px] aspect-square p-0' : 'max-w-[200px] w-full'}
+          ${callActive 
+            ? 'bg-ath-clay text-white border-ath-clay' 
+            : 'bg-transparent text-ath-clay border border-ath-clay hover:bg-ath-clay hover:text-white'}
+          transition-all duration-300
+          ${connectionError ? 'border-red-500 text-red-500 hover:bg-red-500' : ''}
+        `}
       >
         <div className={`relative ${callActive ? 'icon-glow' : ''}`}>
           {!callActive ? (
             <GiArtificialIntelligence 
-              size={getIconSize()} 
-              className={getIconClassName()}
+              size={buttonClicked ? 40 : 30} 
+              className={`${buttonClicked ? '' : 'mr-2'} transition-all duration-300`}
             />
           ) : (
             <XCircle 
-              size={getIconSize()} 
-              className="text-white animate-pulse"
+              size={buttonClicked ? 40 : 30}
+              className="text-white icon-stop-glow transition-all duration-300"
               strokeWidth={2.5}
             />
           )}
