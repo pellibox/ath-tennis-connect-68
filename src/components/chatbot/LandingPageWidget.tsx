@@ -14,13 +14,36 @@ const LandingPageWidget = () => {
   const widgetInitialized = useRef(false);
   const [isLoading, setIsLoading] = useState(false);
   const [buttonClicked, setButtonClicked] = useState(false);
+  const [callActive, setCallActive] = useState(false);
+  const [connectionError, setConnectionError] = useState(false);
 
   // Initialize the widget when the component mounts
   useEffect(() => {
     if (window.ElevenLabsConvai && !widgetInitialized.current) {
       window.ElevenLabsConvai.init({
         language: language || 'it',
-        usePublicAgents: true // Use public agents mode
+        usePublicAgents: true, // Use public agents mode
+        onConnect: () => {
+          console.log("ElevenLabs connection established!");
+          setCallActive(true);
+          setConnectionError(false);
+        },
+        onDisconnect: () => {
+          console.log("ElevenLabs connection closed");
+          setCallActive(false);
+        },
+        onError: (error) => {
+          console.error("ElevenLabs connection error:", error);
+          setConnectionError(true);
+          setCallActive(false);
+          toast({
+            title: "Errore di connessione",
+            description: "Si è verificato un problema con la connessione. Riprova più tardi.",
+            variant: "destructive"
+          });
+          setIsLoading(false);
+          setButtonClicked(false);
+        }
       });
       widgetInitialized.current = true;
       console.log("Landing page ElevenLabs widget initialized with language:", language);
@@ -87,6 +110,7 @@ const LandingPageWidget = () => {
         startCallButton.click();
         console.log("Start call button clicked by title!");
         setIsLoading(false);
+        setCallActive(true);
         return;
       }
       
@@ -103,8 +127,8 @@ const LandingPageWidget = () => {
       // Debug the shadow DOM to see what elements are available
       const allButtons = widgetElement.shadowRoot.querySelectorAll('button');
       console.log(`Found ${allButtons.length} buttons in the shadow DOM`);
-      allButtons.forEach((button, index) => {
-        console.log(`Button ${index}:`, button.outerHTML);
+      allButtons.forEach((button, buttonIndex) => {
+        console.log(`Button ${buttonIndex}:`, button.outerHTML);
       });
       
       // Try each selector
@@ -124,6 +148,7 @@ const LandingPageWidget = () => {
             console.log("Button clicked!");
             buttonClicked = true;
             setIsLoading(false);
+            setCallActive(true);
           }
         });
         
@@ -140,6 +165,7 @@ const LandingPageWidget = () => {
             element.click();
             buttonClicked = true;
             setIsLoading(false);
+            setCallActive(true);
             break;
           }
         }
@@ -152,6 +178,7 @@ const LandingPageWidget = () => {
           });
           setIsLoading(false);
           setButtonClicked(false);
+          setConnectionError(true);
         }
       }
     };
@@ -190,6 +217,45 @@ const LandingPageWidget = () => {
     }
   }, [initAttempt, language]);
 
+  // Function to create the appropriate button class based on states
+  const getButtonClasses = () => {
+    let baseClasses = "relative rounded-full shadow-md flex items-center justify-center w-full max-w-[200px] border border-white bg-transparent hover:bg-white/10 hover:text-white transition-all duration-300 text-white font-bold";
+    
+    if (buttonClicked) {
+      baseClasses += ' max-w-[70px] aspect-square p-0';
+    }
+    
+    if (callActive) {
+      baseClasses += ' animate-pulse-soft';
+    }
+    
+    if (connectionError) {
+      baseClasses += ' border-red-500 text-red-500';
+    }
+    
+    return baseClasses;
+  };
+
+  // Function to determine icon size based on state
+  const getIconSize = () => {
+    return buttonClicked ? 40 : 30;
+  };
+
+  // Function to determine icon className based on state
+  const getIconClassName = () => {
+    let classes = buttonClicked ? "" : "mr-2";
+    
+    if (callActive) {
+      classes += ' text-white';
+    }
+    
+    if (connectionError) {
+      classes += ' text-red-500';
+    }
+    
+    return classes;
+  };
+
   return (
     <div className="w-full flex flex-col items-center mt-8">
       {/* Button container - Using Button component from shadcn/ui */}
@@ -197,9 +263,19 @@ const LandingPageWidget = () => {
         onClick={startElevenLabsCall}
         disabled={isLoading}
         variant="outline"
-        className={`relative rounded-full shadow-md flex items-center justify-center w-full max-w-[200px] border border-white bg-transparent hover:bg-white/10 hover:text-white transition-all duration-300 text-white font-bold ${buttonClicked ? 'max-w-[60px] aspect-square p-0' : ''}`}
+        className={getButtonClasses()}
       >
-        <GiArtificialIntelligence size={24} className={buttonClicked ? "" : "mr-2"} />
+        <div className={`relative ${callActive ? 'icon-glow' : ''}`}>
+          <GiArtificialIntelligence 
+            size={getIconSize()} 
+            className={getIconClassName()}
+          />
+          {isLoading && (
+            <span className="absolute inset-0 flex items-center justify-center">
+              <div className="w-full h-full animate-spin rounded-full border-b-2 border-white"></div>
+            </span>
+          )}
+        </div>
         {!buttonClicked && <span className="whitespace-nowrap">Chiedi a Vicki</span>}
       </Button>
       
