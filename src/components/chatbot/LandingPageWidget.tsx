@@ -23,47 +23,59 @@ const LandingPageWidget = () => {
   const [permissionError, setPermissionError] = useState(false);
   const [initializationError, setInitializationError] = useState(false);
   const [scriptLoaded, setScriptLoaded] = useState(false);
+  const [scriptLoadingFailed, setScriptLoadingFailed] = useState(false);
   const buttonFindAttemptsRef = useRef(0);
   const audioContextRef = useRef<AudioContext | null>(null);
   const userInitiatedRef = useRef(false); // Track if actions are user-initiated
+  const scriptLoadingAttempt = useRef(0);
 
   // Load ElevenLabs script if not already available
   useEffect(() => {
     if (window.ElevenLabsConvai) {
       console.log("ElevenLabs script already loaded");
       setScriptLoaded(true);
+      setScriptLoadingFailed(false);
       return;
     }
 
     const loadScript = () => {
-      console.log("Loading ElevenLabs script from:", WIDGET_SCRIPT_URL);
+      const maxLoadAttempts = 3;
+      if (scriptLoadingAttempt.current >= maxLoadAttempts) {
+        console.error(`Failed to load ElevenLabs script after ${maxLoadAttempts} attempts`);
+        setScriptLoadingFailed(true);
+        return;
+      }
+      
+      scriptLoadingAttempt.current += 1;
+      console.log(`Loading ElevenLabs script (attempt ${scriptLoadingAttempt.current}) from:`, WIDGET_SCRIPT_URL);
+      
+      // Remove any existing script to avoid conflicts
+      const existingScript = document.querySelector(`script[src="${WIDGET_SCRIPT_URL}"]`);
+      if (existingScript && existingScript.parentNode) {
+        existingScript.parentNode.removeChild(existingScript);
+      }
+      
       const script = document.createElement('script');
       script.src = WIDGET_SCRIPT_URL;
       script.async = true;
       script.onload = () => {
         console.log("ElevenLabs script loaded successfully");
         setScriptLoaded(true);
+        setScriptLoadingFailed(false);
       };
       script.onerror = (error) => {
         console.error("Error loading ElevenLabs script:", error);
-        toast({
-          title: "Errore di caricamento",
-          description: "Non è stato possibile caricare lo script di ElevenLabs. Ricarica la pagina.",
-          variant: "destructive"
-        });
+        // Try loading script from alternative CDN
+        setTimeout(() => loadScript(), 1500); // Retry with backoff
       };
       document.body.appendChild(script);
     };
 
     // Load script with a slight delay to ensure DOM is ready
-    setTimeout(loadScript, 500);
-
+    const timer = setTimeout(loadScript, 500);
+    
     return () => {
-      // Cleanup script if component unmounts during loading
-      const existingScript = document.querySelector(`script[src="${WIDGET_SCRIPT_URL}"]`);
-      if (existingScript && existingScript.parentNode) {
-        existingScript.parentNode.removeChild(existingScript);
-      }
+      clearTimeout(timer);
     };
   }, []);
 
@@ -76,34 +88,15 @@ const LandingPageWidget = () => {
         if (window.ElevenLabsConvai && !widgetInitialized.current) {
           console.log("Initializing ElevenLabs widget with language:", language);
           
-          try {
-            // Only check audio permissions if user has initiated an action
-            if (userInitiatedRef.current) {
-              await checkAudioPermissions();
-            }
-            
-            // Initialize the widget
-            window.ElevenLabsConvai.init({
-              language: language || 'it',
-              usePublicAgents: true
-            });
-            
-            widgetInitialized.current = true;
-            setInitializationError(false);
-            console.log("ElevenLabs widget initialized successfully");
-          } catch (error) {
-            console.error("Error initializing ElevenLabs widget:", error);
-            setInitializationError(true);
-            
-            // Only show error toast if user initiated this action
-            if (userInitiatedRef.current) {
-              toast({
-                title: "Errore di inizializzazione",
-                description: "Non è stato possibile inizializzare il widget ElevenLabs. Ricarica la pagina o prova più tardi.",
-                variant: "destructive"
-              });
-            }
-          }
+          // Initialize the widget
+          window.ElevenLabsConvai.init({
+            language: language || 'it',
+            usePublicAgents: true
+          });
+          
+          widgetInitialized.current = true;
+          setInitializationError(false);
+          console.log("ElevenLabs widget initialized successfully");
         } else if (!window.ElevenLabsConvai && initAttempt < MAX_INIT_ATTEMPTS) {
           console.log(`ElevenLabs API not found. Attempt ${initAttempt + 1}/${MAX_INIT_ATTEMPTS}`);
           
@@ -175,7 +168,7 @@ const LandingPageWidget = () => {
   // Monitor connection status
   useEffect(() => {
     const checkConnectionStatus = () => {
-      if (!hiddenWidgetRef.current) return;
+      if (!hiddenWidgetRef.current || !callActive) return;
       
       const widgetElement = hiddenWidgetRef.current.querySelector('elevenlabs-convai');
       if (widgetElement && widgetElement.shadowRoot) {
@@ -194,16 +187,11 @@ const LandingPageWidget = () => {
           '[class*="permission"], [class*="allow"], [class*="access"]'
         );
         
-        // Update state based on what we found
-        const wasActiveCall = callActive;
-        const newActiveCall = activeCallIndicators.length > 0;
-        setCallActive(newActiveCall);
-        
-        // If call became active, update loading and error states
-        if (!wasActiveCall && newActiveCall) {
-          console.log("ElevenLabs connection appears to be active");
-          setIsLoading(false);
-          setConnectionError(false);
+        // If active indicators are gone, call is probably ended
+        if (activeCallIndicators.length === 0 && callActive) {
+          console.log("ElevenLabs call appears to have ended");
+          setCallActive(false);
+          setButtonClicked(false);
         }
         
         // Check for errors
@@ -222,6 +210,7 @@ const LandingPageWidget = () => {
           setIsLoading(false);
           setButtonClicked(false);
           setConnectionError(true);
+          setCallActive(false);
         }
         
         // Check for permission dialogs
@@ -232,10 +221,17 @@ const LandingPageWidget = () => {
       }
     };
     
-    // Check connection status periodically
-    const connectionCheckInterval = setInterval(checkConnectionStatus, 1000);
+    // Check connection status periodically when call is active
+    let connectionCheckInterval: number | null = null;
+    if (callActive) {
+      connectionCheckInterval = window.setInterval(checkConnectionStatus, 1000);
+    }
     
-    return () => clearInterval(connectionCheckInterval);
+    return () => {
+      if (connectionCheckInterval !== null) {
+        clearInterval(connectionCheckInterval);
+      }
+    };
   }, [callActive]);
 
   // Function to stop the call
@@ -322,6 +318,25 @@ const LandingPageWidget = () => {
     // Handle stop if call is already active
     if (callActive) {
       stopElevenLabsCall();
+      return;
+    }
+    
+    // Check if script loaded
+    if (!scriptLoaded) {
+      toast({
+        title: "Caricamento in corso",
+        description: "Il servizio ElevenLabs si sta caricando. Riprova tra qualche secondo.",
+      });
+      return;
+    }
+    
+    // Check if script failed to load
+    if (scriptLoadingFailed) {
+      toast({
+        title: "Errore di caricamento",
+        description: "Non è stato possibile caricare il servizio ElevenLabs. Riprova più tardi o ricarica la pagina.",
+        variant: "destructive"
+      });
       return;
     }
     
@@ -577,7 +592,7 @@ const LandingPageWidget = () => {
     <div className="w-full flex flex-col items-center mt-8">
       <Button 
         onClick={startElevenLabsCall}
-        disabled={isLoading || initializationError || !scriptLoaded}
+        disabled={isLoading || initializationError}
         variant="outline"
         className={`
           rounded-full shadow-md px-6 py-2.5 font-bold text-lg
@@ -596,18 +611,37 @@ const LandingPageWidget = () => {
         {!buttonClicked && <span className="whitespace-nowrap text-white">Chiedi a Vicki</span>}
       </Button>
       
-      {!scriptLoaded && (
-        <p className="text-xs text-white/70 mt-2 animate-pulse">Caricamento...</p>
+      {scriptLoadingFailed && (
+        <p className="text-xs text-red-400 mt-2">
+          Errore di caricamento. <button 
+            onClick={() => {
+              setScriptLoadingFailed(false);
+              scriptLoadingAttempt.current = 0;
+            }} 
+            className="underline hover:text-red-300"
+          >
+            Riprova
+          </button>
+        </p>
+      )}
+      
+      {!scriptLoaded && !scriptLoadingFailed && (
+        <div className="flex items-center text-xs text-white/70 mt-2">
+          <span className="inline-block w-3 h-3 bg-white/60 rounded-full mr-2 animate-pulse"></span>
+          Caricamento...
+        </div>
       )}
       
       <div 
         ref={hiddenWidgetRef} 
         className="hidden"
       >
-        <elevenlabs-convai 
-          agent-id={AGENT_ID} 
-          language={language || 'it'}
-        ></elevenlabs-convai>
+        {scriptLoaded && (
+          <elevenlabs-convai 
+            agent-id={AGENT_ID} 
+            language={language || 'it'}
+          ></elevenlabs-convai>
+        )}
       </div>
     </div>
   );

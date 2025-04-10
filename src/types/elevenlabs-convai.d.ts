@@ -22,4 +22,7 @@ interface ElevenLabsConvaiType {
 
 interface Window {
   ElevenLabsConvai?: ElevenLabsConvaiType;
+  elevenLabsScriptLoaded?: boolean;
+  elevenLabsScriptFailed?: boolean;
+  loadElevenLabsScript?: () => void;
 }

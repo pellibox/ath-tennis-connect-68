@@ -17,8 +17,33 @@
     <meta name="twitter:site" content="@ath_tennis" />
     <meta name="twitter:image" content="https://lovable.dev/opengraph-image-p98pqg.png" />
     
-    <!-- ElevenLabs Convai Widget Script - Load it early to ensure it's available -->
-    <script src="https://elevenlabs.io/convai-widget/index.js" type="text/javascript"></script>
+    <!-- ElevenLabs Convai Widget Script - Load it early but with error handling -->
+    <script>
+      window.elevenLabsScriptLoaded = false;
+      window.elevenLabsScriptFailed = false;
+      
+      window.loadElevenLabsScript = function() {
+        console.log("Loading ElevenLabs Convai script from head");
+        const script = document.createElement('script');
+        script.src = "https://cdn.elevenlabs.io/convai/convai.js";
+        script.async = true;
+        script.onload = function() {
+          console.log("ElevenLabs script loaded successfully from head");
+          window.elevenLabsScriptLoaded = true;
+          window.elevenLabsScriptFailed = false;
+          window.dispatchEvent(new Event('elevenlabs-script-loaded'));
+        };
+        script.onerror = function(error) {
+          console.error("Error loading ElevenLabs script from head:", error);
+          window.elevenLabsScriptFailed = true;
+          window.dispatchEvent(new Event('elevenlabs-script-failed'));
+        };
+        document.head.appendChild(script);
+      };
+      
+      // Try to load the script immediately
+      window.loadElevenLabsScript();
+    </script>
   </head>
 
   <body>
@@ -26,5 +51,16 @@
     <!-- IMPORTANT: DO NOT REMOVE THIS SCRIPT TAG OR THIS VERY COMMENT! -->
     <script src="https://cdn.gpteng.co/gptengineer.js" type="module"></script>
     <script type="module" src="/src/main.tsx"></script>
+    
+    <!-- Fallback script loader if head loading fails -->
+    <script>
+      // We'll check after 3 seconds if the script loaded
+      setTimeout(function() {
+        if (!window.elevenLabsScriptLoaded && !window.ElevenLabsConvai) {
+          console.log("ElevenLabs script not loaded after timeout, trying again");
+          window.loadElevenLabsScript();
+        }
+      }, 3000);
+    </script>
   </body>
 </html>
