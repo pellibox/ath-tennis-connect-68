@@ -25,6 +25,7 @@ const LandingPageWidget = () => {
   const [scriptLoaded, setScriptLoaded] = useState(false);
   const buttonFindAttemptsRef = useRef(0);
   const audioContextRef = useRef<AudioContext | null>(null);
+  const userInitiatedRef = useRef(false); // Track if actions are user-initiated
 
   // Load ElevenLabs script if not already available
   useEffect(() => {
@@ -76,8 +77,10 @@ const LandingPageWidget = () => {
           console.log("Initializing ElevenLabs widget with language:", language);
           
           try {
-            // Check audio permissions first
-            await checkAudioPermissions();
+            // Only check audio permissions if user has initiated an action
+            if (userInitiatedRef.current) {
+              await checkAudioPermissions();
+            }
             
             // Initialize the widget
             window.ElevenLabsConvai.init({
@@ -91,11 +94,15 @@ const LandingPageWidget = () => {
           } catch (error) {
             console.error("Error initializing ElevenLabs widget:", error);
             setInitializationError(true);
-            toast({
-              title: "Errore di inizializzazione",
-              description: "Non è stato possibile inizializzare il widget ElevenLabs. Ricarica la pagina o prova più tardi.",
-              variant: "destructive"
-            });
+            
+            // Only show error toast if user initiated this action
+            if (userInitiatedRef.current) {
+              toast({
+                title: "Errore di inizializzazione",
+                description: "Non è stato possibile inizializzare il widget ElevenLabs. Ricarica la pagina o prova più tardi.",
+                variant: "destructive"
+              });
+            }
           }
         } else if (!window.ElevenLabsConvai && initAttempt < MAX_INIT_ATTEMPTS) {
           console.log(`ElevenLabs API not found. Attempt ${initAttempt + 1}/${MAX_INIT_ATTEMPTS}`);
@@ -107,11 +114,15 @@ const LandingPageWidget = () => {
         } else if (!window.ElevenLabsConvai && initAttempt >= MAX_INIT_ATTEMPTS) {
           console.error("Failed to find ElevenLabs API after multiple attempts");
           setInitializationError(true);
-          toast({
-            title: "Errore di caricamento",
-            description: "Non è stato possibile caricare l'API di ElevenLabs. Ricarica la pagina o verifica la connessione internet.",
-            variant: "destructive"
-          });
+          
+          // Only show error toast if user initiated this action
+          if (userInitiatedRef.current) {
+            toast({
+              title: "Errore di caricamento",
+              description: "Non è stato possibile caricare l'API di ElevenLabs. Ricarica la pagina o verifica la connessione internet.",
+              variant: "destructive"
+            });
+          }
         }
       } catch (error) {
         console.error("Unexpected error during widget initialization:", error);
@@ -138,11 +149,14 @@ const LandingPageWidget = () => {
       console.error("Audio permission error:", err);
       setPermissionError(true);
       
-      toast({
-        title: "Permessi audio mancanti",
-        description: "Per usare questa funzionalità, concedi l'accesso al microfono nel tuo browser.",
-        variant: "destructive"
-      });
+      // Only show toast when user has initiated an action
+      if (userInitiatedRef.current) {
+        toast({
+          title: "Permessi audio mancanti",
+          description: "Per usare questa funzionalità, concedi l'accesso al microfono nel tuo browser.",
+          variant: "destructive"
+        });
+      }
       
       return false;
     }
@@ -195,11 +209,16 @@ const LandingPageWidget = () => {
         // Check for errors
         if (errorElements.length > 0) {
           console.error("ElevenLabs connection appears to have an error");
-          toast({
-            title: "Errore di connessione",
-            description: "Si è verificato un problema con la connessione. Riprova più tardi.",
-            variant: "destructive"
-          });
+          
+          // Only show errors if user initiated this action
+          if (userInitiatedRef.current) {
+            toast({
+              title: "Errore di connessione",
+              description: "Si è verificato un problema con la connessione. Riprova più tardi.",
+              variant: "destructive"
+            });
+          }
+          
           setIsLoading(false);
           setButtonClicked(false);
           setConnectionError(true);
@@ -297,6 +316,9 @@ const LandingPageWidget = () => {
   
   // Function to start the call
   const startElevenLabsCall = async () => {
+    // Mark that this action is user-initiated
+    userInitiatedRef.current = true;
+    
     // Handle stop if call is already active
     if (callActive) {
       stopElevenLabsCall();
@@ -562,7 +584,7 @@ const LandingPageWidget = () => {
           ${buttonClicked ? 'max-w-[70px] aspect-square p-0' : 'max-w-[200px] w-full'}
           ${callActive 
             ? 'bg-ath-clay border-ath-clay hover:bg-ath-clay/90 hover:border-ath-clay/90' 
-            : 'bg-transparent text-white border-white hover:bg-ath-clay hover:text-white hover:border-ath-clay'}
+            : 'bg-transparent border-ath-clay text-white hover:bg-ath-clay hover:text-white'}
           transition-all duration-300
           ${connectionError ? 'border-red-500 text-red-500 hover:bg-red-500' : ''}
           ${permissionError ? 'border-yellow-500 animate-pulse' : ''}
