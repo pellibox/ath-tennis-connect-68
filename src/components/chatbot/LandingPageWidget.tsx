@@ -109,9 +109,10 @@ const LandingPageWidget = () => {
         const buttons = widgetElement.shadowRoot.querySelectorAll(selector);
         console.log(`Selector '${selector}' found ${buttons.length} elements`);
         
-        for (const button of buttons) {
+        // Using forEach with index parameter to access button index
+        buttons.forEach((button, buttonIndex) => {
           // Skip the first two buttons which are usually Cancel and Agree
-          if (index > 1 && button instanceof HTMLElement && 
+          if (buttonIndex > 1 && button instanceof HTMLElement && 
               !button.getAttribute('aria-label')?.includes('Close') && 
               !button.classList.contains('close')) {
             console.log("Found potential start button:", button);
@@ -119,9 +120,8 @@ const LandingPageWidget = () => {
             console.log("Button clicked!");
             buttonClicked = true;
             setIsLoading(false);
-            break;
           }
-        }
+        });
         
         if (buttonClicked) break;
       }
