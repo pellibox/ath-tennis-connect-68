@@ -158,8 +158,8 @@ elevenlabs-convai button,
   animation: dot-pulse 1.5s infinite;
   animation-fill-mode: both;
   display: inline-block;
-  width: 6px;
-  height: 6px;
+  width: 8px;
+  height: 8px;
   border-radius: 50%;
   background-color: currentColor;
   margin: 0 3px;
@@ -195,3 +195,4 @@ elevenlabs-convai button,
   outline: 2px solid white;
   outline-offset: 2px;
 }
+

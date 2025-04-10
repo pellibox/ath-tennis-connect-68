@@ -29,55 +29,78 @@ const LandingPageWidget = () => {
   const userInitiatedRef = useRef(false); // Track if actions are user-initiated
   const scriptLoadingAttempt = useRef(0);
 
-  // Load ElevenLabs script if not already available
+  // Check if ElevenLabs script is already loaded
   useEffect(() => {
+    // First check if window.ElevenLabsConvai is available
     if (window.ElevenLabsConvai) {
-      console.log("ElevenLabs script already loaded");
+      console.log("ElevenLabs script already available globally");
       setScriptLoaded(true);
-      setScriptLoadingFailed(false);
       return;
     }
 
-    const loadScript = () => {
-      const maxLoadAttempts = 3;
-      if (scriptLoadingAttempt.current >= maxLoadAttempts) {
-        console.error(`Failed to load ElevenLabs script after ${maxLoadAttempts} attempts`);
-        setScriptLoadingFailed(true);
-        return;
-      }
-      
-      scriptLoadingAttempt.current += 1;
-      console.log(`Loading ElevenLabs script (attempt ${scriptLoadingAttempt.current}) from:`, WIDGET_SCRIPT_URL);
-      
-      // Remove any existing script to avoid conflicts
-      const existingScript = document.querySelector(`script[src="${WIDGET_SCRIPT_URL}"]`);
-      if (existingScript && existingScript.parentNode) {
-        existingScript.parentNode.removeChild(existingScript);
-      }
-      
-      const script = document.createElement('script');
-      script.src = WIDGET_SCRIPT_URL;
-      script.async = true;
-      script.onload = () => {
-        console.log("ElevenLabs script loaded successfully");
-        setScriptLoaded(true);
-        setScriptLoadingFailed(false);
-      };
-      script.onerror = (error) => {
-        console.error("Error loading ElevenLabs script:", error);
-        // Try loading script from alternative CDN
-        setTimeout(() => loadScript(), 1500); // Retry with backoff
-      };
-      document.body.appendChild(script);
+    // Check if window.elevenLabsScriptLoaded flag is set (from index.html)
+    if (window.elevenLabsScriptLoaded) {
+      console.log("ElevenLabs script loaded flag detected");
+      setScriptLoaded(true);
+      return;
+    }
+
+    // Listen for the script loaded event (from index.html)
+    const handleScriptLoaded = () => {
+      console.log("ElevenLabs script loaded event detected");
+      setScriptLoaded(true);
+      setScriptLoadingFailed(false);
     };
 
-    // Load script with a slight delay to ensure DOM is ready
-    const timer = setTimeout(loadScript, 500);
-    
+    const handleScriptFailed = () => {
+      console.log("ElevenLabs script failed event detected");
+      setScriptLoadingFailed(true);
+    };
+
+    window.addEventListener('elevenlabs-script-loaded', handleScriptLoaded);
+    window.addEventListener('elevenlabs-script-failed', handleScriptFailed);
+
+    // If nothing is loaded yet, trigger loading
+    if (!window.elevenLabsScriptLoaded && !window.elevenLabsScriptFailed) {
+      if (typeof window.loadElevenLabsScript === 'function') {
+        console.log("Triggering script load from window method");
+        window.loadElevenLabsScript();
+      } else {
+        console.log("Loading script directly as fallback");
+        loadScriptDirectly();
+      }
+    }
+
+    // Cleanup event listeners
     return () => {
-      clearTimeout(timer);
+      window.removeEventListener('elevenlabs-script-loaded', handleScriptLoaded);
+      window.removeEventListener('elevenlabs-script-failed', handleScriptFailed);
     };
   }, []);
+
+  // Direct script loading function as fallback
+  const loadScriptDirectly = () => {
+    if (scriptLoadingAttempt.current >= 3) {
+      console.error("Failed to load script after multiple attempts");
+      setScriptLoadingFailed(true);
+      return;
+    }
+    
+    scriptLoadingAttempt.current += 1;
+    const script = document.createElement('script');
+    script.src = WIDGET_SCRIPT_URL;
+    script.async = true;
+    script.onload = () => {
+      console.log("Script loaded directly");
+      setScriptLoaded(true);
+      setScriptLoadingFailed(false);
+    };
+    script.onerror = () => {
+      console.error("Direct script loading failed");
+      setTimeout(loadScriptDirectly, 2000);
+    };
+    document.body.appendChild(script);
+  };
 
   // Initialize the ElevenLabs widget with proper error handling
   useEffect(() => {
@@ -479,6 +502,18 @@ const LandingPageWidget = () => {
     allButtons.forEach((button, buttonIndex) => {
       console.log(`Button ${buttonIndex} innerHTML:`, button.innerHTML);
       console.log(`Button ${buttonIndex} outerHTML:`, button.outerHTML);
+      // Try to click all buttons directly as a last resort
+      if (buttonIndex > 0 && button instanceof HTMLElement) {
+        console.log("Attempting to click button directly:", button);
+        try {
+          button.click();
+          setIsLoading(false);
+          setCallActive(true);
+          return;
+        } catch (e) {
+          console.error("Error clicking button:", e);
+        }
+      }
     });
     
     // Try each selector
@@ -567,13 +602,13 @@ const LandingPageWidget = () => {
   // Render button status icon based on current state
   const renderButtonIcon = () => {
     if (isLoading) {
-      return <Loader2 size={buttonClicked ? 40 : 30} className="animate-spin text-white" />;
+      return <Loader2 size={buttonClicked ? 60 : 40} className="animate-spin text-white" />;
     } else if (connectionError) {
-      return <AlertCircle size={buttonClicked ? 40 : 30} className="text-white" />;
+      return <AlertCircle size={buttonClicked ? 60 : 40} className="text-white" />;
     } else if (callActive) {
       return (
         <XCircle 
-          size={buttonClicked ? 40 : 30}
+          size={buttonClicked ? 60 : 40}
           className="text-white icon-stop-glow transition-all duration-300"
           strokeWidth={2.5}
         />
@@ -581,7 +616,7 @@ const LandingPageWidget = () => {
     } else {
       return (
         <GiArtificialIntelligence 
-          size={buttonClicked ? 40 : 30} 
+          size={buttonClicked ? 60 : 40} 
           className={`${buttonClicked ? '' : 'mr-2'} transition-all duration-300 text-white`}
         />
       );
@@ -595,8 +630,8 @@ const LandingPageWidget = () => {
         disabled={isLoading || initializationError}
         variant="outline"
         className={`
-          rounded-full shadow-md px-6 py-2.5 font-bold text-lg
-          ${buttonClicked ? 'max-w-[70px] aspect-square p-0' : 'max-w-[200px] w-full'}
+          rounded-full shadow-md px-6 py-3 font-bold text-lg
+          ${buttonClicked ? 'max-w-[96px] h-[96px] aspect-square p-0' : 'max-w-[200px] w-full'}
           ${callActive 
             ? 'bg-ath-clay border-ath-clay hover:bg-ath-clay/90 hover:border-ath-clay/90' 
             : 'bg-transparent border-ath-clay text-white hover:bg-ath-clay hover:text-white'}
@@ -605,7 +640,7 @@ const LandingPageWidget = () => {
           ${permissionError ? 'border-yellow-500 animate-pulse' : ''}
         `}
       >
-        <div className={`relative ${callActive ? 'icon-glow' : ''}`}>
+        <div className={`relative flex items-center justify-center ${callActive ? 'icon-glow' : ''}`}>
           {renderButtonIcon()}
         </div>
         {!buttonClicked && <span className="whitespace-nowrap text-white">Chiedi a Vicki</span>}
@@ -617,6 +652,11 @@ const LandingPageWidget = () => {
             onClick={() => {
               setScriptLoadingFailed(false);
               scriptLoadingAttempt.current = 0;
+              if (typeof window.loadElevenLabsScript === 'function') {
+                window.loadElevenLabsScript();
+              } else {
+                loadScriptDirectly();
+              }
             }} 
             className="underline hover:text-red-300"
           >
@@ -626,9 +666,10 @@ const LandingPageWidget = () => {
       )}
       
       {!scriptLoaded && !scriptLoadingFailed && (
-        <div className="flex items-center text-xs text-white/70 mt-2">
-          <span className="inline-block w-3 h-3 bg-white/60 rounded-full mr-2 animate-pulse"></span>
-          Caricamento...
+        <div className="elevenlabs-loading-indicator flex items-center text-xs text-white/70 mt-2">
+          <span className="dot"></span>
+          <span className="dot"></span>
+          <span className="dot"></span>
         </div>
       )}
       

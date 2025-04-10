@@ -5,6 +5,8 @@ declare namespace JSX {
       'agent-id': string;
       'language'?: string;
       'url'?: string;
+      'class'?: string;
+      'className'?: string;
     }, HTMLElement>;
   }
 }

@@ -28,15 +28,32 @@
         script.src = "https://cdn.elevenlabs.io/convai/convai.js";
         script.async = true;
         script.onload = function() {
-          console.log("ElevenLabs script loaded successfully from head");
+          console.log("ElevenLabs script loaded successfully");
           window.elevenLabsScriptLoaded = true;
           window.elevenLabsScriptFailed = false;
           window.dispatchEvent(new Event('elevenlabs-script-loaded'));
         };
         script.onerror = function(error) {
-          console.error("Error loading ElevenLabs script from head:", error);
+          console.error("Error loading ElevenLabs script:", error);
           window.elevenLabsScriptFailed = true;
           window.dispatchEvent(new Event('elevenlabs-script-failed'));
+          
+          // Try loading from alternate CDN
+          setTimeout(function() {
+            const fallbackScript = document.createElement('script');
+            fallbackScript.src = "https://storage.googleapis.com/xi-convai/convai.js";
+            fallbackScript.async = true;
+            fallbackScript.onload = function() {
+              console.log("ElevenLabs script loaded successfully from fallback");
+              window.elevenLabsScriptLoaded = true;
+              window.elevenLabsScriptFailed = false;
+              window.dispatchEvent(new Event('elevenlabs-script-loaded'));
+            };
+            fallbackScript.onerror = function() {
+              console.error("Failed to load ElevenLabs script from both sources");
+            };
+            document.head.appendChild(fallbackScript);
+          }, 1000);
         };
         document.head.appendChild(script);
       };
@@ -54,13 +71,13 @@
     
     <!-- Fallback script loader if head loading fails -->
     <script>
-      // We'll check after 3 seconds if the script loaded
+      // We'll check after 2 seconds if the script loaded
       setTimeout(function() {
         if (!window.elevenLabsScriptLoaded && !window.ElevenLabsConvai) {
           console.log("ElevenLabs script not loaded after timeout, trying again");
           window.loadElevenLabsScript();
         }
-      }, 3000);
+      }, 2000);
     </script>
   </body>
 </html>
