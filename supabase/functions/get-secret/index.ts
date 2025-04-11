@@ -36,7 +36,8 @@ serve(async (req) => {
         return new Response(
           JSON.stringify({ 
             value: 'development-mode',
-            mode: 'development'
+            mode: 'development',
+            fallback: true
           }),
           { 
             status: 200, 
@@ -46,7 +47,7 @@ serve(async (req) => {
       }
       
       return new Response(
-        JSON.stringify({ error: `Secret ${key} not found` }),
+        JSON.stringify({ error: `Secret ${key} not found`, status: 'not_found' }),
         { 
           status: 404, 
           headers: { ...corsHeaders, 'Content-Type': 'application/json' } 
@@ -54,9 +55,9 @@ serve(async (req) => {
       )
     }
     
-    // Return the secret value
+    // Return the secret value with status
     return new Response(
-      JSON.stringify({ value }),
+      JSON.stringify({ value, status: 'success' }),
       { 
         status: 200, 
         headers: { ...corsHeaders, 'Content-Type': 'application/json' } 
@@ -65,7 +66,7 @@ serve(async (req) => {
   } catch (error) {
     console.error('Error in get-secret function:', error)
     return new Response(
-      JSON.stringify({ error: error.message }),
+      JSON.stringify({ error: error.message, status: 'error' }),
       { 
         status: 500, 
         headers: { ...corsHeaders, 'Content-Type': 'application/json' } 

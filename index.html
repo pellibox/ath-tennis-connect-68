@@ -29,51 +29,71 @@
         if (window.ElevenLabsConvai || window.elevenLabsScriptLoaded) {
           console.log("ElevenLabs already loaded, skipping");
           window.elevenLabsScriptLoaded = true;
+          window.dispatchEvent(new Event('elevenlabs-script-loaded'));
           return;
         }
         
-        // Try multiple CDN sources in sequence
+        // Try multiple CDN sources in sequence with more backup options
         const sources = [
           "https://cdn.elevenlabs.io/convai/convai.js",
+          "https://convai.elevenlabs.io/convai.js",
           "https://storage.googleapis.com/xi-convai/convai.js",
-          "https://convai-cdn.elevenlabs.io/convai.js"
+          "https://convai-cdn.elevenlabs.io/convai.js",
+          "https://cdn-fallback.elevenlabs.io/convai/convai.js",
+          "https://cdn.elevenlabsusercontent.com/convai.js"
         ];
         
+        let sourceIndex = 0;
+        let attemptCount = 0;
+        const maxAttempts = 12; // Allow multiple rounds through the sources
+        
         // Function to try loading from next source
-        function tryNextSource(index) {
-          if (index >= sources.length) {
-            console.error("Failed to load ElevenLabs script from all sources");
+        function tryNextSource() {
+          if (window.ElevenLabsConvai || window.elevenLabsScriptLoaded) {
+            console.log("ElevenLabs already loaded during retry sequence, stopping further attempts");
+            window.elevenLabsScriptLoaded = true;
+            window.dispatchEvent(new Event('elevenlabs-script-loaded'));
+            return;
+          }
+          
+          if (attemptCount >= maxAttempts) {
+            console.error("Failed to load ElevenLabs script after maximum attempts");
             window.elevenLabsScriptFailed = true;
             window.dispatchEvent(new Event('elevenlabs-script-failed'));
             return;
           }
           
-          console.log(`Trying to load ElevenLabs script from ${sources[index]}`);
+          const source = sources[sourceIndex % sources.length];
+          sourceIndex++;
+          attemptCount++;
+          
+          console.log(`Trying to load ElevenLabs script from ${source} (attempt ${attemptCount}/${maxAttempts})`);
           const script = document.createElement('script');
-          script.src = sources[index];
+          script.src = source;
           script.async = true;
           
           script.onload = function() {
-            console.log(`ElevenLabs script loaded successfully from ${sources[index]}`);
+            console.log(`ElevenLabs script loaded successfully from ${source}`);
             window.elevenLabsScriptLoaded = true;
             window.elevenLabsScriptFailed = false;
             window.dispatchEvent(new Event('elevenlabs-script-loaded'));
           };
           
-          script.onerror = function(error) {
-            console.error(`Error loading ElevenLabs script from ${sources[index]}:`, error);
-            // Try next source
-            setTimeout(() => tryNextSource(index + 1), 1000);
+          script.onerror = function() {
+            console.error(`Error loading ElevenLabs script from ${source}`);
+            // Try next source with exponential backoff
+            const delay = Math.min(1000 * Math.pow(1.5, attemptCount % sources.length), 10000);
+            setTimeout(tryNextSource, delay);
           };
           
           document.head.appendChild(script);
         }
         
         // Start with the first source
-        tryNextSource(0);
+        tryNextSource();
       };
       
-      // Try to load the script immediately
+      // Try to load the script at various lifecycle points
       document.addEventListener('DOMContentLoaded', function() {
         window.loadElevenLabsScript();
       });
@@ -84,6 +104,14 @@
       } else {
         window.loadElevenLabsScript();
       }
+      
+      // Backup loading on window load
+      window.addEventListener('load', function() {
+        if (!window.elevenLabsScriptLoaded && !window.ElevenLabsConvai) {
+          console.log("Window loaded but ElevenLabs not detected, trying again");
+          window.loadElevenLabsScript();
+        }
+      });
     </script>
   </head>
 
@@ -93,7 +121,7 @@
     <script src="https://cdn.gpteng.co/gptengineer.js" type="module"></script>
     <script type="module" src="/src/main.tsx"></script>
     
-    <!-- Fallback script loader with increased timeout -->
+    <!-- Fallback script loader with improved retry strategy -->
     <script>
       // We'll check after 3 seconds if the script loaded
       setTimeout(function() {
@@ -101,13 +129,16 @@
           console.log("ElevenLabs script not loaded after timeout, trying again");
           window.loadElevenLabsScript();
           
-          // Try one more time after additional delay if still not loaded
-          setTimeout(function() {
-            if (!window.elevenLabsScriptLoaded && !window.ElevenLabsConvai) {
-              console.log("Second attempt to load ElevenLabs script");
-              window.loadElevenLabsScript();
-            }
-          }, 5000);
+          // Try more times with increasing delays
+          const retryTimes = [5000, 10000, 20000];
+          retryTimes.forEach((delay, index) => {
+            setTimeout(function() {
+              if (!window.elevenLabsScriptLoaded && !window.ElevenLabsConvai) {
+                console.log(`Retry attempt ${index + 1} to load ElevenLabs script`);
+                window.loadElevenLabsScript();
+              }
+            }, delay);
+          });
         }
       }, 3000);
     </script>

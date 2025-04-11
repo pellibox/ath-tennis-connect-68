@@ -10,6 +10,15 @@ interface SignedUrlResponse {
   error?: string;
 }
 
+// Define the response type from our secret function
+interface SecretResponse {
+  value: string;
+  mode?: string;
+  fallback?: boolean;
+  error?: string;
+  status?: string;
+}
+
 export const useElevenLabsAuth = (agentId: string) => {
   const [signedUrl, setSignedUrl] = useState<string | null>(null);
   const [conversationId, setConversationId] = useState<string | null>(null);
@@ -18,6 +27,7 @@ export const useElevenLabsAuth = (agentId: string) => {
   const [apiKey, setApiKey] = useState<string | null>(null);
   const [apiKeyLoaded, setApiKeyLoaded] = useState(false);
   const [apiKeyError, setApiKeyError] = useState<boolean>(false);
+  const [isDevelopmentMode, setIsDevelopmentMode] = useState(false);
   
   // Get API key from Supabase secrets
   useEffect(() => {
@@ -35,9 +45,17 @@ export const useElevenLabsAuth = (agentId: string) => {
           return;
         }
         
-        if (data?.value) {
-          setApiKey(data.value);
-          console.log('ElevenLabs API key loaded successfully');
+        const response = data as SecretResponse;
+        
+        if (response?.value) {
+          setApiKey(response.value);
+          
+          if (response.mode === 'development' || response.fallback) {
+            console.log('Running in development mode with fallback API key');
+            setIsDevelopmentMode(true);
+          } else {
+            console.log('ElevenLabs API key loaded successfully');
+          }
         } else {
           // Handle case where data exists but no value
           console.log('No API key value returned, using public mode');
@@ -62,7 +80,7 @@ export const useElevenLabsAuth = (agentId: string) => {
     
     try {
       // Use public mode if no API key or in development mode
-      if (!apiKey || apiKey === 'development-mode') {
+      if (!apiKey || isDevelopmentMode) {
         console.log('No API key available or in development mode, using public mode');
         setSignedUrl(null);
         setConversationId(null);
@@ -109,10 +127,10 @@ export const useElevenLabsAuth = (agentId: string) => {
   
   // Try to get a signed URL once we have the API key
   useEffect(() => {
-    if (apiKey && apiKeyLoaded) {
+    if (apiKey && apiKeyLoaded && !isDevelopmentMode) {
       getSignedUrl();
     }
-  }, [apiKey, apiKeyLoaded, agentId]);
+  }, [apiKey, apiKeyLoaded, agentId, isDevelopmentMode]);
   
   return { 
     signedUrl, 
@@ -120,8 +138,9 @@ export const useElevenLabsAuth = (agentId: string) => {
     error, 
     isLoading, 
     getSignedUrl, 
-    hasApiKey: !!apiKey && apiKey !== 'development-mode',
+    hasApiKey: !!apiKey && !isDevelopmentMode,
     apiKeyLoaded,
-    apiKeyError
+    apiKeyError,
+    isDevelopmentMode
   };
 };

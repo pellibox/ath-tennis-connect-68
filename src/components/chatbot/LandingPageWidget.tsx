@@ -1,3 +1,4 @@
+
 import React, { useEffect, useRef, useState } from 'react';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { toast } from '@/hooks/use-toast';
@@ -13,7 +14,7 @@ const CDN_TIMEOUT = 5000; // 5 seconds timeout for CDN loads
 
 const LandingPageWidget = () => {
   const { language } = useLanguage();
-  const { hasApiKey, apiKeyLoaded, apiKeyError } = useElevenLabsAuth(AGENT_ID);
+  const { hasApiKey, apiKeyLoaded, apiKeyError, isDevelopmentMode } = useElevenLabsAuth(AGENT_ID);
   const hiddenWidgetRef = useRef<HTMLDivElement>(null);
   const [initAttempt, setInitAttempt] = useState(0);
   const widgetInitialized = useRef(false);
@@ -90,13 +91,14 @@ const LandingPageWidget = () => {
       return;
     }
     
-    cdnTimeoutsRef.current.forEach(timeout => clearTimeout(timeout));
+    cdnTimeoutsRef.current.forEach(timeout => window.clearTimeout(timeout));
     cdnTimeoutsRef.current = [];
     
     scriptLoadingAttempt.current += 1;
     
     const sources = [
       "https://cdn.elevenlabs.io/convai/convai.js",
+      "https://convai.elevenlabs.io/convai.js",
       "https://storage.googleapis.com/xi-convai/convai.js",
       "https://convai-cdn.elevenlabs.io/convai.js"
     ];
@@ -117,7 +119,7 @@ const LandingPageWidget = () => {
     cdnTimeoutsRef.current.push(timeoutId);
     
     script.onload = () => {
-      clearTimeout(timeoutId);
+      window.clearTimeout(timeoutId);
       
       console.log(`Script loaded directly from ${source}`);
       setScriptLoaded(true);
@@ -139,10 +141,10 @@ const LandingPageWidget = () => {
       }, 1000);
     };
     
-    script.onerror = (err: Event) => {
-      clearTimeout(timeoutId);
+    script.onerror = () => {
+      window.clearTimeout(timeoutId);
       
-      console.error(`Direct script loading failed from ${source}:`, err);
+      console.error(`Direct script loading failed from ${source}`);
       setTimeout(loadScriptDirectly, 1000);
     };
     
@@ -157,7 +159,7 @@ const LandingPageWidget = () => {
         if (window.ElevenLabsConvai && !widgetInitialized.current) {
           console.log("Initializing ElevenLabs widget with language:", language);
           
-          const usePublicMode = !hasApiKey || apiKeyError;
+          const usePublicMode = !hasApiKey || apiKeyError || isDevelopmentMode;
           console.log("Using public agents mode:", usePublicMode);
           
           const attemptInit = (attempt = 0) => {
@@ -192,6 +194,7 @@ const LandingPageWidget = () => {
         } else if (!window.ElevenLabsConvai && initAttempt >= MAX_INIT_ATTEMPTS) {
           console.error("Failed to find ElevenLabs API after multiple attempts");
           setInitializationError(true);
+          setScriptLoadingFailed(true);
           
           if (userInitiatedRef.current) {
             toast({
@@ -208,12 +211,17 @@ const LandingPageWidget = () => {
     };
 
     initializeWidget();
-  }, [language, initAttempt, scriptLoaded, apiKeyLoaded, hasApiKey, apiKeyError]);
+  }, [language, initAttempt, scriptLoaded, apiKeyLoaded, hasApiKey, apiKeyError, isDevelopmentMode]);
 
   const checkAudioPermissions = async () => {
     try {
-      const audioCtx = new (window.AudioContext || (window as any).webkitAudioContext)();
-      audioContextRef.current = audioCtx;
+      // Use a try/catch block around AudioContext creation
+      try {
+        const audioCtx = new (window.AudioContext || (window as any).webkitAudioContext)();
+        audioContextRef.current = audioCtx;
+      } catch (err) {
+        console.error("Failed to create AudioContext:", err);
+      }
       
       const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
       
@@ -462,6 +470,14 @@ const LandingPageWidget = () => {
           description: "Non è stato possibile caricare il servizio ElevenLabs. Riprova più tardi o ricarica la pagina.",
           variant: "destructive"
         });
+        
+        // Offer fallback mode message
+        if (isDevelopmentMode) {
+          toast({
+            title: "Modalità limitata",
+            description: "Continuerai in modalità limitata con funzionalità ridotte."
+          });
+        }
       }
       return;
     }
@@ -706,6 +722,53 @@ const LandingPageWidget = () => {
       loadScriptDirectly();
     }
     
+    // Try harder to load the script with multiple mechanisms
+    // This uses both head and body insertion with different timings
+    setTimeout(() => {
+      if (!scriptLoaded && !window.ElevenLabsConvai) {
+        console.log("Attempting additional loading methods");
+        
+        // Create an additional script tag in the body
+        const bodyScript = document.createElement('script');
+        bodyScript.src = "https://cdn.elevenlabs.io/convai/convai.js";
+        bodyScript.async = true;
+        document.body.appendChild(bodyScript);
+        
+        // Also try adding a script through document.write as last resort
+        setTimeout(() => {
+          if (!scriptLoaded && !window.ElevenLabsConvai) {
+            try {
+              const tempIframe = document.createElement('iframe');
+              tempIframe.style.display = 'none';
+              document.body.appendChild(tempIframe);
+              const doc = tempIframe.contentDocument || tempIframe.contentWindow?.document;
+              
+              if (doc) {
+                doc.open();
+                doc.write('<script src="https://cdn.elevenlabs.io/convai/convai.js"><\/script>');
+                doc.close();
+                
+                // If we load in the iframe, copy to main window
+                setTimeout(() => {
+                  try {
+                    if (tempIframe.contentWindow?.ElevenLabsConvai && !window.ElevenLabsConvai) {
+                      window.ElevenLabsConvai = tempIframe.contentWindow.ElevenLabsConvai;
+                      setScriptLoaded(true);
+                    }
+                  } catch (e) {
+                    console.error("Error copying ElevenLabsConvai from iframe:", e);
+                  }
+                  document.body.removeChild(tempIframe);
+                }, 2000);
+              }
+            } catch (e) {
+              console.error("Error with iframe loading attempt:", e);
+            }
+          }
+        }, 1000);
+      }
+    }, 1000);
+    
     setTimeout(() => setIsLoading(false), 2000);
   };
 
@@ -732,6 +795,9 @@ const LandingPageWidget = () => {
     }
   };
 
+  // Show a fallback message if everything fails
+  const showFallbackUI = scriptLoadingFailed && manuallyRetriedRef.current >= 2;
+
   return (
     <div className="w-full flex flex-col items-center mt-8">
       <Button 
@@ -747,6 +813,7 @@ const LandingPageWidget = () => {
           transition-all duration-300 ease-in-out
           ${connectionError ? 'border-red-500 text-red-500 hover:bg-red-500' : ''}
           ${permissionError ? 'border-yellow-500 animate-pulse' : ''}
+          ${showFallbackUI ? 'opacity-50 cursor-not-allowed' : ''}
         `}
         aria-label={callActive ? "Stop ElevenLabs call" : "Start ElevenLabs call"}
       >
@@ -756,17 +823,30 @@ const LandingPageWidget = () => {
         {!buttonClicked && <span className="whitespace-nowrap text-white">Chiedi a Vicki</span>}
       </Button>
       
-      {scriptLoadingFailed && (
+      {scriptLoadingFailed && !showFallbackUI && (
         <div className="mt-2 flex flex-col items-center">
           <p className="text-xs text-red-400">
             Errore di caricamento.
           </p>
           <button 
             onClick={handleManualRetry} 
-            className="elevenlabs-retry-button flex items-center mt-1"
+            className="elevenlabs-retry-button flex items-center mt-1 text-white text-xs hover:underline"
           >
             <RefreshCw size={12} className="mr-1" /> Riprova
           </button>
+        </div>
+      )}
+
+      {showFallbackUI && (
+        <div className="mt-2 text-center max-w-[250px]">
+          <p className="text-xs text-amber-400 mb-2">
+            Impossibile caricare il servizio vocale. Prova a:
+          </p>
+          <ul className="text-xs text-white/80 list-disc text-left pl-4">
+            <li>Verificare la connessione internet</li>
+            <li>Disattivare blocco script o AdBlock</li>
+            <li>Ricaricare la pagina</li>
+          </ul>
         </div>
       )}
       
