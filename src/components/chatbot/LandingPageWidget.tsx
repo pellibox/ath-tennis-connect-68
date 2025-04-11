@@ -1,4 +1,3 @@
-
 import React, { useEffect, useRef, useState } from 'react';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { toast } from '@/hooks/use-toast';
@@ -109,14 +108,12 @@ const LandingPageWidget = () => {
     script.src = source;
     script.async = true;
     
-    // Fix the TypeScript error by properly typing the error parameter
-    const timeoutId = setTimeout(() => {
+    const timeoutId = window.setTimeout(() => {
       console.log(`Loading from ${source} timed out after ${CDN_TIMEOUT}ms`);
       const errorEvent = new Event('error');
       script.dispatchEvent(errorEvent);
     }, CDN_TIMEOUT);
     
-    // Store the timeout ID as a number
     cdnTimeoutsRef.current.push(timeoutId);
     
     script.onload = () => {
