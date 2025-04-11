@@ -27,4 +27,5 @@ interface Window {
   elevenLabsScriptLoaded?: boolean;
   elevenLabsScriptFailed?: boolean;
   loadElevenLabsScript?: () => void;
+  audioStream?: MediaStream; // Store audio stream reference
 }

@@ -1,10 +1,9 @@
-
 import React, { useEffect, useRef, useState } from 'react';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { toast } from '@/hooks/use-toast';
 import { Button } from '@/components/ui/button';
 import { GiArtificialIntelligence } from "react-icons/gi";
-import { XCircle, AlertCircle, Loader2 } from "lucide-react";
+import { XCircle, AlertCircle, Loader2, RefreshCw } from "lucide-react";
 
 const AGENT_ID = "jJMZr28UE8hDLsO00dmt";
 const MAX_INIT_ATTEMPTS = 5;
@@ -28,6 +27,7 @@ const LandingPageWidget = () => {
   const audioContextRef = useRef<AudioContext | null>(null);
   const userInitiatedRef = useRef(false); // Track if actions are user-initiated
   const scriptLoadingAttempt = useRef(0);
+  const manuallyRetriedRef = useRef(0);
 
   // Check if ElevenLabs script is already loaded
   useEffect(() => {
@@ -78,7 +78,7 @@ const LandingPageWidget = () => {
     };
   }, []);
 
-  // Direct script loading function as fallback
+  // Direct script loading function as fallback - improved with multiple CDNs
   const loadScriptDirectly = () => {
     if (scriptLoadingAttempt.current >= 3) {
       console.error("Failed to load script after multiple attempts");
@@ -87,16 +87,43 @@ const LandingPageWidget = () => {
     }
     
     scriptLoadingAttempt.current += 1;
+    
+    // Try different CDN sources in sequence
+    const sources = [
+      "https://cdn.elevenlabs.io/convai/convai.js",
+      "https://storage.googleapis.com/xi-convai/convai.js",
+      "https://convai-cdn.elevenlabs.io/convai.js"
+    ];
+    
+    const source = sources[(scriptLoadingAttempt.current - 1) % sources.length];
+    console.log(`Trying to load from ${source} (attempt ${scriptLoadingAttempt.current})`);
+    
     const script = document.createElement('script');
-    script.src = WIDGET_SCRIPT_URL;
+    script.src = source;
     script.async = true;
     script.onload = () => {
-      console.log("Script loaded directly");
+      console.log(`Script loaded directly from ${source}`);
       setScriptLoaded(true);
       setScriptLoadingFailed(false);
+      
+      // Initialize immediately after loading
+      setTimeout(() => {
+        if (window.ElevenLabsConvai && !widgetInitialized.current) {
+          try {
+            window.ElevenLabsConvai.init({
+              language: language || 'it',
+              usePublicAgents: true
+            });
+            widgetInitialized.current = true;
+            console.log("Widget initialized right after script load");
+          } catch (err) {
+            console.error("Failed to initialize widget after load:", err);
+          }
+        }
+      }, 1000);
     };
     script.onerror = () => {
-      console.error("Direct script loading failed");
+      console.error(`Direct script loading failed from ${source}`);
       setTimeout(loadScriptDirectly, 2000);
     };
     document.body.appendChild(script);
@@ -111,15 +138,33 @@ const LandingPageWidget = () => {
         if (window.ElevenLabsConvai && !widgetInitialized.current) {
           console.log("Initializing ElevenLabs widget with language:", language);
           
-          // Initialize the widget
-          window.ElevenLabsConvai.init({
-            language: language || 'it',
-            usePublicAgents: true
-          });
+          // Retry pattern for initialization with exponential backoff
+          const attemptInit = (attempt = 0) => {
+            try {
+              // Initialize the widget
+              window.ElevenLabsConvai.init({
+                language: language || 'it',
+                usePublicAgents: true
+              });
+              
+              widgetInitialized.current = true;
+              setInitializationError(false);
+              console.log("ElevenLabs widget initialized successfully");
+            } catch (error) {
+              console.error(`Widget initialization failed (attempt ${attempt}):`, error);
+              
+              if (attempt < 3) {
+                const delay = Math.pow(2, attempt) * 1000;
+                console.log(`Retrying initialization in ${delay}ms`);
+                setTimeout(() => attemptInit(attempt + 1), delay);
+              } else {
+                setInitializationError(true);
+              }
+            }
+          };
           
-          widgetInitialized.current = true;
-          setInitializationError(false);
-          console.log("ElevenLabs widget initialized successfully");
+          // Start initialization attempts
+          attemptInit();
         } else if (!window.ElevenLabsConvai && initAttempt < MAX_INIT_ATTEMPTS) {
           console.log(`ElevenLabs API not found. Attempt ${initAttempt + 1}/${MAX_INIT_ATTEMPTS}`);
           
@@ -157,7 +202,10 @@ const LandingPageWidget = () => {
       audioContextRef.current = audioCtx;
       
       // Check microphone permissions
-      await navigator.mediaDevices.getUserMedia({ audio: true });
+      const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+      
+      // Successfully got permission, keep the stream reference
+      window.audioStream = stream;
       
       setPermissionError(false);
       return true;
@@ -313,7 +361,7 @@ const LandingPageWidget = () => {
     }
   };
   
-  // Debug helper function to log all elements in the shadow DOM
+  // Enhanced debug helper function to log all elements in the shadow DOM
   const logShadowDOMElements = () => {
     if (!hiddenWidgetRef.current) return;
     
@@ -322,18 +370,28 @@ const LandingPageWidget = () => {
       console.log("All elements in shadow DOM:");
       const elements = widgetElement.shadowRoot.querySelectorAll('*');
       elements.forEach((element, index) => {
-        console.log(`Element ${index}:`, element.tagName, element.className, element);
+        const tagName = element.tagName;
+        const className = element.className;
+        const id = element.id;
+        const attributes = Array.from(element.attributes).map(attr => `${attr.name}="${attr.value}"`).join(' ');
+        console.log(`Element ${index}: ${tagName} ${className} ${id} ${attributes}`);
       });
       
       console.log("All buttons in shadow DOM:");
       const buttons = widgetElement.shadowRoot.querySelectorAll('button, [role="button"]');
       buttons.forEach((button, index) => {
-        console.log(`Button ${index}:`, button.tagName, button.className, button.getAttribute('aria-label'), button);
+        const tagName = button.tagName;
+        const className = button.className;
+        const ariaLabel = button.getAttribute('aria-label');
+        const title = button.getAttribute('title');
+        const text = button.textContent;
+        const attributes = Array.from(button.attributes).map(attr => `${attr.name}="${attr.value}"`).join(' ');
+        console.log(`Button ${index}: ${tagName} ${className} ariaLabel="${ariaLabel}" title="${title}" text="${text}" ${attributes}`);
       });
     }
   };
   
-  // Function to start the call
+  // Improved function to start the call
   const startElevenLabsCall = async () => {
     // Mark that this action is user-initiated
     userInitiatedRef.current = true;
@@ -346,6 +404,12 @@ const LandingPageWidget = () => {
     
     // Check if script loaded
     if (!scriptLoaded) {
+      if (typeof window.loadElevenLabsScript === 'function') {
+        window.loadElevenLabsScript();
+      } else {
+        loadScriptDirectly();
+      }
+      
       toast({
         title: "Caricamento in corso",
         description: "Il servizio ElevenLabs si sta caricando. Riprova tra qualche secondo.",
@@ -355,11 +419,28 @@ const LandingPageWidget = () => {
     
     // Check if script failed to load
     if (scriptLoadingFailed) {
-      toast({
-        title: "Errore di caricamento",
-        description: "Non è stato possibile caricare il servizio ElevenLabs. Riprova più tardi o ricarica la pagina.",
-        variant: "destructive"
-      });
+      if (manuallyRetriedRef.current < 2) {
+        manuallyRetriedRef.current++;
+        setScriptLoadingFailed(false);
+        scriptLoadingAttempt.current = 0;
+        
+        toast({
+          title: "Nuovo tentativo",
+          description: "Stiamo riprovando a caricare il servizio ElevenLabs."
+        });
+        
+        if (typeof window.loadElevenLabsScript === 'function') {
+          window.loadElevenLabsScript();
+        } else {
+          loadScriptDirectly();
+        }
+      } else {
+        toast({
+          title: "Errore di caricamento",
+          description: "Non è stato possibile caricare il servizio ElevenLabs. Riprova più tardi o ricarica la pagina.",
+          variant: "destructive"
+        });
+      }
       return;
     }
     
@@ -396,11 +477,15 @@ const LandingPageWidget = () => {
     if (!widgetInitialized.current) {
       if (window.ElevenLabsConvai) {
         console.log("Re-initializing widget before call");
-        window.ElevenLabsConvai.init({
-          language: language || 'it',
-          usePublicAgents: true
-        });
-        widgetInitialized.current = true;
+        try {
+          window.ElevenLabsConvai.init({
+            language: language || 'it',
+            usePublicAgents: true
+          });
+          widgetInitialized.current = true;
+        } catch (err) {
+          console.error("Error initializing widget:", err);
+        }
       } else {
         console.log("Widget API not available, triggering re-init attempt");
         setInitAttempt(prev => prev + 1);
@@ -423,42 +508,90 @@ const LandingPageWidget = () => {
       await new Promise(resolve => setTimeout(resolve, 1000));
     }
     
-    // Log all elements in shadow DOM for debugging
+    // Enhanced log for debugging
+    console.log("Widget element before clicking:", widgetElement);
     logShadowDOMElements();
     
-    // Try to find and click the start button
-    tryClickStartButton();
+    // Try to find and click the start button - with improved reliability
+    setTimeout(() => tryClickStartButton(0), 500);
   };
   
-  // Helper function to find and click start button with retries
-  const tryClickStartButton = () => {
-    const widgetElement = hiddenWidgetRef.current?.querySelector('elevenlabs-convai');
-    if (!widgetElement || !widgetElement.shadowRoot) {
-      // If widget is not ready yet, wait and retry
-      if (buttonFindAttemptsRef.current < MAX_BUTTON_FIND_ATTEMPTS) {
-        buttonFindAttemptsRef.current++;
-        console.log(`Widget not ready, retrying (${buttonFindAttemptsRef.current}/${MAX_BUTTON_FIND_ATTEMPTS})...`);
+  // Helper function to find and click start button with retries and fallbacks
+  const tryClickStartButton = (attemptNumber = 0) => {
+    if (attemptNumber >= MAX_BUTTON_FIND_ATTEMPTS) {
+      // After too many attempts, create a fresh widget and try one last time
+      console.log("Max button find attempts reached, creating fresh widget");
+      
+      const freshWidget = document.createElement('elevenlabs-convai');
+      freshWidget.setAttribute('agent-id', AGENT_ID);
+      freshWidget.setAttribute('language', language || 'it');
+      
+      if (hiddenWidgetRef.current) {
+        // Remove old widget
+        const oldWidget = hiddenWidgetRef.current.querySelector('elevenlabs-convai');
+        if (oldWidget) {
+          hiddenWidgetRef.current.removeChild(oldWidget);
+        }
         
-        // Exponential backoff
-        setTimeout(tryClickStartButton, Math.pow(2, buttonFindAttemptsRef.current) * 200);
-      } else {
-        // Give up after too many attempts
-        console.error("Failed to find widget after multiple attempts");
-        setIsLoading(false);
-        setButtonClicked(false);
-        setConnectionError(true);
+        // Add new widget
+        hiddenWidgetRef.current.appendChild(freshWidget);
         
-        toast({
-          title: "Errore",
-          description: "Non è stato possibile avviare la chiamata. Riprova più tardi.",
-          variant: "destructive"
-        });
+        // One final attempt after a delay
+        setTimeout(() => {
+          const finalAttempt = () => {
+            logShadowDOMElements(); // Log everything for debugging
+            
+            const shadowRoot = freshWidget.shadowRoot;
+            if (shadowRoot) {
+              // Try to click ANY button
+              console.log("Last resort: trying to click ANY button");
+              const allButtons = shadowRoot.querySelectorAll('button');
+              if (allButtons.length > 0) {
+                // Skip first button which is usually close
+                const targetButton = allButtons.length > 1 ? allButtons[1] : allButtons[0];
+                if (targetButton instanceof HTMLElement) {
+                  console.log("Clicking button:", targetButton);
+                  targetButton.click();
+                  setIsLoading(false);
+                  setCallActive(true);
+                  return;
+                }
+              }
+            }
+            
+            // Give up
+            console.error("Failed to find any button to click");
+            setIsLoading(false);
+            setButtonClicked(false);
+            setConnectionError(true);
+            
+            toast({
+              title: "Errore",
+              description: "Non è stato possibile avviare la chiamata. Ricarica la pagina e riprova.",
+              variant: "destructive"
+            });
+          };
+          
+          // Wait for shadow DOM to be created and try
+          setTimeout(finalAttempt, 1000);
+        }, 1000);
       }
       return;
     }
     
-    // First try direct targeting by class name structure - this is the most reliable method
-    // Look for buttons with specific classes that ElevenLabs uses
+    const widgetElement = hiddenWidgetRef.current?.querySelector('elevenlabs-convai');
+    if (!widgetElement || !widgetElement.shadowRoot) {
+      // If widget is not ready yet, wait and retry
+      console.log(`Widget not ready, retrying (${attemptNumber + 1}/${MAX_BUTTON_FIND_ATTEMPTS})...`);
+      
+      // Exponential backoff
+      setTimeout(() => tryClickStartButton(attemptNumber + 1), Math.pow(2, attemptNumber) * 200);
+      return;
+    }
+    
+    console.log(`Attempt ${attemptNumber + 1} to find start button`);
+    
+    // First try direct targeting by class name structure
     const directButtons = widgetElement.shadowRoot.querySelectorAll(
       'button._start_1xhaw_1, button[class*="start"], button[data-action="start"], [role="button"][class*="start"]'
     );
@@ -474,110 +607,71 @@ const LandingPageWidget = () => {
       }
     }
     
-    // Second try title-based button
-    const startCallButton = widgetElement.shadowRoot.querySelector('button[title="Chiedi a Vicki"]');
-    if (startCallButton && startCallButton instanceof HTMLElement) {
-      console.log("Found start call button by title:", startCallButton);
-      startCallButton.click();
-      console.log("Start call button clicked by title!");
-      setIsLoading(false);
-      setCallActive(true);
-      return;
+    // Try with more specific targeting - title-based button
+    const titleButtons = widgetElement.shadowRoot.querySelectorAll('button[title*="Vicki"], button[title*="Ask"], button[title*="Start"], button[title*="Call"], button[title*="Chiedi"]');
+    for (const button of titleButtons) {
+      if (button instanceof HTMLElement) {
+        console.log("Found button by title:", button);
+        button.click();
+        console.log("Button clicked by title!");
+        setIsLoading(false);
+        setCallActive(true);
+        return;
+      }
     }
     
-    // Try with different selectors
+    // Try with different selectors - more aggressive targeting
     const buttonSelectors = [
-      'button[aria-label="Start Call"]',
+      'button:not([aria-label="Close"]):not([aria-label="Settings"])',
+      'button:not([class*="close"]):not([class*="settings"])',
       'button.call-button',
-      'button[class*="start-call"]',
-      'button[class*="start"]',
       'button[class*="call"]',
-      'button:not([aria-label="Close"])',
+      'button[class*="start"]',
       'button'
     ];
     
     // Log all buttons for debugging
     const allButtons = widgetElement.shadowRoot.querySelectorAll('button');
     console.log(`Found ${allButtons.length} buttons in the shadow DOM`);
-    allButtons.forEach((button, buttonIndex) => {
-      console.log(`Button ${buttonIndex} innerHTML:`, button.innerHTML);
-      console.log(`Button ${buttonIndex} outerHTML:`, button.outerHTML);
-      // Try to click all buttons directly as a last resort
-      if (buttonIndex > 0 && button instanceof HTMLElement) {
-        console.log("Attempting to click button directly:", button);
-        try {
-          button.click();
-          setIsLoading(false);
-          setCallActive(true);
-          return;
-        } catch (e) {
-          console.error("Error clicking button:", e);
-        }
-      }
-    });
     
     // Try each selector
     let buttonClicked = false;
     for (const selector of buttonSelectors) {
+      if (buttonClicked) break;
+      
       const buttons = widgetElement.shadowRoot.querySelectorAll(selector);
       console.log(`Selector '${selector}' found ${buttons.length} elements`);
       
-      buttons.forEach((button, buttonIndex) => {
-        // Skip first button (usually close/settings) and only click buttons that look like start buttons
-        if (buttonIndex > 0 && button instanceof HTMLElement && 
+      for (const [index, button] of Array.from(buttons).entries()) {
+        // Skip very first button which is usually settings or close
+        // Skip buttons that are explicitly close
+        if (button instanceof HTMLElement && 
             !button.getAttribute('aria-label')?.includes('Close') && 
+            !button.getAttribute('aria-label')?.includes('Settings') && 
             !button.classList.contains('close')) {
-          console.log("Found potential start button:", button);
-          button.click();
-          console.log("Button clicked!");
-          buttonClicked = true;
-          setIsLoading(false);
-          setCallActive(true);
-          return;
-        }
-      });
-      
-      if (buttonClicked) break;
-    }
-    
-    // If no button clicked, try to click any clickable element
-    if (!buttonClicked) {
-      console.log("Could not find a suitable button, trying to find any clickable element");
-      
-      const clickableElements = widgetElement.shadowRoot.querySelectorAll('[role="button"], a, button, [class*="start"], [class*="call"]');
-      console.log(`Found ${clickableElements.length} clickable elements`);
-      
-      for (const element of clickableElements) {
-        if (element instanceof HTMLElement) {
-          console.log("Trying to click alternative element:", element);
-          element.click();
-          buttonClicked = true;
-          setIsLoading(false);
-          setCallActive(true);
-          break;
+          
+          // Prefer buttons later in the DOM (usually the main action button)
+          if (index > 0 || buttons.length === 1) {
+            console.log(`Attempting to click button ${index}:`, button);
+            try {
+              button.click();
+              buttonClicked = true;
+              setIsLoading(false);
+              setCallActive(true);
+              console.log(`Successfully clicked button ${index}`);
+              return;
+            } catch (e) {
+              console.error(`Error clicking button ${index}:`, e);
+            }
+          }
         }
       }
     }
     
-    // If still no button clicked, and we haven't reached max attempts, try again
-    if (!buttonClicked && buttonFindAttemptsRef.current < MAX_BUTTON_FIND_ATTEMPTS) {
-      buttonFindAttemptsRef.current++;
-      console.log(`No button found, retrying (${buttonFindAttemptsRef.current}/${MAX_BUTTON_FIND_ATTEMPTS})...`);
-      
-      // Exponential backoff for retries
-      setTimeout(tryClickStartButton, Math.pow(2, buttonFindAttemptsRef.current) * 300);
-    } else if (!buttonClicked) {
-      // Give up after too many attempts
-      console.error("Could not find any button to click after multiple attempts");
-      setIsLoading(false);
-      setButtonClicked(false);
-      setConnectionError(true);
-      
-      toast({
-        title: "Errore",
-        description: "Non è stato possibile avviare la chiamata. Riprova più tardi.",
-        variant: "destructive"
-      });
+    // If no button clicked, try next attempt
+    if (!buttonClicked) {
+      console.log(`No suitable button found, trying again in ${Math.pow(2, attemptNumber) * 300}ms`);
+      setTimeout(() => tryClickStartButton(attemptNumber + 1), Math.pow(2, attemptNumber) * 300);
     }
   };
 
@@ -599,25 +693,45 @@ const LandingPageWidget = () => {
     }
   }, [initAttempt, language, scriptLoaded]);
 
-  // Render button status icon based on current state
+  // Manual retry function with user feedback
+  const handleManualRetry = () => {
+    console.log("Manual retry triggered");
+    setScriptLoadingFailed(false);
+    scriptLoadingAttempt.current = 0;
+    manuallyRetriedRef.current += 1;
+    
+    toast({
+      title: "Nuovo tentativo",
+      description: "Stiamo riprovando a caricare il servizio ElevenLabs."
+    });
+    
+    // Try to load from multiple sources
+    if (typeof window.loadElevenLabsScript === 'function') {
+      window.loadElevenLabsScript();
+    } else {
+      loadScriptDirectly();
+    }
+  };
+
+  // Render button status icon based on current state - now with larger icons
   const renderButtonIcon = () => {
     if (isLoading) {
-      return <Loader2 size={buttonClicked ? 60 : 40} className="animate-spin text-white" />;
+      return <Loader2 size={buttonClicked ? 80 : 60} className="animate-spin text-white vicki-icon-active" />;
     } else if (connectionError) {
-      return <AlertCircle size={buttonClicked ? 60 : 40} className="text-white" />;
+      return <AlertCircle size={buttonClicked ? 80 : 60} className="text-white vicki-icon-active" />;
     } else if (callActive) {
       return (
         <XCircle 
-          size={buttonClicked ? 60 : 40}
-          className="text-white icon-stop-glow transition-all duration-300"
+          size={buttonClicked ? 80 : 60}
+          className="text-white icon-stop-glow transition-all duration-300 vicki-icon-active"
           strokeWidth={2.5}
         />
       );
     } else {
       return (
         <GiArtificialIntelligence 
-          size={buttonClicked ? 60 : 40} 
-          className={`${buttonClicked ? '' : 'mr-2'} transition-all duration-300 text-white`}
+          size={buttonClicked ? 80 : 60} 
+          className={`${buttonClicked ? '' : 'mr-2'} transition-all duration-300 text-white vicki-icon ${buttonClicked ? 'vicki-icon-active' : ''}`}
         />
       );
     }
@@ -631,7 +745,7 @@ const LandingPageWidget = () => {
         variant="outline"
         className={`
           rounded-full shadow-md px-6 py-3 font-bold text-lg
-          ${buttonClicked ? 'max-w-[96px] h-[96px] aspect-square p-0' : 'max-w-[200px] w-full'}
+          ${buttonClicked ? 'max-w-[120px] h-[120px] aspect-square p-0' : 'max-w-[200px] w-full'}
           ${callActive 
             ? 'bg-ath-clay border-ath-clay hover:bg-ath-clay/90 hover:border-ath-clay/90' 
             : 'bg-transparent border-ath-clay text-white hover:bg-ath-clay hover:text-white'}
@@ -647,22 +761,17 @@ const LandingPageWidget = () => {
       </Button>
       
       {scriptLoadingFailed && (
-        <p className="text-xs text-red-400 mt-2">
-          Errore di caricamento. <button 
-            onClick={() => {
-              setScriptLoadingFailed(false);
-              scriptLoadingAttempt.current = 0;
-              if (typeof window.loadElevenLabsScript === 'function') {
-                window.loadElevenLabsScript();
-              } else {
-                loadScriptDirectly();
-              }
-            }} 
-            className="underline hover:text-red-300"
+        <div className="mt-2 flex flex-col items-center">
+          <p className="text-xs text-red-400">
+            Errore di caricamento.
+          </p>
+          <button 
+            onClick={handleManualRetry} 
+            className="elevenlabs-retry-button flex items-center mt-1"
           >
-            Riprova
+            <RefreshCw size={12} className="mr-1" /> Riprova
           </button>
-        </p>
+        </div>
       )}
       
       {!scriptLoaded && !scriptLoadingFailed && (
