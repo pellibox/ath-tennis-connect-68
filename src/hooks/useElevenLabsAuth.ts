@@ -16,26 +16,39 @@ export const useElevenLabsAuth = (agentId: string) => {
   const [error, setError] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState(false);
   const [apiKey, setApiKey] = useState<string | null>(null);
+  const [apiKeyLoaded, setApiKeyLoaded] = useState(false);
+  const [apiKeyError, setApiKeyError] = useState<boolean>(false);
   
   // Get API key from Supabase secrets
   useEffect(() => {
     const fetchApiKey = async () => {
       try {
+        setIsLoading(true);
         const { data, error } = await supabase.functions.invoke('get-secret', {
           body: { key: 'ELEVENLABS_API_KEY' },
         });
         
         if (error) {
           console.error('Error fetching API key:', error);
+          setApiKeyError(true);
+          setIsLoading(false);
           return;
         }
         
         if (data?.value) {
           setApiKey(data.value);
           console.log('ElevenLabs API key loaded successfully');
+        } else {
+          // Handle case where data exists but no value
+          console.log('No API key value returned, using public mode');
+          setApiKeyError(true);
         }
       } catch (err) {
         console.error('Error in API key fetch:', err);
+        setApiKeyError(true);
+      } finally {
+        setApiKeyLoaded(true);
+        setIsLoading(false);
       }
     };
     
@@ -48,8 +61,9 @@ export const useElevenLabsAuth = (agentId: string) => {
     setError(null);
     
     try {
-      if (!apiKey) {
-        console.log('No API key available, using public mode');
+      // Use public mode if no API key or in development mode
+      if (!apiKey || apiKey === 'development-mode') {
+        console.log('No API key available or in development mode, using public mode');
         setSignedUrl(null);
         setConversationId(null);
         setIsLoading(false);
@@ -95,10 +109,19 @@ export const useElevenLabsAuth = (agentId: string) => {
   
   // Try to get a signed URL once we have the API key
   useEffect(() => {
-    if (apiKey) {
+    if (apiKey && apiKeyLoaded) {
       getSignedUrl();
     }
-  }, [apiKey, agentId]);
+  }, [apiKey, apiKeyLoaded, agentId]);
   
-  return { signedUrl, conversationId, error, isLoading, getSignedUrl, hasApiKey: !!apiKey };
+  return { 
+    signedUrl, 
+    conversationId, 
+    error, 
+    isLoading, 
+    getSignedUrl, 
+    hasApiKey: !!apiKey && apiKey !== 'development-mode',
+    apiKeyLoaded,
+    apiKeyError
+  };
 };

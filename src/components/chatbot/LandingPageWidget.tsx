@@ -9,11 +9,11 @@ import { useElevenLabsAuth } from '@/hooks/useElevenLabsAuth';
 const AGENT_ID = "jJMZr28UE8hDLsO00dmt";
 const MAX_INIT_ATTEMPTS = 5;
 const MAX_BUTTON_FIND_ATTEMPTS = 7;
-const WIDGET_SCRIPT_URL = "https://cdn.elevenlabs.io/convai/convai.js";
+const CDN_TIMEOUT = 5000; // 5 seconds timeout for CDN loads
 
 const LandingPageWidget = () => {
   const { language } = useLanguage();
-  const { hasApiKey } = useElevenLabsAuth(AGENT_ID);
+  const { hasApiKey, apiKeyLoaded, apiKeyError } = useElevenLabsAuth(AGENT_ID);
   const hiddenWidgetRef = useRef<HTMLDivElement>(null);
   const [initAttempt, setInitAttempt] = useState(0);
   const widgetInitialized = useRef(false);
@@ -30,24 +30,27 @@ const LandingPageWidget = () => {
   const userInitiatedRef = useRef(false); // Track if actions are user-initiated
   const scriptLoadingAttempt = useRef(0);
   const manuallyRetriedRef = useRef(0);
+  const cdnTimeoutsRef = useRef<number[]>([]);
 
-  // Check if ElevenLabs script is already loaded
   useEffect(() => {
-    // First check if window.ElevenLabsConvai is available
+    return () => {
+      cdnTimeoutsRef.current.forEach(timeout => clearTimeout(timeout));
+    };
+  }, []);
+
+  useEffect(() => {
     if (window.ElevenLabsConvai) {
       console.log("ElevenLabs script already available globally");
       setScriptLoaded(true);
       return;
     }
 
-    // Check if window.elevenLabsScriptLoaded flag is set (from index.html)
     if (window.elevenLabsScriptLoaded) {
       console.log("ElevenLabs script loaded flag detected");
       setScriptLoaded(true);
       return;
     }
 
-    // Listen for the script loaded event (from index.html)
     const handleScriptLoaded = () => {
       console.log("ElevenLabs script loaded event detected");
       setScriptLoaded(true);
@@ -62,25 +65,24 @@ const LandingPageWidget = () => {
     window.addEventListener('elevenlabs-script-loaded', handleScriptLoaded);
     window.addEventListener('elevenlabs-script-failed', handleScriptFailed);
 
-    // If nothing is loaded yet, trigger loading
-    if (!window.elevenLabsScriptLoaded && !window.elevenLabsScriptFailed) {
-      if (typeof window.loadElevenLabsScript === 'function') {
-        console.log("Triggering script load from window method");
-        window.loadElevenLabsScript();
-      } else {
-        console.log("Loading script directly as fallback");
-        loadScriptDirectly();
+    if (apiKeyLoaded) {
+      if (!window.elevenLabsScriptLoaded && !window.elevenLabsScriptFailed) {
+        if (typeof window.loadElevenLabsScript === 'function') {
+          console.log("Triggering script load from window method");
+          window.loadElevenLabsScript();
+        } else {
+          console.log("Loading script directly as fallback");
+          loadScriptDirectly();
+        }
       }
     }
 
-    // Cleanup event listeners
     return () => {
       window.removeEventListener('elevenlabs-script-loaded', handleScriptLoaded);
       window.removeEventListener('elevenlabs-script-failed', handleScriptFailed);
     };
-  }, []);
+  }, [apiKeyLoaded]);
 
-  // Direct script loading function as fallback - improved with multiple CDNs
   const loadScriptDirectly = () => {
     if (scriptLoadingAttempt.current >= 3) {
       console.error("Failed to load script after multiple attempts");
@@ -88,9 +90,11 @@ const LandingPageWidget = () => {
       return;
     }
     
+    cdnTimeoutsRef.current.forEach(timeout => clearTimeout(timeout));
+    cdnTimeoutsRef.current = [];
+    
     scriptLoadingAttempt.current += 1;
     
-    // Try different CDN sources in sequence
     const sources = [
       "https://cdn.elevenlabs.io/convai/convai.js",
       "https://storage.googleapis.com/xi-convai/convai.js",
@@ -103,12 +107,21 @@ const LandingPageWidget = () => {
     const script = document.createElement('script');
     script.src = source;
     script.async = true;
+    
+    const timeoutId = setTimeout(() => {
+      console.log(`Loading from ${source} timed out after ${CDN_TIMEOUT}ms`);
+      script.onerror(new Error(`Loading timed out from ${source}`));
+    }, CDN_TIMEOUT);
+    
+    cdnTimeoutsRef.current.push(timeoutId);
+    
     script.onload = () => {
+      clearTimeout(timeoutId);
+      
       console.log(`Script loaded directly from ${source}`);
       setScriptLoaded(true);
       setScriptLoadingFailed(false);
       
-      // Initialize immediately after loading
       setTimeout(() => {
         if (window.ElevenLabsConvai && !widgetInitialized.current) {
           try {
@@ -124,31 +137,34 @@ const LandingPageWidget = () => {
         }
       }, 1000);
     };
-    script.onerror = () => {
-      console.error(`Direct script loading failed from ${source}`);
-      setTimeout(loadScriptDirectly, 2000);
+    
+    script.onerror = (err) => {
+      clearTimeout(timeoutId);
+      
+      console.error(`Direct script loading failed from ${source}:`, err);
+      setTimeout(loadScriptDirectly, 1000);
     };
+    
     document.body.appendChild(script);
   };
 
-  // Initialize the ElevenLabs widget with proper error handling
   useEffect(() => {
-    if (!scriptLoaded) return;
+    if (!scriptLoaded || !apiKeyLoaded) return;
     
     const initializeWidget = async () => {
       try {
         if (window.ElevenLabsConvai && !widgetInitialized.current) {
           console.log("Initializing ElevenLabs widget with language:", language);
           
-          // Retry pattern for initialization with exponential backoff
+          const usePublicMode = !hasApiKey || apiKeyError;
+          console.log("Using public agents mode:", usePublicMode);
+          
           const attemptInit = (attempt = 0) => {
             try {
-              // Initialize the widget
               window.ElevenLabsConvai.init({
                 language: language || 'it',
-                usePublicAgents: !hasApiKey // Only use public mode if we don't have API key
+                usePublicAgents: true
               });
-              
               widgetInitialized.current = true;
               setInitializationError(false);
               console.log("ElevenLabs widget initialized successfully");
@@ -165,12 +181,10 @@ const LandingPageWidget = () => {
             }
           };
           
-          // Start initialization attempts
           attemptInit();
         } else if (!window.ElevenLabsConvai && initAttempt < MAX_INIT_ATTEMPTS) {
           console.log(`ElevenLabs API not found. Attempt ${initAttempt + 1}/${MAX_INIT_ATTEMPTS}`);
           
-          // Try again after a delay with exponential backoff
           setTimeout(() => {
             setInitAttempt(prev => prev + 1);
           }, Math.pow(2, initAttempt) * 1000);
@@ -178,7 +192,6 @@ const LandingPageWidget = () => {
           console.error("Failed to find ElevenLabs API after multiple attempts");
           setInitializationError(true);
           
-          // Only show error toast if user initiated this action
           if (userInitiatedRef.current) {
             toast({
               title: "Errore di caricamento",
@@ -194,19 +207,15 @@ const LandingPageWidget = () => {
     };
 
     initializeWidget();
-  }, [language, initAttempt, scriptLoaded, hasApiKey]);
+  }, [language, initAttempt, scriptLoaded, apiKeyLoaded, hasApiKey, apiKeyError]);
 
-  // Check for audio permissions
   const checkAudioPermissions = async () => {
     try {
-      // Try to create an audio context first to check audio output
       const audioCtx = new (window.AudioContext || (window as any).webkitAudioContext)();
       audioContextRef.current = audioCtx;
       
-      // Check microphone permissions
       const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
       
-      // Successfully got permission, keep the stream reference
       window.audioStream = stream;
       
       setPermissionError(false);
@@ -215,7 +224,6 @@ const LandingPageWidget = () => {
       console.error("Audio permission error:", err);
       setPermissionError(true);
       
-      // Only show toast when user has initiated an action
       if (userInitiatedRef.current) {
         toast({
           title: "Permessi audio mancanti",
@@ -228,7 +236,6 @@ const LandingPageWidget = () => {
     }
   };
 
-  // Update widget language when app language changes
   useEffect(() => {
     if (hiddenWidgetRef.current) {
       const widgetElement = hiddenWidgetRef.current.querySelector('elevenlabs-convai');
@@ -238,40 +245,33 @@ const LandingPageWidget = () => {
     }
   }, [language]);
 
-  // Monitor connection status
   useEffect(() => {
     const checkConnectionStatus = () => {
       if (!hiddenWidgetRef.current || !callActive) return;
       
       const widgetElement = hiddenWidgetRef.current.querySelector('elevenlabs-convai');
       if (widgetElement && widgetElement.shadowRoot) {
-        // Look for active call indicators in the shadow DOM
         const activeCallIndicators = widgetElement.shadowRoot.querySelectorAll(
           '.active-call, .call-active, [data-status="connected"], [class*="active"], [class*="connected"]'
         );
         
-        // Look for error elements in the shadow DOM
         const errorElements = widgetElement.shadowRoot.querySelectorAll(
           '.error-state, .connection-error, [data-status="error"], [class*="error"]'
         );
 
-        // Check for permission dialogs
         const permissionElements = widgetElement.shadowRoot.querySelectorAll(
           '[class*="permission"], [class*="allow"], [class*="access"]'
         );
         
-        // If active indicators are gone, call is probably ended
         if (activeCallIndicators.length === 0 && callActive) {
           console.log("ElevenLabs call appears to have ended");
           setCallActive(false);
           setButtonClicked(false);
         }
         
-        // Check for errors
         if (errorElements.length > 0) {
           console.error("ElevenLabs connection appears to have an error");
           
-          // Only show errors if user initiated this action
           if (userInitiatedRef.current) {
             toast({
               title: "Errore di connessione",
@@ -286,7 +286,6 @@ const LandingPageWidget = () => {
           setCallActive(false);
         }
         
-        // Check for permission dialogs
         if (permissionElements.length > 0) {
           console.log("Permission dialog detected");
           setPermissionError(true);
@@ -294,7 +293,6 @@ const LandingPageWidget = () => {
       }
     };
     
-    // Check connection status periodically when call is active
     let connectionCheckInterval: number | null = null;
     if (callActive) {
       connectionCheckInterval = window.setInterval(checkConnectionStatus, 1000);
@@ -307,7 +305,6 @@ const LandingPageWidget = () => {
     };
   }, [callActive]);
 
-  // Function to stop the call - enhanced for better button detection
   const stopElevenLabsCall = () => {
     console.log("Attempting to stop ElevenLabs call...");
     
@@ -315,7 +312,6 @@ const LandingPageWidget = () => {
     
     const widgetElement = hiddenWidgetRef.current.querySelector('elevenlabs-convai');
     if (widgetElement && widgetElement.shadowRoot) {
-      // Try to find and click any stop button with enhanced selectors
       const stopSelectors = [
         'button[aria-label="Close"]', 
         'button[aria-label="Stop"]',
@@ -326,7 +322,6 @@ const LandingPageWidget = () => {
         'button[title*="Interrompi"]',
         'button[title*="Chiudi"]',
         '[role="button"][class*="close"]',
-        // Aggressive selector for any button that might be the close button
         'button:not([class*="start"]):not([class*="open"])'
       ];
       
@@ -342,7 +337,6 @@ const LandingPageWidget = () => {
             button.click();
             buttonFound = true;
             
-            // Update state immediately to give user feedback
             setCallActive(false);
             setButtonClicked(false);
             
@@ -351,7 +345,6 @@ const LandingPageWidget = () => {
         }
       }
       
-      // If no button found, reset the widget more aggressively
       if (!buttonFound) {
         console.log("Could not find stop button, forcing widget reset");
         
@@ -363,13 +356,12 @@ const LandingPageWidget = () => {
             setCallActive(false);
             widgetInitialized.current = false;
             
-            // Create a fresh widget after a short delay
             setTimeout(() => {
               if (window.ElevenLabsConvai) {
                 try {
                   window.ElevenLabsConvai.init({
                     language: language || 'it',
-                    usePublicAgents: !hasApiKey
+                    usePublicAgents: true
                   });
                   widgetInitialized.current = true;
                   console.log("Widget reinitialized after reset");
@@ -385,8 +377,7 @@ const LandingPageWidget = () => {
       }
     }
   };
-  
-  // Enhanced debug helper function to log all elements in the shadow DOM
+
   const logShadowDOMElements = () => {
     if (!hiddenWidgetRef.current) return;
     
@@ -415,23 +406,21 @@ const LandingPageWidget = () => {
       });
     }
   };
-  
-  // Improved function to start the call with clearer state management
+
   const startElevenLabsCall = async () => {
-    // Mark that this action is user-initiated
     userInitiatedRef.current = true;
     
-    // Handle stop if call is already active - better state management
     if (callActive) {
       console.log("Call is active, stopping call");
       setIsLoading(true);
       stopElevenLabsCall();
-      setTimeout(() => setIsLoading(false), 500); // Brief loading state for feedback
+      setTimeout(() => setIsLoading(false), 500);
       return;
     }
     
-    // Check if script loaded
     if (!scriptLoaded) {
+      setIsLoading(true);
+      
       if (typeof window.loadElevenLabsScript === 'function') {
         window.loadElevenLabsScript();
       } else {
@@ -442,15 +431,17 @@ const LandingPageWidget = () => {
         title: "Caricamento in corso",
         description: "Il servizio ElevenLabs si sta caricando. Riprova tra qualche secondo.",
       });
+      
+      setTimeout(() => setIsLoading(false), 2000);
       return;
     }
     
-    // Check if script failed to load
     if (scriptLoadingFailed) {
       if (manuallyRetriedRef.current < 2) {
         manuallyRetriedRef.current++;
         setScriptLoadingFailed(false);
         scriptLoadingAttempt.current = 0;
+        setIsLoading(true);
         
         toast({
           title: "Nuovo tentativo",
@@ -462,6 +453,8 @@ const LandingPageWidget = () => {
         } else {
           loadScriptDirectly();
         }
+        
+        setTimeout(() => setIsLoading(false), 2000);
       } else {
         toast({
           title: "Errore di caricamento",
@@ -475,14 +468,11 @@ const LandingPageWidget = () => {
     console.log("Attempting to start ElevenLabs call...");
     setIsLoading(true);
     
-    // Clear any previous errors
     setConnectionError(false);
     setPermissionError(false);
     
-    // Change button appearance immediately for better UX
     setButtonClicked(true);
     
-    // Check for widget reference
     if (!hiddenWidgetRef.current) {
       console.error("Widget reference is not available yet");
       toast({
@@ -495,7 +485,6 @@ const LandingPageWidget = () => {
       return;
     }
     
-    // Check for audio permissions
     const hasPermissions = await checkAudioPermissions();
     if (!hasPermissions) {
       setIsLoading(false);
@@ -503,17 +492,15 @@ const LandingPageWidget = () => {
       return;
     }
     
-    // Reset attempts counter
     buttonFindAttemptsRef.current = 0;
     
-    // Make sure widget is properly initialized with API key awareness
     if (!widgetInitialized.current) {
       if (window.ElevenLabsConvai) {
         console.log("Re-initializing widget before call");
         try {
           window.ElevenLabsConvai.init({
             language: language || 'it',
-            usePublicAgents: !hasApiKey // Use public mode only if no API key
+            usePublicAgents: true
           });
           widgetInitialized.current = true;
         } catch (err) {
@@ -528,7 +515,6 @@ const LandingPageWidget = () => {
       }
     }
     
-    // Re-create widget if needed
     let widgetElement = hiddenWidgetRef.current.querySelector('elevenlabs-convai');
     if (!widgetElement) {
       console.log("Creating widget element dynamically");
@@ -537,22 +523,17 @@ const LandingPageWidget = () => {
       widgetElement.setAttribute('language', language || 'it');
       hiddenWidgetRef.current.appendChild(widgetElement);
       
-      // Wait a bit for the widget to initialize
       await new Promise(resolve => setTimeout(resolve, 1000));
     }
     
-    // Enhanced log for debugging
     console.log("Widget element before clicking:", widgetElement);
     logShadowDOMElements();
     
-    // Try to find and click the start button - with improved reliability
     setTimeout(() => tryClickStartButton(0), 500);
   };
-  
-  // Helper function to find and click start button with retries and fallbacks
+
   const tryClickStartButton = (attemptNumber = 0) => {
     if (attemptNumber >= MAX_BUTTON_FIND_ATTEMPTS) {
-      // After too many attempts, create a fresh widget and try one last time
       console.log("Max button find attempts reached, creating fresh widget");
       
       const freshWidget = document.createElement('elevenlabs-convai');
@@ -560,27 +541,22 @@ const LandingPageWidget = () => {
       freshWidget.setAttribute('language', language || 'it');
       
       if (hiddenWidgetRef.current) {
-        // Remove old widget
         const oldWidget = hiddenWidgetRef.current.querySelector('elevenlabs-convai');
         if (oldWidget) {
           hiddenWidgetRef.current.removeChild(oldWidget);
         }
         
-        // Add new widget
         hiddenWidgetRef.current.appendChild(freshWidget);
         
-        // One final attempt after a delay
         setTimeout(() => {
           const finalAttempt = () => {
-            logShadowDOMElements(); // Log everything for debugging
+            logShadowDOMElements();
             
             const shadowRoot = freshWidget.shadowRoot;
             if (shadowRoot) {
-              // Try to click ANY button
               console.log("Last resort: trying to click ANY button");
               const allButtons = shadowRoot.querySelectorAll('button');
               if (allButtons.length > 0) {
-                // Skip first button which is usually close
                 const targetButton = allButtons.length > 1 ? allButtons[1] : allButtons[0];
                 if (targetButton instanceof HTMLElement) {
                   console.log("Clicking button:", targetButton);
@@ -592,7 +568,6 @@ const LandingPageWidget = () => {
               }
             }
             
-            // Give up
             console.error("Failed to find any button to click");
             setIsLoading(false);
             setButtonClicked(false);
@@ -605,7 +580,6 @@ const LandingPageWidget = () => {
             });
           };
           
-          // Wait for shadow DOM to be created and try
           setTimeout(finalAttempt, 1000);
         }, 1000);
       }
@@ -614,17 +588,14 @@ const LandingPageWidget = () => {
     
     const widgetElement = hiddenWidgetRef.current?.querySelector('elevenlabs-convai');
     if (!widgetElement || !widgetElement.shadowRoot) {
-      // If widget is not ready yet, wait and retry
       console.log(`Widget not ready, retrying (${attemptNumber + 1}/${MAX_BUTTON_FIND_ATTEMPTS})...`);
       
-      // Exponential backoff
       setTimeout(() => tryClickStartButton(attemptNumber + 1), Math.pow(2, attemptNumber) * 200);
       return;
     }
     
     console.log(`Attempt ${attemptNumber + 1} to find start button`);
     
-    // First try direct targeting by class name structure
     const directButtons = widgetElement.shadowRoot.querySelectorAll(
       'button._start_1xhaw_1, button[class*="start"], button[data-action="start"], [role="button"][class*="start"]'
     );
@@ -640,7 +611,6 @@ const LandingPageWidget = () => {
       }
     }
     
-    // Try with more specific targeting - title-based button
     const titleButtons = widgetElement.shadowRoot.querySelectorAll('button[title*="Vicki"], button[title*="Ask"], button[title*="Start"], button[title*="Call"], button[title*="Chiedi"]');
     for (const button of titleButtons) {
       if (button instanceof HTMLElement) {
@@ -653,7 +623,6 @@ const LandingPageWidget = () => {
       }
     }
     
-    // Try with different selectors - more aggressive targeting
     const buttonSelectors = [
       'button:not([aria-label="Close"]):not([aria-label="Settings"])',
       'button:not([class*="close"]):not([class*="settings"])',
@@ -663,11 +632,9 @@ const LandingPageWidget = () => {
       'button'
     ];
     
-    // Log all buttons for debugging
     const allButtons = widgetElement.shadowRoot.querySelectorAll('button');
     console.log(`Found ${allButtons.length} buttons in the shadow DOM`);
     
-    // Try each selector
     let buttonClicked = false;
     for (const selector of buttonSelectors) {
       if (buttonClicked) break;
@@ -676,14 +643,11 @@ const LandingPageWidget = () => {
       console.log(`Selector '${selector}' found ${buttons.length} elements`);
       
       for (const [index, button] of Array.from(buttons).entries()) {
-        // Skip very first button which is usually settings or close
-        // Skip buttons that are explicitly close
         if (button instanceof HTMLElement && 
             !button.getAttribute('aria-label')?.includes('Close') && 
             !button.getAttribute('aria-label')?.includes('Settings') && 
             !button.classList.contains('close')) {
           
-          // Prefer buttons later in the DOM (usually the main action button)
           if (index > 0 || buttons.length === 1) {
             console.log(`Attempting to click button ${index}:`, button);
             try {
@@ -701,46 +665,14 @@ const LandingPageWidget = () => {
       }
     }
     
-    // If no button clicked, try next attempt
     if (!buttonClicked) {
       console.log(`No suitable button found, trying again in ${Math.pow(2, attemptNumber) * 300}ms`);
       setTimeout(() => tryClickStartButton(attemptNumber + 1), Math.pow(2, attemptNumber) * 300);
     }
-
-    // After button clicking logic, add this to ensure state is updated:
-    const updateStateAfterSuccessfulClick = () => {
-      setIsLoading(false);
-      setCallActive(true);
-      console.log("Call successfully activated");
-      
-      // Add timeout to verify call is really active by checking the DOM after a delay
-      setTimeout(() => {
-        if (hiddenWidgetRef.current) {
-          const widgetElement = hiddenWidgetRef.current.querySelector('elevenlabs-convai');
-          if (widgetElement && widgetElement.shadowRoot) {
-            const activeCallIndicators = widgetElement.shadowRoot.querySelectorAll(
-              '.active-call, .call-active, [data-status="connected"], [class*="active"], [class*="connected"]'
-            );
-            
-            // If we don't find active call indicators, the call might have failed silently
-            if (activeCallIndicators.length === 0) {
-              console.log("Call activation check failed - no active indicators found");
-              setCallActive(false);
-              setButtonClicked(false);
-            }
-          }
-        }
-      }, 2000);
-    };
-    
-    // Include this at appropriate points in the button click logic
-    // Note: Replace success points in the existing logic with updateStateAfterSuccessfulClick()
   };
 
-  // Create or update widget when initialization is attempted
   useEffect(() => {
     if (initAttempt > 0 && scriptLoaded) {
-      // Create or update widget element
       if (hiddenWidgetRef.current) {
         let widget = hiddenWidgetRef.current.querySelector('elevenlabs-convai');
         
@@ -755,27 +687,27 @@ const LandingPageWidget = () => {
     }
   }, [initAttempt, language, scriptLoaded]);
 
-  // Manual retry function with user feedback
   const handleManualRetry = () => {
     console.log("Manual retry triggered");
     setScriptLoadingFailed(false);
     scriptLoadingAttempt.current = 0;
     manuallyRetriedRef.current += 1;
+    setIsLoading(true);
     
     toast({
       title: "Nuovo tentativo",
       description: "Stiamo riprovando a caricare il servizio ElevenLabs."
     });
     
-    // Try to load from multiple sources
     if (typeof window.loadElevenLabsScript === 'function') {
       window.loadElevenLabsScript();
     } else {
       loadScriptDirectly();
     }
+    
+    setTimeout(() => setIsLoading(false), 2000);
   };
 
-  // Render button status icon based on current state - enhanced for better visual feedback
   const renderButtonIcon = () => {
     if (isLoading) {
       return <Loader2 size={buttonClicked ? 80 : 60} className="animate-spin text-white vicki-icon-active" />;
@@ -803,7 +735,7 @@ const LandingPageWidget = () => {
     <div className="w-full flex flex-col items-center mt-8">
       <Button 
         onClick={startElevenLabsCall}
-        disabled={isLoading || initializationError}
+        disabled={isLoading && !scriptLoadingFailed}
         variant="outline"
         className={`
           rounded-full shadow-md px-6 py-3 font-bold text-lg
@@ -837,7 +769,7 @@ const LandingPageWidget = () => {
         </div>
       )}
       
-      {!scriptLoaded && !scriptLoadingFailed && (
+      {isLoading && !buttonClicked && !scriptLoadingFailed && (
         <div className="elevenlabs-loading-indicator flex items-center text-xs text-white/70 mt-2">
           <span className="dot"></span>
           <span className="dot"></span>

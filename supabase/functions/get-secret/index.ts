@@ -30,6 +30,21 @@ serve(async (req) => {
     const value = Deno.env.get(key)
     
     if (!value) {
+      // Return a fallback response for development instead of an error
+      if (key === 'ELEVENLABS_API_KEY') {
+        console.log('ELEVENLABS_API_KEY not found, returning development mode response')
+        return new Response(
+          JSON.stringify({ 
+            value: 'development-mode',
+            mode: 'development'
+          }),
+          { 
+            status: 200, 
+            headers: { ...corsHeaders, 'Content-Type': 'application/json' } 
+          }
+        )
+      }
+      
       return new Response(
         JSON.stringify({ error: `Secret ${key} not found` }),
         { 
@@ -48,6 +63,7 @@ serve(async (req) => {
       }
     )
   } catch (error) {
+    console.error('Error in get-secret function:', error)
     return new Response(
       JSON.stringify({ error: error.message }),
       { 
