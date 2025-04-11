@@ -1,7 +1,7 @@
 
 import { useState, useEffect } from 'react';
 import { toast } from '@/hooks/use-toast';
-import { supabaseClient } from '@/integrations/supabase/client';
+import { supabase } from '@/integrations/supabase/client';
 
 // Define the response type from ElevenLabs API
 interface SignedUrlResponse {
@@ -21,7 +21,7 @@ export const useElevenLabsAuth = (agentId: string) => {
   useEffect(() => {
     const fetchApiKey = async () => {
       try {
-        const { data, error } = await supabaseClient.functions.invoke('get-secret', {
+        const { data, error } = await supabase.functions.invoke('get-secret', {
           body: { key: 'ELEVENLABS_API_KEY' },
         });
         
