@@ -4,6 +4,7 @@ import { toast } from '@/hooks/use-toast';
 import { Button } from '@/components/ui/button';
 import { GiArtificialIntelligence } from "react-icons/gi";
 import { XCircle, AlertCircle, Loader2, RefreshCw } from "lucide-react";
+import { useElevenLabsAuth } from '@/hooks/useElevenLabsAuth';
 
 const AGENT_ID = "jJMZr28UE8hDLsO00dmt";
 const MAX_INIT_ATTEMPTS = 5;
@@ -12,6 +13,7 @@ const WIDGET_SCRIPT_URL = "https://cdn.elevenlabs.io/convai/convai.js";
 
 const LandingPageWidget = () => {
   const { language } = useLanguage();
+  const { hasApiKey } = useElevenLabsAuth(AGENT_ID);
   const hiddenWidgetRef = useRef<HTMLDivElement>(null);
   const [initAttempt, setInitAttempt] = useState(0);
   const widgetInitialized = useRef(false);
@@ -144,7 +146,7 @@ const LandingPageWidget = () => {
               // Initialize the widget
               window.ElevenLabsConvai.init({
                 language: language || 'it',
-                usePublicAgents: true
+                usePublicAgents: !hasApiKey // Only use public mode if we don't have API key
               });
               
               widgetInitialized.current = true;
@@ -192,7 +194,7 @@ const LandingPageWidget = () => {
     };
 
     initializeWidget();
-  }, [language, initAttempt, scriptLoaded]);
+  }, [language, initAttempt, scriptLoaded, hasApiKey]);
 
   // Check for audio permissions
   const checkAudioPermissions = async () => {
@@ -305,7 +307,7 @@ const LandingPageWidget = () => {
     };
   }, [callActive]);
 
-  // Function to stop the call
+  // Function to stop the call - enhanced for better button detection
   const stopElevenLabsCall = () => {
     console.log("Attempting to stop ElevenLabs call...");
     
@@ -313,17 +315,22 @@ const LandingPageWidget = () => {
     
     const widgetElement = hiddenWidgetRef.current.querySelector('elevenlabs-convai');
     if (widgetElement && widgetElement.shadowRoot) {
-      // Try to find and click any stop button
+      // Try to find and click any stop button with enhanced selectors
       const stopSelectors = [
         'button[aria-label="Close"]', 
-        'button[aria-label="Stop"]', 
+        'button[aria-label="Stop"]',
+        'button[aria-label="Chiudi"]',
         'button[class*="close"]', 
         'button[class*="stop"]',
         'button[class*="end"]',
         'button[title*="Interrompi"]',
         'button[title*="Chiudi"]',
-        '[role="button"][class*="close"]'
+        '[role="button"][class*="close"]',
+        // Aggressive selector for any button that might be the close button
+        'button:not([class*="start"]):not([class*="open"])'
       ];
+      
+      let buttonFound = false;
       
       for (const selector of stopSelectors) {
         const buttons = widgetElement.shadowRoot.querySelectorAll(selector);
@@ -333,30 +340,48 @@ const LandingPageWidget = () => {
           if (button instanceof HTMLElement) {
             console.log("Clicking stop button:", button);
             button.click();
+            buttonFound = true;
+            
+            // Update state immediately to give user feedback
+            setCallActive(false);
+            setButtonClicked(false);
+            
             return;
           }
         }
       }
       
-      console.log("Could not find stop button, trying to reset the widget");
-      
-      // If no stop button found, reset the widget
-      if (hiddenWidgetRef.current.contains(widgetElement)) {
-        hiddenWidgetRef.current.removeChild(widgetElement);
+      // If no button found, reset the widget more aggressively
+      if (!buttonFound) {
+        console.log("Could not find stop button, forcing widget reset");
         
-        setButtonClicked(false);
-        setCallActive(false);
-        widgetInitialized.current = false;
-        
-        setTimeout(() => {
-          if (window.ElevenLabsConvai) {
-            window.ElevenLabsConvai.init({
-              language: language || 'it',
-              usePublicAgents: true
-            });
-            widgetInitialized.current = true;
+        if (hiddenWidgetRef.current.contains(widgetElement)) {
+          try {
+            hiddenWidgetRef.current.removeChild(widgetElement);
+            
+            setButtonClicked(false);
+            setCallActive(false);
+            widgetInitialized.current = false;
+            
+            // Create a fresh widget after a short delay
+            setTimeout(() => {
+              if (window.ElevenLabsConvai) {
+                try {
+                  window.ElevenLabsConvai.init({
+                    language: language || 'it',
+                    usePublicAgents: !hasApiKey
+                  });
+                  widgetInitialized.current = true;
+                  console.log("Widget reinitialized after reset");
+                } catch (e) {
+                  console.error("Failed to reinitialize widget:", e);
+                }
+              }
+            }, 500);
+          } catch (e) {
+            console.error("Failed to reset widget:", e);
           }
-        }, 500);
+        }
       }
     }
   };
@@ -391,14 +416,17 @@ const LandingPageWidget = () => {
     }
   };
   
-  // Improved function to start the call
+  // Improved function to start the call with clearer state management
   const startElevenLabsCall = async () => {
     // Mark that this action is user-initiated
     userInitiatedRef.current = true;
     
-    // Handle stop if call is already active
+    // Handle stop if call is already active - better state management
     if (callActive) {
+      console.log("Call is active, stopping call");
+      setIsLoading(true);
       stopElevenLabsCall();
+      setTimeout(() => setIsLoading(false), 500); // Brief loading state for feedback
       return;
     }
     
@@ -446,8 +474,13 @@ const LandingPageWidget = () => {
     
     console.log("Attempting to start ElevenLabs call...");
     setIsLoading(true);
-    setButtonClicked(true);
+    
+    // Clear any previous errors
     setConnectionError(false);
+    setPermissionError(false);
+    
+    // Change button appearance immediately for better UX
+    setButtonClicked(true);
     
     // Check for widget reference
     if (!hiddenWidgetRef.current) {
@@ -473,14 +506,14 @@ const LandingPageWidget = () => {
     // Reset attempts counter
     buttonFindAttemptsRef.current = 0;
     
-    // Make sure widget is properly initialized
+    // Make sure widget is properly initialized with API key awareness
     if (!widgetInitialized.current) {
       if (window.ElevenLabsConvai) {
         console.log("Re-initializing widget before call");
         try {
           window.ElevenLabsConvai.init({
             language: language || 'it',
-            usePublicAgents: true
+            usePublicAgents: !hasApiKey // Use public mode only if no API key
           });
           widgetInitialized.current = true;
         } catch (err) {
@@ -673,6 +706,35 @@ const LandingPageWidget = () => {
       console.log(`No suitable button found, trying again in ${Math.pow(2, attemptNumber) * 300}ms`);
       setTimeout(() => tryClickStartButton(attemptNumber + 1), Math.pow(2, attemptNumber) * 300);
     }
+
+    // After button clicking logic, add this to ensure state is updated:
+    const updateStateAfterSuccessfulClick = () => {
+      setIsLoading(false);
+      setCallActive(true);
+      console.log("Call successfully activated");
+      
+      // Add timeout to verify call is really active by checking the DOM after a delay
+      setTimeout(() => {
+        if (hiddenWidgetRef.current) {
+          const widgetElement = hiddenWidgetRef.current.querySelector('elevenlabs-convai');
+          if (widgetElement && widgetElement.shadowRoot) {
+            const activeCallIndicators = widgetElement.shadowRoot.querySelectorAll(
+              '.active-call, .call-active, [data-status="connected"], [class*="active"], [class*="connected"]'
+            );
+            
+            // If we don't find active call indicators, the call might have failed silently
+            if (activeCallIndicators.length === 0) {
+              console.log("Call activation check failed - no active indicators found");
+              setCallActive(false);
+              setButtonClicked(false);
+            }
+          }
+        }
+      }, 2000);
+    };
+    
+    // Include this at appropriate points in the button click logic
+    // Note: Replace success points in the existing logic with updateStateAfterSuccessfulClick()
   };
 
   // Create or update widget when initialization is attempted
@@ -713,7 +775,7 @@ const LandingPageWidget = () => {
     }
   };
 
-  // Render button status icon based on current state - now with larger icons
+  // Render button status icon based on current state - enhanced for better visual feedback
   const renderButtonIcon = () => {
     if (isLoading) {
       return <Loader2 size={buttonClicked ? 80 : 60} className="animate-spin text-white vicki-icon-active" />;
@@ -723,7 +785,7 @@ const LandingPageWidget = () => {
       return (
         <XCircle 
           size={buttonClicked ? 80 : 60}
-          className="text-white icon-stop-glow transition-all duration-300 vicki-icon-active"
+          className="text-white icon-stop-glow transition-all duration-300 vicki-icon-active animate-pulse-soft"
           strokeWidth={2.5}
         />
       );
@@ -747,12 +809,13 @@ const LandingPageWidget = () => {
           rounded-full shadow-md px-6 py-3 font-bold text-lg
           ${buttonClicked ? 'max-w-[120px] h-[120px] aspect-square p-0' : 'max-w-[200px] w-full'}
           ${callActive 
-            ? 'bg-ath-clay border-ath-clay hover:bg-ath-clay/90 hover:border-ath-clay/90' 
+            ? 'bg-ath-clay border-ath-clay hover:bg-ath-clay/90 hover:border-ath-clay/90 animate-pulse-soft' 
             : 'bg-transparent border-ath-clay text-white hover:bg-ath-clay hover:text-white'}
-          transition-all duration-300
+          transition-all duration-300 ease-in-out
           ${connectionError ? 'border-red-500 text-red-500 hover:bg-red-500' : ''}
           ${permissionError ? 'border-yellow-500 animate-pulse' : ''}
         `}
+        aria-label={callActive ? "Stop ElevenLabs call" : "Start ElevenLabs call"}
       >
         <div className={`relative flex items-center justify-center ${callActive ? 'icon-glow' : ''}`}>
           {renderButtonIcon()}
@@ -785,6 +848,7 @@ const LandingPageWidget = () => {
       <div 
         ref={hiddenWidgetRef} 
         className="hidden"
+        aria-hidden="true"
       >
         {scriptLoaded && (
           <elevenlabs-convai 
