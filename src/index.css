@@ -143,11 +143,15 @@
       font-size: 0.875rem; /* 14px, reduced from 16px */
     }
     
-    /* NEW: Direct styling for ElevenLabs Convai widget on mobile */
+    /* Direct styling for ElevenLabs Convai widget on mobile */
     elevenlabs-convai {
       position: fixed !important;
-      bottom: 70px !important;
       z-index: 9999 !important;
+    }
+    
+    /* Special handling for the landing page */
+    .fixed.inset-0.z-50.bg-black\/50 elevenlabs-convai {
+      position: static !important;
     }
   }
   
@@ -364,5 +368,14 @@
 @media (max-width: 768px) {
   .elevenlabs-widget-container {
     transform: none !important;
+  }
+}
+
+/* Landing page fullscreen widget for mobile */
+@media (max-width: 768px) {
+  .fixed.inset-0.z-50.bg-black\/50 .elevenlabs-widget-container {
+    transform: none !important;
+    max-width: 100% !important;
+    width: 100% !important;
   }
 }

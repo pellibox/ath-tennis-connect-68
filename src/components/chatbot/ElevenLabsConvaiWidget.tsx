@@ -2,6 +2,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { useIsMobile } from '@/hooks/use-mobile';
+import { useLocation } from 'react-router-dom';
 import { 
   Tooltip, 
   TooltipContent, 
@@ -27,6 +28,9 @@ const ElevenLabsConvaiWidget = () => {
   const widgetInitialized = useRef(false);
   const isMobile = useIsMobile();
   const positionInitialized = useRef(false);
+  const location = useLocation();
+  
+  const isLandingPage = location.pathname === '/';
   
   // Position state
   const [position, setPosition] = useState(() => {
@@ -44,32 +48,6 @@ const ElevenLabsConvaiWidget = () => {
   const [isDragging, setIsDragging] = useState(false);
   const dragStartPos = useRef({ x: 0, y: 0 });
   const widgetStartPos = useRef({ top: 0, left: 0 });
-
-  // MODIFICATO: Solo imposta la posizione predefinita la prima volta, non ogni volta che cambia lo stato mobile
-  useEffect(() => {
-    if (!positionInitialized.current && !isDragging) {
-      setPosition(isMobile ? DEFAULT_MOBILE_POSITION : DEFAULT_DESKTOP_POSITION);
-      positionInitialized.current = true;
-      
-      // Salva la posizione predefinita nel localStorage
-      try {
-        localStorage.setItem(WIDGET_POSITION_KEY, JSON.stringify(
-          isMobile ? DEFAULT_MOBILE_POSITION : DEFAULT_DESKTOP_POSITION
-        ));
-      } catch (e) {
-        console.error("Failed to save widget position to localStorage", e);
-      }
-    }
-  }, [isMobile, isDragging]);
-
-  // Save position to localStorage when it changes
-  useEffect(() => {
-    try {
-      localStorage.setItem(WIDGET_POSITION_KEY, JSON.stringify(position));
-    } catch (e) {
-      console.error("Failed to save widget position to localStorage", e);
-    }
-  }, [position]);
 
   // Initialize the widget when the component mounts
   useEffect(() => {
@@ -95,11 +73,40 @@ const ElevenLabsConvaiWidget = () => {
   // Update the language attribute when language changes
   useEffect(() => {
     if (widgetRef.current) {
-      widgetRef.current.setAttribute('language', language || 'it');
+      const widgetElement = widgetRef.current.querySelector('elevenlabs-convai');
+      if (widgetElement) {
+        widgetElement.setAttribute('language', language || 'it');
+      }
     }
   }, [language]);
 
-  // NEW: Use MutationObserver to adjust widget position
+  // Only set the default position the first time, not every time mobile state changes
+  useEffect(() => {
+    if (!positionInitialized.current && !isDragging) {
+      setPosition(isMobile ? DEFAULT_MOBILE_POSITION : DEFAULT_DESKTOP_POSITION);
+      positionInitialized.current = true;
+      
+      // Save the default position to localStorage
+      try {
+        localStorage.setItem(WIDGET_POSITION_KEY, JSON.stringify(
+          isMobile ? DEFAULT_MOBILE_POSITION : DEFAULT_DESKTOP_POSITION
+        ));
+      } catch (e) {
+        console.error("Failed to save widget position to localStorage", e);
+      }
+    }
+  }, [isMobile, isDragging]);
+
+  // Save position to localStorage when it changes
+  useEffect(() => {
+    try {
+      localStorage.setItem(WIDGET_POSITION_KEY, JSON.stringify(position));
+    } catch (e) {
+      console.error("Failed to save widget position to localStorage", e);
+    }
+  }, [position]);
+
+  // Use MutationObserver to adjust widget position
   useEffect(() => {
     // Function to apply the position adjustment
     const adjustWidgetPosition = () => {
@@ -124,7 +131,7 @@ const ElevenLabsConvaiWidget = () => {
       if (window.innerWidth < 768) {
         // Mobile adjustments
         if (widget instanceof HTMLElement) {
-          widget.style.transform = 'translateY(-70px)';
+          widget.style.transform = isLandingPage ? '' : 'translateY(-70px)';
         }
         
         // Try to find the wrapper in Light DOM
@@ -136,12 +143,12 @@ const ElevenLabsConvaiWidget = () => {
         }
         
         if (wrapper) {
-          wrapper.style.transform = 'translateY(-70px)';
+          wrapper.style.transform = isLandingPage ? '' : 'translateY(-70px)';
           
           // Also set the bottom space to avoid overlapping with navigation
           const bottomNavHeight = 56; // Height of the bottom navigation
           const additionalPadding = 14; // Extra padding for better appearance
-          wrapper.style.bottom = `${bottomNavHeight + additionalPadding}px`;
+          wrapper.style.bottom = isLandingPage ? '0px' : `${bottomNavHeight + additionalPadding}px`;
         }
       } else {
         // Desktop - reset transform
@@ -214,7 +221,7 @@ const ElevenLabsConvaiWidget = () => {
       if (cleanup) cleanup();
       window.removeEventListener('resize', adjustWidgetPosition);
     };
-  }, []);
+  }, [isLandingPage]);
   
   // Handle mouse down event to start dragging
   const handleMouseDown = (e: React.MouseEvent) => {
@@ -333,7 +340,25 @@ const ElevenLabsConvaiWidget = () => {
       document.removeEventListener('touchcancel', handleDragEnd);
     };
   }, [isDragging]);
+
+  // On landing page, show a different style for mobile vs desktop
+  if (isLandingPage && isMobile) {
+    return (
+      <div className="fixed inset-0 z-50 bg-black/50 flex items-center justify-center overflow-hidden">
+        <div className="bg-white rounded-lg shadow-lg w-full max-w-md mx-4 p-4">
+          <h2 className="text-center text-lg font-bold mb-2">ATH Assistant</h2>
+          <div className="elevenlabs-widget-container max-h-[500px]">
+            <elevenlabs-convai 
+              agent-id={AGENT_ID} 
+              language={language || 'it'}
+            ></elevenlabs-convai>
+          </div>
+        </div>
+      </div>
+    );
+  }
   
+  // Regular floating widget for desktop or non-landing pages
   return (
     <div 
       ref={widgetRef}
