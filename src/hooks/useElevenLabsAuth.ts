@@ -1,7 +1,5 @@
 
 import { useState, useEffect } from 'react';
-import { toast } from '@/hooks/use-toast';
-import { supabase } from '@/integrations/supabase/client';
 
 // Define the response type from ElevenLabs API
 interface SignedUrlResponse {
@@ -10,68 +8,16 @@ interface SignedUrlResponse {
   error?: string;
 }
 
-// Define the response type from our secret function
-interface SecretResponse {
-  value: string;
-  mode?: string;
-  fallback?: boolean;
-  error?: string;
-  status?: string;
-}
-
 export const useElevenLabsAuth = (agentId: string) => {
   const [signedUrl, setSignedUrl] = useState<string | null>(null);
   const [conversationId, setConversationId] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState(false);
-  const [apiKey, setApiKey] = useState<string | null>(null);
-  const [apiKeyLoaded, setApiKeyLoaded] = useState(false);
-  const [apiKeyError, setApiKeyError] = useState<boolean>(false);
-  const [isDevelopmentMode, setIsDevelopmentMode] = useState(false);
-  
-  // Get API key from Supabase secrets
-  useEffect(() => {
-    const fetchApiKey = async () => {
-      try {
-        setIsLoading(true);
-        const { data, error } = await supabase.functions.invoke('get-secret', {
-          body: { key: 'ELEVENLABS_API_KEY' },
-        });
-        
-        if (error) {
-          console.error('Error fetching API key:', error);
-          setApiKeyError(true);
-          setIsLoading(false);
-          return;
-        }
-        
-        const response = data as SecretResponse;
-        
-        if (response?.value) {
-          setApiKey(response.value);
-          
-          if (response.mode === 'development' || response.fallback) {
-            console.log('Running in development mode with fallback API key');
-            setIsDevelopmentMode(true);
-          } else {
-            console.log('ElevenLabs API key loaded successfully');
-          }
-        } else {
-          // Handle case where data exists but no value
-          console.log('No API key value returned, using public mode');
-          setApiKeyError(true);
-        }
-      } catch (err) {
-        console.error('Error in API key fetch:', err);
-        setApiKeyError(true);
-      } finally {
-        setApiKeyLoaded(true);
-        setIsLoading(false);
-      }
-    };
-    
-    fetchApiKey();
-  }, []);
+
+  // Temporary solution with hardcoded API key
+  // In production, this should be handled by a server endpoint
+  // NEVER expose API keys in client-side code
+  const API_KEY = ""; // Leave empty for security - we'll use the public mode for now
   
   // Function to get a signed URL for the conversation
   const getSignedUrl = async () => {
@@ -79,21 +25,24 @@ export const useElevenLabsAuth = (agentId: string) => {
     setError(null);
     
     try {
-      // Use public mode if no API key or in development mode
-      if (!apiKey || isDevelopmentMode) {
-        console.log('No API key available or in development mode, using public mode');
+      // For security reasons, in a real application, this should be done on a server
+      // This is just for demonstration purposes
+      
+      if (!API_KEY) {
+        // If no API key is provided, we'll use the public mode (limited functionality)
         setSignedUrl(null);
         setConversationId(null);
         setIsLoading(false);
         return;
       }
       
+      // Only execute this code if an API key is provided
       const response = await fetch(
         `https://api.elevenlabs.io/v1/convai/conversation/get_signed_url?agent_id=${agentId}`,
         {
           method: "GET",
           headers: {
-            "xi-api-key": apiKey,
+            "xi-api-key": API_KEY,
             "Content-Type": "application/json"
           }
         }
@@ -111,36 +60,20 @@ export const useElevenLabsAuth = (agentId: string) => {
       
       setSignedUrl(data.signed_url);
       setConversationId(data.conversation_id);
-      console.log('Signed URL obtained successfully');
     } catch (err) {
       console.error("Error getting signed URL:", err);
       setError(err instanceof Error ? err.message : "Unknown error occurred");
-      toast({
-        title: "Error connecting to ElevenLabs",
-        description: "Could not initialize voice conversation. Please try again.",
-        variant: "destructive"
-      });
     } finally {
       setIsLoading(false);
     }
   };
   
-  // Try to get a signed URL once we have the API key
   useEffect(() => {
-    if (apiKey && apiKeyLoaded && !isDevelopmentMode) {
+    // Only try to get a signed URL if an API key is provided
+    if (API_KEY) {
       getSignedUrl();
     }
-  }, [apiKey, apiKeyLoaded, agentId, isDevelopmentMode]);
+  }, [agentId]);
   
-  return { 
-    signedUrl, 
-    conversationId, 
-    error, 
-    isLoading, 
-    getSignedUrl, 
-    hasApiKey: !!apiKey && !isDevelopmentMode,
-    apiKeyLoaded,
-    apiKeyError,
-    isDevelopmentMode
-  };
+  return { signedUrl, conversationId, error, isLoading, getSignedUrl };
 };

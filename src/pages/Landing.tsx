@@ -7,7 +7,7 @@ import ButtonLink from '@/components/ButtonLink';
 import { useIsMobile } from '@/hooks/use-mobile';
 import EmptyHeader from '@/components/EmptyHeader';
 import EmptyFooter from '@/components/EmptyFooter';
-import LandingPageWidget from '@/components/chatbot/LandingPageWidget';
+import { useNavigate } from 'react-router-dom';
 import ResponsiveImage from '@/components/ResponsiveImage';
 
 const getUserGenderText = (gender: string | null): string => {
@@ -78,6 +78,7 @@ const LandingPage = () => {
   const { userGender, userType, sport, updateProfile, resetProfile, deleteProfile } = useProfile();
   const [dialogOpen, setDialogOpen] = useState(false);
   const isMobile = useIsMobile();
+  const navigate = useNavigate();
   
   const vimeoEmbed = getVimeoEmbed(userGender, userType, true, false, sport);
 
@@ -98,7 +99,7 @@ const LandingPage = () => {
             href="#" 
             variant="athOutline"
             onClick={() => setDialogOpen(true)}
-            className="text-lg px-8 py-2.5 rounded-full border border-ath-clay text-ath-clay hover:bg-ath-clay hover:text-white transition-all font-bold"
+            className="text-lg px-8 py-2.5 rounded-md border border-ath-clay text-ath-clay hover:bg-ath-clay hover:text-white transition-all font-bold"
           >
             DIMMI CHI SEI
           </ButtonLink>
@@ -107,7 +108,7 @@ const LandingPage = () => {
         <ButtonLink 
           href="/home" 
           variant="athOutline" 
-          className="text-lg px-8 py-2.5 rounded-full border border-ath-clay text-ath-clay hover:bg-ath-clay hover:text-white transition-all font-bold"
+          className="text-lg px-8 py-2.5 rounded-md border border-ath-clay text-ath-clay hover:bg-ath-clay hover:text-white transition-all font-bold"
         >
           ENTRA IN ATH
         </ButtonLink>
@@ -115,25 +116,11 @@ const LandingPage = () => {
     );
   };
 
-  // Set body background to black for this page only
-  useEffect(() => {
-    // Save original background
-    const originalBackground = document.body.style.background;
-    document.body.style.background = '#000';
-    document.documentElement.style.background = '#000';
-    
-    // Cleanup when component unmounts
-    return () => {
-      document.body.style.background = originalBackground;
-      document.documentElement.style.background = '';
-    };
-  }, []);
-
   return (
-    <div className="flex flex-col min-h-screen bg-black">
+    <div className="flex flex-col min-h-screen relative bg-black">
       <EmptyHeader headerText="" />
       
-      <main className="flex-grow bg-black">
+      <main className="flex-grow">
         <div className="w-full bg-black min-h-[calc(100vw*9/16)] relative">
           <div className="absolute top-0 left-1/2 transform -translate-x-1/2 mt-5 z-30 pointer-events-none">
             <img 
@@ -150,11 +137,6 @@ const LandingPage = () => {
               </h2>
               <div className="mt-6 pointer-events-auto">
                 {renderButtons()}
-              </div>
-              
-              {/* Add the custom widget below the buttons on desktop */}
-              <div className="mt-8 pointer-events-auto">
-                <LandingPageWidget />
               </div>
             </div>
           )}
@@ -176,15 +158,18 @@ const LandingPage = () => {
                   <p className="font-swiss text-[10px] truncate max-w-full">{personalizedContent.second}</p>
                 </div>
               )}
-              
-              {/* Add the custom widget below the buttons on mobile */}
-              <LandingPageWidget />
             </div>
           </div>
         )}
+        
+        <div className="w-full bg-black py-16 relative" style={{ height: 'auto', minHeight: '400px' }}>
+          <div className="max-w-6xl mx-auto px-6 h-full flex flex-col justify-center py-8">
+            {/* Content can be added here if needed */}
+          </div>
+        </div>
       </main>
       
-      <EmptyFooter className="bg-black" />
+      <EmptyFooter />
       
       <ProfileDialog 
         open={dialogOpen}
@@ -202,3 +187,4 @@ const LandingPage = () => {
 };
 
 export default LandingPage;
+

@@ -1,15 +1,8 @@
 
-import React from 'react';
-import { cn } from '@/lib/utils';
-
-interface EmptyFooterProps {
-  className?: string;
-}
-
-const EmptyFooter: React.FC<EmptyFooterProps> = ({ className }) => {
+const EmptyFooter = () => {
   return (
-    <footer className={cn("flex justify-center items-center py-0", className)}>
-      {/* Empty footer with no content */}
+    <footer className="bg-black py-8">
+      <div className="container mx-auto px-4"></div>
     </footer>
   );
 };

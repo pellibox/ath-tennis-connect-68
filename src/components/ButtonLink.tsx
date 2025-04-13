@@ -13,7 +13,7 @@ interface ButtonLinkProps {
   external?: boolean;
   style?: React.CSSProperties;
   showArrow?: boolean;
-  onClick?: () => void;
+  onClick?: () => void; // Added onClick handler prop
 }
 
 const ButtonLink = ({
@@ -25,9 +25,9 @@ const ButtonLink = ({
   external = false,
   style,
   showArrow = false,
-  onClick,
+  onClick, // Added onClick to destructured props
 }: ButtonLinkProps) => {
-  const baseClasses = "inline-flex items-center justify-center text-center transition-all duration-300 rounded-full font-swiss"; // Changed rounded-md to rounded-full
+  const baseClasses = "inline-flex items-center justify-center text-center transition-all duration-300 rounded-md font-swiss";
   
   const variantClasses = {
     primary: "bg-ath-clay text-white hover:bg-opacity-90 shadow-md",
@@ -64,7 +64,7 @@ const ButtonLink = ({
         target="_blank"
         rel="noopener noreferrer"
         style={style}
-        onClick={onClick}
+        onClick={onClick} // Added onClick handler
       >
         {content}
       </a>
@@ -76,7 +76,7 @@ const ButtonLink = ({
       to={href} 
       className={buttonClasses} 
       style={style}
-      onClick={onClick}
+      onClick={onClick} // Added onClick handler
     >
       {content}
     </Link>

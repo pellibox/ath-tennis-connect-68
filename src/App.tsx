@@ -1,13 +1,10 @@
-
-import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { Toaster } from "@/components/ui/sonner";
 import { LanguageProvider } from './contexts/LanguageContext';
 import { ProfileProvider } from './contexts/ProfileContext';
 import { AuthProvider } from './contexts/AuthContext';
 import { useIsMobile } from './hooks/use-mobile';
 import ProtectedRoute from './components/ProtectedRoute';
-import ElevenLabsConvaiWidget from '@/components/chatbot/ElevenLabsConvaiWidget';
-import BottomNavigation from '@/components/navigation/BottomNavigation';
 
 // Pages
 import LandingPage from '@/pages/Landing';
@@ -27,18 +24,35 @@ import NotFoundPage from '@/pages/NotFound';
 import PrivacyPage from '@/pages/Privacy';
 import TermsPage from '@/pages/Terms';
 import Brochure from '@/pages/Brochure';
-import AdminDashboard from '@/pages/admin/Dashboard';
-import AdminPages from '@/pages/admin/Pages';
+import ElevenLabsConvaiWidget from '@/components/chatbot/ElevenLabsConvaiWidget';
+import BottomNavigation from '@/components/navigation/BottomNavigation';
+import SiteKnowledge from '@/pages/SiteKnowledge';
+
+// Auth pages
+import Login from '@/pages/auth/Login';
+import Register from '@/pages/auth/Register';
+import ForgotPassword from '@/pages/auth/ForgotPassword';
+import ResetPassword from '@/pages/auth/ResetPassword';
+import RegistrationSuccess from '@/pages/auth/RegistrationSuccess';
+import Unauthorized from '@/pages/Unauthorized';
+
+// Admin pages
+import Dashboard from '@/pages/admin/Dashboard';
+import Pages from '@/pages/admin/Pages';
 import AdminPrograms from '@/pages/admin/Programs';
-import AdminPrices from '@/pages/admin/Prices';
-import AdminUsers from '@/pages/admin/Users';
-import AdminSettings from '@/pages/admin/Settings';
-import AdminKnowledgeBase from '@/pages/admin/KnowledgeBase';
+import Prices from '@/pages/admin/Prices';
+import Users from '@/pages/admin/Users';
+import Settings from '@/pages/admin/Settings';
+import KnowledgeBase from '@/pages/admin/KnowledgeBase';
+
+// Programs pages
 import EliteProgram from '@/pages/programs/Elite';
 import JuniorProgram from '@/pages/programs/Junior';
 import AdultProgram from '@/pages/programs/Adult';
 import PrivateProgram from '@/pages/programs/Private';
 import CampsProgram from '@/pages/programs/Camps';
+
+// New program detail pages
 import Performance2Program from '@/pages/programs/Performance2';
 import Performance3Program from '@/pages/programs/Performance3';
 import Performance4Program from '@/pages/programs/Performance4';
@@ -55,20 +69,17 @@ import YoungAthletesProgram from '@/pages/programs/YoungAthletes';
 import ParentTutorProgram from '@/pages/programs/ParentTutor';
 import ProfessionalsProgram from '@/pages/programs/Professionals';
 import PerformanceAnalysisProgram from '@/pages/programs/PerformanceAnalysis';
+
+// Padel dedicated program pages
 import PadelKidsProgram from '@/pages/programs/PadelKids';
 import PadelAdultProgram from '@/pages/programs/PadelAdult';
 import PadelAdvancedProgram from '@/pages/programs/PadelAdvanced';
 import PadelPrivateProgram from '@/pages/programs/PadelPrivate';
+
+// TouchTennis dedicated program pages
 import TouchTennisBaseProgram from '@/pages/programs/TouchTennisBase';
 import TouchTennisAdvancedProgram from '@/pages/programs/TouchTennisAdvanced';
 import TouchTennisJuniorProgram from '@/pages/programs/TouchTennisJunior';
-import Login from '@/pages/auth/Login';
-import Register from '@/pages/auth/Register';
-import ForgotPassword from '@/pages/auth/ForgotPassword';
-import ResetPassword from '@/pages/auth/ResetPassword';
-import RegistrationSuccess from '@/pages/auth/RegistrationSuccess';
-import Unauthorized from '@/pages/Unauthorized';
-import SiteKnowledge from '@/pages/SiteKnowledge';
 
 function App() {
   return (
@@ -86,10 +97,6 @@ function App() {
 
 function AppContent() {
   const isMobile = useIsMobile();
-  const location = useLocation();
-  
-  // Check if current route is landing page
-  const isLandingPage = location.pathname === '/';
   
   return (
     <div>
@@ -102,13 +109,16 @@ function AppContent() {
         <Route path="/facilities" element={<FacilitiesPage />} />
         <Route path="/coaches" element={<CoachesPage />} />
         
+        {/* Programs routes */}
         <Route path="/programs" element={<ProgramsPage />} />
         <Route path="/padel" element={<PadelPage />} />
         <Route path="/pickleball" element={<PickleballPage />} />
         <Route path="/touchtennis" element={<TouchTennisPage />} />
         
+        {/* Public Knowledge Base route - accessible without login */}
         <Route path="/site-knowledge" element={<SiteKnowledge />} />
         
+        {/* Program detail routes */}
         <Route path="/programs/performance-2" element={<Performance2Program />} />
         <Route path="/programs/performance-3" element={<Performance3Program />} />
         <Route path="/programs/performance-4" element={<Performance4Program />} />
@@ -127,15 +137,18 @@ function AppContent() {
         <Route path="/programs/professionals" element={<ProfessionalsProgram />} />
         <Route path="/programs/performance-analysis" element={<PerformanceAnalysisProgram />} />
         
+        {/* Padel dedicated program routes */}
         <Route path="/programs/padel-kids" element={<PadelKidsProgram />} />
         <Route path="/programs/padel-adult" element={<PadelAdultProgram />} />
         <Route path="/programs/padel-advanced" element={<PadelAdvancedProgram />} />
         <Route path="/programs/padel-private" element={<PadelPrivateProgram />} />
         
+        {/* TouchTennis dedicated program routes */}
         <Route path="/programs/touchtennis-base" element={<TouchTennisBaseProgram />} />
         <Route path="/programs/touchtennis-avanzato" element={<TouchTennisAdvancedProgram />} />
         <Route path="/programs/touchtennis-junior" element={<TouchTennisJuniorProgram />} />
         
+        {/* Authentication routes */}
         <Route path="/auth/login" element={<Login />} />
         <Route path="/auth/register" element={<Register />} />
         <Route path="/auth/forgot-password" element={<ForgotPassword />} />
@@ -143,14 +156,15 @@ function AppContent() {
         <Route path="/auth/success" element={<RegistrationSuccess />} />
         <Route path="/unauthorized" element={<Unauthorized />} />
         
+        {/* Admin routes - protected */}
         <Route path="/admin" element={
           <ProtectedRoute requireEditor>
-            <AdminDashboard />
+            <Dashboard />
           </ProtectedRoute>
         } />
         <Route path="/admin/pages" element={
           <ProtectedRoute requireEditor>
-            <AdminPages />
+            <Pages />
           </ProtectedRoute>
         } />
         <Route path="/admin/programs" element={
@@ -160,22 +174,22 @@ function AppContent() {
         } />
         <Route path="/admin/prices" element={
           <ProtectedRoute requireEditor>
-            <AdminPrices />
+            <Prices />
           </ProtectedRoute>
         } />
         <Route path="/admin/users" element={
           <ProtectedRoute requireAdmin>
-            <AdminUsers />
+            <Users />
           </ProtectedRoute>
         } />
         <Route path="/admin/settings" element={
           <ProtectedRoute requireAdmin>
-            <AdminSettings />
+            <Settings />
           </ProtectedRoute>
         } />
         <Route path="/admin/knowledge-base" element={
           <ProtectedRoute requireAdmin>
-            <AdminKnowledgeBase />
+            <KnowledgeBase />
           </ProtectedRoute>
         } />
         
@@ -188,9 +202,11 @@ function AppContent() {
         <Route path="*" element={<NotFoundPage />} />
       </Routes>
 
-      {!isLandingPage && <ElevenLabsConvaiWidget />}
+      {/* ElevenLabs Convai widget - always present regardless of route */}
+      <ElevenLabsConvaiWidget />
       
-      {isMobile && !isLandingPage && <BottomNavigation />}
+      {/* Add BottomNavigation for mobile view */}
+      {isMobile && <BottomNavigation />}
       
       <Toaster position="bottom-right" />
     </div>
