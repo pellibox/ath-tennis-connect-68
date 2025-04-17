@@ -1,6 +1,7 @@
+
 import React, { useState, useEffect } from 'react';
 import { supabase } from '@/integrations/supabase/client';
-import { Page } from '@/integrations/supabase/database.types';
+import { Page, Section, Json } from '@/integrations/supabase/database.types';
 import AdminLayout from '../../components/admin/AdminLayout';
 import { Button } from '@/components/ui/button';
 import { useToast } from '@/hooks/use-toast';
@@ -43,7 +44,11 @@ const PagesAdmin = () => {
         }
 
         if (data) {
-          const typedPages: Page[] = data;
+          // Convert JSON sections to the expected Section[] type
+          const typedPages: Page[] = data.map(page => ({
+            ...page,
+            sections: Array.isArray(page.sections) ? page.sections as Section[] : []
+          }));
           setPages(typedPages);
         }
       } catch (error) {
@@ -180,12 +185,12 @@ const PagesAdmin = () => {
   };
 
   // Handle updating page content sections
-  const handleUpdatePageSections = async (pageId: string, sections: Page['sections']) => {
+  const handleUpdatePageSections = async (pageId: string, sections: Section[]) => {
     try {
       const { error } = await supabase
         .from('pages')
         .update({
-          sections: sections,
+          sections: sections as unknown as Json,
           last_modified: new Date().toISOString()
         })
         .eq('id', pageId);

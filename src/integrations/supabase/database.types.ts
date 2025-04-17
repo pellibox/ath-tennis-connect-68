@@ -1,24 +1,41 @@
 
+export type Json =
+  | string
+  | number
+  | boolean
+  | null
+  | { [key: string]: Json | undefined }
+  | Json[];
+
+export type Section = {
+  id: string;
+  name: string;
+  content: string;
+  type: string;
+};
+
 export type Page = {
   id: string;
   title: string;
   slug: string;
   status: string;
   last_modified?: string;
-  sections: {
-    id: string;
-    name: string;
-    content: string;
-    type: string;
-  }[];
+  sections: Section[];
 };
 
 export type Database = {
   tables: {
     pages: {
-      Row: Page;
-      Insert: Omit<Page, 'id'> & { id?: string };
-      Update: Partial<Page>;
+      Row: {
+        id: string;
+        title: string;
+        slug: string;
+        status: string;
+        last_modified?: string;
+        sections: Json;
+      };
+      Insert: Omit<Page, 'id'> & { id?: string; sections: Json };
+      Update: Partial<Omit<Page, 'sections'>> & { sections?: Json };
     };
     profiles: {
       Row: {
