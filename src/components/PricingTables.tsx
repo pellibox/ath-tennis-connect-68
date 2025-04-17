@@ -1,7 +1,6 @@
-
 import React, { useEffect, useState } from 'react';
 import { supabase } from '@/integrations/supabase/client';
-import { Page } from '@/integrations/supabase/database.types';
+import { Page, Section } from '@/integrations/supabase/database.types';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Skeleton } from '@/components/ui/skeleton';
 
@@ -26,7 +25,16 @@ const PricingTables = () => {
         }
 
         if (data) {
-          setPricingData(data);
+          const sections = Array.isArray(data.sections) 
+            ? data.sections 
+            : [];
+          
+          const typedPage: Page = {
+            ...data,
+            sections: sections as Section[]
+          };
+          
+          setPricingData(typedPage);
         }
       } catch (err) {
         setError('Failed to fetch pricing data');
@@ -39,7 +47,6 @@ const PricingTables = () => {
     fetchPricingData();
   }, []);
 
-  // Render loading state
   if (isLoading) {
     return (
       <div className="container mx-auto py-10">
@@ -62,7 +69,6 @@ const PricingTables = () => {
     );
   }
 
-  // Render error state
   if (error) {
     return (
       <div className="container mx-auto py-10">
@@ -78,7 +84,6 @@ const PricingTables = () => {
     );
   }
 
-  // Render content from pricing data
   return (
     <div className="container mx-auto py-10">
       <h2 className="text-3xl font-bold text-center mb-10">
@@ -95,7 +100,7 @@ const PricingTables = () => {
               </CardDescription>
             </CardHeader>
             <CardContent className="flex-grow">
-              <div dangerouslySetInnerHTML={{ __html: section.content }} />
+              <div dangerouslySetInnerHTML={{ __html: section.content || '' }} />
             </CardContent>
           </Card>
         )) || (

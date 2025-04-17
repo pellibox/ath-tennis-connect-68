@@ -1,16 +1,26 @@
 
+export type Section = {
+  id: string;
+  name: string;
+  type: string;
+  content?: string;
+  items?: PricingItem[];
+};
+
+export type PricingItem = {
+  id: string;
+  name: string;
+  price: string;
+  description: string;
+};
+
 export type Page = {
   id: string;
   title: string;
   slug: string;
   status: string;
   last_modified?: string;
-  sections: {
-    id: string;
-    name: string;
-    content: string;
-    type: string;
-  }[];
+  sections: Section[];
 };
 
 export type Database = {

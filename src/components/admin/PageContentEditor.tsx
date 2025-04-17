@@ -20,21 +20,7 @@ import {
 } from '@/components/ui/accordion';
 import { toast } from 'sonner';
 import { supabase } from '@/integrations/supabase/client';
-
-interface PricingItem {
-  id: string;
-  name: string;
-  price: string;
-  description: string;
-}
-
-interface Section {
-  id: string;
-  name: string;
-  type: 'text' | 'pricing';
-  content?: string;
-  items?: PricingItem[];
-}
+import { Section, PricingItem } from '@/integrations/supabase/database.types';
 
 interface PageContentEditorProps {
   sections: Section[];
@@ -81,7 +67,7 @@ const PageContentEditor: React.FC<PageContentEditorProps> = ({
 
   const handleAddPricingItem = (sectionIndex: number) => {
     const newSections = [...sections];
-    const newItem = {
+    const newItem: PricingItem = {
       id: `p${Date.now()}`,
       name: 'New Item',
       price: '0',
@@ -98,18 +84,32 @@ const PageContentEditor: React.FC<PageContentEditorProps> = ({
 
   const handleDeletePricingItem = (sectionIndex: number, itemIndex: number) => {
     const newSections = [...sections];
-    newSections[sectionIndex].items!.splice(itemIndex, 1);
-    setSections(newSections);
+    if (newSections[sectionIndex].items) {
+      newSections[sectionIndex].items!.splice(itemIndex, 1);
+      setSections(newSections);
+    }
   };
 
   const handleAddSection = (type: 'text' | 'pricing') => {
     const newSectionId = `s${Date.now()}`;
-    const newSection: Section = {
-      id: newSectionId,
-      name: type === 'text' ? 'New Text Section' : 'New Pricing Section',
-      type: type,
-      ...(type === 'text' ? { content: 'Enter content here' } : { items: [] })
-    };
+    
+    let newSection: Section;
+    
+    if (type === 'text') {
+      newSection = {
+        id: newSectionId,
+        name: 'New Text Section',
+        type: type,
+        content: 'Enter content here'
+      };
+    } else {
+      newSection = {
+        id: newSectionId,
+        name: 'New Pricing Section',
+        type: type,
+        items: []
+      };
+    }
     
     const newSections = [...sections, newSection];
     setSections(newSections);
