@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -19,13 +20,20 @@ import {
 } from '@/components/ui/accordion';
 import { toast } from 'sonner';
 import { supabase } from '@/integrations/supabase/client';
-import { Section } from '@/integrations/supabase/database.types';
 
 interface PricingItem {
   id: string;
   name: string;
   price: string;
   description: string;
+}
+
+interface Section {
+  id: string;
+  name: string;
+  type: 'text' | 'pricing';
+  content?: string;
+  items?: PricingItem[];
 }
 
 interface PageContentEditorProps {
@@ -47,6 +55,7 @@ const PageContentEditor: React.FC<PageContentEditorProps> = ({
   const [expandedSections, setExpandedSections] = useState<string[]>([]);
   const [isSaving, setIsSaving] = useState(false);
   
+  // Initialize expanded sections
   useEffect(() => {
     if (initialSections.length > 0 && expandedSections.length === 0) {
       setExpandedSections([initialSections[0].id]);
@@ -105,6 +114,7 @@ const PageContentEditor: React.FC<PageContentEditorProps> = ({
     const newSections = [...sections, newSection];
     setSections(newSections);
     
+    // Auto expand the new section
     setExpandedSections([...expandedSections, newSectionId]);
   };
 
@@ -114,6 +124,7 @@ const PageContentEditor: React.FC<PageContentEditorProps> = ({
     newSections.splice(index, 1);
     setSections(newSections);
     
+    // Remove from expanded sections
     setExpandedSections(expandedSections.filter(id => id !== sectionId));
   };
 

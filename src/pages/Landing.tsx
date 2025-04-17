@@ -182,10 +182,9 @@ const LandingPage = () => {
         deleteProfile={deleteProfile}
         showTrigger={false}
       />
-
-      {/* The widget will be visible on all pages via App.tsx */}
     </div>
   );
 };
 
 export default LandingPage;
+

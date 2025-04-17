@@ -1,6 +1,7 @@
+
 import React, { useEffect, useState } from 'react';
 import { supabase } from '@/integrations/supabase/client';
-import { Page, Section, Json } from '@/integrations/supabase/database.types';
+import { Page } from '@/integrations/supabase/database.types';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Skeleton } from '@/components/ui/skeleton';
 
@@ -25,11 +26,7 @@ const PricingTables = () => {
         }
 
         if (data) {
-          const parsedData: Page = {
-            ...data,
-            sections: Array.isArray(data.sections) ? data.sections as Section[] : []
-          };
-          setPricingData(parsedData);
+          setPricingData(data);
         }
       } catch (err) {
         setError('Failed to fetch pricing data');
@@ -42,6 +39,7 @@ const PricingTables = () => {
     fetchPricingData();
   }, []);
 
+  // Render loading state
   if (isLoading) {
     return (
       <div className="container mx-auto py-10">
@@ -64,6 +62,7 @@ const PricingTables = () => {
     );
   }
 
+  // Render error state
   if (error) {
     return (
       <div className="container mx-auto py-10">
@@ -79,6 +78,7 @@ const PricingTables = () => {
     );
   }
 
+  // Render content from pricing data
   return (
     <div className="container mx-auto py-10">
       <h2 className="text-3xl font-bold text-center mb-10">
