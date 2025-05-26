@@ -1,4 +1,3 @@
-
 import { jsPDF } from 'jspdf';
 import { centerX } from './layout';
 
@@ -120,7 +119,7 @@ export const createContactPage = (doc: jsPDF): void => {
   doc.setFont('helvetica', 'normal');
   doc.text('ATH Tennis Hub', 20, 35);
   doc.text('Via F. Turati, 9', 20, 42);
-  doc.text('20090 Rodano MI, Italia', 20, 49);
+  doc.text('Milano MI, Italia', 20, 49);
   doc.text('Email: info@ath.tennis', 20, 56);
   doc.text('Tel: +39 02 1234567', 20, 63);
   

@@ -67,7 +67,7 @@ const HomePage = () => {
         <ContactSection 
           title="Contatti"
           subtitle="Richiedi informazioni tecniche o prenota una sessione di valutazione"
-          address="Via F. Turati, 9, 20090 Rodano MI, Italia"
+          address="Via F. Turati, 9, Milano MI, Italia"
           phone="+39 02 1234567"
           email="info@ath.tennis"
         />

@@ -35,7 +35,7 @@ export const useChatbot = () => {
   useEffect(() => {
     // Combina informazioni dai programmi tennis
     let knowledgeBase = 'ATH (Advanced Tennis Hub) è un centro di eccellenza per il tennis che utilizza tecnologia avanzata e competenze umane. ';
-    knowledgeBase += 'La sede è in Via F. Turati, 9, 20090 Rodano MI, Italia. ';
+    knowledgeBase += 'La sede è in Via F. Turati, 9, Milano MI, Italia. ';
     knowledgeBase += 'ATH offre diversi programmi: ';
     
     // Aggiungi informazioni sui programmi tennis
@@ -267,7 +267,7 @@ export const useChatbot = () => {
     }
     
     if (lowerCaseMessage.includes('struttur') || lowerCaseMessage.includes('centro') || lowerCaseMessage.includes('sede')) {
-      return "Il nostro centro si trova in Via F. Turati, 9, 20090 Rodano MI, Italia. Disponiamo di 6 campi monitorati con la tecnologia Vicki, aree dedicate alla preparazione atletica, e spazi per l'analisi video e la preparazione mentale.";
+      return "Il nostro centro si trova in Via F. Turati, 9, Milano MI, Italia. Disponiamo di 6 campi monitorati con la tecnologia Vicki, aree dedicate alla preparazione atletica, e spazi per l'analisi video e la preparazione mentale.";
     }
     
     if (lowerCaseMessage.includes('contatt') || lowerCaseMessage.includes('prenotare') || lowerCaseMessage.includes('info')) {

@@ -1,4 +1,3 @@
-
 import { useEffect, useState } from 'react';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
@@ -202,7 +201,7 @@ const ParentTutorProgram = () => {
         <ContactSection 
           title="Vuoi saperne di più?" 
           subtitle="Contattaci per informazioni sul programma Genitore/Tutor"
-          address="Via F. Turati, 9, 20090 Rodano MI, Italia"
+          address="Via F. Turati, 9, Milano MI, Italia"
           email="info@ath.tennis"
           phone="+39 02 1234567"
         />

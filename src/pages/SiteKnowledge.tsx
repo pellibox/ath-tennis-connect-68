@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Button } from '@/components/ui/button';
@@ -118,7 +117,7 @@ allenamento. Questa standardizzazione forzata ignora le peculiarità individuali
 limitando la loro crescita potenziale.
 
 # Advanced Tennis Hub (ATH): Tecnologia e Competenza Umana per l'Eccellenza Tennistica
-Questo centro innovativo, situato a Rodano, rappresenta la prima struttura tennistica costruita
+Questo centro innovativo rappresenta la prima struttura tennistica costruita
 appositamente per ottimizzare l'utilizzo del metodo ATH, integrando tecnologia avanzata e
 competenza umana. ATH ridefinisce l'eccellenza nel tennis, ottimizzando le performance di tutti,
 dai principianti ai professionisti.
@@ -248,7 +247,7 @@ VICKI (Virtual Intelligent Coach and Knowledge Interface) è un sistema di intel
     return `
 # Strutture e Facility ATH
 
-ATH (Advanced Tennis Hub) è situato a Rodano, in provincia di Milano, in una struttura all'avanguardia progettata specificamente per massimizzare l'efficacia dell'allenamento tennistico attraverso la tecnologia.
+ATH (Advanced Tennis Hub) è una struttura all'avanguardia progettata specificamente per massimizzare l'efficacia dell'allenamento tennistico attraverso la tecnologia.
 
 ## Campi da Tennis
 - 6 campi da tennis indoor con superficie in resintex
@@ -359,7 +358,7 @@ ATH (Advanced Tennis Hub) è situato a Rodano, in provincia di Milano, in una st
       },
       {
         title: 'SAT – Propedeutico',
-        subtitle: 'under 4–6, sede di Rodano (30 settimane)',
+        subtitle: 'under 4–6 (30 settimane)',
         features: [
           '1 sessione tennis da 1 ora a settimana',
           '1 sessione atletica da 30 minuti',
