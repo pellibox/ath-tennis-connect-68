@@ -59,7 +59,7 @@ const ContactPage = () => {
         <ContactSection 
           title="Richiedi Informazioni"
           subtitle="Compila il modulo per informazioni su programmi, disponibilità o collaborazioni"
-          address="Via F. Turati, 9, 20090 Rodano MI, Italia"
+          address="Via F. Turati, 9, Milano MI, Italia"
           phone="+39 02 1234567"
           email="info@ath.tennis"
         />
@@ -70,7 +70,7 @@ const ContactPage = () => {
               <div>
                 <h2 className="text-2xl font-display mb-6">ATH Tennis Hub</h2>
                 <p className="mb-4 font-swiss">Via F. Turati, 9</p>
-                <p className="mb-4 font-swiss">20090 Rodano MI, Italia</p>
+                <p className="mb-4 font-swiss">Milano MI, Italia</p>
                 <p className="mb-4 font-swiss">Email: info@ath.tennis</p>
                 <p className="mb-4 font-swiss">Tel: +39 02 1234567</p>
               </div>

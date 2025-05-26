@@ -1,3 +1,4 @@
+
 import { useEffect, useState } from 'react';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
@@ -151,7 +152,7 @@ const ClubProgram = () => {
         <ContactSection 
           title="Vuoi saperne di più?" 
           subtitle="Contattaci per una consulenza personalizzata"
-          address="Via Carlo D'Adda 6/8, 20143 Milano (MI)"
+          address="Via Carlo D'Adda 6/8, Milano MI"
           email="info@advancedtennishub.com"
           phone="+39 02 123 4567"
         />

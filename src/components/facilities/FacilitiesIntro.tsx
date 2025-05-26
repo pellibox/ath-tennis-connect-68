@@ -7,7 +7,7 @@ const FacilitiesIntro = () => {
         
         <div className="prose prose-lg max-w-4xl mx-auto mb-6">
           <p className="lead text-lg md:text-xl mb-4 font-swiss">
-            L'Advanced Tennis Hub di Rodano è un centro di eccellenza progettato specificamente per ottimizzare l'utilizzo del metodo ATH e della tecnologia Vicki™.
+            L'Advanced Tennis Hub è un centro di eccellenza progettato specificamente per ottimizzare l'utilizzo del metodo ATH e della tecnologia Vicki™.
           </p>
           
           <p className="font-swiss text-base md:text-lg">
