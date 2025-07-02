@@ -62,17 +62,18 @@ const BottomNavigation = () => {
         showTrigger={false}
       />
       
-      <div
-        className="fixed inset-x-0 bottom-0 bg-white border-t border-gray-100 shadow-[0_-2px_20px_rgba(0,0,0,0.08)] z-[9999] lg:hidden transition-all duration-200"
+      <nav
+        className="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-100 shadow-[0_-2px_20px_rgba(0,0,0,0.08)] z-[9999] lg:hidden transition-all duration-200"
         style={{
           position: 'fixed',
-          bottom: 0,
-          left: 0,
-          right: 0,
+          bottom: '0',
+          left: '0',
+          right: '0',
           height: 'calc(60px + env(safe-area-inset-bottom, 0px))',
           paddingBottom: 'env(safe-area-inset-bottom, 0px)',
           backdropFilter: 'blur(20px)',
           backgroundColor: 'rgba(255, 255, 255, 0.98)',
+          zIndex: 9999,
         }}
       >
         <div className="grid grid-cols-6 h-[60px]">
@@ -110,7 +111,7 @@ const BottomNavigation = () => {
             <span className="mt-1 text-gray-600">{t("profile.title")}</span>
           </button>
         </div>
-      </div>
+      </nav>
     </>
   );
 };
