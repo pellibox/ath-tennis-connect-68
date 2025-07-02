@@ -147,32 +147,18 @@
     body {
       margin: 0;
       padding: 0;
-      overflow-x: hidden;
       padding-bottom: 0 !important;
+    }
+    
+    /* Prevent overflow issues on mobile that could interfere with fixed positioning */
+    html, body {
+      overflow-x: clip !important;
     }
     
     /* Ensure pages have space for bottom navigation */
     .min-h-screen {
       min-height: 100vh !important;
       padding-bottom: calc(70px + env(safe-area-inset-bottom, 0px)) !important;
-    }
-    
-    /* Force fixed positioning for bottom navigation on mobile */
-    .mobile-bottom-nav {
-      display: block !important;
-      position: fixed !important;
-      bottom: 0 !important;
-      left: 0 !important;
-      right: 0 !important;
-      width: 100vw !important;
-      z-index: 99999 !important;
-    }
-    
-    /* NEW: Direct styling for ElevenLabs Convai widget on mobile */
-    elevenlabs-convai {
-      position: fixed !important;
-      bottom: calc(70px + env(safe-area-inset-bottom, 0px)) !important;
-      z-index: 9999 !important;
     }
     
     /* CRITICAL: Force mobile bottom navigation to be fixed to viewport */
@@ -186,6 +172,23 @@
       transform: none !important;
       transition: none !important;
       display: block !important;
+      will-change: transform !important;
+      /* Debug: Temporary red border to verify positioning */
+      border: 2px solid red !important;
+      background: rgba(255,255,255,0.95) !important;
+    }
+    
+    /* Ensure no parent containers interfere with fixed positioning */
+    body, html, #root, [data-react-root] {
+      transform: none !important;
+      position: static !important;
+    }
+    
+    /* ElevenLabs Convai widget positioning */
+    elevenlabs-convai {
+      position: fixed !important;
+      bottom: calc(70px + env(safe-area-inset-bottom, 0px)) !important;
+      z-index: 9999 !important;
     }
   }
 }
