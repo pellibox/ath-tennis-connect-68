@@ -6,7 +6,7 @@ const VickiWidgetContainer = () => {
   const { t } = useLanguage();
   const [error, setError] = useState<string | null>(null);
   
-  // ElevenLabs conversation hook
+  // ElevenLabs conversation hook with proper configuration
   const conversation = useConversation({
     onConnect: () => {
       console.log('ElevenLabs connected');
@@ -20,6 +20,29 @@ const VickiWidgetContainer = () => {
     },
     onMessage: (message) => {
       console.log('ElevenLabs message:', message);
+    },
+    // Override the conversation config to use new structure
+    overrides: {
+      agent: {
+        prompt: {
+          prompt: "Sei Vicki, l'assistente virtuale di ATH Tennis. Aiuti gli utenti con informazioni sui programmi di tennis, prenotazioni e domande generali. Rispondi sempre in italiano in modo cordiale e professionale.",
+          // Use new structure instead of deprecated tools field
+          tool_ids: [], // Add any tool IDs if needed
+          built_in_tools: {
+            end_call: {
+              name: "end_call",
+              description: "Termina la conversazione",
+              response_timeout_secs: 20,
+              type: "system",
+              params: {
+                system_tool_type: "end_call"
+              }
+            }
+          }
+        },
+        firstMessage: "Ciao! Sono Vicki, la tua assistente virtuale di ATH Tennis. Come posso aiutarti oggi?",
+        language: "it",
+      }
     }
   });
 
