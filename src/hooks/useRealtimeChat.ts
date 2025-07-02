@@ -52,6 +52,17 @@ export const useRealtimeChat = () => {
       const wsUrl = `wss://kcsgaqbmguazebsbwkiz.functions.supabase.co/realtime-chat`;
       console.log('Connecting to WebSocket:', wsUrl);
       
+      // Test if function exists first
+      try {
+        const testResponse = await fetch(`https://kcsgaqbmguazebsbwkiz.functions.supabase.co/realtime-chat`, {
+          method: 'GET'
+        });
+        console.log('HTTP test response status:', testResponse.status);
+        console.log('HTTP test response headers:', Object.fromEntries(testResponse.headers.entries()));
+      } catch (testError) {
+        console.error('HTTP test failed:', testError);
+      }
+      
       wsRef.current = new WebSocket(wsUrl);
       
       console.log('WebSocket object created, readyState:', wsRef.current.readyState);
