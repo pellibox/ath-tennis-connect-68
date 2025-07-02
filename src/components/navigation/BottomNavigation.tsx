@@ -65,24 +65,11 @@ const BottomNavigation = () => {
       />
       
       <nav
+        className="mobile-bottom-nav bg-white/98 backdrop-blur-md border-t border-gray-200 shadow-[0_-2px_20px_rgba(0,0,0,0.08)]"
         style={{
-          position: 'fixed' as const,
-          bottom: 0,
-          left: 0,
-          right: 0,
-          width: '100vw',
           height: 'calc(60px + env(safe-area-inset-bottom, 0px))',
-          paddingBottom: 'env(safe-area-inset-bottom, 0px)',
-          backgroundColor: 'rgba(255, 255, 255, 0.98)',
-          backdropFilter: 'blur(20px)',
-          borderTop: '1px solid rgb(243 244 246)',
-          boxShadow: '0 -2px 20px rgba(0,0,0,0.08)',
-          zIndex: 99999,
-          transform: 'none',
-          transition: 'none',
-          display: 'block'
+          paddingBottom: 'env(safe-area-inset-bottom, 0px)'
         }}
-        className="mobile-bottom-nav"
       >
         <div className="grid grid-cols-6 h-[60px]">
           {navItems && navItems.map((item, index) => (
