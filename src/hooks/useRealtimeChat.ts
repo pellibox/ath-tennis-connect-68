@@ -49,7 +49,7 @@ export const useRealtimeChat = () => {
       }
 
       // Connect to WebSocket through Supabase Edge Function
-      const wsUrl = `wss://kigvzbauknpmoztzprma.functions.supabase.co/realtime-chat`;
+      const wsUrl = `wss://kcsgaqbmguazebsbwkiz.functions.supabase.co/realtime-chat`;
       console.log('Connecting to WebSocket:', wsUrl);
       
       wsRef.current = new WebSocket(wsUrl);
@@ -131,6 +131,11 @@ export const useRealtimeChat = () => {
               console.error('WebSocket error:', data.message);
               setError(data.message);
               break;
+              
+            case 'warning':
+              console.warn('WebSocket warning:', data.message);
+              // Don't set error for warnings, just log
+              break;
 
             default:
               console.log('Unhandled message type:', data.type);
@@ -146,13 +151,25 @@ export const useRealtimeChat = () => {
         setIsConnecting(false);
       };
 
-      wsRef.current.onclose = () => {
-        console.log('WebSocket closed');
+      wsRef.current.onclose = (event) => {
+        console.log('WebSocket closed:', event.code, event.reason);
+        console.log('Close event details:', JSON.stringify({ code: event.code, reason: event.reason, wasClean: event.wasClean }));
         setIsConnected(false);
         setIsConnecting(false);
         setIsSpeaking(false);
         setIsListening(false);
         cleanup();
+        
+        // Auto-reconnect if not a normal closure
+        if (event.code !== 1000 && event.code !== 1001) {
+          console.log('Attempting to reconnect in 2 seconds...');
+          setTimeout(() => {
+            if (!isConnected && !isConnecting) {
+              console.log('Auto-reconnecting...');
+              connect();
+            }
+          }, 2000);
+        }
       };
 
     } catch (error) {

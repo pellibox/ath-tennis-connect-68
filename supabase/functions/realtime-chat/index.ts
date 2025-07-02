@@ -17,7 +17,10 @@ serve(async (req) => {
 
   try {
     const OPENAI_API_KEY = Deno.env.get('OPENAI_API_KEY');
+    console.log('OPENAI_API_KEY configured:', !!OPENAI_API_KEY);
+    
     if (!OPENAI_API_KEY) {
+      console.error('OPENAI_API_KEY is not set in Supabase secrets');
       throw new Error('OPENAI_API_KEY is not set');
     }
 
@@ -87,12 +90,19 @@ serve(async (req) => {
 
           openaiWs.onerror = (error) => {
             console.error('OpenAI WebSocket error:', error);
-            socket.send(JSON.stringify({ type: 'error', message: 'OpenAI connection error' }));
+            console.error('Error details:', JSON.stringify(error));
+            // Don't close client connection immediately for OpenAI errors
+            socket.send(JSON.stringify({ type: 'warning', message: 'OpenAI connection issue, retrying...' }));
           };
 
-          openaiWs.onclose = () => {
-            console.log('OpenAI WebSocket closed');
-            socket.send(JSON.stringify({ type: 'error', message: 'OpenAI connection closed' }));
+          openaiWs.onclose = (event) => {
+            console.log('OpenAI WebSocket closed:', event.code, event.reason);
+            console.log('Close event details:', JSON.stringify({ code: event.code, reason: event.reason, wasClean: event.wasClean }));
+            
+            // Only close client if it was an abnormal closure
+            if (event.code !== 1000) {
+              socket.send(JSON.stringify({ type: 'error', message: `OpenAI connection closed unexpectedly: ${event.reason}` }));
+            }
           };
 
         } catch (error) {
@@ -108,14 +118,16 @@ serve(async (req) => {
         }
       };
 
-      socket.onclose = () => {
-        console.log('Client WebSocket closed');
+      socket.onclose = (event) => {
+        console.log('Client WebSocket closed:', event.code, event.reason);
+        console.log('Client close event details:', JSON.stringify({ code: event.code, reason: event.reason, wasClean: event.wasClean }));
         openaiWs?.close();
       };
 
       socket.onerror = (error) => {
         console.error('Client WebSocket error:', error);
-        openaiWs?.close();
+        console.error('Client error details:', JSON.stringify(error));
+        // Don't immediately close OpenAI connection for client errors
       };
 
       return response;
