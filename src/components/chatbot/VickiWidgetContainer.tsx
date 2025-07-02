@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { useLanguage } from '@/contexts/LanguageContext';
-import VickiTab from './VickiTab';
 import ElevenLabsConvaiWidget from './ElevenLabsConvaiWidget';
 
 // Custom event for communication between widgets
@@ -37,30 +36,46 @@ const VickiWidgetContainer = () => {
 
   return (
     <>
-      {/* Mobile: Vicki Tab - always visible */}
-      <div className="lg:hidden">
-        <VickiTab isOpen={isWidgetOpen} onToggle={toggleWidget} />
-      </div>
-
-      {/* Desktop: Floating Icon when closed */}
-      <div className="hidden lg:block">
-        {!isWidgetOpen && (
-          <button
-            onClick={toggleWidget}
-            className="fixed bottom-5 right-5 w-14 h-14 bg-gradient-to-r from-ath-clay to-ath-clay/80 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 active:scale-95 z-[9998] flex items-center justify-center group"
-            aria-label="Ask Vicki"
-          >
+      {/* Unified Vicki Icon - both mobile and desktop */}
+      {!isWidgetOpen && (
+        <button
+          onClick={toggleWidget}
+          className={`
+            fixed z-[9998] bg-gradient-to-r from-ath-clay to-ath-clay/80 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 active:scale-95 flex items-center justify-center group
+            ${/* Mobile positioning - above bottom nav */ ''}
+            lg:hidden bottom-[calc(70px+env(safe-area-inset-bottom,0px))] left-1/2 -translate-x-1/2 h-12 px-4
+            ${/* Desktop positioning - bottom right */ ''}
+            hidden lg:flex lg:bottom-5 lg:right-5 lg:w-14 lg:h-14 lg:translate-x-0
+          `}
+          aria-label={t('vicki.askTitle')}
+        >
+          {/* Mobile version - pill shape with text and icon */}
+          <div className="lg:hidden flex items-center gap-2">
+            <div className="w-6 h-6 bg-white rounded-full flex items-center justify-center">
+              <div className="w-4 h-4 bg-black rounded-full flex items-center justify-center">
+                <span className="text-white text-[8px] font-bold">V</span>
+              </div>
+            </div>
+            <span className="text-white text-sm font-medium">
+              {t('vicki.askTitle')}
+            </span>
+            <div className="w-2 h-2 bg-green-400 rounded-full" />
+          </div>
+          
+          {/* Desktop version - circular icon only */}
+          <div className="hidden lg:flex items-center justify-center">
             <div className="w-8 h-8 bg-white rounded-full flex items-center justify-center">
               <div className="w-6 h-6 bg-black rounded-full flex items-center justify-center">
                 <span className="text-white text-xs font-bold">V</span>
               </div>
             </div>
+            {/* Tooltip for desktop */}
             <div className="absolute -top-12 right-0 bg-black text-white px-3 py-1 rounded-md text-sm opacity-0 group-hover:opacity-100 transition-opacity duration-200 whitespace-nowrap">
               {t('vicki.askTitle')}
             </div>
-          </button>
-        )}
-      </div>
+          </div>
+        </button>
+      )}
 
       {/* ElevenLabs Widget - shown/hidden based on state */}
       <div 
