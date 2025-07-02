@@ -176,7 +176,11 @@ const translations = {
   "chatbot.apiKeyPrompt": "Pour utiliser l'assistant vocal, veuillez entrer votre clé API OpenAI:",
   "chatbot.apiKeyError": "Une clé API OpenAI est nécessaire. Veuillez réessayer plus tard.",
   "chatbot.errorMessage": "Une erreur s'est produite. Veuillez réessayer plus tard.",
-  "chatbot.speechNotSupported": "La reconnaissance vocale n'est pas prise en charge dans votre navigateur."
+  "chatbot.speechNotSupported": "La reconnaissance vocale n'est pas prise en charge dans votre navigateur.",
+  "chatbot.askCoach": "Demander au coach",
+  
+  // Vicki tab translations
+  "vicki.askTitle": "Demander à Vicki"
 };
 
 export default translations;

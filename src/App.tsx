@@ -24,7 +24,7 @@ import NotFoundPage from '@/pages/NotFound';
 import PrivacyPage from '@/pages/Privacy';
 import TermsPage from '@/pages/Terms';
 import Brochure from '@/pages/Brochure';
-import ElevenLabsConvaiWidget from '@/components/chatbot/ElevenLabsConvaiWidget';
+import VickiWidgetContainer from '@/components/chatbot/VickiWidgetContainer';
 import BottomNavigation from '@/components/navigation/BottomNavigation';
 import SiteKnowledge from '@/pages/SiteKnowledge';
 
@@ -203,8 +203,8 @@ function AppContent() {
           <Route path="*" element={<NotFoundPage />} />
         </Routes>
 
-        {/* ElevenLabs Convai widget - always present regardless of route */}
-        <ElevenLabsConvaiWidget />
+        {/* Vicki Widget Container - includes tab and widget */}
+        <VickiWidgetContainer />
         
         <Toaster position="bottom-right" />
       </div>

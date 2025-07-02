@@ -178,7 +178,11 @@ const translations = {
   "chatbot.apiKeyPrompt": "Um den Sprachassistenten zu nutzen, geben Sie bitte Ihren OpenAI-API-Schlüssel ein:",
   "chatbot.apiKeyError": "Ein OpenAI-API-Schlüssel ist erforderlich. Bitte versuchen Sie es später erneut.",
   "chatbot.errorMessage": "Ein Fehler ist aufgetreten. Bitte versuchen Sie es später erneut.",
-  "chatbot.speechNotSupported": "Spracherkennung wird in Ihrem Browser nicht unterstützt."
+  "chatbot.speechNotSupported": "Spracherkennung wird in Ihrem Browser nicht unterstützt.",
+  "chatbot.askCoach": "Den Trainer fragen",
+  
+  // Vicki tab translations
+  "vicki.askTitle": "Vicki fragen"
 };
 
 export default translations;

@@ -140,6 +140,9 @@ const translations = {
   "chatbot.speechNotSupported": "Speech recognition is not supported in your browser.",
   "chatbot.askCoach": "Ask the coach",
   
+  // Vicki tab translations
+  "vicki.askTitle": "ASK Vicki",
+  
   // Brochure translations
   "brochure.download": "Download Information Brochure",
   "brochure.generating": "Generating...",
