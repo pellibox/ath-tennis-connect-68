@@ -8,10 +8,14 @@ const corsHeaders = {
 };
 
 serve(async (req) => {
-  console.log('Realtime chat request received:', req.method);
+  console.log('=== REALTIME CHAT REQUEST ===');
+  console.log('Method:', req.method);
+  console.log('URL:', req.url);
+  console.log('Headers:', Object.fromEntries(req.headers.entries()));
 
   // Handle CORS preflight requests
   if (req.method === 'OPTIONS') {
+    console.log('Returning CORS preflight response');
     return new Response(null, { headers: corsHeaders });
   }
 
@@ -25,10 +29,14 @@ serve(async (req) => {
     }
 
     // Check if this is a WebSocket upgrade request
-    if (req.headers.get("upgrade") === "websocket") {
-      console.log('WebSocket upgrade requested');
+    const upgradeHeader = req.headers.get("upgrade");
+    console.log('Upgrade header:', upgradeHeader);
+    
+    if (upgradeHeader === "websocket") {
+      console.log('=== WEBSOCKET UPGRADE DETECTED ===');
       
       const { socket, response } = Deno.upgradeWebSocket(req);
+      console.log('WebSocket upgrade successful');
       let openaiWs: WebSocket | null = null;
 
       socket.onopen = async () => {

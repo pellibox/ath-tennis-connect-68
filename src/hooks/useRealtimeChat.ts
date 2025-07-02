@@ -53,6 +53,8 @@ export const useRealtimeChat = () => {
       console.log('Connecting to WebSocket:', wsUrl);
       
       wsRef.current = new WebSocket(wsUrl);
+      
+      console.log('WebSocket object created, readyState:', wsRef.current.readyState);
 
       wsRef.current.onopen = () => {
         console.log('WebSocket connected');
@@ -146,8 +148,10 @@ export const useRealtimeChat = () => {
       };
 
       wsRef.current.onerror = (error) => {
-        console.error('WebSocket error:', error);
-        setError('Connection error');
+        console.error('WebSocket error event:', error);
+        console.error('WebSocket readyState at error:', wsRef.current?.readyState);
+        console.error('WebSocket URL was:', wsUrl);
+        setError('Connection error - check if OPENAI_API_KEY is set in Supabase secrets');
         setIsConnecting(false);
       };
 
