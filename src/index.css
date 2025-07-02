@@ -173,6 +173,7 @@
       position: fixed !important;
       bottom: calc(70px + env(safe-area-inset-bottom, 0px)) !important;
       z-index: 9999 !important;
+    }
   }
 }
 
