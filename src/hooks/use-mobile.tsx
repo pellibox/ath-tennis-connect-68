@@ -13,8 +13,22 @@ export function useIsMobile() {
 
   React.useEffect(() => {
     const handleResize = () => {
-      setIsMobile(window.innerWidth < BREAKPOINTS.md)
+      const newIsMobile = window.innerWidth < BREAKPOINTS.md
+      console.log('🔍 Mobile Detection:', {
+        windowWidth: window.innerWidth,
+        breakpoint: BREAKPOINTS.md,
+        isMobile: newIsMobile,
+        previousState: isMobile
+      })
+      setIsMobile(newIsMobile)
     }
+    
+    // Log initial state
+    console.log('🔍 Initial Mobile Detection:', {
+      windowWidth: window.innerWidth,
+      breakpoint: BREAKPOINTS.md,
+      isMobile: window.innerWidth < BREAKPOINTS.md
+    })
     
     window.addEventListener("resize", handleResize)
     return () => window.removeEventListener("resize", handleResize)

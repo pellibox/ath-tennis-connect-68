@@ -205,8 +205,8 @@ function AppContent() {
       {/* ElevenLabs Convai widget - always present regardless of route */}
       <ElevenLabsConvaiWidget />
       
-      {/* Add BottomNavigation for mobile view */}
-      {isMobile && <BottomNavigation />}
+      {/* Add BottomNavigation - always render, control via CSS */}
+      <BottomNavigation />
       
       <Toaster position="bottom-right" />
     </div>

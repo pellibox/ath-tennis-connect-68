@@ -16,6 +16,9 @@ const BottomNavigation = () => {
   const [dialogOpen, setDialogOpen] = useState(false);
   const [navItems, setNavItems] = useState<Array<{text: string, href: string, icon: JSX.Element}>>();
   
+  // Debug logging
+  console.log('🧭 BottomNavigation rendered on route:', location.pathname)
+  
   // Update navigation items when language changes
   useEffect(() => {
     // Wait for translations to be loaded
@@ -63,7 +66,6 @@ const BottomNavigation = () => {
       />
       
       <nav
-        className="lg:hidden"
         style={{
           position: 'fixed' as const,
           bottom: 0,
@@ -78,8 +80,10 @@ const BottomNavigation = () => {
           boxShadow: '0 -2px 20px rgba(0,0,0,0.08)',
           zIndex: 9999,
           transform: 'none',
-          transition: 'none'
+          transition: 'none',
+          display: 'block'
         }}
+        className="mobile-bottom-nav"
       >
         <div className="grid grid-cols-6 h-[60px]">
           {navItems && navItems.map((item, index) => (

@@ -158,7 +158,8 @@
     }
     
     /* Force fixed positioning for bottom navigation on mobile */
-    .lg\\:hidden {
+    .mobile-bottom-nav {
+      display: block !important;
       position: fixed !important;
       bottom: 0 !important;
       z-index: 9999 !important;
@@ -169,8 +170,15 @@
       position: fixed !important;
       bottom: calc(70px + env(safe-area-inset-bottom, 0px)) !important;
       z-index: 9999 !important;
-    }
   }
+}
+
+/* Hide mobile navigation on desktop */
+@media (min-width: 1024px) {
+  .mobile-bottom-nav {
+    display: none !important;
+  }
+}
   
   @media (max-width: 768px) {
     .container {
