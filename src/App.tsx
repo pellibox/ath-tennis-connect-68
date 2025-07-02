@@ -99,117 +99,119 @@ function AppContent() {
   const isMobile = useIsMobile();
   
   return (
-    <div>
-      <Routes>
-        <Route path="/" element={<LandingPage />} />
-        <Route path="/home" element={<HomePage />} />
-        <Route path="/about" element={<AboutPage />} />
-        <Route path="/method" element={<MethodPage />} />
-        <Route path="/technology" element={<TechnologyPage />} />
-        <Route path="/facilities" element={<FacilitiesPage />} />
-        <Route path="/coaches" element={<CoachesPage />} />
-        
-        {/* Programs routes */}
-        <Route path="/programs" element={<ProgramsPage />} />
-        <Route path="/padel" element={<PadelPage />} />
-        <Route path="/pickleball" element={<PickleballPage />} />
-        <Route path="/touchtennis" element={<TouchTennisPage />} />
-        
-        {/* Public Knowledge Base route - accessible without login */}
-        <Route path="/site-knowledge" element={<SiteKnowledge />} />
-        
-        {/* Program detail routes */}
-        <Route path="/programs/performance-2" element={<Performance2Program />} />
-        <Route path="/programs/performance-3" element={<Performance3Program />} />
-        <Route path="/programs/performance-4" element={<Performance4Program />} />
-        <Route path="/programs/elite-performance" element={<ElitePerformanceProgram />} />
-        <Route path="/programs/elite-full" element={<ElitePerformanceFullProgram />} />
-        <Route path="/programs/talent-identification" element={<SitProgram />} />
-        <Route path="/programs/sat" element={<SatProgram />} />
-        <Route path="/programs/personal" element={<PersonalCoachingProgram />} />
-        <Route path="/programs/adult-training" element={<AdultTrainingProgram />} />
-        <Route path="/programs/university" element={<UniversityProgram />} />
-        <Route path="/programs/coach" element={<CoachProgram />} />
-        <Route path="/programs/club" element={<ClubProgram />} />
-        <Route path="/programs/young-athletes" element={<YoungAthletesProgram />} />
-        <Route path="/programs/parent" element={<ParentTutorProgram />} />
-        <Route path="/programs/parent-tutor" element={<ParentTutorProgram />} />
-        <Route path="/programs/professionals" element={<ProfessionalsProgram />} />
-        <Route path="/programs/performance-analysis" element={<PerformanceAnalysisProgram />} />
-        
-        {/* Padel dedicated program routes */}
-        <Route path="/programs/padel-kids" element={<PadelKidsProgram />} />
-        <Route path="/programs/padel-adult" element={<PadelAdultProgram />} />
-        <Route path="/programs/padel-advanced" element={<PadelAdvancedProgram />} />
-        <Route path="/programs/padel-private" element={<PadelPrivateProgram />} />
-        
-        {/* TouchTennis dedicated program routes */}
-        <Route path="/programs/touchtennis-base" element={<TouchTennisBaseProgram />} />
-        <Route path="/programs/touchtennis-avanzato" element={<TouchTennisAdvancedProgram />} />
-        <Route path="/programs/touchtennis-junior" element={<TouchTennisJuniorProgram />} />
-        
-        {/* Authentication routes */}
-        <Route path="/auth/login" element={<Login />} />
-        <Route path="/auth/register" element={<Register />} />
-        <Route path="/auth/forgot-password" element={<ForgotPassword />} />
-        <Route path="/auth/reset-password" element={<ResetPassword />} />
-        <Route path="/auth/success" element={<RegistrationSuccess />} />
-        <Route path="/unauthorized" element={<Unauthorized />} />
-        
-        {/* Admin routes - protected */}
-        <Route path="/admin" element={
-          <ProtectedRoute requireEditor>
-            <Dashboard />
-          </ProtectedRoute>
-        } />
-        <Route path="/admin/pages" element={
-          <ProtectedRoute requireEditor>
-            <Pages />
-          </ProtectedRoute>
-        } />
-        <Route path="/admin/programs" element={
-          <ProtectedRoute requireEditor>
-            <AdminPrograms />
-          </ProtectedRoute>
-        } />
-        <Route path="/admin/prices" element={
-          <ProtectedRoute requireEditor>
-            <Prices />
-          </ProtectedRoute>
-        } />
-        <Route path="/admin/users" element={
-          <ProtectedRoute requireAdmin>
-            <Users />
-          </ProtectedRoute>
-        } />
-        <Route path="/admin/settings" element={
-          <ProtectedRoute requireAdmin>
-            <Settings />
-          </ProtectedRoute>
-        } />
-        <Route path="/admin/knowledge-base" element={
-          <ProtectedRoute requireAdmin>
-            <KnowledgeBase />
-          </ProtectedRoute>
-        } />
-        
-        <Route path="/contact" element={<ContactPage />} />
-        <Route path="/privacy" element={<PrivacyPage />} />
-        <Route path="/terms" element={<TermsPage />} />
-        <Route path="/brochure" element={<Brochure />} />
-        
-        <Route path="/programs/overview" element={<ProgramsOverview />} />
-        <Route path="*" element={<NotFoundPage />} />
-      </Routes>
+    <>
+      <div>
+        <Routes>
+          <Route path="/" element={<LandingPage />} />
+          <Route path="/home" element={<HomePage />} />
+          <Route path="/about" element={<AboutPage />} />
+          <Route path="/method" element={<MethodPage />} />
+          <Route path="/technology" element={<TechnologyPage />} />
+          <Route path="/facilities" element={<FacilitiesPage />} />
+          <Route path="/coaches" element={<CoachesPage />} />
+          
+          {/* Programs routes */}
+          <Route path="/programs" element={<ProgramsPage />} />
+          <Route path="/padel" element={<PadelPage />} />
+          <Route path="/pickleball" element={<PickleballPage />} />
+          <Route path="/touchtennis" element={<TouchTennisPage />} />
+          
+          {/* Public Knowledge Base route - accessible without login */}
+          <Route path="/site-knowledge" element={<SiteKnowledge />} />
+          
+          {/* Program detail routes */}
+          <Route path="/programs/performance-2" element={<Performance2Program />} />
+          <Route path="/programs/performance-3" element={<Performance3Program />} />
+          <Route path="/programs/performance-4" element={<Performance4Program />} />
+          <Route path="/programs/elite-performance" element={<ElitePerformanceProgram />} />
+          <Route path="/programs/elite-full" element={<ElitePerformanceFullProgram />} />
+          <Route path="/programs/talent-identification" element={<SitProgram />} />
+          <Route path="/programs/sat" element={<SatProgram />} />
+          <Route path="/programs/personal" element={<PersonalCoachingProgram />} />
+          <Route path="/programs/adult-training" element={<AdultTrainingProgram />} />
+          <Route path="/programs/university" element={<UniversityProgram />} />
+          <Route path="/programs/coach" element={<CoachProgram />} />
+          <Route path="/programs/club" element={<ClubProgram />} />
+          <Route path="/programs/young-athletes" element={<YoungAthletesProgram />} />
+          <Route path="/programs/parent" element={<ParentTutorProgram />} />
+          <Route path="/programs/parent-tutor" element={<ParentTutorProgram />} />
+          <Route path="/programs/professionals" element={<ProfessionalsProgram />} />
+          <Route path="/programs/performance-analysis" element={<PerformanceAnalysisProgram />} />
+          
+          {/* Padel dedicated program routes */}
+          <Route path="/programs/padel-kids" element={<PadelKidsProgram />} />
+          <Route path="/programs/padel-adult" element={<PadelAdultProgram />} />
+          <Route path="/programs/padel-advanced" element={<PadelAdvancedProgram />} />
+          <Route path="/programs/padel-private" element={<PadelPrivateProgram />} />
+          
+          {/* TouchTennis dedicated program routes */}
+          <Route path="/programs/touchtennis-base" element={<TouchTennisBaseProgram />} />
+          <Route path="/programs/touchtennis-avanzato" element={<TouchTennisAdvancedProgram />} />
+          <Route path="/programs/touchtennis-junior" element={<TouchTennisJuniorProgram />} />
+          
+          {/* Authentication routes */}
+          <Route path="/auth/login" element={<Login />} />
+          <Route path="/auth/register" element={<Register />} />
+          <Route path="/auth/forgot-password" element={<ForgotPassword />} />
+          <Route path="/auth/reset-password" element={<ResetPassword />} />
+          <Route path="/auth/success" element={<RegistrationSuccess />} />
+          <Route path="/unauthorized" element={<Unauthorized />} />
+          
+          {/* Admin routes - protected */}
+          <Route path="/admin" element={
+            <ProtectedRoute requireEditor>
+              <Dashboard />
+            </ProtectedRoute>
+          } />
+          <Route path="/admin/pages" element={
+            <ProtectedRoute requireEditor>
+              <Pages />
+            </ProtectedRoute>
+          } />
+          <Route path="/admin/programs" element={
+            <ProtectedRoute requireEditor>
+              <AdminPrograms />
+            </ProtectedRoute>
+          } />
+          <Route path="/admin/prices" element={
+            <ProtectedRoute requireEditor>
+              <Prices />
+            </ProtectedRoute>
+          } />
+          <Route path="/admin/users" element={
+            <ProtectedRoute requireAdmin>
+              <Users />
+            </ProtectedRoute>
+          } />
+          <Route path="/admin/settings" element={
+            <ProtectedRoute requireAdmin>
+              <Settings />
+            </ProtectedRoute>
+          } />
+          <Route path="/admin/knowledge-base" element={
+            <ProtectedRoute requireAdmin>
+              <KnowledgeBase />
+            </ProtectedRoute>
+          } />
+          
+          <Route path="/contact" element={<ContactPage />} />
+          <Route path="/privacy" element={<PrivacyPage />} />
+          <Route path="/terms" element={<TermsPage />} />
+          <Route path="/brochure" element={<Brochure />} />
+          
+          <Route path="/programs/overview" element={<ProgramsOverview />} />
+          <Route path="*" element={<NotFoundPage />} />
+        </Routes>
 
-      {/* ElevenLabs Convai widget - always present regardless of route */}
-      <ElevenLabsConvaiWidget />
+        {/* ElevenLabs Convai widget - always present regardless of route */}
+        <ElevenLabsConvaiWidget />
+        
+        <Toaster position="bottom-right" />
+      </div>
       
-      {/* Add BottomNavigation - always render, control via CSS */}
+      {/* BottomNavigation OUTSIDE the main app div to avoid relative positioning conflicts */}
       <BottomNavigation />
-      
-      <Toaster position="bottom-right" />
-    </div>
+    </>
   );
 }
 
