@@ -153,8 +153,15 @@
     
     /* Ensure pages have space for bottom navigation */
     .min-h-screen {
-      min-height: calc(100vh - env(safe-area-inset-bottom, 0px)) !important;
+      min-height: 100vh !important;
       padding-bottom: calc(70px + env(safe-area-inset-bottom, 0px)) !important;
+    }
+    
+    /* Force fixed positioning for bottom navigation on mobile */
+    .lg\\:hidden {
+      position: fixed !important;
+      bottom: 0 !important;
+      z-index: 9999 !important;
     }
     
     /* NEW: Direct styling for ElevenLabs Convai widget on mobile */
