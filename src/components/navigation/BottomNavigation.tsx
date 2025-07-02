@@ -63,23 +63,24 @@ const BottomNavigation = () => {
       />
       
       <div
-        className="fixed inset-x-0 bottom-0 bg-white shadow-[0_-2px_10px_rgba(0,0,0,0.05)] z-[60] lg:hidden"
+        className="fixed inset-x-0 bottom-0 bg-white border-t border-gray-100 shadow-[0_-2px_20px_rgba(0,0,0,0.08)] z-[60] lg:hidden transition-all duration-200"
         style={{
-          /* altezza menu: 56 px + eventuale safe-area */
-          height: 'calc(56px + env(safe-area-inset-bottom, 0px))',
+          height: 'calc(60px + env(safe-area-inset-bottom, 0px))',
           paddingBottom: 'env(safe-area-inset-bottom, 0px)',
+          backdropFilter: 'blur(20px)',
+          backgroundColor: 'rgba(255, 255, 255, 0.95)',
         }}
       >
-        <div className="grid grid-cols-6 h-14">
+        <div className="grid grid-cols-6 h-[60px]">
           {navItems && navItems.map((item, index) => (
             <Link
               key={index}
               to={item.href}
               className={cn(
-                "flex flex-col items-center justify-center px-1 py-2 text-[10px] font-swiss",
+                "flex flex-col items-center justify-center px-1 py-2 text-[10px] font-swiss transition-all duration-200 rounded-lg mx-1",
                 isActive(item.href) 
-                  ? "text-ath-clay" 
-                  : "text-gray-600"
+                  ? "text-ath-clay bg-ath-clay/10 font-medium scale-105" 
+                  : "text-gray-600 hover:text-ath-clay hover:bg-ath-clay/5"
               )}
             >
               {item.icon}
@@ -90,7 +91,7 @@ const BottomNavigation = () => {
           {/* Fixed profile button with gender-based styling */}
           <button
             onClick={() => setDialogOpen(true)}
-            className="flex flex-col items-center justify-center px-1 py-2 text-[10px] font-swiss"
+            className="flex flex-col items-center justify-center px-1 py-2 text-[10px] font-swiss transition-all duration-200 rounded-lg mx-1 hover:bg-gray-100"
             aria-label={t("profile.title")}
           >
             <div className={cn(
