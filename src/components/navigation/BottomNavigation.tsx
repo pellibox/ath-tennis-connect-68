@@ -21,16 +21,15 @@ const BottomNavigation = () => {
   
   // Update navigation items when language changes
   useEffect(() => {
-    // Wait for translations to be loaded
-    if (!isLoading) {
-      setNavItems([
-        { text: "ATH", href: '/about', icon: <HelpCircle size={20} /> },
-        { text: t("nav.method"), href: '/method', icon: <BookOpen size={20} /> },
-        { text: t("nav.programs"), href: '/programs/overview', icon: <FaList size={20} /> },
-        { text: t("tech.title.short"), href: '/technology', icon: <Zap size={20} /> },
-        { text: t("nav.facilities"), href: '/facilities', icon: <Server size={20} /> }
-      ]);
-    }
+    // Always set navItems, with fallbacks if translations aren't loaded
+    console.log('🔧 Setting navItems, isLoading:', isLoading)
+    setNavItems([
+      { text: "ATH", href: '/about', icon: <HelpCircle size={20} /> },
+      { text: t("nav.method") || "Method", href: '/method', icon: <BookOpen size={20} /> },
+      { text: t("nav.programs") || "Programs", href: '/programs/overview', icon: <FaList size={20} /> },
+      { text: t("tech.title.short") || "Tech", href: '/technology', icon: <Zap size={20} /> },
+      { text: t("nav.facilities") || "Facilities", href: '/facilities', icon: <Server size={20} /> }
+    ]);
   }, [t, isLoading, language]);
 
   const isActive = (href: string) => {
@@ -65,7 +64,7 @@ const BottomNavigation = () => {
         showTrigger={false}
       />
       
-      <div
+      <nav
         style={{
           position: 'fixed' as const,
           bottom: 0,
@@ -74,17 +73,16 @@ const BottomNavigation = () => {
           width: '100vw',
           height: 'calc(60px + env(safe-area-inset-bottom, 0px))',
           paddingBottom: 'env(safe-area-inset-bottom, 0px)',
-          backgroundColor: 'red',
+          backgroundColor: 'rgba(255, 255, 255, 0.98)',
           backdropFilter: 'blur(20px)',
-          borderTop: '3px solid blue',
-          boxShadow: '0 -2px 20px rgba(0,0,0,0.8)',
+          borderTop: '1px solid rgb(243 244 246)',
+          boxShadow: '0 -2px 20px rgba(0,0,0,0.08)',
           zIndex: 99999,
           transform: 'none',
           transition: 'none',
           display: 'block'
         }}
         className="mobile-bottom-nav"
-        onClick={() => console.log('🔥 Menu clicked - IT EXISTS!')}
       >
         <div className="grid grid-cols-6 h-[60px]">
           {navItems && navItems.map((item, index) => (
@@ -121,7 +119,7 @@ const BottomNavigation = () => {
             <span className="mt-1 text-gray-600">{t("profile.title")}</span>
           </button>
         </div>
-      </div>
+      </nav>
     </>
   );
 };
