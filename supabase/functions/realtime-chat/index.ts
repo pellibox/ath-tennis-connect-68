@@ -100,7 +100,9 @@ serve(async (req) => {
 
           openaiWs.onerror = (error) => {
             console.error('OpenAI WebSocket error:', error);
-            console.error('Error details:', JSON.stringify(error));
+            console.error('Error details:', JSON.stringify(error, Object.getOwnPropertyNames(error)));
+            console.error('WebSocket readyState:', openaiWs?.readyState);
+            console.error('WebSocket url:', openaiWs?.url);
             // Don't close client connection immediately for OpenAI errors
             socket.send(JSON.stringify({ type: 'warning', message: 'OpenAI connection issue, retrying...' }));
           };
