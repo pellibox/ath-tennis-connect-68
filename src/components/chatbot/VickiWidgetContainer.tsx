@@ -42,6 +42,9 @@ const VickiWidgetContainer = () => {
         },
         firstMessage: "Ciao! Sono Vicki, la tua assistente virtuale di ATH Tennis. Come posso aiutarti oggi?",
         language: "it",
+      },
+      tts: {
+        voiceId: "RZ9oBlQ97k7Ug7uU1Ij0"
       }
     }
   });
