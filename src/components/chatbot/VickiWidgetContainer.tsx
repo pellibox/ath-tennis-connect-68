@@ -57,8 +57,14 @@ const VickiWidgetContainer = () => {
     if (!isConnected && conversation.status === 'disconnected') {
       try {
         setError(null);
-        // You'll need to provide your ElevenLabs agent ID here
-        const agentId = 'YOUR_AGENT_ID'; // Replace with actual agent ID
+        // Replace with your actual ElevenLabs agent ID from the dashboard
+        const agentId = 'YOUR_AGENT_ID_FROM_ELEVENLABS_DASHBOARD';
+        
+        if (agentId === 'YOUR_AGENT_ID_FROM_ELEVENLABS_DASHBOARD') {
+          setError('Configura Agent ID in ElevenLabs dashboard');
+          return;
+        }
+        
         await conversation.startSession({ agentId });
       } catch (err) {
         console.error('Failed to start conversation:', err);
