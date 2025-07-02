@@ -40,13 +40,7 @@ const VickiWidgetContainer = () => {
       {!isWidgetOpen && (
         <button
           onClick={toggleWidget}
-          className={`
-            fixed z-[9998] bg-gradient-to-r from-ath-clay to-ath-clay/80 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 active:scale-95 flex items-center justify-center group
-            ${/* Mobile positioning - above bottom nav */ ''}
-            lg:hidden bottom-[calc(70px+env(safe-area-inset-bottom,0px))] left-1/2 -translate-x-1/2 h-12 px-4
-            ${/* Desktop positioning - bottom right */ ''}
-            hidden lg:flex lg:bottom-5 lg:right-5 lg:w-14 lg:h-14 lg:translate-x-0
-          `}
+          className="fixed z-[9998] bg-gradient-to-r from-ath-clay to-ath-clay/80 shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 active:scale-95 flex items-center justify-center group lg:rounded-full rounded-full lg:bottom-5 lg:right-5 lg:w-14 lg:h-14 bottom-[calc(70px+env(safe-area-inset-bottom,0px))] left-1/2 -translate-x-1/2 lg:translate-x-0 h-12 px-4 lg:px-0"
           aria-label={t('vicki.askTitle')}
         >
           {/* Mobile version - pill shape with text and icon */}
