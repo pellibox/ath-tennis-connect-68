@@ -36,38 +36,25 @@ const VickiWidgetContainer = () => {
 
   return (
     <>
-      {/* Unified Vicki Icon - both mobile and desktop */}
+      {/* Unified Vicki Button - same design for all versions */}
       {!isWidgetOpen && (
         <button
           onClick={toggleWidget}
-          className="fixed z-[9998] bg-gradient-to-r from-ath-clay to-ath-clay/80 shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 active:scale-95 flex items-center justify-center group lg:rounded-full rounded-full lg:bottom-5 lg:right-5 lg:w-14 lg:h-14 bottom-[calc(70px+env(safe-area-inset-bottom,0px))] left-1/2 -translate-x-1/2 lg:translate-x-0 h-12 px-4 lg:px-0"
+          className="fixed z-[9998] bg-gradient-to-r from-ath-clay to-ath-clay/80 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 active:scale-95 flex items-center justify-center gap-3 px-6 py-3 lg:bottom-5 lg:right-5 bottom-[calc(70px+env(safe-area-inset-bottom,0px))] left-1/2 -translate-x-1/2 lg:translate-x-0 lg:left-auto"
           aria-label={t('vicki.askTitle')}
         >
-          {/* Mobile version - pill shape with text and icon */}
-          <div className="lg:hidden flex items-center gap-2">
-            <div className="w-6 h-6 bg-white rounded-full flex items-center justify-center">
-              <div className="w-4 h-4 bg-black rounded-full flex items-center justify-center">
-                <span className="text-white text-[8px] font-bold">V</span>
-              </div>
-            </div>
-            <span className="text-white text-sm font-medium">
-              {t('vicki.askTitle')}
-            </span>
-            <div className="w-2 h-2 bg-green-400 rounded-full" />
+          {/* Vicki icon */}
+          <div className="w-8 h-8 bg-white rounded-full flex items-center justify-center flex-shrink-0">
+            <span className="text-black text-sm font-bold">V</span>
           </div>
           
-          {/* Desktop version - circular icon only */}
-          <div className="hidden lg:flex items-center justify-center">
-            <div className="w-8 h-8 bg-white rounded-full flex items-center justify-center">
-              <div className="w-6 h-6 bg-black rounded-full flex items-center justify-center">
-                <span className="text-white text-xs font-bold">V</span>
-              </div>
-            </div>
-            {/* Tooltip for desktop */}
-            <div className="absolute -top-12 right-0 bg-black text-white px-3 py-1 rounded-md text-sm opacity-0 group-hover:opacity-100 transition-opacity duration-200 whitespace-nowrap">
-              {t('vicki.askTitle')}
-            </div>
-          </div>
+          {/* Text */}
+          <span className="text-white text-sm font-medium whitespace-nowrap">
+            {t('vicki.askTitle')}
+          </span>
+          
+          {/* Status indicator */}
+          <div className="w-3 h-3 bg-green-400 rounded-full flex-shrink-0" />
         </button>
       )}
 
