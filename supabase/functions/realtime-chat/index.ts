@@ -55,7 +55,8 @@ serve(async (req) => {
           console.log('WebSocket created, waiting for open event');
 
           openaiWs.onopen = () => {
-            console.log('Connected to OpenAI Realtime API');
+            console.log('Connected to OpenAI Realtime API successfully');
+            socket.send(JSON.stringify({ type: 'connection_success', message: 'Connected to OpenAI' }));
           };
 
           openaiWs.onmessage = (event) => {
