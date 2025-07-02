@@ -61,7 +61,7 @@ const VickiWidgetContainer = () => {
       try {
         setError(null);
         // Replace with your actual ElevenLabs agent ID from the dashboard
-        const agentId = 'En6XtQb0rHPTxRdG3aBk';
+        const agentId = 'agent_01jz5dzd42fnhsgg2hhnp1gvn8';
         
         
         await conversation.startSession({ agentId });
