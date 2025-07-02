@@ -1,0 +1,137 @@
+import { serve } from "https://deno.land/std@0.168.0/http/server.ts";
+import "https://deno.land/x/xhr@0.1.0/mod.ts";
+
+const corsHeaders = {
+  'Access-Control-Allow-Origin': '*',
+  'Access-Control-Allow-Headers': 'authorization, x-client-info, apikey, content-type',
+  'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, OPTIONS'
+};
+
+serve(async (req) => {
+  console.log('Realtime chat request received:', req.method);
+
+  // Handle CORS preflight requests
+  if (req.method === 'OPTIONS') {
+    return new Response(null, { headers: corsHeaders });
+  }
+
+  try {
+    const OPENAI_API_KEY = Deno.env.get('OPENAI_API_KEY');
+    if (!OPENAI_API_KEY) {
+      throw new Error('OPENAI_API_KEY is not set');
+    }
+
+    // Check if this is a WebSocket upgrade request
+    if (req.headers.get("upgrade") === "websocket") {
+      console.log('WebSocket upgrade requested');
+      
+      const { socket, response } = Deno.upgradeWebSocket(req);
+      let openaiWs: WebSocket | null = null;
+
+      socket.onopen = async () => {
+        console.log('Client WebSocket opened');
+        
+        try {
+          // Connect to OpenAI Realtime API
+          const url = "wss://api.openai.com/v1/realtime?model=gpt-4o-realtime-preview-2024-10-01";
+          openaiWs = new WebSocket(url, [], {
+            headers: {
+              "Authorization": `Bearer ${OPENAI_API_KEY}`,
+              "OpenAI-Beta": "realtime=v1"
+            }
+          });
+
+          openaiWs.onopen = () => {
+            console.log('Connected to OpenAI Realtime API');
+          };
+
+          openaiWs.onmessage = (event) => {
+            console.log('Message from OpenAI:', event.data);
+            
+            try {
+              const data = JSON.parse(event.data);
+              
+              // Send session update after receiving session.created
+              if (data.type === 'session.created') {
+                console.log('Session created, sending update');
+                const sessionUpdate = {
+                  type: 'session.update',
+                  session: {
+                    modalities: ["text", "audio"],
+                    instructions: "Sei Vicki, l'assistente virtuale di ATH Advanced Tennis Hub. Sei esperta di tennis e conosci tutto sui programmi, metodologie e tecnologie di ATH. Rispondi sempre in italiano in modo amichevole e professionale. Mantieni le risposte concise ma informative.",
+                    voice: "alloy",
+                    input_audio_format: "pcm16",
+                    output_audio_format: "pcm16",
+                    input_audio_transcription: {
+                      model: "whisper-1"
+                    },
+                    turn_detection: {
+                      type: "server_vad",
+                      threshold: 0.5,
+                      prefix_padding_ms: 300,
+                      silence_duration_ms: 1000
+                    },
+                    temperature: 0.8,
+                    max_response_output_tokens: "inf"
+                  }
+                };
+                openaiWs?.send(JSON.stringify(sessionUpdate));
+              }
+              
+              // Forward all messages to client
+              socket.send(event.data);
+            } catch (error) {
+              console.error('Error parsing OpenAI message:', error);
+            }
+          };
+
+          openaiWs.onerror = (error) => {
+            console.error('OpenAI WebSocket error:', error);
+            socket.send(JSON.stringify({ type: 'error', message: 'OpenAI connection error' }));
+          };
+
+          openaiWs.onclose = () => {
+            console.log('OpenAI WebSocket closed');
+            socket.send(JSON.stringify({ type: 'error', message: 'OpenAI connection closed' }));
+          };
+
+        } catch (error) {
+          console.error('Error connecting to OpenAI:', error);
+          socket.send(JSON.stringify({ type: 'error', message: 'Failed to connect to OpenAI' }));
+        }
+      };
+
+      socket.onmessage = (event) => {
+        console.log('Message from client:', event.data);
+        if (openaiWs && openaiWs.readyState === WebSocket.OPEN) {
+          openaiWs.send(event.data);
+        }
+      };
+
+      socket.onclose = () => {
+        console.log('Client WebSocket closed');
+        openaiWs?.close();
+      };
+
+      socket.onerror = (error) => {
+        console.error('Client WebSocket error:', error);
+        openaiWs?.close();
+      };
+
+      return response;
+    }
+
+    // If not a WebSocket request, return error
+    return new Response(JSON.stringify({ error: 'WebSocket connection required' }), {
+      status: 400,
+      headers: { ...corsHeaders, 'Content-Type': 'application/json' },
+    });
+
+  } catch (error) {
+    console.error("Error:", error);
+    return new Response(JSON.stringify({ error: error.message }), {
+      status: 500,
+      headers: { ...corsHeaders, 'Content-Type': 'application/json' },
+    });
+  }
+});
