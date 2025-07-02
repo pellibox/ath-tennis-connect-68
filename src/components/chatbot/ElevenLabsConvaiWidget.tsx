@@ -50,12 +50,14 @@ const ElevenLabsConvaiWidget = ({ isOpen = true }: ElevenLabsConvaiWidgetProps) 
       className={`
         fixed z-[9997] transition-all duration-300
         ${isMobile 
-          ? 'left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[90vw] max-w-[350px]' 
+          ? 'left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[85vw] max-w-[320px]' 
           : 'bottom-5 right-5 w-[350px]'
         }
       `}
     >
-      <div className="bg-white rounded-lg shadow-2xl overflow-hidden max-h-[80vh] animate-fade-in">
+      <div className={`bg-white rounded-lg shadow-2xl overflow-hidden animate-fade-in ${
+        isMobile ? 'max-h-[65vh]' : 'max-h-[80vh]'
+      }`}>
         <TooltipProvider>
           <Tooltip>
             <TooltipTrigger asChild>
