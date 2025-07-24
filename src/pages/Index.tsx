@@ -9,6 +9,7 @@ import ContactSection from '@/components/ContactSection';
 import HeroVideoSection from '@/components/home/HeroVideoSection';
 import KeyFeaturesSection from '@/components/home/KeyFeaturesSection';
 import TrainingMethodsSection from '@/components/home/TrainingMethodsSection';
+import DownloadContentSection from '@/components/home/DownloadContentSection';
 
 const HomePage = () => {
   const isMobile = useIsMobile();
@@ -61,6 +62,8 @@ const HomePage = () => {
         <TrainingMethodsSection />
         
         <StatsAndNavSection stats={stats} />
+        
+        <DownloadContentSection />
         
         <JoinRevolutionSection />
         
