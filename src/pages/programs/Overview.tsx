@@ -1,14 +1,13 @@
-
 import React, { useState, useEffect, useRef } from 'react';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import ProgramsSection from '@/components/ProgramsSection';
 import { useProfile } from '@/contexts/ProfileContext';
+import { useLanguage } from '@/contexts/LanguageContext';
 import { programCategories } from '@/data/programs';
 import { programCategories as padelCategories } from '@/data/padel';
 import { programCategories as pickleballCategories } from '@/data/pickleball';
 import { touchTennisCategories } from '@/data/touchtennis';
-import { Breadcrumb, BreadcrumbItem, BreadcrumbList, BreadcrumbSeparator, BreadcrumbPage } from "@/components/ui/breadcrumb";
 import { Link } from 'react-router-dom';
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
 import { SportType } from '@/contexts/ProfileContext';
@@ -19,6 +18,7 @@ import MultisportExplanation from '@/components/programs/MultisportExplanation';
 import StandardHeroVideo from '@/components/StandardHeroVideo';
 
 const ProgramsOverview = () => {
+  const { t } = useLanguage();
   const {
     userType,
     userGender,
@@ -33,22 +33,16 @@ const ProgramsOverview = () => {
     'tennis'
   );
   
-  // Initialize open categories state
   const [initialRender, setInitialRender] = useState(true);
   const [contentLoaded, setContentLoaded] = useState(false);
   
   const location = useRef(window.location.pathname);
   
   useEffect(() => {
-    console.log("ProgramsOverview - Current sport in context:", sport);
-    console.log("ProgramsOverview - Current activeTab:", activeTab);
-    
-    // Force alignment between context sport and active tab on initial load
     if (sport) {
       setActiveTab(sport as 'tennis' | 'padel' | 'pickleball' | 'touchtennis');
     }
     
-    // Mark that initial render is complete after a short delay
     const timer = setTimeout(() => {
       setInitialRender(false);
       setContentLoaded(true);
@@ -56,65 +50,34 @@ const ProgramsOverview = () => {
     
     return () => clearTimeout(timer);
   }, [sport]);
-
-  // Additional debugging to track activeTab and sport changes
-  useEffect(() => {
-    console.log("Active tab changed to:", activeTab);
-  }, [activeTab]);
   
   const isMobile = useIsMobile();
   const vimeoEmbed = getVimeoEmbed(userGender, userType, true, false, sport);
   
   const handleTabChange = (value: string) => {
-    console.log('Tab changed to:', value);
     setActiveTab(value as 'tennis' | 'padel' | 'pickleball' | 'touchtennis');
 
     if (value === 'tennis' || value === 'padel' || value === 'pickleball' || value === 'touchtennis') {
-      console.log('Updating sport in context to:', value);
       updateSport(value as SportType);
     }
   };
   
-  // Helper function to get the correct program categories based on activeTab
-  const getActiveCategoriesForTab = (tab: string) => {
-    switch (tab) {
-      case 'tennis':
-        return programCategories;
-      case 'padel':
-        return padelCategories;
-      case 'pickleball':
-        return pickleballCategories;
-      case 'touchtennis':
-        return touchTennisCategories;
-      default:
-        return programCategories;
-    }
-  };
-  
-  return <div className="flex flex-col min-h-screen">
+  return (
+    <div className="flex flex-col min-h-screen">
       <Header />
       <main className="flex-grow">
         <div className="container mx-auto px-4 pt-4">
-          <Breadcrumb>
-            
-          </Breadcrumb>
         </div>
         
         <StandardHeroVideo vimeoEmbed={vimeoEmbed} />
         
         <div className="container mx-auto px-4 py-12">
           <RevealAnimation>
-            <h1 className="text-4xl font-bold mb-6">Programmi ATH</h1>
+            <h1 className="text-4xl font-bold mb-6">{t('programs.overview.title')}</h1>
             <div className="max-w-4xl mb-12 space-y-4 text-gray-700">
-              <p className="text-lg">
-                ATH offre programmi di allenamento avanzati basati su un approccio integrato che combina tecnologia all'avanguardia e competenze professionali di alto livello.
-              </p>
-              <p>
-                Il nostro metodo si concentra sullo sviluppo completo dell'atleta, considerando tutti gli aspetti fondamentali: tecnica, tattica, preparazione fisica e mentale, analisi dettagliata delle performance e supporto personalizzato.
-              </p>
-              <p>
-                Il <strong>Tennis</strong> rappresenta il cuore della nostra attività, con programmi altamente specializzati per tutte le età e livelli. Abbiamo inoltre sviluppato programmi dedicati per altri sport di racchetta come <strong>Padel</strong>, <strong>Pickleball</strong> e <strong>TouchTennis</strong>, applicando la stessa metodologia avanzata.
-              </p>
+              <p className="text-lg">{t('programs.overview.intro1')}</p>
+              <p>{t('programs.overview.intro2')}</p>
+              <p dangerouslySetInnerHTML={{ __html: t('programs.overview.intro3') }} />
             </div>
           </RevealAnimation>
           
@@ -122,10 +85,8 @@ const ProgramsOverview = () => {
           
           <RevealAnimation delay={100}>
             <div className="mb-12">
-              <h2 className="text-2xl font-bold mb-4">Seleziona uno sport</h2>
-              <p className="text-gray-700 mb-6">
-                Esplora i nostri programmi specializzati per ciascuna disciplina
-              </p>
+              <h2 className="text-2xl font-bold mb-4">{t('programs.overview.selectSport')}</h2>
+              <p className="text-gray-700 mb-6">{t('programs.overview.selectSportDesc')}</p>
               
               <Tabs 
                 value={activeTab} 
@@ -172,26 +133,23 @@ const ProgramsOverview = () => {
                 <div className="mt-8 relative">
                   {!contentLoaded && (
                     <div className="py-12 text-center">
-                      <p className="text-gray-500">Caricamento programmi...</p>
+                      <p className="text-gray-500">{t('programs.loading')}</p>
                     </div>
                   )}
                   
-                  {/* Force all tabs to render, but only show the active one */}
                   <TabsContent value="tennis" className="mt-0" forceMount={true}>
                     <div className={`transition-opacity duration-300 ${activeTab === 'tennis' ? 'opacity-100' : 'opacity-0 absolute top-0 left-0 invisible'}`}>
                       <div className="bg-gray-50 p-6 rounded-lg mb-8">
                         <h3 className="text-xl font-bold mb-3">Tennis</h3>
-                        <p className="mb-4">
-                          Il nostro programma di punta, con soluzioni personalizzate per ogni livello: dai principianti ai professionisti. Utilizzando la nostra tecnologia VICKI™, offriamo un'esperienza di allenamento senza precedenti.
-                        </p>
+                        <p className="mb-4">{t('programs.tennis.desc')}</p>
                         <Link to="/programs" className="inline-flex items-center text-ath-clay font-medium hover:underline">
-                          Esplora tutti i programmi Tennis →
+                          {t('programs.tennis.explore')}
                         </Link>
                       </div>
                       
                       <ProgramsSection 
-                        title="Programmi Tennis" 
-                        subtitle="I nostri programmi di punta, sviluppati con anni di esperienza" 
+                        title={t('programs.tennis.title')}
+                        subtitle={t('programs.tennis.subtitle')}
                         categories={programCategories} 
                         categoryCollapsible={true} 
                         initiallyOpen={true} 
@@ -203,17 +161,15 @@ const ProgramsOverview = () => {
                     <div className={`transition-opacity duration-300 ${activeTab === 'padel' ? 'opacity-100' : 'opacity-0 absolute top-0 left-0 invisible'}`}>
                       <div className="bg-gray-50 p-6 rounded-lg mb-8">
                         <h3 className="text-xl font-bold mb-3">Padel</h3>
-                        <p className="mb-4">
-                          Abbiamo adattato la nostra metodologia avanzata per questo sport in rapida crescita, offrendo programmi specifici che sfruttano la nostra tecnologia VICKI™ per migliorare rapidamente il tuo gioco.
-                        </p>
+                        <p className="mb-4">{t('programs.padel.desc')}</p>
                         <Link to="/padel" className="inline-flex items-center text-ath-clay font-medium hover:underline">
-                          Esplora tutti i programmi Padel →
+                          {t('programs.padel.explore')}
                         </Link>
                       </div>
                       
                       <ProgramsSection 
-                        title="Programmi Padel" 
-                        subtitle="I nostri programmi specializzati per il Padel" 
+                        title={t('programs.padel.title')}
+                        subtitle={t('programs.padel.subtitle')}
                         categories={padelCategories} 
                         categoryCollapsible={true} 
                         initiallyOpen={true}
@@ -225,17 +181,15 @@ const ProgramsOverview = () => {
                     <div className={`transition-opacity duration-300 ${activeTab === 'pickleball' ? 'opacity-100' : 'opacity-0 absolute top-0 left-0 invisible'}`}>
                       <div className="bg-gray-50 p-6 rounded-lg mb-8">
                         <h3 className="text-xl font-bold mb-3">Pickleball</h3>
-                        <p className="mb-4">
-                          Programmi dedicati per questo sport emergente, con focus su tecnica, strategia e divertimento. Scopri come la nostra metodologia ATH può migliorare il tuo gioco di Pickleball.
-                        </p>
+                        <p className="mb-4">{t('programs.pickleball.desc')}</p>
                         <Link to="/pickleball" className="inline-flex items-center text-ath-clay font-medium hover:underline">
-                          Esplora tutti i programmi Pickleball →
+                          {t('programs.pickleball.explore')}
                         </Link>
                       </div>
                       
                       <ProgramsSection 
-                        title="Programmi Pickleball" 
-                        subtitle="I nostri programmi specializzati per il Pickleball" 
+                        title={t('programs.pickleball.title')}
+                        subtitle={t('programs.pickleball.subtitle')}
                         categories={pickleballCategories} 
                         categoryCollapsible={true} 
                         initiallyOpen={true}
@@ -247,17 +201,15 @@ const ProgramsOverview = () => {
                     <div className={`transition-opacity duration-300 ${activeTab === 'touchtennis' ? 'opacity-100' : 'opacity-0 absolute top-0 left-0 invisible'}`}>
                       <div className="bg-gray-50 p-6 rounded-lg mb-8">
                         <h3 className="text-xl font-bold mb-3">TouchTennis</h3>
-                        <p className="mb-4">
-                          Un formato innovativo che rende il tennis accessibile a tutti. I nostri programmi di TouchTennis sono perfetti per chi vuole divertirsi e migliorare le proprie abilità in uno spazio ridotto.
-                        </p>
+                        <p className="mb-4">{t('programs.touchtennis.desc')}</p>
                         <Link to="/touchtennis" className="inline-flex items-center text-ath-clay font-medium hover:underline">
-                          Esplora tutti i programmi TouchTennis →
+                          {t('programs.touchtennis.explore')}
                         </Link>
                       </div>
                       
                       <ProgramsSection 
-                        title="Programmi TouchTennis" 
-                        subtitle="Tennis in formato ridotto, divertimento senza limiti" 
+                        title={t('programs.touchtennis.title')}
+                        subtitle={t('programs.touchtennis.subtitle')}
                         categories={touchTennisCategories} 
                         categoryCollapsible={true} 
                         initiallyOpen={true}
@@ -271,33 +223,33 @@ const ProgramsOverview = () => {
           
           <RevealAnimation delay={200}>
             <div className="bg-white p-6 border border-gray-200 rounded-lg shadow-sm mb-12">
-              <h2 className="text-2xl font-bold mb-4">Perché scegliere i programmi ATH?</h2>
+              <h2 className="text-2xl font-bold mb-4">{t('programs.overview.whyChoose')}</h2>
               
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mt-8">
                 <div className="bg-gray-50 p-4 rounded-lg">
-                  <h3 className="text-lg font-semibold mb-2">Tecnologia avanzata</h3>
-                  <p className="text-gray-700">Il sistema VICKI™ analizza oltre 70 parametri della tua performance in tempo reale</p>
+                  <h3 className="text-lg font-semibold mb-2">{t('programs.overview.tech')}</h3>
+                  <p className="text-gray-700">{t('programs.overview.tech.desc')}</p>
                 </div>
                 
                 <div className="bg-gray-50 p-4 rounded-lg">
-                  <h3 className="text-lg font-semibold mb-2">Esperti qualificati</h3>
-                  <p className="text-gray-700">Coach di alto livello con esperienza internazionale</p>
+                  <h3 className="text-lg font-semibold mb-2">{t('programs.overview.experts')}</h3>
+                  <p className="text-gray-700">{t('programs.overview.experts.desc')}</p>
                 </div>
                 
                 <div className="bg-gray-50 p-4 rounded-lg">
-                  <h3 className="text-lg font-semibold mb-2">Approccio integrato</h3>
-                  <p className="text-gray-700">Sviluppo tecnico, tattico, fisico e mentale in un unico programma</p>
+                  <h3 className="text-lg font-semibold mb-2">{t('programs.overview.integrated')}</h3>
+                  <p className="text-gray-700">{t('programs.overview.integrated.desc')}</p>
                 </div>
                 
                 <div className="bg-gray-50 p-4 rounded-lg">
-                  <h3 className="text-lg font-semibold mb-2">Personalizzazione</h3>
-                  <p className="text-gray-700">Programmi su misura in base al tuo profilo, obiettivi e necessità</p>
+                  <h3 className="text-lg font-semibold mb-2">{t('programs.overview.personalized')}</h3>
+                  <p className="text-gray-700">{t('programs.overview.personalized.desc')}</p>
                 </div>
               </div>
               
               <div className="mt-8 text-center">
                 <Link to="/contact" className="inline-flex items-center bg-ath-clay text-white px-6 py-3 rounded-full font-medium transition-colors hover:bg-ath-clay/90">
-                  Richiedi informazioni sui programmi
+                  {t('programs.requestInfo')}
                 </Link>
               </div>
             </div>
@@ -305,7 +257,8 @@ const ProgramsOverview = () => {
         </div>
       </main>
       <Footer />
-    </div>;
+    </div>
+  );
 };
 
 export default ProgramsOverview;

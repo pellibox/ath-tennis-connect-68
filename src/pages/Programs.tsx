@@ -34,18 +34,13 @@ const Programs = () => {
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
     
-    // Sync activeTab with sport from context
     if (sport) {
       setActiveTab(sport as 'tennis' | 'padel' | 'pickleball' | 'touchtennis');
     }
     
-    // Set content as ready after a small delay to ensure rendering
     const timer = setTimeout(() => {
       setContentReady(true);
-      console.log("Programs page: Content marked as ready");
     }, 100);
-    
-    console.log("Programs page initialized with sport:", sport, "activeTab:", activeTab);
     
     return () => clearTimeout(timer);
   }, [sport]);
@@ -59,15 +54,12 @@ const Programs = () => {
   });
 
   const handleTabChange = (value: string) => {
-    console.log('Tab change in Programs.tsx:', value);
     setActiveTab(value as 'tennis' | 'padel' | 'pickleball' | 'touchtennis');
     
-    // Update the sport in context
     if (value === 'tennis' || value === 'padel' || value === 'pickleball' || value === 'touchtennis') {
       updateSport(value as 'tennis' | 'padel' | 'pickleball' | 'touchtennis');
     }
     
-    // Navigate to the appropriate page
     switch (value) {
       case 'tennis':
         navigate('/programs');
@@ -90,22 +82,22 @@ const Programs = () => {
 
   const getPersonalizedSubtitle = () => {
     if (!userType) {
-      return "Approccio metodologico unico e personalizzato per ogni profilo di giocatore";
+      return t('programs.subtitle.default');
     }
 
     switch (userType) {
       case 'junior':
-        return "Programmi specializzati per giovani tennisti in fase di sviluppo";
+        return t('programs.subtitle.junior');
       case 'performance':
-        return "Programmi avanzati per tennisti agonisti performance";
+        return t('programs.subtitle.performance');
       case 'professional':
-        return "Programmi elite per professionisti che cercano il massimo delle prestazioni";
+        return t('programs.subtitle.professional');
       case 'coach':
-        return "Programmi e strumenti avanzati per allenatori";
+        return t('programs.subtitle.coach');
       case 'parent':
-        return "Supporto e coinvolgimento per genitori di giovani atleti";
+        return t('programs.subtitle.parent');
       default:
-        return "Approccio metodologico unico e personalizzato per ogni profilo di giocatore";
+        return t('programs.subtitle.default');
     }
   };
 
@@ -116,7 +108,7 @@ const Programs = () => {
       <main className="flex-grow pt-0">
         <StandardHeroVideo 
           vimeoEmbed={vimeoEmbed}
-          title="PROGRAMMI:"
+          title={t('programs.label')}
           subtitle={getPersonalizedSubtitle()}
           onLogoOpacityChange={handleLogoOpacityChange}
         />
@@ -130,7 +122,7 @@ const Programs = () => {
         <div id="programs-section" className="bg-ath-gray py-12">
           {isMobile ? (
             <div className="mb-8 container mx-auto px-4">
-              <h2 className="text-2xl font-display mb-6">Seleziona lo Sport</h2>
+              <h2 className="text-2xl font-display mb-6">{t('programs.selectSport')}</h2>
               <Tabs value={activeTab} onValueChange={handleTabChange} className="w-full" defaultValue={activeTab}>
                 <TabsList className="w-full mb-2 bg-white border border-gray-200 rounded-full p-1 flex justify-between">
                   <TabsTrigger 
@@ -166,7 +158,7 @@ const Programs = () => {
           
           {!contentReady && (
             <div className="container mx-auto px-4 py-8 text-center">
-              <p className="text-gray-500">Caricamento programmi...</p>
+              <p className="text-gray-500">{t('programs.loading')}</p>
             </div>
           )}
           
@@ -182,39 +174,25 @@ const Programs = () => {
         </div>
         
         <AboutSection 
-          title="Il Vantaggio ATH"
+          title={t('programs.advantage.title')}
           description={
             <div className="space-y-4">
-              <p>
-                Ciò che distingue ATH è la nostra integrazione di tecnologia all'avanguardia con competenze di coaching di livello mondiale. Il nostro sistema VICKI™ cattura e analizza oltre 70 parametri delle tue prestazioni tennistiche, consentendo ai nostri coach di fornire un allenamento altamente personalizzato.
-              </p>
-              <h3 className="text-xl font-semibold mt-6 mb-2">Sviluppo Tecnico</h3>
-              <p>
-                I nostri coach utilizzano analisi video avanzate e feedback in tempo reale per perfezionare la tua tecnica su tutti i colpi.
-              </p>
-              <h3 className="text-xl font-semibold mt-6 mb-2">Tattica & Strategia</h3>
-              <p>
-                Sviluppiamo il tuo pensiero tattico e la capacità di leggere il gioco dell'avversario, fornendoti gli strumenti per adattare la tua strategia in tempo reale durante la partita.
-              </p>
-              <h3 className="text-xl font-semibold mt-6 mb-2">Preparazione Fisica</h3>
-              <p>
-                Programmi di fitness personalizzati specifici per il tennis, focalizzati su velocità, agilità, forza e resistenza.
-              </p>
-              <h3 className="text-xl font-semibold mt-6 mb-2">Allenamento Mentale</h3>
-              <p>
-                Sviluppa resistenza mentale, concentrazione e pensiero strategico con i nostri metodi di allenamento psicologico specializzati.
-              </p>
-              <p>
-                Questo approccio basato sui dati elimina le congetture e garantisce che ogni minuto del tuo allenamento sia ottimizzato per il massimo miglioramento. Che tu sia un principiante o un giocatore d'élite, la nostra metodologia si adatta alle tue esigenze e obiettivi unici.
-              </p>
-              <p>
-                Unisciti alla rivoluzione nell'allenamento tennistico e sperimenta i risultati che hanno reso ATH la scelta di giocatori ricreativi e campioni.
-              </p>
+              <p>{t('programs.advantage.intro')}</p>
+              <h3 className="text-xl font-semibold mt-6 mb-2">{t('programs.advantage.technical')}</h3>
+              <p>{t('programs.advantage.technical.desc')}</p>
+              <h3 className="text-xl font-semibold mt-6 mb-2">{t('programs.advantage.tactical')}</h3>
+              <p>{t('programs.advantage.tactical.desc')}</p>
+              <h3 className="text-xl font-semibold mt-6 mb-2">{t('programs.advantage.physical')}</h3>
+              <p>{t('programs.advantage.physical.desc')}</p>
+              <h3 className="text-xl font-semibold mt-6 mb-2">{t('programs.advantage.mental')}</h3>
+              <p>{t('programs.advantage.mental.desc')}</p>
+              <p>{t('programs.advantage.datadriven')}</p>
+              <p>{t('programs.advantage.join')}</p>
             </div>
           }
           image="https://images.unsplash.com/photo-1531315396756-905d68d21b56"
           buttons={[
-            { text: 'PRENOTA UNA PROVA', href: '/contact' }
+            { text: t('programs.bookTrial'), href: '/contact' }
           ]}
           reversed={true}
         />
