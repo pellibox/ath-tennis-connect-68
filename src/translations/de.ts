@@ -416,6 +416,35 @@ const translations = {
   "contact.saturday": "Samstag",
   "contact.sunday": "Sonntag",
   
+  // Multisport Explanation
+  "multisport.title": "Exzellenz im Schlägersport",
+  "multisport.why": "Warum ist ATH multisport?",
+  "multisport.whyDesc": "ATH hat seine Vision von einer Tennisakademie zu einem multisportlichen Exzellenzzentrum weiterentwickelt, um auf neue Markttrends zu reagieren und das athletische Potenzial unserer Spieler zu maximieren. Unsere zwanzigjährige Erfahrung im Tennis hat uns ermöglicht, fortgeschrittene Methodologien zu entwickeln, die wir jetzt auf alle Schlägersportarten anwenden.",
+  "multisport.advantages": "Die Vorteile unseres integrierten Ansatzes",
+  "multisport.forTennis": "Für Tennisspieler:",
+  "multisport.forTennisDesc": "Cross-Training verbessert spezifische technische Fähigkeiten - Padel verbessert Netzreflexe, Pickleball schärft das kurze Spiel, TouchTennis perfektioniert Präzision und Kontrolle.",
+  "multisport.forOthers": "Für andere Athleten:",
+  "multisport.forOthersDesc": "Jede Disziplin profitiert von unserer Expertise:",
+  "multisport.padelBenefit": "Padel-Spieler gewinnen überlegene Schlagbiomechanik und taktisches Lesen",
+  "multisport.pickleballBenefit": "Pickleball-Spieler erwerben Netzspiel-Exzellenz und Präzision",
+  "multisport.touchtennisBenefit": "TouchTennis-Spieler entwickeln Kontrolle, Spin und fortgeschrittene strategische Vision",
+  "multisport.howExcellence": "Wie wir Exzellenz aufrechterhalten",
+  "multisport.specializedTeam": "Spezialisiertes Team",
+  "multisport.specializedTeamDesc": "Engagierte und qualifizierte Fachleute für jeden Sport",
+  "multisport.scientificMethod": "Wissenschaftliche Methodik",
+  "multisport.scientificMethodDesc": "Universelle biomechanische Prinzipien spezifisch angewandt",
+  "multisport.advancedAnalysis": "Fortgeschrittene Analyse",
+  "multisport.advancedAnalysisDesc": "Angepasste Video-Feedback-Systeme für jede Disziplin",
+  "multisport.personalizedPaths": "Personalisierte Wege",
+  "multisport.personalizedPathsDesc": "Dedizierte Spezialisierungsprogramme mit hohen Standards",
+  "multisport.continuousInnovation": "Kontinuierliche Innovation",
+  "multisport.continuousInnovationDesc": "Wissenstransfer zwischen Disziplinen zur Schaffung einzigartiger Methoden",
+  "multisport.conclusion": "ATH verdünnt seine Exzellenz nicht, sondern vertieft sie und bietet in jedem Schlägersport ein überlegenes Trainingserlebnis.",
+  
+  // Programs Section Additional Keys
+  "programs.pricing": "Preise",
+  "programs.details": "Details",
+  
   // Footer
   "footer.description": "Förderung der Tennis-Exzellenz durch innovative Trainingsprogramme, erstklassige Einrichtungen und personalisiertes Coaching.",
   "footer.programs": "Programme",

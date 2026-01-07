@@ -337,7 +337,7 @@ const ProgramsSection = ({
           
           {program.pricing && program.pricing.length > 0 && (
             <div className="mb-4 bg-ath-clay/5 p-3 rounded-md">
-              <h4 className="text-sm font-semibold mb-1">{t('programs.pricing') || 'Prezzi'}:</h4>
+              <h4 className="text-sm font-semibold mb-1">{t('programs.pricing')}:</h4>
               <ul className="space-y-1">
                 {program.pricing.map((price, idx) => (
                   <li key={idx} className="text-sm flex justify-between">
@@ -366,7 +366,7 @@ const ProgramsSection = ({
               isMobile ? "text-xs" : "text-sm"
             )}
           >
-            {t('programs.details') || 'Dettagli'} <ArrowRight size={isMobile ? 14 : 16} className="ml-2" />
+            {t('programs.details')} <ArrowRight size={isMobile ? 14 : 16} className="ml-2" />
           </Link>
         </div>
       </div>
@@ -385,7 +385,7 @@ const ProgramsSection = ({
           )}
           
           <div className="py-8 text-center">
-            <p className="text-gray-500">Caricamento programmi...</p>
+            <p className="text-gray-500">{t('programs.loading')}</p>
           </div>
         </div>
       </section>

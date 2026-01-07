@@ -454,6 +454,35 @@ const translations = {
   "method.integration.p1": "The true uniqueness of the ATH Method lies in the perfect integration of these four pillars, supported by VICKI™ technology and our professionals' expertise.",
   "method.integration.p2": "This holistic approach ensures that every aspect of tennis training is handled with maximum attention, creating a coherent, effective, and personalized development path.",
   
+  // Multisport Explanation
+  "multisport.title": "Excellence in Racquet Sports",
+  "multisport.why": "Why is ATH multisport?",
+  "multisport.whyDesc": "ATH has evolved its vision from a tennis academy to a multisport center of excellence to respond to new market trends and maximize the athletic potential of our players. Our twenty years of experience in tennis has allowed us to develop advanced methodologies that we now apply to all racquet sports.",
+  "multisport.advantages": "The advantages of our integrated approach",
+  "multisport.forTennis": "For tennis players:",
+  "multisport.forTennisDesc": "Cross-training enhances specific technical skills - padel improves net reflexes, pickleball sharpens short game, touchtennis perfects precision and control.",
+  "multisport.forOthers": "For other athletes:",
+  "multisport.forOthersDesc": "Each discipline benefits from our expertise:",
+  "multisport.padelBenefit": "Padel players gain superior stroke biomechanics and tactical reading",
+  "multisport.pickleballBenefit": "Pickleball players acquire net game excellence and precision",
+  "multisport.touchtennisBenefit": "TouchTennis players develop control, spin, and advanced strategic vision",
+  "multisport.howExcellence": "How we maintain excellence",
+  "multisport.specializedTeam": "Specialized team",
+  "multisport.specializedTeamDesc": "Dedicated and qualified professionals for each sport",
+  "multisport.scientificMethod": "Scientific methodology",
+  "multisport.scientificMethodDesc": "Universal biomechanical principles applied specifically",
+  "multisport.advancedAnalysis": "Advanced analysis",
+  "multisport.advancedAnalysisDesc": "Customized video feedback systems for each discipline",
+  "multisport.personalizedPaths": "Personalized paths",
+  "multisport.personalizedPathsDesc": "Dedicated specialization programs with high standards",
+  "multisport.continuousInnovation": "Continuous innovation",
+  "multisport.continuousInnovationDesc": "Knowledge transfer between disciplines to create unique methods",
+  "multisport.conclusion": "ATH doesn't dilute its excellence, but deepens it, offering a superior training experience in every racquet sport.",
+  
+  // Programs Section Additional Keys
+  "programs.pricing": "Pricing",
+  "programs.details": "Details",
+  
   // About section
   "about.label": "WHY ATH:",
   "about.heroSubtitle": "The revolution in modern tennis training",
