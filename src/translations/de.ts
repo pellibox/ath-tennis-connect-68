@@ -113,6 +113,42 @@ const translations = {
   "tech.quote": "Vicki™ integriert fortschrittliche Technologie und menschliche Expertise, um das verborgene Potenzial in jedem Athleten zu entfalten und definiert die Standards der modernen Tennisentwicklung neu.",
   "tech.only": "Das einzige Tenniszentrum der Welt, das die Vicki™-Technologie verwendet",
   
+  // Home Page Key Features
+  "home.keyFeatures.title": "Moderne Tennis-Exzellenz",
+  "home.keyFeatures.excellence": "Technische Exzellenz",
+  "home.keyFeatures.excellenceDesc": "Hochrangiges Coaching unterstützt durch fortschrittliche Technologie",
+  "home.keyFeatures.analysis": "Vollständige Analyse",
+  "home.keyFeatures.analysisDesc": "Echtzeit-Überwachung von über 70 Parametern",
+  "home.keyFeatures.team": "Elite Team",
+  "home.keyFeatures.teamDesc": "Professionelle Trainer mit innovativer Methodik",
+  "home.keyFeatures.facilities": "Modernste Einrichtungen",
+  "home.keyFeatures.facilitiesDesc": "6 Plätze vollständig mit Vicki™-Technologie ausgestattet",
+  "home.keyFeatures.learnMore": "Mehr erfahren",
+  
+  // Home Page Training Methods
+  "home.training.title": "Methodik und Technologie",
+  "home.training.method": "ATH Methode",
+  "home.training.methodDesc": "Exklusive Methodik, die Technologie und traditionelles Coaching für einen personalisierten Weg zur Exzellenz integriert",
+  "home.training.technology": "Vicki™ Technologie",
+  "home.training.technologyDesc": "Fortschrittliches Überwachungs- und Analysesystem, das jeden Aspekt der Spielerleistung in Echtzeit verfolgt",
+  "home.training.programs": "Personalisierte Programme",
+  "home.training.programsDesc": "Trainingswege angepasst an die spezifischen Bedürfnisse jedes Athleten, vom Anfänger bis zum Profi",
+  "home.training.structure": "Modernste Einrichtungen",
+  "home.training.structureDesc": "Vicki powered elite; technologisch fortschrittliche Plätze und Gemeinschaftsbereiche",
+  "home.training.learnMore": "Mehr erfahren",
+  
+  // Home Page Download Section
+  "home.download.title": "Vollständiger Site-Inhalt",
+  "home.download.description": "Laden Sie alle ATH-Website-Inhalte im Markdown-Format für eine vollständige Offline-Beratung herunter.",
+  "home.download.button": "Vollständigen Inhalt herunterladen",
+  "home.download.success": "Inhalt erfolgreich heruntergeladen!",
+  
+  // Home Page Join Revolution Section
+  "home.revolution.title": "Schließen Sie sich der ATH-Revolution an",
+  "home.revolution.p1": "Werden Sie Teil einer exklusiven Gemeinschaft, die die Standards des modernen Tennis neu definiert. Mit modernster Technologie, fortschrittlichen Methodologien und einem Team engagierter Fachleute repräsentiert ATH die Zukunft des Tennistrainings.",
+  "home.revolution.p2": "Entdecken Sie, wie die Vicki™-Technologie und unser personalisierter Ansatz Ihr verborgenes Potenzial freisetzen können, unabhängig von Ihrem aktuellen Niveau.",
+  "home.revolution.cta": "Starten Sie Ihre Reise",
+  
   // Facilities, Coaches, Contact and other sections
   "facilities.title": "Weltklasse-Einrichtungen",
   "facilities.subtitle": "Erleben Sie die perfekte Umgebung für Tennis-Exzellenz",

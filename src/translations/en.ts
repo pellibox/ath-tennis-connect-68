@@ -69,6 +69,42 @@ const translations = {
   "tech.quote": "Vicki™ integrates advanced technology and human expertise to unlock the hidden potential in every athlete, redefining the standards of modern tennis development.",
   "tech.only": "The only tennis center in the world using Vicki™ technology",
   
+  // Home Page Key Features
+  "home.keyFeatures.title": "Modern Tennis Excellence",
+  "home.keyFeatures.excellence": "Technical Excellence",
+  "home.keyFeatures.excellenceDesc": "High-level coaching supported by advanced technology",
+  "home.keyFeatures.analysis": "Complete Analysis",
+  "home.keyFeatures.analysisDesc": "Real-time monitoring of over 70 parameters",
+  "home.keyFeatures.team": "Elite Team",
+  "home.keyFeatures.teamDesc": "Professional coaches with innovative methodology",
+  "home.keyFeatures.facilities": "Cutting-edge Facilities",
+  "home.keyFeatures.facilitiesDesc": "6 courts fully equipped with Vicki™ technology",
+  "home.keyFeatures.learnMore": "Learn more",
+  
+  // Home Page Training Methods
+  "home.training.title": "Methodology and Technology",
+  "home.training.method": "ATH Method",
+  "home.training.methodDesc": "Exclusive methodology integrating technology and traditional coaching for a personalized path to excellence",
+  "home.training.technology": "Vicki™ Technology",
+  "home.training.technologyDesc": "Advanced monitoring and analysis system tracking every aspect of player performance in real-time",
+  "home.training.programs": "Personalized Programs",
+  "home.training.programsDesc": "Training paths adapted to the specific needs of each athlete, from beginner to professional",
+  "home.training.structure": "Cutting-edge Facilities",
+  "home.training.structureDesc": "Vicki powered elite; technologically advanced courts and common areas",
+  "home.training.learnMore": "Learn more",
+  
+  // Home Page Download Section
+  "home.download.title": "Complete Site Content",
+  "home.download.description": "Download all ATH site content in markdown format for complete offline consultation.",
+  "home.download.button": "Download Complete Content",
+  "home.download.success": "Content downloaded successfully!",
+  
+  // Home Page Join Revolution Section
+  "home.revolution.title": "Join the ATH Revolution",
+  "home.revolution.p1": "Become part of an exclusive community that redefines modern tennis standards. With cutting-edge technology, advanced methodologies, and a team of dedicated professionals, ATH represents the future of tennis training.",
+  "home.revolution.p2": "Discover how Vicki™ technology and our personalized approach can unlock your hidden potential, regardless of your current level.",
+  "home.revolution.cta": "Start your journey",
+  
   // Facilities, Coaches, Contact and other sections
   "facilities.title": "World-Class Facilities",
   "facilities.subtitle": "Experience the perfect environment for tennis excellence",
