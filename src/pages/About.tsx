@@ -14,7 +14,7 @@ import { getVimeoEmbed } from '@/utils/videoUtils';
 import StandardHeroVideo from '@/components/StandardHeroVideo';
 
 const AboutPage = () => {
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
   const { userGender, userType } = useProfile();
   const isMobile = useIsMobile();
   const [heroLogoOpacity, setHeroLogoOpacity] = useState<number>(1);
