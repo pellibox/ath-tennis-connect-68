@@ -1,24 +1,23 @@
-
 import { jsPDF } from 'jspdf';
-// Import the autotable plugin to extend jsPDF
 import 'jspdf-autotable';
 import { toast } from 'sonner';
 import { PdfOptions } from './types';
-import { createCoverPage, createContactPage } from './cover';
+import { addPageHeader, addPageFooter } from './styles';
+import { createStyledCoverPage, createStyledContactPage } from './newCover';
 import { 
-  generateTennisSection, 
-  generatePadelSection, 
-  generatePickleballSection, 
-  generateTouchTennisSection 
-} from './sportSections';
-import { generatePricingTables } from './tables';
+  generateStyledTennisSection, 
+  generateStyledPadelSection, 
+  generateStyledPickleballSection, 
+  generateStyledTouchTennisSection 
+} from './newSportSections';
+import { generateStyledPricingTables } from './newTables';
 
 /**
- * Generate the complete site brochure PDF
+ * Generate the complete site brochure PDF with ATH styling
  */
 export const generateSiteBrochure = async (options: PdfOptions = {}): Promise<jsPDF> => {
   try {
-    console.log('Starting PDF generation...');
+    console.log('Starting PDF generation with ATH styling...');
     
     // Create PDF document (A4 portrait)
     const doc = new jsPDF({
@@ -31,38 +30,37 @@ export const generateSiteBrochure = async (options: PdfOptions = {}): Promise<js
     const language = options.language || 'it';
     console.log('Language:', language);
     
+    // Track page numbers
+    let currentPage = 1;
+    
     // Create cover page
-    let yPosition = await createCoverPage(doc);
-    console.log('Cover page created, yPosition:', yPosition);
+    await createStyledCoverPage(doc);
+    console.log('Cover page created');
     
     // Generate sport sections
-    yPosition = generateTennisSection(doc, yPosition);
-    doc.addPage();
-    yPosition = 20;
-    yPosition = generatePadelSection(doc, yPosition);
-    doc.addPage();
-    yPosition = 20;
-    yPosition = generatePickleballSection(doc, yPosition);
-    doc.addPage();
-    yPosition = 20;
-    yPosition = generateTouchTennisSection(doc, yPosition);
+    currentPage = await generateStyledTennisSection(doc, currentPage + 1);
+    console.log('Tennis section completed, current page:', currentPage);
     
-    // Add pricing tables section (on a new page)
+    currentPage = await generateStyledPadelSection(doc, currentPage + 1);
+    console.log('Padel section completed, current page:', currentPage);
+    
+    currentPage = await generateStyledPickleballSection(doc, currentPage + 1);
+    console.log('Pickleball section completed, current page:', currentPage);
+    
+    currentPage = await generateStyledTouchTennisSection(doc, currentPage + 1);
+    console.log('TouchTennis section completed, current page:', currentPage);
+    
+    // Add pricing tables section
+    currentPage = await generateStyledPricingTables(doc, currentPage + 1);
+    console.log('Pricing tables completed, current page:', currentPage);
+    
+    // Add contact information page
     doc.addPage();
-    yPosition = 20;
-    doc.setFontSize(18);
-    doc.setFont('helvetica', 'bold');
-    doc.text('5. Tariffe e Prezzi', 20, yPosition);
-    yPosition += 15;
-    
-    console.log('Starting pricing tables section at yPosition:', yPosition);
-    
-    // Generate all pricing tables with explicit page management
-    generatePricingTables(doc, yPosition);
-    
-    // Add contact information page (on a new page)
-    doc.addPage();
-    createContactPage(doc);
+    currentPage++;
+    await addPageHeader(doc, 'Contatti');
+    addPageFooter(doc, currentPage);
+    createStyledContactPage(doc);
+    console.log('Contact page created');
     
     console.log('PDF generation completed successfully');
     return doc;
@@ -79,9 +77,9 @@ export const generateSiteBrochure = async (options: PdfOptions = {}): Promise<js
 export const downloadSiteBrochure = async (options: PdfOptions = {}): Promise<void> => {
   try {
     const doc = await generateSiteBrochure(options);
-    const timestamp = new Date().toISOString().replace(/[:.]/g, '-');
+    const timestamp = new Date().toISOString().split('T')[0];
     
-    doc.save(`ATH_Tennis_Hub_Brochure_${timestamp}.pdf`);
+    doc.save(`ATH_Brochure_${timestamp}.pdf`);
     toast.success('Brochure scaricata con successo!');
   } catch (error) {
     console.error('Error downloading brochure:', error);
