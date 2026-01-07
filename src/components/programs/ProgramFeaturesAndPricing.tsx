@@ -1,6 +1,7 @@
 
 import RevealAnimation from "@/components/RevealAnimation";
 import { Link } from "react-router-dom";
+import CmsPriceDisplay from "@/components/cms/CmsPriceDisplay";
 
 interface ProgramFeature {
   title: string;
@@ -9,6 +10,7 @@ interface ProgramFeature {
 
 interface ProgramPricing {
   price: string;
+  priceKey?: string; // CMS key for dynamic pricing
   period: string;
   notes: string[];
   ctaText: string;
@@ -38,8 +40,18 @@ const ProgramFeaturesAndPricing = ({
       <RevealAnimation delay={350} className="bg-gray-50 p-8 rounded-lg">
         <h3 className="text-xl font-swiss font-semibold mb-4">Prezzo</h3>
         <div className="mb-4">
-          <p className="text-3xl font-bold text-ath-clay">{pricing.price}</p>
-          <p className="text-sm text-gray-600">{pricing.period}</p>
+          {pricing.priceKey ? (
+            <CmsPriceDisplay 
+              blockKey={pricing.priceKey}
+              fallbackPrice={parseFloat(pricing.price.replace(/[^0-9.,]/g, '').replace(',', '.'))}
+              fallbackPeriod={pricing.period}
+            />
+          ) : (
+            <>
+              <p className="text-3xl font-bold text-ath-clay">{pricing.price}</p>
+              <p className="text-sm text-gray-600">{pricing.period}</p>
+            </>
+          )}
         </div>
         
         {pricing.notes.map((note, index) => (

@@ -12,6 +12,7 @@ import ContactSection from '@/components/ContactSection';
 import { Badge } from '@/components/ui/badge';
 import { ArrowRight, Users } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import CmsPriceDisplay from '@/components/cms/CmsPriceDisplay';
 
 const Performance3Program = () => {
   const { t } = useLanguage();
@@ -123,8 +124,11 @@ const Performance3Program = () => {
             <RevealAnimation delay={300} className="bg-gray-50 p-8 rounded-lg">
               <h3 className="text-xl font-semibold mb-4">{t('programs.performance3.pricing.title')}</h3>
               <div className="mb-4">
-                <p className="text-3xl font-bold text-ath-clay">€5.000</p>
-                <p className="text-sm text-gray-600">{t('programs.performance3.pricing.period')}</p>
+                <CmsPriceDisplay 
+                  blockKey="price_perf3"
+                  fallbackPrice={5000}
+                  fallbackPeriod={t('programs.performance3.pricing.period')}
+                />
               </div>
               <p className="text-sm text-gray-600 mb-4">
                 {t('programs.performance3.pricing.note')}

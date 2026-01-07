@@ -56,6 +56,11 @@ const AdminSidebar = () => {
       icon: <FileEdit className="h-5 w-5" />,
       path: '/admin/content',
     },
+    {
+      title: 'Gestione Prezzi',
+      icon: <DollarSign className="h-5 w-5" />,
+      path: '/admin/price-manager',
+    },
   ];
 
   // Admin only menu items
