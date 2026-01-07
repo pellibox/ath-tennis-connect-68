@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { useAuth } from '@/contexts/AuthContext';
 import AdminLayout from '@/components/admin/AdminLayout';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import { User, BookOpen, Tag, DollarSign, Users } from 'lucide-react';
+import { BookOpen, DollarSign, Users } from 'lucide-react';
 import { useLanguage } from '@/contexts/LanguageContext';
 
 const Dashboard = () => {
@@ -14,30 +14,23 @@ const Dashboard = () => {
 
   const adminMenuItems = [
     { 
-      title: t('admin.pages') || 'Pages', 
+      title: 'Gestione Contenuti', 
       icon: <BookOpen className="h-5 w-5" />, 
-      description: t('admin.pagesDescription') || 'Manage website pages',
-      path: '/admin/pages',
+      description: 'Modifica testi e contenuti del sito',
+      path: '/admin/content',
       color: 'bg-blue-100 text-blue-600'
     },
     { 
-      title: t('admin.programs') || 'Programs', 
-      icon: <Tag className="h-5 w-5" />, 
-      description: t('admin.programsDescription') || 'Manage programs',
-      path: '/admin/programs',
-      color: 'bg-purple-100 text-purple-600'
-    },
-    { 
-      title: t('admin.prices') || 'Prices', 
+      title: 'Gestione Prezzi', 
       icon: <DollarSign className="h-5 w-5" />, 
-      description: t('admin.pricesDescription') || 'Manage prices',
-      path: '/admin/prices',
+      description: 'Modifica i prezzi dei programmi',
+      path: '/admin/price-manager',
       color: 'bg-green-100 text-green-600'
     },
     { 
-      title: t('admin.users') || 'Users', 
+      title: t('admin.users') || 'Gestione Utenti', 
       icon: <Users className="h-5 w-5" />, 
-      description: t('admin.usersDescription') || 'Manage users',
+      description: 'Gestisci utenti e ruoli',
       path: '/admin/users',
       color: 'bg-amber-100 text-amber-600'
     },
