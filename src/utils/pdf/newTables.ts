@@ -1,5 +1,5 @@
 import { jsPDF } from 'jspdf';
-import 'jspdf-autotable';
+import autoTable from 'jspdf-autotable';
 import { ATH_COLORS, PAGE, FONTS, addPageHeader, addPageFooter, addStyledSectionTitle } from './styles';
 
 /**
@@ -22,7 +22,7 @@ export const generateStyledPricingTables = async (doc: jsPDF, startPage: number)
   doc.text('Programmi Tennis', PAGE.marginLeft, yPosition);
   yPosition += 5;
   
-  doc.autoTable({
+  autoTable(doc, {
     startY: yPosition,
     head: [['Programma', 'Durata', 'Prezzo']],
     body: [
@@ -76,7 +76,7 @@ export const generateStyledPricingTables = async (doc: jsPDF, startPage: number)
   doc.text('Programmi Padel', PAGE.marginLeft, yPosition);
   yPosition += 5;
   
-  doc.autoTable({
+  autoTable(doc, {
     startY: yPosition,
     head: [['Programma', 'Durata', 'Prezzo']],
     body: [
@@ -125,7 +125,7 @@ export const generateStyledPricingTables = async (doc: jsPDF, startPage: number)
   doc.text('Programmi Pickleball', PAGE.marginLeft, yPosition);
   yPosition += 5;
   
-  doc.autoTable({
+  autoTable(doc, {
     startY: yPosition,
     head: [['Programma', 'Durata', 'Prezzo']],
     body: [
@@ -174,7 +174,7 @@ export const generateStyledPricingTables = async (doc: jsPDF, startPage: number)
   doc.text('Programmi TouchTennis', PAGE.marginLeft, yPosition);
   yPosition += 5;
   
-  doc.autoTable({
+  autoTable(doc, {
     startY: yPosition,
     head: [['Programma', 'Durata', 'Prezzo']],
     body: [
