@@ -37,7 +37,7 @@ const TechnologyPage = () => {
         <div className="w-full bg-black py-16">
           <div className="max-w-3xl mx-auto text-center">
             <h2 className="text-white text-xl md:text-2xl font-swiss uppercase mb-2">
-              LA TECNOLOGIA:
+              {t('tech.label')}
             </h2>
             <p className="text-white text-xl md:text-2xl opacity-90 font-swiss drop-shadow-md">
               {t('tech.subtitle')}
@@ -46,19 +46,19 @@ const TechnologyPage = () => {
         </div>
         
         <TechnologySection 
-          title="Sistema di analisi con visione artificiale e AI"
-          subtitle="Sistema di analisi con visione artificiale, AI e tracciamento 3D che analizza oltre 70 parametri in tempo reale"
+          title={t('tech.title')}
+          subtitle={t('tech.subtitle')}
         />
         
         {userType && (
           <section className="py-16 px-6 bg-ath-gray">
             <div className="max-w-7xl mx-auto">
               <RevealAnimation>
-                <h2 className="text-3xl font-swiss mb-8">Benefici per {userType === 'coach' ? 'i Coach' : 
-                                                  userType === 'parent' ? 'i Genitori' : 
-                                                  userType === 'professional' ? 'i Professionisti' : 
-                                                  userType === 'performance' ? 'gli Agonisti' : 
-                                                  'i Giovani Tennisti'}</h2>
+                <h2 className="text-3xl font-swiss mb-8">{t('tech.benefits.title')} {userType === 'coach' ? t('tech.benefits.coach') : 
+                                                  userType === 'parent' ? t('tech.benefits.parent') : 
+                                                  userType === 'professional' ? t('tech.benefits.professional') : 
+                                                  userType === 'performance' ? t('tech.benefits.performance') : 
+                                                  t('tech.benefits.junior')}</h2>
               </RevealAnimation>
               
               <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
