@@ -416,6 +416,35 @@ const translations = {
   "contact.saturday": "Samedi",
   "contact.sunday": "Dimanche",
   
+  // Multisport Explanation
+  "multisport.title": "L'excellence dans les sports de raquette",
+  "multisport.why": "Pourquoi ATH est multisport?",
+  "multisport.whyDesc": "ATH a fait évoluer sa vision d'académie de tennis vers un centre d'excellence multisport pour répondre aux nouvelles tendances du marché et maximiser le potentiel athlétique de nos joueurs. Notre expérience de vingt ans dans le tennis nous a permis de développer des méthodologies avancées que nous appliquons maintenant à tous les sports de raquette.",
+  "multisport.advantages": "Les avantages de notre approche intégrée",
+  "multisport.forTennis": "Pour les joueurs de tennis:",
+  "multisport.forTennisDesc": "L'entraînement croisé améliore des compétences techniques spécifiques - le padel améliore les réflexes au filet, le pickleball affine le jeu court, le touchtennis perfectionne la précision et le contrôle.",
+  "multisport.forOthers": "Pour les autres athlètes:",
+  "multisport.forOthersDesc": "Chaque discipline bénéficie de notre expertise:",
+  "multisport.padelBenefit": "Les joueurs de padel obtiennent une biomécanique des coups et une lecture tactique supérieures",
+  "multisport.pickleballBenefit": "Les joueurs de pickleball acquièrent une excellence au filet et une précision",
+  "multisport.touchtennisBenefit": "Les joueurs de touchtennis développent le contrôle, les effets et une vision stratégique avancée",
+  "multisport.howExcellence": "Comment nous maintenons l'excellence",
+  "multisport.specializedTeam": "Équipe spécialisée",
+  "multisport.specializedTeamDesc": "Professionnels dédiés et qualifiés pour chaque sport",
+  "multisport.scientificMethod": "Méthodologie scientifique",
+  "multisport.scientificMethodDesc": "Principes biomécaniques universels appliqués spécifiquement",
+  "multisport.advancedAnalysis": "Analyse avancée",
+  "multisport.advancedAnalysisDesc": "Systèmes de feedback vidéo personnalisés pour chaque discipline",
+  "multisport.personalizedPaths": "Parcours personnalisés",
+  "multisport.personalizedPathsDesc": "Programmes de spécialisation dédiés avec des standards élevés",
+  "multisport.continuousInnovation": "Innovation continue",
+  "multisport.continuousInnovationDesc": "Transfert de connaissances entre disciplines pour créer des méthodes uniques",
+  "multisport.conclusion": "ATH ne dilue pas son excellence, mais l'approfondit, offrant une expérience de formation supérieure dans chaque sport de raquette.",
+  
+  // Programs Section Additional Keys
+  "programs.pricing": "Tarifs",
+  "programs.details": "Détails",
+  
   // Footer
   "footer.description": "Élever l'excellence du tennis grâce à des programmes d'entraînement innovants, des installations de classe mondiale et un coaching personnalisé.",
   "footer.programs": "Programmes",
