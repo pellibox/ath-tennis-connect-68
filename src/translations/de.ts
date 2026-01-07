@@ -655,7 +655,42 @@ const translations = {
   "vicki.speaking": "Vicki spricht...",
   "vicki.listening": "Ich höre zu...",
   "vicki.error": "Mikrofon aktivieren",
-  "vicki.endConversation": "Gespräch beenden"
+  "vicki.endConversation": "Gespräch beenden",
+
+  // Program Pages - Common
+  "programPages.wantToKnowMore": "Möchten Sie mehr erfahren?",
+  "programPages.contactForInfo": "Kontaktieren Sie uns für Informationen",
+  "programPages.contactForTrial": "Kontaktieren Sie uns für eine kostenlose Probe",
+  "programPages.bookTrial": "PROBE BUCHEN",
+  "programPages.requestInfo": "INFOS ANFORDERN",
+  "programPages.contactUs": "KONTAKTIEREN SIE UNS",
+  "programPages.programFeatures": "Programmmerkmale",
+  "programPages.price": "Preis",
+  "programPages.relatedPrograms": "Verwandte Programme",
+  "programPages.whyChoose": "Warum wählen",
+  "programPages.benefits": "Vorteile",
+  
+  // Elite Performance Full Page
+  "eliteFullPage.title": "Elite Performance Full",
+  "eliteFullPage.subtitle": "Komplettes Programm (40 Wochen)",
+  "eliteFullPage.bannerTitle": "ELITE PERFORMANCE FULL:",
+  "eliteFullPage.technicalExcellence": "Technische Exzellenz:",
+  "eliteFullPage.physicalPrep": "Athletische Vorbereitung:",
+  "eliteFullPage.mentalStrength": "Mentale Stärke:",
+  "eliteFullPage.tacticsStrategy": "Taktik & Strategie:",
+  
+  // Parent/Tutor Page
+  "parentPage.title": "Eltern/Tutor",
+  "parentPage.offersTitle": "Das Programm bietet",
+  
+  // Other pages
+  "sitPage.title": "SIT - Talentidentifikationsschule",
+  "satPage.title": "SAT - Tennis-Einführungsschule",
+  "perf4Page.title": "Performance 4",
+  "clubPage.title": "Programme für Clubs und Akademien",
+  "coachPage.title": "Coach / Trainer",
+  "profPage.title": "Profis",
+  "juniorPage.title": "Junior"
 };
 
 export default translations;
