@@ -28,7 +28,7 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { CheckCircle, XCircle, Shield, User, Search, PlusCircle } from 'lucide-react';
-import { setAsAdmin, setAsEditor, removeRole, fetchUserProfile } from '@/utils/authUtils';
+import { setAsAdmin, setAsEditor, removeRole } from '@/utils/authUtils';
 import { supabase } from '@/integrations/supabase/client';
 
 interface UserData {
@@ -57,31 +57,28 @@ const Users = () => {
     try {
       setLoading(true);
       
-      // Use type casting to bypass type checking completely
-      const { data: userData, error: userError } = await (supabase as any)
-        .from('auth.users')
-        .select('id, email, created_at');
+      // Fetch all profiles (accessible via RLS)
+      const { data: profilesData, error: profilesError } = await supabase
+        .from('profiles')
+        .select('*');
       
-      if (userError) throw userError;
+      if (profilesError) throw profilesError;
       
-      if (userData) {
+      if (profilesData) {
         const usersWithRoles = await Promise.all(
-          userData.map(async (user: any) => {
+          profilesData.map(async (profile) => {
             // Fetch user roles
-            const { data: userRoles } = await (supabase as any)
+            const { data: userRoles } = await supabase
               .from('user_roles')
               .select('role')
-              .eq('user_id', user.id);
-            
-            // Fetch user profile
-            const { data: profileData } = await fetchUserProfile(user.id);
+              .eq('user_id', profile.id);
             
             return {
-              id: user.id,
-              email: user.email,
-              username: profileData?.username || null,
-              fullName: profileData?.full_name || null,
-              roles: userRoles ? userRoles.map((r: any) => r.role) : []
+              id: profile.id,
+              email: profile.username || profile.full_name || profile.id,
+              username: profile.username || null,
+              fullName: profile.full_name || null,
+              roles: userRoles ? userRoles.map((r) => r.role) : []
             };
           })
         );
@@ -132,46 +129,51 @@ const Users = () => {
 
   const handleFindUser = async () => {
     if (!newUserEmail) {
-      toast.error(t('admin.emailRequired') || 'Email is required');
+      toast.error(t('admin.emailRequired') || 'Email or name is required');
       return;
     }
 
     setEmailLoading(true);
     try {
-      // Use type casting to bypass type checking completely
-      const { data, error } = await (supabase as any)
-        .from('auth.users')
-        .select('id, email')
-        .eq('email', newUserEmail)
-        .single();
+      // Search in profiles by username or full_name
+      const { data, error } = await supabase
+        .from('profiles')
+        .select('*')
+        .or(`username.ilike.%${newUserEmail}%,full_name.ilike.%${newUserEmail}%`)
+        .limit(10);
       
       if (error) throw error;
       
-      if (data) {
-        // User found, now check roles
-        const { data: userRoles } = await (supabase as any)
-          .from('user_roles')
-          .select('role')
-          .eq('user_id', data.id);
+      if (data && data.length > 0) {
+        const newUsers: UserData[] = [];
         
-        // Fetch user profile
-        const { data: profileData } = await fetchUserProfile(data.id);
+        for (const profile of data) {
+          // Check if user already exists in the list
+          if (users.some(u => u.id === profile.id)) continue;
+          
+          // Fetch user roles
+          const { data: userRoles } = await supabase
+            .from('user_roles')
+            .select('role')
+            .eq('user_id', profile.id);
+          
+          newUsers.push({
+            id: profile.id,
+            email: profile.username || profile.full_name || profile.id,
+            username: profile.username || null,
+            fullName: profile.full_name || null,
+            roles: userRoles ? userRoles.map((r) => r.role) : []
+          });
+        }
         
-        const userData = {
-          id: data.id,
-          email: data.email,
-          username: profileData?.username || null,
-          fullName: profileData?.full_name || null,
-          roles: userRoles ? userRoles.map((r: any) => r.role) : []
-        };
-        
-        // Check if user already exists in the list
-        if (!users.some(u => u.id === userData.id)) {
-          setUsers([...users, userData]);
+        if (newUsers.length > 0) {
+          setUsers([...users, ...newUsers]);
+          toast.success(`${newUsers.length} utenti trovati`);
+        } else {
+          toast.info('Utenti già presenti nella lista');
         }
         
         setNewUserEmail('');
-        toast.success(t('admin.userFound') || 'User found');
       } else {
         toast.error(t('admin.userNotFound') || 'User not found');
       }
