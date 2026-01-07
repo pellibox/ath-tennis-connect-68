@@ -92,17 +92,15 @@ const VickiWidgetContainer = () => {
       `}
       aria-label={isConnected ? 'Termina conversazione' : 'Chiedi a Vicki'}
     >
-      {/* Icon */}
-      <div className={`w-7 h-7 rounded-full flex items-center justify-center flex-shrink-0 transition-all ${getStatusColor()}`}>
-        {isConnecting ? (
-          <Loader2 className="w-4 h-4 text-ath-clay animate-spin" />
-        ) : isConnected ? (
-          <Mic className="w-4 h-4 text-ath-clay" />
-        ) : error ? (
-          <MicOff className="w-4 h-4 text-white" />
-        ) : (
-          <span className="text-sm font-bold text-ath-clay">V</span>
-        )}
+      {/* Vicki Logo */}
+      <div className="relative flex-shrink-0">
+        <img 
+          src="/lovable-uploads/dc679c8d-60cd-4841-a42c-0907926b7ef5.png" 
+          alt="Vicki" 
+          className={`w-8 h-8 object-contain transition-all ${isConnecting ? 'animate-pulse' : ''}`}
+        />
+        {/* Status indicator dot */}
+        <div className={`absolute -top-0.5 -right-0.5 w-3 h-3 rounded-full border-2 border-ath-clay ${getStatusColor()}`} />
       </div>
       
       {/* Text */}
