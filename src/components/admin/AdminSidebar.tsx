@@ -37,21 +37,6 @@ const AdminSidebar = () => {
       exact: true,
     },
     {
-      title: t('admin.pages') || 'Pages',
-      icon: <BookOpen className="h-5 w-5" />,
-      path: '/admin/pages',
-    },
-    {
-      title: t('admin.programs') || 'Programs',
-      icon: <Tag className="h-5 w-5" />,
-      path: '/admin/programs',
-    },
-    {
-      title: t('admin.prices') || 'Prices',
-      icon: <DollarSign className="h-5 w-5" />,
-      path: '/admin/prices',
-    },
-    {
       title: 'Gestione Contenuti',
       icon: <FileEdit className="h-5 w-5" />,
       path: '/admin/content',
