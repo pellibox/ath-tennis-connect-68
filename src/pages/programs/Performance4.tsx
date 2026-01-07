@@ -13,6 +13,7 @@ import { ArrowRight, Users } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import ProgramDetails from '@/components/programs/ProgramDetails';
 import ProgramWhyChoose from '@/components/programs/ProgramWhyChoose';
+import CmsPriceDisplay from '@/components/cms/CmsPriceDisplay';
 
 const Performance4Program = () => {
   const { t } = useLanguage();
@@ -182,8 +183,11 @@ const Performance4Program = () => {
             <RevealAnimation delay={300} className="bg-gray-50 p-8 rounded-lg">
               <h3 className="text-xl font-semibold mb-4">{t('perf4_price_title')}</h3>
               <div className="mb-4">
-                <p className="text-3xl font-bold text-ath-clay">€6.500</p>
-                <p className="text-sm text-gray-600">{isEnglish ? 'per season (40 weeks)' : 'per stagione (40 settimane)'}</p>
+                <CmsPriceDisplay 
+                  blockKey="price_perf4"
+                  fallbackPrice={6500}
+                  fallbackPeriod={isEnglish ? 'per season (40 weeks)' : 'per stagione (40 settimane)'}
+                />
               </div>
               <p className="text-sm text-gray-600 mb-4">
                 {t('perf4_payment_info')}

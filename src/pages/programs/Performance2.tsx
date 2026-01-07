@@ -9,6 +9,7 @@ import VickiUnifiedBadge from '@/components/VickiUnifiedBadge';
 import { ArrowRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { createStandardVimeoEmbed } from '@/utils/videoUtils';
+import CmsPriceDisplay from '@/components/cms/CmsPriceDisplay';
 
 const Performance2Program = () => {
   const { t } = useLanguage();
@@ -100,8 +101,14 @@ const Performance2Program = () => {
           <RevealAnimation delay={350}>
             <div className="bg-ath-clay/5 border border-ath-clay/20 p-8 rounded-lg mb-12">
               <h3 className="text-2xl font-bold mb-4 text-ath-clay">{t('programs.performance2.investment.title')}</h3>
-              <p className="text-xl mb-2">€ 4.000</p>
-              <p className="text-gray-600 mb-6">{t('programs.performance2.investment.period')}</p>
+              <CmsPriceDisplay 
+                blockKey="price_perf2"
+                fallbackPrice={4000}
+                fallbackPeriod={t('programs.performance2.investment.period')}
+                priceClassName="text-xl mb-2"
+                periodClassName="text-gray-600 mb-6"
+                className="mb-6"
+              />
               <div className="space-y-2 mb-6">
                 <p><strong>{t('programs.performance2.investment.includes')}</strong></p>
                 <ul className="list-disc list-inside space-y-1">

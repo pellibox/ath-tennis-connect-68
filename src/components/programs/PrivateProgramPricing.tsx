@@ -1,14 +1,18 @@
 
 import ButtonLink from '@/components/ButtonLink';
 import React from 'react';
+import CmsPriceDisplay from '@/components/cms/CmsPriceDisplay';
 
 const PrivateProgramPricing = () => {
   return (
     <div className="bg-gray-50 p-8 rounded-lg">
       <h3 className="text-xl font-swiss font-semibold mb-4">Prezzi e Prenotazione</h3>
       <div className="mb-4">
-        <p className="text-3xl font-bold text-ath-clay">€120</p>
-        <p className="text-sm text-gray-600">per lezione di 1,5 ore</p>
+        <CmsPriceDisplay 
+          blockKey="price_personal_coaching"
+          fallbackPrice={120}
+          fallbackPeriod="per lezione di 1,5 ore"
+        />
       </div>
       <p className="text-sm text-gray-600 mb-6">
         Il Private Personal Coaching include sia il maestro che lo sparring partner, offrendo un'esperienza
