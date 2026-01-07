@@ -13,7 +13,8 @@ import {
   Database,
   LogOut,
   ChevronRight,
-  ExternalLink
+  ExternalLink,
+  FileEdit
 } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { Button } from '@/components/ui/button';
@@ -49,6 +50,11 @@ const AdminSidebar = () => {
       title: t('admin.prices') || 'Prices',
       icon: <DollarSign className="h-5 w-5" />,
       path: '/admin/prices',
+    },
+    {
+      title: 'Gestione Contenuti',
+      icon: <FileEdit className="h-5 w-5" />,
+      path: '/admin/content',
     },
   ];
 
