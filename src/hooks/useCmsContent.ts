@@ -77,15 +77,13 @@ export const useCmsBlock = (key: string) => {
         .from('cms_blocks')
         .select('*')
         .eq('key', key)
-        .single();
+        .maybeSingle();
       
-      if (error) {
-        if (error.code === 'PGRST116') return null;
-        throw error;
-      }
-      return data as CmsBlock;
+      if (error) throw error;
+      return data as CmsBlock | null;
     },
     enabled: !!key,
+    staleTime: 1000 * 60 * 5, // Cache for 5 minutes
   });
 };
 
