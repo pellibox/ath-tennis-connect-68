@@ -14,36 +14,44 @@ Deno.serve(async (req) => {
   try {
     // Get the authorization header
     const authHeader = req.headers.get('Authorization')
-    if (!authHeader) {
+    if (!authHeader?.startsWith('Bearer ')) {
       return new Response(
         JSON.stringify({ error: 'No authorization header' }),
         { status: 401, headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
       )
     }
 
-    // Create a Supabase client with service role key
     const supabaseUrl = Deno.env.get('SUPABASE_URL')!
     const supabaseServiceKey = Deno.env.get('SUPABASE_SERVICE_ROLE_KEY')!
+    const supabaseAnonKey = Deno.env.get('SUPABASE_ANON_KEY')!
     
-    const supabaseClient = createClient(supabaseUrl, supabaseServiceKey)
+    // Create client with user's token to validate
+    const supabaseUser = createClient(supabaseUrl, supabaseAnonKey, {
+      global: { headers: { Authorization: authHeader } }
+    })
     
-    // Verify the requesting user's token and check if they're admin
+    // Validate token using getClaims
     const token = authHeader.replace('Bearer ', '')
-    const { data: { user: requestingUser }, error: userError } = await supabaseClient.auth.getUser(token)
+    const { data: claimsData, error: claimsError } = await supabaseUser.auth.getClaims(token)
     
-    if (userError || !requestingUser) {
-      console.log('Token verification failed:', userError)
+    if (claimsError || !claimsData?.claims) {
+      console.log('Token verification failed:', claimsError)
       return new Response(
         JSON.stringify({ error: 'Invalid token' }),
         { status: 401, headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
       )
     }
+    
+    const requestingUserId = claimsData.claims.sub
+    
+    // Create service role client for admin operations
+    const supabaseClient = createClient(supabaseUrl, supabaseServiceKey)
 
     // Check if the requesting user has admin role
     const { data: roles, error: rolesError } = await supabaseClient
       .from('user_roles')
       .select('role')
-      .eq('user_id', requestingUser.id)
+      .eq('user_id', requestingUserId)
       .eq('role', 'admin')
     
     if (rolesError || !roles || roles.length === 0) {
