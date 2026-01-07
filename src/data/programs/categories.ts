@@ -9,6 +9,7 @@ import { professionalPrograms } from './professionalPrograms';
 export const programCategories: ProgramCategory[] = [
   {
     id: 'elite-program',
+    titleKey: 'programs.category.elite',
     title: 'Elite & Performance Programs',
     programs: elitePrograms,
     applicableUserTypes: ['performance', 'professional'],
@@ -16,6 +17,7 @@ export const programCategories: ProgramCategory[] = [
   },
   {
     id: 'junior-program',
+    titleKey: 'programs.category.junior',
     title: 'Junior Program',
     programs: juniorPrograms,
     applicableUserTypes: ['junior'],
@@ -23,6 +25,7 @@ export const programCategories: ProgramCategory[] = [
   },
   {
     id: 'coach-private',
+    titleKey: 'programs.category.coach',
     title: 'Coaches, Private Training e Performance Analysis',
     programs: coachPrograms,
     applicableUserTypes: ['coach', 'professional'],
@@ -30,6 +33,7 @@ export const programCategories: ProgramCategory[] = [
   },
   {
     id: 'professional-program',
+    titleKey: 'programs.category.professional',
     title: 'Professional Players',
     programs: professionalPrograms,
     applicableUserTypes: ['professional'],
@@ -37,6 +41,7 @@ export const programCategories: ProgramCategory[] = [
   },
   {
     id: 'adult-training',
+    titleKey: 'programs.category.adult',
     title: 'Adult Training',
     programs: adultPrograms,
     applicableUserTypes: ['adult'],
@@ -44,6 +49,7 @@ export const programCategories: ProgramCategory[] = [
   },
   {
     id: 'summer-camps',
+    titleKey: 'programs.category.camps',
     title: 'Clinics e Summer Camps',
     programs: summerCamps,
     applicableUserTypes: ['junior', 'adult'],

@@ -9,16 +9,20 @@ import { Collapsible, CollapsibleContent, CollapsibleTrigger } from '@/component
 import VickiMonitoringBadge, { MonitoringLevel } from './VickiMonitoringBadge';
 import VickiPoweredBadge from './VickiPoweredBadge';
 import { useIsMobile } from '@/hooks/use-mobile';
+import { useLanguage } from '@/contexts/LanguageContext';
 
 interface Program {
   id: string;
   title: string;
+  titleKey?: string;
   description: string;
+  descriptionKey?: string;
   image: string;
   videoSrc?: string;
   vimeoEmbed?: string;
   link: string;
   features?: string[];
+  featureKeys?: string[];
   pricing?: string[];
   monitoringLevel?: MonitoringLevel;
   vickiPowered?: boolean;
@@ -29,6 +33,7 @@ interface Program {
 interface ProgramCategory {
   id: string;
   title: string;
+  titleKey?: string;
   programs: Program[];
 }
 
@@ -55,6 +60,7 @@ const ProgramsSection = ({
   categoryCollapsible = false,
   initiallyOpen = false
 }: ProgramsSectionProps) => {
+  const { t } = useLanguage();
   const [failedImages, setFailedImages] = useState<Record<string, boolean>>({});
   const [hoveredCard, setHoveredCard] = useState<string | null>(null);
   const [videosReady, setVideosReady] = useState<Record<string, boolean>>({});
@@ -65,6 +71,23 @@ const ProgramsSection = ({
   const videoRefs = useRef<Record<string, HTMLVideoElement | null>>({});
   const isMobile = useIsMobile();
   const sectionRef = useRef<HTMLElement>(null);
+
+  // Helper function to get translated text or fallback to original
+  const getTranslatedText = (key: string | undefined, fallback: string): string => {
+    if (!key) return fallback;
+    const translated = t(key);
+    // If translation returns the key itself, use the fallback
+    return translated === key ? fallback : translated;
+  };
+
+  // Helper to get translated features
+  const getTranslatedFeatures = (featureKeys: string[] | undefined, fallbackFeatures: string[] | undefined): string[] => {
+    if (!featureKeys || !fallbackFeatures) return fallbackFeatures || [];
+    return featureKeys.map((key, index) => {
+      const translated = t(key);
+      return translated === key ? (fallbackFeatures[index] || translated) : translated;
+    });
+  };
 
   const getFallbackImage = (program: Program) => {
     return `https://source.unsplash.com/featured/800x600/?tennis,${encodeURIComponent(program.title.toLowerCase())}`;
@@ -290,7 +313,9 @@ const ProgramsSection = ({
         </div>
         <div className="flex flex-col flex-grow p-4 md:p-6">
           <div className="flex flex-wrap items-start justify-between mb-3 gap-2">
-            <h3 className={cn("font-medium text-ath-clay", isMobile ? "text-lg" : "text-xl")}>{program.title}</h3>
+            <h3 className={cn("font-medium text-ath-clay", isMobile ? "text-lg" : "text-xl")}>
+              {getTranslatedText(program.titleKey, program.title)}
+            </h3>
             <div className="flex flex-wrap gap-2">
               {program.monitoringLevel && (
                 <VickiMonitoringBadge level={program.monitoringLevel} showLabel={false} className="mt-1" />
@@ -306,11 +331,13 @@ const ProgramsSection = ({
               )}
             </div>
           </div>
-          <p className={cn("text-gray-600 mb-4 flex-grow", isMobile && "text-sm")}>{program.description}</p>
+          <p className={cn("text-gray-600 mb-4 flex-grow", isMobile && "text-sm")}>
+            {getTranslatedText(program.descriptionKey, program.description)}
+          </p>
           
           {program.pricing && program.pricing.length > 0 && (
             <div className="mb-4 bg-ath-clay/5 p-3 rounded-md">
-              <h4 className="text-sm font-semibold mb-1">Prezzi:</h4>
+              <h4 className="text-sm font-semibold mb-1">{t('programs.pricing') || 'Prezzi'}:</h4>
               <ul className="space-y-1">
                 {program.pricing.map((price, idx) => (
                   <li key={idx} className="text-sm flex justify-between">
@@ -321,9 +348,9 @@ const ProgramsSection = ({
             </div>
           )}
           
-          {program.features && program.features.length > 0 && (
+          {(program.featureKeys || program.features) && (
             <ul className={cn("text-gray-600 mb-5 space-y-2", isMobile ? "text-xs" : "text-sm")}>
-              {program.features.map((feature, idx) => (
+              {getTranslatedFeatures(program.featureKeys, program.features).map((feature, idx) => (
                 <li key={idx} className="flex items-start space-x-2">
                   <span className="text-ath-clay text-xs mt-1">●</span>
                   <span>{feature}</span>
@@ -339,7 +366,7 @@ const ProgramsSection = ({
               isMobile ? "text-xs" : "text-sm"
             )}
           >
-            Dettagli <ArrowRight size={isMobile ? 14 : 16} className="ml-2" />
+            {t('programs.details') || 'Dettagli'} <ArrowRight size={isMobile ? 14 : 16} className="ml-2" />
           </Link>
         </div>
       </div>
@@ -391,7 +418,9 @@ const ProgramsSection = ({
                     <div className="mb-4 md:mb-6">
                       <CollapsibleTrigger className="w-full">
                         <div className="flex items-center justify-between bg-white p-3 md:p-4 shadow-sm cursor-pointer hover:bg-gray-50">
-                          <h3 className={cn("font-medium", isMobile ? "text-lg" : "text-2xl")}>{category.title}</h3>
+                          <h3 className={cn("font-medium", isMobile ? "text-lg" : "text-2xl")}>
+                            {getTranslatedText(category.titleKey, category.title)}
+                          </h3>
                           <div className="flex items-center">
                             {openCategories[category.id] ? (
                               <ChevronUp className="h-5 w-5" />
@@ -421,7 +450,9 @@ const ProgramsSection = ({
                 ) : (
                   <>
                     <RevealAnimation delay={categoryIndex * 100} immediate={isMobile}>
-                      <h3 className={cn("font-medium mb-4 md:mb-6 border-b pb-2", isMobile ? "text-lg" : "text-2xl")}>{category.title}</h3>
+                      <h3 className={cn("font-medium mb-4 md:mb-6 border-b pb-2", isMobile ? "text-lg" : "text-2xl")}>
+                        {getTranslatedText(category.titleKey, category.title)}
+                      </h3>
                     </RevealAnimation>
                     
                     <div className={cn(

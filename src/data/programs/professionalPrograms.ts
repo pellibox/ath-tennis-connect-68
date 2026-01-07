@@ -6,11 +6,22 @@ import { createStandardVimeoEmbed } from '@/utils/videoUtils';
 export const professionalPrograms: Program[] = [
   {
     id: '3',
+    titleKey: 'programs.professional.title',
     title: 'Professionisti',
+    descriptionKey: 'programs.professional.description',
     description: 'Supporto completo per atleti professionisti con analisi avanzata e ottimizzazione della performance.',
     image: '/lovable-uploads/53047a4d-087d-4e68-942b-d441b33bf6ab.png',
     vimeoEmbed: createStandardVimeoEmbed('1071006843?h=76f8bd542b', true, true, true),
     link: '/programs/professionals',
+    featureKeys: [
+      'programs.professional.feature1',
+      'programs.professional.feature2',
+      'programs.professional.feature3',
+      'programs.professional.feature4',
+      'programs.professional.feature5',
+      'programs.professional.feature6',
+      'programs.professional.feature7'
+    ],
     features: [
       'Allenamento completamente personalizzato su tutti i fronti',
       'Collaborazione tra coach, preparatore, mental coach e medico',
