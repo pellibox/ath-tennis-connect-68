@@ -44,6 +44,7 @@ import Prices from '@/pages/admin/Prices';
 import Users from '@/pages/admin/Users';
 import Settings from '@/pages/admin/Settings';
 import KnowledgeBase from '@/pages/admin/KnowledgeBase';
+import ContentManager from '@/pages/admin/ContentManager';
 
 // Programs pages
 import EliteProgram from '@/pages/programs/Elite';
@@ -191,6 +192,11 @@ function AppContent() {
           <Route path="/admin/knowledge-base" element={
             <ProtectedRoute requireAdmin>
               <KnowledgeBase />
+            </ProtectedRoute>
+          } />
+          <Route path="/admin/content" element={
+            <ProtectedRoute requireEditor>
+              <ContentManager />
             </ProtectedRoute>
           } />
           

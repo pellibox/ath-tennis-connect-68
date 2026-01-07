@@ -14,16 +14,153 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      cms_blocks: {
+        Row: {
+          content: string | null
+          created_at: string | null
+          id: string
+          image_url: string | null
+          is_active: boolean | null
+          key: string
+          metadata: Json | null
+          name: string
+          price: number | null
+          price_currency: string | null
+          type: Database["public"]["Enums"]["content_block_type"]
+          updated_at: string | null
+        }
+        Insert: {
+          content?: string | null
+          created_at?: string | null
+          id?: string
+          image_url?: string | null
+          is_active?: boolean | null
+          key: string
+          metadata?: Json | null
+          name: string
+          price?: number | null
+          price_currency?: string | null
+          type?: Database["public"]["Enums"]["content_block_type"]
+          updated_at?: string | null
+        }
+        Update: {
+          content?: string | null
+          created_at?: string | null
+          id?: string
+          image_url?: string | null
+          is_active?: boolean | null
+          key?: string
+          metadata?: Json | null
+          name?: string
+          price?: number | null
+          price_currency?: string | null
+          type?: Database["public"]["Enums"]["content_block_type"]
+          updated_at?: string | null
+        }
+        Relationships: []
+      }
+      cms_page_blocks: {
+        Row: {
+          block_id: string | null
+          created_at: string | null
+          id: string
+          page_id: string | null
+          section: string | null
+          sort_order: number | null
+        }
+        Insert: {
+          block_id?: string | null
+          created_at?: string | null
+          id?: string
+          page_id?: string | null
+          section?: string | null
+          sort_order?: number | null
+        }
+        Update: {
+          block_id?: string | null
+          created_at?: string | null
+          id?: string
+          page_id?: string | null
+          section?: string | null
+          sort_order?: number | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "cms_page_blocks_block_id_fkey"
+            columns: ["block_id"]
+            isOneToOne: false
+            referencedRelation: "cms_blocks"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "cms_page_blocks_page_id_fkey"
+            columns: ["page_id"]
+            isOneToOne: false
+            referencedRelation: "cms_pages"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      cms_pages: {
+        Row: {
+          created_at: string | null
+          description: string | null
+          id: string
+          is_active: boolean | null
+          slug: string
+          title: string
+          updated_at: string | null
+        }
+        Insert: {
+          created_at?: string | null
+          description?: string | null
+          id?: string
+          is_active?: boolean | null
+          slug: string
+          title: string
+          updated_at?: string | null
+        }
+        Update: {
+          created_at?: string | null
+          description?: string | null
+          id?: string
+          is_active?: boolean | null
+          slug?: string
+          title?: string
+          updated_at?: string | null
+        }
+        Relationships: []
+      }
+      user_roles: {
+        Row: {
+          created_at: string | null
+          id: string
+          role: string
+          user_id: string
+        }
+        Insert: {
+          created_at?: string | null
+          id?: string
+          role: string
+          user_id: string
+        }
+        Update: {
+          created_at?: string | null
+          id?: string
+          role?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
     }
     Functions: {
-      [_ in never]: never
+      has_role: { Args: { _role: string; _user_id: string }; Returns: boolean }
     }
     Enums: {
-      [_ in never]: never
+      content_block_type: "text" | "image" | "price" | "html"
     }
     CompositeTypes: {
       [_ in never]: never
@@ -150,6 +287,8 @@ export type CompositeTypes<
 
 export const Constants = {
   public: {
-    Enums: {},
+    Enums: {
+      content_block_type: ["text", "image", "price", "html"],
+    },
   },
 } as const
