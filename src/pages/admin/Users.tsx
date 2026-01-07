@@ -27,7 +27,7 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
-import { CheckCircle, XCircle, Shield, User, Search, PlusCircle, UserPlus } from 'lucide-react';
+import { CheckCircle, XCircle, Shield, User, Search, PlusCircle, UserPlus, Key } from 'lucide-react';
 import { setAsAdmin, setAsEditor, removeRole } from '@/utils/authUtils';
 import { supabase } from '@/integrations/supabase/client';
 
@@ -58,6 +58,13 @@ const Users = () => {
     fullName: '',
     role: 'user'
   });
+
+  // Reset password state
+  const [isResetDialogOpen, setIsResetDialogOpen] = useState(false);
+  const [resetLoading, setResetLoading] = useState(false);
+  const [resetUserId, setResetUserId] = useState<string | null>(null);
+  const [resetUserName, setResetUserName] = useState('');
+  const [newPassword, setNewPassword] = useState('');
 
   useEffect(() => {
     fetchUsers();
@@ -235,6 +242,54 @@ const Users = () => {
     } finally {
       setCreateLoading(false);
     }
+  };
+
+  const handleResetPassword = async () => {
+    if (!resetUserId || !newPassword) {
+      toast.error('Password è obbligatoria');
+      return;
+    }
+
+    if (newPassword.length < 6) {
+      toast.error('La password deve essere di almeno 6 caratteri');
+      return;
+    }
+
+    setResetLoading(true);
+    try {
+      const response = await supabase.functions.invoke('reset-password', {
+        body: {
+          userId: resetUserId,
+          newPassword: newPassword
+        }
+      });
+
+      if (response.error) {
+        throw new Error(response.error.message);
+      }
+
+      if (response.data?.error) {
+        throw new Error(response.data.error);
+      }
+
+      toast.success('Password reimpostata con successo');
+      setIsResetDialogOpen(false);
+      setNewPassword('');
+      setResetUserId(null);
+      setResetUserName('');
+    } catch (error: any) {
+      console.error('Error resetting password:', error);
+      toast.error(error.message || 'Errore durante il reset della password');
+    } finally {
+      setResetLoading(false);
+    }
+  };
+
+  const openResetDialog = (userId: string, userName: string) => {
+    setResetUserId(userId);
+    setResetUserName(userName);
+    setNewPassword('');
+    setIsResetDialogOpen(true);
   };
 
   const filteredUsers = users.filter(user => 
@@ -444,12 +499,20 @@ const Users = () => {
                   </TableCell>
                   <TableCell className="text-right">
                     <div className="flex justify-end gap-2">
+                      <Button 
+                        variant="outline" 
+                        size="sm"
+                        onClick={() => openResetDialog(userData.id, userData.fullName || userData.email)}
+                        title="Reset Password"
+                      >
+                        <Key className="h-4 w-4 text-orange-600" />
+                      </Button>
                       {!userData.roles.includes('admin') && (
                         <Button 
                           variant="outline" 
                           size="sm"
                           onClick={() => handleSetAdmin(userData.id)}
-                          title={t('admin.setAsAdmin') || 'Set as Admin'}
+                          title="Imposta Admin"
                         >
                           <Shield className="h-4 w-4 text-red-600" />
                         </Button>
@@ -459,7 +522,7 @@ const Users = () => {
                           variant="outline" 
                           size="sm"
                           onClick={() => handleSetEditor(userData.id)}
-                          title={t('admin.setAsEditor') || 'Set as Editor'}
+                          title="Imposta Editor"
                         >
                           <User className="h-4 w-4 text-blue-600" />
                         </Button>
@@ -469,7 +532,7 @@ const Users = () => {
                           variant="outline" 
                           size="sm"
                           onClick={() => handleRemoveRole(userData.id, 'admin')}
-                          title={t('admin.removeAdmin') || 'Remove Admin'}
+                          title="Rimuovi Admin"
                         >
                           <XCircle className="h-4 w-4 text-red-600" />
                         </Button>
@@ -479,7 +542,7 @@ const Users = () => {
                           variant="outline" 
                           size="sm"
                           onClick={() => handleRemoveRole(userData.id, 'editor')}
-                          title={t('admin.removeEditor') || 'Remove Editor'}
+                          title="Rimuovi Editor"
                         >
                           <XCircle className="h-4 w-4 text-blue-600" />
                         </Button>
@@ -499,6 +562,40 @@ const Users = () => {
             )}
           </TableBody>
         </Table>
+
+        {/* Reset Password Dialog */}
+        <Dialog open={isResetDialogOpen} onOpenChange={setIsResetDialogOpen}>
+          <DialogContent>
+            <DialogHeader>
+              <DialogTitle>Reset Password</DialogTitle>
+              <DialogDescription>
+                Imposta una nuova password per {resetUserName}
+              </DialogDescription>
+            </DialogHeader>
+            
+            <div className="grid gap-4 py-4">
+              <div className="grid gap-2">
+                <Label htmlFor="new-password">Nuova Password</Label>
+                <Input
+                  id="new-password"
+                  type="password"
+                  value={newPassword}
+                  onChange={(e) => setNewPassword(e.target.value)}
+                  placeholder="Minimo 6 caratteri"
+                />
+              </div>
+            </div>
+            
+            <DialogFooter>
+              <DialogClose asChild>
+                <Button variant="outline">Annulla</Button>
+              </DialogClose>
+              <Button onClick={handleResetPassword} disabled={resetLoading}>
+                {resetLoading ? 'Reset in corso...' : 'Reset Password'}
+              </Button>
+            </DialogFooter>
+          </DialogContent>
+        </Dialog>
       </div>
     </AdminLayout>
   );
