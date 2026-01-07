@@ -340,6 +340,18 @@ const translations = {
   "programs.junior.performance4.feature3": "In-depth Vicki™ analysis",
   "programs.junior.performance4.feature4": "Mental coaching included",
   
+  // Program Data Translations - Parent/Tutor
+  "programs.junior.parent.title": "Parent/Tutor (Young and Junior Competitors 6-18 years)",
+  "programs.junior.parent.description": "An innovative program created by specialized mental coaches to support parents and tutors of young tennis players in their fundamental role of sports accompaniment.",
+  "programs.junior.parent.feature1": "Technology support: Intuitive reports, training and match streaming, simplified statistical analysis",
+  "programs.junior.parent.feature2": "Continuous training: 4 educational workshops during the year and 2 group meetings with the mental coach",
+  "programs.junior.parent.feature3": "Practical tools: Effective communication guides, pre-tournament checklists, logbook",
+  "programs.junior.parent.feature4": "Specific skills: Managing emotions related to competitions, constructive communication",
+  "programs.junior.parent.feature5": "Support community: Network of parents with similar experiences, moderated by industry experts",
+  "programs.junior.parent.feature6": "Access to Vicki™ platform for parents with reports and streaming",
+  "programs.junior.parent.feature7": "Educational materials and dedicated resources",
+  "programs.junior.parent.feature8": "Included in Elite Performance and Elite Performance Full programs, €150/year for all other programs",
+  
   // Program Data Translations - Elite Programs
   "programs.elite.full.title": "Elite Performance Full",
   "programs.elite.full.description": "Complete program for high-level athletes aged 14+ with intensive daily sessions.",

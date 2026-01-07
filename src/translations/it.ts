@@ -380,6 +380,18 @@ const translations = {
   "programs.junior.performance4.feature3": "Analisi Vicki™ approfondita",
   "programs.junior.performance4.feature4": "Mental coaching incluso",
   
+  // Program Data Translations - Parent/Tutor
+  "programs.junior.parent.title": "Genitore/Tutor (Giovani e Junior Agonisti 6-18 anni)",
+  "programs.junior.parent.description": "Un programma innovativo creato da mental coach specializzati per supportare i genitori e tutori di giovani tennisti nel loro ruolo fondamentale di accompagnamento sportivo.",
+  "programs.junior.parent.feature1": "Supporto tecnologico: Report intuitivi, streaming di allenamenti e partite, analisi statistiche semplificate",
+  "programs.junior.parent.feature2": "Formazione continua: 4 workshop formativi durante l'anno e 2 incontri di gruppo con il mental coach",
+  "programs.junior.parent.feature3": "Strumenti pratici: Guide alla comunicazione efficace, checklist pre-torneo, diario di bordo",
+  "programs.junior.parent.feature4": "Competenze specifiche: Gestione delle emozioni legate alle competizioni, comunicazione costruttiva",
+  "programs.junior.parent.feature5": "Comunità di supporto: Rete di genitori con esperienze simili, moderata da esperti del settore",
+  "programs.junior.parent.feature6": "Accesso alla piattaforma Vicki™ per genitori con report e streaming",
+  "programs.junior.parent.feature7": "Materiali educativi e risorse dedicate",
+  "programs.junior.parent.feature8": "Incluso nei programmi Elite Performance e Elite Performance Full, €150/anno per tutti gli altri programmi",
+  
   // Program Data Translations - Elite Programs
   "programs.elite.full.title": "Elite Performance Full",
   "programs.elite.full.description": "Programma completo per atleti di alto livello dai 14 anni con sessioni giornaliere intensive.",
