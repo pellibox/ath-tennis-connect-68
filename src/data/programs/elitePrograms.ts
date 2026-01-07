@@ -5,11 +5,22 @@ import { createStandardVimeoEmbed } from '@/utils/videoUtils';
 export const elitePrograms: Program[] = [
   {
     id: '2',
+    titleKey: 'programs.elite.full.title',
     title: 'Elite Performance Full',
+    descriptionKey: 'programs.elite.full.description',
     description: 'Programma completo e immersivo per atleti con aspirazioni professionali.',
     image: '/lovable-uploads/ef64c04d-055d-4d70-87f4-e67928a3b8e6.png',
     vimeoEmbed: createStandardVimeoEmbed('1071002692?h=a2668fa56d', true, true, true),
     link: '/programs/elite-full',
+    featureKeys: [
+      'programs.elite.full.feature1',
+      'programs.elite.full.feature2',
+      'programs.elite.full.feature3',
+      'programs.elite.full.feature4',
+      'programs.elite.full.feature5',
+      'programs.elite.full.feature6',
+      'programs.elite.full.feature7'
+    ],
     features: [
       'Eccellenza Tecnica: Analisi biomeccanica dettagliata e feedback immediato',
       'Preparazione Atletica: Ottimizzazione degli spostamenti e dominanza fisica',
@@ -23,11 +34,21 @@ export const elitePrograms: Program[] = [
   },
   {
     id: '1',
+    titleKey: 'programs.elite.performance.title',
     title: 'Elite Performance',
+    descriptionKey: 'programs.elite.performance.description',
     description: 'Programma avanzato per atleti agonisti con obiettivi competitivi di alto livello.',
     image: '/lovable-uploads/ef64c04d-055d-4d70-87f4-e67928a3b8e6.png',
     vimeoEmbed: createStandardVimeoEmbed('1071002692?h=a2668fa56d', true, true, true),
     link: '/programs/elite-performance',
+    featureKeys: [
+      'programs.elite.performance.feature1',
+      'programs.elite.performance.feature2',
+      'programs.elite.performance.feature3',
+      'programs.elite.performance.feature4',
+      'programs.elite.performance.feature5',
+      'programs.elite.performance.feature6'
+    ],
     features: [
       'Eccellenza Tecnica: Analisi biomeccanica dettagliata di ogni colpo',
       'Preparazione Atletica: Monitoraggio costante e programmi personalizzati',
@@ -40,11 +61,24 @@ export const elitePrograms: Program[] = [
   },
   {
     id: '3',
+    titleKey: 'programs.elite.performance234.title',
     title: 'Performance 2, 3 & 4 (11+ anni)',
+    descriptionKey: 'programs.elite.performance234.description',
     description: 'Programmi completi per giovani atleti dai 11 anni in su che vogliono sviluppare un percorso agonistico strutturato, con opzioni da 2 a 4 giorni settimanali, supportati dalla tecnologia VICKI™ per un allenamento personalizzato e mirato.',
     image: '/lovable-uploads/ef64c04d-055d-4d70-87f4-e67928a3b8e6.png',
     vimeoEmbed: createStandardVimeoEmbed('1071002692?h=a2668fa56d', true, true, true),
     link: '/programs/performance-2',
+    featureKeys: [
+      'programs.elite.performance234.feature1',
+      'programs.elite.performance234.feature2',
+      'programs.elite.performance234.feature3',
+      'programs.elite.performance234.feature4',
+      'programs.elite.performance234.feature5',
+      'programs.elite.performance234.feature6',
+      'programs.elite.performance234.feature7',
+      'programs.elite.performance234.feature8',
+      'programs.elite.performance234.feature9'
+    ],
     features: [
       'Percorsi flessibili: 2, 3 o 4 giorni settimanali di allenamento',
       'Analisi in tempo reale di tecnica, tattica, parametri mentali e fisici',
