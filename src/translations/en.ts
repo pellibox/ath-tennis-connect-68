@@ -141,7 +141,12 @@ const translations = {
   "chatbot.askCoach": "Ask the coach",
   
   // Vicki tab translations
-  "vicki.askTitle": "ASK Vicki",
+  "vicki.askTitle": "Ask Vicki",
+  "vicki.connecting": "Connecting...",
+  "vicki.speaking": "Vicki speaking...",
+  "vicki.listening": "Listening...",
+  "vicki.error": "Enable microphone",
+  "vicki.endConversation": "End conversation",
   
   // Brochure translations
   "brochure.download": "Download Information Brochure",

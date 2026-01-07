@@ -210,6 +210,11 @@ const translations = {
   
   // Vicki tab translations
   "vicki.askTitle": "Chiedi a Vicki",
+  "vicki.connecting": "Connessione...",
+  "vicki.speaking": "Vicki parla...",
+  "vicki.listening": "Ti ascolto...",
+  "vicki.error": "Abilita il microfono",
+  "vicki.endConversation": "Termina conversazione",
   
   // Brochure translations
   "brochure.download": "Scarica Brochure Informativa",

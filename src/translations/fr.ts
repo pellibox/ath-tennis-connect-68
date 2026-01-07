@@ -180,7 +180,12 @@ const translations = {
   "chatbot.askCoach": "Demander au coach",
   
   // Vicki tab translations
-  "vicki.askTitle": "Demander à Vicki"
+  "vicki.askTitle": "Demander à Vicki",
+  "vicki.connecting": "Connexion...",
+  "vicki.speaking": "Vicki parle...",
+  "vicki.listening": "J'écoute...",
+  "vicki.error": "Activer le microphone",
+  "vicki.endConversation": "Terminer la conversation"
 };
 
 export default translations;

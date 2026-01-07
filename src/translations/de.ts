@@ -182,7 +182,12 @@ const translations = {
   "chatbot.askCoach": "Den Trainer fragen",
   
   // Vicki tab translations
-  "vicki.askTitle": "Vicki fragen"
+  "vicki.askTitle": "Vicki fragen",
+  "vicki.connecting": "Verbindung...",
+  "vicki.speaking": "Vicki spricht...",
+  "vicki.listening": "Ich höre zu...",
+  "vicki.error": "Mikrofon aktivieren",
+  "vicki.endConversation": "Gespräch beenden"
 };
 
 export default translations;

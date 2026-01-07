@@ -68,11 +68,11 @@ const VickiWidgetContainer = () => {
   };
 
   const getButtonText = () => {
-    if (error) return error;
-    if (isConnecting) return 'Connessione...';
-    if (isConnected && isSpeaking) return 'Vicki parla...';
-    if (isConnected) return 'Ti ascolto...';
-    return t('vicki.askTitle') || 'Chiedi a Vicki';
+    if (error) return t('vicki.error') || error;
+    if (isConnecting) return t('vicki.connecting') || 'Connecting...';
+    if (isConnected && isSpeaking) return t('vicki.speaking') || 'Vicki speaking...';
+    if (isConnected) return t('vicki.listening') || 'Listening...';
+    return t('vicki.askTitle') || 'Ask Vicki';
   };
 
   return (
@@ -90,7 +90,7 @@ const VickiWidgetContainer = () => {
         disabled:opacity-75
         ${isConnected ? 'ring-2 ring-green-400 ring-offset-2' : ''}
       `}
-      aria-label={isConnected ? 'Termina conversazione' : 'Chiedi a Vicki'}
+      aria-label={isConnected ? t('vicki.endConversation') || 'End conversation' : t('vicki.askTitle') || 'Ask Vicki'}
     >
       {/* Vicki Logo */}
       <div className="relative flex-shrink-0">
