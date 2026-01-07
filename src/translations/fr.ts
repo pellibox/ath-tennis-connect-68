@@ -655,7 +655,42 @@ const translations = {
   "vicki.speaking": "Vicki parle...",
   "vicki.listening": "J'écoute...",
   "vicki.error": "Activer le microphone",
-  "vicki.endConversation": "Terminer la conversation"
+  "vicki.endConversation": "Terminer la conversation",
+
+  // Program Pages - Common
+  "programPages.wantToKnowMore": "Vous voulez en savoir plus?",
+  "programPages.contactForInfo": "Contactez-nous pour plus d'informations",
+  "programPages.contactForTrial": "Contactez-nous pour un essai gratuit",
+  "programPages.bookTrial": "RÉSERVER UN ESSAI",
+  "programPages.requestInfo": "DEMANDER DES INFOS",
+  "programPages.contactUs": "CONTACTEZ-NOUS",
+  "programPages.programFeatures": "Caractéristiques du Programme",
+  "programPages.price": "Prix",
+  "programPages.relatedPrograms": "Programmes Connexes",
+  "programPages.whyChoose": "Pourquoi choisir",
+  "programPages.benefits": "Avantages",
+  
+  // Elite Performance Full Page
+  "eliteFullPage.title": "Elite Performance Full",
+  "eliteFullPage.subtitle": "Programme complet (40 semaines)",
+  "eliteFullPage.bannerTitle": "ELITE PERFORMANCE FULL:",
+  "eliteFullPage.technicalExcellence": "Excellence Technique:",
+  "eliteFullPage.physicalPrep": "Préparation Athlétique:",
+  "eliteFullPage.mentalStrength": "Force Mentale:",
+  "eliteFullPage.tacticsStrategy": "Tactique & Stratégie:",
+  
+  // Parent/Tutor Page  
+  "parentPage.title": "Parent/Tuteur",
+  "parentPage.offersTitle": "Le Programme Offre",
+  
+  // Other pages
+  "sitPage.title": "SIT - École d'Identification des Talents",
+  "satPage.title": "SAT - École d'Initiation au Tennis",
+  "perf4Page.title": "Performance 4",
+  "clubPage.title": "Programmes pour Clubs et Académies",
+  "coachPage.title": "Coach / Entraîneurs",
+  "profPage.title": "Professionnels",
+  "juniorPage.title": "Junior"
 };
 
 export default translations;
