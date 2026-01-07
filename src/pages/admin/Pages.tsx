@@ -15,7 +15,6 @@ import { format } from 'date-fns';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogFooter } from '@/components/ui/dialog';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
-import { v4 as uuidv4 } from 'uuid';
 
 // Static pages data - can be replaced with database when pages table is created
 const initialPages: Page[] = [];
@@ -58,7 +57,7 @@ const PagesAdmin = () => {
     }
 
     const newPage: Page = {
-      id: uuidv4(),
+      id: crypto.randomUUID(),
       title: newPageTitle,
       slug: newPageSlug,
       status: 'draft',
