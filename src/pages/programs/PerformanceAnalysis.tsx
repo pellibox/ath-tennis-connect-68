@@ -1,8 +1,8 @@
+
 import { useEffect } from 'react';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
-import { Breadcrumb, BreadcrumbItem, BreadcrumbLink, BreadcrumbList, BreadcrumbPage, BreadcrumbSeparator } from "@/components/ui/breadcrumb";
-import { Link } from 'react-router-dom';
+import { useLanguage } from '@/contexts/LanguageContext';
 import Hero from '@/components/Hero';
 import RevealAnimation from '@/components/RevealAnimation';
 import VickiUnifiedBadge from '@/components/VickiUnifiedBadge';
@@ -10,6 +10,8 @@ import ButtonLink from '@/components/ButtonLink';
 import ContactSection from '@/components/ContactSection';
 
 const PerformanceAnalysisProgram = () => {
+  const { t } = useLanguage();
+  
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }, []);
@@ -21,25 +23,24 @@ const PerformanceAnalysisProgram = () => {
       <main className="flex-grow">
         <div className="relative">
           <Hero 
-            title="Performance Analysis"
-            subtitle="Analisi completa del gioco con tecnologia avanzata e feedback personalizzato"
+            title={t('programs.performanceAnalysis.title')}
+            subtitle={t('programs.performanceAnalysis.subtitle')}
             imageSrc="https://images.unsplash.com/photo-1549060279-7e168fcee0c2?q=80&w=2070&auto=format&fit=crop"
             vimeoEmbed='<div style="padding:75% 0 0 0;position:relative;"><iframe src="https://player.vimeo.com/video/1068785493?h=fe90d50dae&autoplay=1&loop=1&background=1&autopause=0&player_id=0&app_id=58479&controls=0" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media" style="position:absolute;top:0;left:0;width:100%;height:100%;" title="Performance Analysis"></iframe></div><script src="https://player.vimeo.com/api/player.js"></script>'
             buttons={[
-              { text: 'PRENOTA UNA PROVA', href: '/contact' },
-              { text: 'CONTATTACI', href: '/contact', variant: 'outline' }
+              { text: t('programs.performanceAnalysis.hero.cta1'), href: '/contact' },
+              { text: t('programs.performanceAnalysis.hero.cta2'), href: '/contact', variant: 'outline' }
             ]}
             contentPosition="left"
             overlayOpacity="medium"
           />
           
-          {/* Black banner with claim text */}
           <div className="w-full bg-black py-16 relative" style={{ height: '300px' }}>
             <div className="max-w-6xl mx-auto px-6 h-full flex flex-col justify-center">
               <div className="flex items-center mb-2">
-                <h2 className="text-white text-lg font-display mr-3">PERFORMANCE ANALYSIS:</h2>
+                <h2 className="text-white text-lg font-display mr-3">{t('programs.performanceAnalysis.banner.title')}</h2>
                 <p className="text-white text-lg font-swiss max-w-3xl">
-                  Analisi completa del gioco con tecnologia avanzata e feedback personalizzato
+                  {t('programs.performanceAnalysis.banner.subtitle')}
                 </p>
               </div>
               <div className="mt-4 flex flex-wrap gap-3">
@@ -53,61 +54,57 @@ const PerformanceAnalysisProgram = () => {
           <div className="mb-12">
             <RevealAnimation>
               <div className="flex flex-wrap items-center gap-3 mb-6">
-                <h2 className="text-3xl font-swiss">Performance Analysis</h2>
+                <h2 className="text-3xl font-swiss">{t('programs.performanceAnalysis.pageTitle')}</h2>
                 <VickiUnifiedBadge level="pro" />
               </div>
             </RevealAnimation>
             <RevealAnimation delay={100}>
               <p className="text-lg mb-6 font-swiss">
-                Analisi completa del gioco con tecnologia avanzata e feedback personalizzato.
+                {t('programs.performanceAnalysis.intro')}
               </p>
             </RevealAnimation>
             <RevealAnimation delay={150}>
               <p className="mb-4 font-swiss">
-                Il programma di Performance Analysis utilizza tecnologia all'avanguardia e metodologie analitiche 
-                avanzate per fornire una valutazione completa e dettagliata delle prestazioni del giocatore.
+                {t('programs.performanceAnalysis.desc1')}
               </p>
             </RevealAnimation>
             <RevealAnimation delay={200}>
               <p className="mb-4 font-swiss">
-                Attraverso la tecnologia VICKI™, siamo in grado di monitorare oltre 70 parametri specifici e 
-                trasformarli in insights actionable che guidano il miglioramento tecnico, tattico e atletico.
+                {t('programs.performanceAnalysis.desc2')}
               </p>
             </RevealAnimation>
             <RevealAnimation delay={250}>
               <p className="mb-4 font-swiss">
-                <strong>Analisi Completa:</strong> Il nostro sistema fornisce una valutazione biomeccanica 
-                approfondita, analizzando ogni aspetto del tuo gioco per identificare punti di forza e aree 
-                di miglioramento con precisione scientifica.
+                <strong>{t('programs.performanceAnalysis.complete.title')}</strong> {t('programs.performanceAnalysis.complete.desc')}
               </p>
             </RevealAnimation>
           </div>
           
           <div className="grid md:grid-cols-2 gap-10">
             <RevealAnimation delay={350} className="bg-gray-50 p-8 rounded-lg">
-              <h3 className="text-xl font-swiss font-semibold mb-4">Caratteristiche dell'Analisi</h3>
+              <h3 className="text-xl font-swiss font-semibold mb-4">{t('programs.performanceAnalysis.features.title')}</h3>
               <ul className="list-disc list-inside space-y-2 font-swiss">
-                <li>Valutazione biomeccanica completa</li>
-                <li>Analisi tattica delle partite</li>
-                <li>Monitoraggio dei pattern di movimento</li>
-                <li>Analisi della velocità e precisione dei colpi</li>
-                <li>Valutazione dell'efficienza energetica</li>
-                <li>Report dettagliati con visualizzazioni interattive</li>
-                <li>Heatmap e pattern di spostamento</li>
-                <li>Statistiche avanzate di gioco</li>
+                <li>{t('programs.performanceAnalysis.features.feature1')}</li>
+                <li>{t('programs.performanceAnalysis.features.feature2')}</li>
+                <li>{t('programs.performanceAnalysis.features.feature3')}</li>
+                <li>{t('programs.performanceAnalysis.features.feature4')}</li>
+                <li>{t('programs.performanceAnalysis.features.feature5')}</li>
+                <li>{t('programs.performanceAnalysis.features.feature6')}</li>
+                <li>{t('programs.performanceAnalysis.features.feature7')}</li>
+                <li>{t('programs.performanceAnalysis.features.feature8')}</li>
               </ul>
             </RevealAnimation>
             
             <RevealAnimation delay={400} className="bg-gray-50 p-8 rounded-lg">
-              <h3 className="text-xl font-swiss font-semibold mb-4">Benefici</h3>
+              <h3 className="text-xl font-swiss font-semibold mb-4">{t('programs.performanceAnalysis.benefits.title')}</h3>
               <div className="mb-6">
                 <ul className="list-disc list-inside space-y-2 font-swiss">
-                  <li>Identificazione precisa delle aree di miglioramento</li>
-                  <li>Ottimizzazione basata su dati oggettivi</li>
-                  <li>Prevenzione degli infortuni</li>
-                  <li>Personalizzazione dei programmi di allenamento</li>
-                  <li>Misurazione accurata dei progressi nel tempo</li>
-                  <li>Decisioni più informate su strategie di gioco</li>
+                  <li>{t('programs.performanceAnalysis.benefits.benefit1')}</li>
+                  <li>{t('programs.performanceAnalysis.benefits.benefit2')}</li>
+                  <li>{t('programs.performanceAnalysis.benefits.benefit3')}</li>
+                  <li>{t('programs.performanceAnalysis.benefits.benefit4')}</li>
+                  <li>{t('programs.performanceAnalysis.benefits.benefit5')}</li>
+                  <li>{t('programs.performanceAnalysis.benefits.benefit6')}</li>
                 </ul>
               </div>
               
@@ -117,7 +114,7 @@ const PerformanceAnalysisProgram = () => {
                   variant="athOutline"
                   showArrow={true}
                 >
-                  Scopri di più
+                  {t('programs.performanceAnalysis.cta')}
                 </ButtonLink>
               </div>
             </RevealAnimation>
@@ -125,8 +122,8 @@ const PerformanceAnalysisProgram = () => {
         </div>
         
         <ContactSection 
-          title="Vuoi saperne di più?" 
-          subtitle="Contattaci per una analisi personalizzata"
+          title={t('programs.performanceAnalysis.contact.title')} 
+          subtitle={t('programs.performanceAnalysis.contact.subtitle')}
           address="Via Carlo D'Adda 6/8, 20143 Milano (MI)"
           email="info@advancedtennishub.com"
           phone="+39 02 123 4567"

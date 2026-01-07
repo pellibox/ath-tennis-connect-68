@@ -19,7 +19,6 @@ const CoachProgram = () => {
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
     
-    // Load user preferences
     const { gender, type } = loadUserPreferences();
     if (gender) setUserGender(gender);
     if (type) setUserType(type);
@@ -32,25 +31,24 @@ const CoachProgram = () => {
       <main className="flex-grow">
         <div className="relative">
           <Hero 
-            title="Coach / Allenatori"
-            subtitle="Formazione avanzata (tutto l'anno)"
+            title={t('programs.coach.title')}
+            subtitle={t('programs.coach.subtitle')}
             imageSrc="https://images.unsplash.com/photo-1620588280212-9c4784d5d99d?q=80&w=2067&auto=format&fit=crop"
             vimeoEmbed={createStandardVimeoEmbed('1068788542?h=698f55b033')}
             buttons={[
-              { text: 'RICHIEDI INFORMAZIONI', href: '/contact' },
-              { text: 'CONTATTACI', href: '/contact', variant: 'outline' }
+              { text: t('programs.coach.hero.cta1'), href: '/contact' },
+              { text: t('programs.coach.hero.cta2'), href: '/contact', variant: 'outline' }
             ]}
             contentPosition="left"
             overlayOpacity="medium"
           />
           
-          {/* Black banner with claim text */}
           <div className="w-full bg-black py-16 relative" style={{ height: '300px' }}>
             <div className="max-w-6xl mx-auto px-6 h-full flex flex-col justify-center">
               <div className="flex items-center mb-2">
-                <h2 className="text-white text-lg font-display mr-3">COACH:</h2>
+                <h2 className="text-white text-lg font-display mr-3">{t('programs.coach.banner.title')}</h2>
                 <p className="text-white text-lg font-swiss max-w-3xl">
-                  Formazione avanzata e strumenti innovativi per allenatori di tennis
+                  {t('programs.coach.banner.subtitle')}
                 </p>
               </div>
               <div className="mt-4 flex flex-wrap gap-3">
@@ -65,70 +63,63 @@ const CoachProgram = () => {
           <div className="mb-12">
             <RevealAnimation>
               <div className="flex flex-wrap items-center gap-3 mb-6">
-                <h2 className="text-3xl font-swiss">Coach / Allenatori</h2>
+                <h2 className="text-3xl font-swiss">{t('programs.coach.pageTitle')}</h2>
                 <VickiMonitoringBadge level="pro" />
                 <VickiPoweredBadge />
               </div>
             </RevealAnimation>
             <RevealAnimation delay={100}>
-              <p className="text-lg mb-6 font-swiss">Formazione avanzata, disponibile tutto l'anno.</p>
+              <p className="text-lg mb-6 font-swiss">{t('programs.coach.intro')}</p>
             </RevealAnimation>
             <RevealAnimation delay={150}>
               <p className="mb-4 font-swiss">
-                Il programma per Coach è pensato per allenatori di tennis che desiderano elevare
-                il proprio metodo di insegnamento attraverso l'utilizzo di tecnologie avanzate
-                e metodologie basate sui dati. Questo percorso offre accesso alla piattaforma VICKI™
-                per il tracking e l'analisi video, permettendo di ottimizzare il lavoro con i propri atleti.
+                {t('programs.coach.desc1')}
               </p>
             </RevealAnimation>
             <RevealAnimation delay={200}>
               <p className="font-swiss">
-                Attraverso questo programma, i coach possono creare e codificare nel sistema un metodo personalizzato,
-                beneficiando di formazione continua e aggiornamenti metodologici. L'integrazione della tecnologia
-                nel processo di coaching permette di oggettivizzare il feedback e accelerare lo sviluppo degli atleti.
+                {t('programs.coach.desc2')}
               </p>
             </RevealAnimation>
           </div>
           
           <div className="grid md:grid-cols-2 gap-10">
             <RevealAnimation delay={250} className="bg-gray-50 p-8 rounded-lg">
-              <h3 className="text-xl font-swiss font-semibold mb-4">Caratteristiche del Programma</h3>
+              <h3 className="text-xl font-swiss font-semibold mb-4">{t('programs.coach.features.title')}</h3>
               <ul className="list-disc list-inside space-y-2 font-swiss">
-                <li>Accesso alla piattaforma di tracking e analisi video</li>
-                <li>Integrazione con il sistema VICKI™ per analisi avanzata</li>
-                <li>Creazione di un metodo personalizzato (codificabile nel sistema)</li>
-                <li>Formazione continua e aggiornamento metodologico</li>
-                <li>Workshop di approfondimento tecnico e pedagogico</li>
-                <li>Possibilità di condividere dati e report con altri professionisti</li>
-                <li>Supporto tecnico continuo</li>
-                <li>Accesso a una community di coach innovativi</li>
+                <li>{t('programs.coach.features.feature1')}</li>
+                <li>{t('programs.coach.features.feature2')}</li>
+                <li>{t('programs.coach.features.feature3')}</li>
+                <li>{t('programs.coach.features.feature4')}</li>
+                <li>{t('programs.coach.features.feature5')}</li>
+                <li>{t('programs.coach.features.feature6')}</li>
+                <li>{t('programs.coach.features.feature7')}</li>
+                <li>{t('programs.coach.features.feature8')}</li>
               </ul>
             </RevealAnimation>
             
             <RevealAnimation delay={300} className="bg-gray-50 p-8 rounded-lg">
-              <h3 className="text-xl font-swiss font-semibold mb-4">Prezzo</h3>
+              <h3 className="text-xl font-swiss font-semibold mb-4">{t('programs.coach.pricing.title')}</h3>
               <div className="mb-4">
-                <p className="text-2xl font-bold text-ath-clay">Personalizzato</p>
-                <p className="text-sm text-gray-600">in base alle esigenze specifiche</p>
+                <p className="text-2xl font-bold text-ath-clay">{t('programs.coach.pricing.custom')}</p>
+                <p className="text-sm text-gray-600">{t('programs.coach.pricing.customDesc')}</p>
               </div>
               <p className="text-sm text-gray-600 mb-4">
-                Il costo del programma per Coach viene definito su misura, considerando
-                il numero di atleti seguiti, il livello di integrazione tecnologica desiderato
-                e altre specifiche necessità.
+                {t('programs.coach.pricing.desc')}
               </p>
               <a 
                 href="/contact" 
                 className="inline-block bg-ath-clay text-white py-2 px-4 rounded hover:bg-ath-clay/90 transition-colors"
               >
-                Richiedi un preventivo
+                {t('programs.coach.pricing.cta')}
               </a>
             </RevealAnimation>
           </div>
         </div>
         
         <ContactSection 
-          title="Vuoi saperne di più?" 
-          subtitle="Contattaci per una consulenza personalizzata"
+          title={t('programs.coach.contact.title')} 
+          subtitle={t('programs.coach.contact.subtitle')}
           address="Via Carlo D'Adda 6/8, 20143 Milano (MI)"
           email="info@advancedtennishub.com"
           phone="+39 02 123 4567"

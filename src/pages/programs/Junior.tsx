@@ -9,7 +9,6 @@ import { UserGender, UserType, loadUserPreferences } from '@/components/UserType
 import Hero from '@/components/Hero';
 import VickiMonitoringBadge, { MonitoringLevel } from '@/components/VickiMonitoringBadge';
 import VickiPoweredBadge from '@/components/VickiPoweredBadge';
-import PricingTables from '@/components/PricingTables';
 import { Link } from 'react-router-dom';
 import { ArrowRight } from 'lucide-react';
 
@@ -21,83 +20,77 @@ const JuniorProgram = () => {
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
     
-    // Carica le preferenze dell'utente
     const preferences = loadUserPreferences();
     setUserProfile(preferences);
     
-    // Set video based on user type
     if (preferences.type === 'junior') {
       setVimeoEmbed('<div style="padding:56.25% 0 0 0;position:relative;"><iframe src="https://player.vimeo.com/video/1068596987?h=c9dad61d03&autoplay=1&loop=1&title=0&byline=0&portrait=0&controls=0" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" style="position:absolute;top:0;left:0;width:100%;height:100%;" title="Junior Video"></iframe></div><script src="https://player.vimeo.com/api/player.js"></script>');
     }
   }, []);
 
-  // Definisci i programmi junior di base
   const getJuniorPrograms = () => {
     const basePrograms = [
       {
         id: 'talent-id',
-        title: 'Scuola Individuazione Talenti (4-10 anni)',
-        description: 'Programma specializzato per l\'identificazione precoce dei talenti tennistici tramite il sistema Vicki™.',
+        title: t('programs.junior.programs.talentId.title'),
+        description: t('programs.junior.programs.talentId.desc'),
         image: 'https://images.unsplash.com/photo-1596463059283-da257325bab8?q=80&w=2070&auto=format&fit=crop',
         vimeoEmbed: '<div style="padding:56.25% 0 0 0;position:relative;"><iframe src="https://player.vimeo.com/video/1068618561?h=f1a4f80a91&autoplay=0&loop=1&title=0&byline=0&portrait=0&controls=0&background=1" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen style="position:absolute;top:0;left:0;width:100%;height:100%;"></iframe></div>',
         link: '#',
         features: [
-          'Valutazione iniziale con sistema Vicki™ che monitora pattern motori e attitudinali',
-          'Approccio ludico e divertente all\'apprendimento tecnico',
-          'Monitoraggio dello sviluppo fisico e delle attitudini con parametri oggettivi'
+          t('programs.junior.programs.talentId.feature1'),
+          t('programs.junior.programs.talentId.feature2'),
+          t('programs.junior.programs.talentId.feature3')
         ],
         monitoringLevel: 'basic' as MonitoringLevel,
         vickiPowered: true
       },
       {
         id: 'junior-competitive',
-        title: 'Performance Junior (6-12 anni)',
-        description: 'Programma formativo per giovani atleti in fase di sviluppo tecnico e fisico.',
+        title: t('programs.junior.programs.competitive.title'),
+        description: t('programs.junior.programs.competitive.desc'),
         image: 'https://images.unsplash.com/photo-1612458225454-41c3991c0c49?q=80&w=1973&auto=format&fit=crop',
         vimeoEmbed: '<div style="padding:56.25% 0 0 0;position:relative;"><iframe src="https://player.vimeo.com/video/1068596987?h=c9dad61d03&autoplay=0&loop=1&title=0&byline=0&portrait=0&controls=0&background=1" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen style="position:absolute;top:0;left:0;width:100%;height:100%;"></iframe></div>',
         link: '#',
         features: [
-          'Valutazioni tecniche, fisiche, mentali e tattiche costanti',
-          'Analisi biomeccanica in campo',
-          'Monitoraggio crescita per evitare sovraccarichi',
-          'Programmi adattati all\'età e all\'evoluzione motoria'
+          t('programs.junior.programs.competitive.feature1'),
+          t('programs.junior.programs.competitive.feature2'),
+          t('programs.junior.programs.competitive.feature3'),
+          t('programs.junior.programs.competitive.feature4')
         ],
         monitoringLevel: 'advanced' as MonitoringLevel,
         vickiPowered: true
       },
       {
         id: 'parent-support',
-        title: 'Genitore/Tutor (Giovani e Junior Agonisti 6-18 anni)',
-        description: 'Sì, abbiamo un programma anche per te! Per aiutare anche i genitori a supportare correttamente l\'atleta nel suo percorso formativo attraverso informazioni e coinvolgimento nello sviluppo del giovane atleta.',
+        title: t('programs.junior.programs.parent.title'),
+        description: t('programs.junior.programs.parent.desc'),
         image: 'https://images.unsplash.com/photo-1515377905703-c4788e51af15?q=80&w=2070&auto=format&fit=crop',
         vimeoEmbed: '<div style="padding:56.25% 0 0 0;position:relative;"><iframe src="https://player.vimeo.com/video/1068621034?h=7b8c99f420&ts=0&autoplay=0&loop=1&title=0&byline=0&portrait=0&controls=0&background=1" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen style="position:absolute;top:0;left:0;width:100%;height:100%;"></iframe></div>',
         link: '#',
         features: [
-          'Accesso a report semplici e leggibili, con dati tecnici, fisici e mentali',
-          'Possibilità di seguire in streaming allenamenti e partite',
-          'Aggiornamenti regolari sull\'evoluzione tecnica e psico-fisica del ragazzo/a',
-          'Canali diretti con il coach per ricevere feedback chiari e condividere obiettivi',
-          'Analisi statistiche semplificate con visione d\'insieme dell\'andamento',
-          'Supporto pratico per accompagnare il percorso sportivo',
-          'Filtraggio dei dati da parte dei coach per comunicazioni non interpretative o fuorvianti',
-          'Programma creato da mental coach specializzati con momenti di formazione durante l\'anno',
-          'Incluso in tutti i programmi Elite e Junior'
+          t('programs.junior.programs.parent.feature1'),
+          t('programs.junior.programs.parent.feature2'),
+          t('programs.junior.programs.parent.feature3'),
+          t('programs.junior.programs.parent.feature4'),
+          t('programs.junior.programs.parent.feature5'),
+          t('programs.junior.programs.parent.feature6'),
+          t('programs.junior.programs.parent.feature7'),
+          t('programs.junior.programs.parent.feature8'),
+          t('programs.junior.programs.parent.feature9')
         ],
         monitoringLevel: 'basic' as MonitoringLevel,
         vickiCustomBadge: 'Vicki™ report and stream'
       }
     ];
     
-    // Personalizza in base al profilo dell'utente
     if (userProfile.type === 'parent') {
-      // Evidenzia il programma per genitori
       return basePrograms.map(program => 
         program.id === 'parent-support' 
           ? {...program, image: 'https://images.unsplash.com/photo-1534367990512-edbdca781b00?q=80&w=2070&auto=format&fit=crop'} 
           : program
       );
     } else if ((userProfile.type === 'junior' || userProfile.type === 'performance') && userProfile.gender === 'female') {
-      // Personalizza per atlete femminili (junior o performance)
       return basePrograms.map(program => 
         program.id === 'junior-competitive'
           ? {...program, image: 'https://images.unsplash.com/photo-1518611012118-696072aa579a?q=80&w=2070&auto=format&fit=crop'}
@@ -115,25 +108,24 @@ const JuniorProgram = () => {
       <main className="flex-grow">
         <div className="relative">
           <Hero 
-            title={t('footer.junior')}
-            subtitle="Sviluppo completo di giovani atleti in un ambiente innovativo e stimolante"
+            title={t('programs.junior.title')}
+            subtitle={t('programs.junior.subtitle')}
             vimeoEmbed={vimeoEmbed}
             imageSrc={vimeoEmbed ? undefined : "https://images.unsplash.com/photo-1612458225454-41c3991c0c49?q=80&w=1973&auto=format&fit=crop"}
             buttons={[
-              { text: 'PRENOTA UNA PROVA', href: '/contact' },
-              { text: 'CONTATTACI', href: '/contact', variant: 'outline' }
+              { text: t('programs.junior.hero.cta1'), href: '/contact' },
+              { text: t('programs.junior.hero.cta2'), href: '/contact', variant: 'outline' }
             ]}
             contentPosition="left"
             overlayOpacity="medium"
           />
           
-          {/* Black banner with claim text - matching Method page style */}
           <div className="w-full bg-black py-16 relative" style={{ height: '300px' }}>
             <div className="max-w-6xl mx-auto px-6 h-full flex flex-col justify-center">
               <div className="flex items-center mb-2">
-                <h2 className="text-white text-lg font-display mr-3">JUNIOR:</h2>
+                <h2 className="text-white text-lg font-display mr-3">{t('programs.junior.banner.title')}</h2>
                 <p className="text-white text-lg font-swiss max-w-3xl">
-                  Sviluppo completo di giovani atleti in un ambiente innovativo e stimolante
+                  {t('programs.junior.banner.subtitle')}
                 </p>
               </div>
               <div className="mt-4 flex flex-wrap gap-3">
@@ -148,59 +140,57 @@ const JuniorProgram = () => {
           <div className="mb-12">
             <RevealAnimation>
               <div className="flex flex-wrap items-center gap-3 mb-6">
-                <h2 className="text-3xl font-display">{t('programs.junior')}</h2>
+                <h2 className="text-3xl font-display">{t('programs.junior.pageTitle')}</h2>
                 <VickiMonitoringBadge level="advanced" />
                 <VickiPoweredBadge />
               </div>
             </RevealAnimation>
             <RevealAnimation delay={100}>
-              <p className="text-lg mb-6">{t('programs.junior.desc')}</p>
+              <p className="text-lg mb-6">{t('programs.junior.intro')}</p>
             </RevealAnimation>
             <RevealAnimation delay={150}>
               <p className="mb-4">
-                Il nostro programma Junior è stato progettato per sviluppare giovani atleti dai 8 ai 18 anni, 
-                fornendo loro le competenze tecniche, tattiche, fisiche e mentali necessarie per eccellere nel tennis competitivo.
+                {t('programs.junior.desc1')}
               </p>
             </RevealAnimation>
             <RevealAnimation delay={200}>
               <p>
-                Utilizzando la tecnologia VICKI™, monitoriamo e analizziamo lo sviluppo di ogni atleta, 
-                personalizzando il percorso formativo in base alle esigenze individuali e garantendo un progresso continuo e misurabile.
+                {t('programs.junior.desc2')}
               </p>
             </RevealAnimation>
           </div>
           
           <div className="grid md:grid-cols-2 gap-10">
             <RevealAnimation delay={250} className="bg-gray-50 p-8 rounded-lg">
-              <h3 className="text-xl font-semibold mb-4">Caratteristiche del Programma</h3>
+              <h3 className="text-xl font-semibold mb-4">{t('programs.junior.features.title')}</h3>
               <ul className="list-disc list-inside space-y-2">
-                <li>Allenamento tecnico personalizzato basato su dati oggettivi</li>
-                <li>Sviluppo tattico progressivo adattato all'età e al livello</li>
-                <li>Preparazione fisica integrata nel percorso tennistico</li>
-                <li>Supporto mentale per la gestione della pressione agonistica</li>
-                <li>Monitoraggio continuo dello sviluppo attraverso la piattaforma VICKI™</li>
-                <li>Feedback dettagliati e regolari per atleti e genitori</li>
+                <li>{t('programs.junior.features.feature1')}</li>
+                <li>{t('programs.junior.features.feature2')}</li>
+                <li>{t('programs.junior.features.feature3')}</li>
+                <li>{t('programs.junior.features.feature4')}</li>
+                <li>{t('programs.junior.features.feature5')}</li>
+                <li>{t('programs.junior.features.feature6')}</li>
               </ul>
             </RevealAnimation>
             
             <RevealAnimation delay={300} className="bg-gray-50 p-8 rounded-lg">
-              <h3 className="text-xl font-semibold mb-4">Benefici</h3>
+              <h3 className="text-xl font-semibold mb-4">{t('programs.junior.benefits.title')}</h3>
               <ul className="list-disc list-inside space-y-2">
-                <li>Sviluppo completo del potenziale tennistico</li>
-                <li>Continuità metodologica indipendentemente dal coach presente</li>
-                <li>Riduzione del rischio di infortuni attraverso una tecnica ottimizzata</li>
-                <li>Maggiore efficacia nell'allenamento grazie ai dati oggettivi</li>
-                <li>Costruzione di una solida fondazione per il tennis competitivo</li>
-                <li>Coinvolgimento attivo dei genitori nel processo di sviluppo</li>
+                <li>{t('programs.junior.benefits.benefit1')}</li>
+                <li>{t('programs.junior.benefits.benefit2')}</li>
+                <li>{t('programs.junior.benefits.benefit3')}</li>
+                <li>{t('programs.junior.benefits.benefit4')}</li>
+                <li>{t('programs.junior.benefits.benefit5')}</li>
+                <li>{t('programs.junior.benefits.benefit6')}</li>
               </ul>
             </RevealAnimation>
           </div>
           
           <RevealAnimation delay={100}>
             <div className="mt-16">
-              <h3 className="text-2xl font-display mb-8">I nostri programmi Junior</h3>
+              <h3 className="text-2xl font-display mb-8">{t('programs.junior.ourPrograms')}</h3>
               <ProgramsSection 
-                title="Programmi Junior"
+                title={t('programs.junior.programsTitle')}
                 programs={getJuniorPrograms()}
                 gridLayout="dense"
               />
@@ -209,11 +199,11 @@ const JuniorProgram = () => {
           
           <RevealAnimation delay={150}>
             <div className="mt-16">
-              <h3 className="text-2xl font-display mb-6">Programmi Correlati</h3>
+              <h3 className="text-2xl font-display mb-6">{t('programs.junior.related.title')}</h3>
               <Link to="/programs/parent" className="block p-6 border border-gray-200 bg-white rounded-lg hover:border-ath-clay hover:shadow-sm transition-all">
-                <h4 className="text-lg font-medium mb-2">Genitore/Tutor</h4>
-                <p className="text-gray-600 mb-3">Programma di supporto per genitori e tutor di atleti tra i 6 e i 18 anni. Disponibile per i programmi Junior a €150.</p>
-                <span className="inline-flex items-center text-ath-clay">Scopri <ArrowRight size={14} className="ml-1" /></span>
+                <h4 className="text-lg font-medium mb-2">{t('programs.junior.related.program1.title')}</h4>
+                <p className="text-gray-600 mb-3">{t('programs.junior.related.program1.desc')}</p>
+                <span className="inline-flex items-center text-ath-clay">{t('programs.junior.related.discover')} <ArrowRight size={14} className="ml-1" /></span>
               </Link>
             </div>
           </RevealAnimation>

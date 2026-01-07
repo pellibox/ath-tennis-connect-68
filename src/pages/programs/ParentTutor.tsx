@@ -1,3 +1,4 @@
+
 import { useEffect, useState } from 'react';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
@@ -30,72 +31,72 @@ const ParentTutorProgram = () => {
 
   const programOffers = [
     {
-      title: 'Supporto tecnologico:',
-      description: 'Report intuitivi, streaming di allenamenti e partite, analisi statistiche semplificate'
+      title: t('programs.parentTutor.offers.offer1.title'),
+      description: t('programs.parentTutor.offers.offer1.desc')
     },
     {
-      title: 'Formazione continua:',
-      description: 'Workshop periodici, incontri individuali e materiali formativi'
+      title: t('programs.parentTutor.offers.offer2.title'),
+      description: t('programs.parentTutor.offers.offer2.desc')
     },
     {
-      title: 'Strumenti pratici:',
-      description: 'Guide alla comunicazione efficace, checklist pre-torneo, diario di bordo'
+      title: t('programs.parentTutor.offers.offer3.title'),
+      description: t('programs.parentTutor.offers.offer3.desc')
     },
     {
-      title: 'Competenze specifiche:',
-      description: 'Gestione delle emozioni legate alle competizioni, comunicazione costruttiva con coach e atleti'
+      title: t('programs.parentTutor.offers.offer4.title'),
+      description: t('programs.parentTutor.offers.offer4.desc')
     },
     {
-      title: 'Comunità di supporto:',
-      description: 'Rete di genitori con esperienze simili, moderata da esperti del settore'
+      title: t('programs.parentTutor.offers.offer5.title'),
+      description: t('programs.parentTutor.offers.offer5.desc')
     }
   ];
 
   const programInclusions = [
-    { text: '4 workshop formativi durante l\'anno' },
-    { text: '2 incontri di gruppo con il mental coach' },
-    { text: 'Accesso alla piattaforma Vicki™ per genitori' },
-    { text: 'Materiali educativi e risorse dedicate' }
+    { text: t('programs.parentTutor.inclusions.item1') },
+    { text: t('programs.parentTutor.inclusions.item2') },
+    { text: t('programs.parentTutor.inclusions.item3') },
+    { text: t('programs.parentTutor.inclusions.item4') }
   ];
 
   const techSupportFeatures = [
     {
-      title: 'Report semplificati',
-      description: 'Visualizzazione chiara e comprensibile dei dati tecnici, fisici e mentali dell\'atleta, con focus sui progressi e sulle aree di miglioramento.'
+      title: t('programs.parentTutor.techSupport.feature1.title'),
+      description: t('programs.parentTutor.techSupport.feature1.desc')
     },
     {
-      title: 'Streaming delle sessioni',
-      description: 'Possibilità di seguire in diretta o in differita gli allenamenti e le partite, con accesso a statistiche e analisi in tempo reale.'
+      title: t('programs.parentTutor.techSupport.feature2.title'),
+      description: t('programs.parentTutor.techSupport.feature2.desc')
     },
     {
-      title: 'Comunicazione diretta',
-      description: 'Canale privilegiato di comunicazione con il team tecnico, per aggiornamenti costanti e allineamento sugli obiettivi dell\'atleta.'
+      title: t('programs.parentTutor.techSupport.feature3.title'),
+      description: t('programs.parentTutor.techSupport.feature3.desc')
     }
   ];
 
   const programBenefits = [
-    'Miglioramento della comunicazione genitore-atleta',
-    'Comprensione approfondita del percorso tennistico',
-    'Gestione efficace dello stress competitivo',
-    'Creazione di un ambiente di supporto ottimale',
-    'Equilibrio tra ambizioni sportive e benessere generale',
-    'Costruzione di una collaborazione positiva con i coach'
+    t('programs.parentTutor.benefits.benefit1'),
+    t('programs.parentTutor.benefits.benefit2'),
+    t('programs.parentTutor.benefits.benefit3'),
+    t('programs.parentTutor.benefits.benefit4'),
+    t('programs.parentTutor.benefits.benefit5'),
+    t('programs.parentTutor.benefits.benefit6')
   ];
 
   const relatedPrograms = [
     {
-      title: "SAT - Scuola Avviamento al Tennis",
-      description: "Un viaggio entusiasmante alla scoperta del tennis, per bambini dai 4 ai 10+ anni.",
+      title: t('programs.parentTutor.related.program1.title'),
+      description: t('programs.parentTutor.related.program1.desc'),
       link: "/programs/sat"
     },
     {
-      title: "SIT - Scuola Individuazione Talenti",
-      description: "Programma specializzato per l'identificazione precoce dei talenti tennistici (6-10+ anni).",
+      title: t('programs.parentTutor.related.program2.title'),
+      description: t('programs.parentTutor.related.program2.desc'),
       link: "/programs/talent-identification"
     },
     {
-      title: "Performance 4",
-      description: "Programma intensivo con 4 giorni di allenamento settimanale per giovani atleti agonisti.",
+      title: t('programs.parentTutor.related.program3.title'),
+      description: t('programs.parentTutor.related.program3.desc'),
       link: "/programs/performance-4"
     }
   ];
@@ -107,13 +108,13 @@ const ParentTutorProgram = () => {
       <main className="flex-grow">
         <div className="relative">
           <Hero 
-            title="Genitore/Tutor"
-            subtitle="Programma di supporto per genitori e tutor di atleti tra i 6 e i 18 anni"
+            title={t('programs.parentTutor.title')}
+            subtitle={t('programs.parentTutor.subtitle')}
             imageSrc="https://images.unsplash.com/photo-1515377905703-c4788e51af15?q=80&w=2070&auto=format&fit=crop"
             vimeoEmbed='<div style="padding:75% 0 0 0;position:relative;"><iframe src="https://player.vimeo.com/video/1068629360?h=46b5c52b31&autoplay=1&loop=1&background=1&autopause=0&player_id=0&app_id=58479&controls=0" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media" style="position:absolute;top:0;left:0;width:100%;height:100%;" title="Parent Tutor Program"></iframe></div><script src="https://player.vimeo.com/api/player.js"></script>'
             buttons={[
-              { text: 'RICHIEDI INFORMAZIONI', href: '/contact' },
-              { text: 'CONTATTACI', href: '/contact', variant: 'outline' }
+              { text: t('programs.parentTutor.hero.cta1'), href: '/contact' },
+              { text: t('programs.parentTutor.hero.cta2'), href: '/contact', variant: 'outline' }
             ]}
             contentPosition="left"
             overlayOpacity="medium"
@@ -121,9 +122,9 @@ const ParentTutorProgram = () => {
           
           <div className="w-full bg-black py-10 md:py-16 px-4">
             <div className="max-w-6xl mx-auto h-full flex flex-col justify-center">
-              <h2 className="text-white text-lg font-display mb-2 md:mb-4">PROGRAMMA GENITORE/TUTOR:</h2>
+              <h2 className="text-white text-lg font-display mb-2 md:mb-4">{t('programs.parentTutor.banner.title')}</h2>
               <p className="text-white text-base md:text-lg font-swiss max-w-3xl">
-                Un programma innovativo creato da mental coach specializzati per supportare i genitori e tutori di giovani tennisti nel loro ruolo fondamentale di accompagnamento sportivo.
+                {t('programs.parentTutor.banner.subtitle')}
               </p>
               <div className="mt-4 flex flex-wrap gap-3">
                 <Badge variant="ath" className="text-white">Vicki™ report and stream</Badge>
@@ -136,30 +137,26 @@ const ParentTutorProgram = () => {
           <div className="mb-8 md:mb-12">
             <RevealAnimation>
               <div className="flex flex-wrap items-center gap-3 mb-4 md:mb-6">
-                <h2 className={`${isMobile ? "text-xl" : "text-3xl"} font-swiss`}>Genitore/Tutor (Giovani e Junior Agonisti 6-18 anni)</h2>
+                <h2 className={`${isMobile ? "text-xl" : "text-3xl"} font-swiss`}>{t('programs.parentTutor.pageTitle')}</h2>
                 <Badge variant="ath" className="text-white">Vicki™ report and stream</Badge>
               </div>
             </RevealAnimation>
             <RevealAnimation delay={100}>
-              <p className={`${isMobile ? "text-base" : "text-lg"} mb-4 md:mb-6 font-swiss`}>Programma creato da mental coach specializzati per supportare correttamente l'atleta nel suo percorso formativo.</p>
+              <p className={`${isMobile ? "text-base" : "text-lg"} mb-4 md:mb-6 font-swiss`}>{t('programs.parentTutor.intro')}</p>
             </RevealAnimation>
             <RevealAnimation delay={150}>
               <p className="mb-3 md:mb-4 font-swiss text-sm md:text-base">
-                Il programma combina tecnologia avanzata e supporto psicopedagogico per creare un ambiente positivo che bilanci ambizioni sportive e benessere psicofisico dei giovani atleti. 
-                Attraverso la tecnologia VICKI™, i genitori hanno accesso a report semplificati e comprensibili che illustrano i progressi tecnici, fisici e mentali dei ragazzi.
+                {t('programs.parentTutor.desc1')}
               </p>
             </RevealAnimation>
             <RevealAnimation delay={200}>
               <p className="mb-3 md:mb-4 font-swiss text-sm md:text-base">
-                Questo programma riconosce l'importanza della sinergia tra famiglia e staff tecnico, fornendo ai genitori tutti gli strumenti necessari per accompagnare efficacemente i giovani 
-                nel loro percorso tennistico, creando un ambiente stimolante e bilanciato che favorisce sia la crescita sportiva che personale.
+                {t('programs.parentTutor.desc2')}
               </p>
             </RevealAnimation>
             <RevealAnimation delay={250}>
               <p className="font-swiss mb-3 md:mb-4 text-sm md:text-base">
-                Incluso nei percorsi Elite Performance e Elite Performance Full, e disponibile come opzione a pagamento per gli altri programmi,
-                questo programma rappresenta un elemento fondamentale dell'approccio olistico di ATH allo sviluppo dei giovani tennisti,
-                riconoscendo il ruolo cruciale dei genitori nel percorso sportivo dei ragazzi.
+                {t('programs.parentTutor.desc3')}
               </p>
             </RevealAnimation>
           </div>
@@ -168,39 +165,39 @@ const ParentTutorProgram = () => {
             <ProgramOffers offers={programOffers} />
             
             <ProgramPricing 
-              includedPrograms="Nei programmi Elite Performance e Elite Performance Full"
-              regularPrice="€150/anno"
-              regularPriceDescription="Per tutti gli altri programmi"
+              includedPrograms={t('programs.parentTutor.pricing.included')}
+              regularPrice={t('programs.parentTutor.pricing.regular')}
+              regularPriceDescription={t('programs.parentTutor.pricing.regularDesc')}
               inclusions={programInclusions}
               documentUrl="/documents/programma-genitore-tutor.pdf"
             />
           </div>
           
           <ProgramBenefits 
-            title="I Benefici del Programma Genitore/Tutor"
-            description="Il nostro programma offre numerosi vantaggi sia per i genitori che per i giovani atleti:"
+            title={t('programs.parentTutor.benefitsSection.title')}
+            description={t('programs.parentTutor.benefitsSection.description')}
             benefits={programBenefits}
-            ctaText="Contattaci per maggiori informazioni"
+            ctaText={t('programs.parentTutor.benefitsSection.cta')}
             ctaLink="/contact"
           />
           
           <RevealAnimation delay={450}>
             <RelatedPrograms 
-              title="Programmi Correlati"
+              title={t('programs.parentTutor.related.title')}
               programs={relatedPrograms}
             />
           </RevealAnimation>
         </div>
         
         <TechnologySupport 
-          title="Il supporto tecnologico per i genitori"
-          subtitle="Monitoraggio e comunicazione avanzati"
+          title={t('programs.parentTutor.techSection.title')}
+          subtitle={t('programs.parentTutor.techSection.subtitle')}
           features={techSupportFeatures}
         />
         
         <ContactSection 
-          title="Vuoi saperne di più?" 
-          subtitle="Contattaci per informazioni sul programma Genitore/Tutor"
+          title={t('programs.parentTutor.contact.title')} 
+          subtitle={t('programs.parentTutor.contact.subtitle')}
           address="Via F. Turati, 9, Milano MI, Italia"
           email="info@ath.tennis"
           phone="+39 02 1234567"
