@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '@/contexts/AuthContext';
@@ -27,7 +26,8 @@ import {
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
-import { CheckCircle, XCircle, Shield, User, Search, PlusCircle } from 'lucide-react';
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
+import { CheckCircle, XCircle, Shield, User, Search, PlusCircle, UserPlus } from 'lucide-react';
 import { setAsAdmin, setAsEditor, removeRole } from '@/utils/authUtils';
 import { supabase } from '@/integrations/supabase/client';
 
@@ -41,13 +41,23 @@ interface UserData {
 
 const Users = () => {
   const { t } = useLanguage();
-  const { user, isAdmin } = useAuth();
+  const { user, isAdmin, session } = useAuth();
   const navigate = useNavigate();
   const [users, setUsers] = useState<UserData[]>([]);
   const [loading, setLoading] = useState(true);
   const [searchTerm, setSearchTerm] = useState('');
   const [newUserEmail, setNewUserEmail] = useState('');
   const [emailLoading, setEmailLoading] = useState(false);
+  
+  // Create user state
+  const [isCreateDialogOpen, setIsCreateDialogOpen] = useState(false);
+  const [createLoading, setCreateLoading] = useState(false);
+  const [newUser, setNewUser] = useState({
+    email: '',
+    password: '',
+    fullName: '',
+    role: 'user'
+  });
 
   useEffect(() => {
     fetchUsers();
@@ -185,6 +195,48 @@ const Users = () => {
     }
   };
 
+  const handleCreateUser = async () => {
+    if (!newUser.email || !newUser.password) {
+      toast.error('Email e password sono obbligatori');
+      return;
+    }
+
+    if (newUser.password.length < 6) {
+      toast.error('La password deve essere di almeno 6 caratteri');
+      return;
+    }
+
+    setCreateLoading(true);
+    try {
+      const response = await supabase.functions.invoke('create-user', {
+        body: {
+          email: newUser.email,
+          password: newUser.password,
+          fullName: newUser.fullName,
+          role: newUser.role !== 'user' ? newUser.role : null
+        }
+      });
+
+      if (response.error) {
+        throw new Error(response.error.message);
+      }
+
+      if (response.data?.error) {
+        throw new Error(response.data.error);
+      }
+
+      toast.success('Utente creato con successo');
+      setIsCreateDialogOpen(false);
+      setNewUser({ email: '', password: '', fullName: '', role: 'user' });
+      fetchUsers(); // Refresh the list
+    } catch (error: any) {
+      console.error('Error creating user:', error);
+      toast.error(error.message || 'Errore durante la creazione dell\'utente');
+    } finally {
+      setCreateLoading(false);
+    }
+  };
+
   const filteredUsers = users.filter(user => 
     user.email.toLowerCase().includes(searchTerm.toLowerCase()) ||
     (user.username && user.username.toLowerCase().includes(searchTerm.toLowerCase())) ||
@@ -192,84 +244,139 @@ const Users = () => {
   );
 
   return (
-    <AdminLayout title={t('admin.usersManagement') || 'Users Management'}>
+    <AdminLayout title={t('admin.usersManagement') || 'Gestione Utenti'}>
       <div className="mb-6">
         <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-6">
           <div className="relative">
             <Search className="absolute left-2.5 top-2.5 h-4 w-4 text-gray-500" />
             <Input
               type="search"
-              placeholder={t('admin.searchUsers') || "Search users..."}
+              placeholder={t('admin.searchUsers') || "Cerca utenti..."}
               className="pl-9 w-full md:w-80"
               value={searchTerm}
               onChange={handleSearch}
             />
           </div>
           
-          <Dialog>
-            <DialogTrigger asChild>
-              <Button className="w-full md:w-auto">
-                <PlusCircle className="mr-2 h-4 w-4" />
-                {t('admin.findUser') || 'Find User'}
-              </Button>
-            </DialogTrigger>
-            <DialogContent>
-              <DialogHeader>
-                <DialogTitle>{t('admin.findUser') || 'Find User'}</DialogTitle>
-                <DialogDescription>
-                  {t('admin.findUserDescription') || 'Enter the email address of the user you want to find.'}
-                </DialogDescription>
-              </DialogHeader>
-              
-              <div className="grid gap-4 py-4">
-                <div className="grid gap-2">
-                  <Label htmlFor="email">{t('admin.email') || 'Email'}</Label>
-                  <Input
-                    id="email"
-                    value={newUserEmail}
-                    onChange={(e) => setNewUserEmail(e.target.value)}
-                    placeholder="user@example.com"
-                  />
-                </div>
-              </div>
-              
-              <DialogFooter>
-                <DialogClose asChild>
-                  <Button variant="outline">{t('admin.cancel') || 'Cancel'}</Button>
-                </DialogClose>
-                <Button onClick={handleFindUser} disabled={emailLoading}>
-                  {emailLoading ? (
-                    <>
-                      <span className="mr-2">
-                        <svg className="animate-spin h-4 w-4" viewBox="0 0 24 24">
-                          <circle
-                            className="opacity-25"
-                            cx="12"
-                            cy="12"
-                            r="10"
-                            stroke="currentColor"
-                            strokeWidth="4"
-                          ></circle>
-                          <path
-                            className="opacity-75"
-                            fill="currentColor"
-                            d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
-                          ></path>
-                        </svg>
-                      </span>
-                      {t('admin.searching') || 'Searching...'}
-                    </>
-                  ) : (
-                    t('admin.find') || 'Find'
-                  )}
+          <div className="flex gap-2">
+            {/* Create User Dialog */}
+            <Dialog open={isCreateDialogOpen} onOpenChange={setIsCreateDialogOpen}>
+              <DialogTrigger asChild>
+                <Button>
+                  <UserPlus className="mr-2 h-4 w-4" />
+                  Crea Utente
                 </Button>
-              </DialogFooter>
-            </DialogContent>
-          </Dialog>
+              </DialogTrigger>
+              <DialogContent>
+                <DialogHeader>
+                  <DialogTitle>Crea Nuovo Utente</DialogTitle>
+                  <DialogDescription>
+                    Inserisci i dati del nuovo utente. L'email verrà automaticamente confermata.
+                  </DialogDescription>
+                </DialogHeader>
+                
+                <div className="grid gap-4 py-4">
+                  <div className="grid gap-2">
+                    <Label htmlFor="create-email">Email *</Label>
+                    <Input
+                      id="create-email"
+                      type="email"
+                      value={newUser.email}
+                      onChange={(e) => setNewUser({ ...newUser, email: e.target.value })}
+                      placeholder="utente@esempio.com"
+                    />
+                  </div>
+                  <div className="grid gap-2">
+                    <Label htmlFor="create-password">Password *</Label>
+                    <Input
+                      id="create-password"
+                      type="password"
+                      value={newUser.password}
+                      onChange={(e) => setNewUser({ ...newUser, password: e.target.value })}
+                      placeholder="Minimo 6 caratteri"
+                    />
+                  </div>
+                  <div className="grid gap-2">
+                    <Label htmlFor="create-fullname">Nome Completo</Label>
+                    <Input
+                      id="create-fullname"
+                      value={newUser.fullName}
+                      onChange={(e) => setNewUser({ ...newUser, fullName: e.target.value })}
+                      placeholder="Mario Rossi"
+                    />
+                  </div>
+                  <div className="grid gap-2">
+                    <Label htmlFor="create-role">Ruolo</Label>
+                    <Select 
+                      value={newUser.role} 
+                      onValueChange={(value) => setNewUser({ ...newUser, role: value })}
+                    >
+                      <SelectTrigger>
+                        <SelectValue placeholder="Seleziona ruolo" />
+                      </SelectTrigger>
+                      <SelectContent>
+                        <SelectItem value="user">Utente</SelectItem>
+                        <SelectItem value="editor">Editor</SelectItem>
+                        <SelectItem value="admin">Admin</SelectItem>
+                      </SelectContent>
+                    </Select>
+                  </div>
+                </div>
+                
+                <DialogFooter>
+                  <DialogClose asChild>
+                    <Button variant="outline">Annulla</Button>
+                  </DialogClose>
+                  <Button onClick={handleCreateUser} disabled={createLoading}>
+                    {createLoading ? 'Creazione...' : 'Crea Utente'}
+                  </Button>
+                </DialogFooter>
+              </DialogContent>
+            </Dialog>
+
+            {/* Find User Dialog */}
+            <Dialog>
+              <DialogTrigger asChild>
+                <Button variant="outline">
+                  <Search className="mr-2 h-4 w-4" />
+                  Cerca Utente
+                </Button>
+              </DialogTrigger>
+              <DialogContent>
+                <DialogHeader>
+                  <DialogTitle>Cerca Utente</DialogTitle>
+                  <DialogDescription>
+                    Inserisci nome o username per cercare un utente esistente.
+                  </DialogDescription>
+                </DialogHeader>
+                
+                <div className="grid gap-4 py-4">
+                  <div className="grid gap-2">
+                    <Label htmlFor="find-email">Nome o Username</Label>
+                    <Input
+                      id="find-email"
+                      value={newUserEmail}
+                      onChange={(e) => setNewUserEmail(e.target.value)}
+                      placeholder="Mario Rossi"
+                    />
+                  </div>
+                </div>
+                
+                <DialogFooter>
+                  <DialogClose asChild>
+                    <Button variant="outline">Annulla</Button>
+                  </DialogClose>
+                  <Button onClick={handleFindUser} disabled={emailLoading}>
+                    {emailLoading ? 'Ricerca...' : 'Cerca'}
+                  </Button>
+                </DialogFooter>
+              </DialogContent>
+            </Dialog>
+          </div>
         </div>
-        
+
         <Table>
-          <TableCaption>{t('admin.usersListCaption') || 'A list of all users in your application.'}</TableCaption>
+          <TableCaption>Lista degli utenti registrati</TableCaption>
           <TableHeader>
             <TableRow>
               <TableHead>{t('admin.user') || 'User'}</TableHead>
