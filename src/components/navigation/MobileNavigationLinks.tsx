@@ -1,9 +1,9 @@
-
 import { useState } from 'react';
 import { ChevronDown } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import NavigationLink from './NavigationLink';
-import { navigationItems } from './navigationItems';
+import { getNavigationItems } from './navigationItems';
+import { useLanguage } from '@/contexts/LanguageContext';
 
 interface MobileNavigationLinksProps {
   className?: string;
@@ -12,6 +12,8 @@ interface MobileNavigationLinksProps {
 
 const MobileNavigationLinks = ({ className, textColorClass }: MobileNavigationLinksProps) => {
   const [openSubmenu, setOpenSubmenu] = useState<string | null>(null);
+  const { t } = useLanguage();
+  const navigationItems = getNavigationItems(t);
 
   const toggleSubmenu = (text: string) => {
     setOpenSubmenu(openSubmenu === text ? null : text);

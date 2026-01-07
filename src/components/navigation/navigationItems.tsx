@@ -10,24 +10,24 @@ export interface NavigationItem {
   submenu?: NavigationItem[];
 }
 
-export const navigationItems: NavigationItem[] = [
+export const getNavigationItems = (t: (key: string) => string): NavigationItem[] => [
   { 
-    text: "Perché ATH", 
+    text: t('nav.whyAth'), 
     href: '/about',
     icon: <HelpCircle size={18} className="mr-2" />
   },
   { 
-    text: 'Il Metodo', 
+    text: t('nav.method'), 
     href: '/method',
     icon: <BookOpen size={18} className="mr-2" />
   },
   { 
-    text: 'Programmi', 
+    text: t('nav.programs'), 
     href: '/programs/overview',
     icon: <FaList size={18} className="mr-2" />
   },
   { 
-    text: 'Tecnologia:VICKI', 
+    text: t('nav.technology'), 
     href: '/technology',
     icon: <img 
       src="/lovable-uploads/0eb1f8cd-9983-4ee5-bf8c-5c6f68387720.png" 
@@ -36,13 +36,16 @@ export const navigationItems: NavigationItem[] = [
     />
   },
   { 
-    text: 'Strutture', 
+    text: t('nav.facilities'), 
     href: '/facilities',
     icon: <Server size={18} className="mr-2" />
   },
   { 
-    text: 'Coach', 
+    text: t('nav.coaches'), 
     href: '/coaches',
     icon: <Users size={18} className="mr-2" />
   }
 ];
+
+// For backward compatibility
+export const navigationItems: NavigationItem[] = getNavigationItems((key) => key);
