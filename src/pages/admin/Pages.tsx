@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { supabase } from '@/integrations/supabase/client';
-import { Page } from '@/integrations/supabase/database.types';
+import { Page, Section } from '@/integrations/supabase/database.types';
 import AdminLayout from '../../components/admin/AdminLayout';
 import { Button } from '@/components/ui/button';
 import { useToast } from '@/hooks/use-toast';
@@ -18,9 +17,12 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { v4 as uuidv4 } from 'uuid';
 
+// Static pages data - can be replaced with database when pages table is created
+const initialPages: Page[] = [];
+
 const PagesAdmin = () => {
-  const [pages, setPages] = useState<Page[]>([]);
-  const [isLoading, setIsLoading] = useState(true);
+  const [pages, setPages] = useState<Page[]>(initialPages);
+  const [isLoading, setIsLoading] = useState(false);
   const [selectedPage, setSelectedPage] = useState<Page | null>(null);
   const [isAddDialogOpen, setIsAddDialogOpen] = useState(false);
   const [isEditDialogOpen, setIsEditDialogOpen] = useState(false);
@@ -29,40 +31,13 @@ const PagesAdmin = () => {
   const [newPageSlug, setNewPageSlug] = useState('');
   const { toast } = useToast();
 
-  // Fetch pages on component mount
   useEffect(() => {
-    const fetchPages = async () => {
-      try {
-        setIsLoading(true);
-        const { data, error } = await supabase
-          .from('pages')
-          .select('*');
-
-        if (error) {
-          throw error;
-        }
-
-        if (data) {
-          const typedPages: Page[] = data;
-          setPages(typedPages);
-        }
-      } catch (error) {
-        console.error('Error fetching pages:', error);
-        toast({
-          title: "Error",
-          description: "Failed to fetch pages",
-          variant: "destructive"
-        });
-      } finally {
-        setIsLoading(false);
-      }
-    };
-
-    fetchPages();
-  }, [toast]);
+    // Pages are managed locally for now
+    setIsLoading(false);
+  }, []);
 
   // Handle creating a new page
-  const handleCreatePage = async () => {
+  const handleCreatePage = () => {
     if (!newPageTitle || !newPageSlug) {
       toast({
         title: "Validation Error",
@@ -82,45 +57,27 @@ const PagesAdmin = () => {
       return;
     }
 
-    try {
-      const newPage: Omit<Page, 'id'> = {
-        title: newPageTitle,
-        slug: newPageSlug,
-        status: 'draft',
-        sections: [],
-      };
+    const newPage: Page = {
+      id: uuidv4(),
+      title: newPageTitle,
+      slug: newPageSlug,
+      status: 'draft',
+      sections: [],
+      last_modified: new Date().toISOString()
+    };
 
-      const { data, error } = await supabase
-        .from('pages')
-        .insert([newPage])
-        .select();
-
-      if (error) {
-        throw error;
-      }
-
-      if (data) {
-        setPages(prev => [...prev, data[0] as Page]);
-        toast({
-          title: "Success",
-          description: "Page created successfully",
-        });
-        setIsAddDialogOpen(false);
-        setNewPageTitle('');
-        setNewPageSlug('');
-      }
-    } catch (error) {
-      console.error('Error creating page:', error);
-      toast({
-        title: "Error",
-        description: "Failed to create page",
-        variant: "destructive"
-      });
-    }
+    setPages(prev => [...prev, newPage]);
+    toast({
+      title: "Success",
+      description: "Page created successfully",
+    });
+    setIsAddDialogOpen(false);
+    setNewPageTitle('');
+    setNewPageSlug('');
   };
 
   // Handle updating page title or slug
-  const handleUpdatePageBasic = async () => {
+  const handleUpdatePageBasic = () => {
     if (!selectedPage || !selectedPage.title || !selectedPage.slug) {
       toast({
         title: "Validation Error",
@@ -143,143 +100,61 @@ const PagesAdmin = () => {
       return;
     }
 
-    try {
-      const { error } = await supabase
-        .from('pages')
-        .update({
-          title: selectedPage.title,
-          slug: selectedPage.slug,
-          last_modified: new Date().toISOString()
-        })
-        .eq('id', selectedPage.id);
-
-      if (error) {
-        throw error;
-      }
-
-      setPages(prev => prev.map(page => 
-        page.id === selectedPage.id 
-          ? {...page, title: selectedPage.title, slug: selectedPage.slug, last_modified: new Date().toISOString()} 
-          : page
-      ));
-      
-      toast({
-        title: "Success",
-        description: "Page updated successfully",
-      });
-      
-      setIsEditDialogOpen(false);
-    } catch (error) {
-      console.error('Error updating page:', error);
-      toast({
-        title: "Error",
-        description: "Failed to update page",
-        variant: "destructive"
-      });
-    }
+    setPages(prev => prev.map(page => 
+      page.id === selectedPage.id 
+        ? {...page, title: selectedPage.title, slug: selectedPage.slug, last_modified: new Date().toISOString()} 
+        : page
+    ));
+    
+    toast({
+      title: "Success",
+      description: "Page updated successfully",
+    });
+    
+    setIsEditDialogOpen(false);
   };
 
   // Handle updating page content sections
-  const handleUpdatePageSections = async (pageId: string, sections: Page['sections']) => {
-    try {
-      const { error } = await supabase
-        .from('pages')
-        .update({
-          sections: sections,
-          last_modified: new Date().toISOString()
-        })
-        .eq('id', pageId);
-
-      if (error) {
-        throw error;
-      }
-
-      setPages(prev => prev.map(page => 
-        page.id === pageId 
-          ? {...page, sections, last_modified: new Date().toISOString()} 
-          : page
-      ));
-      
-      toast({
-        title: "Success",
-        description: "Page content updated successfully",
-      });
-    } catch (error) {
-      console.error('Error updating page content:', error);
-      toast({
-        title: "Error",
-        description: "Failed to update page content",
-        variant: "destructive"
-      });
-    }
+  const handleUpdatePageSections = (pageId: string, sections: Page['sections']) => {
+    setPages(prev => prev.map(page => 
+      page.id === pageId 
+        ? {...page, sections, last_modified: new Date().toISOString()} 
+        : page
+    ));
+    
+    toast({
+      title: "Success",
+      description: "Page content updated successfully",
+    });
   };
 
   // Handle changing page status (publish/unpublish)
-  const handleChangePageStatus = async (pageId: string, newStatus: string) => {
-    try {
-      const { error } = await supabase
-        .from('pages')
-        .update({
-          status: newStatus,
-          last_modified: new Date().toISOString()
-        })
-        .eq('id', pageId);
-
-      if (error) {
-        throw error;
-      }
-
-      setPages(prev => prev.map(page => 
-        page.id === pageId 
-          ? {...page, status: newStatus, last_modified: new Date().toISOString()} 
-          : page
-      ));
-      
-      toast({
-        title: "Success",
-        description: `Page ${newStatus === 'published' ? 'published' : 'unpublished'} successfully`,
-      });
-    } catch (error) {
-      console.error('Error changing page status:', error);
-      toast({
-        title: "Error",
-        description: `Failed to ${newStatus === 'published' ? 'publish' : 'unpublish'} page`,
-        variant: "destructive"
-      });
-    }
+  const handleChangePageStatus = (pageId: string, newStatus: string) => {
+    setPages(prev => prev.map(page => 
+      page.id === pageId 
+        ? {...page, status: newStatus, last_modified: new Date().toISOString()} 
+        : page
+    ));
+    
+    toast({
+      title: "Success",
+      description: `Page ${newStatus === 'published' ? 'published' : 'unpublished'} successfully`,
+    });
   };
 
   // Handle deleting a page
-  const handleDeletePage = async () => {
+  const handleDeletePage = () => {
     if (!selectedPage) return;
 
-    try {
-      const { error } = await supabase
-        .from('pages')
-        .delete()
-        .eq('id', selectedPage.id);
-
-      if (error) {
-        throw error;
-      }
-
-      setPages(prev => prev.filter(page => page.id !== selectedPage.id));
-      
-      toast({
-        title: "Success",
-        description: "Page deleted successfully",
-      });
-      
-      setIsDeleteDialogOpen(false);
-      setSelectedPage(null);
-    } catch (error) {
-      console.error('Error deleting page:', error);
-      toast({
-        title: "Error",
-        description: "Failed to delete page",
-        variant: "destructive"
-      });
-    }
+    setPages(prev => prev.filter(page => page.id !== selectedPage.id));
+    
+    toast({
+      title: "Success",
+      description: "Page deleted successfully",
+    });
+    
+    setIsDeleteDialogOpen(false);
+    setSelectedPage(null);
   };
 
   return (

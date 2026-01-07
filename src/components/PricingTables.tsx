@@ -1,8 +1,16 @@
 import React, { useEffect, useState } from 'react';
-import { supabase } from '@/integrations/supabase/client';
 import { Page, Section } from '@/integrations/supabase/database.types';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Skeleton } from '@/components/ui/skeleton';
+
+// Pricing data is static for now - can be moved to database later
+const staticPricingData: Page = {
+  id: 'pricing-1',
+  title: 'Our Pricing Plans',
+  slug: 'pricing',
+  status: 'published',
+  sections: []
+};
 
 const PricingTables = () => {
   const [pricingData, setPricingData] = useState<Page | null>(null);
@@ -10,41 +18,9 @@ const PricingTables = () => {
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
-    const fetchPricingData = async () => {
-      try {
-        setIsLoading(true);
-        const { data, error } = await supabase
-          .from('pages')
-          .select('*')
-          .eq('slug', 'pricing')
-          .single();
-
-        if (error) {
-          setError(error.message);
-          return;
-        }
-
-        if (data) {
-          const sections = Array.isArray(data.sections) 
-            ? data.sections 
-            : [];
-          
-          const typedPage: Page = {
-            ...data,
-            sections: sections as Section[]
-          };
-          
-          setPricingData(typedPage);
-        }
-      } catch (err) {
-        setError('Failed to fetch pricing data');
-        console.error(err);
-      } finally {
-        setIsLoading(false);
-      }
-    };
-
-    fetchPricingData();
+    // Use static data for now
+    setPricingData(staticPricingData);
+    setIsLoading(false);
   }, []);
 
   if (isLoading) {

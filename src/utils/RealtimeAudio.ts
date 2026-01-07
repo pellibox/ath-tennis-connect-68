@@ -164,7 +164,9 @@ class AudioQueue {
     try {
       console.log('Playing audio chunk, size:', audioData.length);
       const wavData = createWavFromPCM(audioData);
-      const audioBuffer = await this.audioContext.decodeAudioData(wavData.buffer);
+      // Create a copy of the buffer to ensure it's a proper ArrayBuffer
+      const bufferCopy = wavData.buffer.slice(0) as ArrayBuffer;
+      const audioBuffer = await this.audioContext.decodeAudioData(bufferCopy);
       
       const source = this.audioContext.createBufferSource();
       source.buffer = audioBuffer;
