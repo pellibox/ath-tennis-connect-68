@@ -77,6 +77,42 @@ const translations = {
   "about.p3": "Con strutture di livello mondiale e un team di allenatori d'élite, offriamo un programma completo che affronta tutti gli aspetti del gioco moderno: tecnico, tattico, fisico e mentale.",
   "about.learn": "SCOPRI DI PIÙ",
   
+  // Home Page Key Features
+  "home.keyFeatures.title": "L'Eccellenza del Tennis Moderno",
+  "home.keyFeatures.excellence": "Eccellenza Tecnica",
+  "home.keyFeatures.excellenceDesc": "Coaching di alto livello supportato da tecnologia avanzata",
+  "home.keyFeatures.analysis": "Analisi Completa",
+  "home.keyFeatures.analysisDesc": "Monitoraggio di oltre 70 parametri in tempo reale",
+  "home.keyFeatures.team": "Elite Team",
+  "home.keyFeatures.teamDesc": "Coach professionisti con metodologia innovativa",
+  "home.keyFeatures.facilities": "Struttura All'avanguardia",
+  "home.keyFeatures.facilitiesDesc": "6 campi completamente equipaggiati con tecnologia Vicki™",
+  "home.keyFeatures.learnMore": "Scopri di più",
+  
+  // Home Page Training Methods
+  "home.training.title": "Metodologia e Tecnologia",
+  "home.training.method": "Metodo ATH",
+  "home.training.methodDesc": "Metodologia esclusiva che integra tecnologia e coaching tradizionale per un percorso personalizzato verso l'eccellenza",
+  "home.training.technology": "Tecnologia Vicki™",
+  "home.training.technologyDesc": "Sistema avanzato di monitoraggio e analisi che traccia in tempo reale ogni aspetto della performance del giocatore",
+  "home.training.programs": "Programmi Personalizzati",
+  "home.training.programsDesc": "Percorsi formativi adattati alle esigenze specifiche di ogni atleta, dal principiante al professionista",
+  "home.training.structure": "Strutture All'avanguardia",
+  "home.training.structureDesc": "Vicki powered elite; campi e aree comuni tecnologicamente avanzate",
+  "home.training.learnMore": "Approfondisci",
+  
+  // Home Page Download Section
+  "home.download.title": "Contenuto Completo del Sito",
+  "home.download.description": "Scarica tutto il contenuto del sito ATH in formato markdown per una consultazione offline completa.",
+  "home.download.button": "Scarica Contenuto Completo",
+  "home.download.success": "Contenuto scaricato con successo!",
+  
+  // Home Page Join Revolution Section
+  "home.revolution.title": "Unisciti alla Rivoluzione ATH",
+  "home.revolution.p1": "Entra a far parte di una comunità esclusiva che ridefinisce gli standard del tennis moderno. Con tecnologia all'avanguardia, metodologie avanzate e un team di professionisti dedicati, ATH rappresenta il futuro dell'allenamento tennistico.",
+  "home.revolution.p2": "Scopri come la tecnologia Vicki™ e il nostro approccio personalizzato possono sbloccare il tuo potenziale nascosto, indipendentemente dal tuo livello attuale.",
+  "home.revolution.cta": "Inizia il tuo percorso",
+  
   // Programs Section
   "programs.title": "I NOSTRI PROGRAMMI",
   "programs.subtitle": "Allenamento di tennis personalizzato per ogni età e livello di abilità",

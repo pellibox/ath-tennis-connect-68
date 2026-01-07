@@ -32,6 +32,17 @@ const VickiWidgetContainer = () => {
     },
   });
 
+  // Map language code to ElevenLabs language code
+  const getElevenLabsLanguage = (lang: string) => {
+    const languageMap: Record<string, string> = {
+      'it': 'it',
+      'en': 'en',
+      'fr': 'fr',
+      'de': 'de'
+    };
+    return languageMap[lang] || 'it';
+  };
+
   const startConversation = useCallback(async () => {
     if (conversation.status === 'connected') {
       await conversation.endSession();
@@ -45,16 +56,21 @@ const VickiWidgetContainer = () => {
       // Request microphone permission
       await navigator.mediaDevices.getUserMedia({ audio: true });
       
-      // Start conversation with public agent (no auth required)
+      // Start conversation with public agent and language override
       await conversation.startSession({
         agentId: AGENT_ID,
+        overrides: {
+          agent: {
+            language: getElevenLabsLanguage(language),
+          },
+        },
       } as any);
     } catch (err) {
       console.error('🎤 Vicki: Failed to start', err);
-      setError('Abilita il microfono');
+      setError(t('vicki.error') || 'Enable microphone');
       setIsConnecting(false);
     }
-  }, [conversation]);
+  }, [conversation, language, t]);
 
   const isConnected = conversation.status === 'connected';
   const isSpeaking = conversation.isSpeaking;
