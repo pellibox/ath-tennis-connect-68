@@ -430,9 +430,9 @@ Data generazione: ${new Date().toLocaleDateString('it-IT')}
 
 ## Staff Tecnico
 
-### Coach 1: F.G.
-- Ruolo: "Coach | Specialista Tattica & Strategia"
-- Bio: "Direttore tecnico del centro, il lavoro di F. è Focalizzato sull'ottimizzazione delle strategie di gioco attraverso l'analisi dei pattern e delle analisi tattiche avanzate"
+### Coach 1: Fernando Gambacurta
+- Ruolo: "Head Coach | Specialista Tattica & Strategia"
+- Bio: "Direttore tecnico del centro, il lavoro di Fernando è focalizzato sull'ottimizzazione delle strategie di gioco attraverso l'analisi dei pattern e delle analisi tattiche avanzate"
 
 ### Coach 2: S.G.
 - Ruolo: "Head Coach | Specialista Tecnica"

@@ -148,7 +148,7 @@ const FacilitiesPage = () => {
         <StandardHeroVideo 
           vimeoEmbed={facilitiesVimeoEmbed}
           title="LE STRUTTURE:"
-          subtitle="Impianti all'avanguardia di tennis, padel e pickleball dotati di tecnologia Vicki™"
+          subtitle="Impianti all'avanguardia di tennis, padel e pickleball presso il Centro Motion a Bettolino di Mediglia, dotati di tecnologia Vicki™"
           onLogoOpacityChange={handleLogoOpacityChange}
           logoTopPositionMobile="60px" 
           logoTopPositionDesktop="100px"

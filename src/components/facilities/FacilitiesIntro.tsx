@@ -7,11 +7,11 @@ const FacilitiesIntro = () => {
         
         <div className="prose prose-lg max-w-4xl mx-auto mb-6">
           <p className="lead text-lg md:text-xl mb-4 font-swiss">
-            L'Advanced Tennis Hub è un centro di eccellenza progettato specificamente per ottimizzare l'utilizzo del metodo ATH e della tecnologia Vicki™.
+            L'Advanced Tennis Hub è un centro di eccellenza situato presso il Centro "Motion" a Bettolino di Mediglia, progettato specificamente per ottimizzare l'utilizzo del metodo ATH e della tecnologia Vicki™.
           </p>
           
           <p className="font-swiss text-base md:text-lg">
-            Le nostre strutture combinano campi da tennis, padel e pickleball tecnologicamente avanzati, aree di analisi dati e spazi per la preparazione atletica, creando un ambiente integrato che supporta ogni aspetto dello sviluppo del giocatore negli sport di racchetta.
+            Le nostre strutture comprendono 7 campi da tennis (4 in terra rossa e 3 in superficie veloce), campi da padel e pickleball, tutti tecnologicamente avanzati, aree di analisi dati e spazi per la preparazione atletica, creando un ambiente integrato che supporta ogni aspetto dello sviluppo del giocatore negli sport di racchetta.
           </p>
         </div>
       </div>
