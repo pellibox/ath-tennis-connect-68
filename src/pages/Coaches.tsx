@@ -12,10 +12,10 @@ import Hero from '@/components/Hero';
 const coaches = [
   {
     id: "coach-2",
-    name: "F.G.",
-    title: "Coach | Specialista Tattica & Strategia",
+    name: "Fernando Gambacurta",
+    title: "Head Coach | Specialista Tattica & Strategia",
     image: "/lovable-uploads/bc8181c1-457e-4029-bccc-16128b332b0d.png",
-    bio: "Direttore tecnico del centro, il lavoro di F. è Focalizzato sull'ottimizzazione delle strategie di gioco attraverso l'analisi dei pattern e delle analisi tattiche avanzate"
+    bio: "Direttore tecnico del centro, il lavoro di Fernando è focalizzato sull'ottimizzazione delle strategie di gioco attraverso l'analisi dei pattern e delle analisi tattiche avanzate"
   },
   {
     id: "coach-1",

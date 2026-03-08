@@ -158,8 +158,8 @@ export const createStyledContactPage = (doc: jsPDF): void => {
   doc.setFont('helvetica', 'normal');
   doc.setFontSize(FONTS.body);
   doc.setTextColor(...ATH_COLORS.black);
-  doc.text('Via F. Turati, 9', PAGE.marginLeft + 10, yPosition + 22);
-  doc.text('20121 Milano MI, Italia', PAGE.marginLeft + 10, yPosition + 30);
+  doc.text('Via Orsa Polare', PAGE.marginLeft + 10, yPosition + 22);
+  doc.text('Bettolino Di Mediglia, MI, Italia', PAGE.marginLeft + 10, yPosition + 30);
   doc.text('Email: info@ath.tennis', PAGE.marginLeft + 10, yPosition + 38);
   doc.text('Tel: +39 02 1234567', PAGE.marginLeft + 10, yPosition + 46);
   

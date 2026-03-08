@@ -171,7 +171,7 @@ const translations = {
   "home.keyFeatures.team": "Elite Team",
   "home.keyFeatures.teamDesc": "Professional coaches with innovative methodology",
   "home.keyFeatures.facilities": "Cutting-edge Facilities",
-  "home.keyFeatures.facilitiesDesc": "6 courts fully equipped with Vicki™ technology",
+  "home.keyFeatures.facilitiesDesc": "7 tennis courts fully equipped with Vicki™ technology",
   "home.keyFeatures.learnMore": "Learn more",
   
   // Home Page Training Methods
