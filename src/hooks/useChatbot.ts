@@ -35,7 +35,7 @@ export const useChatbot = () => {
   useEffect(() => {
     // Combina informazioni dai programmi tennis
     let knowledgeBase = 'ATH (Advanced Tennis Hub) è un centro di eccellenza per il tennis che utilizza tecnologia avanzata e competenze umane. ';
-    knowledgeBase += 'La sede è in Via F. Turati, 9, Milano MI, Italia. ';
+    knowledgeBase += 'La sede è in Via Orsa Maggiore, presso il Centro Motion, Bettolino di Mediglia, MI, Italia. ';
     knowledgeBase += 'ATH offre diversi programmi: ';
     
     // Aggiungi informazioni sui programmi tennis
