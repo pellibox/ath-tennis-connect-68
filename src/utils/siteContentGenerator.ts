@@ -51,7 +51,7 @@ Data generazione: ${new Date().toLocaleDateString('it-IT')}
 - Descrizione: "Coach professionisti con metodologia innovativa"
 
 ### Feature 4: Struttura All'avanguardia
-- Descrizione: "6 campi completamente equipaggiati con tecnologia Vicki™"
+- Descrizione: "7 campi da tennis completamente equipaggiati con tecnologia Vicki™"
 
 ## Training Methods Section (Home)
 - Titolo sezione: "Metodologia e Tecnologia"
@@ -430,9 +430,9 @@ Data generazione: ${new Date().toLocaleDateString('it-IT')}
 
 ## Staff Tecnico
 
-### Coach 1: F.G.
-- Ruolo: "Coach | Specialista Tattica & Strategia"
-- Bio: "Direttore tecnico del centro, il lavoro di F. è Focalizzato sull'ottimizzazione delle strategie di gioco attraverso l'analisi dei pattern e delle analisi tattiche avanzate"
+### Coach 1: Fernando Gambacurta
+- Ruolo: "Head Coach | Specialista Tattica & Strategia"
+- Bio: "Direttore tecnico del centro, il lavoro di Fernando è focalizzato sull'ottimizzazione delle strategie di gioco attraverso l'analisi dei pattern e delle analisi tattiche avanzate"
 
 ### Coach 2: S.G.
 - Ruolo: "Head Coach | Specialista Tecnica"
@@ -1180,7 +1180,7 @@ Data generazione: ${new Date().toLocaleDateString('it-IT')}
 - Sottotitolo: "Siamo a tua disposizione per qualsiasi informazione"
 
 ### Dati di Contatto
-- **Sede:** Via F. Turati, 9, Milano MI, Italia
+- **Sede:** Via Orsa Polare, Bettolino Di Mediglia, MI, Italia (presso Centro "Motion")
 - **Email:** info@ath.tennis
 - **Telefono:** +39 02 1234567
 

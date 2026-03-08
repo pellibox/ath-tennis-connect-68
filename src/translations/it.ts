@@ -179,7 +179,7 @@ const translations = {
   "home.keyFeatures.team": "Elite Team",
   "home.keyFeatures.teamDesc": "Coach professionisti con metodologia innovativa",
   "home.keyFeatures.facilities": "Struttura All'avanguardia",
-  "home.keyFeatures.facilitiesDesc": "6 campi completamente equipaggiati con tecnologia Vicki™",
+  "home.keyFeatures.facilitiesDesc": "7 campi da tennis completamente equipaggiati con tecnologia Vicki™",
   "home.keyFeatures.learnMore": "Scopri di più",
   
   // Home Page Training Methods
@@ -526,7 +526,7 @@ const translations = {
   "contact.submit": "Invia Messaggio",
   "contact.success": "Il tuo messaggio è stato inviato con successo. Ti risponderemo presto!",
   "contact.error": "C'è stato un errore nell'invio del messaggio. Per favore riprova.",
-  "contact.address": "Via F. Turati, 9, Milano MI, Italia",
+  "contact.address": "Via Orsa Polare, Bettolino Di Mediglia, MI, Italia",
   "contact.hours": "Orari di Apertura",
   "contact.mon-fri": "Lunedì - Venerdì",
   "contact.saturday": "Sabato",

@@ -250,8 +250,10 @@ VICKI (Virtual Intelligent Coach and Knowledge Interface) è un sistema di intel
 ATH (Advanced Tennis Hub) è una struttura all'avanguardia progettata specificamente per massimizzare l'efficacia dell'allenamento tennistico attraverso la tecnologia.
 
 ## Campi da Tennis
-- 6 campi da tennis indoor con superficie in resintex
-- 3 campi da tennis outdoor in terra rossa
+- 7 campi da tennis: 4 in terra rossa e 3 in superficie veloce
+- 3 campi veloci coperti tutto l'anno
+- 4 campi in terra rossa coperti con pallone a doppia membrana
+- Campo centrale a standard ATP
 - Tutti i campi sono equipaggiati con il sistema VICKI per l'analisi in tempo reale
 
 ## Campi da Padel

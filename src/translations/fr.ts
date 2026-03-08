@@ -455,7 +455,7 @@ const translations = {
   "home.keyFeatures.team": "Équipe Elite",
   "home.keyFeatures.teamDesc": "Entraîneurs professionnels avec une méthodologie innovante",
   "home.keyFeatures.facilities": "Installations de Pointe",
-  "home.keyFeatures.facilitiesDesc": "6 courts entièrement équipés avec la technologie Vicki™",
+  "home.keyFeatures.facilitiesDesc": "7 courts de tennis entièrement équipés avec la technologie Vicki™",
   "home.keyFeatures.learnMore": "En savoir plus",
   
   // Home Page Training Methods
