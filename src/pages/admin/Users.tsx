@@ -257,7 +257,14 @@ const Users = () => {
 
     setResetLoading(true);
     try {
+      if (!session?.access_token) {
+        throw new Error('Sessione scaduta, effettua nuovamente il login');
+      }
+
       const response = await supabase.functions.invoke('reset-password', {
+        headers: {
+          Authorization: `Bearer ${session.access_token}`,
+        },
         body: {
           userId: resetUserId,
           newPassword: newPassword
