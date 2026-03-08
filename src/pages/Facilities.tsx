@@ -15,10 +15,10 @@ const facilities = [
   {
     id: "facility-1",
     title: "Campo Centrale ATP",
-    description: "Campo principale con tribuna spettatori e standard ATP per tornei internazionali.",
+    description: "Campo principale a standard ATP con tribuna spettatori per tornei internazionali. Uno dei 7 campi da tennis del centro.",
     image: "/lovable-uploads/d4ba3935-f901-4a99-972b-6a86e47787db.png",
     features: [
-      "Dimensioni ATP standard",
+      "Standard ATP",
       "Illuminazione LED ad alta efficienza"
     ],
     vimeoEmbed: `<div style="position:relative;padding-bottom:56.25%;height:0;overflow:hidden;width:100%;"><iframe src="https://player.vimeo.com/video/1068880352?h=4d6b04576c&autoplay=1&loop=1&background=1&autopause=0&player_id=0&app_id=58479&controls=0" style="position:absolute;top:0;left:0;width:100%;height:100%;" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media" title="ATH Campo Centrale Video"></iframe></div><script src="https://player.vimeo.com/api/player.js"></script>`
@@ -26,24 +26,24 @@ const facilities = [
   {
     id: "facility-2",
     title: "Campi in Superficie Veloce",
-    description: "Due campi in superficie sintetica con coefficiente di attrito standardizzato e sistema di tracciamento Vicki™ integrato.",
+    description: "Tre campi in superficie veloce con coefficiente di attrito standardizzato e sistema di tracciamento Vicki™ integrato. Tutti e tre coperti tutto l'anno.",
     image: "/lovable-uploads/f9c89e9c-6847-411b-b1f9-e208caf726b4.png",
     features: [
-      "N1 campo coperto tutto l'anno",
-      "N1 campo con copetura rimuovibile",
-      "Illuminazione led per sessioni serali",
-      "Vicki™Powered court"
+      "3 campi coperti tutto l'anno",
+      "Illuminazione LED per sessioni serali",
+      "Vicki™ Powered Court"
     ]
   },
   {
     id: "facility-3",
     title: "Campi in Terra Rossa",
-    description: "Quattro campi in terra rossa calibrata, con manutenzione quotidiana e rilevamento parametrico Vicki™ completo.",
+    description: "Quattro campi in terra rossa calibrata, con manutenzione quotidiana e rilevamento parametrico Vicki™ completo. Coperti con pallone a doppia membrana.",
     image: "/lovable-uploads/a16b623a-92f5-4f89-9c3d-d01262778f95.png",
     features: [
+      "4 campi coperti con pallone a doppia membrana",
       "Manutenzione quotidiana professionale",
       "Calibrazione personalizzata della superficie",
-      "Vicki™ powered Court"
+      "Vicki™ Powered Court"
     ]
   },
   {
@@ -71,18 +71,6 @@ const facilities = [
       "Dimensioni regolamentari ufficiali",
       "Sistema di tracciamento Vicki™",
       "Illuminazione ottimizzata"
-    ]
-  },
-  {
-    id: "facility-touch",
-    title: "Campo Touch Tennis",
-    description: "Campo specializzato per touch tennis, ideale per allenamento tecnico di precisione e sviluppo delle abilità di tocco.",
-    image: "/lovable-uploads/f55d3f98-ba82-4220-81ac-86540f2b2862.png",
-    features: [
-      "Superficie studiata per gioco di precisione",
-      "Dimensioni ottimizzate per sviluppo tecnico",
-      "Ideale per allenamento di controllo e tocco",
-      "Analisi tecnica con sistema Vicki™"
     ]
   },
   {
