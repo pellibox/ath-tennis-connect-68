@@ -83,6 +83,8 @@ const facilities = [
       "Zona training funzionale",
       "Analisi e monitoraggio in tempo reale",
       "Spazio per sessioni di coaching individuali",
+      "Recovery room dedicata",
+      "Fisioterapia e biomedicina applicata al tennis (con esperti del settore)",
       "Design minimalista ed efficiente"
     ]
   },
