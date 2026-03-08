@@ -59,7 +59,7 @@ const ContactPage = () => {
         <ContactSection 
           title="Richiedi Informazioni"
           subtitle="Compila il modulo per informazioni su programmi, disponibilità o collaborazioni"
-          address="Via F. Turati, 9, Milano MI, Italia"
+          address="Via Orsa Polare, Bettolino Di Mediglia, MI, Italia"
           phone="+39 02 1234567"
           email="info@ath.tennis"
         />
