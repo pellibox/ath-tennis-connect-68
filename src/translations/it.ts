@@ -179,7 +179,7 @@ const translations = {
   "home.keyFeatures.team": "Elite Team",
   "home.keyFeatures.teamDesc": "Coach professionisti con metodologia innovativa",
   "home.keyFeatures.facilities": "Struttura All'avanguardia",
-  "home.keyFeatures.facilitiesDesc": "6 campi completamente equipaggiati con tecnologia Vicki™",
+  "home.keyFeatures.facilitiesDesc": "7 campi da tennis completamente equipaggiati con tecnologia Vicki™",
   "home.keyFeatures.learnMore": "Scopri di più",
   
   // Home Page Training Methods
