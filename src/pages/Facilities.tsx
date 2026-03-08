@@ -52,7 +52,7 @@ const facilities = [
     description: "Due campi da padel di ultima generazione con pareti in cristallo, sistema di tracciamento Vicki™ e illuminazione LED studiata per performance ottimali.",
     image: "/lovable-uploads/padel-courts.png",
     features: [
-      "N2 campi con standard internazionali WPT",
+      "N3 campi con standard internazionali WPT",
       "Pareti in cristallo temperato di alta qualità",
       "Sistema di tracciamento Vicki™ integrato",
       "Illuminazione LED dinamica e regolabile",
