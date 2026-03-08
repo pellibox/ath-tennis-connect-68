@@ -1180,7 +1180,7 @@ Data generazione: ${new Date().toLocaleDateString('it-IT')}
 - Sottotitolo: "Siamo a tua disposizione per qualsiasi informazione"
 
 ### Dati di Contatto
-- **Sede:** Via F. Turati, 9, Milano MI, Italia
+- **Sede:** Via Orsa Polare, Bettolino Di Mediglia, MI, Italia (presso Centro "Motion")
 - **Email:** info@ath.tennis
 - **Telefono:** +39 02 1234567
 
