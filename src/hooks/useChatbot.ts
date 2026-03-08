@@ -11,8 +11,8 @@ export interface Message {
   role: 'user' | 'assistant' | 'system';
 }
 
-// Pre-defined API key
-const OPENAI_API_KEY = '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';
+// API key removed for security - use edge function instead
+const OPENAI_API_KEY = '';
 
 // Modalità di fallback quando l'API non è disponibile
 const FALLBACK_MODE = true;
