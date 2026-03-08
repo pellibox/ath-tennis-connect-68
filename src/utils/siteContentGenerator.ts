@@ -51,7 +51,7 @@ Data generazione: ${new Date().toLocaleDateString('it-IT')}
 - Descrizione: "Coach professionisti con metodologia innovativa"
 
 ### Feature 4: Struttura All'avanguardia
-- Descrizione: "6 campi completamente equipaggiati con tecnologia Vicki™"
+- Descrizione: "7 campi da tennis completamente equipaggiati con tecnologia Vicki™"
 
 ## Training Methods Section (Home)
 - Titolo sezione: "Metodologia e Tecnologia"
