@@ -692,6 +692,69 @@ const translations = {
   "profPage.title": "Profis",
   "juniorPage.title": "Junior",
 
+  // ===== Junior Program Page =====
+  "programs.junior.title": "Junior-Programm",
+  "programs.junior.subtitle": "Technische, körperliche und mentale Entwicklung für junge Tennisspieler von 6 bis 18 Jahren mit Vicki™-Technologie in jeder Einheit.",
+  "programs.junior.hero.cta1": "Probestunde buchen",
+  "programs.junior.hero.cta2": "Informationen anfordern",
+
+  "programs.junior.banner.title": "Fortgeschrittenes Monitoring.",
+  "programs.junior.banner.subtitle": "Jeder Junior-Athlet wird mit Vicki™ überwacht: über 70 Parameter pro Einheit, Videoanalyse und personalisierte Berichte.",
+
+  "programs.junior.pageTitle": "Der ATH-Junior-Weg",
+  "programs.junior.intro": "Der Junior-Weg von ATH begleitet junge Athleten von der Talentfindung bis zum Leistungsniveau, mit einer auf echten Daten basierenden personalisierten Methode.",
+  "programs.junior.desc1": "Unsere Methode kombiniert technisch-taktisches Training, sportspezifische athletische Vorbereitung und kontinuierliche technologische Analyse. Jede Einheit wird vom Vicki™-System aufgezeichnet und ausgewertet und liefert Coach und Athlet sofortiges Feedback zu über 70 Leistungsparametern.",
+  "programs.junior.desc2": "Das Programm ist mehrstufig aufgebaut, um den Bedürfnissen jedes Athleten gerecht zu werden: von der Talentidentifikation bis zur vollständigen Unterstützung für nationale und internationale Wettkampfspieler.",
+
+  "programs.junior.features.title": "Merkmale des Programms",
+  "programs.junior.features.feature1": "Wöchentliche technische Einheiten mit zertifizierten Trainern",
+  "programs.junior.features.feature2": "Tennisspezifische athletische Vorbereitung",
+  "programs.junior.features.feature3": "Videoanalyse und Vicki™-Feedback in jeder Einheit",
+  "programs.junior.features.feature4": "Mentales Coaching einzeln und in der Gruppe",
+  "programs.junior.features.feature5": "Individuelle Turnierplanung",
+  "programs.junior.features.feature6": "Spezieller Ernährungs- und Regenerationsplan",
+
+  "programs.junior.benefits.title": "Vorteile für den Athleten",
+  "programs.junior.benefits.benefit1": "Objektiv überwachtes technisches Wachstum",
+  "programs.junior.benefits.benefit2": "Geringeres Verletzungsrisiko durch biomechanische Analyse",
+  "programs.junior.benefits.benefit3": "Bewusstsein für das eigene Spiel und die eigenen Daten",
+  "programs.junior.benefits.benefit4": "Durchgängige Betreuung zwischen Training und Turnieren",
+  "programs.junior.benefits.benefit5": "Wettbewerbsstarkes, aber gesundes Umfeld mit motivierten Altersgenossen",
+  "programs.junior.benefits.benefit6": "Mentale Vorbereitung auf den Druck im Match",
+
+  "programs.junior.ourPrograms": "Unsere Junior-Programme",
+  "programs.junior.programsTitle": "Wähle den passenden Weg",
+
+  "programs.junior.programs.talentId.title": "SIT — Schule zur Talentidentifikation",
+  "programs.junior.programs.talentId.desc": "Spezialisiertes Programm zur frühen Talenterkennung (6-10+ Jahre) mit dem Vicki™-System zur Beobachtung motorischer und mentaler Muster.",
+  "programs.junior.programs.talentId.feature1": "Erstbewertung mit dem Vicki™-System",
+  "programs.junior.programs.talentId.feature2": "Spielerischer, motivierender Zugang zum technischen Lernen",
+  "programs.junior.programs.talentId.feature3": "Detaillierter Bericht für Eltern zum Potenzial des Athleten",
+
+  "programs.junior.programs.competitive.title": "Junior Competitive (11-18 Jahre)",
+  "programs.junior.programs.competitive.desc": "Komplettes Wettkampfprogramm für Jugendliche, die FITP- und internationale Turniere spielen, mit Vicki™ Advanced Monitoring.",
+  "programs.junior.programs.competitive.feature1": "3-5 technische Einheiten pro Woche",
+  "programs.junior.programs.competitive.feature2": "Sportspezifische athletische Vorbereitung und Regeneration",
+  "programs.junior.programs.competitive.feature3": "Vicki™ Advanced Monitoring in jeder Einheit",
+  "programs.junior.programs.competitive.feature4": "Betreuung bei ausgewählten Turnieren vor Ort",
+
+  "programs.junior.programs.parent.title": "Eltern-/Tutor-Support (6-18 Jahre)",
+  "programs.junior.programs.parent.desc": "Ausbildungsweg für Eltern junger Wettkampfspieler, um das sportliche Wachstum ihres Kindes richtig zu begleiten.",
+  "programs.junior.programs.parent.feature1": "Technologie-Support: intuitive Berichte, Training-Streaming, vereinfachte Statistiken",
+  "programs.junior.programs.parent.feature2": "4 Weiterbildungs-Workshops pro Jahr und 2 Gruppensitzungen mit dem Mental Coach",
+  "programs.junior.programs.parent.feature3": "Kommunikationsleitfäden, Turnier-Checklisten, Logbuch",
+  "programs.junior.programs.parent.feature4": "Umgang mit Wettkampf-Emotionen",
+  "programs.junior.programs.parent.feature5": "Eltern-Netzwerk mit ähnlichen Erfahrungen, moderiert von Experten",
+  "programs.junior.programs.parent.feature6": "Zugang zur Vicki™-Elternplattform (Berichte + Streaming)",
+  "programs.junior.programs.parent.feature7": "Lehrmaterialien und spezielle Ressourcen",
+  "programs.junior.programs.parent.feature8": "Einzelgespräche mit dem Mental Coach auf Anfrage",
+  "programs.junior.programs.parent.feature9": "In den Elite-Performance-Programmen enthalten, 150 €/Jahr für alle anderen Programme",
+
+  "programs.junior.related.title": "Verwandte Programme",
+  "programs.junior.related.program1.title": "Eltern-/Tutor-Support",
+  "programs.junior.related.program1.desc": "Ein dedizierter Weg für alle, die einen jungen Athleten auf seinem Wettkampfweg begleiten.",
+  "programs.junior.related.discover": "Mehr erfahren",
+
   // Auth
   "auth.signIn": "Anmelden",
   "auth.signUp": "Konto erstellen",

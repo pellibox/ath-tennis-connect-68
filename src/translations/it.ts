@@ -1558,6 +1558,79 @@ const translations = {
   // Camps Feature 7 (missing)
   "camps.feature7": "Attività supplementari e team building",
 
+  // ===== Junior Program Page (src/pages/programs/Junior.tsx) =====
+  // Hero
+  "programs.junior.title": "Programma Junior",
+  "programs.junior.subtitle": "Sviluppo tecnico, fisico e mentale per giovani tennisti dai 6 ai 18 anni, con tecnologia Vicki™ integrata in ogni sessione.",
+  "programs.junior.hero.cta1": "Prenota una prova",
+  "programs.junior.hero.cta2": "Richiedi informazioni",
+
+  // Banner
+  "programs.junior.banner.title": "Monitoraggio avanzato.",
+  "programs.junior.banner.subtitle": "Ogni atleta junior viene monitorato con Vicki™: oltre 70 parametri per sessione, analisi video e report personalizzati.",
+
+  // Page intro
+  "programs.junior.pageTitle": "Il percorso Junior ATH",
+  "programs.junior.intro": "Il percorso Junior di ATH accompagna i giovani atleti dalla scoperta del talento fino al livello agonistico, con un metodo personalizzato basato su dati reali.",
+  "programs.junior.desc1": "Il nostro metodo combina allenamento tecnico-tattico, preparazione atletica specifica e analisi tecnologica continua. Ogni sessione viene registrata e analizzata dal sistema Vicki™, che fornisce a coach e atleta feedback immediati su oltre 70 parametri di performance.",
+  "programs.junior.desc2": "Il programma è strutturato su più livelli per rispondere alle esigenze di ciascun atleta: dalla fase di individuazione e sviluppo del talento fino al supporto completo per chi compete a livello nazionale e internazionale.",
+
+  // Features card
+  "programs.junior.features.title": "Caratteristiche del programma",
+  "programs.junior.features.feature1": "Allenamenti tecnici settimanali con maestri certificati",
+  "programs.junior.features.feature2": "Preparazione atletica specifica per il tennis",
+  "programs.junior.features.feature3": "Analisi video e feedback Vicki™ ad ogni sessione",
+  "programs.junior.features.feature4": "Mental coaching individuale e di gruppo",
+  "programs.junior.features.feature5": "Pianificazione torneistica personalizzata",
+  "programs.junior.features.feature6": "Percorso nutrizionale e di recupero dedicato",
+
+  // Benefits card
+  "programs.junior.benefits.title": "Vantaggi per l'atleta",
+  "programs.junior.benefits.benefit1": "Crescita tecnica monitorata oggettivamente",
+  "programs.junior.benefits.benefit2": "Riduzione del rischio di infortuni grazie all'analisi biomeccanica",
+  "programs.junior.benefits.benefit3": "Consapevolezza del proprio gioco e dei propri dati",
+  "programs.junior.benefits.benefit4": "Supporto continuo tra allenamenti e tornei",
+  "programs.junior.benefits.benefit5": "Ambiente competitivo ma sano, con coetanei motivati",
+  "programs.junior.benefits.benefit6": "Preparazione mentale per gestire la pressione in match",
+
+  // Programs section
+  "programs.junior.ourPrograms": "I nostri programmi Junior",
+  "programs.junior.programsTitle": "Scegli il percorso più adatto",
+
+  // Talent ID sub-program
+  "programs.junior.programs.talentId.title": "SIT — Scuola Individuazione Talenti",
+  "programs.junior.programs.talentId.desc": "Programma specializzato per l'identificazione precoce dei talenti tennistici (6-10+ anni) tramite il sistema Vicki™ che monitora pattern motori e attitudinali.",
+  "programs.junior.programs.talentId.feature1": "Valutazione iniziale con sistema Vicki™",
+  "programs.junior.programs.talentId.feature2": "Approccio ludico e divertente all'apprendimento tecnico",
+  "programs.junior.programs.talentId.feature3": "Report dettagliato per genitori sul potenziale dell'atleta",
+
+  // Junior Competitive sub-program
+  "programs.junior.programs.competitive.title": "Junior Competitive (11-18 anni)",
+  "programs.junior.programs.competitive.desc": "Programma agonistico completo per ragazzi che competono in tornei FITP e internazionali, con monitoraggio Vicki™ Advanced.",
+  "programs.junior.programs.competitive.feature1": "3-5 sessioni tecniche settimanali",
+  "programs.junior.programs.competitive.feature2": "Preparazione atletica specifica e recupero",
+  "programs.junior.programs.competitive.feature3": "Monitoraggio Vicki™ Advanced a ogni sessione",
+  "programs.junior.programs.competitive.feature4": "Supporto in trasferta per tornei selezionati",
+
+  // Parent Support sub-program
+  "programs.junior.programs.parent.title": "Supporto Genitori / Tutor (6-18 anni)",
+  "programs.junior.programs.parent.desc": "Percorso formativo dedicato ai genitori di giovani agonisti, per accompagnare in modo corretto la crescita sportiva del proprio figlio.",
+  "programs.junior.programs.parent.feature1": "Supporto tecnologico: report intuitivi, streaming degli allenamenti, statistiche semplificate",
+  "programs.junior.programs.parent.feature2": "4 workshop formativi all'anno e 2 incontri di gruppo con il mental coach",
+  "programs.junior.programs.parent.feature3": "Guide alla comunicazione efficace, checklist pre-torneo, diario di bordo",
+  "programs.junior.programs.parent.feature4": "Gestione delle emozioni legate alle competizioni",
+  "programs.junior.programs.parent.feature5": "Rete di genitori con esperienze simili, moderata da esperti",
+  "programs.junior.programs.parent.feature6": "Accesso alla piattaforma Vicki™ per genitori (report + streaming)",
+  "programs.junior.programs.parent.feature7": "Materiali educativi e risorse dedicate",
+  "programs.junior.programs.parent.feature8": "Colloqui individuali su richiesta con mental coach",
+  "programs.junior.programs.parent.feature9": "Incluso nei programmi Elite Performance, €150/anno per gli altri programmi",
+
+  // Related programs
+  "programs.junior.related.title": "Programmi correlati",
+  "programs.junior.related.program1.title": "Supporto Genitori / Tutor",
+  "programs.junior.related.program1.desc": "Un percorso dedicato a chi accompagna un giovane atleta nel suo cammino competitivo.",
+  "programs.junior.related.discover": "Scopri di più",
+
   // Auth
   "auth.signIn": "Accedi",
   "auth.signUp": "Crea Account",
