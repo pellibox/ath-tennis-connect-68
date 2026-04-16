@@ -16,9 +16,6 @@ const BottomNavigation = () => {
   const [dialogOpen, setDialogOpen] = useState(false);
   const [navItems, setNavItems] = useState<Array<{text: string, href: string, icon: JSX.Element}>>();
   
-  // Debug logging
-  console.log('🧭 BottomNavigation rendered on route:', location.pathname)
-  
   // Update navigation items when language changes
   useEffect(() => {
     // Always set navItems, with fallbacks if translations aren't loaded

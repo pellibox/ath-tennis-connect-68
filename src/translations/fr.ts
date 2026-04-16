@@ -690,7 +690,33 @@ const translations = {
   "clubPage.title": "Programmes pour Clubs et Académies",
   "coachPage.title": "Coach / Entraîneurs",
   "profPage.title": "Professionnels",
-  "juniorPage.title": "Junior"
+  "juniorPage.title": "Junior",
+
+  // Auth
+  "auth.signIn": "Se connecter",
+  "auth.signUp": "Créer un compte",
+  "auth.signUpLink": "Créer un compte",
+  "auth.email": "Email",
+  "auth.password": "Mot de passe",
+  "auth.confirmPassword": "Confirmer le mot de passe",
+  "auth.newPassword": "Nouveau mot de passe",
+  "auth.username": "Nom d'utilisateur",
+  "auth.fullName": "Nom complet",
+  "auth.forgotPassword": "Mot de passe oublié ?",
+  "auth.backToSignIn": "Retour à la connexion",
+  "auth.backToHome": "Retour à l'accueil",
+  "auth.alreadyHaveAccount": "Vous avez déjà un compte ? Connectez-vous",
+  "auth.loading": "Chargement...",
+  "auth.resetPassword": "Réinitialiser le mot de passe",
+  "auth.sendResetLink": "Envoyer le lien",
+  "auth.setNewPassword": "Définir un nouveau mot de passe",
+  "auth.resetPasswordInstructions": "Entrez votre adresse email et nous vous enverrons un lien pour réinitialiser votre mot de passe.",
+  "auth.resetPasswordEmailSent": "Le lien de réinitialisation a été envoyé à votre email",
+  "auth.passwordResetSuccess": "Mot de passe mis à jour avec succès",
+  "auth.passwordResetError": "Erreur lors de la réinitialisation",
+  "auth.invalidResetLink": "Lien de réinitialisation invalide ou expiré",
+  "auth.registrationSuccess": "Inscription réussie !",
+  "auth.registrationSuccessMessage": "Votre compte a été créé avec succès. Vous pouvez maintenant vous connecter."
 };
 
 export default translations;

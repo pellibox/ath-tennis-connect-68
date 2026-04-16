@@ -11,11 +11,9 @@ export interface Message {
   role: 'user' | 'assistant' | 'system';
 }
 
-// API key removed for security - use edge function instead
-const OPENAI_API_KEY = '';
-
-// Modalità di fallback quando l'API non è disponibile
-const FALLBACK_MODE = true;
+// Chatbot uses local fallback responses only.
+// For AI-powered responses, call the Supabase edge function instead
+// (never expose API keys in client code).
 
 export const useChatbot = () => {
   const [messages, setMessages] = useState<Message[]>([]);
@@ -100,74 +98,13 @@ export const useChatbot = () => {
     try {
       // Stop any ongoing speech
       stopSpeaking();
-      
-      // Prepare conversation history with system prompt
-      const conversationHistory: Message[] = [
-        {
-          role: 'system',
-          content: `Sei l'assistente virtuale di ATH (Advanced Tennis Hub), un centro di eccellenza per il tennis 
-          che utilizza tecnologia avanzata e competenze umane per formare tennisti di ogni età.
-          Rispondi in modo conciso, utile e cordiale. Le tue risposte devono essere in prima persona.
-          Sei specializzato in:
-          - Informazioni sui programmi ATH per professionisti, junior, adulti e altri
-          - Tecnologia di analisi tennis chiamata Vicki
-          - Strutture e attrezzature disponibili presso ATH
-          - Metodi di allenamento basati su tecnologia e personalizzazione
-          - Raccomandazioni personalizzate basate sull'età e livello del giocatore
-          Non parlare mai di prezzi specifici o dettagli che non conosci. 
-          Se non conosci la risposta, proponi di contattare direttamente ATH.
-          
-          Ecco informazioni aggiuntive sul sito: ${siteKnowledge.current}`
-        }
-      ];
 
-      // Add conversation history (limit to last 10 messages for context)
-      const recentMessages = messages.slice(-10);
-      conversationHistory.push(...recentMessages);
-      
-      // Add the current user message
-      conversationHistory.push({ role: 'user', content: userMessage });
+      // Use the local fallback response generator. The AI-powered path has been
+      // removed from the client — route through a Supabase edge function if needed.
+      const assistantMessage = getFallbackResponse(userMessage);
 
-      let assistantMessage = '';
-      
-      if (FALLBACK_MODE) {
-        // Modalità di fallback quando l'API non è disponibile
-        assistantMessage = getFallbackResponse(userMessage);
-        
-        // Simula una breve attesa per dare l'impressione di elaborazione
-        await new Promise(resolve => setTimeout(resolve, 800));
-      } else {
-        // Modalità normale con API
-        const response = await fetch("https://api.openai.com/v1/chat/completions", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-            "Authorization": `Bearer ${OPENAI_API_KEY}`
-          },
-          body: JSON.stringify({
-            model: "gpt-4o-mini",
-            messages: conversationHistory,
-            temperature: 0.7,
-            max_tokens: 150
-          }),
-          signal: abortControllerRef.current.signal
-        });
-
-        if (!response.ok) {
-          const error = await response.json();
-          console.error("OpenAI API error:", error);
-          
-          // Se c'è un errore di quota, usa la modalità fallback
-          if (error.error?.type === "insufficient_quota") {
-            assistantMessage = getFallbackResponse(userMessage);
-          } else {
-            throw new Error('Errore nel contattare il servizio di intelligenza artificiale. Per favore, riprova più tardi.');
-          }
-        } else {
-          const data = await response.json();
-          assistantMessage = data.choices[0].message.content;
-        }
-      }
+      // Small delay so the UI feels responsive, not instantaneous.
+      await new Promise(resolve => setTimeout(resolve, 800));
 
       // Add assistant response to messages
       setMessages(prev => [

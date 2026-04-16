@@ -52,6 +52,12 @@ const VickiMonitoringBadge = ({
           icon: <Award className={`${size === 'sm' ? 'w-3 h-3' : size === 'lg' ? 'w-5 h-5' : 'w-4 h-4'} mr-2`} />,
           label: 'Monitoraggio Vicki™ Pro'
         };
+      default:
+        return {
+          color: 'bg-gray-100 text-gray-600 border-gray-200',
+          icon: <Monitor className={`${size === 'sm' ? 'w-3 h-3' : size === 'lg' ? 'w-5 h-5' : 'w-4 h-4'} mr-2`} />,
+          label: 'Monitoraggio Vicki™'
+        };
     }
   };
 

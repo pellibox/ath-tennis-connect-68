@@ -122,6 +122,11 @@ function AppContent() {
           <Route path="/site-knowledge" element={<SiteKnowledge />} />
           
           {/* Program detail routes */}
+          <Route path="/programs/junior" element={<JuniorProgram />} />
+          <Route path="/programs/camps" element={<CampsProgram />} />
+          <Route path="/programs/elite" element={<EliteProgram />} />
+          <Route path="/programs/adult" element={<AdultProgram />} />
+          <Route path="/programs/private" element={<PrivateProgram />} />
           <Route path="/programs/performance-2" element={<Performance2Program />} />
           <Route path="/programs/performance-3" element={<Performance3Program />} />
           <Route path="/programs/performance-4" element={<Performance4Program />} />

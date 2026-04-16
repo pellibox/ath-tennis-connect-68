@@ -848,7 +848,33 @@ const translations = {
   "profPage.title": "Professionals",
   "analysisPage.title": "Performance Analysis",
   "uniPage.title": "University Students / Online Schools",
-  "juniorPage.title": "Junior"
+  "juniorPage.title": "Junior",
+
+  // Auth
+  "auth.signIn": "Sign In",
+  "auth.signUp": "Create Account",
+  "auth.signUpLink": "Create an account",
+  "auth.email": "Email",
+  "auth.password": "Password",
+  "auth.confirmPassword": "Confirm Password",
+  "auth.newPassword": "New Password",
+  "auth.username": "Username",
+  "auth.fullName": "Full Name",
+  "auth.forgotPassword": "Forgot password?",
+  "auth.backToSignIn": "Back to sign in",
+  "auth.backToHome": "Back to Home",
+  "auth.alreadyHaveAccount": "Already have an account? Sign in",
+  "auth.loading": "Loading...",
+  "auth.resetPassword": "Reset Password",
+  "auth.sendResetLink": "Send Reset Link",
+  "auth.setNewPassword": "Set New Password",
+  "auth.resetPasswordInstructions": "Enter your email address and we will send you a link to reset your password.",
+  "auth.resetPasswordEmailSent": "Password reset link has been sent to your email",
+  "auth.passwordResetSuccess": "Password updated successfully",
+  "auth.passwordResetError": "Error resetting password",
+  "auth.invalidResetLink": "Invalid or expired reset link",
+  "auth.registrationSuccess": "Registration Successful!",
+  "auth.registrationSuccessMessage": "Your account has been created successfully. You can now sign in with your credentials."
 };
 
 export default translations;

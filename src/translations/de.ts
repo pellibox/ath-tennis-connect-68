@@ -690,7 +690,33 @@ const translations = {
   "clubPage.title": "Programme für Clubs und Akademien",
   "coachPage.title": "Coach / Trainer",
   "profPage.title": "Profis",
-  "juniorPage.title": "Junior"
+  "juniorPage.title": "Junior",
+
+  // Auth
+  "auth.signIn": "Anmelden",
+  "auth.signUp": "Konto erstellen",
+  "auth.signUpLink": "Konto erstellen",
+  "auth.email": "E-Mail",
+  "auth.password": "Passwort",
+  "auth.confirmPassword": "Passwort bestätigen",
+  "auth.newPassword": "Neues Passwort",
+  "auth.username": "Benutzername",
+  "auth.fullName": "Vollständiger Name",
+  "auth.forgotPassword": "Passwort vergessen?",
+  "auth.backToSignIn": "Zurück zum Login",
+  "auth.backToHome": "Zurück zur Startseite",
+  "auth.alreadyHaveAccount": "Schon ein Konto? Anmelden",
+  "auth.loading": "Laden...",
+  "auth.resetPassword": "Passwort zurücksetzen",
+  "auth.sendResetLink": "Link senden",
+  "auth.setNewPassword": "Neues Passwort setzen",
+  "auth.resetPasswordInstructions": "Gib deine E-Mail-Adresse ein und wir senden dir einen Link zum Zurücksetzen des Passworts.",
+  "auth.resetPasswordEmailSent": "Der Link zum Zurücksetzen wurde an deine E-Mail gesendet",
+  "auth.passwordResetSuccess": "Passwort erfolgreich aktualisiert",
+  "auth.passwordResetError": "Fehler beim Zurücksetzen des Passworts",
+  "auth.invalidResetLink": "Ungültiger oder abgelaufener Link",
+  "auth.registrationSuccess": "Registrierung erfolgreich!",
+  "auth.registrationSuccessMessage": "Dein Konto wurde erfolgreich erstellt. Du kannst dich jetzt mit deinen Zugangsdaten anmelden."
 };
 
 export default translations;

@@ -1556,7 +1556,33 @@ const translations = {
   "programs.club.contact.subtitle": "Contattaci per una consulenza personalizzata",
 
   // Camps Feature 7 (missing)
-  "camps.feature7": "Attività supplementari e team building"
+  "camps.feature7": "Attività supplementari e team building",
+
+  // Auth
+  "auth.signIn": "Accedi",
+  "auth.signUp": "Crea Account",
+  "auth.signUpLink": "Crea un account",
+  "auth.email": "Email",
+  "auth.password": "Password",
+  "auth.confirmPassword": "Conferma Password",
+  "auth.newPassword": "Nuova Password",
+  "auth.username": "Username",
+  "auth.fullName": "Nome Completo",
+  "auth.forgotPassword": "Password dimenticata?",
+  "auth.backToSignIn": "Torna al login",
+  "auth.backToHome": "Torna alla Home",
+  "auth.alreadyHaveAccount": "Hai già un account? Accedi",
+  "auth.loading": "Caricamento...",
+  "auth.resetPassword": "Reimposta Password",
+  "auth.sendResetLink": "Invia link di reset",
+  "auth.setNewPassword": "Imposta nuova password",
+  "auth.resetPasswordInstructions": "Inserisci il tuo indirizzo email e ti invieremo un link per reimpostare la password.",
+  "auth.resetPasswordEmailSent": "Il link per reimpostare la password è stato inviato alla tua email",
+  "auth.passwordResetSuccess": "Password aggiornata con successo",
+  "auth.passwordResetError": "Errore durante il reset della password",
+  "auth.invalidResetLink": "Link di reset non valido o scaduto",
+  "auth.registrationSuccess": "Registrazione completata!",
+  "auth.registrationSuccessMessage": "Il tuo account è stato creato correttamente. Ora puoi accedere con le tue credenziali."
 };
 
 export default translations;
