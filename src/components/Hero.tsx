@@ -57,7 +57,7 @@ const Hero = ({
     if (titleRef.current) {
       const text = title || '';
       const wrappedText = text.split('').map((char, index) => 
-        `<span style="--index:${index}" ${char === ' ' ? 'class="inline-block"' : ''}>${char}</span>`
+        `<span style="--index:${index}" ${char === ' ' ? 'class="inline-block" style="--index:' + index + ';width:0.3em"' : ''}>${char}</span>`
       ).join('');
       
       titleRef.current.innerHTML = wrappedText;
