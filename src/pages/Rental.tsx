@@ -17,8 +17,8 @@ const Rental = () => {
 
       <main className="flex-grow">
         <Hero
-          title="Noleggia un campo a Milano"
-          subtitle="Tennis e Padel, coperti o outdoor, 7 giorni su 7. Prezzi chiari, prenotazione semplice."
+          title="Noleggia un campo"
+          subtitle="Tennis e Padel, coperti o outdoor, 7 giorni su 7."
           imageSrc="/lovable-uploads/ebada5d3-6c5e-43a0-ab7d-a5850900d950.png"
           buttons={[
             { text: 'Prenota un campo', href: '/contact' },
