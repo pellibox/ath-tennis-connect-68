@@ -33,7 +33,8 @@ const Rental = () => {
           {/* TENNIS RENTAL */}
           <section>
             <RevealAnimation>
-              <h2 className="text-3xl font-display mb-2">🎾 Noleggio campi Tennis</h2>
+              <p className="text-sm font-swiss tracking-widest text-ath-clay uppercase mb-2">Tennis</p>
+              <h2 className="text-3xl font-display mb-2">Noleggio campi Tennis</h2>
               <p className="text-gray-600 mb-8 font-swiss">
                 Tariffe €/ora, per campo. Stagionalità: <strong>inverno</strong> ottobre-aprile (coperti),
                 <strong> estate</strong> maggio-settembre (outdoor).
@@ -107,7 +108,8 @@ const Rental = () => {
           {/* PADEL RENTAL */}
           <section>
             <RevealAnimation>
-              <h2 className="text-3xl font-display mb-2">🟨 Noleggio campi Padel</h2>
+              <p className="text-sm font-swiss tracking-widest text-ath-clay uppercase mb-2">Padel</p>
+              <h2 className="text-3xl font-display mb-2">Noleggio campi Padel</h2>
               <p className="text-gray-600 mb-8 font-swiss">
                 Tariffe €/slot da 90 minuti, per campo.
               </p>
