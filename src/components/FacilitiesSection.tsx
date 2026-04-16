@@ -12,6 +12,7 @@ interface Facility {
   image: string;
   features?: string[];
   vimeoEmbed?: string;
+  comingSoon?: boolean;
 }
 
 interface FacilitiesSectionProps {
@@ -60,9 +61,17 @@ const FacilitiesSection = ({
                 )}
               >
                 {facility.vimeoEmbed ? (
-                  <div className="relative rounded-xl overflow-hidden shadow-lg w-full h-full" style={{ minHeight: "300px" }}
-                    dangerouslySetInnerHTML={{ __html: facility.vimeoEmbed }}
-                  />
+                  <div className="relative rounded-xl overflow-hidden shadow-lg w-full h-full" style={{ minHeight: "300px" }}>
+                    <div
+                      className="w-full h-full"
+                      dangerouslySetInnerHTML={{ __html: facility.vimeoEmbed }}
+                    />
+                    {facility.comingSoon && (
+                      <div className="absolute top-3 left-3 z-10 bg-ath-clay text-white text-[11px] font-swiss font-semibold uppercase tracking-widest px-3 py-1.5 rounded-md shadow-lg">
+                        Apertura prossima
+                      </div>
+                    )}
+                  </div>
                 ) : (
                   <div className="relative rounded-xl overflow-hidden shadow-lg h-full">
                     <img
@@ -70,6 +79,11 @@ const FacilitiesSection = ({
                       alt={facility.title}
                       className="w-full h-full object-cover object-center max-h-[500px]"
                     />
+                    {facility.comingSoon && (
+                      <div className="absolute top-3 left-3 z-10 bg-ath-clay text-white text-[11px] font-swiss font-semibold uppercase tracking-widest px-3 py-1.5 rounded-md shadow-lg">
+                        Apertura prossima
+                      </div>
+                    )}
                     {/* Only show VickiPoweredBadge for the first three facilities (Clay courts, Central court and Synthetic courts) */}
                     {index < 3 && (
                       <div className="absolute bottom-3 right-3">
