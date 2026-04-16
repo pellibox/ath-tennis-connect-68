@@ -50,7 +50,7 @@ const ElitePerformanceFullProgram = () => {
   };
 
   const programPricing = {
-    price: "€15.000",
+    price: "€14.000",
     period: t('programs.elitePerformanceFull.pricing.period'),
     notes: [
       t('programs.elitePerformanceFull.pricing.notes')

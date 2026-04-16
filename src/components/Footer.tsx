@@ -41,6 +41,7 @@ const Footer = () => {
             <li><Link to="/programs/adult-training" className="text-gray-400 hover:text-white text-sm transition-colors font-swiss">Amatori</Link></li>
             <li><Link to="/programs/camps" className="text-gray-400 hover:text-white text-sm transition-colors font-swiss">Camp Estivi</Link></li>
             <li><Link to="/programs/personal" className="text-gray-400 hover:text-white text-sm transition-colors font-swiss">Lezioni Private</Link></li>
+            <li><Link to="/rental" className="text-gray-400 hover:text-white text-sm transition-colors font-swiss">Noleggio Campi</Link></li>
           </ul>
         </div>
 

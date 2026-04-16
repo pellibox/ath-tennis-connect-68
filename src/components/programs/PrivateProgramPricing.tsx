@@ -8,10 +8,10 @@ const PrivateProgramPricing = () => {
     <div className="bg-gray-50 p-8 rounded-lg">
       <h3 className="text-xl font-swiss font-semibold mb-4">Prezzi e Prenotazione</h3>
       <div className="mb-4">
-        <CmsPriceDisplay 
+        <CmsPriceDisplay
           blockKey="price_personal_coaching"
-          fallbackPrice={120}
-          fallbackPeriod="per lezione di 1,5 ore"
+          fallbackPrice={180}
+          fallbackPeriod="per sessione"
         />
       </div>
       <p className="text-sm text-gray-600 mb-6">

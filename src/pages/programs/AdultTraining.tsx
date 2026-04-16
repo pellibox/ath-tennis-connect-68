@@ -105,10 +105,18 @@ const AdultTrainingProgram = () => {
             </RevealAnimation>
             
             <RevealAnimation delay={300} className="bg-gray-50 p-8 rounded-lg">
-              <h3 className="text-xl font-swiss font-semibold mb-4">Prezzo</h3>
-              <div className="mb-4">
-                <p className="text-3xl font-bold text-ath-clay">€700</p>
-                <p className="text-sm text-gray-600">per stagione (30 settimane)</p>
+              <h3 className="text-xl font-swiss font-semibold mb-4">Prezzi</h3>
+              <div className="grid grid-cols-2 gap-4 mb-4">
+                <div className="bg-white rounded-md p-4 border border-gray-200">
+                  <p className="text-xs text-gray-500 uppercase tracking-wide mb-1">Gruppo da 3</p>
+                  <p className="text-3xl font-bold text-ath-clay">€800</p>
+                  <p className="text-xs text-gray-500">all'anno</p>
+                </div>
+                <div className="bg-white rounded-md p-4 border border-gray-200">
+                  <p className="text-xs text-gray-500 uppercase tracking-wide mb-1">Gruppo da 4</p>
+                  <p className="text-3xl font-bold text-ath-clay">€650</p>
+                  <p className="text-xs text-gray-500">all'anno</p>
+                </div>
               </div>
               <p className="text-sm text-gray-600 mb-4">
                 Possibilità di pacchetti personalizzati per sessioni aggiuntive o allenamenti privati.

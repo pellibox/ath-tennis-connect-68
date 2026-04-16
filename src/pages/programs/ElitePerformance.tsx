@@ -124,7 +124,7 @@ const ElitePerformanceProgram = () => {
             <RevealAnimation delay={300} className="bg-gray-50 p-8 rounded-lg">
               <h3 className="text-xl font-swiss font-semibold mb-4">{t('programs.elitePerformance.pricing.title')}</h3>
               <div className="mb-4">
-                <p className="text-3xl font-bold text-ath-clay">€7.500</p>
+                <p className="text-3xl font-bold text-ath-clay">€7.200</p>
                 <p className="text-sm text-gray-600">{t('programs.elitePerformance.pricing.period')}</p>
               </div>
               <p className="text-sm text-gray-600 mb-4">

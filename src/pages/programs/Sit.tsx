@@ -202,7 +202,7 @@ const SitProgram = () => {
             <RevealAnimation delay={650} className="bg-gray-50 p-8 rounded-lg">
               <h3 className="text-xl font-swiss font-semibold mb-4">{t('programs.sit.pricing.title')}</h3>
               <div className="mb-4">
-                <p className="text-3xl font-bold text-ath-clay">€950</p>
+                <p className="text-3xl font-bold text-ath-clay">€850</p>
                 <p className="text-sm text-gray-600">{t('programs.sit.pricing.period')}</p>
               </div>
               <div className="mb-4 p-4 bg-ath-clay/10 rounded-lg">

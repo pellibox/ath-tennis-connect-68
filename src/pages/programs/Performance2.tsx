@@ -103,7 +103,7 @@ const Performance2Program = () => {
               <h3 className="text-2xl font-bold mb-4 text-ath-clay">{t('programs.performance2.investment.title')}</h3>
               <CmsPriceDisplay 
                 blockKey="price_perf2"
-                fallbackPrice={4000}
+                fallbackPrice={3900}
                 fallbackPeriod={t('programs.performance2.investment.period')}
                 priceClassName="text-xl mb-2"
                 periodClassName="text-gray-600 mb-6"

@@ -126,7 +126,7 @@ const Performance3Program = () => {
               <div className="mb-4">
                 <CmsPriceDisplay 
                   blockKey="price_perf3"
-                  fallbackPrice={5000}
+                  fallbackPrice={5200}
                   fallbackPeriod={t('programs.performance3.pricing.period')}
                 />
               </div>

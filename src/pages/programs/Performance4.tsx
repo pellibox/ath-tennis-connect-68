@@ -185,7 +185,7 @@ const Performance4Program = () => {
               <div className="mb-4">
                 <CmsPriceDisplay 
                   blockKey="price_perf4"
-                  fallbackPrice={6500}
+                  fallbackPrice={6700}
                   fallbackPeriod={isEnglish ? 'per season (40 weeks)' : 'per stagione (40 settimane)'}
                 />
               </div>

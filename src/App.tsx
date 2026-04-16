@@ -24,6 +24,7 @@ import NotFoundPage from '@/pages/NotFound';
 import PrivacyPage from '@/pages/Privacy';
 import TermsPage from '@/pages/Terms';
 import Brochure from '@/pages/Brochure';
+import Rental from '@/pages/Rental';
 import VickiWidgetContainer from '@/components/chatbot/VickiWidgetContainer';
 import BottomNavigation from '@/components/navigation/BottomNavigation';
 import SiteKnowledge from '@/pages/SiteKnowledge';
@@ -215,6 +216,8 @@ function AppContent() {
           <Route path="/privacy" element={<PrivacyPage />} />
           <Route path="/terms" element={<TermsPage />} />
           <Route path="/brochure" element={<Brochure />} />
+          <Route path="/rental" element={<Rental />} />
+          <Route path="/noleggio-campi" element={<Rental />} />
           
           <Route path="/programs/overview" element={<ProgramsOverview />} />
           <Route path="*" element={<NotFoundPage />} />
