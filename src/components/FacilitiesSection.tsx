@@ -68,7 +68,7 @@ const FacilitiesSection = ({
                     />
                     {facility.comingSoon && (
                       <div className="absolute top-3 left-3 z-10 bg-ath-clay text-white text-[11px] font-swiss font-semibold uppercase tracking-widest px-3 py-1.5 rounded-md shadow-lg">
-                        Apertura prossima
+                        Prossima apertura
                       </div>
                     )}
                   </div>
@@ -81,7 +81,7 @@ const FacilitiesSection = ({
                     />
                     {facility.comingSoon && (
                       <div className="absolute top-3 left-3 z-10 bg-ath-clay text-white text-[11px] font-swiss font-semibold uppercase tracking-widest px-3 py-1.5 rounded-md shadow-lg">
-                        Apertura prossima
+                        Prossima apertura
                       </div>
                     )}
                     {/* Only show VickiPoweredBadge for the first three facilities (Clay courts, Central court and Synthetic courts) */}
