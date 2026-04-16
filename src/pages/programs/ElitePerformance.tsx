@@ -72,7 +72,7 @@ const ElitePerformanceProgram = () => {
                 {t('programs.elitePerformance.banner.vicki')}
               </p>
               <div className="mt-4 flex flex-wrap gap-3">
-                <VickiUnifiedBadge level="pro" className="bg-opacity-20 border-opacity-30 text-white" />
+                <VickiUnifiedBadge level="performance" className="bg-opacity-20 border-opacity-30 text-white" />
               </div>
             </div>
           </div>
@@ -87,7 +87,7 @@ const ElitePerformanceProgram = () => {
                   <Users className="w-3.5 h-3.5" />
                   <span>{t('programs.elitePerformance.badge')}</span>
                 </Badge>
-                <VickiUnifiedBadge level="pro" />
+                <VickiUnifiedBadge level="performance" />
               </div>
             </RevealAnimation>
             <RevealAnimation delay={100}>

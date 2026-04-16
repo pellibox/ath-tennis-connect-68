@@ -33,7 +33,7 @@ export const juniorPrograms: Program[] = [
       'Possibilità di accesso dal programma SAT dopo valutazione specifica'
     ],
     vickiPowered: true,
-    vickiMonitoringLevel: 'essentials'
+    vickiMonitoringLevel: 'core'
   },
   {
     id: '1',

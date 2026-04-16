@@ -72,18 +72,18 @@ const SitProgram = () => {
                 {t('programs.sit.banner.desc')}
               </p>
               <div className="mt-4 flex flex-wrap gap-3">
-                <VickiUnifiedBadge level="essentials" className="bg-opacity-20 border-opacity-30 text-white" />
+                <VickiUnifiedBadge level="core" className="bg-opacity-20 border-opacity-30 text-white" />
               </div>
             </div>
           </div>
         </div>
-        
+
         <div className="max-w-6xl mx-auto px-6 py-16">
           <div className="mb-12">
             <RevealAnimation>
               <div className="flex flex-wrap items-center gap-3 mb-6">
                 <h2 className="text-3xl font-swiss">{t('programs.sit.pageTitle')}</h2>
-                <VickiUnifiedBadge level="essentials" />
+                <VickiUnifiedBadge level="core" />
               </div>
             </RevealAnimation>
             <RevealAnimation delay={100}>
